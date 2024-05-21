@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sech {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sech
+{
     /// <summary>
     /// Provides operations to call the sech method.
     /// </summary>
-    public class SechRequestBuilder : BaseCliRequestBuilder 
+    public class SechRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action sech

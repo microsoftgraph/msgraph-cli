@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.ProvisioningPolicies.Item.Assign {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.ProvisioningPolicies.Item.Assign
+{
     /// <summary>
     /// Provides operations to call the assign method.
     /// </summary>
-    public class AssignRequestBuilder : BaseCliRequestBuilder 
+    public class AssignRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Assign a cloudPcProvisioningPolicy to user groups.

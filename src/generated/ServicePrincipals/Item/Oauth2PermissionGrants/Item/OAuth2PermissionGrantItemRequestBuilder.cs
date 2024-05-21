@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item {
+namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item
+{
     /// <summary>
     /// Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class OAuth2PermissionGrantItemRequestBuilder : BaseCliRequestBuilder 
+    public class OAuth2PermissionGrantItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.

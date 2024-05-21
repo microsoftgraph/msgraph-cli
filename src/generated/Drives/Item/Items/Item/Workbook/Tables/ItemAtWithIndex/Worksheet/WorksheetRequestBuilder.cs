@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Worksheet {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Worksheet
+{
     /// <summary>
     /// Provides operations to manage the worksheet property of the microsoft.graph.workbookTable entity.
     /// </summary>
-    public class WorksheetRequestBuilder : BaseCliRequestBuilder 
+    public class WorksheetRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The worksheet containing the current table. Read-only.

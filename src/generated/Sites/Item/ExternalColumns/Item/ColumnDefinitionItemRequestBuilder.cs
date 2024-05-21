@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.ExternalColumns.Item {
+namespace ApiSdk.Sites.Item.ExternalColumns.Item
+{
     /// <summary>
     /// Provides operations to manage the externalColumns property of the microsoft.graph.site entity.
     /// </summary>
-    public class ColumnDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ColumnDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get externalColumns from sites

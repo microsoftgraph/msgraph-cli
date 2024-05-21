@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ApplicationTemplates.Item {
+namespace ApiSdk.ApplicationTemplates.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of applicationTemplate entities.
     /// </summary>
-    public class ApplicationTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class ApplicationTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Retrieve the properties of an applicationTemplate object.

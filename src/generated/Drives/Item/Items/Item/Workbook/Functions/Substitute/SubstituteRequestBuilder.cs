@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Substitute {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Substitute
+{
     /// <summary>
     /// Provides operations to call the substitute method.
     /// </summary>
-    public class SubstituteRequestBuilder : BaseCliRequestBuilder 
+    public class SubstituteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action substitute

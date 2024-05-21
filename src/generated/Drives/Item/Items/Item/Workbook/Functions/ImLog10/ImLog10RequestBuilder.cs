@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImLog10 {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImLog10
+{
     /// <summary>
     /// Provides operations to call the imLog10 method.
     /// </summary>
-    public class ImLog10RequestBuilder : BaseCliRequestBuilder 
+    public class ImLog10RequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imLog10

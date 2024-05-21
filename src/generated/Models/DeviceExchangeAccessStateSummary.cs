@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Device Exchange Access State summary
     /// </summary>
-    public class DeviceExchangeAccessStateSummary : IAdditionalDataHolder, IParsable 
+    public class DeviceExchangeAccessStateSummary : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -55,12 +56,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"allowedDeviceCount", n => { AllowedDeviceCount = n.GetIntValue(); } },
-                {"blockedDeviceCount", n => { BlockedDeviceCount = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"quarantinedDeviceCount", n => { QuarantinedDeviceCount = n.GetIntValue(); } },
-                {"unavailableDeviceCount", n => { UnavailableDeviceCount = n.GetIntValue(); } },
-                {"unknownDeviceCount", n => { UnknownDeviceCount = n.GetIntValue(); } },
+                { "allowedDeviceCount", n => { AllowedDeviceCount = n.GetIntValue(); } },
+                { "blockedDeviceCount", n => { BlockedDeviceCount = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "quarantinedDeviceCount", n => { QuarantinedDeviceCount = n.GetIntValue(); } },
+                { "unavailableDeviceCount", n => { UnavailableDeviceCount = n.GetIntValue(); } },
+                { "unknownDeviceCount", n => { UnknownDeviceCount = n.GetIntValue(); } },
             };
         }
         /// <summary>

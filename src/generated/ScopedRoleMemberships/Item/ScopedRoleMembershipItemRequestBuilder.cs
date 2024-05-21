@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ScopedRoleMemberships.Item {
+namespace ApiSdk.ScopedRoleMemberships.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of scopedRoleMembership entities.
     /// </summary>
-    public class ScopedRoleMembershipItemRequestBuilder : BaseCliRequestBuilder 
+    public class ScopedRoleMembershipItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from scopedRoleMemberships

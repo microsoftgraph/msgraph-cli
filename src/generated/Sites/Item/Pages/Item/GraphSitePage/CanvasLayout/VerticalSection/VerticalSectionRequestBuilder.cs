@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.VerticalSection {
+namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.VerticalSection
+{
     /// <summary>
     /// Provides operations to manage the verticalSection property of the microsoft.graph.canvasLayout entity.
     /// </summary>
-    public class VerticalSectionRequestBuilder : BaseCliRequestBuilder 
+    public class VerticalSectionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property verticalSection for sites

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAttribute {
+namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAttribute
+{
     /// <summary>
     /// Provides operations to manage the userAttribute property of the microsoft.graph.identityUserFlowAttributeAssignment entity.
     /// </summary>
-    public class UserAttributeRequestBuilder : BaseCliRequestBuilder 
+    public class UserAttributeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The user attribute that you want to add to your user flow.

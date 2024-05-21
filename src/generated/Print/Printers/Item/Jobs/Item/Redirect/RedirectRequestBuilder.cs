@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Printers.Item.Jobs.Item.Redirect {
+namespace ApiSdk.Print.Printers.Item.Jobs.Item.Redirect
+{
     /// <summary>
     /// Provides operations to call the redirect method.
     /// </summary>
-    public class RedirectRequestBuilder : BaseCliRequestBuilder 
+    public class RedirectRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Redirect a print job to a different printer. Redirecting a print job will only succeed if there is a printTask in a processing state on the associated print job, started by a trigger that the requesting app created.  For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.

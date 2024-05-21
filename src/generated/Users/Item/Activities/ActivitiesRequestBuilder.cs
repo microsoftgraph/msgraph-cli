@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Activities {
+namespace ApiSdk.Users.Item.Activities
+{
     /// <summary>
     /// Provides operations to manage the activities property of the microsoft.graph.user entity.
     /// </summary>
-    public class ActivitiesRequestBuilder : BaseCliRequestBuilder 
+    public class ActivitiesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the activities property of the microsoft.graph.user entity.
@@ -107,14 +108,13 @@ namespace ApiSdk.Users.Item.Activities {
             return command;
         }
         /// <summary>
-        /// Get activities for a given user. Unlike the recent OData function, activities without histories will be returned. The permission UserActivity.ReadWrite.CreatedByApp will apply extra filtering to the response, so that only activities created by your application are returned. This server-side filtering might result in empty pages if the user is particularly active and other applications have created more recent activities. To get your application&apos;s activities, use the nextLink property to paginate.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/projectrome-get-activities?view=graph-rest-1.0" />
+        /// The user&apos;s activities across devices. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get activities for a given user. Unlike the recent OData function, activities without histories will be returned. The permission UserActivity.ReadWrite.CreatedByApp will apply extra filtering to the response, so that only activities created by your application are returned. This server-side filtering might result in empty pages if the user is particularly active and other applications have created more recent activities. To get your application's activities, use the nextLink property to paginate.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/projectrome-get-activities?view=graph-rest-1.0";
+            command.Description = "The user's activities across devices. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -196,7 +196,9 @@ namespace ApiSdk.Users.Item.Activities {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -239,7 +241,7 @@ namespace ApiSdk.Users.Item.Activities {
         {
         }
         /// <summary>
-        /// Get activities for a given user. Unlike the recent OData function, activities without histories will be returned. The permission UserActivity.ReadWrite.CreatedByApp will apply extra filtering to the response, so that only activities created by your application are returned. This server-side filtering might result in empty pages if the user is particularly active and other applications have created more recent activities. To get your application&apos;s activities, use the nextLink property to paginate.
+        /// The user&apos;s activities across devices. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -279,7 +281,7 @@ namespace ApiSdk.Users.Item.Activities {
             return requestInfo;
         }
         /// <summary>
-        /// Get activities for a given user. Unlike the recent OData function, activities without histories will be returned. The permission UserActivity.ReadWrite.CreatedByApp will apply extra filtering to the response, so that only activities created by your application are returned. This server-side filtering might result in empty pages if the user is particularly active and other applications have created more recent activities. To get your application&apos;s activities, use the nextLink property to paginate.
+        /// The user&apos;s activities across devices. Read-only. Nullable.
         /// </summary>
         public class ActivitiesRequestBuilderGetQueryParameters 
         {

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TeamsAsyncOperation : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TeamsAsyncOperation : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Number of times the operation was attempted before being marked successful or failed.</summary>
         public int? AttemptsCount { get; set; }
@@ -59,14 +62,14 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"attemptsCount", n => { AttemptsCount = n.GetIntValue(); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"error", n => { Error = n.GetObjectValue<OperationError>(OperationError.CreateFromDiscriminatorValue); } },
-                {"lastActionDateTime", n => { LastActionDateTime = n.GetDateTimeOffsetValue(); } },
-                {"operationType", n => { OperationType = n.GetEnumValue<TeamsAsyncOperationType>(); } },
-                {"status", n => { Status = n.GetEnumValue<TeamsAsyncOperationStatus>(); } },
-                {"targetResourceId", n => { TargetResourceId = n.GetStringValue(); } },
-                {"targetResourceLocation", n => { TargetResourceLocation = n.GetStringValue(); } },
+                { "attemptsCount", n => { AttemptsCount = n.GetIntValue(); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "error", n => { Error = n.GetObjectValue<OperationError>(OperationError.CreateFromDiscriminatorValue); } },
+                { "lastActionDateTime", n => { LastActionDateTime = n.GetDateTimeOffsetValue(); } },
+                { "operationType", n => { OperationType = n.GetEnumValue<TeamsAsyncOperationType>(); } },
+                { "status", n => { Status = n.GetEnumValue<TeamsAsyncOperationStatus>(); } },
+                { "targetResourceId", n => { TargetResourceId = n.GetStringValue(); } },
+                { "targetResourceLocation", n => { TargetResourceLocation = n.GetStringValue(); } },
             };
         }
         /// <summary>

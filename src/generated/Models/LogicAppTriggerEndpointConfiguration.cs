@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class LogicAppTriggerEndpointConfiguration : CustomExtensionEndpointConfiguration, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class LogicAppTriggerEndpointConfiguration : CustomExtensionEndpointConfiguration, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The name of the logic app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,10 +67,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"logicAppWorkflowName", n => { LogicAppWorkflowName = n.GetStringValue(); } },
-                {"resourceGroupName", n => { ResourceGroupName = n.GetStringValue(); } },
-                {"subscriptionId", n => { SubscriptionId = n.GetStringValue(); } },
-                {"url", n => { Url = n.GetStringValue(); } },
+                { "logicAppWorkflowName", n => { LogicAppWorkflowName = n.GetStringValue(); } },
+                { "resourceGroupName", n => { ResourceGroupName = n.GetStringValue(); } },
+                { "subscriptionId", n => { SubscriptionId = n.GetStringValue(); } },
+                { "url", n => { Url = n.GetStringValue(); } },
             };
         }
         /// <summary>

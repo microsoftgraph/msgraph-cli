@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
+namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView
+{
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.
     /// </summary>
-    public class CalendarViewRequestBuilder : BaseCliRequestBuilder 
+    public class CalendarViewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.
@@ -106,14 +107,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
             return command;
         }
         /// <summary>
-        /// The set of appointments of this business in a specified date range. Read-only. Nullable.
+        /// Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The set of appointments of this business in a specified date range. Read-only. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0";
+            command.Description = "Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -207,7 +208,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -233,7 +236,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
         {
         }
         /// <summary>
-        /// The set of appointments of this business in a specified date range. Read-only. Nullable.
+        /// Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +276,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
             return requestInfo;
         }
         /// <summary>
-        /// The set of appointments of this business in a specified date range. Read-only. Nullable.
+        /// Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.
         /// </summary>
         public class CalendarViewRequestBuilderGetQueryParameters 
         {

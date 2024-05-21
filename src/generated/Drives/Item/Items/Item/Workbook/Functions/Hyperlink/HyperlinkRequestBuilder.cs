@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hyperlink {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hyperlink
+{
     /// <summary>
     /// Provides operations to call the hyperlink method.
     /// </summary>
-    public class HyperlinkRequestBuilder : BaseCliRequestBuilder 
+    public class HyperlinkRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action hyperlink

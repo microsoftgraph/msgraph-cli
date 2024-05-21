@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dsum {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dsum
+{
     /// <summary>
     /// Provides operations to call the dsum method.
     /// </summary>
-    public class DsumRequestBuilder : BaseCliRequestBuilder 
+    public class DsumRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dsum

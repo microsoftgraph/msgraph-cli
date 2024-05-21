@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Skew {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Skew
+{
     /// <summary>
     /// Provides operations to call the skew method.
     /// </summary>
-    public class SkewRequestBuilder : BaseCliRequestBuilder 
+    public class SkewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action skew

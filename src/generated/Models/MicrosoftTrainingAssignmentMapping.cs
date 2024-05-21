@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class MicrosoftTrainingAssignmentMapping : TrainingSetting, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class MicrosoftTrainingAssignmentMapping : TrainingSetting, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>A user collection that specifies to whom the training should be assigned. Possible values are: none, allUsers, clickedPayload, compromised, reportedPhish, readButNotClicked, didNothing, unknownFutureValue.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,8 +51,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"assignedTo", n => { AssignedTo = n.GetCollectionOfEnumValues<TrainingAssignedTo>()?.ToList(); } },
-                {"training", n => { Training = n.GetObjectValue<ApiSdk.Models.Training>(ApiSdk.Models.Training.CreateFromDiscriminatorValue); } },
+                { "assignedTo", n => { AssignedTo = n.GetCollectionOfEnumValues<TrainingAssignedTo>()?.ToList(); } },
+                { "training", n => { Training = n.GetObjectValue<ApiSdk.Models.Training>(ApiSdk.Models.Training.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

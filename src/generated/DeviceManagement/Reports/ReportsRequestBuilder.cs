@@ -33,11 +33,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.Reports {
+namespace ApiSdk.DeviceManagement.Reports
+{
     /// <summary>
     /// Provides operations to manage the reports property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class ReportsRequestBuilder : BaseCliRequestBuilder 
+    public class ReportsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property reports for deviceManagement

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ResourceVisualization : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ResourceVisualization : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -106,15 +109,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"containerDisplayName", n => { ContainerDisplayName = n.GetStringValue(); } },
-                {"containerType", n => { ContainerType = n.GetStringValue(); } },
-                {"containerWebUrl", n => { ContainerWebUrl = n.GetStringValue(); } },
-                {"mediaType", n => { MediaType = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"previewImageUrl", n => { PreviewImageUrl = n.GetStringValue(); } },
-                {"previewText", n => { PreviewText = n.GetStringValue(); } },
-                {"title", n => { Title = n.GetStringValue(); } },
-                {"type", n => { Type = n.GetStringValue(); } },
+                { "containerDisplayName", n => { ContainerDisplayName = n.GetStringValue(); } },
+                { "containerType", n => { ContainerType = n.GetStringValue(); } },
+                { "containerWebUrl", n => { ContainerWebUrl = n.GetStringValue(); } },
+                { "mediaType", n => { MediaType = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "previewImageUrl", n => { PreviewImageUrl = n.GetStringValue(); } },
+                { "previewText", n => { PreviewText = n.GetStringValue(); } },
+                { "title", n => { Title = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetStringValue(); } },
             };
         }
         /// <summary>

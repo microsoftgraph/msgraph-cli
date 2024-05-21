@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item.Calendar {
+namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item.Calendar
+{
     /// <summary>
     /// Provides operations to manage the calendar property of the microsoft.graph.event entity.
     /// </summary>
-    public class CalendarRequestBuilder : BaseCliRequestBuilder 
+    public class CalendarRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The calendar that contains the event. Navigation property. Read-only.

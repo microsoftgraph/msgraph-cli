@@ -26,11 +26,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
+{
     /// <summary>
     /// Provides operations to manage the filter property of the microsoft.graph.workbookTableColumn entity.
     /// </summary>
-    public class FilterRequestBuilder : BaseCliRequestBuilder 
+    public class FilterRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the applyBottomItemsFilter method.

@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.MemberOf {
+namespace ApiSdk.Groups.Item.MemberOf
+{
     /// <summary>
     /// Provides operations to manage the memberOf property of the microsoft.graph.group entity.
     /// </summary>
-    public class MemberOfRequestBuilder : BaseCliRequestBuilder 
+    public class MemberOfRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the memberOf property of the microsoft.graph.group entity.
@@ -102,14 +103,14 @@ namespace ApiSdk.Groups.Item.MemberOf {
             return command;
         }
         /// <summary>
-        /// Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
+        /// Get groups that the group is a direct member of. This operation is not transitive. Unlike getting a user&apos;s Microsoft 365 groups, this returns all types of groups, not just Microsoft 365 groups.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-memberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-memberof?view=graph-rest-1.0";
+            command.Description = "Get groups that the group is a direct member of. This operation is not transitive. Unlike getting a user's Microsoft 365 groups, this returns all types of groups, not just Microsoft 365 groups.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-memberof?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -198,7 +199,9 @@ namespace ApiSdk.Groups.Item.MemberOf {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -224,7 +227,7 @@ namespace ApiSdk.Groups.Item.MemberOf {
         {
         }
         /// <summary>
-        /// Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
+        /// Get groups that the group is a direct member of. This operation is not transitive. Unlike getting a user&apos;s Microsoft 365 groups, this returns all types of groups, not just Microsoft 365 groups.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +246,7 @@ namespace ApiSdk.Groups.Item.MemberOf {
             return requestInfo;
         }
         /// <summary>
-        /// Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.
+        /// Get groups that the group is a direct member of. This operation is not transitive. Unlike getting a user&apos;s Microsoft 365 groups, this returns all types of groups, not just Microsoft 365 groups.
         /// </summary>
         public class MemberOfRequestBuilderGetQueryParameters 
         {

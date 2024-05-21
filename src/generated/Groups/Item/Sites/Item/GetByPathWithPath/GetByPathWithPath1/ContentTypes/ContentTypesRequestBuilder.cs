@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.ContentTypes {
+namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.ContentTypes
+{
     /// <summary>
     /// Provides operations to manage the contentTypes property of the microsoft.graph.site entity.
     /// </summary>
-    public class ContentTypesRequestBuilder : BaseCliRequestBuilder 
+    public class ContentTypesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [site][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list-contenttypes?view=graph-rest-1.0" />
+        /// The collection of content types defined for this site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the collection of [contentType][contentType] resources in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-contenttypes?view=graph-rest-1.0";
+            command.Description = "The collection of content types defined for this site.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -128,7 +128,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -140,14 +142,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
             return command;
         }
         /// <summary>
-        /// Create a new [contentType][] in a [site][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-post-contenttypes?view=graph-rest-1.0" />
+        /// Create new navigation property to contentTypes for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Create a new [contentType][] in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-post-contenttypes?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to contentTypes for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -224,7 +225,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
         {
         }
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [site][].
+        /// The collection of content types defined for this site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +244,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
             return requestInfo;
         }
         /// <summary>
-        /// Create a new [contentType][] in a [site][].
+        /// Create new navigation property to contentTypes for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -264,7 +265,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [site][].
+        /// The collection of content types defined for this site.
         /// </summary>
         public class ContentTypesRequestBuilderGetQueryParameters 
         {

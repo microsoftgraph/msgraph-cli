@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests {
+namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests
+{
     /// <summary>
     /// Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.
     /// </summary>
-    public class TimeOffRequestsRequestBuilder : BaseCliRequestBuilder 
+    public class TimeOffRequestsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.
@@ -110,14 +111,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of timeOffRequest objects in the team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffrequest-list?view=graph-rest-1.0" />
+        /// The time off requests in the schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of timeOffRequest objects in the team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffrequest-list?view=graph-rest-1.0";
+            command.Description = "The time off requests in the schedule.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -198,7 +198,9 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -224,7 +226,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests {
         {
         }
         /// <summary>
-        /// Retrieve a list of timeOffRequest objects in the team.
+        /// The time off requests in the schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +266,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of timeOffRequest objects in the team.
+        /// The time off requests in the schedule.
         /// </summary>
         public class TimeOffRequestsRequestBuilderGetQueryParameters 
         {

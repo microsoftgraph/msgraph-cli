@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect
+{
     /// <summary>
     /// Provides operations to call the effect method.
     /// </summary>
-    public class EffectRequestBuilder : BaseCliRequestBuilder 
+    public class EffectRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action effect

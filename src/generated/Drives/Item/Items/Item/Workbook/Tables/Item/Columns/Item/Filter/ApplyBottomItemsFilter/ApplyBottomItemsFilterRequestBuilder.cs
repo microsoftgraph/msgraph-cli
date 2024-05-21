@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyBottomItemsFilter {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyBottomItemsFilter
+{
     /// <summary>
     /// Provides operations to call the applyBottomItemsFilter method.
     /// </summary>
-    public class ApplyBottomItemsFilterRequestBuilder : BaseCliRequestBuilder 
+    public class ApplyBottomItemsFilterRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action applyBottomItemsFilter

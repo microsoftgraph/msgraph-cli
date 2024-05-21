@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.AppManagementPolicies.Item {
+namespace ApiSdk.ServicePrincipals.Item.AppManagementPolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class AppManagementPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class AppManagementPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The appManagementPolicy applied to this application.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCot {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCot
+{
     /// <summary>
     /// Provides operations to call the imCot method.
     /// </summary>
-    public class ImCotRequestBuilder : BaseCliRequestBuilder 
+    public class ImCotRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imCot

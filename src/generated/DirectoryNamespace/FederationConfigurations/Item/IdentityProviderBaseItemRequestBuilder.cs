@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
+namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item
+{
     /// <summary>
     /// Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.
     /// </summary>
-    public class IdentityProviderBaseItemRequestBuilder : BaseCliRequestBuilder 
+    public class IdentityProviderBaseItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a samlOrWsFedExternalDomainFederation object.

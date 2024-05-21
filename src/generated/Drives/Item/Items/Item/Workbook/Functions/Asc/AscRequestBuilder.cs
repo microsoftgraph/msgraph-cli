@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asc
+{
     /// <summary>
     /// Provides operations to call the asc method.
     /// </summary>
-    public class AscRequestBuilder : BaseCliRequestBuilder 
+    public class AscRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action asc

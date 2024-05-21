@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Partners.Billing {
-    public class AzureUsage : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Partners.Billing
+{
+    #pragma warning disable CS1591
+    public class AzureUsage : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The billed property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,8 +44,8 @@ namespace ApiSdk.Models.Partners.Billing {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"billed", n => { Billed = n.GetObjectValue<BilledUsage>(BilledUsage.CreateFromDiscriminatorValue); } },
-                {"unbilled", n => { Unbilled = n.GetObjectValue<UnbilledUsage>(UnbilledUsage.CreateFromDiscriminatorValue); } },
+                { "billed", n => { Billed = n.GetObjectValue<BilledUsage>(BilledUsage.CreateFromDiscriminatorValue); } },
+                { "unbilled", n => { Unbilled = n.GetObjectValue<UnbilledUsage>(UnbilledUsage.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

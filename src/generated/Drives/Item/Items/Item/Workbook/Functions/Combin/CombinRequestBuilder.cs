@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Combin {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Combin
+{
     /// <summary>
     /// Provides operations to call the combin method.
     /// </summary>
-    public class CombinRequestBuilder : BaseCliRequestBuilder 
+    public class CombinRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action combin

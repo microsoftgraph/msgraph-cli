@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
+namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item
+{
     /// <summary>
     /// Provides operations to manage the tasks property of the microsoft.graph.todoTaskList entity.
     /// </summary>
-    public class TodoTaskItemRequestBuilder : BaseCliRequestBuilder 
+    public class TodoTaskItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the attachmentSessions property of the microsoft.graph.todoTask entity.
@@ -107,14 +108,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a todoTask object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotask-delete?view=graph-rest-1.0" />
+        /// Delete navigation property tasks for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a todoTask object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotask-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property tasks for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -182,14 +182,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a todoTask object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotask-get?view=graph-rest-1.0" />
+        /// The tasks in this task list. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a todoTask object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotask-get?view=graph-rest-1.0";
+            command.Description = "The tasks in this task list. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -274,14 +273,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a todoTask object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotask-update?view=graph-rest-1.0" />
+        /// Update the navigation property tasks in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a todoTask object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotask-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property tasks in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -352,7 +350,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         {
         }
         /// <summary>
-        /// Deletes a todoTask object.
+        /// Delete navigation property tasks for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -371,7 +369,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a todoTask object.
+        /// The tasks in this task list. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -390,7 +388,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a todoTask object.
+        /// Update the navigation property tasks in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -411,7 +409,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a todoTask object.
+        /// The tasks in this task list. Read-only. Nullable.
         /// </summary>
         public class TodoTaskItemRequestBuilderGetQueryParameters 
         {

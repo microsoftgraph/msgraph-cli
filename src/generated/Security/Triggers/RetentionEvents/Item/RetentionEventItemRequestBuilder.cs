@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
+namespace ApiSdk.Security.Triggers.RetentionEvents.Item
+{
     /// <summary>
     /// Provides operations to manage the retentionEvents property of the microsoft.graph.security.triggersRoot entity.
     /// </summary>
-    public class RetentionEventItemRequestBuilder : BaseCliRequestBuilder 
+    public class RetentionEventItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a retentionEvent object.

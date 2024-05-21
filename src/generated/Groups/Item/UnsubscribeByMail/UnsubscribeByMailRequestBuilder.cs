@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.UnsubscribeByMail {
+namespace ApiSdk.Groups.Item.UnsubscribeByMail
+{
     /// <summary>
     /// Provides operations to call the unsubscribeByMail method.
     /// </summary>
-    public class UnsubscribeByMailRequestBuilder : BaseCliRequestBuilder 
+    public class UnsubscribeByMailRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Calling this method prevents the current user from receiving email notifications for this group about new posts, events, and files in that group. Supported for Microsoft 365 groups only.

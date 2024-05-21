@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.PriceMat {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.PriceMat
+{
     /// <summary>
     /// Provides operations to call the priceMat method.
     /// </summary>
-    public class PriceMatRequestBuilder : BaseCliRequestBuilder 
+    public class PriceMatRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action priceMat

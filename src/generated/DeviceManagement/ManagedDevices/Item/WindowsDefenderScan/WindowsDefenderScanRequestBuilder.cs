@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsDefenderScan {
+namespace ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsDefenderScan
+{
     /// <summary>
     /// Provides operations to call the windowsDefenderScan method.
     /// </summary>
-    public class WindowsDefenderScanRequestBuilder : BaseCliRequestBuilder 
+    public class WindowsDefenderScanRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

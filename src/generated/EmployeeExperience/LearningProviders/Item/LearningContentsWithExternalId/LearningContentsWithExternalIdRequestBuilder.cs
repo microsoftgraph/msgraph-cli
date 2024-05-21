@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContentsWithExternalId {
+namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContentsWithExternalId
+{
     /// <summary>
     /// Provides operations to manage the learningContents property of the microsoft.graph.learningProvider entity.
     /// </summary>
-    public class LearningContentsWithExternalIdRequestBuilder : BaseCliRequestBuilder 
+    public class LearningContentsWithExternalIdRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete the specified learningContent resource that represents the metadata of the specified provider&apos;s ingested content.

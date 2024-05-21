@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.SetData {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.SetData
+{
     /// <summary>
     /// Provides operations to call the setData method.
     /// </summary>
-    public class SetDataRequestBuilder : BaseCliRequestBuilder 
+    public class SetDataRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Resets the source data for the chart.

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Places.Item.GraphRoomList.Rooms {
+namespace ApiSdk.Places.Item.GraphRoomList.Rooms
+{
     /// <summary>
     /// Provides operations to manage the rooms property of the microsoft.graph.roomList entity.
     /// </summary>
-    public class RoomsRequestBuilder : BaseCliRequestBuilder 
+    public class RoomsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the rooms property of the microsoft.graph.roomList entity.
@@ -192,7 +193,9 @@ namespace ApiSdk.Places.Item.GraphRoomList.Rooms {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

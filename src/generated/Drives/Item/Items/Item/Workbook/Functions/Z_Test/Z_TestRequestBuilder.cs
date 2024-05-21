@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test
+{
     /// <summary>
     /// Provides operations to call the z_Test method.
     /// </summary>
-    public class Z_TestRequestBuilder : BaseCliRequestBuilder 
+    public class Z_TestRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action z_Test

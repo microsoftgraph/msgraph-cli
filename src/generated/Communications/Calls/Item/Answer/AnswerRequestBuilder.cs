@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.Answer {
+namespace ApiSdk.Communications.Calls.Item.Answer
+{
     /// <summary>
     /// Provides operations to call the answer method.
     /// </summary>
-    public class AnswerRequestBuilder : BaseCliRequestBuilder 
+    public class AnswerRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Enable a bot to answer an incoming call. The incoming call request can be an invite from a participant in a group call or a peer-to-peer call. If an invite to a group call is received, the notification will contain the chatInfo and meetingInfo parameters. The bot is expected to answer, reject, or redirect the call before the call times out. The current timeout value is 15 seconds for regular scenarios, and 5 seconds for policy-based recording scenarios.

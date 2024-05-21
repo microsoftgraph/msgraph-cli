@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class LearningContent : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class LearningContent : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Keywords, topics, and other tags associated with the learning content. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -75,7 +78,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The date and time when the learning content was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>The level property</summary>
+        /// <summary>The difficulty level of the learning content. Possible values are: Beginner, Intermediate, Advanced, unknownFutureValue. Optional.</summary>
         public ApiSdk.Models.Level? Level { get; set; }
         /// <summary>The number of pages of the learning content, for example, 9. Optional.</summary>
         public int? NumberOfPages { get; set; }
@@ -129,25 +132,25 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"additionalTags", n => { AdditionalTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"contentWebUrl", n => { ContentWebUrl = n.GetStringValue(); } },
-                {"contributors", n => { Contributors = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"duration", n => { Duration = n.GetTimeSpanValue(); } },
-                {"externalId", n => { ExternalId = n.GetStringValue(); } },
-                {"format", n => { Format = n.GetStringValue(); } },
-                {"isActive", n => { IsActive = n.GetBoolValue(); } },
-                {"isPremium", n => { IsPremium = n.GetBoolValue(); } },
-                {"isSearchable", n => { IsSearchable = n.GetBoolValue(); } },
-                {"languageTag", n => { LanguageTag = n.GetStringValue(); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"level", n => { Level = n.GetEnumValue<Level>(); } },
-                {"numberOfPages", n => { NumberOfPages = n.GetIntValue(); } },
-                {"skillTags", n => { SkillTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"sourceName", n => { SourceName = n.GetStringValue(); } },
-                {"thumbnailWebUrl", n => { ThumbnailWebUrl = n.GetStringValue(); } },
-                {"title", n => { Title = n.GetStringValue(); } },
+                { "additionalTags", n => { AdditionalTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "contentWebUrl", n => { ContentWebUrl = n.GetStringValue(); } },
+                { "contributors", n => { Contributors = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "duration", n => { Duration = n.GetTimeSpanValue(); } },
+                { "externalId", n => { ExternalId = n.GetStringValue(); } },
+                { "format", n => { Format = n.GetStringValue(); } },
+                { "isActive", n => { IsActive = n.GetBoolValue(); } },
+                { "isPremium", n => { IsPremium = n.GetBoolValue(); } },
+                { "isSearchable", n => { IsSearchable = n.GetBoolValue(); } },
+                { "languageTag", n => { LanguageTag = n.GetStringValue(); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "level", n => { Level = n.GetEnumValue<Level>(); } },
+                { "numberOfPages", n => { NumberOfPages = n.GetIntValue(); } },
+                { "skillTags", n => { SkillTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "sourceName", n => { SourceName = n.GetStringValue(); } },
+                { "thumbnailWebUrl", n => { ThumbnailWebUrl = n.GetStringValue(); } },
+                { "title", n => { Title = n.GetStringValue(); } },
             };
         }
         /// <summary>

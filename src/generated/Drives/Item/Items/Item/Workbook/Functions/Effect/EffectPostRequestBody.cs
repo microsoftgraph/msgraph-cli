@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect {
-    public class EffectPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect
+{
+    #pragma warning disable CS1591
+    public class EffectPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -51,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"nominalRate", n => { NominalRate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"npery", n => { Npery = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "nominalRate", n => { NominalRate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "npery", n => { Npery = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

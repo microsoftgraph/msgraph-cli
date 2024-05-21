@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AudioConferencing : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AudioConferencing : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -33,7 +36,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The tollFreeNumber property</summary>
+        /// <summary>The toll-free number that connects to the Audio Conference Provider.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TollFreeNumber { get; set; }
@@ -49,7 +52,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> TollFreeNumbers { get; set; }
 #endif
-        /// <summary>The tollNumber property</summary>
+        /// <summary>The toll number that connects to the Audio Conference Provider.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TollNumber { get; set; }
@@ -90,13 +93,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"conferenceId", n => { ConferenceId = n.GetStringValue(); } },
-                {"dialinUrl", n => { DialinUrl = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"tollFreeNumber", n => { TollFreeNumber = n.GetStringValue(); } },
-                {"tollFreeNumbers", n => { TollFreeNumbers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"tollNumber", n => { TollNumber = n.GetStringValue(); } },
-                {"tollNumbers", n => { TollNumbers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "conferenceId", n => { ConferenceId = n.GetStringValue(); } },
+                { "dialinUrl", n => { DialinUrl = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "tollFreeNumber", n => { TollFreeNumber = n.GetStringValue(); } },
+                { "tollFreeNumbers", n => { TollFreeNumbers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "tollNumber", n => { TollNumber = n.GetStringValue(); } },
+                { "tollNumbers", n => { TollNumbers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

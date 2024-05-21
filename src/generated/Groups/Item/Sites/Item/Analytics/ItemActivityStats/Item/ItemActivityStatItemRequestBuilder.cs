@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Analytics.ItemActivityStats.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.Analytics.ItemActivityStats.Item
+{
     /// <summary>
     /// Provides operations to manage the itemActivityStats property of the microsoft.graph.itemAnalytics entity.
     /// </summary>
-    public class ItemActivityStatItemRequestBuilder : BaseCliRequestBuilder 
+    public class ItemActivityStatItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the activities property of the microsoft.graph.itemActivityStat entity.

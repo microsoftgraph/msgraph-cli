@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Printers.Item.Jobs.Item.Documents.Item.CreateUploadSession {
+namespace ApiSdk.Print.Printers.Item.Jobs.Item.Documents.Item.CreateUploadSession
+{
     /// <summary>
     /// Provides operations to call the createUploadSession method.
     /// </summary>
-    public class CreateUploadSessionRequestBuilder : BaseCliRequestBuilder 
+    public class CreateUploadSessionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Create an upload session that allows an app to iteratively upload ranges of a binary file linked to the print document. As part of the response, this action returns an upload URL that can be used in subsequent sequential PUT queries. Request headers for each PUT operation can be used to specify the exact range of bytes to be uploaded. This allows transfer to be resumed, in case the network connection is dropped during upload. 

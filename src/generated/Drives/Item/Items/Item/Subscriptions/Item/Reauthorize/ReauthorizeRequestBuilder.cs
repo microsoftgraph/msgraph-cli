@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item.Reauthorize {
+namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item.Reauthorize
+{
     /// <summary>
     /// Provides operations to call the reauthorize method.
     /// </summary>
-    public class ReauthorizeRequestBuilder : BaseCliRequestBuilder 
+    public class ReauthorizeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reauthorize a subscription when you receive a reauthorizationRequired challenge.

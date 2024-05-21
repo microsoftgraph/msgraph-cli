@@ -25,11 +25,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Contacts.Item {
+namespace ApiSdk.Contacts.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of orgContact entities.
     /// </summary>
-    public class OrgContactItemRequestBuilder : BaseCliRequestBuilder 
+    public class OrgContactItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.

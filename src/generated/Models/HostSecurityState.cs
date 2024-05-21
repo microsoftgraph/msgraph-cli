@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class HostSecurityState : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class HostSecurityState : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -96,16 +99,16 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"fqdn", n => { Fqdn = n.GetStringValue(); } },
-                {"isAzureAdJoined", n => { IsAzureAdJoined = n.GetBoolValue(); } },
-                {"isAzureAdRegistered", n => { IsAzureAdRegistered = n.GetBoolValue(); } },
-                {"isHybridAzureDomainJoined", n => { IsHybridAzureDomainJoined = n.GetBoolValue(); } },
-                {"netBiosName", n => { NetBiosName = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"os", n => { Os = n.GetStringValue(); } },
-                {"privateIpAddress", n => { PrivateIpAddress = n.GetStringValue(); } },
-                {"publicIpAddress", n => { PublicIpAddress = n.GetStringValue(); } },
-                {"riskScore", n => { RiskScore = n.GetStringValue(); } },
+                { "fqdn", n => { Fqdn = n.GetStringValue(); } },
+                { "isAzureAdJoined", n => { IsAzureAdJoined = n.GetBoolValue(); } },
+                { "isAzureAdRegistered", n => { IsAzureAdRegistered = n.GetBoolValue(); } },
+                { "isHybridAzureDomainJoined", n => { IsHybridAzureDomainJoined = n.GetBoolValue(); } },
+                { "netBiosName", n => { NetBiosName = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "os", n => { Os = n.GetStringValue(); } },
+                { "privateIpAddress", n => { PrivateIpAddress = n.GetStringValue(); } },
+                { "publicIpAddress", n => { PublicIpAddress = n.GetStringValue(); } },
+                { "riskScore", n => { RiskScore = n.GetStringValue(); } },
             };
         }
         /// <summary>

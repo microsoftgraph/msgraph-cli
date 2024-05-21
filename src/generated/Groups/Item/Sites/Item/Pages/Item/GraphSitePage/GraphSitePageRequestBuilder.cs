@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage {
+namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage
+{
     /// <summary>
     /// Casts the previous resource to sitePage.
     /// </summary>
-    public class GraphSitePageRequestBuilder : BaseCliRequestBuilder 
+    public class GraphSitePageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the canvasLayout property of the microsoft.graph.sitePage entity.

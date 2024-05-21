@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// OMA Settings Floating Point definition.
     /// </summary>
-    public class OmaSettingFloatingPoint : OmaSetting, IParsable 
+    public class OmaSettingFloatingPoint : OmaSetting, IParsable
     {
         /// <summary>Value.</summary>
         public float? Value { get; set; }
@@ -37,7 +38,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"value", n => { Value = n.GetFloatValue(); } },
+                { "value", n => { Value = n.GetFloatValue(); } },
             };
         }
         /// <summary>

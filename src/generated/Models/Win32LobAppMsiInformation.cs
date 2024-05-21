@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains MSI app properties for a Win32 App.
     /// </summary>
-    public class Win32LobAppMsiInformation : IAdditionalDataHolder, IParsable 
+    public class Win32LobAppMsiInformation : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -89,14 +90,14 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"packageType", n => { PackageType = n.GetEnumValue<Win32LobAppMsiPackageType>(); } },
-                {"productCode", n => { ProductCode = n.GetStringValue(); } },
-                {"productName", n => { ProductName = n.GetStringValue(); } },
-                {"productVersion", n => { ProductVersion = n.GetStringValue(); } },
-                {"publisher", n => { Publisher = n.GetStringValue(); } },
-                {"requiresReboot", n => { RequiresReboot = n.GetBoolValue(); } },
-                {"upgradeCode", n => { UpgradeCode = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "packageType", n => { PackageType = n.GetEnumValue<Win32LobAppMsiPackageType>(); } },
+                { "productCode", n => { ProductCode = n.GetStringValue(); } },
+                { "productName", n => { ProductName = n.GetStringValue(); } },
+                { "productVersion", n => { ProductVersion = n.GetStringValue(); } },
+                { "publisher", n => { Publisher = n.GetStringValue(); } },
+                { "requiresReboot", n => { RequiresReboot = n.GetBoolValue(); } },
+                { "upgradeCode", n => { UpgradeCode = n.GetStringValue(); } },
             };
         }
         /// <summary>

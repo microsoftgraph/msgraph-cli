@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
+{
     /// <summary>
     /// Provides operations to manage the customTaskExtensions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     /// </summary>
-    public class CustomTaskExtensionItemRequestBuilder : BaseCliRequestBuilder 
+    public class CustomTaskExtensionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.customTaskExtension entity.

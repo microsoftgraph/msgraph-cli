@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.SubjectRightsRequests.Item.GetFinalReport {
+namespace ApiSdk.Security.SubjectRightsRequests.Item.GetFinalReport
+{
     /// <summary>
     /// Provides operations to call the getFinalReport method.
     /// </summary>
-    public class GetFinalReportRequestBuilder : BaseCliRequestBuilder 
+    public class GetFinalReportRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getFinalReport
+        /// Get the final report for a subject rights request. The report is a text file that contains information about the files that were included by the privacy administrator.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/subjectrightsrequest-getfinalreport?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getFinalReport";
+            command.Description = "Get the final report for a subject rights request. The report is a text file that contains information about the files that were included by the privacy administrator.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-getfinalreport?view=graph-rest-1.0";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.GetFinalReport {
         {
         }
         /// <summary>
-        /// Invoke function getFinalReport
+        /// Get the final report for a subject rights request. The report is a text file that contains information about the files that were included by the privacy administrator.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

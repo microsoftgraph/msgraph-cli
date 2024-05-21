@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.Item {
+namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.Item
+{
     /// <summary>
     /// Provides operations to manage the deviceStates property of the microsoft.graph.managedEBook entity.
     /// </summary>
-    public class DeviceInstallStateItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceInstallStateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a deviceInstallState.

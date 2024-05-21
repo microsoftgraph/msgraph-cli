@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
+namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength
+{
     /// <summary>
     /// Provides operations to manage the authenticationStrength property of the microsoft.graph.conditionalAccessRoot entity.
     /// </summary>
-    public class AuthenticationStrengthRequestBuilder : BaseCliRequestBuilder 
+    public class AuthenticationStrengthRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.

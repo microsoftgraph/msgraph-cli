@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostCookies.Item {
+namespace ApiSdk.Security.ThreatIntelligence.HostCookies.Item
+{
     /// <summary>
     /// Provides operations to manage the hostCookies property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class HostCookieItemRequestBuilder : BaseCliRequestBuilder 
+    public class HostCookieItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property hostCookies for security

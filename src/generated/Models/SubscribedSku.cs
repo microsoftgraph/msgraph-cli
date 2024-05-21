@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SubscribedSku : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SubscribedSku : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The unique ID of the account this SKU belongs to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -67,7 +70,7 @@ namespace ApiSdk.Models {
 #else
         public string SkuPartNumber { get; set; }
 #endif
-        /// <summary>The subscriptionIds property</summary>
+        /// <summary>A list of all subscription IDs associated with this SKU.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? SubscriptionIds { get; set; }
@@ -93,16 +96,16 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"accountId", n => { AccountId = n.GetStringValue(); } },
-                {"accountName", n => { AccountName = n.GetStringValue(); } },
-                {"appliesTo", n => { AppliesTo = n.GetStringValue(); } },
-                {"capabilityStatus", n => { CapabilityStatus = n.GetStringValue(); } },
-                {"consumedUnits", n => { ConsumedUnits = n.GetIntValue(); } },
-                {"prepaidUnits", n => { PrepaidUnits = n.GetObjectValue<LicenseUnitsDetail>(LicenseUnitsDetail.CreateFromDiscriminatorValue); } },
-                {"servicePlans", n => { ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>(ServicePlanInfo.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"skuId", n => { SkuId = n.GetGuidValue(); } },
-                {"skuPartNumber", n => { SkuPartNumber = n.GetStringValue(); } },
-                {"subscriptionIds", n => { SubscriptionIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "accountId", n => { AccountId = n.GetStringValue(); } },
+                { "accountName", n => { AccountName = n.GetStringValue(); } },
+                { "appliesTo", n => { AppliesTo = n.GetStringValue(); } },
+                { "capabilityStatus", n => { CapabilityStatus = n.GetStringValue(); } },
+                { "consumedUnits", n => { ConsumedUnits = n.GetIntValue(); } },
+                { "prepaidUnits", n => { PrepaidUnits = n.GetObjectValue<LicenseUnitsDetail>(LicenseUnitsDetail.CreateFromDiscriminatorValue); } },
+                { "servicePlans", n => { ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>(ServicePlanInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "skuId", n => { SkuId = n.GetGuidValue(); } },
+                { "skuPartNumber", n => { SkuPartNumber = n.GetStringValue(); } },
+                { "subscriptionIds", n => { SubscriptionIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

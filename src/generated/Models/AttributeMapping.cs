@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AttributeMapping : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AttributeMapping : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -74,14 +77,14 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"defaultValue", n => { DefaultValue = n.GetStringValue(); } },
-                {"exportMissingReferences", n => { ExportMissingReferences = n.GetBoolValue(); } },
-                {"flowBehavior", n => { FlowBehavior = n.GetEnumValue<AttributeFlowBehavior>(); } },
-                {"flowType", n => { FlowType = n.GetEnumValue<AttributeFlowType>(); } },
-                {"matchingPriority", n => { MatchingPriority = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"source", n => { Source = n.GetObjectValue<AttributeMappingSource>(AttributeMappingSource.CreateFromDiscriminatorValue); } },
-                {"targetAttributeName", n => { TargetAttributeName = n.GetStringValue(); } },
+                { "defaultValue", n => { DefaultValue = n.GetStringValue(); } },
+                { "exportMissingReferences", n => { ExportMissingReferences = n.GetBoolValue(); } },
+                { "flowBehavior", n => { FlowBehavior = n.GetEnumValue<AttributeFlowBehavior>(); } },
+                { "flowType", n => { FlowType = n.GetEnumValue<AttributeFlowType>(); } },
+                { "matchingPriority", n => { MatchingPriority = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "source", n => { Source = n.GetObjectValue<AttributeMappingSource>(AttributeMappingSource.CreateFromDiscriminatorValue); } },
+                { "targetAttributeName", n => { TargetAttributeName = n.GetStringValue(); } },
             };
         }
         /// <summary>

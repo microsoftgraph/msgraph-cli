@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceStartupHistory.Item {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceStartupHistory.Item
+{
     /// <summary>
     /// Provides operations to manage the userExperienceAnalyticsDeviceStartupHistory property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class UserExperienceAnalyticsDeviceStartupHistoryItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserExperienceAnalyticsDeviceStartupHistoryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsDeviceStartupHistory for deviceManagement

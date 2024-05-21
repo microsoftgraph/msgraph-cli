@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice {
+namespace ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice
+{
     /// <summary>
     /// Provides operations to call the cleanWindowsDevice method.
     /// </summary>
-    public class CleanWindowsDeviceRequestBuilder : BaseCliRequestBuilder 
+    public class CleanWindowsDeviceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Clean Windows device

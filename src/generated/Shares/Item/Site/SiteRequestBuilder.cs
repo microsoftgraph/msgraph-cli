@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Shares.Item.Site {
+namespace ApiSdk.Shares.Item.Site
+{
     /// <summary>
     /// Provides operations to manage the site property of the microsoft.graph.sharedDriveItem entity.
     /// </summary>
-    public class SiteRequestBuilder : BaseCliRequestBuilder 
+    public class SiteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Used to access the underlying site

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.Columns.Item {
+namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.Columns.Item
+{
     /// <summary>
     /// Provides operations to manage the columns property of the microsoft.graph.horizontalSection entity.
     /// </summary>
-    public class HorizontalSectionColumnItemRequestBuilder : BaseCliRequestBuilder 
+    public class HorizontalSectionColumnItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property columns for sites

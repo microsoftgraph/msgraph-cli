@@ -23,11 +23,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.PrimaryChannel {
+namespace ApiSdk.Teams.Item.PrimaryChannel
+{
     /// <summary>
     /// Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.
     /// </summary>
-    public class PrimaryChannelRequestBuilder : BaseCliRequestBuilder 
+    public class PrimaryChannelRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the completeMigration method.

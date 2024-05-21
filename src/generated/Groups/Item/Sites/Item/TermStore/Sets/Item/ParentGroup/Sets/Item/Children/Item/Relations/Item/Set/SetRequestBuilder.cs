@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Children.Item.Relations.Item.Set {
+namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Children.Item.Relations.Item.Set
+{
     /// <summary>
     /// Provides operations to manage the set property of the microsoft.graph.termStore.relation entity.
     /// </summary>
-    public class SetRequestBuilder : BaseCliRequestBuilder 
+    public class SetRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The [set] in which the relation is relevant.

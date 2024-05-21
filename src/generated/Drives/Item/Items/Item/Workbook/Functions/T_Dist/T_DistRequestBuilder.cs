@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T_Dist {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T_Dist
+{
     /// <summary>
     /// Provides operations to call the t_Dist method.
     /// </summary>
-    public class T_DistRequestBuilder : BaseCliRequestBuilder 
+    public class T_DistRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action t_Dist

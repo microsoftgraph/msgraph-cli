@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.True {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.True
+{
     /// <summary>
     /// Provides operations to call the true method.
     /// </summary>
-    public class TrueRequestBuilder : BaseCliRequestBuilder 
+    public class TrueRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action true

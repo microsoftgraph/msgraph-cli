@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.Authorities.Item {
+namespace ApiSdk.Security.Labels.Authorities.Item
+{
     /// <summary>
     /// Provides operations to manage the authorities property of the microsoft.graph.security.labelsRoot entity.
     /// </summary>
-    public class AuthorityTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class AuthorityTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a authorityTemplate object.

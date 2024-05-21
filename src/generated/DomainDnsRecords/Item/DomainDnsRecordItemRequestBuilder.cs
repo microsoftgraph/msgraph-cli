@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DomainDnsRecords.Item {
+namespace ApiSdk.DomainDnsRecords.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of domainDnsRecord entities.
     /// </summary>
-    public class DomainDnsRecordItemRequestBuilder : BaseCliRequestBuilder 
+    public class DomainDnsRecordItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from domainDnsRecords

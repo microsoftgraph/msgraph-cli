@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread {
+namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread
+{
     /// <summary>
     /// Provides operations to call the markUnread method.
     /// </summary>
-    public class MarkUnreadRequestBuilder : BaseCliRequestBuilder 
+    public class MarkUnreadRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Mark a list of serviceUpdateMessages as unread for the signed in user.

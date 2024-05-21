@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOffice365GroupsActivityFileCountsWithPeriod {
+namespace ApiSdk.Reports.GetOffice365GroupsActivityFileCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getOffice365GroupsActivityFileCounts method.
     /// </summary>
-    public class GetOffice365GroupsActivityFileCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetOffice365GroupsActivityFileCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getOffice365GroupsActivityFileCounts
+        /// Get the total number of files and how many of them were active across all group sites associated with a Microsoft 365 group.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getoffice365groupsactivityfilecounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOffice365GroupsActivityFileCounts";
+            command.Description = "Get the total number of files and how many of them were active across all group sites associated with a Microsoft 365 group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getoffice365groupsactivityfilecounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityFileCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getOffice365GroupsActivityFileCounts
+        /// Get the total number of files and how many of them were active across all group sites associated with a Microsoft 365 group.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

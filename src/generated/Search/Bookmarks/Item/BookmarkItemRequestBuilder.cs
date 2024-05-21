@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Search.Bookmarks.Item {
+namespace ApiSdk.Search.Bookmarks.Item
+{
     /// <summary>
     /// Provides operations to manage the bookmarks property of the microsoft.graph.searchEntity entity.
     /// </summary>
-    public class BookmarkItemRequestBuilder : BaseCliRequestBuilder 
+    public class BookmarkItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a bookmark object.

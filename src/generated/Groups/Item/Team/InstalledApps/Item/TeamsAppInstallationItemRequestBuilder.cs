@@ -17,21 +17,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Team.InstalledApps.Item {
+namespace ApiSdk.Groups.Item.Team.InstalledApps.Item
+{
     /// <summary>
     /// Provides operations to manage the installedApps property of the microsoft.graph.team entity.
     /// </summary>
-    public class TeamsAppInstallationItemRequestBuilder : BaseCliRequestBuilder 
+    public class TeamsAppInstallationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Uninstalls an app from the specified team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-delete-installedapps?view=graph-rest-1.0" />
+        /// Delete navigation property installedApps for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Uninstalls an app from the specified team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-delete-installedapps?view=graph-rest-1.0";
+            command.Description = "Delete navigation property installedApps for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -66,14 +66,13 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the app installed in the specified team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-get-installedapps?view=graph-rest-1.0" />
+        /// The apps installed in this team.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the app installed in the specified team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-get-installedapps?view=graph-rest-1.0";
+            command.Description = "The apps installed in this team.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -247,7 +246,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item {
         {
         }
         /// <summary>
-        /// Uninstalls an app from the specified team.
+        /// Delete navigation property installedApps for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,7 +265,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the app installed in the specified team.
+        /// The apps installed in this team.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -306,7 +305,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the app installed in the specified team.
+        /// The apps installed in this team.
         /// </summary>
         public class TeamsAppInstallationItemRequestBuilderGetQueryParameters 
         {

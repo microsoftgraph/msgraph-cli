@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Log {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Log
+{
     /// <summary>
     /// Provides operations to call the log method.
     /// </summary>
-    public class LogRequestBuilder : BaseCliRequestBuilder 
+    public class LogRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action log

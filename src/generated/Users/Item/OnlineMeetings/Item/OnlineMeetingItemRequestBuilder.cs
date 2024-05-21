@@ -21,11 +21,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.OnlineMeetings.Item {
+namespace ApiSdk.Users.Item.OnlineMeetings.Item
+{
     /// <summary>
     /// Provides operations to manage the onlineMeetings property of the microsoft.graph.user entity.
     /// </summary>
-    public class OnlineMeetingItemRequestBuilder : BaseCliRequestBuilder 
+    public class OnlineMeetingItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeetingBase entity.
@@ -64,6 +65,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             command.Description = "Provides operations to manage the media for the user entity.";
             var builder = new AttendeeReportRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -73,14 +75,13 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             return command;
         }
         /// <summary>
-        /// Delete an onlineMeeting object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-delete?view=graph-rest-1.0" />
+        /// Delete navigation property onlineMeetings for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an onlineMeeting object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property onlineMeetings for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -115,14 +116,13 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0" />
+        /// Information about a meeting, including the URL used to join a meeting, the attendees list, and the description.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0";
+            command.Description = "Information about a meeting, including the URL used to join a meeting, the attendees list, and the description.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -191,14 +191,13 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of the specified onlineMeeting object. Please see Request body section for the list of properties that support updating.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-update?view=graph-rest-1.0" />
+        /// Update the navigation property onlineMeetings in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of the specified onlineMeeting object. Please see Request body section for the list of properties that support updating.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property onlineMeetings in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -351,7 +350,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         {
         }
         /// <summary>
-        /// Delete an onlineMeeting object.
+        /// Delete navigation property onlineMeetings for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -370,7 +369,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.
+        /// Information about a meeting, including the URL used to join a meeting, the attendees list, and the description.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -389,7 +388,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of the specified onlineMeeting object. Please see Request body section for the list of properties that support updating.
+        /// Update the navigation property onlineMeetings in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -410,7 +409,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.
+        /// Information about a meeting, including the URL used to join a meeting, the attendees list, and the description.
         /// </summary>
         public class OnlineMeetingItemRequestBuilderGetQueryParameters 
         {

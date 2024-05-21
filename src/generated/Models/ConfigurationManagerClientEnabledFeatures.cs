@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// configuration Manager client enabled features
     /// </summary>
-    public class ConfigurationManagerClientEnabledFeatures : IAdditionalDataHolder, IParsable 
+    public class ConfigurationManagerClientEnabledFeatures : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -57,13 +58,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"compliancePolicy", n => { CompliancePolicy = n.GetBoolValue(); } },
-                {"deviceConfiguration", n => { DeviceConfiguration = n.GetBoolValue(); } },
-                {"inventory", n => { Inventory = n.GetBoolValue(); } },
-                {"modernApps", n => { ModernApps = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"resourceAccess", n => { ResourceAccess = n.GetBoolValue(); } },
-                {"windowsUpdateForBusiness", n => { WindowsUpdateForBusiness = n.GetBoolValue(); } },
+                { "compliancePolicy", n => { CompliancePolicy = n.GetBoolValue(); } },
+                { "deviceConfiguration", n => { DeviceConfiguration = n.GetBoolValue(); } },
+                { "inventory", n => { Inventory = n.GetBoolValue(); } },
+                { "modernApps", n => { ModernApps = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "resourceAccess", n => { ResourceAccess = n.GetBoolValue(); } },
+                { "windowsUpdateForBusiness", n => { WindowsUpdateForBusiness = n.GetBoolValue(); } },
             };
         }
         /// <summary>

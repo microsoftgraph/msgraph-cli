@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.RemoveAllDevicesFromManagement {
+namespace ApiSdk.Users.Item.RemoveAllDevicesFromManagement
+{
     /// <summary>
     /// Provides operations to call the removeAllDevicesFromManagement method.
     /// </summary>
-    public class RemoveAllDevicesFromManagementRequestBuilder : BaseCliRequestBuilder 
+    public class RemoveAllDevicesFromManagementRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Retire all devices from management for this user

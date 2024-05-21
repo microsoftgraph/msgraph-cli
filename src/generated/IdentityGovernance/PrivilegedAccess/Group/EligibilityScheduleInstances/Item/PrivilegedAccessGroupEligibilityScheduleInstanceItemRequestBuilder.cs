@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleInstances.Item {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleInstances.Item
+{
     /// <summary>
     /// Provides operations to manage the eligibilityScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.
     /// </summary>
-    public class PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property eligibilityScheduleInstances for identityGovernance

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.ContentVersions.Item.Files.Item.Commit {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.ContentVersions.Item.Files.Item.Commit
+{
     /// <summary>
     /// Provides operations to call the commit method.
     /// </summary>
-    public class CommitRequestBuilder : BaseCliRequestBuilder 
+    public class CommitRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Commits a file of a given app.

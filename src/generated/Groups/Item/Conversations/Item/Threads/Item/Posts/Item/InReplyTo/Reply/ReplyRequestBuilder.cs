@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyTo.Reply {
+namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyTo.Reply
+{
     /// <summary>
     /// Provides operations to call the reply method.
     /// </summary>
-    public class ReplyRequestBuilder : BaseCliRequestBuilder 
+    public class ReplyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action reply

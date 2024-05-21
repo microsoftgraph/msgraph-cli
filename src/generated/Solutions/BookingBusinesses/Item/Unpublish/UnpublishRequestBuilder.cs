@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
+namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish
+{
     /// <summary>
     /// Provides operations to call the unpublish method.
     /// </summary>
-    public class UnpublishRequestBuilder : BaseCliRequestBuilder 
+    public class UnpublishRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Make the scheduling page of this business not available to external customers. Set the isPublished property to false, and the publicUrl property to null.

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Desktop App for Windows information protection
     /// </summary>
-    public class WindowsInformationProtectionDesktopApp : WindowsInformationProtectionApp, IParsable 
+    public class WindowsInformationProtectionDesktopApp : WindowsInformationProtectionApp, IParsable
     {
         /// <summary>The binary name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -59,9 +60,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"binaryName", n => { BinaryName = n.GetStringValue(); } },
-                {"binaryVersionHigh", n => { BinaryVersionHigh = n.GetStringValue(); } },
-                {"binaryVersionLow", n => { BinaryVersionLow = n.GetStringValue(); } },
+                { "binaryName", n => { BinaryName = n.GetStringValue(); } },
+                { "binaryVersionHigh", n => { BinaryVersionHigh = n.GetStringValue(); } },
+                { "binaryVersionLow", n => { BinaryVersionLow = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.DirectoryObjects.GetAvailableExtensionProperties {
-    public class GetAvailableExtensionPropertiesPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.DirectoryObjects.GetAvailableExtensionProperties
+{
+    #pragma warning disable CS1591
+    public class GetAvailableExtensionPropertiesPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -36,7 +39,7 @@ namespace ApiSdk.DirectoryObjects.GetAvailableExtensionProperties {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"isSyncedFromOnPremises", n => { IsSyncedFromOnPremises = n.GetBoolValue(); } },
+                { "isSyncedFromOnPremises", n => { IsSyncedFromOnPremises = n.GetBoolValue(); } },
             };
         }
         /// <summary>

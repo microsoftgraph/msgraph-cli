@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupNum {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupNum
+{
     /// <summary>
     /// Provides operations to call the coupNum method.
     /// </summary>
-    public class CoupNumRequestBuilder : BaseCliRequestBuilder 
+    public class CoupNumRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action coupNum

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
+namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item
+{
     /// <summary>
     /// Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.
     /// </summary>
-    public class ThreatAssessmentRequestItemRequestBuilder : BaseCliRequestBuilder 
+    public class ThreatAssessmentRequestItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property threatAssessmentRequests for informationProtection

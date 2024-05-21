@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.AuthenticationMethodsPolicy {
+namespace ApiSdk.AuthenticationMethodsPolicy
+{
     /// <summary>
     /// Provides operations to manage the authenticationMethodsPolicy singleton.
     /// </summary>
-    public class AuthenticationMethodsPolicyRequestBuilder : BaseCliRequestBuilder 
+    public class AuthenticationMethodsPolicyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the authenticationMethodConfigurations property of the microsoft.graph.authenticationMethodsPolicy entity.

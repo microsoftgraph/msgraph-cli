@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleRequests.Item {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleRequests.Item
+{
     /// <summary>
     /// Provides operations to manage the eligibilityScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.
     /// </summary>
-    public class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrivilegedAccessGroupEligibilityScheduleRequestItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the cancel method.

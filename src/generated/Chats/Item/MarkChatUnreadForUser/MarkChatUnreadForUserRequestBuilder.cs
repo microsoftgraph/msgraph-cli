@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Chats.Item.MarkChatUnreadForUser {
+namespace ApiSdk.Chats.Item.MarkChatUnreadForUser
+{
     /// <summary>
     /// Provides operations to call the markChatUnreadForUser method.
     /// </summary>
-    public class MarkChatUnreadForUserRequestBuilder : BaseCliRequestBuilder 
+    public class MarkChatUnreadForUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Mark a chat as unread for a user.

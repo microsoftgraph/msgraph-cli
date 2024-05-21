@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.Security {
+namespace ApiSdk.Reports.Security
+{
     /// <summary>
     /// Provides operations to manage the security property of the microsoft.graph.reportRoot entity.
     /// </summary>
-    public class SecurityRequestBuilder : BaseCliRequestBuilder 
+    public class SecurityRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property security for reports

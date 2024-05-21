@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class EdiscoveryEstimateOperation : CaseOperation, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class EdiscoveryEstimateOperation : CaseOperation, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The estimated count of items for the search that matched the content query.</summary>
         public long? IndexedItemCount { get; set; }
@@ -45,13 +48,13 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"indexedItemCount", n => { IndexedItemCount = n.GetLongValue(); } },
-                {"indexedItemsSize", n => { IndexedItemsSize = n.GetLongValue(); } },
-                {"mailboxCount", n => { MailboxCount = n.GetIntValue(); } },
-                {"search", n => { Search = n.GetObjectValue<EdiscoverySearch>(EdiscoverySearch.CreateFromDiscriminatorValue); } },
-                {"siteCount", n => { SiteCount = n.GetIntValue(); } },
-                {"unindexedItemCount", n => { UnindexedItemCount = n.GetLongValue(); } },
-                {"unindexedItemsSize", n => { UnindexedItemsSize = n.GetLongValue(); } },
+                { "indexedItemCount", n => { IndexedItemCount = n.GetLongValue(); } },
+                { "indexedItemsSize", n => { IndexedItemsSize = n.GetLongValue(); } },
+                { "mailboxCount", n => { MailboxCount = n.GetIntValue(); } },
+                { "search", n => { Search = n.GetObjectValue<EdiscoverySearch>(EdiscoverySearch.CreateFromDiscriminatorValue); } },
+                { "siteCount", n => { SiteCount = n.GetIntValue(); } },
+                { "unindexedItemCount", n => { UnindexedItemCount = n.GetLongValue(); } },
+                { "unindexedItemsSize", n => { UnindexedItemsSize = n.GetLongValue(); } },
             };
         }
         /// <summary>

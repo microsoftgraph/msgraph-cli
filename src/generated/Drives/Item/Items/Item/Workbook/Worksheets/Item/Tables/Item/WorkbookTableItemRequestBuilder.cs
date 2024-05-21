@@ -25,11 +25,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item
+{
     /// <summary>
     /// Provides operations to manage the tables property of the microsoft.graph.workbookWorksheet entity.
     /// </summary>
-    public class WorkbookTableItemRequestBuilder : BaseCliRequestBuilder 
+    public class WorkbookTableItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the clearFilters method.

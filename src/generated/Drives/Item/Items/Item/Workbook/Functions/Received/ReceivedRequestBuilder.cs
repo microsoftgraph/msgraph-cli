@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Received {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Received
+{
     /// <summary>
     /// Provides operations to call the received method.
     /// </summary>
-    public class ReceivedRequestBuilder : BaseCliRequestBuilder 
+    public class ReceivedRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action received

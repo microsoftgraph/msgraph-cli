@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DollarFr {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DollarFr
+{
     /// <summary>
     /// Provides operations to call the dollarFr method.
     /// </summary>
-    public class DollarFrRequestBuilder : BaseCliRequestBuilder 
+    public class DollarFrRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dollarFr

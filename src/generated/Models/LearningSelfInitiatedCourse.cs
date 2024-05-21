@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class LearningSelfInitiatedCourse : LearningCourseActivity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class LearningSelfInitiatedCourse : LearningCourseActivity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The date and time on which the learner started the self-initiated course. Optional.</summary>
         public DateTimeOffset? StartedDateTime { get; set; }
@@ -27,7 +30,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"startedDateTime", n => { StartedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "startedDateTime", n => { StartedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>

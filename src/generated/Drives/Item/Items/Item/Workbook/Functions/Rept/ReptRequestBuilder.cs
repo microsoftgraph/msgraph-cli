@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rept {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rept
+{
     /// <summary>
     /// Provides operations to call the rept method.
     /// </summary>
-    public class ReptRequestBuilder : BaseCliRequestBuilder 
+    public class ReptRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action rept

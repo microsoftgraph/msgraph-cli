@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class OnenoteEntityBaseModel : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class OnenoteEntityBaseModel : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The endpoint where you can get details about the page. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -44,7 +47,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"self", n => { Self = n.GetStringValue(); } },
+                { "self", n => { Self = n.GetStringValue(); } },
             };
         }
         /// <summary>

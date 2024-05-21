@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Sort.Clear {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Sort.Clear
+{
     /// <summary>
     /// Provides operations to call the clear method.
     /// </summary>
-    public class ClearRequestBuilder : BaseCliRequestBuilder 
+    public class ClearRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Clears the sorting that is currently on the table. While this doesn&apos;t modify the table&apos;s ordering, it clears the state of the header buttons.

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.External.Connections.Item.Groups.Item {
+namespace ApiSdk.External.Connections.Item.Groups.Item
+{
     /// <summary>
     /// Provides operations to manage the groups property of the microsoft.graph.externalConnectors.externalConnection entity.
     /// </summary>
-    public class ExternalGroupItemRequestBuilder : BaseCliRequestBuilder 
+    public class ExternalGroupItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an externalGroup object.

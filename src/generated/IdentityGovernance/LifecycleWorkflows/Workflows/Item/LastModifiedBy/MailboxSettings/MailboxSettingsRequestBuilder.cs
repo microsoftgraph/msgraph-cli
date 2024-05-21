@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.LastModifiedBy.MailboxSettings {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.LastModifiedBy.MailboxSettings
+{
     /// <summary>
     /// Builds and executes requests for operations under \identityGovernance\lifecycleWorkflows\workflows\{workflow-id}\lastModifiedBy\mailboxSettings
     /// </summary>
-    public class MailboxSettingsRequestBuilder : BaseCliRequestBuilder 
+    public class MailboxSettingsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Returned only on $select.

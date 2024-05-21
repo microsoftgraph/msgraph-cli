@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
+namespace ApiSdk.AuditLogs.DirectoryAudits.Item
+{
     /// <summary>
     /// Provides operations to manage the directoryAudits property of the microsoft.graph.auditLogRoot entity.
     /// </summary>
-    public class DirectoryAuditItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryAuditItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property directoryAudits for auditLogs

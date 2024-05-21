@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rate {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rate
+{
     /// <summary>
     /// Provides operations to call the rate method.
     /// </summary>
-    public class RateRequestBuilder : BaseCliRequestBuilder 
+    public class RateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action rate

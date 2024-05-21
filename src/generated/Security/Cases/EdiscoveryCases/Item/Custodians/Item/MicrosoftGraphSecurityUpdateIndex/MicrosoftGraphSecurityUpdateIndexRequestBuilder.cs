@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityUpdateIndex {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityUpdateIndex
+{
     /// <summary>
     /// Provides operations to call the updateIndex method.
     /// </summary>
-    public class MicrosoftGraphSecurityUpdateIndexRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityUpdateIndexRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Trigger an indexOperation to make a custodian and associated sources searchable.

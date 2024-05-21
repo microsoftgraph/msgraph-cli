@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.Item {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.Item
+{
     /// <summary>
     /// Provides operations to manage the userExperienceAnalyticsDevicePerformance property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class UserExperienceAnalyticsDevicePerformanceItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserExperienceAnalyticsDevicePerformanceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsDevicePerformance for deviceManagement

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ManagedDevices.Item.RebootNow {
+namespace ApiSdk.DeviceManagement.ManagedDevices.Item.RebootNow
+{
     /// <summary>
     /// Provides operations to call the rebootNow method.
     /// </summary>
-    public class RebootNowRequestBuilder : BaseCliRequestBuilder 
+    public class RebootNowRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reboot device

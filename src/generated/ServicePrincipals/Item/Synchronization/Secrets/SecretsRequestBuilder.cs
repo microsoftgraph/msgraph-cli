@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.Synchronization.Secrets {
+namespace ApiSdk.ServicePrincipals.Item.Synchronization.Secrets
+{
     /// <summary>
     /// Builds and executes requests for operations under \servicePrincipals\{servicePrincipal-id}\synchronization\secrets
     /// </summary>
-    public class SecretsRequestBuilder : BaseCliRequestBuilder 
+    public class SecretsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -38,13 +39,14 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Secrets {
             return command;
         }
         /// <summary>
-        /// Update property secrets value.
+        /// Provide credentials for establishing connectivity with the target system.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-serviceprincipal-put-synchronization?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Update property secrets value.";
+            command.Description = "Provide credentials for establishing connectivity with the target system.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-serviceprincipal-put-synchronization?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -103,7 +105,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Secrets {
         {
         }
         /// <summary>
-        /// Update property secrets value.
+        /// Provide credentials for establishing connectivity with the target system.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

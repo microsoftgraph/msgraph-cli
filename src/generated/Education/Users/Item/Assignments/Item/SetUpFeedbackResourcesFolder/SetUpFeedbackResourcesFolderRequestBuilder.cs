@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Users.Item.Assignments.Item.SetUpFeedbackResourcesFolder {
+namespace ApiSdk.Education.Users.Item.Assignments.Item.SetUpFeedbackResourcesFolder
+{
     /// <summary>
     /// Provides operations to call the setUpFeedbackResourcesFolder method.
     /// </summary>
-    public class SetUpFeedbackResourcesFolderRequestBuilder : BaseCliRequestBuilder 
+    public class SetUpFeedbackResourcesFolderRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Create a SharePoint folder to upload feedback files for a given educationSubmission. Only teachers can perform this operation. The teacher determines the resources to upload in the feedback resources folder of a submission.

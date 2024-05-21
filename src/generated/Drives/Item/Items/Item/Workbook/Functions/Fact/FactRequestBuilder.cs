@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fact {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fact
+{
     /// <summary>
     /// Provides operations to call the fact method.
     /// </summary>
-    public class FactRequestBuilder : BaseCliRequestBuilder 
+    public class FactRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action fact

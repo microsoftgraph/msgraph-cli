@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
+namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem
+{
     /// <summary>
     /// Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.
     /// </summary>
-    public class DriveItemRequestBuilder : BaseCliRequestBuilder 
+    public class DriveItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the drive entity.
@@ -31,6 +32,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
             command.Description = "Provides operations to manage the media for the drive entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -40,13 +42,13 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
             return command;
         }
         /// <summary>
-        /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+        /// For document libraries, the driveItem relationship exposes the listItem as a driveItem
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]";
+            command.Description = "For document libraries, the driveItem relationship exposes the listItem as a driveItem";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -112,7 +114,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
         {
         }
         /// <summary>
-        /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+        /// For document libraries, the driveItem relationship exposes the listItem as a driveItem
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -131,7 +133,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
             return requestInfo;
         }
         /// <summary>
-        /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+        /// For document libraries, the driveItem relationship exposes the listItem as a driveItem
         /// </summary>
         public class DriveItemRequestBuilderGetQueryParameters 
         {

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assignments {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assignments
+{
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.cloudPcUserSetting entity.
     /// </summary>
-    public class AssignmentsRequestBuilder : BaseCliRequestBuilder 
+    public class AssignmentsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.cloudPcUserSetting entity.
@@ -192,7 +193,9 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assignments 
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

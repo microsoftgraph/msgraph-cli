@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Device Configuration.
     /// </summary>
-    public class IosCertificateProfile : DeviceConfiguration, IParsable 
+    public class IosCertificateProfile : DeviceConfiguration, IParsable
     {
         /// <summary>
         /// Instantiates a new <see cref="IosCertificateProfile"/> and sets the default values.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSources.Item {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSources.Item
+{
     /// <summary>
     /// Provides operations to manage the custodianSources property of the microsoft.graph.security.ediscoverySearch entity.
     /// </summary>
-    public class DataSourceItemRequestBuilder : BaseCliRequestBuilder 
+    public class DataSourceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Custodian sources that are included in the eDiscovery search.

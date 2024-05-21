@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyDynamicFilter {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyDynamicFilter
+{
     /// <summary>
     /// Provides operations to call the applyDynamicFilter method.
     /// </summary>
-    public class ApplyDynamicFilterRequestBuilder : BaseCliRequestBuilder 
+    public class ApplyDynamicFilterRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action applyDynamicFilter

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.ApiConnectors.Item {
+namespace ApiSdk.Identity.ApiConnectors.Item
+{
     /// <summary>
     /// Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.
     /// </summary>
-    public class IdentityApiConnectorItemRequestBuilder : BaseCliRequestBuilder 
+    public class IdentityApiConnectorItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an identityApiConnector object.

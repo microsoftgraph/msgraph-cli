@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class KubernetesClusterEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class KubernetesClusterEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The cloud identifier of the cluster. Can be either an amazonResourceEvidence, azureResourceEvidence, or googleCloudResourceEvidence object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,11 +69,11 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"cloudResource", n => { CloudResource = n.GetObjectValue<AlertEvidence>(AlertEvidence.CreateFromDiscriminatorValue); } },
-                {"distribution", n => { Distribution = n.GetStringValue(); } },
-                {"name", n => { Name = n.GetStringValue(); } },
-                {"platform", n => { Platform = n.GetEnumValue<KubernetesPlatform>(); } },
-                {"version", n => { Version = n.GetStringValue(); } },
+                { "cloudResource", n => { CloudResource = n.GetObjectValue<AlertEvidence>(AlertEvidence.CreateFromDiscriminatorValue); } },
+                { "distribution", n => { Distribution = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "platform", n => { Platform = n.GetEnumValue<KubernetesPlatform>(); } },
+                { "version", n => { Version = n.GetStringValue(); } },
             };
         }
         /// <summary>

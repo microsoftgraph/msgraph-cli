@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Item {
+namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Item
+{
     /// <summary>
     /// Provides operations to manage the acceptanceStatuses property of the microsoft.graph.termsAndConditions entity.
     /// </summary>
-    public class TermsAndConditionsAcceptanceStatusItemRequestBuilder : BaseCliRequestBuilder 
+    public class TermsAndConditionsAcceptanceStatusItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a termsAndConditionsAcceptanceStatus.

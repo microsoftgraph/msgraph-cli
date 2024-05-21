@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist
+{
     /// <summary>
     /// Provides operations to call the chiSq_Dist method.
     /// </summary>
-    public class ChiSq_DistRequestBuilder : BaseCliRequestBuilder 
+    public class ChiSq_DistRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action chiSq_Dist

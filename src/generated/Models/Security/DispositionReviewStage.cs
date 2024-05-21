@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class DispositionReviewStage : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class DispositionReviewStage : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Name representing each stage within a collection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -23,7 +26,7 @@ namespace ApiSdk.Models.Security {
 #else
         public List<string> ReviewersEmailAddresses { get; set; }
 #endif
-        /// <summary>The sequence number for each stage of the disposition review.</summary>
+        /// <summary>The unique sequence number for each stage of the disposition review.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? StageNumber { get; set; }
@@ -49,9 +52,9 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"name", n => { Name = n.GetStringValue(); } },
-                {"reviewersEmailAddresses", n => { ReviewersEmailAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"stageNumber", n => { StageNumber = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "reviewersEmailAddresses", n => { ReviewersEmailAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "stageNumber", n => { StageNumber = n.GetStringValue(); } },
             };
         }
         /// <summary>

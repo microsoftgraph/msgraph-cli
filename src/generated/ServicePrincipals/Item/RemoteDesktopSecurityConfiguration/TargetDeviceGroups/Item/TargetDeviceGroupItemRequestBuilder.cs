@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.TargetDeviceGroups.Item {
+namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.TargetDeviceGroups.Item
+{
     /// <summary>
     /// Provides operations to manage the targetDeviceGroups property of the microsoft.graph.remoteDesktopSecurityConfiguration entity.
     /// </summary>
-    public class TargetDeviceGroupItemRequestBuilder : BaseCliRequestBuilder 
+    public class TargetDeviceGroupItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a targetDeviceGroup object for the remoteDesktopSecurityConfiguration object on the servicePrincipal. Any user authenticating using the Microsoft Entra ID Remote Desktop Services (RDS) authentication protocol to a Microsoft Entra joined or Microsoft Entra hybrid joined device that&apos;s in the removed targetDeviceGroup doesn&apos;t get SSO prompts.

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.CopyToNotebook {
-    public class CopyToNotebookPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.CopyToNotebook
+{
+    #pragma warning disable CS1591
+    public class CopyToNotebookPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -74,11 +77,11 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"groupId", n => { GroupId = n.GetStringValue(); } },
-                {"id", n => { Id = n.GetStringValue(); } },
-                {"renameAs", n => { RenameAs = n.GetStringValue(); } },
-                {"siteCollectionId", n => { SiteCollectionId = n.GetStringValue(); } },
-                {"siteId", n => { SiteId = n.GetStringValue(); } },
+                { "groupId", n => { GroupId = n.GetStringValue(); } },
+                { "id", n => { Id = n.GetStringValue(); } },
+                { "renameAs", n => { RenameAs = n.GetStringValue(); } },
+                { "siteCollectionId", n => { SiteCollectionId = n.GetStringValue(); } },
+                { "siteId", n => { SiteId = n.GetStringValue(); } },
             };
         }
         /// <summary>

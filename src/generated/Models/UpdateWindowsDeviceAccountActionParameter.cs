@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class UpdateWindowsDeviceAccountActionParameter : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class UpdateWindowsDeviceAccountActionParameter : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -78,13 +81,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"calendarSyncEnabled", n => { CalendarSyncEnabled = n.GetBoolValue(); } },
-                {"deviceAccount", n => { DeviceAccount = n.GetObjectValue<WindowsDeviceAccount>(WindowsDeviceAccount.CreateFromDiscriminatorValue); } },
-                {"deviceAccountEmail", n => { DeviceAccountEmail = n.GetStringValue(); } },
-                {"exchangeServer", n => { ExchangeServer = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"passwordRotationEnabled", n => { PasswordRotationEnabled = n.GetBoolValue(); } },
-                {"sessionInitiationProtocalAddress", n => { SessionInitiationProtocalAddress = n.GetStringValue(); } },
+                { "calendarSyncEnabled", n => { CalendarSyncEnabled = n.GetBoolValue(); } },
+                { "deviceAccount", n => { DeviceAccount = n.GetObjectValue<WindowsDeviceAccount>(WindowsDeviceAccount.CreateFromDiscriminatorValue); } },
+                { "deviceAccountEmail", n => { DeviceAccountEmail = n.GetStringValue(); } },
+                { "exchangeServer", n => { ExchangeServer = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "passwordRotationEnabled", n => { PasswordRotationEnabled = n.GetBoolValue(); } },
+                { "sessionInitiationProtocalAddress", n => { SessionInitiationProtocalAddress = n.GetStringValue(); } },
             };
         }
         /// <summary>

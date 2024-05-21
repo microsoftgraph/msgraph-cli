@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Exp {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Exp
+{
     /// <summary>
     /// Provides operations to call the exp method.
     /// </summary>
-    public class ExpRequestBuilder : BaseCliRequestBuilder 
+    public class ExpRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action exp

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Search.Acronyms.Item {
+namespace ApiSdk.Search.Acronyms.Item
+{
     /// <summary>
     /// Provides operations to manage the acronyms property of the microsoft.graph.searchEntity entity.
     /// </summary>
-    public class AcronymItemRequestBuilder : BaseCliRequestBuilder 
+    public class AcronymItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an acronym object.

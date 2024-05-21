@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.SectionGroups.Item {
+namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.SectionGroups.Item
+{
     /// <summary>
     /// Provides operations to manage the sectionGroups property of the microsoft.graph.sectionGroup entity.
     /// </summary>
-    public class SectionGroupItemRequestBuilder : BaseCliRequestBuilder 
+    public class SectionGroupItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The section groups in the section. Read-only. Nullable.

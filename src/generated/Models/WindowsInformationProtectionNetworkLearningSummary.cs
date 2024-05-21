@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Windows Information Protection Network learning Summary entity.
     /// </summary>
-    public class WindowsInformationProtectionNetworkLearningSummary : Entity, IParsable 
+    public class WindowsInformationProtectionNetworkLearningSummary : Entity, IParsable
     {
         /// <summary>Device Count</summary>
         public int? DeviceCount { get; set; }
@@ -38,8 +39,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"deviceCount", n => { DeviceCount = n.GetIntValue(); } },
-                {"url", n => { Url = n.GetStringValue(); } },
+                { "deviceCount", n => { DeviceCount = n.GetIntValue(); } },
+                { "url", n => { Url = n.GetStringValue(); } },
             };
         }
         /// <summary>

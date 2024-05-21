@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Abstract class that contains properties and inherited properties for apps that you can manage with an Intune app protection policy.
     /// </summary>
-    public class ManagedApp : MobileApp, IParsable 
+    public class ManagedApp : MobileApp, IParsable
     {
         /// <summary>A managed (MAM) application&apos;s availability.</summary>
         public ManagedAppAvailability? AppAvailability { get; set; }
@@ -54,8 +55,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"appAvailability", n => { AppAvailability = n.GetEnumValue<ManagedAppAvailability>(); } },
-                {"version", n => { Version = n.GetStringValue(); } },
+                { "appAvailability", n => { AppAvailability = n.GetEnumValue<ManagedAppAvailability>(); } },
+                { "version", n => { Version = n.GetStringValue(); } },
             };
         }
         /// <summary>

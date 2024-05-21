@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.CreatedByUser.MailboxSettings {
+namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.CreatedByUser.MailboxSettings
+{
     /// <summary>
     /// Builds and executes requests for operations under \groups\{group-id}\sites\{site-id}\pages\{baseSitePage-id}\createdByUser\mailboxSettings
     /// </summary>
-    public class MailboxSettingsRequestBuilder : BaseCliRequestBuilder 
+    public class MailboxSettingsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Returned only on $select.

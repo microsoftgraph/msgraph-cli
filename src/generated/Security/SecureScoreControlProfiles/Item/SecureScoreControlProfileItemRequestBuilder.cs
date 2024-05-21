@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
+namespace ApiSdk.Security.SecureScoreControlProfiles.Item
+{
     /// <summary>
     /// Provides operations to manage the secureScoreControlProfiles property of the microsoft.graph.security entity.
     /// </summary>
-    public class SecureScoreControlProfileItemRequestBuilder : BaseCliRequestBuilder 
+    public class SecureScoreControlProfileItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property secureScoreControlProfiles for security

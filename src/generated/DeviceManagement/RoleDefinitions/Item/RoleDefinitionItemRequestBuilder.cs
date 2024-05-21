@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
+namespace ApiSdk.DeviceManagement.RoleDefinitions.Item
+{
     /// <summary>
     /// Provides operations to manage the roleDefinitions property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class RoleDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class RoleDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a roleDefinition.

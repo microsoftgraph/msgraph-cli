@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.Item {
+namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.Item
+{
     /// <summary>
     /// Provides operations to manage the scopedRoleMembers property of the microsoft.graph.administrativeUnit entity.
     /// </summary>
-    public class ScopedRoleMembershipItemRequestBuilder : BaseCliRequestBuilder 
+    public class ScopedRoleMembershipItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remove a Microsoft Entra role assignment with administrative unit scope.

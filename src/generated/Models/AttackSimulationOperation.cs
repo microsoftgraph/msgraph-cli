@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AttackSimulationOperation : LongRunningOperation, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AttackSimulationOperation : LongRunningOperation, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Percentage of completion of the respective operation.</summary>
         public int? PercentageCompleted { get; set; }
@@ -37,9 +40,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"percentageCompleted", n => { PercentageCompleted = n.GetIntValue(); } },
-                {"tenantId", n => { TenantId = n.GetStringValue(); } },
-                {"type", n => { Type = n.GetEnumValue<AttackSimulationOperationType>(); } },
+                { "percentageCompleted", n => { PercentageCompleted = n.GetIntValue(); } },
+                { "tenantId", n => { TenantId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<AttackSimulationOperationType>(); } },
             };
         }
         /// <summary>

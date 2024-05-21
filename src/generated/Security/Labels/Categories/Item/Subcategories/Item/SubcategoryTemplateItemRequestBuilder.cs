@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.Categories.Item.Subcategories.Item {
+namespace ApiSdk.Security.Labels.Categories.Item.Subcategories.Item
+{
     /// <summary>
     /// Provides operations to manage the subcategories property of the microsoft.graph.security.categoryTemplate entity.
     /// </summary>
-    public class SubcategoryTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class SubcategoryTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property subcategories for security
@@ -62,13 +63,14 @@ namespace ApiSdk.Security.Labels.Categories.Item.Subcategories.Item {
             return command;
         }
         /// <summary>
-        /// Get subcategories from security
+        /// Read the properties and relationships of a subcategoryTemplate object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-subcategorytemplate-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get subcategories from security";
+            command.Description = "Read the properties and relationships of a subcategoryTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-subcategorytemplate-get?view=graph-rest-1.0";
             var categoryTemplateIdOption = new Option<string>("--category-template-id", description: "The unique identifier of categoryTemplate") {
             };
             categoryTemplateIdOption.IsRequired = true;
@@ -210,7 +212,7 @@ namespace ApiSdk.Security.Labels.Categories.Item.Subcategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get subcategories from security
+        /// Read the properties and relationships of a subcategoryTemplate object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +252,7 @@ namespace ApiSdk.Security.Labels.Categories.Item.Subcategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get subcategories from security
+        /// Read the properties and relationships of a subcategoryTemplate object.
         /// </summary>
         public class SubcategoryTemplateItemRequestBuilderGetQueryParameters 
         {

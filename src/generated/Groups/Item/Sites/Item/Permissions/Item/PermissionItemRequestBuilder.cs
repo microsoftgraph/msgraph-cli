@@ -15,21 +15,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item
+{
     /// <summary>
     /// Provides operations to manage the permissions property of the microsoft.graph.site entity.
     /// </summary>
-    public class PermissionItemRequestBuilder : BaseCliRequestBuilder 
+    public class PermissionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Delete a permission object on a site.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-delete-permission?view=graph-rest-1.0" />
+        /// Delete navigation property permissions for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a permission object on a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-delete-permission?view=graph-rest-1.0";
+            command.Description = "Delete navigation property permissions for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -70,14 +70,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a permission object on a site.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-get-permission?view=graph-rest-1.0" />
+        /// The permissions associated with the site. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a permission object on a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-get-permission?view=graph-rest-1.0";
+            command.Description = "The permissions associated with the site. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -152,14 +151,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
             return command;
         }
         /// <summary>
-        /// Update an application permission object on a site. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-update-permission?view=graph-rest-1.0" />
+        /// Update the navigation property permissions in groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update an application permission object on a site. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-update-permission?view=graph-rest-1.0";
+            command.Description = "Update the navigation property permissions in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -230,7 +228,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
         {
         }
         /// <summary>
-        /// Delete a permission object on a site.
+        /// Delete navigation property permissions for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +247,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a permission object on a site.
+        /// The permissions associated with the site. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +266,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update an application permission object on a site. 
+        /// Update the navigation property permissions in groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -289,7 +287,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a permission object on a site.
+        /// The permissions associated with the site. Nullable.
         /// </summary>
         public class PermissionItemRequestBuilderGetQueryParameters 
         {

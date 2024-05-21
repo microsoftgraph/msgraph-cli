@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sin {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sin
+{
     /// <summary>
     /// Provides operations to call the sin method.
     /// </summary>
-    public class SinRequestBuilder : BaseCliRequestBuilder 
+    public class SinRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action sin

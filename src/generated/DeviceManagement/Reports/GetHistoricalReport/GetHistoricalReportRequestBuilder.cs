@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.Reports.GetHistoricalReport {
+namespace ApiSdk.DeviceManagement.Reports.GetHistoricalReport
+{
     /// <summary>
     /// Provides operations to call the getHistoricalReport method.
     /// </summary>
-    public class GetHistoricalReportRequestBuilder : BaseCliRequestBuilder 
+    public class GetHistoricalReportRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

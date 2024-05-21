@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
+namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item
+{
     /// <summary>
     /// Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.
     /// </summary>
-    public class TimeOffRequestItemRequestBuilder : BaseCliRequestBuilder 
+    public class TimeOffRequestItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a timeOffRequest object.

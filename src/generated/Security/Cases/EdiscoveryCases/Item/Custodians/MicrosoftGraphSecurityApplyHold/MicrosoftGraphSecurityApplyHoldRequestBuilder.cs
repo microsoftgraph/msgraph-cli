@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityApplyHold {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityApplyHold
+{
     /// <summary>
     /// Provides operations to call the applyHold method.
     /// </summary>
-    public class MicrosoftGraphSecurityApplyHoldRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityApplyHoldRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action applyHold

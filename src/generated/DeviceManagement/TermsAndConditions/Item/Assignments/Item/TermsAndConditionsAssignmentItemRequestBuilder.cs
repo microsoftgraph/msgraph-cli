@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
+namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item
+{
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.termsAndConditions entity.
     /// </summary>
-    public class TermsAndConditionsAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class TermsAndConditionsAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a termsAndConditionsAssignment.

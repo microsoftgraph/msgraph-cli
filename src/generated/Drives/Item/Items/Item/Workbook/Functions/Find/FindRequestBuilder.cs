@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Find {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Find
+{
     /// <summary>
     /// Provides operations to call the find method.
     /// </summary>
-    public class FindRequestBuilder : BaseCliRequestBuilder 
+    public class FindRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action find

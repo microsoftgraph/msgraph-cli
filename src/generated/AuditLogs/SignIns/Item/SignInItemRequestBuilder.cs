@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.AuditLogs.SignIns.Item {
+namespace ApiSdk.AuditLogs.SignIns.Item
+{
     /// <summary>
     /// Provides operations to manage the signIns property of the microsoft.graph.auditLogRoot entity.
     /// </summary>
-    public class SignInItemRequestBuilder : BaseCliRequestBuilder 
+    public class SignInItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property signIns for auditLogs

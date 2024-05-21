@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.AuthorityTemplate {
+namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.AuthorityTemplate
+{
     /// <summary>
     /// Provides operations to manage the authorityTemplate property of the microsoft.graph.security.filePlanDescriptor entity.
     /// </summary>
-    public class AuthorityTemplateRequestBuilder : BaseCliRequestBuilder 
+    public class AuthorityTemplateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Specifies the underlying authority that describes the type of content to be retained and its retention schedule.

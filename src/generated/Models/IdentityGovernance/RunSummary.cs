@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.IdentityGovernance {
-    public class RunSummary : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models.IdentityGovernance
+{
+    #pragma warning disable CS1591
+    public class RunSummary : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -54,13 +57,13 @@ namespace ApiSdk.Models.IdentityGovernance {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"failedRuns", n => { FailedRuns = n.GetIntValue(); } },
-                {"failedTasks", n => { FailedTasks = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"successfulRuns", n => { SuccessfulRuns = n.GetIntValue(); } },
-                {"totalRuns", n => { TotalRuns = n.GetIntValue(); } },
-                {"totalTasks", n => { TotalTasks = n.GetIntValue(); } },
-                {"totalUsers", n => { TotalUsers = n.GetIntValue(); } },
+                { "failedRuns", n => { FailedRuns = n.GetIntValue(); } },
+                { "failedTasks", n => { FailedTasks = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "successfulRuns", n => { SuccessfulRuns = n.GetIntValue(); } },
+                { "totalRuns", n => { TotalRuns = n.GetIntValue(); } },
+                { "totalTasks", n => { TotalTasks = n.GetIntValue(); } },
+                { "totalUsers", n => { TotalUsers = n.GetIntValue(); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
+namespace ApiSdk.Teamwork.WorkforceIntegrations.Item
+{
     /// <summary>
     /// Provides operations to manage the workforceIntegrations property of the microsoft.graph.teamwork entity.
     /// </summary>
-    public class WorkforceIntegrationItemRequestBuilder : BaseCliRequestBuilder 
+    public class WorkforceIntegrationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an instance of a workforceIntegration.

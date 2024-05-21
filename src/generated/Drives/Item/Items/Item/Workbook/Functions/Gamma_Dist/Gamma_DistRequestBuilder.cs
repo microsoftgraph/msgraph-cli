@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Dist {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Dist
+{
     /// <summary>
     /// Provides operations to call the gamma_Dist method.
     /// </summary>
-    public class Gamma_DistRequestBuilder : BaseCliRequestBuilder 
+    public class Gamma_DistRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action gamma_Dist

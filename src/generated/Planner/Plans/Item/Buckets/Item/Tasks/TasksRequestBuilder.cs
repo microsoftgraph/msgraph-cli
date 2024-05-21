@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
+namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks
+{
     /// <summary>
     /// Provides operations to manage the tasks property of the microsoft.graph.plannerBucket entity.
     /// </summary>
-    public class TasksRequestBuilder : BaseCliRequestBuilder 
+    public class TasksRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.plannerBucket entity.
@@ -115,14 +116,13 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of plannerTask objects associated to a plannerBucket object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0" />
+        /// Read-only. Nullable. The collection of tasks in the bucket.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of plannerTask objects associated to a plannerBucket object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. The collection of tasks in the bucket.";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -210,7 +210,9 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -236,7 +238,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
         {
         }
         /// <summary>
-        /// Retrieve a list of plannerTask objects associated to a plannerBucket object.
+        /// Read-only. Nullable. The collection of tasks in the bucket.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +278,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of plannerTask objects associated to a plannerBucket object.
+        /// Read-only. Nullable. The collection of tasks in the bucket.
         /// </summary>
         public class TasksRequestBuilderGetQueryParameters 
         {

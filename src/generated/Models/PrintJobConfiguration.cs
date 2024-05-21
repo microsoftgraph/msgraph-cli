@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class PrintJobConfiguration : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class PrintJobConfiguration : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -29,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public List<PrintFinishing?> Finishings { get; set; }
 #endif
-        /// <summary>The fitPdfToPage property</summary>
+        /// <summary>True to fit each page of a PDF document to a physical sheet of media; false to let the printer decide how to lay out impressions.</summary>
         public bool? FitPdfToPage { get; set; }
         /// <summary>The input bin (tray) to use when printing. See the printer&apos;s capabilities for a list of supported input bins.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,7 +50,7 @@ namespace ApiSdk.Models {
 #else
         public PrintMargin Margin { get; set; }
 #endif
-        /// <summary>The media size to use when printing. Supports standard size names for ISO and ANSI media sizes.</summary>
+        /// <summary>The media size to use when printing. Supports standard size names for ISO and ANSI media sizes. Valid values listed in the printerCapabilities topic.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MediaSize { get; set; }
@@ -55,7 +58,7 @@ namespace ApiSdk.Models {
 #else
         public string MediaSize { get; set; }
 #endif
-        /// <summary>The mediaType property</summary>
+        /// <summary>The default media (such as paper) type to print the document on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MediaType { get; set; }
@@ -63,7 +66,7 @@ namespace ApiSdk.Models {
 #else
         public string MediaType { get; set; }
 #endif
-        /// <summary>The multipageLayout property</summary>
+        /// <summary>The direction to lay out pages when multiple pages are being printed per sheet. Valid values are described in the following table.</summary>
         public PrintMultipageLayout? MultipageLayout { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -73,9 +76,9 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The orientation property</summary>
+        /// <summary>The orientation setting the printer should use when printing the job. Valid values are described in the following table.</summary>
         public PrintOrientation? Orientation { get; set; }
-        /// <summary>The outputBin property</summary>
+        /// <summary>The output bin to place completed prints into. See the printer&apos;s capabilities for a list of supported output bins.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OutputBin { get; set; }
@@ -83,7 +86,7 @@ namespace ApiSdk.Models {
 #else
         public string OutputBin { get; set; }
 #endif
-        /// <summary>The pageRanges property</summary>
+        /// <summary>The page ranges to print. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<IntegerRange>? PageRanges { get; set; }
@@ -91,11 +94,11 @@ namespace ApiSdk.Models {
 #else
         public List<IntegerRange> PageRanges { get; set; }
 #endif
-        /// <summary>The pagesPerSheet property</summary>
+        /// <summary>The number of document pages to print on each sheet.</summary>
         public int? PagesPerSheet { get; set; }
-        /// <summary>The quality property</summary>
+        /// <summary>The print quality to use when printing the job. Valid values are described in the table below. Read-only.</summary>
         public PrintQuality? Quality { get; set; }
-        /// <summary>The scaling property</summary>
+        /// <summary>Specifies how the printer should scale the document data to fit the requested media. Valid values are described in the following table.</summary>
         public PrintScaling? Scaling { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="PrintJobConfiguration"/> and sets the default values.
@@ -122,26 +125,26 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"collate", n => { Collate = n.GetBoolValue(); } },
-                {"colorMode", n => { ColorMode = n.GetEnumValue<PrintColorMode>(); } },
-                {"copies", n => { Copies = n.GetIntValue(); } },
-                {"dpi", n => { Dpi = n.GetIntValue(); } },
-                {"duplexMode", n => { DuplexMode = n.GetEnumValue<PrintDuplexMode>(); } },
-                {"feedOrientation", n => { FeedOrientation = n.GetEnumValue<PrinterFeedOrientation>(); } },
-                {"finishings", n => { Finishings = n.GetCollectionOfEnumValues<PrintFinishing>()?.ToList(); } },
-                {"fitPdfToPage", n => { FitPdfToPage = n.GetBoolValue(); } },
-                {"inputBin", n => { InputBin = n.GetStringValue(); } },
-                {"margin", n => { Margin = n.GetObjectValue<PrintMargin>(PrintMargin.CreateFromDiscriminatorValue); } },
-                {"mediaSize", n => { MediaSize = n.GetStringValue(); } },
-                {"mediaType", n => { MediaType = n.GetStringValue(); } },
-                {"multipageLayout", n => { MultipageLayout = n.GetEnumValue<PrintMultipageLayout>(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"orientation", n => { Orientation = n.GetEnumValue<PrintOrientation>(); } },
-                {"outputBin", n => { OutputBin = n.GetStringValue(); } },
-                {"pageRanges", n => { PageRanges = n.GetCollectionOfObjectValues<IntegerRange>(IntegerRange.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"pagesPerSheet", n => { PagesPerSheet = n.GetIntValue(); } },
-                {"quality", n => { Quality = n.GetEnumValue<PrintQuality>(); } },
-                {"scaling", n => { Scaling = n.GetEnumValue<PrintScaling>(); } },
+                { "collate", n => { Collate = n.GetBoolValue(); } },
+                { "colorMode", n => { ColorMode = n.GetEnumValue<PrintColorMode>(); } },
+                { "copies", n => { Copies = n.GetIntValue(); } },
+                { "dpi", n => { Dpi = n.GetIntValue(); } },
+                { "duplexMode", n => { DuplexMode = n.GetEnumValue<PrintDuplexMode>(); } },
+                { "feedOrientation", n => { FeedOrientation = n.GetEnumValue<PrinterFeedOrientation>(); } },
+                { "finishings", n => { Finishings = n.GetCollectionOfEnumValues<PrintFinishing>()?.ToList(); } },
+                { "fitPdfToPage", n => { FitPdfToPage = n.GetBoolValue(); } },
+                { "inputBin", n => { InputBin = n.GetStringValue(); } },
+                { "margin", n => { Margin = n.GetObjectValue<PrintMargin>(PrintMargin.CreateFromDiscriminatorValue); } },
+                { "mediaSize", n => { MediaSize = n.GetStringValue(); } },
+                { "mediaType", n => { MediaType = n.GetStringValue(); } },
+                { "multipageLayout", n => { MultipageLayout = n.GetEnumValue<PrintMultipageLayout>(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "orientation", n => { Orientation = n.GetEnumValue<PrintOrientation>(); } },
+                { "outputBin", n => { OutputBin = n.GetStringValue(); } },
+                { "pageRanges", n => { PageRanges = n.GetCollectionOfObjectValues<IntegerRange>(IntegerRange.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "pagesPerSheet", n => { PagesPerSheet = n.GetIntValue(); } },
+                { "quality", n => { Quality = n.GetEnumValue<PrintQuality>(); } },
+                { "scaling", n => { Scaling = n.GetEnumValue<PrintScaling>(); } },
             };
         }
         /// <summary>

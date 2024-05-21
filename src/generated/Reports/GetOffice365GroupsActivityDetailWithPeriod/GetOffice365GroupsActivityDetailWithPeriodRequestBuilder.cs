@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithPeriod {
+namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getOffice365GroupsActivityDetail method.
     /// </summary>
-    public class GetOffice365GroupsActivityDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetOffice365GroupsActivityDetailWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function getOffice365GroupsActivityDetail

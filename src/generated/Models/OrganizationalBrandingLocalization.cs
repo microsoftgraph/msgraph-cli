@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class OrganizationalBrandingLocalization : OrganizationalBrandingProperties, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class OrganizationalBrandingLocalization : OrganizationalBrandingProperties, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>
         /// Instantiates a new <see cref="OrganizationalBrandingLocalization"/> and sets the default values.

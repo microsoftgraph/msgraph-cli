@@ -12,8 +12,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Entity : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Entity : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -131,6 +134,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.authentication" => new Authentication(),
                 "#microsoft.graph.authenticationCombinationConfiguration" => new AuthenticationCombinationConfiguration(),
                 "#microsoft.graph.authenticationContextClassReference" => new AuthenticationContextClassReference(),
+                "#microsoft.graph.authenticationEventListener" => new AuthenticationEventListener(),
                 "#microsoft.graph.authenticationFlowsPolicy" => new AuthenticationFlowsPolicy(),
                 "#microsoft.graph.authenticationMethod" => new AuthenticationMethod(),
                 "#microsoft.graph.authenticationMethodConfiguration" => new AuthenticationMethodConfiguration(),
@@ -198,6 +202,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.columnDefinition" => new ColumnDefinition(),
                 "#microsoft.graph.columnLink" => new ColumnLink(),
                 "#microsoft.graph.commsOperation" => new CommsOperation(),
+                "#microsoft.graph.companySubscription" => new CompanySubscription(),
                 "#microsoft.graph.complianceManagementPartner" => new ComplianceManagementPartner(),
                 "#microsoft.graph.conditionalAccessPolicy" => new ConditionalAccessPolicy(),
                 "#microsoft.graph.conditionalAccessRoot" => new ConditionalAccessRoot(),
@@ -214,6 +219,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.countryNamedLocation" => new CountryNamedLocation(),
                 "#microsoft.graph.crossTenantAccessPolicy" => new CrossTenantAccessPolicy(),
                 "#microsoft.graph.crossTenantAccessPolicyConfigurationDefault" => new CrossTenantAccessPolicyConfigurationDefault(),
+                "#microsoft.graph.customAuthenticationExtension" => new CustomAuthenticationExtension(),
                 "#microsoft.graph.customCalloutExtension" => new CustomCalloutExtension(),
                 "#microsoft.graph.customExtensionStageSetting" => new CustomExtensionStageSetting(),
                 "#microsoft.graph.customSecurityAttributeDefinition" => new CustomSecurityAttributeDefinition(),
@@ -480,6 +486,11 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.mobileContainedApp" => new MobileContainedApp(),
                 "#microsoft.graph.mobileLobApp" => new MobileLobApp(),
                 "#microsoft.graph.mobileThreatDefenseConnector" => new MobileThreatDefenseConnector(),
+                "#microsoft.graph.multiTenantOrganization" => new MultiTenantOrganization(),
+                "#microsoft.graph.multiTenantOrganizationIdentitySyncPolicyTemplate" => new MultiTenantOrganizationIdentitySyncPolicyTemplate(),
+                "#microsoft.graph.multiTenantOrganizationJoinRequestRecord" => new MultiTenantOrganizationJoinRequestRecord(),
+                "#microsoft.graph.multiTenantOrganizationMember" => new MultiTenantOrganizationMember(),
+                "#microsoft.graph.multiTenantOrganizationPartnerConfigurationTemplate" => new MultiTenantOrganizationPartnerConfigurationTemplate(),
                 "#microsoft.graph.multiValueLegacyExtendedProperty" => new MultiValueLegacyExtendedProperty(),
                 "#microsoft.graph.muteParticipantOperation" => new MuteParticipantOperation(),
                 "#microsoft.graph.namedLocation" => new NamedLocation(),
@@ -500,6 +511,8 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.onlineMeetingBase" => new OnlineMeetingBase(),
                 "#microsoft.graph.onPremisesConditionalAccessSettings" => new OnPremisesConditionalAccessSettings(),
                 "#microsoft.graph.onPremisesDirectorySynchronization" => new OnPremisesDirectorySynchronization(),
+                "#microsoft.graph.onTokenIssuanceStartCustomExtension" => new OnTokenIssuanceStartCustomExtension(),
+                "#microsoft.graph.onTokenIssuanceStartListener" => new OnTokenIssuanceStartListener(),
                 "#microsoft.graph.openShift" => new OpenShift(),
                 "#microsoft.graph.openShiftChangeRequest" => new OpenShiftChangeRequest(),
                 "#microsoft.graph.openTypeExtension" => new OpenTypeExtension(),
@@ -551,6 +564,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.playPromptOperation" => new PlayPromptOperation(),
                 "#microsoft.graph.policyBase" => new PolicyBase(),
                 "#microsoft.graph.policyRoot" => new PolicyRoot(),
+                "#microsoft.graph.policyTemplate" => new PolicyTemplate(),
                 "#microsoft.graph.post" => new Post(),
                 "#microsoft.graph.presence" => new Presence(),
                 "#microsoft.graph.printConnector" => new PrintConnector(),
@@ -653,6 +667,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.security.filePlanDescriptor" => new FilePlanDescriptor(),
                 "#microsoft.graph.security.filePlanDescriptorTemplate" => new FilePlanDescriptorTemplate(),
                 "#microsoft.graph.security.filePlanReferenceTemplate" => new ApiSdk.Models.Security.FilePlanReferenceTemplate(),
+                "#microsoft.graph.security.healthIssue" => new HealthIssue(),
                 "#microsoft.graph.security.host" => new ApiSdk.Models.Security.Host(),
                 "#microsoft.graph.security.hostComponent" => new HostComponent(),
                 "#microsoft.graph.security.hostCookie" => new HostCookie(),
@@ -662,6 +677,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.security.hostReputation" => new HostReputation(),
                 "#microsoft.graph.security.hostSslCertificate" => new HostSslCertificate(),
                 "#microsoft.graph.security.hostTracker" => new HostTracker(),
+                "#microsoft.graph.security.identityContainer" => new ApiSdk.Models.Security.IdentityContainer(),
                 "#microsoft.graph.security.incident" => new Incident(),
                 "#microsoft.graph.security.indicator" => new Indicator(),
                 "#microsoft.graph.security.intelligenceProfile" => new IntelligenceProfile(),
@@ -947,8 +963,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"id", n => { Id = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "id", n => { Id = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

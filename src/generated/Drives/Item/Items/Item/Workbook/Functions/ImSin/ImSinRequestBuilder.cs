@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSin {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSin
+{
     /// <summary>
     /// Provides operations to call the imSin method.
     /// </summary>
-    public class ImSinRequestBuilder : BaseCliRequestBuilder 
+    public class ImSinRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imSin

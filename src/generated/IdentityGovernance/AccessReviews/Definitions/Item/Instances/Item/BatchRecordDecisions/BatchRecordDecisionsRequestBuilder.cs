@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.BatchRecordDecisions {
+namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.BatchRecordDecisions
+{
     /// <summary>
     /// Provides operations to call the batchRecordDecisions method.
     /// </summary>
-    public class BatchRecordDecisionsRequestBuilder : BaseCliRequestBuilder 
+    public class BatchRecordDecisionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Enables reviewers to review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId, or neither.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Columns {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Columns
+{
     /// <summary>
     /// Provides operations to call the columns method.
     /// </summary>
-    public class ColumnsRequestBuilder : BaseCliRequestBuilder 
+    public class ColumnsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action columns

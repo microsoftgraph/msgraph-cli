@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ExtensionProperty : DirectoryObject, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ExtensionProperty : DirectoryObject, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Display name of the application object on which this extension property is defined. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -68,12 +71,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"appDisplayName", n => { AppDisplayName = n.GetStringValue(); } },
-                {"dataType", n => { DataType = n.GetStringValue(); } },
-                {"isMultiValued", n => { IsMultiValued = n.GetBoolValue(); } },
-                {"isSyncedFromOnPremises", n => { IsSyncedFromOnPremises = n.GetBoolValue(); } },
-                {"name", n => { Name = n.GetStringValue(); } },
-                {"targetObjects", n => { TargetObjects = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "appDisplayName", n => { AppDisplayName = n.GetStringValue(); } },
+                { "dataType", n => { DataType = n.GetStringValue(); } },
+                { "isMultiValued", n => { IsMultiValued = n.GetBoolValue(); } },
+                { "isSyncedFromOnPremises", n => { IsSyncedFromOnPremises = n.GetBoolValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "targetObjects", n => { TargetObjects = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNotificationMessages.Item {
+namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNotificationMessages.Item
+{
     /// <summary>
     /// Provides operations to manage the localizedNotificationMessages property of the microsoft.graph.notificationMessageTemplate entity.
     /// </summary>
-    public class LocalizedNotificationMessageItemRequestBuilder : BaseCliRequestBuilder 
+    public class LocalizedNotificationMessageItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a localizedNotificationMessage.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
+namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item
+{
     /// <summary>
     /// Provides operations to manage the attachments property of the microsoft.graph.post entity.
     /// </summary>
-    public class AttachmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class AttachmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property attachments for groups

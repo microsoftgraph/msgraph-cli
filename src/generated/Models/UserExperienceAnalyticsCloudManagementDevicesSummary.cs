@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience work from anywhere Cloud management devices summary.
     /// </summary>
-    public class UserExperienceAnalyticsCloudManagementDevicesSummary : IAdditionalDataHolder, IParsable 
+    public class UserExperienceAnalyticsCloudManagementDevicesSummary : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -51,10 +52,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"coManagedDeviceCount", n => { CoManagedDeviceCount = n.GetIntValue(); } },
-                {"intuneDeviceCount", n => { IntuneDeviceCount = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"tenantAttachDeviceCount", n => { TenantAttachDeviceCount = n.GetIntValue(); } },
+                { "coManagedDeviceCount", n => { CoManagedDeviceCount = n.GetIntValue(); } },
+                { "intuneDeviceCount", n => { IntuneDeviceCount = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "tenantAttachDeviceCount", n => { TenantAttachDeviceCount = n.GetIntValue(); } },
             };
         }
         /// <summary>

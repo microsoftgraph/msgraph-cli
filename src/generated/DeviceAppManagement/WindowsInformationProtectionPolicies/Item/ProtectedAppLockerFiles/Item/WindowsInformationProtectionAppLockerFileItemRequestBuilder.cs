@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.ProtectedAppLockerFiles.Item {
+namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.ProtectedAppLockerFiles.Item
+{
     /// <summary>
     /// Provides operations to manage the protectedAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.
     /// </summary>
-    public class WindowsInformationProtectionAppLockerFileItemRequestBuilder : BaseCliRequestBuilder 
+    public class WindowsInformationProtectionAppLockerFileItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property protectedAppLockerFiles for deviceAppManagement

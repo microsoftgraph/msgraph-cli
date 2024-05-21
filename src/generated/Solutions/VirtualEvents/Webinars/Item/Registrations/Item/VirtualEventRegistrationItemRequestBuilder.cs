@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Registrations.Item {
+namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Registrations.Item
+{
     /// <summary>
     /// Provides operations to manage the registrations property of the microsoft.graph.virtualEventWebinar entity.
     /// </summary>
-    public class VirtualEventRegistrationItemRequestBuilder : BaseCliRequestBuilder 
+    public class VirtualEventRegistrationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property registrations for solutions

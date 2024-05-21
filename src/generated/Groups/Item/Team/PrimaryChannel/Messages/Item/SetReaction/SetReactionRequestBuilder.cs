@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.SetReaction {
+namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.SetReaction
+{
     /// <summary>
     /// Provides operations to call the setReaction method.
     /// </summary>
-    public class SetReactionRequestBuilder : BaseCliRequestBuilder 
+    public class SetReactionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action setReaction

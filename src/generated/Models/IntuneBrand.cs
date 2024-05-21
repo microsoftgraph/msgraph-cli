@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// intuneBrand contains data which is used in customizing the appearance of the Company Portal applications as well as the end user web portal.
     /// </summary>
-    public class IntuneBrand : IAdditionalDataHolder, IParsable 
+    public class IntuneBrand : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -139,21 +140,21 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"contactITEmailAddress", n => { ContactITEmailAddress = n.GetStringValue(); } },
-                {"contactITName", n => { ContactITName = n.GetStringValue(); } },
-                {"contactITNotes", n => { ContactITNotes = n.GetStringValue(); } },
-                {"contactITPhoneNumber", n => { ContactITPhoneNumber = n.GetStringValue(); } },
-                {"darkBackgroundLogo", n => { DarkBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"lightBackgroundLogo", n => { LightBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"onlineSupportSiteName", n => { OnlineSupportSiteName = n.GetStringValue(); } },
-                {"onlineSupportSiteUrl", n => { OnlineSupportSiteUrl = n.GetStringValue(); } },
-                {"privacyUrl", n => { PrivacyUrl = n.GetStringValue(); } },
-                {"showDisplayNameNextToLogo", n => { ShowDisplayNameNextToLogo = n.GetBoolValue(); } },
-                {"showLogo", n => { ShowLogo = n.GetBoolValue(); } },
-                {"showNameNextToLogo", n => { ShowNameNextToLogo = n.GetBoolValue(); } },
-                {"themeColor", n => { ThemeColor = n.GetObjectValue<RgbColor>(RgbColor.CreateFromDiscriminatorValue); } },
+                { "contactITEmailAddress", n => { ContactITEmailAddress = n.GetStringValue(); } },
+                { "contactITName", n => { ContactITName = n.GetStringValue(); } },
+                { "contactITNotes", n => { ContactITNotes = n.GetStringValue(); } },
+                { "contactITPhoneNumber", n => { ContactITPhoneNumber = n.GetStringValue(); } },
+                { "darkBackgroundLogo", n => { DarkBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "lightBackgroundLogo", n => { LightBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "onlineSupportSiteName", n => { OnlineSupportSiteName = n.GetStringValue(); } },
+                { "onlineSupportSiteUrl", n => { OnlineSupportSiteUrl = n.GetStringValue(); } },
+                { "privacyUrl", n => { PrivacyUrl = n.GetStringValue(); } },
+                { "showDisplayNameNextToLogo", n => { ShowDisplayNameNextToLogo = n.GetBoolValue(); } },
+                { "showLogo", n => { ShowLogo = n.GetBoolValue(); } },
+                { "showNameNextToLogo", n => { ShowNameNextToLogo = n.GetBoolValue(); } },
+                { "themeColor", n => { ThemeColor = n.GetObjectValue<RgbColor>(RgbColor.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

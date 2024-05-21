@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AmorDegrc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AmorDegrc
+{
     /// <summary>
     /// Provides operations to call the amorDegrc method.
     /// </summary>
-    public class AmorDegrcRequestBuilder : BaseCliRequestBuilder 
+    public class AmorDegrcRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action amorDegrc

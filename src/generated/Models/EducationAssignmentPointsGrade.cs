@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EducationAssignmentPointsGrade : EducationAssignmentGrade, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EducationAssignmentPointsGrade : EducationAssignmentGrade, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Number of points a teacher is giving this submission object.</summary>
         public float? Points { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"points", n => { Points = n.GetFloatValue(); } },
+                { "points", n => { Points = n.GetFloatValue(); } },
             };
         }
         /// <summary>

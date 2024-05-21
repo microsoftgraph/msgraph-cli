@@ -5,6 +5,7 @@ using ApiSdk.Security.Alerts;
 using ApiSdk.Security.Alerts_v2;
 using ApiSdk.Security.AttackSimulation;
 using ApiSdk.Security.Cases;
+using ApiSdk.Security.Identities;
 using ApiSdk.Security.Incidents;
 using ApiSdk.Security.Labels;
 using ApiSdk.Security.MicrosoftGraphSecurityRunHuntingQuery;
@@ -27,11 +28,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security {
+namespace ApiSdk.Security
+{
     /// <summary>
     /// Provides operations to manage the security singleton.
     /// </summary>
-    public class SecurityRequestBuilder : BaseCliRequestBuilder 
+    public class SecurityRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the alerts_v2 property of the microsoft.graph.security entity.
@@ -188,6 +190,31 @@ namespace ApiSdk.Security {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the identities property of the microsoft.graph.security entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIdentitiesNavCommand()
+        {
+            var command = new Command("identities");
+            command.Description = "Provides operations to manage the identities property of the microsoft.graph.security entity.";
+            var builder = new IdentitiesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildHealthIssuesNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

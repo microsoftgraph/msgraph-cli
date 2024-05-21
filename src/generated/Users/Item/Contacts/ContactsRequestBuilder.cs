@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Contacts {
+namespace ApiSdk.Users.Item.Contacts
+{
     /// <summary>
     /// Provides operations to manage the contacts property of the microsoft.graph.user entity.
     /// </summary>
-    public class ContactsRequestBuilder : BaseCliRequestBuilder 
+    public class ContactsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the contacts property of the microsoft.graph.user entity.
@@ -57,14 +58,13 @@ namespace ApiSdk.Users.Item.Contacts {
             return command;
         }
         /// <summary>
-        /// Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-post-contacts?view=graph-rest-1.0" />
+        /// Create new navigation property to contacts for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-contacts?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to contacts for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -126,14 +126,13 @@ namespace ApiSdk.Users.Item.Contacts {
             return command;
         }
         /// <summary>
-        /// Get a contact collection from the default contacts folder of the signed-in user. There are two scenarios where an app can get contacts in another user&apos;s contact folder:
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-contacts?view=graph-rest-1.0" />
+        /// The user&apos;s contacts. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a contact collection from the default contacts folder of the signed-in user. There are two scenarios where an app can get contacts in another user's contact folder:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-contacts?view=graph-rest-1.0";
+            command.Description = "The user's contacts. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -215,7 +214,9 @@ namespace ApiSdk.Users.Item.Contacts {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -241,7 +242,7 @@ namespace ApiSdk.Users.Item.Contacts {
         {
         }
         /// <summary>
-        /// Get a contact collection from the default contacts folder of the signed-in user. There are two scenarios where an app can get contacts in another user&apos;s contact folder:
+        /// The user&apos;s contacts. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -260,7 +261,7 @@ namespace ApiSdk.Users.Item.Contacts {
             return requestInfo;
         }
         /// <summary>
-        /// Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.
+        /// Create new navigation property to contacts for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -281,7 +282,7 @@ namespace ApiSdk.Users.Item.Contacts {
             return requestInfo;
         }
         /// <summary>
-        /// Get a contact collection from the default contacts folder of the signed-in user. There are two scenarios where an app can get contacts in another user&apos;s contact folder:
+        /// The user&apos;s contacts. Read-only. Nullable.
         /// </summary>
         public class ContactsRequestBuilderGetQueryParameters 
         {

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
+namespace ApiSdk.Policies.PermissionGrantPolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the permissionGrantPolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class PermissionGrantPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class PermissionGrantPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a permissionGrantPolicy object.

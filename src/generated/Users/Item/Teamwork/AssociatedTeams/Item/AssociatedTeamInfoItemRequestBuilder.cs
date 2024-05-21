@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams.Item {
+namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams.Item
+{
     /// <summary>
     /// Provides operations to manage the associatedTeams property of the microsoft.graph.userTeamwork entity.
     /// </summary>
-    public class AssociatedTeamInfoItemRequestBuilder : BaseCliRequestBuilder 
+    public class AssociatedTeamInfoItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property associatedTeams for users

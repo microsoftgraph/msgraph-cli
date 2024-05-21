@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill
+{
     /// <summary>
     /// Provides operations to manage the fill property of the microsoft.graph.workbookChartSeriesFormat entity.
     /// </summary>
-    public class FillRequestBuilder : BaseCliRequestBuilder 
+    public class FillRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the clear method.

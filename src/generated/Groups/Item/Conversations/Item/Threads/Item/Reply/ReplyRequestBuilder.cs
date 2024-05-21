@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Reply {
+namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Reply
+{
     /// <summary>
     /// Provides operations to call the reply method.
     /// </summary>
-    public class ReplyRequestBuilder : BaseCliRequestBuilder 
+    public class ReplyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. The table in the Permissions section lists the resources that support open extensions.

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases {
+namespace ApiSdk.Security.Cases
+{
     /// <summary>
     /// Provides operations to manage the cases property of the microsoft.graph.security entity.
     /// </summary>
-    public class CasesRequestBuilder : BaseCliRequestBuilder 
+    public class CasesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property cases for security

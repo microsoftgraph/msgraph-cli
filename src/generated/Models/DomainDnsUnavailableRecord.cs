@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class DomainDnsUnavailableRecord : DomainDnsRecord, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class DomainDnsUnavailableRecord : DomainDnsRecord, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Provides the reason why the DomainDnsUnavailableRecord entity is returned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -33,7 +36,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"description", n => { Description = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
             };
         }
         /// <summary>

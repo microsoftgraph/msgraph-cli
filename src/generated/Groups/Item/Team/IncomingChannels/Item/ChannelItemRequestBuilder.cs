@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Team.IncomingChannels.Item {
+namespace ApiSdk.Groups.Item.Team.IncomingChannels.Item
+{
     /// <summary>
     /// Provides operations to manage the incomingChannels property of the microsoft.graph.team entity.
     /// </summary>
-    public class ChannelItemRequestBuilder : BaseCliRequestBuilder 
+    public class ChannelItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// List of channels shared with the team.

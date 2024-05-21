@@ -10,11 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Item {
+namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Item
+{
     /// <summary>
     /// Builds and executes requests for operations under \applications\{application-id}\tokenLifetimePolicies\{tokenLifetimePolicy-id}
     /// </summary>
-    public class TokenLifetimePolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class TokenLifetimePolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the collection of application entities.

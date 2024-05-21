@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Device operating system summary.
     /// </summary>
-    public class DeviceOperatingSystemSummary : IAdditionalDataHolder, IParsable 
+    public class DeviceOperatingSystemSummary : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -69,19 +70,19 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"androidCorporateWorkProfileCount", n => { AndroidCorporateWorkProfileCount = n.GetIntValue(); } },
-                {"androidCount", n => { AndroidCount = n.GetIntValue(); } },
-                {"androidDedicatedCount", n => { AndroidDedicatedCount = n.GetIntValue(); } },
-                {"androidDeviceAdminCount", n => { AndroidDeviceAdminCount = n.GetIntValue(); } },
-                {"androidFullyManagedCount", n => { AndroidFullyManagedCount = n.GetIntValue(); } },
-                {"androidWorkProfileCount", n => { AndroidWorkProfileCount = n.GetIntValue(); } },
-                {"configMgrDeviceCount", n => { ConfigMgrDeviceCount = n.GetIntValue(); } },
-                {"iosCount", n => { IosCount = n.GetIntValue(); } },
-                {"macOSCount", n => { MacOSCount = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"unknownCount", n => { UnknownCount = n.GetIntValue(); } },
-                {"windowsCount", n => { WindowsCount = n.GetIntValue(); } },
-                {"windowsMobileCount", n => { WindowsMobileCount = n.GetIntValue(); } },
+                { "androidCorporateWorkProfileCount", n => { AndroidCorporateWorkProfileCount = n.GetIntValue(); } },
+                { "androidCount", n => { AndroidCount = n.GetIntValue(); } },
+                { "androidDedicatedCount", n => { AndroidDedicatedCount = n.GetIntValue(); } },
+                { "androidDeviceAdminCount", n => { AndroidDeviceAdminCount = n.GetIntValue(); } },
+                { "androidFullyManagedCount", n => { AndroidFullyManagedCount = n.GetIntValue(); } },
+                { "androidWorkProfileCount", n => { AndroidWorkProfileCount = n.GetIntValue(); } },
+                { "configMgrDeviceCount", n => { ConfigMgrDeviceCount = n.GetIntValue(); } },
+                { "iosCount", n => { IosCount = n.GetIntValue(); } },
+                { "macOSCount", n => { MacOSCount = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "unknownCount", n => { UnknownCount = n.GetIntValue(); } },
+                { "windowsCount", n => { WindowsCount = n.GetIntValue(); } },
+                { "windowsMobileCount", n => { WindowsMobileCount = n.GetIntValue(); } },
             };
         }
         /// <summary>

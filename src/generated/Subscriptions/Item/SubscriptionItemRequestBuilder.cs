@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Subscriptions.Item {
+namespace ApiSdk.Subscriptions.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of subscription entities.
     /// </summary>
-    public class SubscriptionItemRequestBuilder : BaseCliRequestBuilder 
+    public class SubscriptionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a subscription. For the list of resources that support subscribing to change notifications, see the table in the Permissions section.

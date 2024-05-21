@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Insights {
+namespace ApiSdk.Users.Item.Insights
+{
     /// <summary>
     /// Provides operations to manage the insights property of the microsoft.graph.user entity.
     /// </summary>
-    public class InsightsRequestBuilder : BaseCliRequestBuilder 
+    public class InsightsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property insights for users

@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
+namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class WindowsInformationProtectionPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class WindowsInformationProtectionPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.windowsInformationProtection entity.

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class OnPremisesDirectorySynchronizationFeature : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class OnPremisesDirectorySynchronizationFeature : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -80,26 +83,26 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"blockCloudObjectTakeoverThroughHardMatchEnabled", n => { BlockCloudObjectTakeoverThroughHardMatchEnabled = n.GetBoolValue(); } },
-                {"blockSoftMatchEnabled", n => { BlockSoftMatchEnabled = n.GetBoolValue(); } },
-                {"bypassDirSyncOverridesEnabled", n => { BypassDirSyncOverridesEnabled = n.GetBoolValue(); } },
-                {"cloudPasswordPolicyForPasswordSyncedUsersEnabled", n => { CloudPasswordPolicyForPasswordSyncedUsersEnabled = n.GetBoolValue(); } },
-                {"concurrentCredentialUpdateEnabled", n => { ConcurrentCredentialUpdateEnabled = n.GetBoolValue(); } },
-                {"concurrentOrgIdProvisioningEnabled", n => { ConcurrentOrgIdProvisioningEnabled = n.GetBoolValue(); } },
-                {"deviceWritebackEnabled", n => { DeviceWritebackEnabled = n.GetBoolValue(); } },
-                {"directoryExtensionsEnabled", n => { DirectoryExtensionsEnabled = n.GetBoolValue(); } },
-                {"fopeConflictResolutionEnabled", n => { FopeConflictResolutionEnabled = n.GetBoolValue(); } },
-                {"groupWriteBackEnabled", n => { GroupWriteBackEnabled = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"passwordSyncEnabled", n => { PasswordSyncEnabled = n.GetBoolValue(); } },
-                {"passwordWritebackEnabled", n => { PasswordWritebackEnabled = n.GetBoolValue(); } },
-                {"quarantineUponProxyAddressesConflictEnabled", n => { QuarantineUponProxyAddressesConflictEnabled = n.GetBoolValue(); } },
-                {"quarantineUponUpnConflictEnabled", n => { QuarantineUponUpnConflictEnabled = n.GetBoolValue(); } },
-                {"softMatchOnUpnEnabled", n => { SoftMatchOnUpnEnabled = n.GetBoolValue(); } },
-                {"synchronizeUpnForManagedUsersEnabled", n => { SynchronizeUpnForManagedUsersEnabled = n.GetBoolValue(); } },
-                {"unifiedGroupWritebackEnabled", n => { UnifiedGroupWritebackEnabled = n.GetBoolValue(); } },
-                {"userForcePasswordChangeOnLogonEnabled", n => { UserForcePasswordChangeOnLogonEnabled = n.GetBoolValue(); } },
-                {"userWritebackEnabled", n => { UserWritebackEnabled = n.GetBoolValue(); } },
+                { "blockCloudObjectTakeoverThroughHardMatchEnabled", n => { BlockCloudObjectTakeoverThroughHardMatchEnabled = n.GetBoolValue(); } },
+                { "blockSoftMatchEnabled", n => { BlockSoftMatchEnabled = n.GetBoolValue(); } },
+                { "bypassDirSyncOverridesEnabled", n => { BypassDirSyncOverridesEnabled = n.GetBoolValue(); } },
+                { "cloudPasswordPolicyForPasswordSyncedUsersEnabled", n => { CloudPasswordPolicyForPasswordSyncedUsersEnabled = n.GetBoolValue(); } },
+                { "concurrentCredentialUpdateEnabled", n => { ConcurrentCredentialUpdateEnabled = n.GetBoolValue(); } },
+                { "concurrentOrgIdProvisioningEnabled", n => { ConcurrentOrgIdProvisioningEnabled = n.GetBoolValue(); } },
+                { "deviceWritebackEnabled", n => { DeviceWritebackEnabled = n.GetBoolValue(); } },
+                { "directoryExtensionsEnabled", n => { DirectoryExtensionsEnabled = n.GetBoolValue(); } },
+                { "fopeConflictResolutionEnabled", n => { FopeConflictResolutionEnabled = n.GetBoolValue(); } },
+                { "groupWriteBackEnabled", n => { GroupWriteBackEnabled = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "passwordSyncEnabled", n => { PasswordSyncEnabled = n.GetBoolValue(); } },
+                { "passwordWritebackEnabled", n => { PasswordWritebackEnabled = n.GetBoolValue(); } },
+                { "quarantineUponProxyAddressesConflictEnabled", n => { QuarantineUponProxyAddressesConflictEnabled = n.GetBoolValue(); } },
+                { "quarantineUponUpnConflictEnabled", n => { QuarantineUponUpnConflictEnabled = n.GetBoolValue(); } },
+                { "softMatchOnUpnEnabled", n => { SoftMatchOnUpnEnabled = n.GetBoolValue(); } },
+                { "synchronizeUpnForManagedUsersEnabled", n => { SynchronizeUpnForManagedUsersEnabled = n.GetBoolValue(); } },
+                { "unifiedGroupWritebackEnabled", n => { UnifiedGroupWritebackEnabled = n.GetBoolValue(); } },
+                { "userForcePasswordChangeOnLogonEnabled", n => { UserForcePasswordChangeOnLogonEnabled = n.GetBoolValue(); } },
+                { "userWritebackEnabled", n => { UserWritebackEnabled = n.GetBoolValue(); } },
             };
         }
         /// <summary>

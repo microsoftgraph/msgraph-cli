@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.MemberOf.Item {
+namespace ApiSdk.Users.Item.MemberOf.Item
+{
     /// <summary>
     /// Provides operations to manage the memberOf property of the microsoft.graph.user entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.

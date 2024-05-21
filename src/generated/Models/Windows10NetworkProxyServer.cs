@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Network Proxy Server Policy.
     /// </summary>
-    public class Windows10NetworkProxyServer : IAdditionalDataHolder, IParsable 
+    public class Windows10NetworkProxyServer : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -63,10 +64,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"address", n => { Address = n.GetStringValue(); } },
-                {"exceptions", n => { Exceptions = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"useForLocalAddresses", n => { UseForLocalAddresses = n.GetBoolValue(); } },
+                { "address", n => { Address = n.GetStringValue(); } },
+                { "exceptions", n => { Exceptions = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "useForLocalAddresses", n => { UseForLocalAddresses = n.GetBoolValue(); } },
             };
         }
         /// <summary>

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties for a single installer file that is associated with a given mobileAppContent version.
     /// </summary>
-    public class MobileAppContentFile : Entity, IParsable 
+    public class MobileAppContentFile : Entity, IParsable
     {
         /// <summary>The Azure Storage URI.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,16 +67,16 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"azureStorageUri", n => { AzureStorageUri = n.GetStringValue(); } },
-                {"azureStorageUriExpirationDateTime", n => { AzureStorageUriExpirationDateTime = n.GetDateTimeOffsetValue(); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"isCommitted", n => { IsCommitted = n.GetBoolValue(); } },
-                {"isDependency", n => { IsDependency = n.GetBoolValue(); } },
-                {"manifest", n => { Manifest = n.GetByteArrayValue(); } },
-                {"name", n => { Name = n.GetStringValue(); } },
-                {"size", n => { Size = n.GetLongValue(); } },
-                {"sizeEncrypted", n => { SizeEncrypted = n.GetLongValue(); } },
-                {"uploadState", n => { UploadState = n.GetEnumValue<MobileAppContentFileUploadState>(); } },
+                { "azureStorageUri", n => { AzureStorageUri = n.GetStringValue(); } },
+                { "azureStorageUriExpirationDateTime", n => { AzureStorageUriExpirationDateTime = n.GetDateTimeOffsetValue(); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "isCommitted", n => { IsCommitted = n.GetBoolValue(); } },
+                { "isDependency", n => { IsDependency = n.GetBoolValue(); } },
+                { "manifest", n => { Manifest = n.GetByteArrayValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "size", n => { Size = n.GetLongValue(); } },
+                { "sizeEncrypted", n => { SizeEncrypted = n.GetLongValue(); } },
+                { "uploadState", n => { UploadState = n.GetEnumValue<MobileAppContentFileUploadState>(); } },
             };
         }
         /// <summary>

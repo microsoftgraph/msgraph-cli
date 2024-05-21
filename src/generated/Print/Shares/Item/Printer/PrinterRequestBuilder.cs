@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Shares.Item.Printer {
+namespace ApiSdk.Print.Shares.Item.Printer
+{
     /// <summary>
     /// Provides operations to manage the printer property of the microsoft.graph.printerShare entity.
     /// </summary>
-    public class PrinterRequestBuilder : BaseCliRequestBuilder 
+    public class PrinterRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The printer that this printer share is related to.

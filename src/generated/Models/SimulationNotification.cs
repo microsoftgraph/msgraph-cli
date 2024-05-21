@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SimulationNotification : BaseEndUserNotification, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SimulationNotification : BaseEndUserNotification, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Target user type. Possible values are: unknown, clicked, compromised, allUsers, unknownFutureValue.</summary>
         public ApiSdk.Models.TargettedUserType? TargettedUserType { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"targettedUserType", n => { TargettedUserType = n.GetEnumValue<TargettedUserType>(); } },
+                { "targettedUserType", n => { TargettedUserType = n.GetEnumValue<TargettedUserType>(); } },
             };
         }
         /// <summary>

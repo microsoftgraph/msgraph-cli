@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item {
+namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item
+{
     /// <summary>
     /// Provides operations to manage the defaultPages property of the microsoft.graph.userFlowLanguageConfiguration entity.
     /// </summary>
-    public class UserFlowLanguagePageItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserFlowLanguagePageItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the identityContainer entity.
@@ -31,6 +32,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Item {
             command.Description = "Provides operations to manage the media for the identityContainer entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

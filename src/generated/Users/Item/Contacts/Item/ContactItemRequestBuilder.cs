@@ -16,21 +16,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Contacts.Item {
+namespace ApiSdk.Users.Item.Contacts.Item
+{
     /// <summary>
     /// Provides operations to manage the contacts property of the microsoft.graph.user entity.
     /// </summary>
-    public class ContactItemRequestBuilder : BaseCliRequestBuilder 
+    public class ContactItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Delete a contact.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contact-delete?view=graph-rest-1.0" />
+        /// Delete navigation property contacts for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a contact.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contact-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property contacts for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -92,14 +92,13 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a contact object. There are two scenarios where an app can get a contact in another user&apos;s contact folder:
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contact-get?view=graph-rest-1.0" />
+        /// The user&apos;s contacts. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a contact object. There are two scenarios where an app can get a contact in another user's contact folder:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contact-get?view=graph-rest-1.0";
+            command.Description = "The user's contacts. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -151,14 +150,13 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a contact object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contact-update?view=graph-rest-1.0" />
+        /// Update the navigation property contacts in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a contact object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contact-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property contacts in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -247,7 +245,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         {
         }
         /// <summary>
-        /// Delete a contact.
+        /// Delete navigation property contacts for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,7 +264,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a contact object. There are two scenarios where an app can get a contact in another user&apos;s contact folder:
+        /// The user&apos;s contacts. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -285,7 +283,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a contact object.
+        /// Update the navigation property contacts in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -306,7 +304,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a contact object. There are two scenarios where an app can get a contact in another user&apos;s contact folder:
+        /// The user&apos;s contacts. Read-only. Nullable.
         /// </summary>
         public class ContactItemRequestBuilderGetQueryParameters 
         {

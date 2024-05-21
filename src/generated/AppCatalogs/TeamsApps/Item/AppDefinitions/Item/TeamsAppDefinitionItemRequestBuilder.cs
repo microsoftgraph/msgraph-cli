@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
+namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item
+{
     /// <summary>
     /// Provides operations to manage the appDefinitions property of the microsoft.graph.teamsApp entity.
     /// </summary>
-    public class TeamsAppDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class TeamsAppDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the bot property of the microsoft.graph.teamsAppDefinition entity.

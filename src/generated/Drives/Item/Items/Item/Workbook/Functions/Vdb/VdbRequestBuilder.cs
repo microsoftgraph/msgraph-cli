@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vdb {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vdb
+{
     /// <summary>
     /// Provides operations to call the vdb method.
     /// </summary>
-    public class VdbRequestBuilder : BaseCliRequestBuilder 
+    public class VdbRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action vdb

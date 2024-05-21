@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Analytics.ItemActivityStats.Item.Activities.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.Analytics.ItemActivityStats.Item.Activities.Item
+{
     /// <summary>
     /// Provides operations to manage the activities property of the microsoft.graph.itemActivityStat entity.
     /// </summary>
-    public class ItemActivityItemRequestBuilder : BaseCliRequestBuilder 
+    public class ItemActivityItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property activities for groups

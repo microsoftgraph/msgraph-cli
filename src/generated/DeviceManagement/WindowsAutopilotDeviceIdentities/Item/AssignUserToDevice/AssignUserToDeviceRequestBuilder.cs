@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUserToDevice {
+namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUserToDevice
+{
     /// <summary>
     /// Provides operations to call the assignUserToDevice method.
     /// </summary>
-    public class AssignUserToDeviceRequestBuilder : BaseCliRequestBuilder 
+    public class AssignUserToDeviceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Assigns user to Autopilot devices.

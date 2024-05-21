@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties and inherited properties for the macOS Microsoft Defender App.
     /// </summary>
-    public class MacOSMicrosoftDefenderApp : MobileApp, IParsable 
+    public class MacOSMicrosoftDefenderApp : MobileApp, IParsable
     {
         /// <summary>
         /// Instantiates a new <see cref="MacOSMicrosoftDefenderApp"/> and sets the default values.

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyFontColorFilter {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyFontColorFilter
+{
     /// <summary>
     /// Provides operations to call the applyFontColorFilter method.
     /// </summary>
-    public class ApplyFontColorFilterRequestBuilder : BaseCliRequestBuilder 
+    public class ApplyFontColorFilterRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action applyFontColorFilter

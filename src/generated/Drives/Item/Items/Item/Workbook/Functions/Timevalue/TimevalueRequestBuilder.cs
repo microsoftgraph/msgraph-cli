@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Timevalue {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Timevalue
+{
     /// <summary>
     /// Provides operations to call the timevalue method.
     /// </summary>
-    public class TimevalueRequestBuilder : BaseCliRequestBuilder 
+    public class TimevalueRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action timevalue

@@ -23,11 +23,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item
+{
     /// <summary>
     /// Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.
     /// </summary>
-    public class EdiscoveryCustodianItemRequestBuilder : BaseCliRequestBuilder 
+    public class EdiscoveryCustodianItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property custodians for security

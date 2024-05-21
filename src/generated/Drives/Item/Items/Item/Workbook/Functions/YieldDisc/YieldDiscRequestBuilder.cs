@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YieldDisc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YieldDisc
+{
     /// <summary>
     /// Provides operations to call the yieldDisc method.
     /// </summary>
-    public class YieldDiscRequestBuilder : BaseCliRequestBuilder 
+    public class YieldDiscRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action yieldDisc

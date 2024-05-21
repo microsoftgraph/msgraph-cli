@@ -15,21 +15,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Authentication.Methods.Item {
+namespace ApiSdk.Users.Item.Authentication.Methods.Item
+{
     /// <summary>
     /// Provides operations to manage the methods property of the microsoft.graph.authentication entity.
     /// </summary>
-    public class AuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder 
+    public class AuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Retrieve the properties and relationships of an authenticationMethod object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationmethod-get?view=graph-rest-1.0" />
+        /// Represents all authentication methods registered to a user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an authenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationmethod-get?view=graph-rest-1.0";
+            command.Description = "Represents all authentication methods registered to a user.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -169,7 +169,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item {
         {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an authenticationMethod object.
+        /// Represents all authentication methods registered to a user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -209,7 +209,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an authenticationMethod object.
+        /// Represents all authentication methods registered to a user.
         /// </summary>
         public class AuthenticationMethodItemRequestBuilderGetQueryParameters 
         {

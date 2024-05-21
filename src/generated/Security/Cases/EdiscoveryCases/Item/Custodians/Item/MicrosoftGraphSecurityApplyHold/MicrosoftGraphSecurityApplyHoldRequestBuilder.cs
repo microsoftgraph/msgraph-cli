@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityApplyHold {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityApplyHold
+{
     /// <summary>
     /// Provides operations to call the applyHold method.
     /// </summary>
-    public class MicrosoftGraphSecurityApplyHoldRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityApplyHoldRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Start the process of applying hold on eDiscovery custodians. After the operation is created, you can get the status by retrieving the Location parameter from the response headers. The location provides a URL that will return an eDiscoveryHoldOperation object.

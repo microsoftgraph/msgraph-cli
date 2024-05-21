@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryRolesWithRoleTemplateId {
+namespace ApiSdk.DirectoryRolesWithRoleTemplateId
+{
     /// <summary>
     /// Provides operations to manage the collection of directoryRole entities.
     /// </summary>
-    public class DirectoryRolesWithRoleTemplateIdRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryRolesWithRoleTemplateIdRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from directoryRoles by roleTemplateId

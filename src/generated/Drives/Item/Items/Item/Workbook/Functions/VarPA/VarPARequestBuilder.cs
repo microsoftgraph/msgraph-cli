@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.VarPA {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.VarPA
+{
     /// <summary>
     /// Provides operations to call the varPA method.
     /// </summary>
-    public class VarPARequestBuilder : BaseCliRequestBuilder 
+    public class VarPARequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action varPA

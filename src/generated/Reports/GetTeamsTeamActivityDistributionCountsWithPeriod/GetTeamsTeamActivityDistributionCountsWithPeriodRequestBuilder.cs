@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetTeamsTeamActivityDistributionCountsWithPeriod {
+namespace ApiSdk.Reports.GetTeamsTeamActivityDistributionCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getTeamsTeamActivityDistributionCounts method.
     /// </summary>
-    public class GetTeamsTeamActivityDistributionCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetTeamsTeamActivityDistributionCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getTeamsTeamActivityDistributionCounts
+        /// Get the number of team activities across Microsoft Teams over a selected period.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getteamsteamactivitydistributioncounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getTeamsTeamActivityDistributionCounts";
+            command.Description = "Get the number of team activities across Microsoft Teams over a selected period.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getteamsteamactivitydistributioncounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetTeamsTeamActivityDistributionCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getTeamsTeamActivityDistributionCounts
+        /// Get the number of team activities across Microsoft Teams over a selected period.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

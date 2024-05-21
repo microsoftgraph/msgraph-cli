@@ -14,11 +14,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.Applications.Item.Owners.Item {
+namespace ApiSdk.Applications.Item.Owners.Item
+{
     /// <summary>
     /// Builds and executes requests for operations under \applications\{application-id}\owners\{directoryObject-id}
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.

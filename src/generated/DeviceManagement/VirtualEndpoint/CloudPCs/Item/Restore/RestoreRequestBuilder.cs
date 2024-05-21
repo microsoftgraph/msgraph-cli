@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Restore {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Restore
+{
     /// <summary>
     /// Provides operations to call the restore method.
     /// </summary>
-    public class RestoreRequestBuilder : BaseCliRequestBuilder 
+    public class RestoreRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Restore a specific cloudPC object to a previous state from a snapshot. Use this API to trigger a remote action that restores a Cloud PC device to a previous state.

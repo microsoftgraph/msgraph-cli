@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleRequests.Item {
+namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleRequests.Item
+{
     /// <summary>
     /// Provides operations to manage the roleEligibilityScheduleRequests property of the microsoft.graph.rbacApplication entity.
     /// </summary>
-    public class UnifiedRoleEligibilityScheduleRequestItemRequestBuilder : BaseCliRequestBuilder 
+    public class UnifiedRoleEligibilityScheduleRequestItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.

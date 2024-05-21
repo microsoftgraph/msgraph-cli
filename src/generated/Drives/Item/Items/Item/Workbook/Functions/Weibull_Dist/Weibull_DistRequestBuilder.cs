@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Weibull_Dist {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Weibull_Dist
+{
     /// <summary>
     /// Provides operations to call the weibull_Dist method.
     /// </summary>
-    public class Weibull_DistRequestBuilder : BaseCliRequestBuilder 
+    public class Weibull_DistRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action weibull_Dist

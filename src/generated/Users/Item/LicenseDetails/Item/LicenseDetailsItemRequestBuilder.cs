@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.LicenseDetails.Item {
+namespace ApiSdk.Users.Item.LicenseDetails.Item
+{
     /// <summary>
     /// Provides operations to manage the licenseDetails property of the microsoft.graph.user entity.
     /// </summary>
-    public class LicenseDetailsItemRequestBuilder : BaseCliRequestBuilder 
+    public class LicenseDetailsItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property licenseDetails for users

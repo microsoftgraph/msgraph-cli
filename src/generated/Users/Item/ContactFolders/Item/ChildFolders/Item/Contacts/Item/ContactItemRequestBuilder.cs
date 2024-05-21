@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item {
+namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item
+{
     /// <summary>
     /// Provides operations to manage the contacts property of the microsoft.graph.contactFolder entity.
     /// </summary>
-    public class ContactItemRequestBuilder : BaseCliRequestBuilder 
+    public class ContactItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property contacts for users

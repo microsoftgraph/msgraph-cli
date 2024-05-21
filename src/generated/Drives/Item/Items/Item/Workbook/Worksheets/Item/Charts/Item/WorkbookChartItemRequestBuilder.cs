@@ -27,11 +27,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
+{
     /// <summary>
     /// Provides operations to manage the charts property of the microsoft.graph.workbookWorksheet entity.
     /// </summary>
-    public class WorkbookChartItemRequestBuilder : BaseCliRequestBuilder 
+    public class WorkbookChartItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the axes property of the microsoft.graph.workbookChart entity.
@@ -86,14 +87,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return command;
         }
         /// <summary>
-        /// Deletes the chart object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chart-delete?view=graph-rest-1.0" />
+        /// Delete navigation property charts for drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes the chart object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chart-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property charts for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -166,14 +166,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chart object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chart-get?view=graph-rest-1.0" />
+        /// Returns collection of charts that are part of the worksheet. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of chart object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chart-get?view=graph-rest-1.0";
+            command.Description = "Returns collection of charts that are part of the worksheet. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -330,14 +329,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of chart object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chart-update?view=graph-rest-1.0" />
+        /// Update the navigation property charts in drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of chart object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chart-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property charts in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -518,7 +516,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
         {
         }
         /// <summary>
-        /// Deletes the chart object.
+        /// Delete navigation property charts for drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -537,7 +535,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chart object.
+        /// Returns collection of charts that are part of the worksheet. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -556,7 +554,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of chart object.
+        /// Update the navigation property charts in drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -577,7 +575,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chart object.
+        /// Returns collection of charts that are part of the worksheet. Read-only.
         /// </summary>
         public class WorkbookChartItemRequestBuilderGetQueryParameters 
         {

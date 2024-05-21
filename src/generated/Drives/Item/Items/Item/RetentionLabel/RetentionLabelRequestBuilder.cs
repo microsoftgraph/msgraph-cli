@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.RetentionLabel {
+namespace ApiSdk.Drives.Item.Items.Item.RetentionLabel
+{
     /// <summary>
     /// Provides operations to manage the retentionLabel property of the microsoft.graph.driveItem entity.
     /// </summary>
-    public class RetentionLabelRequestBuilder : BaseCliRequestBuilder 
+    public class RetentionLabelRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remove a retention label from a driveItem. For information about retention labels from an administrator&apos;s perspective, see Use retention labels to manage the lifecycle of documents stored in SharePoint.

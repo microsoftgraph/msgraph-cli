@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lower {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lower
+{
     /// <summary>
     /// Provides operations to call the lower method.
     /// </summary>
-    public class LowerRequestBuilder : BaseCliRequestBuilder 
+    public class LowerRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action lower

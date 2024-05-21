@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item.FromTerm {
+namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Relations.Item.FromTerm
+{
     /// <summary>
     /// Provides operations to manage the fromTerm property of the microsoft.graph.termStore.relation entity.
     /// </summary>
-    public class FromTermRequestBuilder : BaseCliRequestBuilder 
+    public class FromTermRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].

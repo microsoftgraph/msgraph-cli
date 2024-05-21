@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class WorkbookChartFont : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class WorkbookChartFont : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Represents the bold status of font.</summary>
         public bool? Bold { get; set; }
@@ -55,12 +58,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"bold", n => { Bold = n.GetBoolValue(); } },
-                {"color", n => { Color = n.GetStringValue(); } },
-                {"italic", n => { Italic = n.GetBoolValue(); } },
-                {"name", n => { Name = n.GetStringValue(); } },
-                {"size", n => { Size = n.GetDoubleValue(); } },
-                {"underline", n => { Underline = n.GetStringValue(); } },
+                { "bold", n => { Bold = n.GetBoolValue(); } },
+                { "color", n => { Color = n.GetStringValue(); } },
+                { "italic", n => { Italic = n.GetBoolValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "size", n => { Size = n.GetDoubleValue(); } },
+                { "underline", n => { Underline = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOffice365ActiveUserDetailWithPeriod {
+namespace ApiSdk.Reports.GetOffice365ActiveUserDetailWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getOffice365ActiveUserDetail method.
     /// </summary>
-    public class GetOffice365ActiveUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetOffice365ActiveUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function getOffice365ActiveUserDetail

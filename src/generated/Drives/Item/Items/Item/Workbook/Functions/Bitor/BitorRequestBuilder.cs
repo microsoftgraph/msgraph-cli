@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitor {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitor
+{
     /// <summary>
     /// Provides operations to call the bitor method.
     /// </summary>
-    public class BitorRequestBuilder : BaseCliRequestBuilder 
+    public class BitorRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action bitor

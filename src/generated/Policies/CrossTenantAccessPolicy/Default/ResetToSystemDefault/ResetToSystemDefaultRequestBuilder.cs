@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
+namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault
+{
     /// <summary>
     /// Provides operations to call the resetToSystemDefault method.
     /// </summary>
-    public class ResetToSystemDefaultRequestBuilder : BaseCliRequestBuilder 
+    public class ResetToSystemDefaultRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
+namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details
+{
     /// <summary>
     /// Provides operations to manage the details property of the microsoft.graph.plannerTask entity.
     /// </summary>
-    public class DetailsRequestBuilder : BaseCliRequestBuilder 
+    public class DetailsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property details for users
@@ -74,14 +75,13 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerTaskDetails object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannertaskdetails-get?view=graph-rest-1.0" />
+        /// Read-only. Nullable. More details about the task.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a plannerTaskDetails object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannertaskdetails-get?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. More details about the task.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -146,13 +146,12 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
         }
         /// <summary>
         /// Update the navigation property details in users
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property details in users\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property details in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -255,7 +254,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerTaskDetails object.
+        /// Read-only. Nullable. More details about the task.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -295,7 +294,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerTaskDetails object.
+        /// Read-only. Nullable. More details about the task.
         /// </summary>
         public class DetailsRequestBuilderGetQueryParameters 
         {

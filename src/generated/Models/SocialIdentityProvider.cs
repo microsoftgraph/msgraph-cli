@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SocialIdentityProvider : IdentityProviderBase, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SocialIdentityProvider : IdentityProviderBase, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The identifier for the client application obtained when registering the application with the identity provider. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,9 +59,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"clientId", n => { ClientId = n.GetStringValue(); } },
-                {"clientSecret", n => { ClientSecret = n.GetStringValue(); } },
-                {"identityProviderType", n => { IdentityProviderType = n.GetStringValue(); } },
+                { "clientId", n => { ClientId = n.GetStringValue(); } },
+                { "clientSecret", n => { ClientSecret = n.GetStringValue(); } },
+                { "identityProviderType", n => { IdentityProviderType = n.GetStringValue(); } },
             };
         }
         /// <summary>

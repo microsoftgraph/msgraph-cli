@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Int {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Int
+{
     /// <summary>
     /// Provides operations to call the int method.
     /// </summary>
-    public class IntRequestBuilder : BaseCliRequestBuilder 
+    public class IntRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action int

@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item
+{
     /// <summary>
     /// Provides operations to manage the catalogs property of the microsoft.graph.entitlementManagement entity.
     /// </summary>
-    public class AccessPackageCatalogItemRequestBuilder : BaseCliRequestBuilder 
+    public class AccessPackageCatalogItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the accessPackages property of the microsoft.graph.accessPackageCatalog entity.

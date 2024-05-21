@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Points.Item {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Points.Item
+{
     /// <summary>
     /// Provides operations to manage the points property of the microsoft.graph.workbookChartSeries entity.
     /// </summary>
-    public class WorkbookChartPointItemRequestBuilder : BaseCliRequestBuilder 
+    public class WorkbookChartPointItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property points for drives
@@ -112,14 +113,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartpoint object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chartpoint-get?view=graph-rest-1.0" />
+        /// Represents a collection of all points in the series. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of chartpoint object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chartpoint-get?view=graph-rest-1.0";
+            command.Description = "Represents a collection of all points in the series. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -309,7 +309,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartpoint object.
+        /// Represents a collection of all points in the series. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -349,7 +349,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartpoint object.
+        /// Represents a collection of all points in the series. Read-only.
         /// </summary>
         public class WorkbookChartPointItemRequestBuilderGetQueryParameters 
         {

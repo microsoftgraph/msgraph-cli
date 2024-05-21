@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.TeamsTemplates.Item {
+namespace ApiSdk.TeamsTemplates.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of teamsTemplate entities.
     /// </summary>
-    public class TeamsTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class TeamsTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from teamsTemplates

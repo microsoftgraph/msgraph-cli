@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties used to assign an iOS VPP mobile app to a group.
     /// </summary>
-    public class IosVppAppAssignmentSettings : MobileAppAssignmentSettings, IParsable 
+    public class IosVppAppAssignmentSettings : MobileAppAssignmentSettings, IParsable
     {
         /// <summary>Whether or not to use device licensing.</summary>
         public bool? UseDeviceLicensing { get; set; }
@@ -45,8 +46,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"useDeviceLicensing", n => { UseDeviceLicensing = n.GetBoolValue(); } },
-                {"vpnConfigurationId", n => { VpnConfigurationId = n.GetStringValue(); } },
+                { "useDeviceLicensing", n => { UseDeviceLicensing = n.GetBoolValue(); } },
+                { "vpnConfigurationId", n => { VpnConfigurationId = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T_Inv {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T_Inv
+{
     /// <summary>
     /// Provides operations to call the t_Inv method.
     /// </summary>
-    public class T_InvRequestBuilder : BaseCliRequestBuilder 
+    public class T_InvRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action t_Inv

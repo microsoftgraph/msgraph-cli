@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.CreatedObjects.Item {
+namespace ApiSdk.ServicePrincipals.Item.CreatedObjects.Item
+{
     /// <summary>
     /// Provides operations to manage the createdObjects property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Directory objects created by this service principal. Read-only. Nullable.

@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
+namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item
+{
     /// <summary>
     /// Provides operations to manage the installedApps property of the microsoft.graph.userTeamwork entity.
     /// </summary>
-    public class UserScopeTeamsAppInstallationItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserScopeTeamsAppInstallationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the chat property of the microsoft.graph.userScopeTeamsAppInstallation entity.

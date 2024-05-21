@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Unfollow {
+namespace ApiSdk.Drives.Item.Items.Item.Unfollow
+{
     /// <summary>
     /// Provides operations to call the unfollow method.
     /// </summary>
-    public class UnfollowRequestBuilder : BaseCliRequestBuilder 
+    public class UnfollowRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Unfollow a driveItem.

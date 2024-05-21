@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostTrackers.Item {
+namespace ApiSdk.Security.ThreatIntelligence.HostTrackers.Item
+{
     /// <summary>
     /// Provides operations to manage the hostTrackers property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class HostTrackerItemRequestBuilder : BaseCliRequestBuilder 
+    public class HostTrackerItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property hostTrackers for security

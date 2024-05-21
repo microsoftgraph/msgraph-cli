@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
+namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item
+{
     /// <summary>
     /// Provides operations to manage the includes property of the microsoft.graph.permissionGrantPolicy entity.
     /// </summary>
-    public class PermissionGrantConditionSetItemRequestBuilder : BaseCliRequestBuilder 
+    public class PermissionGrantConditionSetItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a permissionGrantConditionSet from the includes collection of a permissionGrantPolicy.
@@ -63,13 +64,13 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
             return command;
         }
         /// <summary>
-        /// Condition sets which are included in this permission grant policy. Automatically expanded on GET.
+        /// Condition sets that are included in this permission grant policy. Automatically expanded on GET.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Condition sets which are included in this permission grant policy. Automatically expanded on GET.";
+            command.Description = "Condition sets that are included in this permission grant policy. Automatically expanded on GET.";
             var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
@@ -211,7 +212,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Condition sets which are included in this permission grant policy. Automatically expanded on GET.
+        /// Condition sets that are included in this permission grant policy. Automatically expanded on GET.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +252,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Condition sets which are included in this permission grant policy. Automatically expanded on GET.
+        /// Condition sets that are included in this permission grant policy. Automatically expanded on GET.
         /// </summary>
         public class PermissionGrantConditionSetItemRequestBuilderGetQueryParameters 
         {

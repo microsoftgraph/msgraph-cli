@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.List.Items.Item.Analytics {
+namespace ApiSdk.Drives.Item.List.Items.Item.Analytics
+{
     /// <summary>
     /// Provides operations to manage the analytics property of the microsoft.graph.listItem entity.
     /// </summary>
-    public class AnalyticsRequestBuilder : BaseCliRequestBuilder 
+    public class AnalyticsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Analytics about the view activities that took place on this item.

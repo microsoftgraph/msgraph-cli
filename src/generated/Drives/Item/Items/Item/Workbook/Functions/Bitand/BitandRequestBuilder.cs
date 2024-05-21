@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitand {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitand
+{
     /// <summary>
     /// Provides operations to call the bitand method.
     /// </summary>
-    public class BitandRequestBuilder : BaseCliRequestBuilder 
+    public class BitandRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action bitand

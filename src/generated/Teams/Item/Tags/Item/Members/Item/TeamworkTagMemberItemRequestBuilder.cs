@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.Tags.Item.Members.Item {
+namespace ApiSdk.Teams.Item.Tags.Item.Members.Item
+{
     /// <summary>
     /// Provides operations to manage the members property of the microsoft.graph.teamworkTag entity.
     /// </summary>
-    public class TeamworkTagMemberItemRequestBuilder : BaseCliRequestBuilder 
+    public class TeamworkTagMemberItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a member from a standard tag in a team.

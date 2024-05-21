@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item {
+namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item
+{
     /// <summary>
     /// Provides operations to manage the versions property of the microsoft.graph.listItem entity.
     /// </summary>
-    public class ListItemVersionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ListItemVersionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property versions for drives
@@ -89,14 +90,13 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a ListItem.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitemversion-get?view=graph-rest-1.0" />
+        /// The list of previous versions of the list item.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the metadata for a specific version of a ListItem.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitemversion-get?view=graph-rest-1.0";
+            command.Description = "The list of previous versions of the list item.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -267,7 +267,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a ListItem.
+        /// The list of previous versions of the list item.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -307,7 +307,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a ListItem.
+        /// The list of previous versions of the list item.
         /// </summary>
         public class ListItemVersionItemRequestBuilderGetQueryParameters 
         {

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Preview {
+namespace ApiSdk.Drives.Item.Items.Item.Preview
+{
     /// <summary>
     /// Provides operations to call the preview method.
     /// </summary>
-    public class PreviewRequestBuilder : BaseCliRequestBuilder 
+    public class PreviewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action preview

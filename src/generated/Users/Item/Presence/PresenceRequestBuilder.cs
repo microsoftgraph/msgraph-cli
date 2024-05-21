@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Presence {
+namespace ApiSdk.Users.Item.Presence
+{
     /// <summary>
     /// Provides operations to manage the presence property of the microsoft.graph.user entity.
     /// </summary>
-    public class PresenceRequestBuilder : BaseCliRequestBuilder 
+    public class PresenceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the clearPresence method.

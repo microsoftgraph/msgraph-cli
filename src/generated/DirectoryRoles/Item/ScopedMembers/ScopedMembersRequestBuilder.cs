@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
+namespace ApiSdk.DirectoryRoles.Item.ScopedMembers
+{
     /// <summary>
     /// Provides operations to manage the scopedMembers property of the microsoft.graph.directoryRole entity.
     /// </summary>
-    public class ScopedMembersRequestBuilder : BaseCliRequestBuilder 
+    public class ScopedMembersRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the scopedMembers property of the microsoft.graph.directoryRole entity.
@@ -193,7 +194,9 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

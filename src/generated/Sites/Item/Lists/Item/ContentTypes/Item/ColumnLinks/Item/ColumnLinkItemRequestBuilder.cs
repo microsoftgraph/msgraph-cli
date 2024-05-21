@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks.Item {
+namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks.Item
+{
     /// <summary>
     /// Provides operations to manage the columnLinks property of the microsoft.graph.contentType entity.
     /// </summary>
-    public class ColumnLinkItemRequestBuilder : BaseCliRequestBuilder 
+    public class ColumnLinkItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property columnLinks for sites

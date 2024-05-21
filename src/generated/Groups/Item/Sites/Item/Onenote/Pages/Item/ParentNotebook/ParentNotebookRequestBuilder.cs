@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.ParentNotebook {
+namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.ParentNotebook
+{
     /// <summary>
     /// Provides operations to manage the parentNotebook property of the microsoft.graph.onenotePage entity.
     /// </summary>
-    public class ParentNotebookRequestBuilder : BaseCliRequestBuilder 
+    public class ParentNotebookRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The notebook that contains the page.  Read-only.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TbillYield {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TbillYield
+{
     /// <summary>
     /// Provides operations to call the tbillYield method.
     /// </summary>
-    public class TbillYieldRequestBuilder : BaseCliRequestBuilder 
+    public class TbillYieldRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action tbillYield

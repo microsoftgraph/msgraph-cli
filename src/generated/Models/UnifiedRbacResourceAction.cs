@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class UnifiedRbacResourceAction : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class UnifiedRbacResourceAction : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The actionVerb property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -67,12 +70,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"actionVerb", n => { ActionVerb = n.GetStringValue(); } },
-                {"authenticationContextId", n => { AuthenticationContextId = n.GetStringValue(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"isAuthenticationContextSettable", n => { IsAuthenticationContextSettable = n.GetBoolValue(); } },
-                {"name", n => { Name = n.GetStringValue(); } },
-                {"resourceScopeId", n => { ResourceScopeId = n.GetStringValue(); } },
+                { "actionVerb", n => { ActionVerb = n.GetStringValue(); } },
+                { "authenticationContextId", n => { AuthenticationContextId = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "isAuthenticationContextSettable", n => { IsAuthenticationContextSettable = n.GetBoolValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "resourceScopeId", n => { ResourceScopeId = n.GetStringValue(); } },
             };
         }
         /// <summary>

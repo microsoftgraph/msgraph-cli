@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
+namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item
+{
     /// <summary>
     /// Provides operations to manage the audioRoutingGroups property of the microsoft.graph.call entity.
     /// </summary>
-    public class AudioRoutingGroupItemRequestBuilder : BaseCliRequestBuilder 
+    public class AudioRoutingGroupItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete the specified audioRoutingGroup.

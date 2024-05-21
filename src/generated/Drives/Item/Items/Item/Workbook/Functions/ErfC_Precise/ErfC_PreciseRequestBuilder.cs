@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ErfC_Precise {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ErfC_Precise
+{
     /// <summary>
     /// Provides operations to call the erfC_Precise method.
     /// </summary>
-    public class ErfC_PreciseRequestBuilder : BaseCliRequestBuilder 
+    public class ErfC_PreciseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action erfC_Precise

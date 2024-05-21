@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.AddFavorite {
+namespace ApiSdk.Groups.Item.AddFavorite
+{
     /// <summary>
     /// Provides operations to call the addFavorite method.
     /// </summary>
-    public class AddFavoriteRequestBuilder : BaseCliRequestBuilder 
+    public class AddFavoriteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Add the group to the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item.History.Item {
+namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item.History.Item
+{
     /// <summary>
     /// Provides operations to manage the history property of the microsoft.graph.security.whoisRecord entity.
     /// </summary>
-    public class WhoisHistoryRecordItemRequestBuilder : BaseCliRequestBuilder 
+    public class WhoisHistoryRecordItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The collection of historical records associated to this WHOIS object.

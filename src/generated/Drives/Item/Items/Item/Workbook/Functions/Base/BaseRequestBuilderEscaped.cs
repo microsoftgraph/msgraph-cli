@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Base {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Base
+{
     /// <summary>
     /// Provides operations to call the base method.
     /// </summary>
-    public class BaseRequestBuilderEscaped : BaseCliRequestBuilder 
+    public class BaseRequestBuilderEscaped : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action base

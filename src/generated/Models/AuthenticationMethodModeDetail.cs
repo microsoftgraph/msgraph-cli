@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AuthenticationMethodModeDetail : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AuthenticationMethodModeDetail : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The authenticationMethod property</summary>
         public BaseAuthenticationMethod? AuthenticationMethod { get; set; }
@@ -35,8 +38,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"authenticationMethod", n => { AuthenticationMethod = n.GetEnumValue<BaseAuthenticationMethod>(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "authenticationMethod", n => { AuthenticationMethod = n.GetEnumValue<BaseAuthenticationMethod>(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
             };
         }
         /// <summary>

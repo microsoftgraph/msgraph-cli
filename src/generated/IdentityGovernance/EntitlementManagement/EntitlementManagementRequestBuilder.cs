@@ -26,11 +26,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement
+{
     /// <summary>
     /// Provides operations to manage the entitlementManagement property of the microsoft.graph.identityGovernance entity.
     /// </summary>
-    public class EntitlementManagementRequestBuilder : BaseCliRequestBuilder 
+    public class EntitlementManagementRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the accessPackageAssignmentApprovals property of the microsoft.graph.entitlementManagement entity.

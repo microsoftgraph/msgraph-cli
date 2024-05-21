@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item {
+namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item
+{
     /// <summary>
     /// Provides operations to manage the siteLists property of the microsoft.graph.internetExplorerMode entity.
     /// </summary>
-    public class BrowserSiteListItemRequestBuilder : BaseCliRequestBuilder 
+    public class BrowserSiteListItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a browserSiteList object.

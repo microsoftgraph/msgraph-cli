@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lcm {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lcm
+{
     /// <summary>
     /// Provides operations to call the lcm method.
     /// </summary>
-    public class LcmRequestBuilder : BaseCliRequestBuilder 
+    public class LcmRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action lcm

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Checkin {
+namespace ApiSdk.Drives.Item.Items.Item.Checkin
+{
     /// <summary>
     /// Provides operations to call the checkin method.
     /// </summary>
-    public class CheckinRequestBuilder : BaseCliRequestBuilder 
+    public class CheckinRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Check in a checked out driveItem resource, which makes the version of the document available to others.

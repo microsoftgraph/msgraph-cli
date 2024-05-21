@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.AccessPackage {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.AccessPackage
+{
     /// <summary>
     /// Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignmentRequest entity.
     /// </summary>
-    public class AccessPackageRequestBuilder : BaseCliRequestBuilder 
+    public class AccessPackageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable.  Supports $expand.

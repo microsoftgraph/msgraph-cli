@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.AcceptRecommendations {
+namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.AcceptRecommendations
+{
     /// <summary>
     /// Provides operations to call the acceptRecommendations method.
     /// </summary>
-    public class AcceptRecommendationsRequestBuilder : BaseCliRequestBuilder 
+    public class AcceptRecommendationsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Allows the acceptance of recommendations on all accessReviewInstanceDecisionItem objects that haven&apos;t been reviewed on an accessReviewInstance object for which the calling user is a reviewer.

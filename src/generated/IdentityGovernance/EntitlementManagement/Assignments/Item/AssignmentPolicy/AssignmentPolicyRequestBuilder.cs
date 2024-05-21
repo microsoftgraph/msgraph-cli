@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AssignmentPolicy {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AssignmentPolicy
+{
     /// <summary>
     /// Provides operations to manage the assignmentPolicy property of the microsoft.graph.accessPackageAssignment entity.
     /// </summary>
-    public class AssignmentPolicyRequestBuilder : BaseCliRequestBuilder 
+    public class AssignmentPolicyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Read-only. Supports $filter (eq) on the id property and $expand query parameters.

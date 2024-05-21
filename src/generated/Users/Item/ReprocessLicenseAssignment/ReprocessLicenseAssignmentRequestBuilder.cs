@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ReprocessLicenseAssignment {
+namespace ApiSdk.Users.Item.ReprocessLicenseAssignment
+{
     /// <summary>
     /// Provides operations to call the reprocessLicenseAssignment method.
     /// </summary>
-    public class ReprocessLicenseAssignmentRequestBuilder : BaseCliRequestBuilder 
+    public class ReprocessLicenseAssignmentRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details.

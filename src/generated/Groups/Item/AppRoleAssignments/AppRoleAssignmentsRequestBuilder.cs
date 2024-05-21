@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.AppRoleAssignments {
+namespace ApiSdk.Groups.Item.AppRoleAssignments
+{
     /// <summary>
     /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.group entity.
     /// </summary>
-    public class AppRoleAssignmentsRequestBuilder : BaseCliRequestBuilder 
+    public class AppRoleAssignmentsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.group entity.
@@ -105,14 +106,14 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Represents the app roles a group has been granted for an application. Supports $expand.
+        /// Retrieve the list of appRoleAssignment that have been granted to a group.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Represents the app roles a group has been granted for an application. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-approleassignments?view=graph-rest-1.0";
+            command.Description = "Retrieve the list of appRoleAssignment that have been granted to a group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-approleassignments?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -201,7 +202,9 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -227,7 +230,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
         {
         }
         /// <summary>
-        /// Represents the app roles a group has been granted for an application. Supports $expand.
+        /// Retrieve the list of appRoleAssignment that have been granted to a group.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +270,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Represents the app roles a group has been granted for an application. Supports $expand.
+        /// Retrieve the list of appRoleAssignment that have been granted to a group.
         /// </summary>
         public class AppRoleAssignmentsRequestBuilderGetQueryParameters 
         {

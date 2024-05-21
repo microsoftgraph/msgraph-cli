@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Components.Item {
+namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Components.Item
+{
     /// <summary>
     /// Provides operations to manage the components property of the microsoft.graph.security.host entity.
     /// </summary>
-    public class HostComponentItemRequestBuilder : BaseCliRequestBuilder 
+    public class HostComponentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The hostComponents that are associated with this host.

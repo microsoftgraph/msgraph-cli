@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Shares.Item.Jobs.Item.Start {
+namespace ApiSdk.Print.Shares.Item.Jobs.Item.Start
+{
     /// <summary>
     /// Provides operations to call the start method.
     /// </summary>
-    public class StartRequestBuilder : BaseCliRequestBuilder 
+    public class StartRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Submits the print job to the associated printer or printerShare. It will be printed after any existing pending jobs are completed, aborted, or canceled.

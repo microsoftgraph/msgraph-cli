@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration {
+namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration
+{
     /// <summary>
     /// Provides operations to manage the remoteDesktopSecurityConfiguration property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class RemoteDesktopSecurityConfigurationRequestBuilder : BaseCliRequestBuilder 
+    public class RemoteDesktopSecurityConfigurationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a remoteDesktopSecurityConfiguration object on a servicePrincipal. Removing remoteDesktopSecurityConfiguration object on the servicePrincipal disables the Microsoft Entra ID Remote Desktop Services (RDS) authentication protocol to authenticate a user to Microsoft Entra joined or Microsoft Entra hybrid joined devices, and removes any target device groups that you configured for SSO.

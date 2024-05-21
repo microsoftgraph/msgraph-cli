@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Precise {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Precise
+{
     /// <summary>
     /// Provides operations to call the ceiling_Precise method.
     /// </summary>
-    public class Ceiling_PreciseRequestBuilder : BaseCliRequestBuilder 
+    public class Ceiling_PreciseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action ceiling_Precise

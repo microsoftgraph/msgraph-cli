@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.FilePlanReferences.Item {
+namespace ApiSdk.Security.Labels.FilePlanReferences.Item
+{
     /// <summary>
     /// Provides operations to manage the filePlanReferences property of the microsoft.graph.security.labelsRoot entity.
     /// </summary>
-    public class FilePlanReferenceTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class FilePlanReferenceTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a filePlanReferenceTemplate object.

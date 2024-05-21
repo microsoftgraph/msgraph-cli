@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsFormula {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsFormula
+{
     /// <summary>
     /// Provides operations to call the isFormula method.
     /// </summary>
-    public class IsFormulaRequestBuilder : BaseCliRequestBuilder 
+    public class IsFormulaRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action isFormula

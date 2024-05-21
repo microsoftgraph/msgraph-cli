@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class X509CertificateUserBinding : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class X509CertificateUserBinding : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -19,6 +22,8 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The priority of the binding. Microsoft Entra ID uses the binding with the highest priority. This value must be a non-negative integer and unique in the collection of objects in the certificateUserBindings property of an x509CertificateAuthenticationMethodConfiguration object. Required</summary>
         public int? Priority { get; set; }
+        /// <summary>The trustAffinityLevel property</summary>
+        public X509CertificateAffinityLevel? TrustAffinityLevel { get; set; }
         /// <summary>Defines the Microsoft Entra user property of the user object to use for the binding. The possible values are: userPrincipalName, onPremisesUserPrincipalName, certificateUserIds. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -60,10 +65,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"priority", n => { Priority = n.GetIntValue(); } },
-                {"userProperty", n => { UserProperty = n.GetStringValue(); } },
-                {"x509CertificateField", n => { X509CertificateField = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "priority", n => { Priority = n.GetIntValue(); } },
+                { "trustAffinityLevel", n => { TrustAffinityLevel = n.GetEnumValue<X509CertificateAffinityLevel>(); } },
+                { "userProperty", n => { UserProperty = n.GetStringValue(); } },
+                { "x509CertificateField", n => { X509CertificateField = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -75,6 +81,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("priority", Priority);
+            writer.WriteEnumValue<X509CertificateAffinityLevel>("trustAffinityLevel", TrustAffinityLevel);
             writer.WriteStringValue("userProperty", UserProperty);
             writer.WriteStringValue("x509CertificateField", X509CertificateField);
             writer.WriteAdditionalData(AdditionalData);

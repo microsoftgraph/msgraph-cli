@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
+namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item
+{
     /// <summary>
     /// Provides operations to manage the appointments property of the microsoft.graph.bookingBusiness entity.
     /// </summary>
-    public class BookingAppointmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class BookingAppointmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the cancel method.

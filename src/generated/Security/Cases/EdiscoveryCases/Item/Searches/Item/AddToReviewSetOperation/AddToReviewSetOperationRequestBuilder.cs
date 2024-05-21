@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AddToReviewSetOperation {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AddToReviewSetOperation
+{
     /// <summary>
     /// Provides operations to manage the addToReviewSetOperation property of the microsoft.graph.security.ediscoverySearch entity.
     /// </summary>
-    public class AddToReviewSetOperationRequestBuilder : BaseCliRequestBuilder 
+    public class AddToReviewSetOperationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Adds the results of the eDiscovery search to the specified reviewSet.

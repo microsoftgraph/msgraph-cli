@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma
+{
     /// <summary>
     /// Provides operations to call the gamma method.
     /// </summary>
-    public class GammaRequestBuilder : BaseCliRequestBuilder 
+    public class GammaRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action gamma

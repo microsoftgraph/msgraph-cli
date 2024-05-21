@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.Operations.Item {
+namespace ApiSdk.Security.AttackSimulation.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.attackSimulationRoot entity.
     /// </summary>
-    public class AttackSimulationOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class AttackSimulationOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for security

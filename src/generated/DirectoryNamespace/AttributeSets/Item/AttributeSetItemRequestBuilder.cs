@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.AttributeSets.Item {
+namespace ApiSdk.DirectoryNamespace.AttributeSets.Item
+{
     /// <summary>
     /// Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.
     /// </summary>
-    public class AttributeSetItemRequestBuilder : BaseCliRequestBuilder 
+    public class AttributeSetItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property attributeSets for directory

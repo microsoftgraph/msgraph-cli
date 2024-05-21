@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.FilePlanReferenceTemplate {
+namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.FilePlanReferenceTemplate
+{
     /// <summary>
     /// Provides operations to manage the filePlanReferenceTemplate property of the microsoft.graph.security.filePlanDescriptor entity.
     /// </summary>
-    public class FilePlanReferenceTemplateRequestBuilder : BaseCliRequestBuilder 
+    public class FilePlanReferenceTemplateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Specifies a unique alpha-numeric identifier for an organization’s retention schedule.

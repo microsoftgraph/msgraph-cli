@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
+namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item
+{
     /// <summary>
     /// Provides operations to manage the timeOffReasons property of the microsoft.graph.schedule entity.
     /// </summary>
-    public class TimeOffReasonItemRequestBuilder : BaseCliRequestBuilder 
+    public class TimeOffReasonItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn&apos;t remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason.

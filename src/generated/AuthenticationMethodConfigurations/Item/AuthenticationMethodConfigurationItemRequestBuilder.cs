@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.AuthenticationMethodConfigurations.Item {
+namespace ApiSdk.AuthenticationMethodConfigurations.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of authenticationMethodConfiguration entities.
     /// </summary>
-    public class AuthenticationMethodConfigurationItemRequestBuilder : BaseCliRequestBuilder 
+    public class AuthenticationMethodConfigurationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from authenticationMethodConfigurations

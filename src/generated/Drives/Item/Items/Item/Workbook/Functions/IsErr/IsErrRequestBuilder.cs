@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsErr {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsErr
+{
     /// <summary>
     /// Provides operations to call the isErr method.
     /// </summary>
-    public class IsErrRequestBuilder : BaseCliRequestBuilder 
+    public class IsErrRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action isErr

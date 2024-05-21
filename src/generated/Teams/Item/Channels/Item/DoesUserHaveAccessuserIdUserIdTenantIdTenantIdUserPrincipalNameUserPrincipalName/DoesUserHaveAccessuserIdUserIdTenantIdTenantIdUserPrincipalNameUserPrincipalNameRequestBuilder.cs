@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.Channels.Item.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName {
+namespace ApiSdk.Teams.Item.Channels.Item.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName
+{
     /// <summary>
     /// Provides operations to call the doesUserHaveAccess method.
     /// </summary>
-    public class DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder : BaseCliRequestBuilder 
+    public class DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function doesUserHaveAccess
+        /// Determine whether a user has access to a shared channel.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-doesuserhaveaccess?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function doesUserHaveAccess";
+            command.Description = "Determine whether a user has access to a shared channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-doesuserhaveaccess?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -96,7 +98,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.DoesUserHaveAccessuserIdUserIdTenantId
         {
         }
         /// <summary>
-        /// Invoke function doesUserHaveAccess
+        /// Determine whether a user has access to a shared channel.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -115,7 +117,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.DoesUserHaveAccessuserIdUserIdTenantId
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function doesUserHaveAccess
+        /// Determine whether a user has access to a shared channel.
         /// </summary>
         public class DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilderGetQueryParameters 
         {

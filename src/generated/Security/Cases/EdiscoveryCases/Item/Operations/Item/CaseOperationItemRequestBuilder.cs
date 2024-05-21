@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations.Item {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.security.ediscoveryCase entity.
     /// </summary>
-    public class CaseOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class CaseOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for security

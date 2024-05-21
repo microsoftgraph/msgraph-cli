@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetNotebookFromWebUrl {
+namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetNotebookFromWebUrl
+{
     /// <summary>
     /// Provides operations to call the getNotebookFromWebUrl method.
     /// </summary>
-    public class GetNotebookFromWebUrlRequestBuilder : BaseCliRequestBuilder 
+    public class GetNotebookFromWebUrlRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.

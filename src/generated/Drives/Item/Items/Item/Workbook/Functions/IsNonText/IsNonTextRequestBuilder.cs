@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsNonText {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsNonText
+{
     /// <summary>
     /// Provides operations to call the isNonText method.
     /// </summary>
-    public class IsNonTextRequestBuilder : BaseCliRequestBuilder 
+    public class IsNonTextRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action isNonText

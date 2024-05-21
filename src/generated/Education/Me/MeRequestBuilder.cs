@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Me {
+namespace ApiSdk.Education.Me
+{
     /// <summary>
     /// Provides operations to manage the me property of the microsoft.graph.educationRoot entity.
     /// </summary>
-    public class MeRequestBuilder : BaseCliRequestBuilder 
+    public class MeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.educationUser entity.

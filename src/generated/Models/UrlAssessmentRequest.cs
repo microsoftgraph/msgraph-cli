@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class UrlAssessmentRequest : ThreatAssessmentRequest, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class UrlAssessmentRequest : ThreatAssessmentRequest, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The URL string.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +43,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"url", n => { Url = n.GetStringValue(); } },
+                { "url", n => { Url = n.GetStringValue(); } },
             };
         }
         /// <summary>

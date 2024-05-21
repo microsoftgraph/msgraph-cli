@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// An item describing notification setting.
     /// </summary>
-    public class IosNotificationSettings : IAdditionalDataHolder, IParsable 
+    public class IosNotificationSettings : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -81,16 +82,16 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"alertType", n => { AlertType = n.GetEnumValue<IosNotificationAlertType>(); } },
-                {"appName", n => { AppName = n.GetStringValue(); } },
-                {"badgesEnabled", n => { BadgesEnabled = n.GetBoolValue(); } },
-                {"bundleID", n => { BundleID = n.GetStringValue(); } },
-                {"enabled", n => { Enabled = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"publisher", n => { Publisher = n.GetStringValue(); } },
-                {"showInNotificationCenter", n => { ShowInNotificationCenter = n.GetBoolValue(); } },
-                {"showOnLockScreen", n => { ShowOnLockScreen = n.GetBoolValue(); } },
-                {"soundsEnabled", n => { SoundsEnabled = n.GetBoolValue(); } },
+                { "alertType", n => { AlertType = n.GetEnumValue<IosNotificationAlertType>(); } },
+                { "appName", n => { AppName = n.GetStringValue(); } },
+                { "badgesEnabled", n => { BadgesEnabled = n.GetBoolValue(); } },
+                { "bundleID", n => { BundleID = n.GetStringValue(); } },
+                { "enabled", n => { Enabled = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "publisher", n => { Publisher = n.GetStringValue(); } },
+                { "showInNotificationCenter", n => { ShowInNotificationCenter = n.GetBoolValue(); } },
+                { "showOnLockScreen", n => { ShowOnLockScreen = n.GetBoolValue(); } },
+                { "soundsEnabled", n => { SoundsEnabled = n.GetBoolValue(); } },
             };
         }
         /// <summary>

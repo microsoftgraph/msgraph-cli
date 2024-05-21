@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item {
+namespace ApiSdk.Identity.B2xUserFlows.Item
+{
     /// <summary>
     /// Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.
     /// </summary>
-    public class B2xIdentityUserFlowItemRequestBuilder : BaseCliRequestBuilder 
+    public class B2xIdentityUserFlowItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The apiConnectorConfiguration property

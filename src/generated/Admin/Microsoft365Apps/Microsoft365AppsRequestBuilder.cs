@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.Microsoft365Apps {
+namespace ApiSdk.Admin.Microsoft365Apps
+{
     /// <summary>
     /// Provides operations to manage the microsoft365Apps property of the microsoft.graph.admin entity.
     /// </summary>
-    public class Microsoft365AppsRequestBuilder : BaseCliRequestBuilder 
+    public class Microsoft365AppsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property microsoft365Apps for admin

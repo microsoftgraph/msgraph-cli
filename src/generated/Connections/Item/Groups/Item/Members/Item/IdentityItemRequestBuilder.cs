@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
+namespace ApiSdk.Connections.Item.Groups.Item.Members.Item
+{
     /// <summary>
     /// Provides operations to manage the members property of the microsoft.graph.externalConnectors.externalGroup entity.
     /// </summary>
-    public class IdentityItemRequestBuilder : BaseCliRequestBuilder 
+    public class IdentityItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Delete an identity resource to remove the corresponding member from an externalGroup.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalgroupmember-delete?view=graph-rest-1.0" />
+        /// Delete navigation property members for connections
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an identity resource to remove the corresponding member from an externalGroup.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalgroupmember-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property members for connections";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -210,7 +210,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
         {
         }
         /// <summary>
-        /// Delete an identity resource to remove the corresponding member from an externalGroup.
+        /// Delete navigation property members for connections
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

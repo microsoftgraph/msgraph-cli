@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.DirectoryScope {
+namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.DirectoryScope
+{
     /// <summary>
     /// Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignment entity.
     /// </summary>
-    public class DirectoryScopeRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryScopeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The directory object that is the scope of the assignment. Read-only. Supports $expand.

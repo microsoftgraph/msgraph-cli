@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.OnlineMeetings.Item.Recordings.Item {
+namespace ApiSdk.Users.Item.OnlineMeetings.Item.Recordings.Item
+{
     /// <summary>
     /// Provides operations to manage the recordings property of the microsoft.graph.onlineMeeting entity.
     /// </summary>
-    public class CallRecordingItemRequestBuilder : BaseCliRequestBuilder 
+    public class CallRecordingItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the user entity.
@@ -31,6 +32,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Recordings.Item {
             command.Description = "Provides operations to manage the media for the user entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

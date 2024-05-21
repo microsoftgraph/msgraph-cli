@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImAbs {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImAbs
+{
     /// <summary>
     /// Provides operations to call the imAbs method.
     /// </summary>
-    public class ImAbsRequestBuilder : BaseCliRequestBuilder 
+    public class ImAbsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imAbs

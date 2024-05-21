@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Target {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Target
+{
     /// <summary>
     /// Provides operations to manage the target property of the microsoft.graph.accessPackageAssignment entity.
     /// </summary>
-    public class TargetRequestBuilder : BaseCliRequestBuilder 
+    public class TargetRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.

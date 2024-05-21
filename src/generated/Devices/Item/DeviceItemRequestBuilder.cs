@@ -24,11 +24,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Devices.Item {
+namespace ApiSdk.Devices.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of device entities.
     /// </summary>
-    public class DeviceItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.

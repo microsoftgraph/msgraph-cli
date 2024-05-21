@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ItemActionStat : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ItemActionStat : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The number of times the action took place. Read-only.</summary>
         public int? ActionCount { get; set; }
@@ -46,9 +49,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"actionCount", n => { ActionCount = n.GetIntValue(); } },
-                {"actorCount", n => { ActorCount = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "actionCount", n => { ActionCount = n.GetIntValue(); } },
+                { "actorCount", n => { ActorCount = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

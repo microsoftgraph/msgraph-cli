@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class LongRunningOperation : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class LongRunningOperation : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The start time of the operation. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -53,11 +56,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"lastActionDateTime", n => { LastActionDateTime = n.GetDateTimeOffsetValue(); } },
-                {"resourceLocation", n => { ResourceLocation = n.GetStringValue(); } },
-                {"status", n => { Status = n.GetEnumValue<LongRunningOperationStatus>(); } },
-                {"statusDetail", n => { StatusDetail = n.GetStringValue(); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "lastActionDateTime", n => { LastActionDateTime = n.GetDateTimeOffsetValue(); } },
+                { "resourceLocation", n => { ResourceLocation = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<LongRunningOperationStatus>(); } },
+                { "statusDetail", n => { StatusDetail = n.GetStringValue(); } },
             };
         }
         /// <summary>

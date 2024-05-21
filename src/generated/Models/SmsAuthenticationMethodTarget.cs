@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SmsAuthenticationMethodTarget : AuthenticationMethodTarget, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SmsAuthenticationMethodTarget : AuthenticationMethodTarget, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Determines if users can use this authentication method to sign in to Microsoft Entra ID. true if users can use this method for primary authentication, otherwise false.</summary>
         public bool? IsUsableForSignIn { get; set; }
@@ -27,7 +30,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"isUsableForSignIn", n => { IsUsableForSignIn = n.GetBoolValue(); } },
+                { "isUsableForSignIn", n => { IsUsableForSignIn = n.GetBoolValue(); } },
             };
         }
         /// <summary>

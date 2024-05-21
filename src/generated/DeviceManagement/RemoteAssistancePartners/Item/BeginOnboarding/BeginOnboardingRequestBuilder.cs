@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.BeginOnboarding {
+namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.BeginOnboarding
+{
     /// <summary>
     /// Provides operations to call the beginOnboarding method.
     /// </summary>
-    public class BeginOnboardingRequestBuilder : BaseCliRequestBuilder 
+    public class BeginOnboardingRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// A request to start onboarding.  Must be coupled with the appropriate TeamViewer account information

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Services.Item.Endpoints.Item {
+namespace ApiSdk.Print.Services.Item.Endpoints.Item
+{
     /// <summary>
     /// Provides operations to manage the endpoints property of the microsoft.graph.printService entity.
     /// </summary>
-    public class PrintServiceEndpointItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrintServiceEndpointItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property endpoints for print

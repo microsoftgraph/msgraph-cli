@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Drive {
+namespace ApiSdk.Sites.Item.Drive
+{
     /// <summary>
     /// Provides operations to manage the drive property of the microsoft.graph.site entity.
     /// </summary>
-    public class DriveRequestBuilder : BaseCliRequestBuilder 
+    public class DriveRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The default drive (document library) for this site.

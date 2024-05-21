@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class StandardWebPart : WebPart, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class StandardWebPart : WebPart, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The instance identifier of the container text webPart. It only works for inline standard webPart in rich text webParts.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,9 +59,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"containerTextWebPartId", n => { ContainerTextWebPartId = n.GetStringValue(); } },
-                {"data", n => { Data = n.GetObjectValue<WebPartData>(WebPartData.CreateFromDiscriminatorValue); } },
-                {"webPartType", n => { WebPartType = n.GetStringValue(); } },
+                { "containerTextWebPartId", n => { ContainerTextWebPartId = n.GetStringValue(); } },
+                { "data", n => { Data = n.GetObjectValue<WebPartData>(WebPartData.CreateFromDiscriminatorValue); } },
+                { "webPartType", n => { WebPartType = n.GetStringValue(); } },
             };
         }
         /// <summary>

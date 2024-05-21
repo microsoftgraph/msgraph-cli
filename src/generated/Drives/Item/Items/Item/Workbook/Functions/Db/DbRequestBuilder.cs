@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Db {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Db
+{
     /// <summary>
     /// Provides operations to call the db method.
     /// </summary>
-    public class DbRequestBuilder : BaseCliRequestBuilder 
+    public class DbRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action db

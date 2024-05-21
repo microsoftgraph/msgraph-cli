@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.RetryServiceProvisioning {
+namespace ApiSdk.Users.Item.RetryServiceProvisioning
+{
     /// <summary>
     /// Provides operations to call the retryServiceProvisioning method.
     /// </summary>
-    public class RetryServiceProvisioningRequestBuilder : BaseCliRequestBuilder 
+    public class RetryServiceProvisioningRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Retry the user service provisioning.

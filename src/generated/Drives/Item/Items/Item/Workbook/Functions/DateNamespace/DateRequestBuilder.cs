@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DateNamespace {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DateNamespace
+{
     /// <summary>
     /// Provides operations to call the date method.
     /// </summary>
-    public class DateRequestBuilder : BaseCliRequestBuilder 
+    public class DateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action date

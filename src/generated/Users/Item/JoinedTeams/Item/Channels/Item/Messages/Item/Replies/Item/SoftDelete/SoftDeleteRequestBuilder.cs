@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies.Item.SoftDelete {
+namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies.Item.SoftDelete
+{
     /// <summary>
     /// Provides operations to call the softDelete method.
     /// </summary>
-    public class SoftDeleteRequestBuilder : BaseCliRequestBuilder 
+    public class SoftDeleteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a single chatMessage or a chat message reply in a channel or a chat.

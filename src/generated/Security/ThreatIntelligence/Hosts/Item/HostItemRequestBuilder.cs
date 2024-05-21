@@ -27,11 +27,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
+namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
+{
     /// <summary>
     /// Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class HostItemRequestBuilder : BaseCliRequestBuilder 
+    public class HostItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the childHostPairs property of the microsoft.graph.security.host entity.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.People.Item {
+namespace ApiSdk.Users.Item.People.Item
+{
     /// <summary>
     /// Provides operations to manage the people property of the microsoft.graph.user entity.
     /// </summary>
-    public class PersonItemRequestBuilder : BaseCliRequestBuilder 
+    public class PersonItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// People that are relevant to the user. Read-only. Nullable.

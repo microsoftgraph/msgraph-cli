@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish {
-    public class PublishPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish
+{
+    #pragma warning disable CS1591
+    public class PublishPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -59,9 +62,9 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"revision", n => { Revision = n.GetStringValue(); } },
-                {"sharedCookies", n => { SharedCookies = n.GetCollectionOfObjectValues<BrowserSharedCookie>(BrowserSharedCookie.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"sites", n => { Sites = n.GetCollectionOfObjectValues<BrowserSite>(BrowserSite.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "revision", n => { Revision = n.GetStringValue(); } },
+                { "sharedCookies", n => { SharedCookies = n.GetCollectionOfObjectValues<BrowserSharedCookie>(BrowserSharedCookie.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sites", n => { Sites = n.GetCollectionOfObjectValues<BrowserSite>(BrowserSite.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

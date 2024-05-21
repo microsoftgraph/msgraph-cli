@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.Modules.Item.SetUpResourcesFolder {
+namespace ApiSdk.Education.Classes.Item.Modules.Item.SetUpResourcesFolder
+{
     /// <summary>
     /// Provides operations to call the setUpResourcesFolder method.
     /// </summary>
-    public class SetUpResourcesFolderRequestBuilder : BaseCliRequestBuilder 
+    public class SetUpResourcesFolderRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Create a SharePoint folder to upload files for a given educationModule. Only teachers can perform this operation. The teacher determines what resources to upload to the SharePoint folder for the module.

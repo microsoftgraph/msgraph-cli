@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Onenote.Sections.Item.ParentSectionGroup {
+namespace ApiSdk.Users.Item.Onenote.Sections.Item.ParentSectionGroup
+{
     /// <summary>
     /// Provides operations to manage the parentSectionGroup property of the microsoft.graph.onenoteSection entity.
     /// </summary>
-    public class ParentSectionGroupRequestBuilder : BaseCliRequestBuilder 
+    public class ParentSectionGroupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The section group that contains the section.  Read-only.

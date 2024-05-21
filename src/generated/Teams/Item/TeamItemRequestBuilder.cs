@@ -32,11 +32,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item {
+namespace ApiSdk.Teams.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of team entities.
     /// </summary>
-    public class TeamItemRequestBuilder : BaseCliRequestBuilder 
+    public class TeamItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the allChannels property of the microsoft.graph.team entity.

@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.SubjectRightsRequests.Item {
+namespace ApiSdk.Security.SubjectRightsRequests.Item
+{
     /// <summary>
     /// Provides operations to manage the subjectRightsRequests property of the microsoft.graph.security entity.
     /// </summary>
-    public class SubjectRightsRequestItemRequestBuilder : BaseCliRequestBuilder 
+    public class SubjectRightsRequestItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the approvers property of the microsoft.graph.subjectRightsRequest entity.

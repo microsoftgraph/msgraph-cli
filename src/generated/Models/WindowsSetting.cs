@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class WindowsSetting : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class WindowsSetting : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>A collection of setting values for a given windowsSetting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -51,10 +54,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"instances", n => { Instances = n.GetCollectionOfObjectValues<WindowsSettingInstance>(WindowsSettingInstance.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"payloadType", n => { PayloadType = n.GetStringValue(); } },
-                {"settingType", n => { SettingType = n.GetEnumValue<WindowsSettingType>(); } },
-                {"windowsDeviceId", n => { WindowsDeviceId = n.GetStringValue(); } },
+                { "instances", n => { Instances = n.GetCollectionOfObjectValues<WindowsSettingInstance>(WindowsSettingInstance.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "payloadType", n => { PayloadType = n.GetStringValue(); } },
+                { "settingType", n => { SettingType = n.GetEnumValue<WindowsSettingType>(); } },
+                { "windowsDeviceId", n => { WindowsDeviceId = n.GetStringValue(); } },
             };
         }
         /// <summary>

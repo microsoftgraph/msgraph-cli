@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
+namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item
+{
     /// <summary>
     /// Provides operations to manage the scopedMembers property of the microsoft.graph.directoryRole entity.
     /// </summary>
-    public class ScopedRoleMembershipItemRequestBuilder : BaseCliRequestBuilder 
+    public class ScopedRoleMembershipItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property scopedMembers for directoryRoles

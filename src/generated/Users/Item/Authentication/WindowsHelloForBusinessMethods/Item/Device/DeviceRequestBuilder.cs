@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item.Device {
+namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item.Device
+{
     /// <summary>
     /// Provides operations to manage the device property of the microsoft.graph.windowsHelloForBusinessAuthenticationMethod entity.
     /// </summary>
-    public class DeviceRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The registered device on which this Windows Hello for Business key resides. Supports $expand. When you get a user&apos;s Windows Hello for Business registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/windowsHelloForBusinessMethods/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.

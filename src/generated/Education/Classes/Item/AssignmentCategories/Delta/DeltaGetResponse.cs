@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Delta {
-    public class DeltaGetResponse : BaseDeltaFunctionResponse, IParsable 
+namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Delta
+{
+    #pragma warning disable CS1591
+    public class DeltaGetResponse : BaseDeltaFunctionResponse, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +37,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Delta {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<EducationCategory>(EducationCategory.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<EducationCategory>(EducationCategory.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

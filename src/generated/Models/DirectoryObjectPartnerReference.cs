@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class DirectoryObjectPartnerReference : DirectoryObject, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class DirectoryObjectPartnerReference : DirectoryObject, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Description of the object returned. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -58,10 +61,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"externalPartnerTenantId", n => { ExternalPartnerTenantId = n.GetGuidValue(); } },
-                {"objectType", n => { ObjectType = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "externalPartnerTenantId", n => { ExternalPartnerTenantId = n.GetGuidValue(); } },
+                { "objectType", n => { ObjectType = n.GetStringValue(); } },
             };
         }
         /// <summary>

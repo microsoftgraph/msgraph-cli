@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Printers.Item.Jobs.Item.Tasks.Item.Trigger {
+namespace ApiSdk.Print.Printers.Item.Jobs.Item.Tasks.Item.Trigger
+{
     /// <summary>
     /// Provides operations to manage the trigger property of the microsoft.graph.printTask entity.
     /// </summary>
-    public class TriggerRequestBuilder : BaseCliRequestBuilder 
+    public class TriggerRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The printTaskTrigger that triggered this task&apos;s execution. Read-only.

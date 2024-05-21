@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.UndoSoftDelete {
+namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.UndoSoftDelete
+{
     /// <summary>
     /// Provides operations to call the undoSoftDelete method.
     /// </summary>
-    public class UndoSoftDeleteRequestBuilder : BaseCliRequestBuilder 
+    public class UndoSoftDeleteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Undo soft deletion of a single chatMessage or a chat message reply in a channel or a chat.

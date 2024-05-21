@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.ExtensionProperties {
+namespace ApiSdk.Applications.Item.ExtensionProperties
+{
     /// <summary>
     /// Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.
     /// </summary>
-    public class ExtensionPropertiesRequestBuilder : BaseCliRequestBuilder 
+    public class ExtensionPropertiesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.
@@ -194,7 +195,9 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

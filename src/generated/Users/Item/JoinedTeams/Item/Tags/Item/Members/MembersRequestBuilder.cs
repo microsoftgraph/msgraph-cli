@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members {
+namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members
+{
     /// <summary>
     /// Provides operations to manage the members property of the microsoft.graph.teamworkTag entity.
     /// </summary>
-    public class MembersRequestBuilder : BaseCliRequestBuilder 
+    public class MembersRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.teamworkTag entity.
@@ -53,14 +54,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create a new teamworkTagMember object in a team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/teamworktagmember-post?view=graph-rest-1.0" />
+        /// Create new navigation property to members for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new teamworkTagMember object in a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamworktagmember-post?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to members for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -117,14 +117,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members {
             return command;
         }
         /// <summary>
-        /// Get a list of the members of a standard tag in a team and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/teamworktagmember-list?view=graph-rest-1.0" />
+        /// Users assigned to the tag.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the members of a standard tag in a team and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamworktagmember-list?view=graph-rest-1.0";
+            command.Description = "Users assigned to the tag.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -218,7 +217,9 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -244,7 +245,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members {
         {
         }
         /// <summary>
-        /// Get a list of the members of a standard tag in a team and their properties.
+        /// Users assigned to the tag.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -263,7 +264,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new teamworkTagMember object in a team.
+        /// Create new navigation property to members for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -284,7 +285,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the members of a standard tag in a team and their properties.
+        /// Users assigned to the tag.
         /// </summary>
         public class MembersRequestBuilderGetQueryParameters 
         {

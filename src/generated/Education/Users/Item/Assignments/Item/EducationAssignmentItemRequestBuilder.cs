@@ -24,11 +24,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Users.Item.Assignments.Item {
+namespace ApiSdk.Education.Users.Item.Assignments.Item
+{
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.educationUser entity.
     /// </summary>
-    public class EducationAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class EducationAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the activate method.

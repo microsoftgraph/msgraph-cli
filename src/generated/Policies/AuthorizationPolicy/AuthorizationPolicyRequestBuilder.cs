@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.AuthorizationPolicy {
+namespace ApiSdk.Policies.AuthorizationPolicy
+{
     /// <summary>
     /// Provides operations to manage the authorizationPolicy property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class AuthorizationPolicyRequestBuilder : BaseCliRequestBuilder 
+    public class AuthorizationPolicyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property authorizationPolicy for policies

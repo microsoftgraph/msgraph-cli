@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlaggedAppRegistration {
-    public class GetUserIdsWithFlaggedAppRegistrationGetResponse : BaseCollectionPaginationCountResponse, IParsable 
+namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlaggedAppRegistration
+{
+    #pragma warning disable CS1591
+    public class GetUserIdsWithFlaggedAppRegistrationGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +37,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"value", n => { Value = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

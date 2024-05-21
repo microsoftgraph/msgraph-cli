@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetails {
+namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetails
+{
     /// <summary>
     /// Provides operations to call the managedDeviceEnrollmentFailureDetails method.
     /// </summary>
-    public class ManagedDeviceEnrollmentFailureDetailsRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedDeviceEnrollmentFailureDetailsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function managedDeviceEnrollmentFailureDetails

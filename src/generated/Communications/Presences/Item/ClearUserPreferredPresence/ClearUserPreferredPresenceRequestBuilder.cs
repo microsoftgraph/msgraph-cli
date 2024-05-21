@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence {
+namespace ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence
+{
     /// <summary>
     /// Provides operations to call the clearUserPreferredPresence method.
     /// </summary>
-    public class ClearUserPreferredPresenceRequestBuilder : BaseCliRequestBuilder 
+    public class ClearUserPreferredPresenceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Clear the preferred availability and activity status for a user.

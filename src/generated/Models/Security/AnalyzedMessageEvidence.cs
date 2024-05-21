@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class AnalyzedMessageEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class AnalyzedMessageEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Direction of the email relative to your network. The possible values are: inbound, outbound or intraorg.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -158,24 +161,24 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"antiSpamDirection", n => { AntiSpamDirection = n.GetStringValue(); } },
-                {"attachmentsCount", n => { AttachmentsCount = n.GetLongValue(); } },
-                {"deliveryAction", n => { DeliveryAction = n.GetStringValue(); } },
-                {"deliveryLocation", n => { DeliveryLocation = n.GetStringValue(); } },
-                {"internetMessageId", n => { InternetMessageId = n.GetStringValue(); } },
-                {"language", n => { Language = n.GetStringValue(); } },
-                {"networkMessageId", n => { NetworkMessageId = n.GetStringValue(); } },
-                {"p1Sender", n => { P1Sender = n.GetObjectValue<EmailSender>(EmailSender.CreateFromDiscriminatorValue); } },
-                {"p2Sender", n => { P2Sender = n.GetObjectValue<EmailSender>(EmailSender.CreateFromDiscriminatorValue); } },
-                {"receivedDateTime", n => { ReceivedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"recipientEmailAddress", n => { RecipientEmailAddress = n.GetStringValue(); } },
-                {"senderIp", n => { SenderIp = n.GetStringValue(); } },
-                {"subject", n => { Subject = n.GetStringValue(); } },
-                {"threatDetectionMethods", n => { ThreatDetectionMethods = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"threats", n => { Threats = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"urlCount", n => { UrlCount = n.GetLongValue(); } },
-                {"urls", n => { Urls = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"urn", n => { Urn = n.GetStringValue(); } },
+                { "antiSpamDirection", n => { AntiSpamDirection = n.GetStringValue(); } },
+                { "attachmentsCount", n => { AttachmentsCount = n.GetLongValue(); } },
+                { "deliveryAction", n => { DeliveryAction = n.GetStringValue(); } },
+                { "deliveryLocation", n => { DeliveryLocation = n.GetStringValue(); } },
+                { "internetMessageId", n => { InternetMessageId = n.GetStringValue(); } },
+                { "language", n => { Language = n.GetStringValue(); } },
+                { "networkMessageId", n => { NetworkMessageId = n.GetStringValue(); } },
+                { "p1Sender", n => { P1Sender = n.GetObjectValue<EmailSender>(EmailSender.CreateFromDiscriminatorValue); } },
+                { "p2Sender", n => { P2Sender = n.GetObjectValue<EmailSender>(EmailSender.CreateFromDiscriminatorValue); } },
+                { "receivedDateTime", n => { ReceivedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "recipientEmailAddress", n => { RecipientEmailAddress = n.GetStringValue(); } },
+                { "senderIp", n => { SenderIp = n.GetStringValue(); } },
+                { "subject", n => { Subject = n.GetStringValue(); } },
+                { "threatDetectionMethods", n => { ThreatDetectionMethods = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "threats", n => { Threats = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "urlCount", n => { UrlCount = n.GetLongValue(); } },
+                { "urls", n => { Urls = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "urn", n => { Urn = n.GetStringValue(); } },
             };
         }
         /// <summary>

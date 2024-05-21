@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostPorts.Item.Host {
+namespace ApiSdk.Security.ThreatIntelligence.HostPorts.Item.Host
+{
     /// <summary>
     /// Provides operations to manage the host property of the microsoft.graph.security.hostPort entity.
     /// </summary>
-    public class HostRequestBuilder : BaseCliRequestBuilder 
+    public class HostRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The host related to this hostPort. This is a reverse navigation property. When you navigate to hostPorts from a host, assume that this is a return reference.

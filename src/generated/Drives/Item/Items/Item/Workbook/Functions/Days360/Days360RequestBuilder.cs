@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Days360 {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Days360
+{
     /// <summary>
     /// Provides operations to call the days360 method.
     /// </summary>
-    public class Days360RequestBuilder : BaseCliRequestBuilder 
+    public class Days360RequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action days360

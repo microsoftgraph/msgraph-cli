@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// This topic provides descriptions of the declared methods, properties and relationships exposed by the sharedPCConfiguration resource.
     /// </summary>
-    public class SharedPCConfiguration : DeviceConfiguration, IParsable 
+    public class SharedPCConfiguration : DeviceConfiguration, IParsable
     {
         /// <summary>Specifies how accounts are managed on a shared PC. Only applies when disableAccountManager is false.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -78,18 +79,18 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"accountManagerPolicy", n => { AccountManagerPolicy = n.GetObjectValue<SharedPCAccountManagerPolicy>(SharedPCAccountManagerPolicy.CreateFromDiscriminatorValue); } },
-                {"allowLocalStorage", n => { AllowLocalStorage = n.GetBoolValue(); } },
-                {"allowedAccounts", n => { AllowedAccounts = n.GetEnumValue<SharedPCAllowedAccountType>(); } },
-                {"disableAccountManager", n => { DisableAccountManager = n.GetBoolValue(); } },
-                {"disableEduPolicies", n => { DisableEduPolicies = n.GetBoolValue(); } },
-                {"disablePowerPolicies", n => { DisablePowerPolicies = n.GetBoolValue(); } },
-                {"disableSignInOnResume", n => { DisableSignInOnResume = n.GetBoolValue(); } },
-                {"enabled", n => { Enabled = n.GetBoolValue(); } },
-                {"idleTimeBeforeSleepInSeconds", n => { IdleTimeBeforeSleepInSeconds = n.GetIntValue(); } },
-                {"kioskAppDisplayName", n => { KioskAppDisplayName = n.GetStringValue(); } },
-                {"kioskAppUserModelId", n => { KioskAppUserModelId = n.GetStringValue(); } },
-                {"maintenanceStartTime", n => { MaintenanceStartTime = n.GetTimeValue(); } },
+                { "accountManagerPolicy", n => { AccountManagerPolicy = n.GetObjectValue<SharedPCAccountManagerPolicy>(SharedPCAccountManagerPolicy.CreateFromDiscriminatorValue); } },
+                { "allowLocalStorage", n => { AllowLocalStorage = n.GetBoolValue(); } },
+                { "allowedAccounts", n => { AllowedAccounts = n.GetEnumValue<SharedPCAllowedAccountType>(); } },
+                { "disableAccountManager", n => { DisableAccountManager = n.GetBoolValue(); } },
+                { "disableEduPolicies", n => { DisableEduPolicies = n.GetBoolValue(); } },
+                { "disablePowerPolicies", n => { DisablePowerPolicies = n.GetBoolValue(); } },
+                { "disableSignInOnResume", n => { DisableSignInOnResume = n.GetBoolValue(); } },
+                { "enabled", n => { Enabled = n.GetBoolValue(); } },
+                { "idleTimeBeforeSleepInSeconds", n => { IdleTimeBeforeSleepInSeconds = n.GetIntValue(); } },
+                { "kioskAppDisplayName", n => { KioskAppDisplayName = n.GetStringValue(); } },
+                { "kioskAppUserModelId", n => { KioskAppUserModelId = n.GetStringValue(); } },
+                { "maintenanceStartTime", n => { MaintenanceStartTime = n.GetTimeValue(); } },
             };
         }
         /// <summary>

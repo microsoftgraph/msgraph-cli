@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Person : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Person : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The person&apos;s birthday.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -171,25 +174,25 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"birthday", n => { Birthday = n.GetStringValue(); } },
-                {"companyName", n => { CompanyName = n.GetStringValue(); } },
-                {"department", n => { Department = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"givenName", n => { GivenName = n.GetStringValue(); } },
-                {"imAddress", n => { ImAddress = n.GetStringValue(); } },
-                {"isFavorite", n => { IsFavorite = n.GetBoolValue(); } },
-                {"jobTitle", n => { JobTitle = n.GetStringValue(); } },
-                {"officeLocation", n => { OfficeLocation = n.GetStringValue(); } },
-                {"personNotes", n => { PersonNotes = n.GetStringValue(); } },
-                {"personType", n => { PersonType = n.GetObjectValue<ApiSdk.Models.PersonType>(ApiSdk.Models.PersonType.CreateFromDiscriminatorValue); } },
-                {"phones", n => { Phones = n.GetCollectionOfObjectValues<Phone>(Phone.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"postalAddresses", n => { PostalAddresses = n.GetCollectionOfObjectValues<Location>(Location.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"profession", n => { Profession = n.GetStringValue(); } },
-                {"scoredEmailAddresses", n => { ScoredEmailAddresses = n.GetCollectionOfObjectValues<ScoredEmailAddress>(ScoredEmailAddress.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"surname", n => { Surname = n.GetStringValue(); } },
-                {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
-                {"websites", n => { Websites = n.GetCollectionOfObjectValues<Website>(Website.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"yomiCompany", n => { YomiCompany = n.GetStringValue(); } },
+                { "birthday", n => { Birthday = n.GetStringValue(); } },
+                { "companyName", n => { CompanyName = n.GetStringValue(); } },
+                { "department", n => { Department = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "givenName", n => { GivenName = n.GetStringValue(); } },
+                { "imAddress", n => { ImAddress = n.GetStringValue(); } },
+                { "isFavorite", n => { IsFavorite = n.GetBoolValue(); } },
+                { "jobTitle", n => { JobTitle = n.GetStringValue(); } },
+                { "officeLocation", n => { OfficeLocation = n.GetStringValue(); } },
+                { "personNotes", n => { PersonNotes = n.GetStringValue(); } },
+                { "personType", n => { PersonType = n.GetObjectValue<ApiSdk.Models.PersonType>(ApiSdk.Models.PersonType.CreateFromDiscriminatorValue); } },
+                { "phones", n => { Phones = n.GetCollectionOfObjectValues<Phone>(Phone.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "postalAddresses", n => { PostalAddresses = n.GetCollectionOfObjectValues<Location>(Location.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "profession", n => { Profession = n.GetStringValue(); } },
+                { "scoredEmailAddresses", n => { ScoredEmailAddresses = n.GetCollectionOfObjectValues<ScoredEmailAddress>(ScoredEmailAddress.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "surname", n => { Surname = n.GetStringValue(); } },
+                { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
+                { "websites", n => { Websites = n.GetCollectionOfObjectValues<Website>(Website.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "yomiCompany", n => { YomiCompany = n.GetStringValue(); } },
             };
         }
         /// <summary>

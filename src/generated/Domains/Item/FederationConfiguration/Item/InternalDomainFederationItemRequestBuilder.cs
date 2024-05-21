@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
+namespace ApiSdk.Domains.Item.FederationConfiguration.Item
+{
     /// <summary>
     /// Provides operations to manage the federationConfiguration property of the microsoft.graph.domain entity.
     /// </summary>
-    public class InternalDomainFederationItemRequestBuilder : BaseCliRequestBuilder 
+    public class InternalDomainFederationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an internalDomainFederation object.

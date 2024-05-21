@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class SslCertificate : Artifact, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class SslCertificate : Artifact, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The date and time when a certificate expires. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
@@ -88,16 +91,16 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
-                {"fingerprint", n => { Fingerprint = n.GetStringValue(); } },
-                {"firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
-                {"issueDateTime", n => { IssueDateTime = n.GetDateTimeOffsetValue(); } },
-                {"issuer", n => { Issuer = n.GetObjectValue<SslCertificateEntity>(SslCertificateEntity.CreateFromDiscriminatorValue); } },
-                {"lastSeenDateTime", n => { LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
-                {"relatedHosts", n => { RelatedHosts = n.GetCollectionOfObjectValues<Host>(Host.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"serialNumber", n => { SerialNumber = n.GetStringValue(); } },
-                {"sha1", n => { Sha1 = n.GetStringValue(); } },
-                {"subject", n => { Subject = n.GetObjectValue<SslCertificateEntity>(SslCertificateEntity.CreateFromDiscriminatorValue); } },
+                { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
+                { "fingerprint", n => { Fingerprint = n.GetStringValue(); } },
+                { "firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
+                { "issueDateTime", n => { IssueDateTime = n.GetDateTimeOffsetValue(); } },
+                { "issuer", n => { Issuer = n.GetObjectValue<SslCertificateEntity>(SslCertificateEntity.CreateFromDiscriminatorValue); } },
+                { "lastSeenDateTime", n => { LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
+                { "relatedHosts", n => { RelatedHosts = n.GetCollectionOfObjectValues<Host>(Host.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "serialNumber", n => { SerialNumber = n.GetStringValue(); } },
+                { "sha1", n => { Sha1 = n.GetStringValue(); } },
+                { "subject", n => { Subject = n.GetObjectValue<SslCertificateEntity>(SslCertificateEntity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

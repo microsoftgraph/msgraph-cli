@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item.ChildTags.Item {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item.ChildTags.Item
+{
     /// <summary>
     /// Provides operations to manage the childTags property of the microsoft.graph.security.ediscoveryReviewTag entity.
     /// </summary>
-    public class EdiscoveryReviewTagItemRequestBuilder : BaseCliRequestBuilder 
+    public class EdiscoveryReviewTagItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Returns the tags that are a child of a tag.

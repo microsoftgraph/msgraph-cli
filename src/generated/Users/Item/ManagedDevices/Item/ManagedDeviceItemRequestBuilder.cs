@@ -38,11 +38,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item {
+namespace ApiSdk.Users.Item.ManagedDevices.Item
+{
     /// <summary>
     /// Provides operations to manage the managedDevices property of the microsoft.graph.user entity.
     /// </summary>
-    public class ManagedDeviceItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedDeviceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the bypassActivationLock method.

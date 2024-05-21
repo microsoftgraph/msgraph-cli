@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Value {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Value
+{
     /// <summary>
     /// Provides operations to call the value method.
     /// </summary>
-    public class ValueRequestBuilder : BaseCliRequestBuilder 
+    public class ValueRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action value

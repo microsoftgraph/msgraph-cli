@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.TaskProcessingResults.Item.MicrosoftGraphIdentityGovernanceResume {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.TaskProcessingResults.Item.MicrosoftGraphIdentityGovernanceResume
+{
     /// <summary>
     /// Provides operations to call the resume method.
     /// </summary>
-    public class MicrosoftGraphIdentityGovernanceResumeRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphIdentityGovernanceResumeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Resume a task processing result that&apos;s inProgress. In the default case an Azure Logic Apps system-assigned managed identity calls this API. For more information, see: Lifecycle Workflows extensibility approach.

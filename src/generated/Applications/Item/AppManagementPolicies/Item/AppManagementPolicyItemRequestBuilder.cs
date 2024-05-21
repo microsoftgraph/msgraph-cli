@@ -10,11 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.Applications.Item.AppManagementPolicies.Item {
+namespace ApiSdk.Applications.Item.AppManagementPolicies.Item
+{
     /// <summary>
     /// Builds and executes requests for operations under \applications\{application-id}\appManagementPolicies\{appManagementPolicy-id}
     /// </summary>
-    public class AppManagementPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class AppManagementPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the collection of application entities.

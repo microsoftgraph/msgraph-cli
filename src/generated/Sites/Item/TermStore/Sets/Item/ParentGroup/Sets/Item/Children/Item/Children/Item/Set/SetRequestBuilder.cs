@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Children.Item.Children.Item.Set {
+namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Children.Item.Children.Item.Set
+{
     /// <summary>
     /// Provides operations to manage the set property of the microsoft.graph.termStore.term entity.
     /// </summary>
-    public class SetRequestBuilder : BaseCliRequestBuilder 
+    public class SetRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The [set] in which the term is created.

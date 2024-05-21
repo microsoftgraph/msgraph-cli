@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Average {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Average
+{
     /// <summary>
     /// Provides operations to call the average method.
     /// </summary>
-    public class AverageRequestBuilder : BaseCliRequestBuilder 
+    public class AverageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action average

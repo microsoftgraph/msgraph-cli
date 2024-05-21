@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class MessageRuleActions : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class MessageRuleActions : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -100,18 +103,18 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"assignCategories", n => { AssignCategories = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"copyToFolder", n => { CopyToFolder = n.GetStringValue(); } },
-                {"delete", n => { Delete = n.GetBoolValue(); } },
-                {"forwardAsAttachmentTo", n => { ForwardAsAttachmentTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"forwardTo", n => { ForwardTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"markAsRead", n => { MarkAsRead = n.GetBoolValue(); } },
-                {"markImportance", n => { MarkImportance = n.GetEnumValue<Importance>(); } },
-                {"moveToFolder", n => { MoveToFolder = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"permanentDelete", n => { PermanentDelete = n.GetBoolValue(); } },
-                {"redirectTo", n => { RedirectTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"stopProcessingRules", n => { StopProcessingRules = n.GetBoolValue(); } },
+                { "assignCategories", n => { AssignCategories = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "copyToFolder", n => { CopyToFolder = n.GetStringValue(); } },
+                { "delete", n => { Delete = n.GetBoolValue(); } },
+                { "forwardAsAttachmentTo", n => { ForwardAsAttachmentTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "forwardTo", n => { ForwardTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "markAsRead", n => { MarkAsRead = n.GetBoolValue(); } },
+                { "markImportance", n => { MarkImportance = n.GetEnumValue<Importance>(); } },
+                { "moveToFolder", n => { MoveToFolder = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "permanentDelete", n => { PermanentDelete = n.GetBoolValue(); } },
+                { "redirectTo", n => { RedirectTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "stopProcessingRules", n => { StopProcessingRules = n.GetBoolValue(); } },
             };
         }
         /// <summary>

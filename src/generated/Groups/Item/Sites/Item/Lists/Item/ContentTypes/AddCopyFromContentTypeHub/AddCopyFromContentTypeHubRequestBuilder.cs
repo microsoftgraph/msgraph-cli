@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub {
+namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub
+{
     /// <summary>
     /// Provides operations to call the addCopyFromContentTypeHub method.
     /// </summary>
-    public class AddCopyFromContentTypeHubRequestBuilder : BaseCliRequestBuilder 
+    public class AddCopyFromContentTypeHubRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Add or sync a copy of a published content type from the content type hub to a target site or a list. This method is part of the content type publishing changes to optimize the syncing of published content types to sites and lists, effectively switching from a &apos;push everywhere&apos; to &apos;pull as needed&apos; approach. The method allows users to pull content types directly from the content type hub to a site or list. For more information, see contentType: getCompatibleHubContentTypes and the blog post Syntex Product Updates – August 2021.

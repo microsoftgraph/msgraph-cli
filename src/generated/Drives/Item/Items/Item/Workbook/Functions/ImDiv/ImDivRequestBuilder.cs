@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImDiv {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImDiv
+{
     /// <summary>
     /// Provides operations to call the imDiv method.
     /// </summary>
-    public class ImDivRequestBuilder : BaseCliRequestBuilder 
+    public class ImDivRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imDiv

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TeamworkApplicationIdentity : Identity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TeamworkApplicationIdentity : Identity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Type of application that is referenced. Possible values are: aadApplication, bot, tenantBot, office365Connector, outgoingWebhook, and unknownFutureValue.</summary>
         public TeamworkApplicationIdentityType? ApplicationIdentityType { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"applicationIdentityType", n => { ApplicationIdentityType = n.GetEnumValue<TeamworkApplicationIdentityType>(); } },
+                { "applicationIdentityType", n => { ApplicationIdentityType = n.GetEnumValue<TeamworkApplicationIdentityType>(); } },
             };
         }
         /// <summary>

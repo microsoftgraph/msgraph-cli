@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.SubscribeByMail {
+namespace ApiSdk.Groups.Item.SubscribeByMail
+{
     /// <summary>
     /// Provides operations to call the subscribeByMail method.
     /// </summary>
-    public class SubscribeByMailRequestBuilder : BaseCliRequestBuilder 
+    public class SubscribeByMailRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Calling this method will enable the current user to receive email notifications for this group, about new posts, events, and files in that group. Supported for Microsoft 365 groups only.

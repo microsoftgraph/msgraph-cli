@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ServiceHealthIssue : ServiceAnnouncementBase, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ServiceHealthIssue : ServiceAnnouncementBase, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The classification property</summary>
         public ServiceHealthClassificationType? Classification { get; set; }
@@ -80,15 +83,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"classification", n => { Classification = n.GetEnumValue<ServiceHealthClassificationType>(); } },
-                {"feature", n => { Feature = n.GetStringValue(); } },
-                {"featureGroup", n => { FeatureGroup = n.GetStringValue(); } },
-                {"impactDescription", n => { ImpactDescription = n.GetStringValue(); } },
-                {"isResolved", n => { IsResolved = n.GetBoolValue(); } },
-                {"origin", n => { Origin = n.GetEnumValue<ServiceHealthOrigin>(); } },
-                {"posts", n => { Posts = n.GetCollectionOfObjectValues<ServiceHealthIssuePost>(ServiceHealthIssuePost.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"service", n => { Service = n.GetStringValue(); } },
-                {"status", n => { Status = n.GetEnumValue<ServiceHealthStatus>(); } },
+                { "classification", n => { Classification = n.GetEnumValue<ServiceHealthClassificationType>(); } },
+                { "feature", n => { Feature = n.GetStringValue(); } },
+                { "featureGroup", n => { FeatureGroup = n.GetStringValue(); } },
+                { "impactDescription", n => { ImpactDescription = n.GetStringValue(); } },
+                { "isResolved", n => { IsResolved = n.GetBoolValue(); } },
+                { "origin", n => { Origin = n.GetEnumValue<ServiceHealthOrigin>(); } },
+                { "posts", n => { Posts = n.GetCollectionOfObjectValues<ServiceHealthIssuePost>(ServiceHealthIssuePost.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "service", n => { Service = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<ServiceHealthStatus>(); } },
             };
         }
         /// <summary>

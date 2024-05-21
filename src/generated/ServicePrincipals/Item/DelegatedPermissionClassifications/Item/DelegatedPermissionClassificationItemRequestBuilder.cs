@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item {
+namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item
+{
     /// <summary>
     /// Provides operations to manage the delegatedPermissionClassifications property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class DelegatedPermissionClassificationItemRequestBuilder : BaseCliRequestBuilder 
+    public class DelegatedPermissionClassificationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a delegatedPermissionClassification which had previously been set for a delegated permission.

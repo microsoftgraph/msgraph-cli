@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.Partners.Billing.Reconciliation.Billed {
+namespace ApiSdk.Reports.Partners.Billing.Reconciliation.Billed
+{
     /// <summary>
     /// Provides operations to manage the billed property of the microsoft.graph.partners.billing.billingReconciliation entity.
     /// </summary>
-    public class BilledRequestBuilder : BaseCliRequestBuilder 
+    public class BilledRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property billed for reports

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.Simulations.Item.Payload {
+namespace ApiSdk.Security.AttackSimulation.Simulations.Item.Payload
+{
     /// <summary>
     /// Provides operations to manage the payload property of the microsoft.graph.simulation entity.
     /// </summary>
-    public class PayloadRequestBuilder : BaseCliRequestBuilder 
+    public class PayloadRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The payload associated with a simulation during its creation.

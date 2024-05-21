@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CountBlank {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CountBlank
+{
     /// <summary>
     /// Provides operations to call the countBlank method.
     /// </summary>
-    public class CountBlankRequestBuilder : BaseCliRequestBuilder 
+    public class CountBlankRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action countBlank

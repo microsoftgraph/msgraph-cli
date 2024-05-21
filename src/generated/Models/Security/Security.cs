@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class Security : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class Security : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The alerts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -38,6 +41,14 @@ namespace ApiSdk.Models.Security {
 #nullable restore
 #else
         public CasesRoot Cases { get; set; }
+#endif
+        /// <summary>The identities property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public IdentityContainer? Identities { get; set; }
+#nullable restore
+#else
+        public IdentityContainer Identities { get; set; }
 #endif
         /// <summary>A collection of incidents in Microsoft 365 Defender, each of which is a set of correlated alerts and associated metadata that reflects the story of an attack.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -121,18 +132,19 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"alerts", n => { Alerts = n.GetCollectionOfObjectValues<ApiSdk.Models.Alert>(ApiSdk.Models.Alert.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"alerts_v2", n => { AlertsV2 = n.GetCollectionOfObjectValues<Alert>(Alert.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"attackSimulation", n => { AttackSimulation = n.GetObjectValue<ApiSdk.Models.AttackSimulationRoot>(ApiSdk.Models.AttackSimulationRoot.CreateFromDiscriminatorValue); } },
-                {"cases", n => { Cases = n.GetObjectValue<CasesRoot>(CasesRoot.CreateFromDiscriminatorValue); } },
-                {"incidents", n => { Incidents = n.GetCollectionOfObjectValues<Incident>(Incident.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"labels", n => { Labels = n.GetObjectValue<LabelsRoot>(LabelsRoot.CreateFromDiscriminatorValue); } },
-                {"secureScoreControlProfiles", n => { SecureScoreControlProfiles = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlProfile>(ApiSdk.Models.SecureScoreControlProfile.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"secureScores", n => { SecureScores = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScore>(ApiSdk.Models.SecureScore.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"subjectRightsRequests", n => { SubjectRightsRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequest>(ApiSdk.Models.SubjectRightsRequest.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"threatIntelligence", n => { ThreatIntelligence = n.GetObjectValue<ApiSdk.Models.Security.ThreatIntelligence>(ApiSdk.Models.Security.ThreatIntelligence.CreateFromDiscriminatorValue); } },
-                {"triggerTypes", n => { TriggerTypes = n.GetObjectValue<TriggerTypesRoot>(TriggerTypesRoot.CreateFromDiscriminatorValue); } },
-                {"triggers", n => { Triggers = n.GetObjectValue<TriggersRoot>(TriggersRoot.CreateFromDiscriminatorValue); } },
+                { "alerts", n => { Alerts = n.GetCollectionOfObjectValues<ApiSdk.Models.Alert>(ApiSdk.Models.Alert.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "alerts_v2", n => { AlertsV2 = n.GetCollectionOfObjectValues<Alert>(Alert.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "attackSimulation", n => { AttackSimulation = n.GetObjectValue<ApiSdk.Models.AttackSimulationRoot>(ApiSdk.Models.AttackSimulationRoot.CreateFromDiscriminatorValue); } },
+                { "cases", n => { Cases = n.GetObjectValue<CasesRoot>(CasesRoot.CreateFromDiscriminatorValue); } },
+                { "identities", n => { Identities = n.GetObjectValue<IdentityContainer>(IdentityContainer.CreateFromDiscriminatorValue); } },
+                { "incidents", n => { Incidents = n.GetCollectionOfObjectValues<Incident>(Incident.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "labels", n => { Labels = n.GetObjectValue<LabelsRoot>(LabelsRoot.CreateFromDiscriminatorValue); } },
+                { "secureScoreControlProfiles", n => { SecureScoreControlProfiles = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlProfile>(ApiSdk.Models.SecureScoreControlProfile.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "secureScores", n => { SecureScores = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScore>(ApiSdk.Models.SecureScore.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "subjectRightsRequests", n => { SubjectRightsRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequest>(ApiSdk.Models.SubjectRightsRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "threatIntelligence", n => { ThreatIntelligence = n.GetObjectValue<ApiSdk.Models.Security.ThreatIntelligence>(ApiSdk.Models.Security.ThreatIntelligence.CreateFromDiscriminatorValue); } },
+                { "triggerTypes", n => { TriggerTypes = n.GetObjectValue<TriggerTypesRoot>(TriggerTypesRoot.CreateFromDiscriminatorValue); } },
+                { "triggers", n => { Triggers = n.GetObjectValue<TriggersRoot>(TriggersRoot.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -147,6 +159,7 @@ namespace ApiSdk.Models.Security {
             writer.WriteCollectionOfObjectValues<Alert>("alerts_v2", AlertsV2);
             writer.WriteObjectValue<ApiSdk.Models.AttackSimulationRoot>("attackSimulation", AttackSimulation);
             writer.WriteObjectValue<CasesRoot>("cases", Cases);
+            writer.WriteObjectValue<IdentityContainer>("identities", Identities);
             writer.WriteCollectionOfObjectValues<Incident>("incidents", Incidents);
             writer.WriteObjectValue<LabelsRoot>("labels", Labels);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlProfile>("secureScoreControlProfiles", SecureScoreControlProfiles);

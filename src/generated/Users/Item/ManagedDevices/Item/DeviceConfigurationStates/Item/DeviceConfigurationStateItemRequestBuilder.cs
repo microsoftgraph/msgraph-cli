@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceConfigurationStates.Item {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceConfigurationStates.Item
+{
     /// <summary>
     /// Provides operations to manage the deviceConfigurationStates property of the microsoft.graph.managedDevice entity.
     /// </summary>
-    public class DeviceConfigurationStateItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceConfigurationStateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property deviceConfigurationStates for users

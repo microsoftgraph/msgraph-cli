@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.Runs.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTime {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.Runs.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTime
+{
     /// <summary>
     /// Provides operations to call the summary method.
     /// </summary>
-    public class MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function summary

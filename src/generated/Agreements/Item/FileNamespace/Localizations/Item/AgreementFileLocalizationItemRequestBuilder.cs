@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Agreements.Item.FileNamespace.Localizations.Item {
+namespace ApiSdk.Agreements.Item.FileNamespace.Localizations.Item
+{
     /// <summary>
     /// Provides operations to manage the localizations property of the microsoft.graph.agreementFile entity.
     /// </summary>
-    public class AgreementFileLocalizationItemRequestBuilder : BaseCliRequestBuilder 
+    public class AgreementFileLocalizationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property localizations for agreements

@@ -23,11 +23,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Team.PrimaryChannel {
+namespace ApiSdk.Groups.Item.Team.PrimaryChannel
+{
     /// <summary>
     /// Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.
     /// </summary>
-    public class PrimaryChannelRequestBuilder : BaseCliRequestBuilder 
+    public class PrimaryChannelRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the completeMigration method.
@@ -122,14 +123,13 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel {
             return command;
         }
         /// <summary>
-        /// Get the default channel, General, of a team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0" />
+        /// The general channel for the team.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the default channel, General, of a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0";
+            command.Description = "The general channel for the team.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -403,7 +403,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel {
             return requestInfo;
         }
         /// <summary>
-        /// Get the default channel, General, of a team.
+        /// The general channel for the team.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -443,7 +443,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel {
             return requestInfo;
         }
         /// <summary>
-        /// Get the default channel, General, of a team.
+        /// The general channel for the team.
         /// </summary>
         public class PrimaryChannelRequestBuilderGetQueryParameters 
         {

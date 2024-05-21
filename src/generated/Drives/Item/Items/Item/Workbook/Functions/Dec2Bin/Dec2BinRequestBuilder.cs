@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dec2Bin {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dec2Bin
+{
     /// <summary>
     /// Provides operations to call the dec2Bin method.
     /// </summary>
-    public class Dec2BinRequestBuilder : BaseCliRequestBuilder 
+    public class Dec2BinRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dec2Bin

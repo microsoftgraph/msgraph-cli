@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.Sharepoint {
+namespace ApiSdk.Admin.Sharepoint
+{
     /// <summary>
     /// Provides operations to manage the sharepoint property of the microsoft.graph.admin entity.
     /// </summary>
-    public class SharepointRequestBuilder : BaseCliRequestBuilder 
+    public class SharepointRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property sharepoint for admin

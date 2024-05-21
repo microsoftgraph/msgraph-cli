@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.Image {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.Image
+{
     /// <summary>
     /// Provides operations to call the image method.
     /// </summary>
-    public class ImageRequestBuilder : BaseCliRequestBuilder 
+    public class ImageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function image

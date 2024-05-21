@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFederationSignup {
+namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFederationSignup
+{
     /// <summary>
     /// Provides operations to manage the postFederationSignup property of the microsoft.graph.userFlowApiConnectorConfiguration entity.
     /// </summary>
-    public class PostFederationSignupRequestBuilder : BaseCliRequestBuilder 
+    public class PostFederationSignupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property postFederationSignup for identity

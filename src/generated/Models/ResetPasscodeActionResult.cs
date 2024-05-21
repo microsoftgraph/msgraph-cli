@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Reset passcode action result
     /// </summary>
-    public class ResetPasscodeActionResult : DeviceActionResult, IParsable 
+    public class ResetPasscodeActionResult : DeviceActionResult, IParsable
     {
         /// <summary>RotateBitLockerKeys action error code. Valid values 0 to 2147483647</summary>
         public int? ErrorCode { get; set; }
@@ -38,8 +39,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"errorCode", n => { ErrorCode = n.GetIntValue(); } },
-                {"passcode", n => { Passcode = n.GetStringValue(); } },
+                { "errorCode", n => { ErrorCode = n.GetIntValue(); } },
+                { "passcode", n => { Passcode = n.GetStringValue(); } },
             };
         }
         /// <summary>

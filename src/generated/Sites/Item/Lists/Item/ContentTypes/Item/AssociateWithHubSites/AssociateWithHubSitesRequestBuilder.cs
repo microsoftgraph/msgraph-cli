@@ -13,21 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWithHubSites {
+namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWithHubSites
+{
     /// <summary>
     /// Provides operations to call the associateWithHubSites method.
     /// </summary>
-    public class AssociateWithHubSitesRequestBuilder : BaseCliRequestBuilder 
+    public class AssociateWithHubSitesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Associate a published [content type][contentType] present in a content type hub with a list of hub sites.
+        /// Associate a published content type present in a content type hub with a list of hub sites.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Associate a published [content type][contentType] present in a content type hub with a list of hub sites.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0";
+            command.Description = "Associate a published content type present in a content type hub with a list of hub sites.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -88,7 +89,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWithHubSites {
         {
         }
         /// <summary>
-        /// Associate a published [content type][contentType] present in a content type hub with a list of hub sites.
+        /// Associate a published content type present in a content type hub with a list of hub sites.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

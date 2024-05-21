@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization.Jobs.ValidateCredentials {
+namespace ApiSdk.Applications.Item.Synchronization.Jobs.ValidateCredentials
+{
     /// <summary>
     /// Provides operations to call the validateCredentials method.
     /// </summary>
-    public class ValidateCredentialsRequestBuilder : BaseCliRequestBuilder 
+    public class ValidateCredentialsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action validateCredentials

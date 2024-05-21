@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class RecommendedAction : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class RecommendedAction : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Web URL to the recommended action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -60,10 +63,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"actionWebUrl", n => { ActionWebUrl = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"potentialScoreImpact", n => { PotentialScoreImpact = n.GetDoubleValue(); } },
-                {"title", n => { Title = n.GetStringValue(); } },
+                { "actionWebUrl", n => { ActionWebUrl = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "potentialScoreImpact", n => { PotentialScoreImpact = n.GetDoubleValue(); } },
+                { "title", n => { Title = n.GetStringValue(); } },
             };
         }
         /// <summary>

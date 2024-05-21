@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.HypGeom_Dist {
-    public class HypGeom_DistPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.HypGeom_Dist
+{
+    #pragma warning disable CS1591
+    public class HypGeom_DistPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -75,11 +78,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.HypGeom_Dist {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"cumulative", n => { Cumulative = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"numberPop", n => { NumberPop = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"numberSample", n => { NumberSample = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"populationS", n => { PopulationS = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"sampleS", n => { SampleS = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "cumulative", n => { Cumulative = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "numberPop", n => { NumberPop = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "numberSample", n => { NumberSample = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "populationS", n => { PopulationS = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "sampleS", n => { SampleS = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

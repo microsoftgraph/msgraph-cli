@@ -23,11 +23,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
+namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item
+{
     /// <summary>
     /// Provides operations to manage the channels property of the microsoft.graph.deletedTeam entity.
     /// </summary>
-    public class ChannelItemRequestBuilder : BaseCliRequestBuilder 
+    public class ChannelItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the completeMigration method.

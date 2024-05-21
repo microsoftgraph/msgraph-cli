@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Confidence_Norm {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Confidence_Norm
+{
     /// <summary>
     /// Provides operations to call the confidence_Norm method.
     /// </summary>
-    public class Confidence_NormRequestBuilder : BaseCliRequestBuilder 
+    public class Confidence_NormRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action confidence_Norm

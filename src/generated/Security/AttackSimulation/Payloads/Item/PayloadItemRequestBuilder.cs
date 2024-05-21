@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.Payloads.Item {
+namespace ApiSdk.Security.AttackSimulation.Payloads.Item
+{
     /// <summary>
     /// Provides operations to manage the payloads property of the microsoft.graph.attackSimulationRoot entity.
     /// </summary>
-    public class PayloadItemRequestBuilder : BaseCliRequestBuilder 
+    public class PayloadItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property payloads for security

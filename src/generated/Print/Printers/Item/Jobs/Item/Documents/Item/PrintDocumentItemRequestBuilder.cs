@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Printers.Item.Jobs.Item.Documents.Item {
+namespace ApiSdk.Print.Printers.Item.Jobs.Item.Documents.Item
+{
     /// <summary>
     /// Provides operations to manage the documents property of the microsoft.graph.printJob entity.
     /// </summary>
-    public class PrintDocumentItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrintDocumentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the print entity.
@@ -32,6 +33,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Documents.Item {
             command.Description = "Provides operations to manage the media for the print entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

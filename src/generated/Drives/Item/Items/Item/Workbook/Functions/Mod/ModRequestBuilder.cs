@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Mod {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Mod
+{
     /// <summary>
     /// Provides operations to call the mod method.
     /// </summary>
-    public class ModRequestBuilder : BaseCliRequestBuilder 
+    public class ModRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action mod

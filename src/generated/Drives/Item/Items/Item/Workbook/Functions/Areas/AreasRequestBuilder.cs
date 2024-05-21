@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Areas {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Areas
+{
     /// <summary>
     /// Provides operations to call the areas method.
     /// </summary>
-    public class AreasRequestBuilder : BaseCliRequestBuilder 
+    public class AreasRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action areas

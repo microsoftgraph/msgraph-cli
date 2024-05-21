@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.AssignmentSettings.GradingCategories.Item {
+namespace ApiSdk.Education.Classes.Item.AssignmentSettings.GradingCategories.Item
+{
     /// <summary>
     /// Provides operations to manage the gradingCategories property of the microsoft.graph.educationAssignmentSettings entity.
     /// </summary>
-    public class EducationGradingCategoryItemRequestBuilder : BaseCliRequestBuilder 
+    public class EducationGradingCategoryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property gradingCategories for education
@@ -120,14 +121,13 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings.GradingCategories.Ite
             return command;
         }
         /// <summary>
-        /// Update a single gradingCategory on the educationAssignmentSettings. Only teachers can perform this operation.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationgradingcategory-update?view=graph-rest-1.0" />
+        /// Update the navigation property gradingCategories in education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update a single gradingCategory on the educationAssignmentSettings. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationgradingcategory-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property gradingCategories in education";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -230,7 +230,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings.GradingCategories.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Update a single gradingCategory on the educationAssignmentSettings. Only teachers can perform this operation.
+        /// Update the navigation property gradingCategories in education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item {
+namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item
+{
     /// <summary>
     /// Provides operations to manage the historyDefinitions property of the microsoft.graph.accessReviewSet entity.
     /// </summary>
-    public class AccessReviewHistoryDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class AccessReviewHistoryDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property historyDefinitions for identityGovernance

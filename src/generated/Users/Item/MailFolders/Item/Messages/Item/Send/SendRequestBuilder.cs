@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send {
+namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send
+{
     /// <summary>
     /// Provides operations to call the send method.
     /// </summary>
-    public class SendRequestBuilder : BaseCliRequestBuilder 
+    public class SendRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Send an existing draft message. The draft message can be a new message draft, reply draft, reply-all draft, or a forward draft. This method saves the message in the Sent Items folder. Alternatively, send a new message in a single operation.

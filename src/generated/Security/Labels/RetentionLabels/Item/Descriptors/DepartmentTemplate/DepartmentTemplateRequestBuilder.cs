@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.DepartmentTemplate {
+namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.DepartmentTemplate
+{
     /// <summary>
     /// Provides operations to manage the departmentTemplate property of the microsoft.graph.security.filePlanDescriptor entity.
     /// </summary>
-    public class DepartmentTemplateRequestBuilder : BaseCliRequestBuilder 
+    public class DepartmentTemplateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Specifies the  department or business unit of an organization to which a label belongs.

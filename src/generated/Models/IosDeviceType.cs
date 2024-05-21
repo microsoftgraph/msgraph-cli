@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties of the possible iOS device types the mobile app can run on.
     /// </summary>
-    public class IosDeviceType : IAdditionalDataHolder, IParsable 
+    public class IosDeviceType : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -49,9 +50,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"iPad", n => { IPad = n.GetBoolValue(); } },
-                {"iPhoneAndIPod", n => { IPhoneAndIPod = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "iPad", n => { IPad = n.GetBoolValue(); } },
+                { "iPhoneAndIPod", n => { IPhoneAndIPod = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

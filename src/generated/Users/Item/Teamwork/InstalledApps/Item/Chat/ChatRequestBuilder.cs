@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
+namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat
+{
     /// <summary>
     /// Provides operations to manage the chat property of the microsoft.graph.userScopeTeamsAppInstallation entity.
     /// </summary>
-    public class ChatRequestBuilder : BaseCliRequestBuilder 
+    public class ChatRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Retrieve the chat of the specified user and Teams app.

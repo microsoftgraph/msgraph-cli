@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Policies.Item.CombinationConfigurations.Item {
+namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Policies.Item.CombinationConfigurations.Item
+{
     /// <summary>
     /// Provides operations to manage the combinationConfigurations property of the microsoft.graph.authenticationStrengthPolicy entity.
     /// </summary>
-    public class AuthenticationCombinationConfigurationItemRequestBuilder : BaseCliRequestBuilder 
+    public class AuthenticationCombinationConfigurationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an authenticationCombinationConfiguration  for a custom authenticationStrengthPolicy object.

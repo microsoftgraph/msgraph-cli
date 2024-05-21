@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupNcd {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupNcd
+{
     /// <summary>
     /// Provides operations to call the coupNcd method.
     /// </summary>
-    public class CoupNcdRequestBuilder : BaseCliRequestBuilder 
+    public class CoupNcdRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action coupNcd

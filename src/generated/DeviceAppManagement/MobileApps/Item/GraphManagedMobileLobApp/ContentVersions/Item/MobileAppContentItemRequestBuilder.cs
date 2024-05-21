@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.ContentVersions.Item {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.ContentVersions.Item
+{
     /// <summary>
     /// Provides operations to manage the contentVersions property of the microsoft.graph.managedMobileLobApp entity.
     /// </summary>
-    public class MobileAppContentItemRequestBuilder : BaseCliRequestBuilder 
+    public class MobileAppContentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the containedApps property of the microsoft.graph.mobileAppContent entity.

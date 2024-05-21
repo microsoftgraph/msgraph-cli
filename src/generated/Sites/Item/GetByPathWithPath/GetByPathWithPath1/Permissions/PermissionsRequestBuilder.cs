@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Permissions {
+namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Permissions
+{
     /// <summary>
     /// Provides operations to manage the permissions property of the microsoft.graph.site entity.
     /// </summary>
-    public class PermissionsRequestBuilder : BaseCliRequestBuilder 
+    public class PermissionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Get the permission resources from the permissions navigation property on a site.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list-permissions?view=graph-rest-1.0" />
+        /// The permissions associated with the site. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the permission resources from the permissions navigation property on a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-permissions?view=graph-rest-1.0";
+            command.Description = "The permissions associated with the site. Nullable.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -122,7 +122,9 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Permissions {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -134,14 +136,13 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Permissions {
             return command;
         }
         /// <summary>
-        /// Create a new permission object on a site. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-post-permissions?view=graph-rest-1.0" />
+        /// Create new navigation property to permissions for sites
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Create a new permission object on a site. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-post-permissions?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to permissions for sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -212,7 +213,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Permissions {
         {
         }
         /// <summary>
-        /// Get the permission resources from the permissions navigation property on a site.
+        /// The permissions associated with the site. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +232,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Permissions {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new permission object on a site. 
+        /// Create new navigation property to permissions for sites
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -252,7 +253,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Permissions {
             return requestInfo;
         }
         /// <summary>
-        /// Get the permission resources from the permissions navigation property on a site.
+        /// The permissions associated with the site. Nullable.
         /// </summary>
         public class PermissionsRequestBuilderGetQueryParameters 
         {

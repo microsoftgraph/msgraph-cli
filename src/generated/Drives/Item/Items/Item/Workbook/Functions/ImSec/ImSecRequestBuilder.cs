@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSec {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSec
+{
     /// <summary>
     /// Provides operations to call the imSec method.
     /// </summary>
-    public class ImSecRequestBuilder : BaseCliRequestBuilder 
+    public class ImSecRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imSec

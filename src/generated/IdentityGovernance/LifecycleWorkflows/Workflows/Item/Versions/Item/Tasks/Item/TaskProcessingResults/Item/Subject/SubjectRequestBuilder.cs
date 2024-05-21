@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.Item.Tasks.Item.TaskProcessingResults.Item.Subject {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.Item.Tasks.Item.TaskProcessingResults.Item.Subject
+{
     /// <summary>
     /// Provides operations to manage the subject property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
     /// </summary>
-    public class SubjectRequestBuilder : BaseCliRequestBuilder 
+    public class SubjectRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The unique identifier of the Microsoft Entra user targeted for the task execution.Supports $filter(eq, ne) and $expand.

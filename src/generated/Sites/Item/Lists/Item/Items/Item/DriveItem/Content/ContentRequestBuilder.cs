@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem.Content {
+namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem.Content
+{
     /// <summary>
     /// Provides operations to manage the media for the site entity.
     /// </summary>
-    public class ContentRequestBuilder : BaseCliRequestBuilder 
+    public class ContentRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The content stream, if the item represents a file.

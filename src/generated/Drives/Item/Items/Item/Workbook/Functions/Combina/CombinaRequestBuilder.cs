@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Combina {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Combina
+{
     /// <summary>
     /// Provides operations to call the combina method.
     /// </summary>
-    public class CombinaRequestBuilder : BaseCliRequestBuilder 
+    public class CombinaRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action combina

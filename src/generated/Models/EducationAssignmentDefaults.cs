@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EducationAssignmentDefaults : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EducationAssignmentDefaults : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Class-level default behavior for handling students who are added after the assignment is published. Possible values are: none, assignIfOpen.</summary>
         public EducationAddedStudentAction? AddedStudentAction { get; set; }
@@ -40,10 +43,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"addToCalendarAction", n => { AddToCalendarAction = n.GetEnumValue<EducationAddToCalendarOptions>(); } },
-                {"addedStudentAction", n => { AddedStudentAction = n.GetEnumValue<EducationAddedStudentAction>(); } },
-                {"dueTime", n => { DueTime = n.GetTimeValue(); } },
-                {"notificationChannelUrl", n => { NotificationChannelUrl = n.GetStringValue(); } },
+                { "addToCalendarAction", n => { AddToCalendarAction = n.GetEnumValue<EducationAddToCalendarOptions>(); } },
+                { "addedStudentAction", n => { AddedStudentAction = n.GetEnumValue<EducationAddedStudentAction>(); } },
+                { "dueTime", n => { DueTime = n.GetTimeValue(); } },
+                { "notificationChannelUrl", n => { NotificationChannelUrl = n.GetStringValue(); } },
             };
         }
         /// <summary>

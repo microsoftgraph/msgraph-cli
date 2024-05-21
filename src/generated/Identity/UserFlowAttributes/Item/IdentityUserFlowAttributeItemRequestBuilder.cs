@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.UserFlowAttributes.Item {
+namespace ApiSdk.Identity.UserFlowAttributes.Item
+{
     /// <summary>
     /// Provides operations to manage the userFlowAttributes property of the microsoft.graph.identityContainer entity.
     /// </summary>
-    public class IdentityUserFlowAttributeItemRequestBuilder : BaseCliRequestBuilder 
+    public class IdentityUserFlowAttributeItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a custom identityUserFlowAttribute.

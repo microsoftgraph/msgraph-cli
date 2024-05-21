@@ -24,11 +24,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item
+{
     /// <summary>
     /// Provides operations to manage the contentTypes property of the microsoft.graph.site entity.
     /// </summary>
-    public class ContentTypeItemRequestBuilder : BaseCliRequestBuilder 
+    public class ContentTypeItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the associateWithHubSites method.
@@ -188,14 +189,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
             return command;
         }
         /// <summary>
-        /// Remove a [content type][contentType] from a [list][] or a [site][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-delete?view=graph-rest-1.0" />
+        /// Delete navigation property contentTypes for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a [content type][contentType] from a [list][] or a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property contentTypes for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -236,14 +236,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the metadata for a [content type][contentType] in a [site][] or a [list][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-get?view=graph-rest-1.0" />
+        /// The collection of content types defined for this site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the metadata for a [content type][contentType] in a [site][] or a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-get?view=graph-rest-1.0";
+            command.Description = "The collection of content types defined for this site.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -318,14 +317,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
             return command;
         }
         /// <summary>
-        /// Update a [content type][contentType].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-update?view=graph-rest-1.0" />
+        /// Update the navigation property contentTypes in groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update a [content type][contentType].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property contentTypes in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -430,7 +428,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         {
         }
         /// <summary>
-        /// Remove a [content type][contentType] from a [list][] or a [site][].
+        /// Delete navigation property contentTypes for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -449,7 +447,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a [content type][contentType] in a [site][] or a [list][].
+        /// The collection of content types defined for this site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -468,7 +466,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update a [content type][contentType].
+        /// Update the navigation property contentTypes in groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -489,7 +487,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a [content type][contentType] in a [site][] or a [list][].
+        /// The collection of content types defined for this site.
         /// </summary>
         public class ContentTypeItemRequestBuilderGetQueryParameters 
         {

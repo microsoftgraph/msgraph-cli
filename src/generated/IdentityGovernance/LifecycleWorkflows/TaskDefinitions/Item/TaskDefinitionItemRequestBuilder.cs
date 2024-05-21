@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions.Item {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions.Item
+{
     /// <summary>
     /// Provides operations to manage the taskDefinitions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     /// </summary>
-    public class TaskDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class TaskDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Read the details of a built-in workflow task.

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.Reports.GetReportFilters {
+namespace ApiSdk.DeviceManagement.Reports.GetReportFilters
+{
     /// <summary>
     /// Provides operations to call the getReportFilters method.
     /// </summary>
-    public class GetReportFiltersRequestBuilder : BaseCliRequestBuilder 
+    public class GetReportFiltersRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

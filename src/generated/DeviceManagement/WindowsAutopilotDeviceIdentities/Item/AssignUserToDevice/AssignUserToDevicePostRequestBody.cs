@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUserToDevice {
-    public class AssignUserToDevicePostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUserToDevice
+{
+    #pragma warning disable CS1591
+    public class AssignUserToDevicePostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -50,8 +53,8 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUs
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"addressableUserName", n => { AddressableUserName = n.GetStringValue(); } },
-                {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
+                { "addressableUserName", n => { AddressableUserName = n.GetStringValue(); } },
+                { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
         }
         /// <summary>

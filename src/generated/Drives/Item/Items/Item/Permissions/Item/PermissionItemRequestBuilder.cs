@@ -15,21 +15,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
+namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item
+{
     /// <summary>
     /// Provides operations to manage the permissions property of the microsoft.graph.driveItem entity.
     /// </summary>
-    public class PermissionItemRequestBuilder : BaseCliRequestBuilder 
+    public class PermissionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Remove access to a DriveItem. Only sharing permissions that are not inherited can be deleted.The inheritedFrom property must be null.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/permission-delete?view=graph-rest-1.0" />
+        /// Delete navigation property permissions for drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove access to a DriveItem. Only sharing permissions that are not inherited can be deleted.The inheritedFrom property must be null.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property permissions for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -70,14 +70,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             return command;
         }
         /// <summary>
-        /// Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item&apos;s ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/permission-get?view=graph-rest-1.0" />
+        /// The set of permissions for the item. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item's ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-get?view=graph-rest-1.0";
+            command.Description = "The set of permissions for the item. Read-only. Nullable.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -152,14 +151,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a sharing permission by patching the permission resource. Only the roles property can be modified this way.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/permission-update?view=graph-rest-1.0" />
+        /// Update the navigation property permissions in drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a sharing permission by patching the permission resource. Only the roles property can be modified this way.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property permissions in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -230,7 +228,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
         {
         }
         /// <summary>
-        /// Remove access to a DriveItem. Only sharing permissions that are not inherited can be deleted.The inheritedFrom property must be null.
+        /// Delete navigation property permissions for drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +247,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item&apos;s ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from.
+        /// The set of permissions for the item. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +266,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a sharing permission by patching the permission resource. Only the roles property can be modified this way.
+        /// Update the navigation property permissions in drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -289,7 +287,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item&apos;s ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from.
+        /// The set of permissions for the item. Read-only. Nullable.
         /// </summary>
         public class PermissionItemRequestBuilderGetQueryParameters 
         {

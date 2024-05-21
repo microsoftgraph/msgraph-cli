@@ -14,20 +14,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethod {
+namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethod
+{
     /// <summary>
     /// Provides operations to call the usersRegisteredByMethod method.
     /// </summary>
-    public class UsersRegisteredByMethodRequestBuilder : BaseCliRequestBuilder 
+    public class UsersRegisteredByMethodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function usersRegisteredByMethod
+        /// Get the number of users registered for each authentication method.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationmethodsroot-usersregisteredbymethod?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function usersRegisteredByMethod";
+            command.Description = "Get the number of users registered for each authentication method.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationmethodsroot-usersregisteredbymethod?view=graph-rest-1.0";
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
@@ -67,7 +69,7 @@ namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethod {
         {
         }
         /// <summary>
-        /// Invoke function usersRegisteredByMethod
+        /// Get the number of users registered for each authentication method.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quartile_Exc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quartile_Exc
+{
     /// <summary>
     /// Provides operations to call the quartile_Exc method.
     /// </summary>
-    public class Quartile_ExcRequestBuilder : BaseCliRequestBuilder 
+    public class Quartile_ExcRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action quartile_Exc

@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.Catalog {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.Catalog
+{
     /// <summary>
     /// Provides operations to manage the catalog property of the microsoft.graph.accessPackageResourceRequest entity.
     /// </summary>
-    public class CatalogRequestBuilder : BaseCliRequestBuilder 
+    public class CatalogRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the accessPackages property of the microsoft.graph.accessPackageCatalog entity.

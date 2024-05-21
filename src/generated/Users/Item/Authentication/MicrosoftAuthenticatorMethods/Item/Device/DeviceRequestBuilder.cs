@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item.Device {
+namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item.Device
+{
     /// <summary>
     /// Provides operations to manage the device property of the microsoft.graph.microsoftAuthenticatorAuthenticationMethod entity.
     /// </summary>
-    public class DeviceRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The registered device on which Microsoft Authenticator resides. This property is null if the device isn&apos;t registered for passwordless Phone Sign-In.

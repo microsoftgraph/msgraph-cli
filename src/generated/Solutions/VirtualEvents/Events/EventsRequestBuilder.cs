@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.VirtualEvents.Events {
+namespace ApiSdk.Solutions.VirtualEvents.Events
+{
     /// <summary>
     /// Provides operations to manage the events property of the microsoft.graph.virtualEventsRoot entity.
     /// </summary>
-    public class EventsRequestBuilder : BaseCliRequestBuilder 
+    public class EventsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the events property of the microsoft.graph.virtualEventsRoot entity.
@@ -182,7 +183,9 @@ namespace ApiSdk.Solutions.VirtualEvents.Events {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

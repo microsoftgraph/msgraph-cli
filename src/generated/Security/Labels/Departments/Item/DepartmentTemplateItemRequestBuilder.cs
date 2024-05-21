@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.Departments.Item {
+namespace ApiSdk.Security.Labels.Departments.Item
+{
     /// <summary>
     /// Provides operations to manage the departments property of the microsoft.graph.security.labelsRoot entity.
     /// </summary>
-    public class DepartmentTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class DepartmentTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a departmentTemplate object.

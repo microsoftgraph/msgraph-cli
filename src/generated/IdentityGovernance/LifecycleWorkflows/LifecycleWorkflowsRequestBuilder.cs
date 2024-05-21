@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows
+{
     /// <summary>
     /// Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.
     /// </summary>
-    public class LifecycleWorkflowsRequestBuilder : BaseCliRequestBuilder 
+    public class LifecycleWorkflowsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the customTaskExtensions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.

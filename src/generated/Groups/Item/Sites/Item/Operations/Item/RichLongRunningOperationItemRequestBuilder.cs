@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Operations.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.site entity.
     /// </summary>
-    public class RichLongRunningOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class RichLongRunningOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for groups
@@ -68,14 +69,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Operations.Item {
             return command;
         }
         /// <summary>
-        /// Get the status of a rich long-running operation on a site or a list.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/richlongrunningoperation-get?view=graph-rest-1.0" />
+        /// The collection of long-running operations on the site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the status of a rich long-running operation on a site or a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/richlongrunningoperation-get?view=graph-rest-1.0";
+            command.Description = "The collection of long-running operations on the site.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -229,7 +229,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the status of a rich long-running operation on a site or a list.
+        /// The collection of long-running operations on the site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +269,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the status of a rich long-running operation on a site or a list.
+        /// The collection of long-running operations on the site.
         /// </summary>
         public class RichLongRunningOperationItemRequestBuilderGetQueryParameters 
         {

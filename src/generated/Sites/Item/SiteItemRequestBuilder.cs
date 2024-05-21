@@ -35,11 +35,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item {
+namespace ApiSdk.Sites.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of site entities.
     /// </summary>
-    public class SiteItemRequestBuilder : BaseCliRequestBuilder 
+    public class SiteItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the analytics property of the microsoft.graph.site entity.
@@ -313,14 +314,14 @@ namespace ApiSdk.Sites.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve properties and relationships for a [site][] resource.A site resource represents a team site in SharePoint.
+        /// Retrieve properties and relationships for a site resource.A site resource represents a team site in SharePoint.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve properties and relationships for a [site][] resource.A site resource represents a team site in SharePoint.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-get?view=graph-rest-1.0";
+            command.Description = "Retrieve properties and relationships for a site resource.A site resource represents a team site in SharePoint.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -699,7 +700,7 @@ namespace ApiSdk.Sites.Item {
         {
         }
         /// <summary>
-        /// Retrieve properties and relationships for a [site][] resource.A site resource represents a team site in SharePoint.
+        /// Retrieve properties and relationships for a site resource.A site resource represents a team site in SharePoint.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -739,7 +740,7 @@ namespace ApiSdk.Sites.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve properties and relationships for a [site][] resource.A site resource represents a team site in SharePoint.
+        /// Retrieve properties and relationships for a site resource.A site resource represents a team site in SharePoint.
         /// </summary>
         public class SiteItemRequestBuilderGetQueryParameters 
         {

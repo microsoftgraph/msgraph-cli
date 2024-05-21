@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.Item {
+namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.Item
+{
     /// <summary>
     /// Provides operations to manage the collaborators property of the microsoft.graph.subjectRightsRequest entity.
     /// </summary>
-    public class UserItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Collection of users who can collaborate on the request.

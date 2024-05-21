@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MultiNomial {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MultiNomial
+{
     /// <summary>
     /// Provides operations to call the multiNomial method.
     /// </summary>
-    public class MultiNomialRequestBuilder : BaseCliRequestBuilder 
+    public class MultiNomialRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action multiNomial

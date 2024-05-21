@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics device startup history entity contains device boot performance history details.
     /// </summary>
-    public class UserExperienceAnalyticsDeviceStartupHistory : Entity, IParsable 
+    public class UserExperienceAnalyticsDeviceStartupHistory : Entity, IParsable
     {
         /// <summary>The device core boot time in milliseconds. Supports: $select, $OrderBy. Read-only.</summary>
         public int? CoreBootTimeInMs { get; set; }
@@ -84,22 +85,22 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"coreBootTimeInMs", n => { CoreBootTimeInMs = n.GetIntValue(); } },
-                {"coreLoginTimeInMs", n => { CoreLoginTimeInMs = n.GetIntValue(); } },
-                {"deviceId", n => { DeviceId = n.GetStringValue(); } },
-                {"featureUpdateBootTimeInMs", n => { FeatureUpdateBootTimeInMs = n.GetIntValue(); } },
-                {"groupPolicyBootTimeInMs", n => { GroupPolicyBootTimeInMs = n.GetIntValue(); } },
-                {"groupPolicyLoginTimeInMs", n => { GroupPolicyLoginTimeInMs = n.GetIntValue(); } },
-                {"isFeatureUpdate", n => { IsFeatureUpdate = n.GetBoolValue(); } },
-                {"isFirstLogin", n => { IsFirstLogin = n.GetBoolValue(); } },
-                {"operatingSystemVersion", n => { OperatingSystemVersion = n.GetStringValue(); } },
-                {"responsiveDesktopTimeInMs", n => { ResponsiveDesktopTimeInMs = n.GetIntValue(); } },
-                {"restartCategory", n => { RestartCategory = n.GetEnumValue<UserExperienceAnalyticsOperatingSystemRestartCategory>(); } },
-                {"restartFaultBucket", n => { RestartFaultBucket = n.GetStringValue(); } },
-                {"restartStopCode", n => { RestartStopCode = n.GetStringValue(); } },
-                {"startTime", n => { StartTime = n.GetDateTimeOffsetValue(); } },
-                {"totalBootTimeInMs", n => { TotalBootTimeInMs = n.GetIntValue(); } },
-                {"totalLoginTimeInMs", n => { TotalLoginTimeInMs = n.GetIntValue(); } },
+                { "coreBootTimeInMs", n => { CoreBootTimeInMs = n.GetIntValue(); } },
+                { "coreLoginTimeInMs", n => { CoreLoginTimeInMs = n.GetIntValue(); } },
+                { "deviceId", n => { DeviceId = n.GetStringValue(); } },
+                { "featureUpdateBootTimeInMs", n => { FeatureUpdateBootTimeInMs = n.GetIntValue(); } },
+                { "groupPolicyBootTimeInMs", n => { GroupPolicyBootTimeInMs = n.GetIntValue(); } },
+                { "groupPolicyLoginTimeInMs", n => { GroupPolicyLoginTimeInMs = n.GetIntValue(); } },
+                { "isFeatureUpdate", n => { IsFeatureUpdate = n.GetBoolValue(); } },
+                { "isFirstLogin", n => { IsFirstLogin = n.GetBoolValue(); } },
+                { "operatingSystemVersion", n => { OperatingSystemVersion = n.GetStringValue(); } },
+                { "responsiveDesktopTimeInMs", n => { ResponsiveDesktopTimeInMs = n.GetIntValue(); } },
+                { "restartCategory", n => { RestartCategory = n.GetEnumValue<UserExperienceAnalyticsOperatingSystemRestartCategory>(); } },
+                { "restartFaultBucket", n => { RestartFaultBucket = n.GetStringValue(); } },
+                { "restartStopCode", n => { RestartStopCode = n.GetStringValue(); } },
+                { "startTime", n => { StartTime = n.GetDateTimeOffsetValue(); } },
+                { "totalBootTimeInMs", n => { TotalBootTimeInMs = n.GetIntValue(); } },
+                { "totalLoginTimeInMs", n => { TotalLoginTimeInMs = n.GetIntValue(); } },
             };
         }
         /// <summary>

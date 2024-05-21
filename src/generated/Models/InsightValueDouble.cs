@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The value in an user experience analytics insight.
     /// </summary>
-    public class InsightValueDouble : UserExperienceAnalyticsInsightValue, IParsable 
+    public class InsightValueDouble : UserExperienceAnalyticsInsightValue, IParsable
     {
         /// <summary>The double value of the user experience analytics insight.</summary>
         public double? Value { get; set; }
@@ -37,7 +38,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"value", n => { Value = n.GetDoubleValue(); } },
+                { "value", n => { Value = n.GetDoubleValue(); } },
             };
         }
         /// <summary>

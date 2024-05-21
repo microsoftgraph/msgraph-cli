@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SamlOrWsFedProvider : IdentityProviderBase, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SamlOrWsFedProvider : IdentityProviderBase, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Issuer URI of the federation server.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -72,11 +75,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"issuerUri", n => { IssuerUri = n.GetStringValue(); } },
-                {"metadataExchangeUri", n => { MetadataExchangeUri = n.GetStringValue(); } },
-                {"passiveSignInUri", n => { PassiveSignInUri = n.GetStringValue(); } },
-                {"preferredAuthenticationProtocol", n => { PreferredAuthenticationProtocol = n.GetEnumValue<AuthenticationProtocol>(); } },
-                {"signingCertificate", n => { SigningCertificate = n.GetStringValue(); } },
+                { "issuerUri", n => { IssuerUri = n.GetStringValue(); } },
+                { "metadataExchangeUri", n => { MetadataExchangeUri = n.GetStringValue(); } },
+                { "passiveSignInUri", n => { PassiveSignInUri = n.GetStringValue(); } },
+                { "preferredAuthenticationProtocol", n => { PreferredAuthenticationProtocol = n.GetEnumValue<AuthenticationProtocol>(); } },
+                { "signingCertificate", n => { SigningCertificate = n.GetStringValue(); } },
             };
         }
         /// <summary>

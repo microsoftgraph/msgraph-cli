@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Shares.Item.Jobs.Item.Tasks.Item.Definition {
+namespace ApiSdk.Print.Shares.Item.Jobs.Item.Tasks.Item.Definition
+{
     /// <summary>
     /// Provides operations to manage the definition property of the microsoft.graph.printTask entity.
     /// </summary>
-    public class DefinitionRequestBuilder : BaseCliRequestBuilder 
+    public class DefinitionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The printTaskDefinition that was used to create this task. Read-only.

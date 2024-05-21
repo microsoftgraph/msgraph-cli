@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Incidents.Item {
+namespace ApiSdk.Security.Incidents.Item
+{
     /// <summary>
     /// Provides operations to manage the incidents property of the microsoft.graph.security entity.
     /// </summary>
-    public class IncidentItemRequestBuilder : BaseCliRequestBuilder 
+    public class IncidentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the alerts property of the microsoft.graph.security.incident entity.

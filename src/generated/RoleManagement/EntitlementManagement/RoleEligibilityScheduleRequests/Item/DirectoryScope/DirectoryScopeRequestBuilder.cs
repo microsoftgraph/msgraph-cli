@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item.DirectoryScope {
+namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item.DirectoryScope
+{
     /// <summary>
     /// Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.
     /// </summary>
-    public class DirectoryScopeRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryScopeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The directory object that is the scope of the role eligibility. Read-only. Supports $expand.

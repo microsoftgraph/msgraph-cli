@@ -14,20 +14,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByFeature {
+namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByFeature
+{
     /// <summary>
     /// Provides operations to call the usersRegisteredByFeature method.
     /// </summary>
-    public class UsersRegisteredByFeatureRequestBuilder : BaseCliRequestBuilder 
+    public class UsersRegisteredByFeatureRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function usersRegisteredByFeature
+        /// Get the number of users capable of multi-factor authentication, self-service password reset, and passwordless authentication.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationmethodsroot-usersregisteredbyfeature?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function usersRegisteredByFeature";
+            command.Description = "Get the number of users capable of multi-factor authentication, self-service password reset, and passwordless authentication.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationmethodsroot-usersregisteredbyfeature?view=graph-rest-1.0";
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
@@ -67,7 +69,7 @@ namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByFeature {
         {
         }
         /// <summary>
-        /// Invoke function usersRegisteredByFeature
+        /// Get the number of users capable of multi-factor authentication, self-service password reset, and passwordless authentication.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

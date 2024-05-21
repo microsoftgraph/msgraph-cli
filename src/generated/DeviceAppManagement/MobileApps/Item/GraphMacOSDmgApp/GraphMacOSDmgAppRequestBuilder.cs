@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphMacOSDmgApp {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphMacOSDmgApp
+{
     /// <summary>
     /// Casts the previous resource to macOSDmgApp.
     /// </summary>
-    public class GraphMacOSDmgAppRequestBuilder : BaseCliRequestBuilder 
+    public class GraphMacOSDmgAppRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.

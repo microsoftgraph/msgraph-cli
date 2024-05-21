@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.ResetUnseenCount {
+namespace ApiSdk.Groups.Item.ResetUnseenCount
+{
     /// <summary>
     /// Provides operations to call the resetUnseenCount method.
     /// </summary>
-    public class ResetUnseenCountRequestBuilder : BaseCliRequestBuilder 
+    public class ResetUnseenCountRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reset the unseenCount of all the posts that the current user hasn&apos;t seen since their last visit. Supported for Microsoft 365 groups only.

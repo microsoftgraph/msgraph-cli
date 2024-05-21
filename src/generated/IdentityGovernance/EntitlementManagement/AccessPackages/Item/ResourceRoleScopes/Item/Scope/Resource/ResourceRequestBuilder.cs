@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.ResourceRoleScopes.Item.Scope.Resource {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.ResourceRoleScopes.Item.Scope.Resource
+{
     /// <summary>
     /// Provides operations to manage the resource property of the microsoft.graph.accessPackageResourceScope entity.
     /// </summary>
-    public class ResourceRequestBuilder : BaseCliRequestBuilder 
+    public class ResourceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property resource for identityGovernance

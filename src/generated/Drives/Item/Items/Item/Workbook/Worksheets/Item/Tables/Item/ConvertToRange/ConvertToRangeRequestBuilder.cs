@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.ConvertToRange {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.ConvertToRange
+{
     /// <summary>
     /// Provides operations to call the convertToRange method.
     /// </summary>
-    public class ConvertToRangeRequestBuilder : BaseCliRequestBuilder 
+    public class ConvertToRangeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Converts the table into a normal range of cells. All data is preserved.

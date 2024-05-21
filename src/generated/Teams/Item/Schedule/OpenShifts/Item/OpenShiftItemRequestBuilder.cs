@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
+namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item
+{
     /// <summary>
     /// Provides operations to manage the openShifts property of the microsoft.graph.schedule entity.
     /// </summary>
-    public class OpenShiftItemRequestBuilder : BaseCliRequestBuilder 
+    public class OpenShiftItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an openShift object.

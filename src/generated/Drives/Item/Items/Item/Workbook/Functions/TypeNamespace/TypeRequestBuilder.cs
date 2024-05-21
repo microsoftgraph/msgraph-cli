@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TypeNamespace {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TypeNamespace
+{
     /// <summary>
     /// Provides operations to call the type method.
     /// </summary>
-    public class TypeRequestBuilder : BaseCliRequestBuilder 
+    public class TypeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action type

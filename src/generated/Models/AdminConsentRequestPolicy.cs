@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AdminConsentRequestPolicy : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AdminConsentRequestPolicy : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Specifies whether the admin consent request feature is enabled or disabled. Required.</summary>
         public bool? IsEnabled { get; set; }
@@ -43,12 +46,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
-                {"notifyReviewers", n => { NotifyReviewers = n.GetBoolValue(); } },
-                {"remindersEnabled", n => { RemindersEnabled = n.GetBoolValue(); } },
-                {"requestDurationInDays", n => { RequestDurationInDays = n.GetIntValue(); } },
-                {"reviewers", n => { Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"version", n => { Version = n.GetIntValue(); } },
+                { "isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
+                { "notifyReviewers", n => { NotifyReviewers = n.GetBoolValue(); } },
+                { "remindersEnabled", n => { RemindersEnabled = n.GetBoolValue(); } },
+                { "requestDurationInDays", n => { RequestDurationInDays = n.GetIntValue(); } },
+                { "reviewers", n => { Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "version", n => { Version = n.GetIntValue(); } },
             };
         }
         /// <summary>

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
+namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher
+{
     /// <summary>
     /// Provides operations to call the unsetVerifiedPublisher method.
     /// </summary>
-    public class UnsetVerifiedPublisherRequestBuilder : BaseCliRequestBuilder 
+    public class UnsetVerifiedPublisherRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.

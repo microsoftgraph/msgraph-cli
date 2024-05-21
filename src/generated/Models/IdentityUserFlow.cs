@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class IdentityUserFlow : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class IdentityUserFlow : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The userFlowType property</summary>
         public ApiSdk.Models.UserFlowType? UserFlowType { get; set; }
@@ -34,8 +37,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"userFlowType", n => { UserFlowType = n.GetEnumValue<UserFlowType>(); } },
-                {"userFlowTypeVersion", n => { UserFlowTypeVersion = n.GetFloatValue(); } },
+                { "userFlowType", n => { UserFlowType = n.GetEnumValue<UserFlowType>(); } },
+                { "userFlowTypeVersion", n => { UserFlowTypeVersion = n.GetFloatValue(); } },
             };
         }
         /// <summary>

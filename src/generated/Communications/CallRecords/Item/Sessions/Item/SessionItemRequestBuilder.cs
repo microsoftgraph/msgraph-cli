@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
+namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item
+{
     /// <summary>
     /// Provides operations to manage the sessions property of the microsoft.graph.callRecords.callRecord entity.
     /// </summary>
-    public class SessionItemRequestBuilder : BaseCliRequestBuilder 
+    public class SessionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property sessions for communications

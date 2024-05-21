@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
+namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item
+{
     /// <summary>
     /// Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.
     /// </summary>
-    public class AdministrativeUnitItemRequestBuilder : BaseCliRequestBuilder 
+    public class AdministrativeUnitItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an administrativeUnit.

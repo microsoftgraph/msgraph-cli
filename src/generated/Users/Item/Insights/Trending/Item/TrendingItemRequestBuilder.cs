@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Insights.Trending.Item {
+namespace ApiSdk.Users.Item.Insights.Trending.Item
+{
     /// <summary>
     /// Provides operations to manage the trending property of the microsoft.graph.officeGraphInsights entity.
     /// </summary>
-    public class TrendingItemRequestBuilder : BaseCliRequestBuilder 
+    public class TrendingItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property trending for users

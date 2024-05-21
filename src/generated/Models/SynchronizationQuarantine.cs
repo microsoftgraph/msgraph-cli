@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SynchronizationQuarantine : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SynchronizationQuarantine : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -60,13 +63,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"currentBegan", n => { CurrentBegan = n.GetDateTimeOffsetValue(); } },
-                {"error", n => { Error = n.GetObjectValue<SynchronizationError>(SynchronizationError.CreateFromDiscriminatorValue); } },
-                {"nextAttempt", n => { NextAttempt = n.GetDateTimeOffsetValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"reason", n => { Reason = n.GetEnumValue<QuarantineReason>(); } },
-                {"seriesBegan", n => { SeriesBegan = n.GetDateTimeOffsetValue(); } },
-                {"seriesCount", n => { SeriesCount = n.GetLongValue(); } },
+                { "currentBegan", n => { CurrentBegan = n.GetDateTimeOffsetValue(); } },
+                { "error", n => { Error = n.GetObjectValue<SynchronizationError>(SynchronizationError.CreateFromDiscriminatorValue); } },
+                { "nextAttempt", n => { NextAttempt = n.GetDateTimeOffsetValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "reason", n => { Reason = n.GetEnumValue<QuarantineReason>(); } },
+                { "seriesBegan", n => { SeriesBegan = n.GetDateTimeOffsetValue(); } },
+                { "seriesCount", n => { SeriesCount = n.GetLongValue(); } },
             };
         }
         /// <summary>

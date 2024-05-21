@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activities.Item.DriveItem {
+namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activities.Item.DriveItem
+{
     /// <summary>
     /// Provides operations to manage the driveItem property of the microsoft.graph.itemActivity entity.
     /// </summary>
-    public class DriveItemRequestBuilder : BaseCliRequestBuilder 
+    public class DriveItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the drive entity.
@@ -31,6 +32,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
             command.Description = "Provides operations to manage the media for the drive entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

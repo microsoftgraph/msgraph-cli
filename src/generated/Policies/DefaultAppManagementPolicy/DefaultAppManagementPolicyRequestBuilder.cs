@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.DefaultAppManagementPolicy {
+namespace ApiSdk.Policies.DefaultAppManagementPolicy
+{
     /// <summary>
     /// Provides operations to manage the defaultAppManagementPolicy property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class DefaultAppManagementPolicyRequestBuilder : BaseCliRequestBuilder 
+    public class DefaultAppManagementPolicyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property defaultAppManagementPolicy for policies

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class DeviceRegistrationPolicy : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class DeviceRegistrationPolicy : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The azureADJoin property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -69,13 +72,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"azureADJoin", n => { AzureADJoin = n.GetObjectValue<AzureADJoinPolicy>(AzureADJoinPolicy.CreateFromDiscriminatorValue); } },
-                {"azureADRegistration", n => { AzureADRegistration = n.GetObjectValue<AzureADRegistrationPolicy>(AzureADRegistrationPolicy.CreateFromDiscriminatorValue); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"localAdminPassword", n => { LocalAdminPassword = n.GetObjectValue<LocalAdminPasswordSettings>(LocalAdminPasswordSettings.CreateFromDiscriminatorValue); } },
-                {"multiFactorAuthConfiguration", n => { MultiFactorAuthConfiguration = n.GetEnumValue<MultiFactorAuthConfiguration>(); } },
-                {"userDeviceQuota", n => { UserDeviceQuota = n.GetIntValue(); } },
+                { "azureADJoin", n => { AzureADJoin = n.GetObjectValue<AzureADJoinPolicy>(AzureADJoinPolicy.CreateFromDiscriminatorValue); } },
+                { "azureADRegistration", n => { AzureADRegistration = n.GetObjectValue<AzureADRegistrationPolicy>(AzureADRegistrationPolicy.CreateFromDiscriminatorValue); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "localAdminPassword", n => { LocalAdminPassword = n.GetObjectValue<LocalAdminPasswordSettings>(LocalAdminPasswordSettings.CreateFromDiscriminatorValue); } },
+                { "multiFactorAuthConfiguration", n => { MultiFactorAuthConfiguration = n.GetEnumValue<MultiFactorAuthConfiguration>(); } },
+                { "userDeviceQuota", n => { UserDeviceQuota = n.GetIntValue(); } },
             };
         }
         /// <summary>

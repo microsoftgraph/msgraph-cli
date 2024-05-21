@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Extensions.Item {
+namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Extensions.Item
+{
     /// <summary>
     /// Provides operations to manage the extensions property of the microsoft.graph.administrativeUnit entity.
     /// </summary>
-    public class ExtensionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ExtensionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property extensions for directory

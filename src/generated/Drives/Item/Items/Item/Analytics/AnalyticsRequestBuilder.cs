@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Analytics {
+namespace ApiSdk.Drives.Item.Items.Item.Analytics
+{
     /// <summary>
     /// Provides operations to manage the analytics property of the microsoft.graph.driveItem entity.
     /// </summary>
-    public class AnalyticsRequestBuilder : BaseCliRequestBuilder 
+    public class AnalyticsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the allTime property of the microsoft.graph.itemAnalytics entity.

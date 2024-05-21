@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Articles.Item {
+namespace ApiSdk.Security.ThreatIntelligence.Articles.Item
+{
     /// <summary>
     /// Provides operations to manage the articles property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class ArticleItemRequestBuilder : BaseCliRequestBuilder 
+    public class ArticleItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property articles for security

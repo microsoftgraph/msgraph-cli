@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties of the minimum operating system required for an iOS mobile app.
     /// </summary>
-    public class IosMinimumOperatingSystem : IAdditionalDataHolder, IParsable 
+    public class IosMinimumOperatingSystem : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -61,15 +62,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"v10_0", n => { V100 = n.GetBoolValue(); } },
-                {"v11_0", n => { V110 = n.GetBoolValue(); } },
-                {"v12_0", n => { V120 = n.GetBoolValue(); } },
-                {"v13_0", n => { V130 = n.GetBoolValue(); } },
-                {"v14_0", n => { V140 = n.GetBoolValue(); } },
-                {"v15_0", n => { V150 = n.GetBoolValue(); } },
-                {"v8_0", n => { V80 = n.GetBoolValue(); } },
-                {"v9_0", n => { V90 = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "v10_0", n => { V100 = n.GetBoolValue(); } },
+                { "v11_0", n => { V110 = n.GetBoolValue(); } },
+                { "v12_0", n => { V120 = n.GetBoolValue(); } },
+                { "v13_0", n => { V130 = n.GetBoolValue(); } },
+                { "v14_0", n => { V140 = n.GetBoolValue(); } },
+                { "v15_0", n => { V150 = n.GetBoolValue(); } },
+                { "v8_0", n => { V80 = n.GetBoolValue(); } },
+                { "v9_0", n => { V90 = n.GetBoolValue(); } },
             };
         }
         /// <summary>

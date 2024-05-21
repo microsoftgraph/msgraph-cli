@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class UnifiedRoleManagementPolicyNotificationRule : UnifiedRoleManagementPolicyRule, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class UnifiedRoleManagementPolicyNotificationRule : UnifiedRoleManagementPolicyRule, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Indicates whether a default recipient will receive the notification email.</summary>
         public bool? IsDefaultRecipientsEnabled { get; set; }
@@ -66,11 +69,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"isDefaultRecipientsEnabled", n => { IsDefaultRecipientsEnabled = n.GetBoolValue(); } },
-                {"notificationLevel", n => { NotificationLevel = n.GetStringValue(); } },
-                {"notificationRecipients", n => { NotificationRecipients = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"notificationType", n => { NotificationType = n.GetStringValue(); } },
-                {"recipientType", n => { RecipientType = n.GetStringValue(); } },
+                { "isDefaultRecipientsEnabled", n => { IsDefaultRecipientsEnabled = n.GetBoolValue(); } },
+                { "notificationLevel", n => { NotificationLevel = n.GetStringValue(); } },
+                { "notificationRecipients", n => { NotificationRecipients = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "notificationType", n => { NotificationType = n.GetStringValue(); } },
+                { "recipientType", n => { RecipientType = n.GetStringValue(); } },
             };
         }
         /// <summary>

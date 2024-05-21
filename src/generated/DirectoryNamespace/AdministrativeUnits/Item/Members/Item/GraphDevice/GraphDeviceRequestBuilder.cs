@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.GraphDevice {
+namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.GraphDevice
+{
     /// <summary>
     /// Casts the previous resource to device.
     /// </summary>
-    public class GraphDeviceRequestBuilder : BaseCliRequestBuilder 
+    public class GraphDeviceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.device

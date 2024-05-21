@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EducationSchool : EducationOrganization, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EducationSchool : EducationOrganization, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Address of the school.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -144,20 +147,20 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"address", n => { Address = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
-                {"administrativeUnit", n => { AdministrativeUnit = n.GetObjectValue<ApiSdk.Models.AdministrativeUnit>(ApiSdk.Models.AdministrativeUnit.CreateFromDiscriminatorValue); } },
-                {"classes", n => { Classes = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                {"externalId", n => { ExternalId = n.GetStringValue(); } },
-                {"externalPrincipalId", n => { ExternalPrincipalId = n.GetStringValue(); } },
-                {"fax", n => { Fax = n.GetStringValue(); } },
-                {"highestGrade", n => { HighestGrade = n.GetStringValue(); } },
-                {"lowestGrade", n => { LowestGrade = n.GetStringValue(); } },
-                {"phone", n => { Phone = n.GetStringValue(); } },
-                {"principalEmail", n => { PrincipalEmail = n.GetStringValue(); } },
-                {"principalName", n => { PrincipalName = n.GetStringValue(); } },
-                {"schoolNumber", n => { SchoolNumber = n.GetStringValue(); } },
-                {"users", n => { Users = n.GetCollectionOfObjectValues<EducationUser>(EducationUser.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "address", n => { Address = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "administrativeUnit", n => { AdministrativeUnit = n.GetObjectValue<ApiSdk.Models.AdministrativeUnit>(ApiSdk.Models.AdministrativeUnit.CreateFromDiscriminatorValue); } },
+                { "classes", n => { Classes = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "externalId", n => { ExternalId = n.GetStringValue(); } },
+                { "externalPrincipalId", n => { ExternalPrincipalId = n.GetStringValue(); } },
+                { "fax", n => { Fax = n.GetStringValue(); } },
+                { "highestGrade", n => { HighestGrade = n.GetStringValue(); } },
+                { "lowestGrade", n => { LowestGrade = n.GetStringValue(); } },
+                { "phone", n => { Phone = n.GetStringValue(); } },
+                { "principalEmail", n => { PrincipalEmail = n.GetStringValue(); } },
+                { "principalName", n => { PrincipalName = n.GetStringValue(); } },
+                { "schoolNumber", n => { SchoolNumber = n.GetStringValue(); } },
+                { "users", n => { Users = n.GetCollectionOfObjectValues<EducationUser>(EducationUser.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

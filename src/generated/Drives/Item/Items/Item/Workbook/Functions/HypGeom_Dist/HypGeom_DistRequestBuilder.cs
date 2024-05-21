@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.HypGeom_Dist {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.HypGeom_Dist
+{
     /// <summary>
     /// Provides operations to call the hypGeom_Dist method.
     /// </summary>
-    public class HypGeom_DistRequestBuilder : BaseCliRequestBuilder 
+    public class HypGeom_DistRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action hypGeom_Dist

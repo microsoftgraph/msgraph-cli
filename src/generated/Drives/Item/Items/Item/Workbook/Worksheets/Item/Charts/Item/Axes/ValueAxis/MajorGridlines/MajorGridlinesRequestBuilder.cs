@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.ValueAxis.MajorGridlines {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.ValueAxis.MajorGridlines
+{
     /// <summary>
     /// Provides operations to manage the majorGridlines property of the microsoft.graph.workbookChartAxis entity.
     /// </summary>
-    public class MajorGridlinesRequestBuilder : BaseCliRequestBuilder 
+    public class MajorGridlinesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property majorGridlines for drives

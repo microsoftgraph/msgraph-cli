@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.OnenotePatchContent {
-    public class OnenotePatchContentPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.OnenotePatchContent
+{
+    #pragma warning disable CS1591
+    public class OnenotePatchContentPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -43,7 +46,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Onen
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"commands", n => { Commands = n.GetCollectionOfObjectValues<OnenotePatchContentCommand>(OnenotePatchContentCommand.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "commands", n => { Commands = n.GetCollectionOfObjectValues<OnenotePatchContentCommand>(OnenotePatchContentCommand.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

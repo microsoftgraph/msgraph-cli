@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Usdollar {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Usdollar
+{
     /// <summary>
     /// Provides operations to call the usdollar method.
     /// </summary>
-    public class UsdollarRequestBuilder : BaseCliRequestBuilder 
+    public class UsdollarRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action usdollar

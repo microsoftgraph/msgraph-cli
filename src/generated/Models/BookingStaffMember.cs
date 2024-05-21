@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Represents a staff member who provides services in a business.
     /// </summary>
-    public class BookingStaffMember : BookingStaffMemberBase, IParsable 
+    public class BookingStaffMember : BookingStaffMemberBase, IParsable
     {
         /// <summary>True means that if the staff member is a Microsoft 365 user, the Bookings API would verify the staff member&apos;s availability in their personal calendar in Microsoft 365, before making a booking.</summary>
         public bool? AvailabilityIsAffectedByPersonalCalendar { get; set; }
@@ -30,6 +31,8 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>True indicates that a staff member will be notified via email when a booking assigned to them is created or changed.</summary>
         public bool? IsEmailNotificationEnabled { get; set; }
+        /// <summary>The membershipStatus property</summary>
+        public BookingStaffMembershipStatus? MembershipStatus { get; set; }
         /// <summary>The role property</summary>
         public BookingStaffRole? Role { get; set; }
         /// <summary>The time zone of the staff member. For a list of possible values, see dateTimeTimeZone.</summary>
@@ -75,14 +78,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"availabilityIsAffectedByPersonalCalendar", n => { AvailabilityIsAffectedByPersonalCalendar = n.GetBoolValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"emailAddress", n => { EmailAddress = n.GetStringValue(); } },
-                {"isEmailNotificationEnabled", n => { IsEmailNotificationEnabled = n.GetBoolValue(); } },
-                {"role", n => { Role = n.GetEnumValue<BookingStaffRole>(); } },
-                {"timeZone", n => { TimeZone = n.GetStringValue(); } },
-                {"useBusinessHours", n => { UseBusinessHours = n.GetBoolValue(); } },
-                {"workingHours", n => { WorkingHours = n.GetCollectionOfObjectValues<BookingWorkHours>(BookingWorkHours.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "availabilityIsAffectedByPersonalCalendar", n => { AvailabilityIsAffectedByPersonalCalendar = n.GetBoolValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "emailAddress", n => { EmailAddress = n.GetStringValue(); } },
+                { "isEmailNotificationEnabled", n => { IsEmailNotificationEnabled = n.GetBoolValue(); } },
+                { "membershipStatus", n => { MembershipStatus = n.GetEnumValue<BookingStaffMembershipStatus>(); } },
+                { "role", n => { Role = n.GetEnumValue<BookingStaffRole>(); } },
+                { "timeZone", n => { TimeZone = n.GetStringValue(); } },
+                { "useBusinessHours", n => { UseBusinessHours = n.GetBoolValue(); } },
+                { "workingHours", n => { WorkingHours = n.GetCollectionOfObjectValues<BookingWorkHours>(BookingWorkHours.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -97,6 +101,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("emailAddress", EmailAddress);
             writer.WriteBoolValue("isEmailNotificationEnabled", IsEmailNotificationEnabled);
+            writer.WriteEnumValue<BookingStaffMembershipStatus>("membershipStatus", MembershipStatus);
             writer.WriteEnumValue<BookingStaffRole>("role", Role);
             writer.WriteStringValue("timeZone", TimeZone);
             writer.WriteBoolValue("useBusinessHours", UseBusinessHours);

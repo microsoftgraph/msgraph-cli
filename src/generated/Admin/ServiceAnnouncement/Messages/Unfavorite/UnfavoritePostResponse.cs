@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite {
-    public class UnfavoritePostResponse : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite
+{
+    #pragma warning disable CS1591
+    public class UnfavoritePostResponse : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -36,7 +39,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"value", n => { Value = n.GetBoolValue(); } },
+                { "value", n => { Value = n.GetBoolValue(); } },
             };
         }
         /// <summary>

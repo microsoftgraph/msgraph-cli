@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
+namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item
+{
     /// <summary>
     /// Provides operations to manage the iosUpdateStatuses property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class IosUpdateDeviceStatusItemRequestBuilder : BaseCliRequestBuilder 
+    public class IosUpdateDeviceStatusItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a iosUpdateDeviceStatus.

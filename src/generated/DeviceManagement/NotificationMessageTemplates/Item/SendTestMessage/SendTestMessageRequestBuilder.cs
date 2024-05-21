@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMessage {
+namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMessage
+{
     /// <summary>
     /// Provides operations to call the sendTestMessage method.
     /// </summary>
-    public class SendTestMessageRequestBuilder : BaseCliRequestBuilder 
+    public class SendTestMessageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Sends test message using the specified notificationMessageTemplate in the default locale

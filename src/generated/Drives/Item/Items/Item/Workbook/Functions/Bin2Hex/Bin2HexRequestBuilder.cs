@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bin2Hex {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bin2Hex
+{
     /// <summary>
     /// Provides operations to call the bin2Hex method.
     /// </summary>
-    public class Bin2HexRequestBuilder : BaseCliRequestBuilder 
+    public class Bin2HexRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action bin2Hex

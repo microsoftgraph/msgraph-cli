@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.AssignLicense {
+namespace ApiSdk.Groups.Item.AssignLicense
+{
     /// <summary>
     /// Provides operations to call the assignLicense method.
     /// </summary>
-    public class AssignLicenseRequestBuilder : BaseCliRequestBuilder 
+    public class AssignLicenseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Add or remove licenses on the group. Licenses assigned to the group will be assigned to all users in the group. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. To get the subscriptions available in the directory, perform a GET subscribedSkus request.

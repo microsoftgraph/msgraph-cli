@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Messages.Item.Move {
+namespace ApiSdk.Users.Item.Messages.Item.Move
+{
     /// <summary>
     /// Provides operations to call the move method.
     /// </summary>
-    public class MoveRequestBuilder : BaseCliRequestBuilder 
+    public class MoveRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Move a message to another folder within the specified user&apos;s mailbox. This creates a new copy of the message in the destination folder and removes the original message.

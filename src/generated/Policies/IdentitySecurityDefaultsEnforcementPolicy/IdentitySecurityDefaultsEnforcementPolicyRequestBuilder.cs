@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy {
+namespace ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy
+{
     /// <summary>
     /// Provides operations to manage the identitySecurityDefaultsEnforcementPolicy property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class IdentitySecurityDefaultsEnforcementPolicyRequestBuilder : BaseCliRequestBuilder 
+    public class IdentitySecurityDefaultsEnforcementPolicyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property identitySecurityDefaultsEnforcementPolicy for policies

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.Partners.Billing.Manifests.Item {
+namespace ApiSdk.Reports.Partners.Billing.Manifests.Item
+{
     /// <summary>
     /// Provides operations to manage the manifests property of the microsoft.graph.partners.billing.billing entity.
     /// </summary>
-    public class ManifestItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManifestItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property manifests for reports

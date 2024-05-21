@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
+namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item
+{
     /// <summary>
     /// Provides operations to manage the segments property of the microsoft.graph.callRecords.session entity.
     /// </summary>
-    public class SegmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class SegmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property segments for communications

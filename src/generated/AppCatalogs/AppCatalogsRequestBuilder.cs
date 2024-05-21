@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.AppCatalogs {
+namespace ApiSdk.AppCatalogs
+{
     /// <summary>
     /// Provides operations to manage the appCatalogs singleton.
     /// </summary>
-    public class AppCatalogsRequestBuilder : BaseCliRequestBuilder 
+    public class AppCatalogsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get appCatalogs

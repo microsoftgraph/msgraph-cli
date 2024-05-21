@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.CategoryTemplate {
+namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.CategoryTemplate
+{
     /// <summary>
     /// Provides operations to manage the categoryTemplate property of the microsoft.graph.security.filePlanDescriptor entity.
     /// </summary>
-    public class CategoryTemplateRequestBuilder : BaseCliRequestBuilder 
+    public class CategoryTemplateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Specifies a group of similar types of content in a particular department.

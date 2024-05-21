@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
+namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item
+{
     /// <summary>
     /// Provides operations to manage the customQuestions property of the microsoft.graph.bookingBusiness entity.
     /// </summary>
-    public class BookingCustomQuestionItemRequestBuilder : BaseCliRequestBuilder 
+    public class BookingCustomQuestionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a bookingCustomQuestion object.

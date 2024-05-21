@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate {
+namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate
+{
     /// <summary>
     /// Provides operations to call the getOffice365GroupsActivityDetail method.
     /// </summary>
-    public class GetOffice365GroupsActivityDetailWithDateRequestBuilder : BaseCliRequestBuilder 
+    public class GetOffice365GroupsActivityDetailWithDateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getOffice365GroupsActivityDetail
+        /// Get details about Microsoft 365 groups activity by group.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getoffice365groupsactivitydetail?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOffice365GroupsActivityDetail";
+            command.Description = "Get details about Microsoft 365 groups activity by group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getoffice365groupsactivitydetail?view=graph-rest-1.0";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getOffice365GroupsActivityDetail
+        /// Get details about Microsoft 365 groups activity by group.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

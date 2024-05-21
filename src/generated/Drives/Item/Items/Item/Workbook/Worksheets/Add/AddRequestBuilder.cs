@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Add {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Add
+{
     /// <summary>
     /// Provides operations to call the add method.
     /// </summary>
-    public class AddRequestBuilder : BaseCliRequestBuilder 
+    public class AddRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Add a new worksheet to the workbook. The worksheet is added at the end of existing worksheets. If you want to activate the newly added worksheet, call .activate() on it.

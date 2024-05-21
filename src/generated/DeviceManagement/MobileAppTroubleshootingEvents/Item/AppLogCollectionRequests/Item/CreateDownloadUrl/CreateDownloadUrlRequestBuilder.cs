@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogCollectionRequests.Item.CreateDownloadUrl {
+namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogCollectionRequests.Item.CreateDownloadUrl
+{
     /// <summary>
     /// Provides operations to call the createDownloadUrl method.
     /// </summary>
-    public class CreateDownloadUrlRequestBuilder : BaseCliRequestBuilder 
+    public class CreateDownloadUrlRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

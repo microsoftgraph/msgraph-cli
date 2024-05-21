@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class OutlookGeoCoordinates : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class OutlookGeoCoordinates : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The accuracy of the latitude and longitude. As an example, the accuracy can be measured in meters, such as the latitude and longitude are accurate to within 50 meters.</summary>
         public double? Accuracy { get; set; }
@@ -52,12 +55,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"accuracy", n => { Accuracy = n.GetDoubleValue(); } },
-                {"altitude", n => { Altitude = n.GetDoubleValue(); } },
-                {"altitudeAccuracy", n => { AltitudeAccuracy = n.GetDoubleValue(); } },
-                {"latitude", n => { Latitude = n.GetDoubleValue(); } },
-                {"longitude", n => { Longitude = n.GetDoubleValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "accuracy", n => { Accuracy = n.GetDoubleValue(); } },
+                { "altitude", n => { Altitude = n.GetDoubleValue(); } },
+                { "altitudeAccuracy", n => { AltitudeAccuracy = n.GetDoubleValue(); } },
+                { "latitude", n => { Latitude = n.GetDoubleValue(); } },
+                { "longitude", n => { Longitude = n.GetDoubleValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

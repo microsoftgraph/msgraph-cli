@@ -32,11 +32,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps {
+namespace ApiSdk.DeviceAppManagement.MobileApps
+{
     /// <summary>
     /// Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class MobileAppsRequestBuilder : BaseCliRequestBuilder 
+    public class MobileAppsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
@@ -89,14 +90,14 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             return command;
         }
         /// <summary>
-        /// Create a new iosiPadOSWebClip object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-iosipadoswebclip-create?view=graph-rest-1.0" />
+        /// Create a new macOSOfficeSuiteApp object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-macosofficesuiteapp-create?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new iosiPadOSWebClip object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-iosipadoswebclip-create?view=graph-rest-1.0";
+            command.Description = "Create a new macOSOfficeSuiteApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-macosofficesuiteapp-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -503,14 +504,14 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the iosStoreApp objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-iosstoreapp-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the windowsMobileMSI objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-windowsmobilemsi-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the iosStoreApp objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-iosstoreapp-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the windowsMobileMSI objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-windowsmobilemsi-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -586,7 +587,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -612,7 +615,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         {
         }
         /// <summary>
-        /// List properties and relationships of the iosStoreApp objects.
+        /// List properties and relationships of the windowsMobileMSI objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -631,7 +634,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new iosiPadOSWebClip object.
+        /// Create a new macOSOfficeSuiteApp object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -652,7 +655,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the iosStoreApp objects.
+        /// List properties and relationships of the windowsMobileMSI objects.
         /// </summary>
         public class MobileAppsRequestBuilderGetQueryParameters 
         {

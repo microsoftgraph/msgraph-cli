@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
+namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item
+{
     /// <summary>
     /// Provides operations to manage the thumbnails property of the microsoft.graph.driveItem entity.
     /// </summary>
-    public class ThumbnailSetItemRequestBuilder : BaseCliRequestBuilder 
+    public class ThumbnailSetItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property thumbnails for drives
@@ -68,13 +69,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
             return command;
         }
         /// <summary>
-        /// Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
+        /// Collection of thumbnailSet objects associated with the item. For more information, see getting thumbnails. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.";
+            command.Description = "Collection of thumbnailSet objects associated with the item. For more information, see getting thumbnails. Read-only. Nullable.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -228,7 +229,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
+        /// Collection of thumbnailSet objects associated with the item. For more information, see getting thumbnails. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +269,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
+        /// Collection of thumbnailSet objects associated with the item. For more information, see getting thumbnails. Read-only. Nullable.
         /// </summary>
         public class ThumbnailSetItemRequestBuilderGetQueryParameters 
         {

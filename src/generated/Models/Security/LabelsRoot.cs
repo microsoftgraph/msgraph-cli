@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class LabelsRoot : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class LabelsRoot : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Specifies the underlying authority that describes the type of content to be retained and its retention schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -73,12 +76,12 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"authorities", n => { Authorities = n.GetCollectionOfObjectValues<AuthorityTemplate>(AuthorityTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"categories", n => { Categories = n.GetCollectionOfObjectValues<CategoryTemplate>(CategoryTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"citations", n => { Citations = n.GetCollectionOfObjectValues<CitationTemplate>(CitationTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"departments", n => { Departments = n.GetCollectionOfObjectValues<DepartmentTemplate>(DepartmentTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"filePlanReferences", n => { FilePlanReferences = n.GetCollectionOfObjectValues<FilePlanReferenceTemplate>(FilePlanReferenceTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"retentionLabels", n => { RetentionLabels = n.GetCollectionOfObjectValues<RetentionLabel>(RetentionLabel.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "authorities", n => { Authorities = n.GetCollectionOfObjectValues<AuthorityTemplate>(AuthorityTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "categories", n => { Categories = n.GetCollectionOfObjectValues<CategoryTemplate>(CategoryTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "citations", n => { Citations = n.GetCollectionOfObjectValues<CitationTemplate>(CitationTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "departments", n => { Departments = n.GetCollectionOfObjectValues<DepartmentTemplate>(DepartmentTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "filePlanReferences", n => { FilePlanReferences = n.GetCollectionOfObjectValues<FilePlanReferenceTemplate>(FilePlanReferenceTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "retentionLabels", n => { RetentionLabels = n.GetCollectionOfObjectValues<RetentionLabel>(RetentionLabel.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

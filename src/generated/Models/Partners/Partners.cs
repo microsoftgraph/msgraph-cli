@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Partners {
-    public class Partners : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Partners
+{
+    #pragma warning disable CS1591
+    public class Partners : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Represents billing details for billed and unbilled data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +37,7 @@ namespace ApiSdk.Models.Partners {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"billing", n => { Billing = n.GetObjectValue<ApiSdk.Models.Partners.Billing.Billing>(ApiSdk.Models.Partners.Billing.Billing.CreateFromDiscriminatorValue); } },
+                { "billing", n => { Billing = n.GetObjectValue<ApiSdk.Models.Partners.Billing.Billing>(ApiSdk.Models.Partners.Billing.Billing.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

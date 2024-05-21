@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies.Item {
+namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.
     /// </summary>
-    public class HomeRealmDiscoveryPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class HomeRealmDiscoveryPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get homeRealmDiscoveryPolicies from applications

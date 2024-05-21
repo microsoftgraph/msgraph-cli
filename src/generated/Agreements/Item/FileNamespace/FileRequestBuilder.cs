@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Agreements.Item.FileNamespace {
+namespace ApiSdk.Agreements.Item.FileNamespace
+{
     /// <summary>
     /// Provides operations to manage the file property of the microsoft.graph.agreement entity.
     /// </summary>
-    public class FileRequestBuilder : BaseCliRequestBuilder 
+    public class FileRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property file for agreements

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSum {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSum
+{
     /// <summary>
     /// Provides operations to call the imSum method.
     /// </summary>
-    public class ImSumRequestBuilder : BaseCliRequestBuilder 
+    public class ImSumRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imSum

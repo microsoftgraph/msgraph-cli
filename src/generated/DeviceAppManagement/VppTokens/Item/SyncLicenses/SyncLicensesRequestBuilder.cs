@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses {
+namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses
+{
     /// <summary>
     /// Provides operations to call the syncLicenses method.
     /// </summary>
-    public class SyncLicensesRequestBuilder : BaseCliRequestBuilder 
+    public class SyncLicensesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Syncs licenses associated with a specific appleVolumePurchaseProgramToken

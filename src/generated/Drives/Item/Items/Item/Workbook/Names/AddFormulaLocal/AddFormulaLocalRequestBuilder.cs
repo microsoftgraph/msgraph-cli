@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.AddFormulaLocal {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.AddFormulaLocal
+{
     /// <summary>
     /// Provides operations to call the addFormulaLocal method.
     /// </summary>
-    public class AddFormulaLocalRequestBuilder : BaseCliRequestBuilder 
+    public class AddFormulaLocalRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Adds a new name to the collection of the given scope using the user&apos;s locale for the formula.

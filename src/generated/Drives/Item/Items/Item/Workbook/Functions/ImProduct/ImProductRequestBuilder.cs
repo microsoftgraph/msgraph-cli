@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImProduct {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImProduct
+{
     /// <summary>
     /// Provides operations to call the imProduct method.
     /// </summary>
-    public class ImProductRequestBuilder : BaseCliRequestBuilder 
+    public class ImProductRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imProduct

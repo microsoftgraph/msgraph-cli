@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FactDouble {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FactDouble
+{
     /// <summary>
     /// Provides operations to call the factDouble method.
     /// </summary>
-    public class FactDoubleRequestBuilder : BaseCliRequestBuilder 
+    public class FactDoubleRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action factDouble

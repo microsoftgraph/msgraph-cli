@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Dist_Range {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Dist_Range
+{
     /// <summary>
     /// Provides operations to call the binom_Dist_Range method.
     /// </summary>
-    public class Binom_Dist_RangeRequestBuilder : BaseCliRequestBuilder 
+    public class Binom_Dist_RangeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action binom_Dist_Range

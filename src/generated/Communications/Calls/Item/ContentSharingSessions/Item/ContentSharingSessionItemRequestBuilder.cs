@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions.Item {
+namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions.Item
+{
     /// <summary>
     /// Provides operations to manage the contentSharingSessions property of the microsoft.graph.call entity.
     /// </summary>
-    public class ContentSharingSessionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ContentSharingSessionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property contentSharingSessions for communications

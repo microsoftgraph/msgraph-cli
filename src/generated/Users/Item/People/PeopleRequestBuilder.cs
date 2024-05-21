@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.People {
+namespace ApiSdk.Users.Item.People
+{
     /// <summary>
     /// Provides operations to manage the people property of the microsoft.graph.user entity.
     /// </summary>
-    public class PeopleRequestBuilder : BaseCliRequestBuilder 
+    public class PeopleRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the people property of the microsoft.graph.user entity.
@@ -51,14 +52,13 @@ namespace ApiSdk.Users.Item.People {
             return command;
         }
         /// <summary>
-        /// Retrieve a collection of person objects ordered by their relevance to the user, which is determined by the user&apos;s communication and collaboration patterns, and business relationships. You can get this information via the People API. For examples, see the Examples section and the article Use the People API to get information about the people most relevant to you.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-people?view=graph-rest-1.0" />
+        /// People that are relevant to the user. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a collection of person objects ordered by their relevance to the user, which is determined by the user's communication and collaboration patterns, and business relationships. You can get this information via the People API. For examples, see the Examples section and the article Use the People API to get information about the people most relevant to you.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-people?view=graph-rest-1.0";
+            command.Description = "People that are relevant to the user. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -133,7 +133,9 @@ namespace ApiSdk.Users.Item.People {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -159,7 +161,7 @@ namespace ApiSdk.Users.Item.People {
         {
         }
         /// <summary>
-        /// Retrieve a collection of person objects ordered by their relevance to the user, which is determined by the user&apos;s communication and collaboration patterns, and business relationships. You can get this information via the People API. For examples, see the Examples section and the article Use the People API to get information about the people most relevant to you.
+        /// People that are relevant to the user. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -178,7 +180,7 @@ namespace ApiSdk.Users.Item.People {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a collection of person objects ordered by their relevance to the user, which is determined by the user&apos;s communication and collaboration patterns, and business relationships. You can get this information via the People API. For examples, see the Examples section and the article Use the People API to get information about the people most relevant to you.
+        /// People that are relevant to the user. Read-only. Nullable.
         /// </summary>
         public class PeopleRequestBuilderGetQueryParameters 
         {

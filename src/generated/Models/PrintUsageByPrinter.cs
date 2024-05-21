@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class PrintUsageByPrinter : PrintUsage, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class PrintUsageByPrinter : PrintUsage, IParsable
+    #pragma warning restore CS1591
     {
-        /// <summary>The printerId property</summary>
+        /// <summary>The ID of the printer represented by these statistics.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PrinterId { get; set; }
@@ -48,8 +51,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"printerId", n => { PrinterId = n.GetStringValue(); } },
-                {"printerName", n => { PrinterName = n.GetStringValue(); } },
+                { "printerId", n => { PrinterId = n.GetStringValue(); } },
+                { "printerName", n => { PrinterName = n.GetStringValue(); } },
             };
         }
         /// <summary>

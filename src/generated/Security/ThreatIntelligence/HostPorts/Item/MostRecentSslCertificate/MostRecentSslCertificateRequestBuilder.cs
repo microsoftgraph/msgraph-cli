@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostPorts.Item.MostRecentSslCertificate {
+namespace ApiSdk.Security.ThreatIntelligence.HostPorts.Item.MostRecentSslCertificate
+{
     /// <summary>
     /// Provides operations to manage the mostRecentSslCertificate property of the microsoft.graph.security.hostPort entity.
     /// </summary>
-    public class MostRecentSslCertificateRequestBuilder : BaseCliRequestBuilder 
+    public class MostRecentSslCertificateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The most recent sslCertificate used to communicate on the port.

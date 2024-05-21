@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
-    public class UploadClientCertificatePostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate
+{
+    #pragma warning disable CS1591
+    public class UploadClientCertificatePostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -50,8 +53,8 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"password", n => { Password = n.GetStringValue(); } },
-                {"pkcs12Value", n => { Pkcs12Value = n.GetStringValue(); } },
+                { "password", n => { Password = n.GetStringValue(); } },
+                { "pkcs12Value", n => { Pkcs12Value = n.GetStringValue(); } },
             };
         }
         /// <summary>

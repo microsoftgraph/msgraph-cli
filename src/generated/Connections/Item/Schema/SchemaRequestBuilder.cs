@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Connections.Item.Schema {
+namespace ApiSdk.Connections.Item.Schema
+{
     /// <summary>
     /// Provides operations to manage the schema property of the microsoft.graph.externalConnectors.externalConnection entity.
     /// </summary>
-    public class SchemaRequestBuilder : BaseCliRequestBuilder 
+    public class SchemaRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Read the properties and relationships of a schema object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-schema-get?view=graph-rest-1.0" />
+        /// Get schema from connections
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a schema object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-schema-get?view=graph-rest-1.0";
+            command.Description = "Get schema from connections";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -74,14 +74,13 @@ namespace ApiSdk.Connections.Item.Schema {
             return command;
         }
         /// <summary>
-        /// Create a new schema object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-patch-schema?view=graph-rest-1.0" />
+        /// Update the navigation property schema in connections
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Create a new schema object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-patch-schema?view=graph-rest-1.0";
+            command.Description = "Update the navigation property schema in connections";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -140,7 +139,7 @@ namespace ApiSdk.Connections.Item.Schema {
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a schema object.
+        /// Get schema from connections
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +158,7 @@ namespace ApiSdk.Connections.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new schema object.
+        /// Update the navigation property schema in connections
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -180,7 +179,7 @@ namespace ApiSdk.Connections.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a schema object.
+        /// Get schema from connections
         /// </summary>
         public class SchemaRequestBuilderGetQueryParameters 
         {

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Or {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Or
+{
     /// <summary>
     /// Provides operations to call the or method.
     /// </summary>
-    public class OrRequestBuilder : BaseCliRequestBuilder 
+    public class OrRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action or

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.External.Connections.Item.Operations.Item {
+namespace ApiSdk.External.Connections.Item.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.externalConnectors.externalConnection entity.
     /// </summary>
-    public class ConnectionOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class ConnectionOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for external

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings
+{
     /// <summary>
     /// Provides operations to manage the settings property of the microsoft.graph.entitlementManagement entity.
     /// </summary>
-    public class SettingsRequestBuilder : BaseCliRequestBuilder 
+    public class SettingsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property settings for identityGovernance

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.IdentityGovernance {
-    public class IdentityGovernance : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models.IdentityGovernance
+{
+    #pragma warning disable CS1591
+    public class IdentityGovernance : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The accessReviews property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -90,13 +93,13 @@ namespace ApiSdk.Models.IdentityGovernance {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"accessReviews", n => { AccessReviews = n.GetObjectValue<ApiSdk.Models.AccessReviewSet>(ApiSdk.Models.AccessReviewSet.CreateFromDiscriminatorValue); } },
-                {"appConsent", n => { AppConsent = n.GetObjectValue<ApiSdk.Models.AppConsentApprovalRoute>(ApiSdk.Models.AppConsentApprovalRoute.CreateFromDiscriminatorValue); } },
-                {"entitlementManagement", n => { EntitlementManagement = n.GetObjectValue<ApiSdk.Models.EntitlementManagement>(ApiSdk.Models.EntitlementManagement.CreateFromDiscriminatorValue); } },
-                {"lifecycleWorkflows", n => { LifecycleWorkflows = n.GetObjectValue<LifecycleWorkflowsContainer>(LifecycleWorkflowsContainer.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"privilegedAccess", n => { PrivilegedAccess = n.GetObjectValue<ApiSdk.Models.PrivilegedAccessRoot>(ApiSdk.Models.PrivilegedAccessRoot.CreateFromDiscriminatorValue); } },
-                {"termsOfUse", n => { TermsOfUse = n.GetObjectValue<ApiSdk.Models.TermsOfUseContainer>(ApiSdk.Models.TermsOfUseContainer.CreateFromDiscriminatorValue); } },
+                { "accessReviews", n => { AccessReviews = n.GetObjectValue<ApiSdk.Models.AccessReviewSet>(ApiSdk.Models.AccessReviewSet.CreateFromDiscriminatorValue); } },
+                { "appConsent", n => { AppConsent = n.GetObjectValue<ApiSdk.Models.AppConsentApprovalRoute>(ApiSdk.Models.AppConsentApprovalRoute.CreateFromDiscriminatorValue); } },
+                { "entitlementManagement", n => { EntitlementManagement = n.GetObjectValue<ApiSdk.Models.EntitlementManagement>(ApiSdk.Models.EntitlementManagement.CreateFromDiscriminatorValue); } },
+                { "lifecycleWorkflows", n => { LifecycleWorkflows = n.GetObjectValue<LifecycleWorkflowsContainer>(LifecycleWorkflowsContainer.CreateFromDiscriminatorValue); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "privilegedAccess", n => { PrivilegedAccess = n.GetObjectValue<ApiSdk.Models.PrivilegedAccessRoot>(ApiSdk.Models.PrivilegedAccessRoot.CreateFromDiscriminatorValue); } },
+                { "termsOfUse", n => { TermsOfUse = n.GetObjectValue<ApiSdk.Models.TermsOfUseContainer>(ApiSdk.Models.TermsOfUseContainer.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

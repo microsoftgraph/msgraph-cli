@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Windows Hello for Business settings lets users access their devices using a gesture, such as biometric authentication, or a PIN. Configure settings for enrolled Windows 10, Windows 10 Mobile and later.
     /// </summary>
-    public class DeviceEnrollmentWindowsHelloForBusinessConfiguration : DeviceEnrollmentConfiguration, IParsable 
+    public class DeviceEnrollmentWindowsHelloForBusinessConfiguration : DeviceEnrollmentConfiguration, IParsable
     {
         /// <summary>Possible values of a property</summary>
         public Enablement? EnhancedBiometricsState { get; set; }
@@ -59,18 +60,18 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"enhancedBiometricsState", n => { EnhancedBiometricsState = n.GetEnumValue<Enablement>(); } },
-                {"pinExpirationInDays", n => { PinExpirationInDays = n.GetIntValue(); } },
-                {"pinLowercaseCharactersUsage", n => { PinLowercaseCharactersUsage = n.GetEnumValue<WindowsHelloForBusinessPinUsage>(); } },
-                {"pinMaximumLength", n => { PinMaximumLength = n.GetIntValue(); } },
-                {"pinMinimumLength", n => { PinMinimumLength = n.GetIntValue(); } },
-                {"pinPreviousBlockCount", n => { PinPreviousBlockCount = n.GetIntValue(); } },
-                {"pinSpecialCharactersUsage", n => { PinSpecialCharactersUsage = n.GetEnumValue<WindowsHelloForBusinessPinUsage>(); } },
-                {"pinUppercaseCharactersUsage", n => { PinUppercaseCharactersUsage = n.GetEnumValue<WindowsHelloForBusinessPinUsage>(); } },
-                {"remotePassportEnabled", n => { RemotePassportEnabled = n.GetBoolValue(); } },
-                {"securityDeviceRequired", n => { SecurityDeviceRequired = n.GetBoolValue(); } },
-                {"state", n => { State = n.GetEnumValue<Enablement>(); } },
-                {"unlockWithBiometricsEnabled", n => { UnlockWithBiometricsEnabled = n.GetBoolValue(); } },
+                { "enhancedBiometricsState", n => { EnhancedBiometricsState = n.GetEnumValue<Enablement>(); } },
+                { "pinExpirationInDays", n => { PinExpirationInDays = n.GetIntValue(); } },
+                { "pinLowercaseCharactersUsage", n => { PinLowercaseCharactersUsage = n.GetEnumValue<WindowsHelloForBusinessPinUsage>(); } },
+                { "pinMaximumLength", n => { PinMaximumLength = n.GetIntValue(); } },
+                { "pinMinimumLength", n => { PinMinimumLength = n.GetIntValue(); } },
+                { "pinPreviousBlockCount", n => { PinPreviousBlockCount = n.GetIntValue(); } },
+                { "pinSpecialCharactersUsage", n => { PinSpecialCharactersUsage = n.GetEnumValue<WindowsHelloForBusinessPinUsage>(); } },
+                { "pinUppercaseCharactersUsage", n => { PinUppercaseCharactersUsage = n.GetEnumValue<WindowsHelloForBusinessPinUsage>(); } },
+                { "remotePassportEnabled", n => { RemotePassportEnabled = n.GetBoolValue(); } },
+                { "securityDeviceRequired", n => { SecurityDeviceRequired = n.GetBoolValue(); } },
+                { "state", n => { State = n.GetEnumValue<Enablement>(); } },
+                { "unlockWithBiometricsEnabled", n => { UnlockWithBiometricsEnabled = n.GetBoolValue(); } },
             };
         }
         /// <summary>

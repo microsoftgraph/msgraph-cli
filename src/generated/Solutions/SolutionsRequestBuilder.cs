@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions {
+namespace ApiSdk.Solutions
+{
     /// <summary>
     /// Provides operations to manage the solutionsRoot singleton.
     /// </summary>
-    public class SolutionsRequestBuilder : BaseCliRequestBuilder 
+    public class SolutionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the bookingBusinesses property of the microsoft.graph.solutionsRoot entity.

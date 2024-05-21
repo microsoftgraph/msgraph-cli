@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item
+{
     /// <summary>
     /// Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.
     /// </summary>
-    public class NotebookItemRequestBuilder : BaseCliRequestBuilder 
+    public class NotebookItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the copyNotebook method.
@@ -88,14 +89,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a notebook object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/notebook-get?view=graph-rest-1.0" />
+        /// The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a notebook object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/notebook-get?view=graph-rest-1.0";
+            command.Description = "The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -303,7 +303,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a notebook object.
+        /// The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -343,7 +343,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a notebook object.
+        /// The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
         /// </summary>
         public class NotebookItemRequestBuilderGetQueryParameters 
         {

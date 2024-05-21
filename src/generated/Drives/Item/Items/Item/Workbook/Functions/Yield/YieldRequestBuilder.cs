@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Yield {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Yield
+{
     /// <summary>
     /// Provides operations to call the yield method.
     /// </summary>
-    public class YieldRequestBuilder : BaseCliRequestBuilder 
+    public class YieldRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action yield

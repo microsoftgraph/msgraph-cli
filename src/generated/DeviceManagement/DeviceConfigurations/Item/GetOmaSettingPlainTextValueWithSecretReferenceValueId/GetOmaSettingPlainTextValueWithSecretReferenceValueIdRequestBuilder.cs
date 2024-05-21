@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTextValueWithSecretReferenceValueId {
+namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTextValueWithSecretReferenceValueId
+{
     /// <summary>
     /// Provides operations to call the getOmaSettingPlainTextValue method.
     /// </summary>
-    public class GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder : BaseCliRequestBuilder 
+    public class GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function getOmaSettingPlainTextValue

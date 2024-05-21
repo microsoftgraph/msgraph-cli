@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Connections.Item.Groups {
+namespace ApiSdk.Connections.Item.Groups
+{
     /// <summary>
     /// Provides operations to manage the groups property of the microsoft.graph.externalConnectors.externalConnection entity.
     /// </summary>
-    public class GroupsRequestBuilder : BaseCliRequestBuilder 
+    public class GroupsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the groups property of the microsoft.graph.externalConnectors.externalConnection entity.
@@ -55,14 +56,13 @@ namespace ApiSdk.Connections.Item.Groups {
             return command;
         }
         /// <summary>
-        /// Create a new externalGroup object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-post-groups?view=graph-rest-1.0" />
+        /// Create new navigation property to groups for connections
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new externalGroup object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-post-groups?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to groups for connections";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -107,13 +107,13 @@ namespace ApiSdk.Connections.Item.Groups {
             return command;
         }
         /// <summary>
-        /// Get an externalGroup object.
+        /// Get groups from connections
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get an externalGroup object.";
+            command.Description = "Get groups from connections";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -195,7 +195,9 @@ namespace ApiSdk.Connections.Item.Groups {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -221,7 +223,7 @@ namespace ApiSdk.Connections.Item.Groups {
         {
         }
         /// <summary>
-        /// Get an externalGroup object.
+        /// Get groups from connections
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -240,7 +242,7 @@ namespace ApiSdk.Connections.Item.Groups {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new externalGroup object.
+        /// Create new navigation property to groups for connections
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -261,7 +263,7 @@ namespace ApiSdk.Connections.Item.Groups {
             return requestInfo;
         }
         /// <summary>
-        /// Get an externalGroup object.
+        /// Get groups from connections
         /// </summary>
         public class GroupsRequestBuilderGetQueryParameters 
         {

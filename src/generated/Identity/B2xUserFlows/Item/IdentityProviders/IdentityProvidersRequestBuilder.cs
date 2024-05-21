@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
+namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders
+{
     /// <summary>
     /// Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
     /// </summary>
-    public class IdentityProvidersRequestBuilder : BaseCliRequestBuilder 
+    public class IdentityProvidersRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
@@ -141,7 +142,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties used to assign an iOS LOB mobile app to a group.
     /// </summary>
-    public class IosLobAppAssignmentSettings : MobileAppAssignmentSettings, IParsable 
+    public class IosLobAppAssignmentSettings : MobileAppAssignmentSettings, IParsable
     {
         /// <summary>When TRUE, indicates that the app can be uninstalled by the user. When FALSE, indicates that the app cannot be uninstalled by the user. By default, this property is set to null which internally is treated as TRUE.</summary>
         public bool? IsRemovable { get; set; }
@@ -47,9 +48,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"isRemovable", n => { IsRemovable = n.GetBoolValue(); } },
-                {"uninstallOnDeviceRemoval", n => { UninstallOnDeviceRemoval = n.GetBoolValue(); } },
-                {"vpnConfigurationId", n => { VpnConfigurationId = n.GetStringValue(); } },
+                { "isRemovable", n => { IsRemovable = n.GetBoolValue(); } },
+                { "uninstallOnDeviceRemoval", n => { UninstallOnDeviceRemoval = n.GetBoolValue(); } },
+                { "vpnConfigurationId", n => { VpnConfigurationId = n.GetStringValue(); } },
             };
         }
         /// <summary>

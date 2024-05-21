@@ -6,6 +6,8 @@ using ApiSdk.DirectoryNamespace.DeletedItems;
 using ApiSdk.DirectoryNamespace.DeviceLocalCredentials;
 using ApiSdk.DirectoryNamespace.FederationConfigurations;
 using ApiSdk.DirectoryNamespace.OnPremisesSynchronization;
+using ApiSdk.DirectoryNamespace.Subscriptions;
+using ApiSdk.DirectoryNamespace.SubscriptionsWithCommerceSubscriptionId;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -21,11 +23,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace {
+namespace ApiSdk.DirectoryNamespace
+{
     /// <summary>
     /// Provides operations to manage the directory singleton.
     /// </summary>
-    public class DirectoryRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.
@@ -315,6 +318,52 @@ namespace ApiSdk.DirectoryNamespace {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the subscriptions property of the microsoft.graph.directory entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSubscriptionsNavCommand()
+        {
+            var command = new Command("subscriptions");
+            command.Description = "Provides operations to manage the subscriptions property of the microsoft.graph.directory entity.";
+            var builder = new SubscriptionsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the subscriptions property of the microsoft.graph.directory entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSubscriptionsWithCommerceSubscriptionIdRbCommand()
+        {
+            var command = new Command("subscriptions-with-commerce-subscription-id");
+            command.Description = "Provides operations to manage the subscriptions property of the microsoft.graph.directory entity.";
+            var builder = new SubscriptionsWithCommerceSubscriptionIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

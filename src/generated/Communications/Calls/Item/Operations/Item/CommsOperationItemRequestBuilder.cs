@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.Operations.Item {
+namespace ApiSdk.Communications.Calls.Item.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.call entity.
     /// </summary>
-    public class CommsOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class CommsOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for communications

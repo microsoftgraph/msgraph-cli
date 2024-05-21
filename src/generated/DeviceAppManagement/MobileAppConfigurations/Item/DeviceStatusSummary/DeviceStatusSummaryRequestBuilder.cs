@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSummary {
+namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSummary
+{
     /// <summary>
     /// Provides operations to manage the deviceStatusSummary property of the microsoft.graph.managedDeviceMobileAppConfiguration entity.
     /// </summary>
-    public class DeviceStatusSummaryRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceStatusSummaryRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property deviceStatusSummary for deviceAppManagement

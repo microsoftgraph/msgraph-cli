@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
+namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item
+{
     /// <summary>
     /// Provides operations to manage the attachments property of the microsoft.graph.serviceUpdateMessage entity.
     /// </summary>
-    public class ServiceAnnouncementAttachmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class ServiceAnnouncementAttachmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the admin entity.
@@ -31,6 +32,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
             command.Description = "Provides operations to manage the media for the admin entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

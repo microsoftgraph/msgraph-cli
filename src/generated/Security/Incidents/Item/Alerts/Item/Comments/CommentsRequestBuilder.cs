@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Incidents.Item.Alerts.Item.Comments {
+namespace ApiSdk.Security.Incidents.Item.Alerts.Item.Comments
+{
     /// <summary>
     /// Builds and executes requests for operations under \security\incidents\{incident-id}\alerts\{alert-id}\comments
     /// </summary>
-    public class CommentsRequestBuilder : BaseCliRequestBuilder 
+    public class CommentsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to count the resources in the collection.

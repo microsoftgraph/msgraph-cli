@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.Axes {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.Axes
+{
     /// <summary>
     /// Provides operations to manage the axes property of the microsoft.graph.workbookChart entity.
     /// </summary>
-    public class AxesRequestBuilder : BaseCliRequestBuilder 
+    public class AxesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property axes for drives

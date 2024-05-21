@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Device protection status entity.
     /// </summary>
-    public class WindowsProtectionState : Entity, IParsable 
+    public class WindowsProtectionState : Entity, IParsable
     {
         /// <summary>Current anti malware version</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -106,27 +107,27 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"antiMalwareVersion", n => { AntiMalwareVersion = n.GetStringValue(); } },
-                {"detectedMalwareState", n => { DetectedMalwareState = n.GetCollectionOfObjectValues<WindowsDeviceMalwareState>(WindowsDeviceMalwareState.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"deviceState", n => { DeviceState = n.GetEnumValue<WindowsDeviceHealthState>(); } },
-                {"engineVersion", n => { EngineVersion = n.GetStringValue(); } },
-                {"fullScanOverdue", n => { FullScanOverdue = n.GetBoolValue(); } },
-                {"fullScanRequired", n => { FullScanRequired = n.GetBoolValue(); } },
-                {"isVirtualMachine", n => { IsVirtualMachine = n.GetBoolValue(); } },
-                {"lastFullScanDateTime", n => { LastFullScanDateTime = n.GetDateTimeOffsetValue(); } },
-                {"lastFullScanSignatureVersion", n => { LastFullScanSignatureVersion = n.GetStringValue(); } },
-                {"lastQuickScanDateTime", n => { LastQuickScanDateTime = n.GetDateTimeOffsetValue(); } },
-                {"lastQuickScanSignatureVersion", n => { LastQuickScanSignatureVersion = n.GetStringValue(); } },
-                {"lastReportedDateTime", n => { LastReportedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"malwareProtectionEnabled", n => { MalwareProtectionEnabled = n.GetBoolValue(); } },
-                {"networkInspectionSystemEnabled", n => { NetworkInspectionSystemEnabled = n.GetBoolValue(); } },
-                {"productStatus", n => { ProductStatus = n.GetEnumValue<WindowsDefenderProductStatus>(); } },
-                {"quickScanOverdue", n => { QuickScanOverdue = n.GetBoolValue(); } },
-                {"realTimeProtectionEnabled", n => { RealTimeProtectionEnabled = n.GetBoolValue(); } },
-                {"rebootRequired", n => { RebootRequired = n.GetBoolValue(); } },
-                {"signatureUpdateOverdue", n => { SignatureUpdateOverdue = n.GetBoolValue(); } },
-                {"signatureVersion", n => { SignatureVersion = n.GetStringValue(); } },
-                {"tamperProtectionEnabled", n => { TamperProtectionEnabled = n.GetBoolValue(); } },
+                { "antiMalwareVersion", n => { AntiMalwareVersion = n.GetStringValue(); } },
+                { "detectedMalwareState", n => { DetectedMalwareState = n.GetCollectionOfObjectValues<WindowsDeviceMalwareState>(WindowsDeviceMalwareState.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "deviceState", n => { DeviceState = n.GetEnumValue<WindowsDeviceHealthState>(); } },
+                { "engineVersion", n => { EngineVersion = n.GetStringValue(); } },
+                { "fullScanOverdue", n => { FullScanOverdue = n.GetBoolValue(); } },
+                { "fullScanRequired", n => { FullScanRequired = n.GetBoolValue(); } },
+                { "isVirtualMachine", n => { IsVirtualMachine = n.GetBoolValue(); } },
+                { "lastFullScanDateTime", n => { LastFullScanDateTime = n.GetDateTimeOffsetValue(); } },
+                { "lastFullScanSignatureVersion", n => { LastFullScanSignatureVersion = n.GetStringValue(); } },
+                { "lastQuickScanDateTime", n => { LastQuickScanDateTime = n.GetDateTimeOffsetValue(); } },
+                { "lastQuickScanSignatureVersion", n => { LastQuickScanSignatureVersion = n.GetStringValue(); } },
+                { "lastReportedDateTime", n => { LastReportedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "malwareProtectionEnabled", n => { MalwareProtectionEnabled = n.GetBoolValue(); } },
+                { "networkInspectionSystemEnabled", n => { NetworkInspectionSystemEnabled = n.GetBoolValue(); } },
+                { "productStatus", n => { ProductStatus = n.GetEnumValue<WindowsDefenderProductStatus>(); } },
+                { "quickScanOverdue", n => { QuickScanOverdue = n.GetBoolValue(); } },
+                { "realTimeProtectionEnabled", n => { RealTimeProtectionEnabled = n.GetBoolValue(); } },
+                { "rebootRequired", n => { RebootRequired = n.GetBoolValue(); } },
+                { "signatureUpdateOverdue", n => { SignatureUpdateOverdue = n.GetBoolValue(); } },
+                { "signatureVersion", n => { SignatureVersion = n.GetStringValue(); } },
+                { "tamperProtectionEnabled", n => { TamperProtectionEnabled = n.GetBoolValue(); } },
             };
         }
         /// <summary>

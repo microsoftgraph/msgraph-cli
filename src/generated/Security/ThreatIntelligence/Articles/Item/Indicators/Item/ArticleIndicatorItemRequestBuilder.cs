@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Articles.Item.Indicators.Item {
+namespace ApiSdk.Security.ThreatIntelligence.Articles.Item.Indicators.Item
+{
     /// <summary>
     /// Provides operations to manage the indicators property of the microsoft.graph.security.article entity.
     /// </summary>
-    public class ArticleIndicatorItemRequestBuilder : BaseCliRequestBuilder 
+    public class ArticleIndicatorItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Indicators related to this article.

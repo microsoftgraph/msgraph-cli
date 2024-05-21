@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Presences.Item.SetStatusMessage {
+namespace ApiSdk.Communications.Presences.Item.SetStatusMessage
+{
     /// <summary>
     /// Provides operations to call the setStatusMessage method.
     /// </summary>
-    public class SetStatusMessageRequestBuilder : BaseCliRequestBuilder 
+    public class SetStatusMessageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Set a presence status message for a user. An optional expiration date and time can be supplied.

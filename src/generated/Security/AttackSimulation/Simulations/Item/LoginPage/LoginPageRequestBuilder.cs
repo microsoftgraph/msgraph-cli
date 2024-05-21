@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.Simulations.Item.LoginPage {
+namespace ApiSdk.Security.AttackSimulation.Simulations.Item.LoginPage
+{
     /// <summary>
     /// Provides operations to manage the loginPage property of the microsoft.graph.simulation entity.
     /// </summary>
-    public class LoginPageRequestBuilder : BaseCliRequestBuilder 
+    public class LoginPageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The login page associated with a simulation during its creation.

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
+namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item
+{
     /// <summary>
     /// Provides operations to manage the appConsentRequests property of the microsoft.graph.appConsentApprovalRoute entity.
     /// </summary>
-    public class AppConsentRequestItemRequestBuilder : BaseCliRequestBuilder 
+    public class AppConsentRequestItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property appConsentRequests for identityGovernance

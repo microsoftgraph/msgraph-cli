@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.Microsoft365Apps.InstallationOptions {
+namespace ApiSdk.Admin.Microsoft365Apps.InstallationOptions
+{
     /// <summary>
     /// Provides operations to manage the installationOptions property of the microsoft.graph.adminMicrosoft365Apps entity.
     /// </summary>
-    public class InstallationOptionsRequestBuilder : BaseCliRequestBuilder 
+    public class InstallationOptionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property installationOptions for admin

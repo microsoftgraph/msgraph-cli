@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWidthWithHeightWithFittingMode {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWidthWithHeightWithFittingMode
+{
     /// <summary>
     /// Provides operations to call the image method.
     /// </summary>
-    public class ImageWithWidthWithHeightWithFittingModeRequestBuilder : BaseCliRequestBuilder 
+    public class ImageWithWidthWithHeightWithFittingModeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function image

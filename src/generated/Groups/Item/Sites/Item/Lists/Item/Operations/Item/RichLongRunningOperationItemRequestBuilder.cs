@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Operations.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.list entity.
     /// </summary>
-    public class RichLongRunningOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class RichLongRunningOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for groups

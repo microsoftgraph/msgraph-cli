@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.SslCertificates.Item {
+namespace ApiSdk.Security.ThreatIntelligence.SslCertificates.Item
+{
     /// <summary>
     /// Provides operations to manage the sslCertificates property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class SslCertificateItemRequestBuilder : BaseCliRequestBuilder 
+    public class SslCertificateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property sslCertificates for security

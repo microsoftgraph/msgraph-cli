@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.FilterByCurrentUserWithOn {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.FilterByCurrentUserWithOn
+{
     /// <summary>
     /// Provides operations to call the filterByCurrentUser method.
     /// </summary>
-    public class FilterByCurrentUserWithOnRequestBuilder : BaseCliRequestBuilder 
+    public class FilterByCurrentUserWithOnRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function filterByCurrentUser
+        /// In Microsoft Entra Entitlement Management, retrieve a list of accessPackage objects filtered on the signed-in user.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function filterByCurrentUser";
+            command.Description = "In Microsoft Entra Entitlement Management, retrieve a list of accessPackage objects filtered on the signed-in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0";
             var onOption = new Option<string>("--on", description: "Usage: on='{on}'") {
             };
             onOption.IsRequired = true;
@@ -108,7 +110,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.FilterB
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -134,7 +138,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.FilterB
         {
         }
         /// <summary>
-        /// Invoke function filterByCurrentUser
+        /// In Microsoft Entra Entitlement Management, retrieve a list of accessPackage objects filtered on the signed-in user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -153,7 +157,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.FilterB
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function filterByCurrentUser
+        /// In Microsoft Entra Entitlement Management, retrieve a list of accessPackage objects filtered on the signed-in user.
         /// </summary>
         public class FilterByCurrentUserWithOnRequestBuilderGetQueryParameters 
         {

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item {
+namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item
+{
     /// <summary>
     /// Provides operations to manage the history property of the microsoft.graph.riskyUser entity.
     /// </summary>
-    public class RiskyUserHistoryItemItemRequestBuilder : BaseCliRequestBuilder 
+    public class RiskyUserHistoryItemItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property history for identityProtection

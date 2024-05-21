@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
+namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item
+{
     /// <summary>
     /// Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class ManagedAppStatusItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedAppStatusItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property managedAppStatuses for deviceAppManagement
@@ -56,14 +57,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppStatus object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappstatus-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the managedAppStatusRaw object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappstatusraw-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the managedAppStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappstatus-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the managedAppStatusRaw object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappstatusraw-get?view=graph-rest-1.0";
             var managedAppStatusIdOption = new Option<string>("--managed-app-status-id", description: "The unique identifier of managedAppStatus") {
             };
             managedAppStatusIdOption.IsRequired = true;
@@ -193,7 +194,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppStatus object.
+        /// Read properties and relationships of the managedAppStatusRaw object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +234,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppStatus object.
+        /// Read properties and relationships of the managedAppStatusRaw object.
         /// </summary>
         public class ManagedAppStatusItemRequestBuilderGetQueryParameters 
         {

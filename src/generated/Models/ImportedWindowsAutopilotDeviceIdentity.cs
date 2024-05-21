@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Imported windows autopilot devices.
     /// </summary>
-    public class ImportedWindowsAutopilotDeviceIdentity : Entity, IParsable 
+    public class ImportedWindowsAutopilotDeviceIdentity : Entity, IParsable
     {
         /// <summary>UPN of the user the device will be assigned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -84,13 +85,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"assignedUserPrincipalName", n => { AssignedUserPrincipalName = n.GetStringValue(); } },
-                {"groupTag", n => { GroupTag = n.GetStringValue(); } },
-                {"hardwareIdentifier", n => { HardwareIdentifier = n.GetByteArrayValue(); } },
-                {"importId", n => { ImportId = n.GetStringValue(); } },
-                {"productKey", n => { ProductKey = n.GetStringValue(); } },
-                {"serialNumber", n => { SerialNumber = n.GetStringValue(); } },
-                {"state", n => { State = n.GetObjectValue<ImportedWindowsAutopilotDeviceIdentityState>(ImportedWindowsAutopilotDeviceIdentityState.CreateFromDiscriminatorValue); } },
+                { "assignedUserPrincipalName", n => { AssignedUserPrincipalName = n.GetStringValue(); } },
+                { "groupTag", n => { GroupTag = n.GetStringValue(); } },
+                { "hardwareIdentifier", n => { HardwareIdentifier = n.GetByteArrayValue(); } },
+                { "importId", n => { ImportId = n.GetStringValue(); } },
+                { "productKey", n => { ProductKey = n.GetStringValue(); } },
+                { "serialNumber", n => { SerialNumber = n.GetStringValue(); } },
+                { "state", n => { State = n.GetObjectValue<ImportedWindowsAutopilotDeviceIdentityState>(ImportedWindowsAutopilotDeviceIdentityState.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Percentile_Inc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Percentile_Inc
+{
     /// <summary>
     /// Provides operations to call the percentile_Inc method.
     /// </summary>
-    public class Percentile_IncRequestBuilder : BaseCliRequestBuilder 
+    public class Percentile_IncRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action percentile_Inc

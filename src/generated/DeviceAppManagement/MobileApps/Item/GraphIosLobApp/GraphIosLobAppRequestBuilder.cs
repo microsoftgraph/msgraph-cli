@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp
+{
     /// <summary>
     /// Casts the previous resource to iosLobApp.
     /// </summary>
-    public class GraphIosLobAppRequestBuilder : BaseCliRequestBuilder 
+    public class GraphIosLobAppRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Connections.Item.Items.Item.Activities.Item.PerformedBy {
+namespace ApiSdk.Connections.Item.Items.Item.Activities.Item.PerformedBy
+{
     /// <summary>
     /// Provides operations to manage the performedBy property of the microsoft.graph.externalConnectors.externalActivity entity.
     /// </summary>
-    public class PerformedByRequestBuilder : BaseCliRequestBuilder 
+    public class PerformedByRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Represents an identity used to identify who is responsible for the activity.

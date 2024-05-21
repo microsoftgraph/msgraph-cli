@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.ResourceRoleScopes.Item {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.ResourceRoleScopes.Item
+{
     /// <summary>
     /// Provides operations to manage the resourceRoleScopes property of the microsoft.graph.accessPackage entity.
     /// </summary>
-    public class AccessPackageResourceRoleScopeItemRequestBuilder : BaseCliRequestBuilder 
+    public class AccessPackageResourceRoleScopeItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes.

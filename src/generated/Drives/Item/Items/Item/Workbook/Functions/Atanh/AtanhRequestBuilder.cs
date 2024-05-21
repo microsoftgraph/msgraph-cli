@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Atanh {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Atanh
+{
     /// <summary>
     /// Provides operations to call the atanh method.
     /// </summary>
-    public class AtanhRequestBuilder : BaseCliRequestBuilder 
+    public class AtanhRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action atanh

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
+namespace ApiSdk.Users.Item.Settings.ShiftPreferences
+{
     /// <summary>
     /// Provides operations to manage the shiftPreferences property of the microsoft.graph.userSettings entity.
     /// </summary>
-    public class ShiftPreferencesRequestBuilder : BaseCliRequestBuilder 
+    public class ShiftPreferencesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property shiftPreferences for users

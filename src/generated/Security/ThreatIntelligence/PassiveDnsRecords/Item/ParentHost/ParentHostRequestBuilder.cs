@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.PassiveDnsRecords.Item.ParentHost {
+namespace ApiSdk.Security.ThreatIntelligence.PassiveDnsRecords.Item.ParentHost
+{
     /// <summary>
     /// Provides operations to manage the parentHost property of the microsoft.graph.security.passiveDnsRecord entity.
     /// </summary>
-    public class ParentHostRequestBuilder : BaseCliRequestBuilder 
+    public class ParentHostRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The parent host related to this passiveDnsRecord entry. Generally, this is the value that you can search to discover this passiveDnsRecord value.

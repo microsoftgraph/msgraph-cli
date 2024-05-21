@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Mround {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Mround
+{
     /// <summary>
     /// Provides operations to call the mround method.
     /// </summary>
-    public class MroundRequestBuilder : BaseCliRequestBuilder 
+    public class MroundRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action mround

@@ -23,11 +23,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Shares.Item {
+namespace ApiSdk.Shares.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of sharedDriveItem entities.
     /// </summary>
-    public class SharedDriveItemItemRequestBuilder : BaseCliRequestBuilder 
+    public class SharedDriveItemItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.

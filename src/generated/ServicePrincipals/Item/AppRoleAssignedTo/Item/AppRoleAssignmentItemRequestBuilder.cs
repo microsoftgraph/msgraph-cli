@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
+namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item
+{
     /// <summary>
     /// Provides operations to manage the appRoleAssignedTo property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes an appRoleAssignment that a user, group, or client service principal has been granted for a resource service principal.
@@ -63,13 +64,14 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
             return command;
         }
         /// <summary>
-        /// App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.
+        /// Read the properties and relationships of an appRoleAssignment object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/approleassignment-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.";
+            command.Description = "Read the properties and relationships of an appRoleAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/approleassignment-get?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -211,7 +213,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
             return requestInfo;
         }
         /// <summary>
-        /// App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.
+        /// Read the properties and relationships of an appRoleAssignment object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +253,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
             return requestInfo;
         }
         /// <summary>
-        /// App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.
+        /// Read the properties and relationships of an appRoleAssignment object.
         /// </summary>
         public class AppRoleAssignmentItemRequestBuilderGetQueryParameters 
         {

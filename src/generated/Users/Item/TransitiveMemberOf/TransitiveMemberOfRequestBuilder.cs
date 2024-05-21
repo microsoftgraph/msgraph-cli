@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.TransitiveMemberOf {
+namespace ApiSdk.Users.Item.TransitiveMemberOf
+{
     /// <summary>
     /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.user entity.
     /// </summary>
-    public class TransitiveMemberOfRequestBuilder : BaseCliRequestBuilder 
+    public class TransitiveMemberOfRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.user entity.
@@ -127,14 +128,14 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf {
             return command;
         }
         /// <summary>
-        /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
+        /// Get groups, directory roles, and administrative units that the user is a member of through either direct or transitive membership.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The groups, including nested groups, and directory roles that a user is a member of. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-transitivememberof?view=graph-rest-1.0";
+            command.Description = "Get groups, directory roles, and administrative units that the user is a member of through either direct or transitive membership.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-transitivememberof?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -223,7 +224,9 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -249,7 +252,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf {
         {
         }
         /// <summary>
-        /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
+        /// Get groups, directory roles, and administrative units that the user is a member of through either direct or transitive membership.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +271,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf {
             return requestInfo;
         }
         /// <summary>
-        /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
+        /// Get groups, directory roles, and administrative units that the user is a member of through either direct or transitive membership.
         /// </summary>
         public class TransitiveMemberOfRequestBuilderGetQueryParameters 
         {

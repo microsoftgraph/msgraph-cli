@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.AppRoleAssignments.Item {
+namespace ApiSdk.Users.Item.AppRoleAssignments.Item
+{
     /// <summary>
     /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.user entity.
     /// </summary>
-    public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an appRoleAssignment that has been granted to a user.

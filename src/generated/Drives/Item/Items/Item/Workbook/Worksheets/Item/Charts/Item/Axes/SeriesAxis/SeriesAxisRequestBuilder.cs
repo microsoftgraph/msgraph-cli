@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.SeriesAxis {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.SeriesAxis
+{
     /// <summary>
     /// Provides operations to manage the seriesAxis property of the microsoft.graph.workbookChartAxes entity.
     /// </summary>
-    public class SeriesAxisRequestBuilder : BaseCliRequestBuilder 
+    public class SeriesAxisRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property seriesAxis for drives

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Power {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Power
+{
     /// <summary>
     /// Provides operations to call the power method.
     /// </summary>
-    public class PowerRequestBuilder : BaseCliRequestBuilder 
+    public class PowerRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action power

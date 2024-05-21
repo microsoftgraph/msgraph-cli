@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GeStep {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GeStep
+{
     /// <summary>
     /// Provides operations to call the geStep method.
     /// </summary>
-    public class GeStepRequestBuilder : BaseCliRequestBuilder 
+    public class GeStepRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action geStep

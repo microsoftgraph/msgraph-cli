@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
+namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition
+{
     /// <summary>
     /// Provides operations to manage the definition property of the microsoft.graph.printTaskTrigger entity.
     /// </summary>
-    public class DefinitionRequestBuilder : BaseCliRequestBuilder 
+    public class DefinitionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// An abstract definition that is used to create a printTask when triggered by a print event. Read-only.

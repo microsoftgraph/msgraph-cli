@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityUpdateIndex {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityUpdateIndex
+{
     /// <summary>
     /// Provides operations to call the updateIndex method.
     /// </summary>
-    public class MicrosoftGraphSecurityUpdateIndexRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityUpdateIndexRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Trigger an indexOperation to make a non-custodial data source and its associated data source searchable.

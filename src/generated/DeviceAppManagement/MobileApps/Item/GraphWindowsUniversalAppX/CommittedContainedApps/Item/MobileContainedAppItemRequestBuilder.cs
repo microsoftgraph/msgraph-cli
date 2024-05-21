@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX.CommittedContainedApps.Item {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX.CommittedContainedApps.Item
+{
     /// <summary>
     /// Provides operations to manage the committedContainedApps property of the microsoft.graph.windowsUniversalAppX entity.
     /// </summary>
-    public class MobileContainedAppItemRequestBuilder : BaseCliRequestBuilder 
+    public class MobileContainedAppItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property committedContainedApps for deviceAppManagement

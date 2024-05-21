@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.OddFYield {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.OddFYield
+{
     /// <summary>
     /// Provides operations to call the oddFYield method.
     /// </summary>
-    public class OddFYieldRequestBuilder : BaseCliRequestBuilder 
+    public class OddFYieldRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action oddFYield

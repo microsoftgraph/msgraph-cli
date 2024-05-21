@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class LearningAssignment : LearningCourseActivity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class LearningAssignment : LearningCourseActivity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Assigned date for the course activity. Optional.</summary>
         public DateTimeOffset? AssignedDateTime { get; set; }
@@ -53,11 +56,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"assignedDateTime", n => { AssignedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"assignerUserId", n => { AssignerUserId = n.GetStringValue(); } },
-                {"assignmentType", n => { AssignmentType = n.GetEnumValue<AssignmentType>(); } },
-                {"dueDateTime", n => { DueDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                {"notes", n => { Notes = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                { "assignedDateTime", n => { AssignedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "assignerUserId", n => { AssignerUserId = n.GetStringValue(); } },
+                { "assignmentType", n => { AssignmentType = n.GetEnumValue<AssignmentType>(); } },
+                { "dueDateTime", n => { DueDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "notes", n => { Notes = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

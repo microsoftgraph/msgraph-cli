@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Payload : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Payload : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The branch of a payload. Possible values are: unknown, other, americanExpress, capitalOne, dhl, docuSign, dropbox, facebook, firstAmerican, microsoft, netflix, scotiabank, sendGrid, stewartTitle, tesco, wellsFargo, syrinxCloud, adobe, teams, zoom, unknownFutureValue.</summary>
         public PayloadBrand? Brand { get; set; }
@@ -111,28 +114,28 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"brand", n => { Brand = n.GetEnumValue<PayloadBrand>(); } },
-                {"complexity", n => { Complexity = n.GetEnumValue<PayloadComplexity>(); } },
-                {"createdBy", n => { CreatedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"detail", n => { Detail = n.GetObjectValue<PayloadDetail>(PayloadDetail.CreateFromDiscriminatorValue); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"industry", n => { Industry = n.GetEnumValue<PayloadIndustry>(); } },
-                {"isAutomated", n => { IsAutomated = n.GetBoolValue(); } },
-                {"isControversial", n => { IsControversial = n.GetBoolValue(); } },
-                {"isCurrentEvent", n => { IsCurrentEvent = n.GetBoolValue(); } },
-                {"language", n => { Language = n.GetStringValue(); } },
-                {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"payloadTags", n => { PayloadTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"platform", n => { Platform = n.GetEnumValue<PayloadDeliveryPlatform>(); } },
-                {"predictedCompromiseRate", n => { PredictedCompromiseRate = n.GetDoubleValue(); } },
-                {"simulationAttackType", n => { SimulationAttackType = n.GetEnumValue<SimulationAttackType>(); } },
-                {"source", n => { Source = n.GetEnumValue<SimulationContentSource>(); } },
-                {"status", n => { Status = n.GetEnumValue<SimulationContentStatus>(); } },
-                {"technique", n => { Technique = n.GetEnumValue<SimulationAttackTechnique>(); } },
-                {"theme", n => { Theme = n.GetEnumValue<PayloadTheme>(); } },
+                { "brand", n => { Brand = n.GetEnumValue<PayloadBrand>(); } },
+                { "complexity", n => { Complexity = n.GetEnumValue<PayloadComplexity>(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "detail", n => { Detail = n.GetObjectValue<PayloadDetail>(PayloadDetail.CreateFromDiscriminatorValue); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "industry", n => { Industry = n.GetEnumValue<PayloadIndustry>(); } },
+                { "isAutomated", n => { IsAutomated = n.GetBoolValue(); } },
+                { "isControversial", n => { IsControversial = n.GetBoolValue(); } },
+                { "isCurrentEvent", n => { IsCurrentEvent = n.GetBoolValue(); } },
+                { "language", n => { Language = n.GetStringValue(); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "payloadTags", n => { PayloadTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "platform", n => { Platform = n.GetEnumValue<PayloadDeliveryPlatform>(); } },
+                { "predictedCompromiseRate", n => { PredictedCompromiseRate = n.GetDoubleValue(); } },
+                { "simulationAttackType", n => { SimulationAttackType = n.GetEnumValue<SimulationAttackType>(); } },
+                { "source", n => { Source = n.GetEnumValue<SimulationContentSource>(); } },
+                { "status", n => { Status = n.GetEnumValue<SimulationContentStatus>(); } },
+                { "technique", n => { Technique = n.GetEnumValue<SimulationAttackTechnique>(); } },
+                { "theme", n => { Theme = n.GetEnumValue<PayloadTheme>(); } },
             };
         }
         /// <summary>

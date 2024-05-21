@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The identifier for an Android app.
     /// </summary>
-    public class AndroidMobileAppIdentifier : MobileAppIdentifier, IParsable 
+    public class AndroidMobileAppIdentifier : MobileAppIdentifier, IParsable
     {
         /// <summary>The identifier for an app, as specified in the play store.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -43,7 +44,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"packageId", n => { PackageId = n.GetStringValue(); } },
+                { "packageId", n => { PackageId = n.GetStringValue(); } },
             };
         }
         /// <summary>

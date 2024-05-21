@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.Tags.Item {
+namespace ApiSdk.Teams.Item.Tags.Item
+{
     /// <summary>
     /// Provides operations to manage the tags property of the microsoft.graph.team entity.
     /// </summary>
-    public class TeamworkTagItemRequestBuilder : BaseCliRequestBuilder 
+    public class TeamworkTagItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a tag object permanently.

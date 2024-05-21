@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.JoinedTeams.Item.Template {
+namespace ApiSdk.Users.Item.JoinedTeams.Item.Template
+{
     /// <summary>
     /// Provides operations to manage the template property of the microsoft.graph.team entity.
     /// </summary>
-    public class TemplateRequestBuilder : BaseCliRequestBuilder 
+    public class TemplateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The template this team was created from. See available templates.

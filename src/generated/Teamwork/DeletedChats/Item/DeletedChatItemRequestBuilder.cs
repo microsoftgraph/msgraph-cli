@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teamwork.DeletedChats.Item {
+namespace ApiSdk.Teamwork.DeletedChats.Item
+{
     /// <summary>
     /// Provides operations to manage the deletedChats property of the microsoft.graph.teamwork entity.
     /// </summary>
-    public class DeletedChatItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeletedChatItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property deletedChats for teamwork

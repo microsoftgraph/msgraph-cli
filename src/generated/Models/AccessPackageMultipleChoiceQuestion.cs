@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AccessPackageMultipleChoiceQuestion : AccessPackageQuestion, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AccessPackageMultipleChoiceQuestion : AccessPackageQuestion, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>List of answer choices.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,8 +45,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"choices", n => { Choices = n.GetCollectionOfObjectValues<AccessPackageAnswerChoice>(AccessPackageAnswerChoice.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"isMultipleSelectionAllowed", n => { IsMultipleSelectionAllowed = n.GetBoolValue(); } },
+                { "choices", n => { Choices = n.GetCollectionOfObjectValues<AccessPackageAnswerChoice>(AccessPackageAnswerChoice.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "isMultipleSelectionAllowed", n => { IsMultipleSelectionAllowed = n.GetBoolValue(); } },
             };
         }
         /// <summary>

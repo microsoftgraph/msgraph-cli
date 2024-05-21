@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class IoTDeviceEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class IoTDeviceEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The deviceId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -216,32 +219,32 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"deviceId", n => { DeviceId = n.GetStringValue(); } },
-                {"deviceName", n => { DeviceName = n.GetStringValue(); } },
-                {"devicePageLink", n => { DevicePageLink = n.GetStringValue(); } },
-                {"deviceSubType", n => { DeviceSubType = n.GetStringValue(); } },
-                {"deviceType", n => { DeviceType = n.GetStringValue(); } },
-                {"importance", n => { Importance = n.GetEnumValue<IoTDeviceImportanceType>(); } },
-                {"ioTHub", n => { IoTHub = n.GetObjectValue<AzureResourceEvidence>(AzureResourceEvidence.CreateFromDiscriminatorValue); } },
-                {"ioTSecurityAgentId", n => { IoTSecurityAgentId = n.GetStringValue(); } },
-                {"ipAddress", n => { IpAddress = n.GetObjectValue<IpEvidence>(IpEvidence.CreateFromDiscriminatorValue); } },
-                {"isAuthorized", n => { IsAuthorized = n.GetBoolValue(); } },
-                {"isProgramming", n => { IsProgramming = n.GetBoolValue(); } },
-                {"isScanner", n => { IsScanner = n.GetBoolValue(); } },
-                {"macAddress", n => { MacAddress = n.GetStringValue(); } },
-                {"manufacturer", n => { Manufacturer = n.GetStringValue(); } },
-                {"model", n => { Model = n.GetStringValue(); } },
-                {"nics", n => { Nics = n.GetObjectValue<NicEvidence>(NicEvidence.CreateFromDiscriminatorValue); } },
-                {"operatingSystem", n => { OperatingSystem = n.GetStringValue(); } },
-                {"owners", n => { Owners = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"protocols", n => { Protocols = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"purdueLayer", n => { PurdueLayer = n.GetStringValue(); } },
-                {"sensor", n => { Sensor = n.GetStringValue(); } },
-                {"serialNumber", n => { SerialNumber = n.GetStringValue(); } },
-                {"site", n => { Site = n.GetStringValue(); } },
-                {"source", n => { Source = n.GetStringValue(); } },
-                {"sourceRef", n => { SourceRef = n.GetObjectValue<UrlEvidence>(UrlEvidence.CreateFromDiscriminatorValue); } },
-                {"zone", n => { Zone = n.GetStringValue(); } },
+                { "deviceId", n => { DeviceId = n.GetStringValue(); } },
+                { "deviceName", n => { DeviceName = n.GetStringValue(); } },
+                { "devicePageLink", n => { DevicePageLink = n.GetStringValue(); } },
+                { "deviceSubType", n => { DeviceSubType = n.GetStringValue(); } },
+                { "deviceType", n => { DeviceType = n.GetStringValue(); } },
+                { "importance", n => { Importance = n.GetEnumValue<IoTDeviceImportanceType>(); } },
+                { "ioTHub", n => { IoTHub = n.GetObjectValue<AzureResourceEvidence>(AzureResourceEvidence.CreateFromDiscriminatorValue); } },
+                { "ioTSecurityAgentId", n => { IoTSecurityAgentId = n.GetStringValue(); } },
+                { "ipAddress", n => { IpAddress = n.GetObjectValue<IpEvidence>(IpEvidence.CreateFromDiscriminatorValue); } },
+                { "isAuthorized", n => { IsAuthorized = n.GetBoolValue(); } },
+                { "isProgramming", n => { IsProgramming = n.GetBoolValue(); } },
+                { "isScanner", n => { IsScanner = n.GetBoolValue(); } },
+                { "macAddress", n => { MacAddress = n.GetStringValue(); } },
+                { "manufacturer", n => { Manufacturer = n.GetStringValue(); } },
+                { "model", n => { Model = n.GetStringValue(); } },
+                { "nics", n => { Nics = n.GetObjectValue<NicEvidence>(NicEvidence.CreateFromDiscriminatorValue); } },
+                { "operatingSystem", n => { OperatingSystem = n.GetStringValue(); } },
+                { "owners", n => { Owners = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "protocols", n => { Protocols = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "purdueLayer", n => { PurdueLayer = n.GetStringValue(); } },
+                { "sensor", n => { Sensor = n.GetStringValue(); } },
+                { "serialNumber", n => { SerialNumber = n.GetStringValue(); } },
+                { "site", n => { Site = n.GetStringValue(); } },
+                { "source", n => { Source = n.GetStringValue(); } },
+                { "sourceRef", n => { SourceRef = n.GetObjectValue<UrlEvidence>(UrlEvidence.CreateFromDiscriminatorValue); } },
+                { "zone", n => { Zone = n.GetStringValue(); } },
             };
         }
         /// <summary>

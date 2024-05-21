@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.TotalRowRange {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.TotalRowRange
+{
     /// <summary>
     /// Provides operations to call the totalRowRange method.
     /// </summary>
-    public class TotalRowRangeRequestBuilder : BaseCliRequestBuilder 
+    public class TotalRowRangeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Gets the range object associated with the totals row of the column.

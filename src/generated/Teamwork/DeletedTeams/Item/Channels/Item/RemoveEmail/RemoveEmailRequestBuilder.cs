@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.RemoveEmail {
+namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.RemoveEmail
+{
     /// <summary>
     /// Provides operations to call the removeEmail method.
     /// </summary>
-    public class RemoveEmailRequestBuilder : BaseCliRequestBuilder 
+    public class RemoveEmailRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remove the email address of a channel. You can remove an email address only if it was provisioned using the provisionEmail method or through the Microsoft Teams client.

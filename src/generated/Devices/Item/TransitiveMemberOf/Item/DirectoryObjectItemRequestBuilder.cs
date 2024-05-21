@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Devices.Item.TransitiveMemberOf.Item {
+namespace ApiSdk.Devices.Item.TransitiveMemberOf.Item
+{
     /// <summary>
     /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.device entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.

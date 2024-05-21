@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostPairs.Item {
+namespace ApiSdk.Security.ThreatIntelligence.HostPairs.Item
+{
     /// <summary>
     /// Provides operations to manage the hostPairs property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class HostPairItemRequestBuilder : BaseCliRequestBuilder 
+    public class HostPairItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the childHost property of the microsoft.graph.security.hostPair entity.

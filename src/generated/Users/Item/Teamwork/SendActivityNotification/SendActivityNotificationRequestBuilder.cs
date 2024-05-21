@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Teamwork.SendActivityNotification {
+namespace ApiSdk.Users.Item.Teamwork.SendActivityNotification
+{
     /// <summary>
     /// Provides operations to call the sendActivityNotification method.
     /// </summary>
-    public class SendActivityNotificationRequestBuilder : BaseCliRequestBuilder 
+    public class SendActivityNotificationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Send an activity feed notification to a user. For more information, see sending Teams activity notifications.

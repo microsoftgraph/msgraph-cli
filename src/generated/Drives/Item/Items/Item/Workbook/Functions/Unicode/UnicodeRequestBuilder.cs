@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Unicode {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Unicode
+{
     /// <summary>
     /// Provides operations to call the unicode method.
     /// </summary>
-    public class UnicodeRequestBuilder : BaseCliRequestBuilder 
+    public class UnicodeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action unicode

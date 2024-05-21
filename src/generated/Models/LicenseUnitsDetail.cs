@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class LicenseUnitsDetail : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class LicenseUnitsDetail : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -50,11 +53,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"enabled", n => { Enabled = n.GetIntValue(); } },
-                {"lockedOut", n => { LockedOut = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"suspended", n => { Suspended = n.GetIntValue(); } },
-                {"warning", n => { Warning = n.GetIntValue(); } },
+                { "enabled", n => { Enabled = n.GetIntValue(); } },
+                { "lockedOut", n => { LockedOut = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "suspended", n => { Suspended = n.GetIntValue(); } },
+                { "warning", n => { Warning = n.GetIntValue(); } },
             };
         }
         /// <summary>

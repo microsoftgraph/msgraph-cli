@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class DeviceEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class DeviceEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>A unique identifier assigned to a device by Microsoft Entra ID when device is Microsoft Entra joined.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -134,24 +137,24 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"azureAdDeviceId", n => { AzureAdDeviceId = n.GetStringValue(); } },
-                {"defenderAvStatus", n => { DefenderAvStatus = n.GetEnumValue<DefenderAvStatus>(); } },
-                {"deviceDnsName", n => { DeviceDnsName = n.GetStringValue(); } },
-                {"firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
-                {"healthStatus", n => { HealthStatus = n.GetEnumValue<DeviceHealthStatus>(); } },
-                {"ipInterfaces", n => { IpInterfaces = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"lastExternalIpAddress", n => { LastExternalIpAddress = n.GetStringValue(); } },
-                {"lastIpAddress", n => { LastIpAddress = n.GetStringValue(); } },
-                {"loggedOnUsers", n => { LoggedOnUsers = n.GetCollectionOfObjectValues<LoggedOnUser>(LoggedOnUser.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"mdeDeviceId", n => { MdeDeviceId = n.GetStringValue(); } },
-                {"onboardingStatus", n => { OnboardingStatus = n.GetEnumValue<OnboardingStatus>(); } },
-                {"osBuild", n => { OsBuild = n.GetLongValue(); } },
-                {"osPlatform", n => { OsPlatform = n.GetStringValue(); } },
-                {"rbacGroupId", n => { RbacGroupId = n.GetIntValue(); } },
-                {"rbacGroupName", n => { RbacGroupName = n.GetStringValue(); } },
-                {"riskScore", n => { RiskScore = n.GetEnumValue<DeviceRiskScore>(); } },
-                {"version", n => { Version = n.GetStringValue(); } },
-                {"vmMetadata", n => { VmMetadata = n.GetObjectValue<ApiSdk.Models.Security.VmMetadata>(ApiSdk.Models.Security.VmMetadata.CreateFromDiscriminatorValue); } },
+                { "azureAdDeviceId", n => { AzureAdDeviceId = n.GetStringValue(); } },
+                { "defenderAvStatus", n => { DefenderAvStatus = n.GetEnumValue<DefenderAvStatus>(); } },
+                { "deviceDnsName", n => { DeviceDnsName = n.GetStringValue(); } },
+                { "firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
+                { "healthStatus", n => { HealthStatus = n.GetEnumValue<DeviceHealthStatus>(); } },
+                { "ipInterfaces", n => { IpInterfaces = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "lastExternalIpAddress", n => { LastExternalIpAddress = n.GetStringValue(); } },
+                { "lastIpAddress", n => { LastIpAddress = n.GetStringValue(); } },
+                { "loggedOnUsers", n => { LoggedOnUsers = n.GetCollectionOfObjectValues<LoggedOnUser>(LoggedOnUser.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "mdeDeviceId", n => { MdeDeviceId = n.GetStringValue(); } },
+                { "onboardingStatus", n => { OnboardingStatus = n.GetEnumValue<OnboardingStatus>(); } },
+                { "osBuild", n => { OsBuild = n.GetLongValue(); } },
+                { "osPlatform", n => { OsPlatform = n.GetStringValue(); } },
+                { "rbacGroupId", n => { RbacGroupId = n.GetIntValue(); } },
+                { "rbacGroupName", n => { RbacGroupName = n.GetStringValue(); } },
+                { "riskScore", n => { RiskScore = n.GetEnumValue<DeviceRiskScore>(); } },
+                { "version", n => { Version = n.GetStringValue(); } },
+                { "vmMetadata", n => { VmMetadata = n.GetObjectValue<ApiSdk.Models.Security.VmMetadata>(ApiSdk.Models.Security.VmMetadata.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

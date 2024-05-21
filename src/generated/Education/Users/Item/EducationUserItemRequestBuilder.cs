@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Users.Item {
+namespace ApiSdk.Education.Users.Item
+{
     /// <summary>
     /// Provides operations to manage the users property of the microsoft.graph.educationRoot entity.
     /// </summary>
-    public class EducationUserItemRequestBuilder : BaseCliRequestBuilder 
+    public class EducationUserItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.educationUser entity.

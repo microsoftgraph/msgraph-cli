@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Ports.Item {
+namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Ports.Item
+{
     /// <summary>
     /// Provides operations to manage the ports property of the microsoft.graph.security.host entity.
     /// </summary>
-    public class HostPortItemRequestBuilder : BaseCliRequestBuilder 
+    public class HostPortItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The hostPorts associated with a host.

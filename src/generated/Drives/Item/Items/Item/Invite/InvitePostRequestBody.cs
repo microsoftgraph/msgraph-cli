@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Invite {
-    public class InvitePostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Drives.Item.Items.Item.Invite
+{
+    #pragma warning disable CS1591
+    public class InvitePostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -81,14 +84,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Invite {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"expirationDateTime", n => { ExpirationDateTime = n.GetStringValue(); } },
-                {"message", n => { Message = n.GetStringValue(); } },
-                {"password", n => { Password = n.GetStringValue(); } },
-                {"recipients", n => { Recipients = n.GetCollectionOfObjectValues<DriveRecipient>(DriveRecipient.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"requireSignIn", n => { RequireSignIn = n.GetBoolValue(); } },
-                {"retainInheritedPermissions", n => { RetainInheritedPermissions = n.GetBoolValue(); } },
-                {"roles", n => { Roles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"sendInvitation", n => { SendInvitation = n.GetBoolValue(); } },
+                { "expirationDateTime", n => { ExpirationDateTime = n.GetStringValue(); } },
+                { "message", n => { Message = n.GetStringValue(); } },
+                { "password", n => { Password = n.GetStringValue(); } },
+                { "recipients", n => { Recipients = n.GetCollectionOfObjectValues<DriveRecipient>(DriveRecipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "requireSignIn", n => { RequireSignIn = n.GetBoolValue(); } },
+                { "retainInheritedPermissions", n => { RetainInheritedPermissions = n.GetBoolValue(); } },
+                { "roles", n => { Roles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "sendInvitation", n => { SendInvitation = n.GetBoolValue(); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.TriggerTypes.RetentionEventTypes.Item {
+namespace ApiSdk.Security.TriggerTypes.RetentionEventTypes.Item
+{
     /// <summary>
     /// Provides operations to manage the retentionEventTypes property of the microsoft.graph.security.triggerTypesRoot entity.
     /// </summary>
-    public class RetentionEventTypeItemRequestBuilder : BaseCliRequestBuilder 
+    public class RetentionEventTypeItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a retentionEventType object.

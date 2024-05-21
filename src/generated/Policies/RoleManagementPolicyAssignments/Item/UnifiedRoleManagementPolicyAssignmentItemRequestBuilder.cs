@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
+namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item
+{
     /// <summary>
     /// Provides operations to manage the roleManagementPolicyAssignments property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class UnifiedRoleManagementPolicyAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class UnifiedRoleManagementPolicyAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property roleManagementPolicyAssignments for policies

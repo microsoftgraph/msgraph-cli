@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Imaginary {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Imaginary
+{
     /// <summary>
     /// Provides operations to call the imaginary method.
     /// </summary>
-    public class ImaginaryRequestBuilder : BaseCliRequestBuilder 
+    public class ImaginaryRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imaginary

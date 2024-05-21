@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
+namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item
+{
     /// <summary>
     /// Provides operations to manage the membersWithLicenseErrors property of the microsoft.graph.group entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// A list of group members with license errors from this group-based license assignment. Read-only.

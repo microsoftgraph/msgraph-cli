@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.RefreshSession {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.RefreshSession
+{
     /// <summary>
     /// Provides operations to call the refreshSession method.
     /// </summary>
-    public class RefreshSessionRequestBuilder : BaseCliRequestBuilder 
+    public class RefreshSessionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Use this API to refresh an existing workbook session.

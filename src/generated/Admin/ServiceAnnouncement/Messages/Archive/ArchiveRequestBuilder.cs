@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Archive {
+namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Archive
+{
     /// <summary>
     /// Provides operations to call the archive method.
     /// </summary>
-    public class ArchiveRequestBuilder : BaseCliRequestBuilder 
+    public class ArchiveRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Archive a list of serviceUpdateMessages for the signed in user.

@@ -13,20 +13,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetTeamsDeviceUsageUserDetailWithPeriod {
+namespace ApiSdk.Reports.GetTeamsDeviceUsageUserDetailWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getTeamsDeviceUsageUserDetail method.
     /// </summary>
-    public class GetTeamsDeviceUsageUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetTeamsDeviceUsageUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getTeamsDeviceUsageUserDetail
+        /// Get details about Microsoft Teams device usage by user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getTeamsDeviceUsageUserDetail";
+            command.Description = "Get details about Microsoft Teams device usage by user.";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageUserDetailWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getTeamsDeviceUsageUserDetail
+        /// Get details about Microsoft Teams device usage by user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

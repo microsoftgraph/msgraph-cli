@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DollarFr {
-    public class DollarFrPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DollarFr
+{
+    #pragma warning disable CS1591
+    public class DollarFrPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -51,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DollarFr {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"decimalDollar", n => { DecimalDollar = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"fraction", n => { Fraction = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "decimalDollar", n => { DecimalDollar = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "fraction", n => { Fraction = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

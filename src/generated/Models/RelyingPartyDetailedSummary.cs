@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class RelyingPartyDetailedSummary : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class RelyingPartyDetailedSummary : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Number of failed sign ins on AD FS in the period specified. Supports $orderby, $filter (eq).</summary>
         public long? FailedSignInCount { get; set; }
@@ -77,17 +80,17 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"failedSignInCount", n => { FailedSignInCount = n.GetLongValue(); } },
-                {"migrationStatus", n => { MigrationStatus = n.GetEnumValue<MigrationStatus>(); } },
-                {"migrationValidationDetails", n => { MigrationValidationDetails = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"relyingPartyId", n => { RelyingPartyId = n.GetStringValue(); } },
-                {"relyingPartyName", n => { RelyingPartyName = n.GetStringValue(); } },
-                {"replyUrls", n => { ReplyUrls = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"serviceId", n => { ServiceId = n.GetStringValue(); } },
-                {"signInSuccessRate", n => { SignInSuccessRate = n.GetDoubleValue(); } },
-                {"successfulSignInCount", n => { SuccessfulSignInCount = n.GetLongValue(); } },
-                {"totalSignInCount", n => { TotalSignInCount = n.GetLongValue(); } },
-                {"uniqueUserCount", n => { UniqueUserCount = n.GetLongValue(); } },
+                { "failedSignInCount", n => { FailedSignInCount = n.GetLongValue(); } },
+                { "migrationStatus", n => { MigrationStatus = n.GetEnumValue<MigrationStatus>(); } },
+                { "migrationValidationDetails", n => { MigrationValidationDetails = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "relyingPartyId", n => { RelyingPartyId = n.GetStringValue(); } },
+                { "relyingPartyName", n => { RelyingPartyName = n.GetStringValue(); } },
+                { "replyUrls", n => { ReplyUrls = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "serviceId", n => { ServiceId = n.GetStringValue(); } },
+                { "signInSuccessRate", n => { SignInSuccessRate = n.GetDoubleValue(); } },
+                { "successfulSignInCount", n => { SuccessfulSignInCount = n.GetLongValue(); } },
+                { "totalSignInCount", n => { TotalSignInCount = n.GetLongValue(); } },
+                { "uniqueUserCount", n => { UniqueUserCount = n.GetLongValue(); } },
             };
         }
         /// <summary>

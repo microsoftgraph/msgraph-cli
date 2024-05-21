@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ResellerDelegatedAdminRelationship : DelegatedAdminRelationship, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ResellerDelegatedAdminRelationship : DelegatedAdminRelationship, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The tenant ID of the indirect provider partner who created the relationship for the indirect reseller partner.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -35,8 +38,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"indirectProviderTenantId", n => { IndirectProviderTenantId = n.GetStringValue(); } },
-                {"isPartnerConsentPending", n => { IsPartnerConsentPending = n.GetBoolValue(); } },
+                { "indirectProviderTenantId", n => { IndirectProviderTenantId = n.GetStringValue(); } },
+                { "isPartnerConsentPending", n => { IsPartnerConsentPending = n.GetBoolValue(); } },
             };
         }
         /// <summary>

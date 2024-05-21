@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.ConditionalAccess.Templates.Item {
+namespace ApiSdk.Identity.ConditionalAccess.Templates.Item
+{
     /// <summary>
     /// Provides operations to manage the templates property of the microsoft.graph.conditionalAccessRoot entity.
     /// </summary>
-    public class ConditionalAccessTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class ConditionalAccessTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Read the properties and relationships of a conditionalAccessTemplate object.

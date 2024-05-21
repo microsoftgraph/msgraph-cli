@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics device startup process details.
     /// </summary>
-    public class UserExperienceAnalyticsDeviceStartupProcess : Entity, IParsable 
+    public class UserExperienceAnalyticsDeviceStartupProcess : Entity, IParsable
     {
         /// <summary>The Intune device id of the device. Supports: $select, $OrderBy. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -62,11 +63,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"managedDeviceId", n => { ManagedDeviceId = n.GetStringValue(); } },
-                {"processName", n => { ProcessName = n.GetStringValue(); } },
-                {"productName", n => { ProductName = n.GetStringValue(); } },
-                {"publisher", n => { Publisher = n.GetStringValue(); } },
-                {"startupImpactInMs", n => { StartupImpactInMs = n.GetIntValue(); } },
+                { "managedDeviceId", n => { ManagedDeviceId = n.GetStringValue(); } },
+                { "processName", n => { ProcessName = n.GetStringValue(); } },
+                { "productName", n => { ProductName = n.GetStringValue(); } },
+                { "publisher", n => { Publisher = n.GetStringValue(); } },
+                { "startupImpactInMs", n => { StartupImpactInMs = n.GetIntValue(); } },
             };
         }
         /// <summary>

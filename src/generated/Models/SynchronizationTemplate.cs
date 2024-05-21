@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SynchronizationTemplate : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SynchronizationTemplate : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Identifier of the application this template belongs to.</summary>
         public Guid? ApplicationId { get; set; }
@@ -63,13 +66,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"applicationId", n => { ApplicationId = n.GetGuidValue(); } },
-                {"default", n => { Default = n.GetBoolValue(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"discoverable", n => { Discoverable = n.GetBoolValue(); } },
-                {"factoryTag", n => { FactoryTag = n.GetStringValue(); } },
-                {"metadata", n => { Metadata = n.GetCollectionOfObjectValues<SynchronizationMetadataEntry>(SynchronizationMetadataEntry.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"schema", n => { Schema = n.GetObjectValue<SynchronizationSchema>(SynchronizationSchema.CreateFromDiscriminatorValue); } },
+                { "applicationId", n => { ApplicationId = n.GetGuidValue(); } },
+                { "default", n => { Default = n.GetBoolValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "discoverable", n => { Discoverable = n.GetBoolValue(); } },
+                { "factoryTag", n => { FactoryTag = n.GetStringValue(); } },
+                { "metadata", n => { Metadata = n.GetCollectionOfObjectValues<SynchronizationMetadataEntry>(SynchronizationMetadataEntry.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "schema", n => { Schema = n.GetObjectValue<SynchronizationSchema>(SynchronizationSchema.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

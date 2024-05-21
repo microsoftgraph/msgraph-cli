@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish {
+namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish
+{
     /// <summary>
     /// Provides operations to call the publish method.
     /// </summary>
-    public class PublishRequestBuilder : BaseCliRequestBuilder 
+    public class PublishRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Publish the specified browserSiteList for devices to download.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/browsersitelist-publish?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Publish the specified browserSiteList for devices to download.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersitelist-publish?view=graph-rest-1.0";
+            command.Description = "Publish the specified browserSiteList for devices to download.";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;

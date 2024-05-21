@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.Functions {
+namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.Functions
+{
     /// <summary>
     /// Provides operations to call the functions method.
     /// </summary>
-    public class FunctionsRequestBuilder : BaseCliRequestBuilder 
+    public class FunctionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function functions
+        /// List all the functions currently supported in the attributeMappingSource.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-functions?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function functions";
+            command.Description = "List all the functions currently supported in the attributeMappingSource.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-functions?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -114,7 +116,9 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.Functio
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -140,7 +144,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.Functio
         {
         }
         /// <summary>
-        /// Invoke function functions
+        /// List all the functions currently supported in the attributeMappingSource.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +163,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.Functio
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function functions
+        /// List all the functions currently supported in the attributeMappingSource.
         /// </summary>
         public class FunctionsRequestBuilderGetQueryParameters 
         {

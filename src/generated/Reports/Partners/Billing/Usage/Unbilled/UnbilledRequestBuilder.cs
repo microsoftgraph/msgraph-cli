@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.Partners.Billing.Usage.Unbilled {
+namespace ApiSdk.Reports.Partners.Billing.Usage.Unbilled
+{
     /// <summary>
     /// Provides operations to manage the unbilled property of the microsoft.graph.partners.billing.azureUsage entity.
     /// </summary>
-    public class UnbilledRequestBuilder : BaseCliRequestBuilder 
+    public class UnbilledRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property unbilled for reports

@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item
+{
     /// <summary>
     /// Provides operations to manage the columns property of the microsoft.graph.workbookTable entity.
     /// </summary>
-    public class WorkbookTableColumnItemRequestBuilder : BaseCliRequestBuilder 
+    public class WorkbookTableColumnItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the dataBodyRange method.
@@ -43,14 +44,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return command;
         }
         /// <summary>
-        /// Deletes the column from the table.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablecolumn-delete?view=graph-rest-1.0" />
+        /// Delete navigation property columns for drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes the column from the table.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablecolumn-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property columns for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -139,14 +139,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of tablecolumn object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablecolumn-get?view=graph-rest-1.0" />
+        /// Represents a collection of all the columns in the table. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of tablecolumn object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablecolumn-get?view=graph-rest-1.0";
+            command.Description = "Represents a collection of all the columns in the table. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -233,14 +232,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return command;
         }
         /// <summary>
-        /// Update the properties of tablecolumn object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablecolumn-update?view=graph-rest-1.0" />
+        /// Update the navigation property columns in drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of tablecolumn object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablecolumn-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property columns in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -357,7 +355,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         {
         }
         /// <summary>
-        /// Deletes the column from the table.
+        /// Delete navigation property columns for drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -376,7 +374,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of tablecolumn object.
+        /// Represents a collection of all the columns in the table. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -395,7 +393,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of tablecolumn object.
+        /// Update the navigation property columns in drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -416,7 +414,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of tablecolumn object.
+        /// Represents a collection of all the columns in the table. Read-only.
         /// </summary>
         public class WorkbookTableColumnItemRequestBuilderGetQueryParameters 
         {

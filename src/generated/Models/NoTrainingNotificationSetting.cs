@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class NoTrainingNotificationSetting : EndUserNotificationSetting, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class NoTrainingNotificationSetting : EndUserNotificationSetting, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The notification for the user who is part of the simulation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +43,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"simulationNotification", n => { SimulationNotification = n.GetObjectValue<ApiSdk.Models.SimulationNotification>(ApiSdk.Models.SimulationNotification.CreateFromDiscriminatorValue); } },
+                { "simulationNotification", n => { SimulationNotification = n.GetObjectValue<ApiSdk.Models.SimulationNotification>(ApiSdk.Models.SimulationNotification.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

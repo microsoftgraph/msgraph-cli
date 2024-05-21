@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class KubernetesPodEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class KubernetesPodEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The list of pod containers which are not init or ephemeral containers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -104,15 +107,15 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"containers", n => { Containers = n.GetCollectionOfObjectValues<ContainerEvidence>(ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"controller", n => { Controller = n.GetObjectValue<KubernetesControllerEvidence>(KubernetesControllerEvidence.CreateFromDiscriminatorValue); } },
-                {"ephemeralContainers", n => { EphemeralContainers = n.GetCollectionOfObjectValues<ContainerEvidence>(ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"initContainers", n => { InitContainers = n.GetCollectionOfObjectValues<ContainerEvidence>(ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"labels", n => { Labels = n.GetObjectValue<Dictionary>(Dictionary.CreateFromDiscriminatorValue); } },
-                {"name", n => { Name = n.GetStringValue(); } },
-                {"namespace", n => { Namespace = n.GetObjectValue<KubernetesNamespaceEvidence>(KubernetesNamespaceEvidence.CreateFromDiscriminatorValue); } },
-                {"podIp", n => { PodIp = n.GetObjectValue<IpEvidence>(IpEvidence.CreateFromDiscriminatorValue); } },
-                {"serviceAccount", n => { ServiceAccount = n.GetObjectValue<KubernetesServiceAccountEvidence>(KubernetesServiceAccountEvidence.CreateFromDiscriminatorValue); } },
+                { "containers", n => { Containers = n.GetCollectionOfObjectValues<ContainerEvidence>(ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "controller", n => { Controller = n.GetObjectValue<KubernetesControllerEvidence>(KubernetesControllerEvidence.CreateFromDiscriminatorValue); } },
+                { "ephemeralContainers", n => { EphemeralContainers = n.GetCollectionOfObjectValues<ContainerEvidence>(ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "initContainers", n => { InitContainers = n.GetCollectionOfObjectValues<ContainerEvidence>(ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "labels", n => { Labels = n.GetObjectValue<Dictionary>(Dictionary.CreateFromDiscriminatorValue); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "namespace", n => { Namespace = n.GetObjectValue<KubernetesNamespaceEvidence>(KubernetesNamespaceEvidence.CreateFromDiscriminatorValue); } },
+                { "podIp", n => { PodIp = n.GetObjectValue<IpEvidence>(IpEvidence.CreateFromDiscriminatorValue); } },
+                { "serviceAccount", n => { ServiceAccount = n.GetObjectValue<KubernetesServiceAccountEvidence>(KubernetesServiceAccountEvidence.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

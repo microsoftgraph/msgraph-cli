@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.And {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.And
+{
     /// <summary>
     /// Provides operations to call the and method.
     /// </summary>
-    public class AndRequestBuilder : BaseCliRequestBuilder 
+    public class AndRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action and

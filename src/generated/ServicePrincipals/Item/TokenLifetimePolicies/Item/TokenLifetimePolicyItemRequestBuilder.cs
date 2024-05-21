@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies.Item {
+namespace ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class TokenLifetimePolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class TokenLifetimePolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The tokenLifetimePolicies assigned to this service principal.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Beta_Inv {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Beta_Inv
+{
     /// <summary>
     /// Provides operations to call the beta_Inv method.
     /// </summary>
-    public class Beta_InvRequestBuilder : BaseCliRequestBuilder 
+    public class Beta_InvRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action beta_Inv

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Domains.Item.Verify {
+namespace ApiSdk.Domains.Item.Verify
+{
     /// <summary>
     /// Provides operations to call the verify method.
     /// </summary>
-    public class VerifyRequestBuilder : BaseCliRequestBuilder 
+    public class VerifyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Validates the ownership of the domain.

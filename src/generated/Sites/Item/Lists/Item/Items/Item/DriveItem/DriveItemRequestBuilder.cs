@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem {
+namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem
+{
     /// <summary>
     /// Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.
     /// </summary>
-    public class DriveItemRequestBuilder : BaseCliRequestBuilder 
+    public class DriveItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the site entity.
@@ -40,13 +41,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem {
             return command;
         }
         /// <summary>
-        /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+        /// For document libraries, the driveItem relationship exposes the listItem as a driveItem
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]";
+            command.Description = "For document libraries, the driveItem relationship exposes the listItem as a driveItem";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -118,7 +119,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem {
         {
         }
         /// <summary>
-        /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+        /// For document libraries, the driveItem relationship exposes the listItem as a driveItem
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -137,7 +138,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem {
             return requestInfo;
         }
         /// <summary>
-        /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+        /// For document libraries, the driveItem relationship exposes the listItem as a driveItem
         /// </summary>
         public class DriveItemRequestBuilderGetQueryParameters 
         {

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.RoleDefinitions {
+namespace ApiSdk.DeviceManagement.RoleDefinitions
+{
     /// <summary>
     /// Provides operations to manage the roleDefinitions property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class RoleDefinitionsRequestBuilder : BaseCliRequestBuilder 
+    public class RoleDefinitionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the roleDefinitions property of the microsoft.graph.deviceManagement entity.
@@ -101,14 +102,14 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the deviceAndAppManagementRoleDefinition objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the roleDefinition objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the deviceAndAppManagementRoleDefinition objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the roleDefinition objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -184,7 +185,9 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -210,7 +213,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions {
         {
         }
         /// <summary>
-        /// List properties and relationships of the deviceAndAppManagementRoleDefinition objects.
+        /// List properties and relationships of the roleDefinition objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +253,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the deviceAndAppManagementRoleDefinition objects.
+        /// List properties and relationships of the roleDefinition objects.
         /// </summary>
         public class RoleDefinitionsRequestBuilderGetQueryParameters 
         {

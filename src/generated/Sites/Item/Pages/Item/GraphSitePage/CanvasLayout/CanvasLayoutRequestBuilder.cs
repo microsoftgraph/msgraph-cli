@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout {
+namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout
+{
     /// <summary>
     /// Provides operations to manage the canvasLayout property of the microsoft.graph.sitePage entity.
     /// </summary>
-    public class CanvasLayoutRequestBuilder : BaseCliRequestBuilder 
+    public class CanvasLayoutRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property canvasLayout for sites

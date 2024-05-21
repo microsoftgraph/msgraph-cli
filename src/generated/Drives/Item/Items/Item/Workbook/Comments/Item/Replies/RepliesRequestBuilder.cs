@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies
+{
     /// <summary>
     /// Provides operations to manage the replies property of the microsoft.graph.workbookComment entity.
     /// </summary>
-    public class RepliesRequestBuilder : BaseCliRequestBuilder 
+    public class RepliesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the replies property of the microsoft.graph.workbookComment entity.
@@ -116,13 +117,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookCommentReply object.
+        /// Get replies from drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of workbookCommentReply object.";
+            command.Description = "Get replies from drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -216,7 +217,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -242,7 +245,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies {
         {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookCommentReply object.
+        /// Get replies from drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -282,7 +285,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookCommentReply object.
+        /// Get replies from drives
         /// </summary>
         public class RepliesRequestBuilderGetQueryParameters 
         {

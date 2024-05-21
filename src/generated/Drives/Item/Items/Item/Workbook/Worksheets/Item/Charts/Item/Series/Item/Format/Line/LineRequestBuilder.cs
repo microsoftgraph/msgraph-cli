@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Line {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Line
+{
     /// <summary>
     /// Provides operations to manage the line property of the microsoft.graph.workbookChartSeriesFormat entity.
     /// </summary>
-    public class LineRequestBuilder : BaseCliRequestBuilder 
+    public class LineRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the clear method.

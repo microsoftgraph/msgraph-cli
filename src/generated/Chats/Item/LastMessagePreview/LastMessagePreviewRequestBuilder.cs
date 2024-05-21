@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Chats.Item.LastMessagePreview {
+namespace ApiSdk.Chats.Item.LastMessagePreview
+{
     /// <summary>
     /// Provides operations to manage the lastMessagePreview property of the microsoft.graph.chat entity.
     /// </summary>
-    public class LastMessagePreviewRequestBuilder : BaseCliRequestBuilder 
+    public class LastMessagePreviewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property lastMessagePreview for chats

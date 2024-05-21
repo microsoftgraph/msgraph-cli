@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Time {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Time
+{
     /// <summary>
     /// Provides operations to call the time method.
     /// </summary>
-    public class TimeRequestBuilder : BaseCliRequestBuilder 
+    public class TimeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action time

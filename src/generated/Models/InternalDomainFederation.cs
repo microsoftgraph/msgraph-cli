@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class InternalDomainFederation : SamlOrWsFedProvider, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class InternalDomainFederation : SamlOrWsFedProvider, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>URL of the endpoint used by active clients when authenticating with federated domains set up for single sign-on in Microsoft Entra ID. Corresponds to the ActiveLogOnUri property of the Set-MsolDomainFederationSettings MSOnline v1 PowerShell cmdlet.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -70,13 +73,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"activeSignInUri", n => { ActiveSignInUri = n.GetStringValue(); } },
-                {"federatedIdpMfaBehavior", n => { FederatedIdpMfaBehavior = n.GetEnumValue<FederatedIdpMfaBehavior>(); } },
-                {"isSignedAuthenticationRequestRequired", n => { IsSignedAuthenticationRequestRequired = n.GetBoolValue(); } },
-                {"nextSigningCertificate", n => { NextSigningCertificate = n.GetStringValue(); } },
-                {"promptLoginBehavior", n => { PromptLoginBehavior = n.GetEnumValue<PromptLoginBehavior>(); } },
-                {"signOutUri", n => { SignOutUri = n.GetStringValue(); } },
-                {"signingCertificateUpdateStatus", n => { SigningCertificateUpdateStatus = n.GetObjectValue<ApiSdk.Models.SigningCertificateUpdateStatus>(ApiSdk.Models.SigningCertificateUpdateStatus.CreateFromDiscriminatorValue); } },
+                { "activeSignInUri", n => { ActiveSignInUri = n.GetStringValue(); } },
+                { "federatedIdpMfaBehavior", n => { FederatedIdpMfaBehavior = n.GetEnumValue<FederatedIdpMfaBehavior>(); } },
+                { "isSignedAuthenticationRequestRequired", n => { IsSignedAuthenticationRequestRequired = n.GetBoolValue(); } },
+                { "nextSigningCertificate", n => { NextSigningCertificate = n.GetStringValue(); } },
+                { "promptLoginBehavior", n => { PromptLoginBehavior = n.GetEnumValue<PromptLoginBehavior>(); } },
+                { "signOutUri", n => { SignOutUri = n.GetStringValue(); } },
+                { "signingCertificateUpdateStatus", n => { SigningCertificateUpdateStatus = n.GetObjectValue<ApiSdk.Models.SigningCertificateUpdateStatus>(ApiSdk.Models.SigningCertificateUpdateStatus.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

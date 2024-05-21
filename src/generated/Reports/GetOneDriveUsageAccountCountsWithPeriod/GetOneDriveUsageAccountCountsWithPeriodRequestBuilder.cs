@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOneDriveUsageAccountCountsWithPeriod {
+namespace ApiSdk.Reports.GetOneDriveUsageAccountCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getOneDriveUsageAccountCounts method.
     /// </summary>
-    public class GetOneDriveUsageAccountCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetOneDriveUsageAccountCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getOneDriveUsageAccountCounts
+        /// Get the trend in the number of active OneDrive for Business sites. Any site on which users viewed, modified, uploaded, downloaded, shared, or synced files is considered an active site.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getonedriveusageaccountcounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOneDriveUsageAccountCounts";
+            command.Description = "Get the trend in the number of active OneDrive for Business sites. Any site on which users viewed, modified, uploaded, downloaded, shared, or synced files is considered an active site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getonedriveusageaccountcounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetOneDriveUsageAccountCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getOneDriveUsageAccountCounts
+        /// Get the trend in the number of active OneDrive for Business sites. Any site on which users viewed, modified, uploaded, downloaded, shared, or synced files is considered an active site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

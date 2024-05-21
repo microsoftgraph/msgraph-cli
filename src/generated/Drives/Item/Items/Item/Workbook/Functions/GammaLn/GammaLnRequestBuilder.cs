@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GammaLn {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GammaLn
+{
     /// <summary>
     /// Provides operations to call the gammaLn method.
     /// </summary>
-    public class GammaLnRequestBuilder : BaseCliRequestBuilder 
+    public class GammaLnRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action gammaLn

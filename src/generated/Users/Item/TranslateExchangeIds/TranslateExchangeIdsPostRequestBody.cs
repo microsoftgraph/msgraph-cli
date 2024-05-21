@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Users.Item.TranslateExchangeIds {
-    public class TranslateExchangeIdsPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Users.Item.TranslateExchangeIds
+{
+    #pragma warning disable CS1591
+    public class TranslateExchangeIdsPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -47,9 +50,9 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"InputIds", n => { InputIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"SourceIdType", n => { SourceIdType = n.GetEnumValue<ExchangeIdFormat>(); } },
-                {"TargetIdType", n => { TargetIdType = n.GetEnumValue<ExchangeIdFormat>(); } },
+                { "InputIds", n => { InputIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "SourceIdType", n => { SourceIdType = n.GetEnumValue<ExchangeIdFormat>(); } },
+                { "TargetIdType", n => { TargetIdType = n.GetEnumValue<ExchangeIdFormat>(); } },
             };
         }
         /// <summary>

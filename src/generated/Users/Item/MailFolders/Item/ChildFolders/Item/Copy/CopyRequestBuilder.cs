@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Copy {
+namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Copy
+{
     /// <summary>
     /// Provides operations to call the copy method.
     /// </summary>
-    public class CopyRequestBuilder : BaseCliRequestBuilder 
+    public class CopyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Copy a mailfolder and its contents to another mailfolder.

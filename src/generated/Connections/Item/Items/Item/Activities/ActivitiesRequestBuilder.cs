@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Connections.Item.Items.Item.Activities {
+namespace ApiSdk.Connections.Item.Items.Item.Activities
+{
     /// <summary>
     /// Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
     /// </summary>
-    public class ActivitiesRequestBuilder : BaseCliRequestBuilder 
+    public class ActivitiesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
@@ -206,7 +207,9 @@ namespace ApiSdk.Connections.Item.Items.Item.Activities {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

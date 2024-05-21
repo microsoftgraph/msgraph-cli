@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ManagedDevices.Item.ShutDown {
+namespace ApiSdk.DeviceManagement.ManagedDevices.Item.ShutDown
+{
     /// <summary>
     /// Provides operations to call the shutDown method.
     /// </summary>
-    public class ShutDownRequestBuilder : BaseCliRequestBuilder 
+    public class ShutDownRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Shut down device

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.WebParts.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.WebParts.Item
+{
     /// <summary>
     /// Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.
     /// </summary>
-    public class WebPartItemRequestBuilder : BaseCliRequestBuilder 
+    public class WebPartItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property webParts for groups

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Windows10 Enterprise Modern App Management Configuration.
     /// </summary>
-    public class Windows10EnterpriseModernAppManagementConfiguration : DeviceConfiguration, IParsable 
+    public class Windows10EnterpriseModernAppManagementConfiguration : DeviceConfiguration, IParsable
     {
         /// <summary>Indicates whether or not to uninstall a fixed list of built-in Windows apps.</summary>
         public bool? UninstallBuiltInApps { get; set; }
@@ -37,7 +38,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"uninstallBuiltInApps", n => { UninstallBuiltInApps = n.GetBoolValue(); } },
+                { "uninstallBuiltInApps", n => { UninstallBuiltInApps = n.GetBoolValue(); } },
             };
         }
         /// <summary>

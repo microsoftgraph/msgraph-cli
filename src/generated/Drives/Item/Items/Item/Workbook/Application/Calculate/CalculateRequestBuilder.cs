@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate
+{
     /// <summary>
     /// Provides operations to call the calculate method.
     /// </summary>
-    public class CalculateRequestBuilder : BaseCliRequestBuilder 
+    public class CalculateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Recalculate all currently opened workbooks in Excel.

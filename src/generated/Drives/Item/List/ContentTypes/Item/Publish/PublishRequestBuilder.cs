@@ -13,21 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Publish {
+namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Publish
+{
     /// <summary>
     /// Provides operations to call the publish method.
     /// </summary>
-    public class PublishRequestBuilder : BaseCliRequestBuilder 
+    public class PublishRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Publishes a [contentType][] present in the content type hub site.
+        /// Publishes a contentType present in the content type hub site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-publish?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Publishes a [contentType][] present in the content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-publish?view=graph-rest-1.0";
+            command.Description = "Publishes a contentType present in the content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-publish?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -69,7 +70,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Publish {
         {
         }
         /// <summary>
-        /// Publishes a [contentType][] present in the content type hub site.
+        /// Publishes a contentType present in the content type hub site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

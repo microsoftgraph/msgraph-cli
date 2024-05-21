@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.MicrosoftGraphIdentityGovernanceRestore {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.MicrosoftGraphIdentityGovernanceRestore
+{
     /// <summary>
     /// Provides operations to call the restore method.
     /// </summary>
-    public class MicrosoftGraphIdentityGovernanceRestoreRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphIdentityGovernanceRestoreRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Restore a workflow that has been deleted. You can only restore a workflow that was deleted within the last 30 days before Microsoft Entra ID automatically permanently deletes it.

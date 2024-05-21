@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CharNamespace {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CharNamespace
+{
     /// <summary>
     /// Provides operations to call the char method.
     /// </summary>
-    public class CharRequestBuilder : BaseCliRequestBuilder 
+    public class CharRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action char

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ManagedDevices.Item.LocateDevice {
+namespace ApiSdk.DeviceManagement.ManagedDevices.Item.LocateDevice
+{
     /// <summary>
     /// Provides operations to call the locateDevice method.
     /// </summary>
-    public class LocateDeviceRequestBuilder : BaseCliRequestBuilder 
+    public class LocateDeviceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Locate a device

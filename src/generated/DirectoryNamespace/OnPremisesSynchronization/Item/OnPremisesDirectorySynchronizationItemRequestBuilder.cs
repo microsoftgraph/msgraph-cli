@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization.Item {
+namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization.Item
+{
     /// <summary>
     /// Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.
     /// </summary>
-    public class OnPremisesDirectorySynchronizationItemRequestBuilder : BaseCliRequestBuilder 
+    public class OnPremisesDirectorySynchronizationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property onPremisesSynchronization for directory
