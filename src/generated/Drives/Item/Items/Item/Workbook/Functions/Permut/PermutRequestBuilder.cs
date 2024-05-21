@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Permut {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Permut
+{
     /// <summary>
     /// Provides operations to call the permut method.
     /// </summary>
-    public class PermutRequestBuilder : BaseCliRequestBuilder 
+    public class PermutRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action permut

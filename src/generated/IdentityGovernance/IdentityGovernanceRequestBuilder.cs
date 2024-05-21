@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance {
+namespace ApiSdk.IdentityGovernance
+{
     /// <summary>
     /// Provides operations to manage the identityGovernance singleton.
     /// </summary>
-    public class IdentityGovernanceRequestBuilder : BaseCliRequestBuilder 
+    public class IdentityGovernanceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.

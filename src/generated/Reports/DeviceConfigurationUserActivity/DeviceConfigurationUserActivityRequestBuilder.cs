@@ -14,20 +14,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.DeviceConfigurationUserActivity {
+namespace ApiSdk.Reports.DeviceConfigurationUserActivity
+{
     /// <summary>
     /// Provides operations to call the deviceConfigurationUserActivity method.
     /// </summary>
-    public class DeviceConfigurationUserActivityRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceConfigurationUserActivityRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Metadata for the device configuration user activity report
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-reportroot-deviceconfigurationuseractivity?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Metadata for the device configuration user activity report";
+            command.Description = "Metadata for the device configuration user activity report\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-reportroot-deviceconfigurationuseractivity?view=graph-rest-1.0";
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");

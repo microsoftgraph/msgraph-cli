@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Degrees {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Degrees
+{
     /// <summary>
     /// Provides operations to call the degrees method.
     /// </summary>
-    public class DegreesRequestBuilder : BaseCliRequestBuilder 
+    public class DegreesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action degrees

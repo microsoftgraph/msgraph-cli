@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.LandingPages.Item.Details.Item {
+namespace ApiSdk.Security.AttackSimulation.LandingPages.Item.Details.Item
+{
     /// <summary>
     /// Provides operations to manage the details property of the microsoft.graph.landingPage entity.
     /// </summary>
-    public class LandingPageDetailItemRequestBuilder : BaseCliRequestBuilder 
+    public class LandingPageDetailItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property details for security

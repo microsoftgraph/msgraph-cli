@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityRelease {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityRelease
+{
     /// <summary>
     /// Provides operations to call the release method.
     /// </summary>
-    public class MicrosoftGraphSecurityReleaseRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityReleaseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Release the non-custodial data source from the case.

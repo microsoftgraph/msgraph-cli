@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Even {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Even
+{
     /// <summary>
     /// Provides operations to call the even method.
     /// </summary>
-    public class EvenRequestBuilder : BaseCliRequestBuilder 
+    public class EvenRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action even

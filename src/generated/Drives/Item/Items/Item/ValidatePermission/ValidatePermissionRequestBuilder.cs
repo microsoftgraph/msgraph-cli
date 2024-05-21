@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.ValidatePermission {
+namespace ApiSdk.Drives.Item.Items.Item.ValidatePermission
+{
     /// <summary>
     /// Provides operations to call the validatePermission method.
     /// </summary>
-    public class ValidatePermissionRequestBuilder : BaseCliRequestBuilder 
+    public class ValidatePermissionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action validatePermission

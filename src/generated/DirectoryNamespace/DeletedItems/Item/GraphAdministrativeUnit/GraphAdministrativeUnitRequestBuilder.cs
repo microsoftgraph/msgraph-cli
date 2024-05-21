@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphAdministrativeUnit {
+namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphAdministrativeUnit
+{
     /// <summary>
     /// Casts the previous resource to administrativeUnit.
     /// </summary>
-    public class GraphAdministrativeUnitRequestBuilder : BaseCliRequestBuilder 
+    public class GraphAdministrativeUnitRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.administrativeUnit

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.Unmute {
+namespace ApiSdk.Communications.Calls.Item.Unmute
+{
     /// <summary>
     /// Provides operations to call the unmute method.
     /// </summary>
-    public class UnmuteRequestBuilder : BaseCliRequestBuilder 
+    public class UnmuteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Allow the application to unmute itself. This is a server unmute, meaning that the server will start sending audio packets for this participant to other participants again. For more information about how to handle unmute operations, see unmuteParticipantOperation.

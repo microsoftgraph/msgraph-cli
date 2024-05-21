@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EventMessageResponse : EventMessage, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EventMessageResponse : EventMessage, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>An alternate date/time proposed by an invitee for a meeting request to start and end. Read-only. Not filterable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,8 +45,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"proposedNewTime", n => { ProposedNewTime = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
-                {"responseType", n => { ResponseType = n.GetEnumValue<ResponseType>(); } },
+                { "proposedNewTime", n => { ProposedNewTime = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
+                { "responseType", n => { ResponseType = n.GetEnumValue<ResponseType>(); } },
             };
         }
         /// <summary>

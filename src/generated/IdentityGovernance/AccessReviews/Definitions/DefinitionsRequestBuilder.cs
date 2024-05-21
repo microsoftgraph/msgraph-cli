@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
+namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions
+{
     /// <summary>
     /// Provides operations to manage the definitions property of the microsoft.graph.accessReviewSet entity.
     /// </summary>
-    public class DefinitionsRequestBuilder : BaseCliRequestBuilder 
+    public class DefinitionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the definitions property of the microsoft.graph.accessReviewSet entity.
@@ -203,7 +204,9 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Minute {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Minute
+{
     /// <summary>
     /// Provides operations to call the minute method.
     /// </summary>
-    public class MinuteRequestBuilder : BaseCliRequestBuilder 
+    public class MinuteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action minute

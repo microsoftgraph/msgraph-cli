@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.F_Dist_RT {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.F_Dist_RT
+{
     /// <summary>
     /// Provides operations to call the f_Dist_RT method.
     /// </summary>
-    public class F_Dist_RTRequestBuilder : BaseCliRequestBuilder 
+    public class F_Dist_RTRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action f_Dist_RT

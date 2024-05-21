@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
+namespace ApiSdk.Users.Item.Chats.Item.Members.Item
+{
     /// <summary>
     /// Provides operations to manage the members property of the microsoft.graph.chat entity.
     /// </summary>
-    public class ConversationMemberItemRequestBuilder : BaseCliRequestBuilder 
+    public class ConversationMemberItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Remove a conversationMember from a chat.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-delete-members?view=graph-rest-1.0" />
+        /// Delete navigation property members for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a conversationMember from a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-delete-members?view=graph-rest-1.0";
+            command.Description = "Delete navigation property members for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -69,14 +69,13 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat or channel.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationmember-get?view=graph-rest-1.0" />
+        /// A collection of all the members in the chat. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a conversationMember from a chat or channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationmember-get?view=graph-rest-1.0";
+            command.Description = "A collection of all the members in the chat. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
         {
         }
         /// <summary>
-        /// Remove a conversationMember from a chat.
+        /// Delete navigation property members for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -230,7 +229,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat or channel.
+        /// A collection of all the members in the chat. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -270,7 +269,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat or channel.
+        /// A collection of all the members in the chat. Nullable.
         /// </summary>
         public class ConversationMemberItemRequestBuilderGetQueryParameters 
         {

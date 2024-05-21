@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Assignment {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Assignment
+{
     /// <summary>
     /// Provides operations to manage the assignment property of the microsoft.graph.accessPackageAssignmentRequest entity.
     /// </summary>
-    public class AssignmentRequestBuilder : BaseCliRequestBuilder 
+    public class AssignmentRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// For a requestType of userAdd or adminAdd, this is an access package assignment requested to be created.  For a requestType of userRemove, adminRemove or systemRemove, this has the id property of an existing assignment to be removed.   Supports $expand.

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
+namespace ApiSdk.IdentityProtection.RiskyUsers.Item
+{
     /// <summary>
     /// Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.
     /// </summary>
-    public class RiskyUserItemRequestBuilder : BaseCliRequestBuilder 
+    public class RiskyUserItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property riskyUsers for identityProtection

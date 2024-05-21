@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class DeltaParticipants : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class DeltaParticipants : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The collection of participants that were updated since the last roster update.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -35,8 +38,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"participants", n => { Participants = n.GetCollectionOfObjectValues<Participant>(Participant.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"sequenceNumber", n => { SequenceNumber = n.GetLongValue(); } },
+                { "participants", n => { Participants = n.GetCollectionOfObjectValues<Participant>(Participant.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sequenceNumber", n => { SequenceNumber = n.GetLongValue(); } },
             };
         }
         /// <summary>

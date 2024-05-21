@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MaxA {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MaxA
+{
     /// <summary>
     /// Provides operations to call the maxA method.
     /// </summary>
-    public class MaxARequestBuilder : BaseCliRequestBuilder 
+    public class MaxARequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action maxA

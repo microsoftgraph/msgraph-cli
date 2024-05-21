@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Items.Item {
+namespace ApiSdk.Sites.Item.Items.Item
+{
     /// <summary>
     /// Provides operations to manage the items property of the microsoft.graph.site entity.
     /// </summary>
-    public class BaseItemItemRequestBuilder : BaseCliRequestBuilder 
+    public class BaseItemItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Used to address any item contained in this site. This collection can&apos;t be enumerated.

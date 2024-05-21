@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class PlannerTask : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class PlannerTask : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Number of checklist items with value set to false, representing incomplete items.</summary>
         public int? ActiveChecklistItemCount { get; set; }
@@ -159,31 +162,31 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"activeChecklistItemCount", n => { ActiveChecklistItemCount = n.GetIntValue(); } },
-                {"appliedCategories", n => { AppliedCategories = n.GetObjectValue<PlannerAppliedCategories>(PlannerAppliedCategories.CreateFromDiscriminatorValue); } },
-                {"assignedToTaskBoardFormat", n => { AssignedToTaskBoardFormat = n.GetObjectValue<PlannerAssignedToTaskBoardTaskFormat>(PlannerAssignedToTaskBoardTaskFormat.CreateFromDiscriminatorValue); } },
-                {"assigneePriority", n => { AssigneePriority = n.GetStringValue(); } },
-                {"assignments", n => { Assignments = n.GetObjectValue<PlannerAssignments>(PlannerAssignments.CreateFromDiscriminatorValue); } },
-                {"bucketId", n => { BucketId = n.GetStringValue(); } },
-                {"bucketTaskBoardFormat", n => { BucketTaskBoardFormat = n.GetObjectValue<PlannerBucketTaskBoardTaskFormat>(PlannerBucketTaskBoardTaskFormat.CreateFromDiscriminatorValue); } },
-                {"checklistItemCount", n => { ChecklistItemCount = n.GetIntValue(); } },
-                {"completedBy", n => { CompletedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                {"completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"conversationThreadId", n => { ConversationThreadId = n.GetStringValue(); } },
-                {"createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"details", n => { Details = n.GetObjectValue<PlannerTaskDetails>(PlannerTaskDetails.CreateFromDiscriminatorValue); } },
-                {"dueDateTime", n => { DueDateTime = n.GetDateTimeOffsetValue(); } },
-                {"hasDescription", n => { HasDescription = n.GetBoolValue(); } },
-                {"orderHint", n => { OrderHint = n.GetStringValue(); } },
-                {"percentComplete", n => { PercentComplete = n.GetIntValue(); } },
-                {"planId", n => { PlanId = n.GetStringValue(); } },
-                {"previewType", n => { PreviewType = n.GetEnumValue<PlannerPreviewType>(); } },
-                {"priority", n => { Priority = n.GetIntValue(); } },
-                {"progressTaskBoardFormat", n => { ProgressTaskBoardFormat = n.GetObjectValue<PlannerProgressTaskBoardTaskFormat>(PlannerProgressTaskBoardTaskFormat.CreateFromDiscriminatorValue); } },
-                {"referenceCount", n => { ReferenceCount = n.GetIntValue(); } },
-                {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
-                {"title", n => { Title = n.GetStringValue(); } },
+                { "activeChecklistItemCount", n => { ActiveChecklistItemCount = n.GetIntValue(); } },
+                { "appliedCategories", n => { AppliedCategories = n.GetObjectValue<PlannerAppliedCategories>(PlannerAppliedCategories.CreateFromDiscriminatorValue); } },
+                { "assignedToTaskBoardFormat", n => { AssignedToTaskBoardFormat = n.GetObjectValue<PlannerAssignedToTaskBoardTaskFormat>(PlannerAssignedToTaskBoardTaskFormat.CreateFromDiscriminatorValue); } },
+                { "assigneePriority", n => { AssigneePriority = n.GetStringValue(); } },
+                { "assignments", n => { Assignments = n.GetObjectValue<PlannerAssignments>(PlannerAssignments.CreateFromDiscriminatorValue); } },
+                { "bucketId", n => { BucketId = n.GetStringValue(); } },
+                { "bucketTaskBoardFormat", n => { BucketTaskBoardFormat = n.GetObjectValue<PlannerBucketTaskBoardTaskFormat>(PlannerBucketTaskBoardTaskFormat.CreateFromDiscriminatorValue); } },
+                { "checklistItemCount", n => { ChecklistItemCount = n.GetIntValue(); } },
+                { "completedBy", n => { CompletedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "conversationThreadId", n => { ConversationThreadId = n.GetStringValue(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "details", n => { Details = n.GetObjectValue<PlannerTaskDetails>(PlannerTaskDetails.CreateFromDiscriminatorValue); } },
+                { "dueDateTime", n => { DueDateTime = n.GetDateTimeOffsetValue(); } },
+                { "hasDescription", n => { HasDescription = n.GetBoolValue(); } },
+                { "orderHint", n => { OrderHint = n.GetStringValue(); } },
+                { "percentComplete", n => { PercentComplete = n.GetIntValue(); } },
+                { "planId", n => { PlanId = n.GetStringValue(); } },
+                { "previewType", n => { PreviewType = n.GetEnumValue<PlannerPreviewType>(); } },
+                { "priority", n => { Priority = n.GetIntValue(); } },
+                { "progressTaskBoardFormat", n => { ProgressTaskBoardFormat = n.GetObjectValue<PlannerProgressTaskBoardTaskFormat>(PlannerProgressTaskBoardTaskFormat.CreateFromDiscriminatorValue); } },
+                { "referenceCount", n => { ReferenceCount = n.GetIntValue(); } },
+                { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
+                { "title", n => { Title = n.GetStringValue(); } },
             };
         }
         /// <summary>

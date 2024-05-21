@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class PlannerCategoryDescriptions : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class PlannerCategoryDescriptions : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -242,32 +245,32 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"category1", n => { Category1 = n.GetStringValue(); } },
-                {"category10", n => { Category10 = n.GetStringValue(); } },
-                {"category11", n => { Category11 = n.GetStringValue(); } },
-                {"category12", n => { Category12 = n.GetStringValue(); } },
-                {"category13", n => { Category13 = n.GetStringValue(); } },
-                {"category14", n => { Category14 = n.GetStringValue(); } },
-                {"category15", n => { Category15 = n.GetStringValue(); } },
-                {"category16", n => { Category16 = n.GetStringValue(); } },
-                {"category17", n => { Category17 = n.GetStringValue(); } },
-                {"category18", n => { Category18 = n.GetStringValue(); } },
-                {"category19", n => { Category19 = n.GetStringValue(); } },
-                {"category2", n => { Category2 = n.GetStringValue(); } },
-                {"category20", n => { Category20 = n.GetStringValue(); } },
-                {"category21", n => { Category21 = n.GetStringValue(); } },
-                {"category22", n => { Category22 = n.GetStringValue(); } },
-                {"category23", n => { Category23 = n.GetStringValue(); } },
-                {"category24", n => { Category24 = n.GetStringValue(); } },
-                {"category25", n => { Category25 = n.GetStringValue(); } },
-                {"category3", n => { Category3 = n.GetStringValue(); } },
-                {"category4", n => { Category4 = n.GetStringValue(); } },
-                {"category5", n => { Category5 = n.GetStringValue(); } },
-                {"category6", n => { Category6 = n.GetStringValue(); } },
-                {"category7", n => { Category7 = n.GetStringValue(); } },
-                {"category8", n => { Category8 = n.GetStringValue(); } },
-                {"category9", n => { Category9 = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "category1", n => { Category1 = n.GetStringValue(); } },
+                { "category10", n => { Category10 = n.GetStringValue(); } },
+                { "category11", n => { Category11 = n.GetStringValue(); } },
+                { "category12", n => { Category12 = n.GetStringValue(); } },
+                { "category13", n => { Category13 = n.GetStringValue(); } },
+                { "category14", n => { Category14 = n.GetStringValue(); } },
+                { "category15", n => { Category15 = n.GetStringValue(); } },
+                { "category16", n => { Category16 = n.GetStringValue(); } },
+                { "category17", n => { Category17 = n.GetStringValue(); } },
+                { "category18", n => { Category18 = n.GetStringValue(); } },
+                { "category19", n => { Category19 = n.GetStringValue(); } },
+                { "category2", n => { Category2 = n.GetStringValue(); } },
+                { "category20", n => { Category20 = n.GetStringValue(); } },
+                { "category21", n => { Category21 = n.GetStringValue(); } },
+                { "category22", n => { Category22 = n.GetStringValue(); } },
+                { "category23", n => { Category23 = n.GetStringValue(); } },
+                { "category24", n => { Category24 = n.GetStringValue(); } },
+                { "category25", n => { Category25 = n.GetStringValue(); } },
+                { "category3", n => { Category3 = n.GetStringValue(); } },
+                { "category4", n => { Category4 = n.GetStringValue(); } },
+                { "category5", n => { Category5 = n.GetStringValue(); } },
+                { "category6", n => { Category6 = n.GetStringValue(); } },
+                { "category7", n => { Category7 = n.GetStringValue(); } },
+                { "category8", n => { Category8 = n.GetStringValue(); } },
+                { "category9", n => { Category9 = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

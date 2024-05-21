@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.Ref {
+namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.Ref
+{
     /// <summary>
     /// Provides operations to manage the collection of directory entities.
     /// </summary>
-    public class RefRequestBuilder : BaseCliRequestBuilder 
+    public class RefRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Use this API to remove a member (user, group, or device) from an administrative unit.

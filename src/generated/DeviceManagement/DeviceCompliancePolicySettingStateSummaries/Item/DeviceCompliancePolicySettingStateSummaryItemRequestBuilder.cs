@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.Item {
+namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.Item
+{
     /// <summary>
     /// Provides operations to manage the deviceCompliancePolicySettingStateSummaries property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a deviceCompliancePolicySettingStateSummary.

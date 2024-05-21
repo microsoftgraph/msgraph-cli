@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Users.Item.JoinedTeams.Item.InstalledApps.Item.Upgrade {
-    public class UpgradePostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Users.Item.JoinedTeams.Item.InstalledApps.Item.Upgrade
+{
+    #pragma warning disable CS1591
+    public class UpgradePostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -43,7 +46,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.InstalledApps.Item.Upgrade {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"consentedPermissionSet", n => { ConsentedPermissionSet = n.GetObjectValue<TeamsAppPermissionSet>(TeamsAppPermissionSet.CreateFromDiscriminatorValue); } },
+                { "consentedPermissionSet", n => { ConsentedPermissionSet = n.GetObjectValue<TeamsAppPermissionSet>(TeamsAppPermissionSet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

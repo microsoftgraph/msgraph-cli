@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class RetentionEvent : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class RetentionEvent : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The user who created the retentionEvent.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -33,7 +36,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The eventPropagationResults property</summary>
+        /// <summary>Represents the success status of a created event and additional information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<EventPropagationResult>? EventPropagationResults { get; set; }
@@ -49,7 +52,7 @@ namespace ApiSdk.Models.Security {
 #else
         public List<EventQuery> EventQueries { get; set; }
 #endif
-        /// <summary>The eventStatus property</summary>
+        /// <summary>Status of event propogation to the scoped locations after the event has been created.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RetentionEventStatus? EventStatus { get; set; }
@@ -97,18 +100,18 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"eventPropagationResults", n => { EventPropagationResults = n.GetCollectionOfObjectValues<EventPropagationResult>(EventPropagationResult.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"eventQueries", n => { EventQueries = n.GetCollectionOfObjectValues<EventQuery>(EventQuery.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"eventStatus", n => { EventStatus = n.GetObjectValue<RetentionEventStatus>(RetentionEventStatus.CreateFromDiscriminatorValue); } },
-                {"eventTriggerDateTime", n => { EventTriggerDateTime = n.GetDateTimeOffsetValue(); } },
-                {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"lastStatusUpdateDateTime", n => { LastStatusUpdateDateTime = n.GetDateTimeOffsetValue(); } },
-                {"retentionEventType", n => { RetentionEventType = n.GetObjectValue<ApiSdk.Models.Security.RetentionEventType>(ApiSdk.Models.Security.RetentionEventType.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "eventPropagationResults", n => { EventPropagationResults = n.GetCollectionOfObjectValues<EventPropagationResult>(EventPropagationResult.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "eventQueries", n => { EventQueries = n.GetCollectionOfObjectValues<EventQuery>(EventQuery.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "eventStatus", n => { EventStatus = n.GetObjectValue<RetentionEventStatus>(RetentionEventStatus.CreateFromDiscriminatorValue); } },
+                { "eventTriggerDateTime", n => { EventTriggerDateTime = n.GetDateTimeOffsetValue(); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "lastStatusUpdateDateTime", n => { LastStatusUpdateDateTime = n.GetDateTimeOffsetValue(); } },
+                { "retentionEventType", n => { RetentionEventType = n.GetObjectValue<ApiSdk.Models.Security.RetentionEventType>(ApiSdk.Models.Security.RetentionEventType.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

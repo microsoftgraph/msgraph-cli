@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item.Cancel {
+namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item.Cancel
+{
     /// <summary>
     /// Provides operations to call the cancel method.
     /// </summary>
-    public class CancelRequestBuilder : BaseCliRequestBuilder 
+    public class CancelRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Immediately cancel a unifiedRoleEligibilityScheduleRequest object whose status is Granted and have the system automatically delete the cancelled request after 30 days. After calling this action, the status of the cancelled unifiedRoleEligibilityScheduleRequest changes to Revoked.

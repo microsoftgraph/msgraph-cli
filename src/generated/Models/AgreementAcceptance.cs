@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AgreementAcceptance : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AgreementAcceptance : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The identifier of the agreement file accepted by the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -111,19 +114,19 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"agreementFileId", n => { AgreementFileId = n.GetStringValue(); } },
-                {"agreementId", n => { AgreementId = n.GetStringValue(); } },
-                {"deviceDisplayName", n => { DeviceDisplayName = n.GetStringValue(); } },
-                {"deviceId", n => { DeviceId = n.GetStringValue(); } },
-                {"deviceOSType", n => { DeviceOSType = n.GetStringValue(); } },
-                {"deviceOSVersion", n => { DeviceOSVersion = n.GetStringValue(); } },
-                {"expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
-                {"recordedDateTime", n => { RecordedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"state", n => { State = n.GetEnumValue<AgreementAcceptanceState>(); } },
-                {"userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
-                {"userEmail", n => { UserEmail = n.GetStringValue(); } },
-                {"userId", n => { UserId = n.GetStringValue(); } },
-                {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
+                { "agreementFileId", n => { AgreementFileId = n.GetStringValue(); } },
+                { "agreementId", n => { AgreementId = n.GetStringValue(); } },
+                { "deviceDisplayName", n => { DeviceDisplayName = n.GetStringValue(); } },
+                { "deviceId", n => { DeviceId = n.GetStringValue(); } },
+                { "deviceOSType", n => { DeviceOSType = n.GetStringValue(); } },
+                { "deviceOSVersion", n => { DeviceOSVersion = n.GetStringValue(); } },
+                { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
+                { "recordedDateTime", n => { RecordedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "state", n => { State = n.GetEnumValue<AgreementAcceptanceState>(); } },
+                { "userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
+                { "userEmail", n => { UserEmail = n.GetStringValue(); } },
+                { "userId", n => { UserId = n.GetStringValue(); } },
+                { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
         }
         /// <summary>

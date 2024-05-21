@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
+namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary
+{
     /// <summary>
     /// Provides operations to manage the softwareUpdateStatusSummary property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class SoftwareUpdateStatusSummaryRequestBuilder : BaseCliRequestBuilder 
+    public class SoftwareUpdateStatusSummaryRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Read properties and relationships of the softwareUpdateStatusSummary object.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitxor {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitxor
+{
     /// <summary>
     /// Provides operations to call the bitxor method.
     /// </summary>
-    public class BitxorRequestBuilder : BaseCliRequestBuilder 
+    public class BitxorRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action bitxor

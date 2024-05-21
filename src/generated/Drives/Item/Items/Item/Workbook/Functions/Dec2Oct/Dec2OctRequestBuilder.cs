@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dec2Oct {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dec2Oct
+{
     /// <summary>
     /// Provides operations to call the dec2Oct method.
     /// </summary>
-    public class Dec2OctRequestBuilder : BaseCliRequestBuilder 
+    public class Dec2OctRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dec2Oct

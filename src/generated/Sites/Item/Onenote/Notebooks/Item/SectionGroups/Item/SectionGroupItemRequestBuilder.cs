@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item {
+namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item
+{
     /// <summary>
     /// Provides operations to manage the sectionGroups property of the microsoft.graph.notebook entity.
     /// </summary>
-    public class SectionGroupItemRequestBuilder : BaseCliRequestBuilder 
+    public class SectionGroupItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property sectionGroups for sites

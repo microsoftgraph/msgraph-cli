@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.Item {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.Item
+{
     /// <summary>
     /// Provides operations to manage the assignmentSchedules property of the microsoft.graph.privilegedAccessGroup entity.
     /// </summary>
-    public class PrivilegedAccessGroupAssignmentScheduleItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrivilegedAccessGroupAssignmentScheduleItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the activatedUsing property of the microsoft.graph.privilegedAccessGroupAssignmentSchedule entity.

@@ -23,11 +23,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
+namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members
+{
     /// <summary>
     /// Provides operations to manage the members property of the microsoft.graph.administrativeUnit entity.
     /// </summary>
-    public class MembersRequestBuilder : BaseCliRequestBuilder 
+    public class MembersRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Gets an item from the ApiSdk.directory.administrativeUnits.item.members.item collection
@@ -64,14 +65,14 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to members for directory
+        /// Use this API to add a member (user, group, or device) to an administrative unit. Currently it&apos;s only possible to add one member at a time to an administrative unit.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create new navigation property to members for directory\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0";
+            command.Description = "Use this API to add a member (user, group, or device) to an administrative unit. Currently it's only possible to add one member at a time to an administrative unit.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -254,14 +255,14 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
             return command;
         }
         /// <summary>
-        /// Users and groups that are members of this administrative unit. Supports $expand.
+        /// Use this API to get the members list (users, groups, or devices) in an administrative unit.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0";
+            command.Description = "Use this API to get the members list (users, groups, or devices) in an administrative unit.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -350,7 +351,9 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -395,7 +398,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         {
         }
         /// <summary>
-        /// Users and groups that are members of this administrative unit. Supports $expand.
+        /// Use this API to get the members list (users, groups, or devices) in an administrative unit.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -414,7 +417,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to members for directory
+        /// Use this API to add a member (user, group, or device) to an administrative unit. Currently it&apos;s only possible to add one member at a time to an administrative unit.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -435,7 +438,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Users and groups that are members of this administrative unit. Supports $expand.
+        /// Use this API to get the members list (users, groups, or devices) in an administrative unit.
         /// </summary>
         public class MembersRequestBuilderGetQueryParameters 
         {

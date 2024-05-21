@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AuthenticationMethodConfiguration : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AuthenticationMethodConfiguration : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Groups of users that are excluded from a policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,8 +50,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"excludeTargets", n => { ExcludeTargets = n.GetCollectionOfObjectValues<ExcludeTarget>(ExcludeTarget.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"state", n => { State = n.GetEnumValue<AuthenticationMethodState>(); } },
+                { "excludeTargets", n => { ExcludeTargets = n.GetCollectionOfObjectValues<ExcludeTarget>(ExcludeTarget.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "state", n => { State = n.GetEnumValue<AuthenticationMethodState>(); } },
             };
         }
         /// <summary>

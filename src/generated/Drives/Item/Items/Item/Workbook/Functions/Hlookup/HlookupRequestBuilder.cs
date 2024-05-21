@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hlookup {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hlookup
+{
     /// <summary>
     /// Provides operations to call the hlookup method.
     /// </summary>
-    public class HlookupRequestBuilder : BaseCliRequestBuilder 
+    public class HlookupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action hlookup

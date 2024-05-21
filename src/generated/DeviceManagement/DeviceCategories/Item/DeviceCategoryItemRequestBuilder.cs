@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
+namespace ApiSdk.DeviceManagement.DeviceCategories.Item
+{
     /// <summary>
     /// Provides operations to manage the deviceCategories property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DeviceCategoryItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceCategoryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a deviceCategory.

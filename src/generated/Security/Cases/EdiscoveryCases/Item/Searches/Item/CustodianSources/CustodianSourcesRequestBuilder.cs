@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSources {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSources
+{
     /// <summary>
     /// Provides operations to manage the custodianSources property of the microsoft.graph.security.ediscoverySearch entity.
     /// </summary>
-    public class CustodianSourcesRequestBuilder : BaseCliRequestBuilder 
+    public class CustodianSourcesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the custodianSources property of the microsoft.graph.security.ediscoverySearch entity.
@@ -51,14 +52,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
             return command;
         }
         /// <summary>
-        /// Get the list of custodial data sources associated with an eDiscovery search.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0" />
+        /// Custodian sources that are included in the eDiscovery search.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of custodial data sources associated with an eDiscovery search.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0";
+            command.Description = "Custodian sources that are included in the eDiscovery search.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -146,7 +146,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -172,7 +174,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
         {
         }
         /// <summary>
-        /// Get the list of custodial data sources associated with an eDiscovery search.
+        /// Custodian sources that are included in the eDiscovery search.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -191,7 +193,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of custodial data sources associated with an eDiscovery search.
+        /// Custodian sources that are included in the eDiscovery search.
         /// </summary>
         public class CustodianSourcesRequestBuilderGetQueryParameters 
         {

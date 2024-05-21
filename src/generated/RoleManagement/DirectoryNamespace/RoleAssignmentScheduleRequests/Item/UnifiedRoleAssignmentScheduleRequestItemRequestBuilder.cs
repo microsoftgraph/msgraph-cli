@@ -21,11 +21,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequests.Item {
+namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequests.Item
+{
     /// <summary>
     /// Provides operations to manage the roleAssignmentScheduleRequests property of the microsoft.graph.rbacApplication entity.
     /// </summary>
-    public class UnifiedRoleAssignmentScheduleRequestItemRequestBuilder : BaseCliRequestBuilder 
+    public class UnifiedRoleAssignmentScheduleRequestItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.

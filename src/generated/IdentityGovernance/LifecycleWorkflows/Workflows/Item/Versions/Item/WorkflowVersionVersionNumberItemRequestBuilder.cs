@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.Item {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.Item
+{
     /// <summary>
     /// Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.
     /// </summary>
-    public class WorkflowVersionVersionNumberItemRequestBuilder : BaseCliRequestBuilder 
+    public class WorkflowVersionVersionNumberItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.workflowBase entity.

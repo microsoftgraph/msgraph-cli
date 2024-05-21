@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Concatenate {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Concatenate
+{
     /// <summary>
     /// Provides operations to call the concatenate method.
     /// </summary>
-    public class ConcatenateRequestBuilder : BaseCliRequestBuilder 
+    public class ConcatenateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action concatenate

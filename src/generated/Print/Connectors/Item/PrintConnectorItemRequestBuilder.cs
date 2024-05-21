@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Connectors.Item {
+namespace ApiSdk.Print.Connectors.Item
+{
     /// <summary>
     /// Provides operations to manage the connectors property of the microsoft.graph.print entity.
     /// </summary>
-    public class PrintConnectorItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrintConnectorItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete (unregister) a printConnector.

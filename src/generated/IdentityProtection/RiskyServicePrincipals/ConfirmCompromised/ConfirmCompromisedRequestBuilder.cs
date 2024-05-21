@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.ConfirmCompromised {
+namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.ConfirmCompromised
+{
     /// <summary>
     /// Provides operations to call the confirmCompromised method.
     /// </summary>
-    public class ConfirmCompromisedRequestBuilder : BaseCliRequestBuilder 
+    public class ConfirmCompromisedRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Confirm one or more riskyServicePrincipal objects as compromised. This action sets the targeted service principal account&apos;s risk level to high.

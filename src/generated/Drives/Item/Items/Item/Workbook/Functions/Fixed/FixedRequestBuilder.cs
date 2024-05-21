@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fixed {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fixed
+{
     /// <summary>
     /// Provides operations to call the fixed method.
     /// </summary>
-    public class FixedRequestBuilder : BaseCliRequestBuilder 
+    public class FixedRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action fixed

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class Indicator : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class Indicator : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The artifact property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,8 +44,8 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"artifact", n => { Artifact = n.GetObjectValue<ApiSdk.Models.Security.Artifact>(ApiSdk.Models.Security.Artifact.CreateFromDiscriminatorValue); } },
-                {"source", n => { Source = n.GetEnumValue<IndicatorSource>(); } },
+                { "artifact", n => { Artifact = n.GetObjectValue<ApiSdk.Models.Security.Artifact>(ApiSdk.Models.Security.Artifact.CreateFromDiscriminatorValue); } },
+                { "source", n => { Source = n.GetEnumValue<IndicatorSource>(); } },
             };
         }
         /// <summary>

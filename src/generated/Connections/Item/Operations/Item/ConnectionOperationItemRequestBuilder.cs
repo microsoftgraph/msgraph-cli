@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Connections.Item.Operations.Item {
+namespace ApiSdk.Connections.Item.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.externalConnectors.externalConnection entity.
     /// </summary>
-    public class ConnectionOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class ConnectionOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for connections
@@ -62,14 +63,13 @@ namespace ApiSdk.Connections.Item.Operations.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a connectionOperation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-connectionoperation-get?view=graph-rest-1.0" />
+        /// Get operations from connections
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a connectionOperation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-connectionoperation-get?view=graph-rest-1.0";
+            command.Description = "Get operations from connections";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -211,7 +211,7 @@ namespace ApiSdk.Connections.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a connectionOperation object.
+        /// Get operations from connections
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +251,7 @@ namespace ApiSdk.Connections.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a connectionOperation object.
+        /// Get operations from connections
         /// </summary>
         public class ConnectionOperationItemRequestBuilderGetQueryParameters 
         {

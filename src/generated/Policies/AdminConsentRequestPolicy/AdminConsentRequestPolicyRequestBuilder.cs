@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.AdminConsentRequestPolicy {
+namespace ApiSdk.Policies.AdminConsentRequestPolicy
+{
     /// <summary>
     /// Provides operations to manage the adminConsentRequestPolicy property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class AdminConsentRequestPolicyRequestBuilder : BaseCliRequestBuilder 
+    public class AdminConsentRequestPolicyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property adminConsentRequestPolicy for policies

@@ -13,20 +13,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTime {
+namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTime
+{
     /// <summary>
     /// Provides operations to call the getPstnCalls method.
     /// </summary>
-    public class MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getPstnCalls
+        /// Get log of PSTN calls as a collection of pstnCallLogRow entries.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getPstnCalls";
+            command.Description = "Get log of PSTN calls as a collection of pstnCallLogRow entries.";
             var fromDateTimeOption = new Option<string>("--from-date-time", description: "Usage: fromDateTime={fromDateTime}") {
             };
             fromDateTimeOption.IsRequired = true;
@@ -93,7 +94,9 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCall
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -119,7 +122,7 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCall
         {
         }
         /// <summary>
-        /// Invoke function getPstnCalls
+        /// Get log of PSTN calls as a collection of pstnCallLogRow entries.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -138,7 +141,7 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCall
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getPstnCalls
+        /// Get log of PSTN calls as a collection of pstnCallLogRow entries.
         /// </summary>
         public class MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetQueryParameters 
         {

@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.Modules.Item {
+namespace ApiSdk.Education.Classes.Item.Modules.Item
+{
     /// <summary>
     /// Provides operations to manage the modules property of the microsoft.graph.educationClass entity.
     /// </summary>
-    public class EducationModuleItemRequestBuilder : BaseCliRequestBuilder 
+    public class EducationModuleItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an existing module in a class. Only teachers within a class can delete modules.

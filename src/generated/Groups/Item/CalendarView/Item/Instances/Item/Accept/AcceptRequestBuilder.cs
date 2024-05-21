@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.Accept {
+namespace ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.Accept
+{
     /// <summary>
     /// Provides operations to call the accept method.
     /// </summary>
-    public class AcceptRequestBuilder : BaseCliRequestBuilder 
+    public class AcceptRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Accept the specified event in a user calendar.

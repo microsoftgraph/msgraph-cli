@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetYammerDeviceUsageUserCountsWithPeriod {
+namespace ApiSdk.Reports.GetYammerDeviceUsageUserCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getYammerDeviceUsageUserCounts method.
     /// </summary>
-    public class GetYammerDeviceUsageUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetYammerDeviceUsageUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getYammerDeviceUsageUserCounts
+        /// Get the number of daily users by device type.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getYammerDeviceUsageUserCounts";
+            command.Description = "Get the number of daily users by device type.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetYammerDeviceUsageUserCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getYammerDeviceUsageUserCounts
+        /// Get the number of daily users by device type.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

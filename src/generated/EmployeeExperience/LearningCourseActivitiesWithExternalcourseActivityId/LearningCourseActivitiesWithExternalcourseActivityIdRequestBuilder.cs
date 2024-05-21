@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.EmployeeExperience.LearningCourseActivitiesWithExternalcourseActivityId {
+namespace ApiSdk.EmployeeExperience.LearningCourseActivitiesWithExternalcourseActivityId
+{
     /// <summary>
     /// Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperience entity.
     /// </summary>
-    public class LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder : BaseCliRequestBuilder 
+    public class LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property learningCourseActivities for employeeExperience

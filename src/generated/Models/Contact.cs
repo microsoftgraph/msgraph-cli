@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Contact : OutlookItem, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Contact : OutlookItem, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The name of the contact&apos;s assistant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -322,43 +325,43 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"assistantName", n => { AssistantName = n.GetStringValue(); } },
-                {"birthday", n => { Birthday = n.GetDateTimeOffsetValue(); } },
-                {"businessAddress", n => { BusinessAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
-                {"businessHomePage", n => { BusinessHomePage = n.GetStringValue(); } },
-                {"businessPhones", n => { BusinessPhones = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"children", n => { Children = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"companyName", n => { CompanyName = n.GetStringValue(); } },
-                {"department", n => { Department = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"emailAddresses", n => { EmailAddresses = n.GetCollectionOfObjectValues<EmailAddress>(EmailAddress.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"extensions", n => { Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"fileAs", n => { FileAs = n.GetStringValue(); } },
-                {"generation", n => { Generation = n.GetStringValue(); } },
-                {"givenName", n => { GivenName = n.GetStringValue(); } },
-                {"homeAddress", n => { HomeAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
-                {"homePhones", n => { HomePhones = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"imAddresses", n => { ImAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"initials", n => { Initials = n.GetStringValue(); } },
-                {"jobTitle", n => { JobTitle = n.GetStringValue(); } },
-                {"manager", n => { Manager = n.GetStringValue(); } },
-                {"middleName", n => { MiddleName = n.GetStringValue(); } },
-                {"mobilePhone", n => { MobilePhone = n.GetStringValue(); } },
-                {"multiValueExtendedProperties", n => { MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>(MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"nickName", n => { NickName = n.GetStringValue(); } },
-                {"officeLocation", n => { OfficeLocation = n.GetStringValue(); } },
-                {"otherAddress", n => { OtherAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
-                {"parentFolderId", n => { ParentFolderId = n.GetStringValue(); } },
-                {"personalNotes", n => { PersonalNotes = n.GetStringValue(); } },
-                {"photo", n => { Photo = n.GetObjectValue<ProfilePhoto>(ProfilePhoto.CreateFromDiscriminatorValue); } },
-                {"profession", n => { Profession = n.GetStringValue(); } },
-                {"singleValueExtendedProperties", n => { SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>(SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"spouseName", n => { SpouseName = n.GetStringValue(); } },
-                {"surname", n => { Surname = n.GetStringValue(); } },
-                {"title", n => { Title = n.GetStringValue(); } },
-                {"yomiCompanyName", n => { YomiCompanyName = n.GetStringValue(); } },
-                {"yomiGivenName", n => { YomiGivenName = n.GetStringValue(); } },
-                {"yomiSurname", n => { YomiSurname = n.GetStringValue(); } },
+                { "assistantName", n => { AssistantName = n.GetStringValue(); } },
+                { "birthday", n => { Birthday = n.GetDateTimeOffsetValue(); } },
+                { "businessAddress", n => { BusinessAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "businessHomePage", n => { BusinessHomePage = n.GetStringValue(); } },
+                { "businessPhones", n => { BusinessPhones = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "children", n => { Children = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "companyName", n => { CompanyName = n.GetStringValue(); } },
+                { "department", n => { Department = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "emailAddresses", n => { EmailAddresses = n.GetCollectionOfObjectValues<EmailAddress>(EmailAddress.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "fileAs", n => { FileAs = n.GetStringValue(); } },
+                { "generation", n => { Generation = n.GetStringValue(); } },
+                { "givenName", n => { GivenName = n.GetStringValue(); } },
+                { "homeAddress", n => { HomeAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "homePhones", n => { HomePhones = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "imAddresses", n => { ImAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "initials", n => { Initials = n.GetStringValue(); } },
+                { "jobTitle", n => { JobTitle = n.GetStringValue(); } },
+                { "manager", n => { Manager = n.GetStringValue(); } },
+                { "middleName", n => { MiddleName = n.GetStringValue(); } },
+                { "mobilePhone", n => { MobilePhone = n.GetStringValue(); } },
+                { "multiValueExtendedProperties", n => { MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>(MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "nickName", n => { NickName = n.GetStringValue(); } },
+                { "officeLocation", n => { OfficeLocation = n.GetStringValue(); } },
+                { "otherAddress", n => { OtherAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "parentFolderId", n => { ParentFolderId = n.GetStringValue(); } },
+                { "personalNotes", n => { PersonalNotes = n.GetStringValue(); } },
+                { "photo", n => { Photo = n.GetObjectValue<ProfilePhoto>(ProfilePhoto.CreateFromDiscriminatorValue); } },
+                { "profession", n => { Profession = n.GetStringValue(); } },
+                { "singleValueExtendedProperties", n => { SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>(SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "spouseName", n => { SpouseName = n.GetStringValue(); } },
+                { "surname", n => { Surname = n.GetStringValue(); } },
+                { "title", n => { Title = n.GetStringValue(); } },
+                { "yomiCompanyName", n => { YomiCompanyName = n.GetStringValue(); } },
+                { "yomiGivenName", n => { YomiGivenName = n.GetStringValue(); } },
+                { "yomiSurname", n => { YomiSurname = n.GetStringValue(); } },
             };
         }
         /// <summary>

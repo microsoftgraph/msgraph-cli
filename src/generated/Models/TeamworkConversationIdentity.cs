@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TeamworkConversationIdentity : Identity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TeamworkConversationIdentity : Identity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Type of conversation. Possible values are: team, channel, chat, and unknownFutureValue.</summary>
         public TeamworkConversationIdentityType? ConversationIdentityType { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"conversationIdentityType", n => { ConversationIdentityType = n.GetEnumValue<TeamworkConversationIdentityType>(); } },
+                { "conversationIdentityType", n => { ConversationIdentityType = n.GetEnumValue<TeamworkConversationIdentityType>(); } },
             };
         }
         /// <summary>

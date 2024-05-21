@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Operations.Item {
+namespace ApiSdk.Print.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.print entity.
     /// </summary>
-    public class PrintOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrintOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for print

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.HarMean {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.HarMean
+{
     /// <summary>
     /// Provides operations to call the harMean method.
     /// </summary>
-    public class HarMeanRequestBuilder : BaseCliRequestBuilder 
+    public class HarMeanRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action harMean

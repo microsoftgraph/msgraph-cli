@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.CopyNotebook {
+namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.CopyNotebook
+{
     /// <summary>
     /// Provides operations to call the copyNotebook method.
     /// </summary>
-    public class CopyNotebookRequestBuilder : BaseCliRequestBuilder 
+    public class CopyNotebookRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.

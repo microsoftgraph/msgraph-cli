@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Follow {
+namespace ApiSdk.Drives.Item.Items.Item.Follow
+{
     /// <summary>
     /// Provides operations to call the follow method.
     /// </summary>
-    public class FollowRequestBuilder : BaseCliRequestBuilder 
+    public class FollowRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Follow a driveItem.

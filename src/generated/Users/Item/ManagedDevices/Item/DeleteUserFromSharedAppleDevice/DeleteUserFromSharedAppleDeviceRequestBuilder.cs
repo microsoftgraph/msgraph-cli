@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.DeleteUserFromSharedAppleDevice {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.DeleteUserFromSharedAppleDevice
+{
     /// <summary>
     /// Provides operations to call the deleteUserFromSharedAppleDevice method.
     /// </summary>
-    public class DeleteUserFromSharedAppleDeviceRequestBuilder : BaseCliRequestBuilder 
+    public class DeleteUserFromSharedAppleDeviceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete user from shared Apple device

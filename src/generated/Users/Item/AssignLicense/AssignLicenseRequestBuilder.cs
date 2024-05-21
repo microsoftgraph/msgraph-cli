@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.AssignLicense {
+namespace ApiSdk.Users.Item.AssignLicense
+{
     /// <summary>
     /// Provides operations to call the assignLicense method.
     /// </summary>
-    public class AssignLicenseRequestBuilder : BaseCliRequestBuilder 
+    public class AssignLicenseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Add or remove subscriptions for the user. You can also enable and disable specific plans associated with a subscription.

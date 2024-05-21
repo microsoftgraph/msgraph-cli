@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item.Ref {
+namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item.Ref
+{
     /// <summary>
     /// Provides operations to manage the collection of policyRoot entities.
     /// </summary>
-    public class RefRequestBuilder : BaseCliRequestBuilder 
+    public class RefRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.

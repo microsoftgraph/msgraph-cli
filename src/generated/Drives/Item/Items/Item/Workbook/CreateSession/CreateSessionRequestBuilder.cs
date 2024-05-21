@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.CreateSession {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.CreateSession
+{
     /// <summary>
     /// Provides operations to call the createSession method.
     /// </summary>
-    public class CreateSessionRequestBuilder : BaseCliRequestBuilder 
+    public class CreateSessionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Create a new workbook session.  Excel APIs can be called in one of two modes:  To represent the session in the API, use the workbook-session-id: {session-id} header.  In some cases, creating a new session requires an indeterminate time to complete. Microsoft Graph also provides a long running operations pattern. This pattern provides a way to poll for creation status updates, without waiting for the creation to complete. The following are the steps:

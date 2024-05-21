@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ecma_Ceiling {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ecma_Ceiling
+{
     /// <summary>
     /// Provides operations to call the ecma_Ceiling method.
     /// </summary>
-    public class Ecma_CeilingRequestBuilder : BaseCliRequestBuilder 
+    public class Ecma_CeilingRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action ecma_Ceiling

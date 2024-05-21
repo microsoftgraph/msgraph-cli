@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.CreatedOnBehalfOf {
+namespace ApiSdk.Groups.Item.CreatedOnBehalfOf
+{
     /// <summary>
     /// Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.group entity.
     /// </summary>
-    public class CreatedOnBehalfOfRequestBuilder : BaseCliRequestBuilder 
+    public class CreatedOnBehalfOfRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.

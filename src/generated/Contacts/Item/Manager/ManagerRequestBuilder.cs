@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Contacts.Item.Manager {
+namespace ApiSdk.Contacts.Item.Manager
+{
     /// <summary>
     /// Provides operations to manage the manager property of the microsoft.graph.orgContact entity.
     /// </summary>
-    public class ManagerRequestBuilder : BaseCliRequestBuilder 
+    public class ManagerRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get this organizational contact&apos;s manager.

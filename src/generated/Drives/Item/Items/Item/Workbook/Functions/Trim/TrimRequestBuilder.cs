@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Trim {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Trim
+{
     /// <summary>
     /// Provides operations to call the trim method.
     /// </summary>
-    public class TrimRequestBuilder : BaseCliRequestBuilder 
+    public class TrimRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action trim

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Unprotect {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Unprotect
+{
     /// <summary>
     /// Provides operations to call the unprotect method.
     /// </summary>
-    public class UnprotectRequestBuilder : BaseCliRequestBuilder 
+    public class UnprotectRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Unprotect a worksheet

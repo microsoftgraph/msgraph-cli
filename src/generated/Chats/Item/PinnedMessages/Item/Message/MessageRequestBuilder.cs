@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Chats.Item.PinnedMessages.Item.Message {
+namespace ApiSdk.Chats.Item.PinnedMessages.Item.Message
+{
     /// <summary>
     /// Provides operations to manage the message property of the microsoft.graph.pinnedChatMessageInfo entity.
     /// </summary>
-    public class MessageRequestBuilder : BaseCliRequestBuilder 
+    public class MessageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Represents details about the chat message that is pinned.

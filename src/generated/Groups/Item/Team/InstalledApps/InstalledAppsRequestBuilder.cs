@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Team.InstalledApps {
+namespace ApiSdk.Groups.Item.Team.InstalledApps
+{
     /// <summary>
     /// Provides operations to manage the installedApps property of the microsoft.graph.team entity.
     /// </summary>
-    public class InstalledAppsRequestBuilder : BaseCliRequestBuilder 
+    public class InstalledAppsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the installedApps property of the microsoft.graph.team entity.
@@ -57,14 +58,13 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps {
             return command;
         }
         /// <summary>
-        /// Install an app to the specified team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-post-installedapps?view=graph-rest-1.0" />
+        /// Create new navigation property to installedApps for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Install an app to the specified team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-post-installedapps?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to installedApps for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -109,14 +109,13 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of apps installed in the specified team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-list-installedapps?view=graph-rest-1.0" />
+        /// The apps installed in this team.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of apps installed in the specified team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-list-installedapps?view=graph-rest-1.0";
+            command.Description = "The apps installed in this team.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -198,7 +197,9 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -224,7 +225,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps {
         {
         }
         /// <summary>
-        /// Retrieve a list of apps installed in the specified team.
+        /// The apps installed in this team.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +244,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps {
             return requestInfo;
         }
         /// <summary>
-        /// Install an app to the specified team.
+        /// Create new navigation property to installedApps for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -264,7 +265,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of apps installed in the specified team.
+        /// The apps installed in this team.
         /// </summary>
         public class InstalledAppsRequestBuilderGetQueryParameters 
         {

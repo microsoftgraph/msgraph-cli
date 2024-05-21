@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class Alert : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class Alert : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The adversary or activity group that is associated with this alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,7 +34,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string AlertPolicyId { get; set; }
 #endif
-        /// <summary>The alertWebUrl property</summary>
+        /// <summary>URL for the Microsoft 365 Defender portal alert page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AlertWebUrl { get; set; }
@@ -125,7 +128,7 @@ namespace ApiSdk.Models.Security {
 #else
         public List<string> MitreTechniques { get; set; }
 #endif
-        /// <summary>The productName property</summary>
+        /// <summary>The name of the product which published this alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ProductName { get; set; }
@@ -215,38 +218,38 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"actorDisplayName", n => { ActorDisplayName = n.GetStringValue(); } },
-                {"additionalData", n => { AdditionalDataProperty = n.GetObjectValue<Dictionary>(Dictionary.CreateFromDiscriminatorValue); } },
-                {"alertPolicyId", n => { AlertPolicyId = n.GetStringValue(); } },
-                {"alertWebUrl", n => { AlertWebUrl = n.GetStringValue(); } },
-                {"assignedTo", n => { AssignedTo = n.GetStringValue(); } },
-                {"category", n => { Category = n.GetStringValue(); } },
-                {"classification", n => { Classification = n.GetEnumValue<AlertClassification>(); } },
-                {"comments", n => { Comments = n.GetCollectionOfObjectValues<AlertComment>(AlertComment.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"detectionSource", n => { DetectionSource = n.GetEnumValue<DetectionSource>(); } },
-                {"detectorId", n => { DetectorId = n.GetStringValue(); } },
-                {"determination", n => { Determination = n.GetEnumValue<AlertDetermination>(); } },
-                {"evidence", n => { Evidence = n.GetCollectionOfObjectValues<AlertEvidence>(AlertEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"firstActivityDateTime", n => { FirstActivityDateTime = n.GetDateTimeOffsetValue(); } },
-                {"incidentId", n => { IncidentId = n.GetStringValue(); } },
-                {"incidentWebUrl", n => { IncidentWebUrl = n.GetStringValue(); } },
-                {"lastActivityDateTime", n => { LastActivityDateTime = n.GetDateTimeOffsetValue(); } },
-                {"lastUpdateDateTime", n => { LastUpdateDateTime = n.GetDateTimeOffsetValue(); } },
-                {"mitreTechniques", n => { MitreTechniques = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"productName", n => { ProductName = n.GetStringValue(); } },
-                {"providerAlertId", n => { ProviderAlertId = n.GetStringValue(); } },
-                {"recommendedActions", n => { RecommendedActions = n.GetStringValue(); } },
-                {"resolvedDateTime", n => { ResolvedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"serviceSource", n => { ServiceSource = n.GetEnumValue<ServiceSource>(); } },
-                {"severity", n => { Severity = n.GetEnumValue<AlertSeverity>(); } },
-                {"status", n => { Status = n.GetEnumValue<AlertStatus>(); } },
-                {"systemTags", n => { SystemTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"tenantId", n => { TenantId = n.GetStringValue(); } },
-                {"threatDisplayName", n => { ThreatDisplayName = n.GetStringValue(); } },
-                {"threatFamilyName", n => { ThreatFamilyName = n.GetStringValue(); } },
-                {"title", n => { Title = n.GetStringValue(); } },
+                { "actorDisplayName", n => { ActorDisplayName = n.GetStringValue(); } },
+                { "additionalData", n => { AdditionalDataProperty = n.GetObjectValue<Dictionary>(Dictionary.CreateFromDiscriminatorValue); } },
+                { "alertPolicyId", n => { AlertPolicyId = n.GetStringValue(); } },
+                { "alertWebUrl", n => { AlertWebUrl = n.GetStringValue(); } },
+                { "assignedTo", n => { AssignedTo = n.GetStringValue(); } },
+                { "category", n => { Category = n.GetStringValue(); } },
+                { "classification", n => { Classification = n.GetEnumValue<AlertClassification>(); } },
+                { "comments", n => { Comments = n.GetCollectionOfObjectValues<AlertComment>(AlertComment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "detectionSource", n => { DetectionSource = n.GetEnumValue<DetectionSource>(); } },
+                { "detectorId", n => { DetectorId = n.GetStringValue(); } },
+                { "determination", n => { Determination = n.GetEnumValue<AlertDetermination>(); } },
+                { "evidence", n => { Evidence = n.GetCollectionOfObjectValues<AlertEvidence>(AlertEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "firstActivityDateTime", n => { FirstActivityDateTime = n.GetDateTimeOffsetValue(); } },
+                { "incidentId", n => { IncidentId = n.GetStringValue(); } },
+                { "incidentWebUrl", n => { IncidentWebUrl = n.GetStringValue(); } },
+                { "lastActivityDateTime", n => { LastActivityDateTime = n.GetDateTimeOffsetValue(); } },
+                { "lastUpdateDateTime", n => { LastUpdateDateTime = n.GetDateTimeOffsetValue(); } },
+                { "mitreTechniques", n => { MitreTechniques = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "productName", n => { ProductName = n.GetStringValue(); } },
+                { "providerAlertId", n => { ProviderAlertId = n.GetStringValue(); } },
+                { "recommendedActions", n => { RecommendedActions = n.GetStringValue(); } },
+                { "resolvedDateTime", n => { ResolvedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "serviceSource", n => { ServiceSource = n.GetEnumValue<ServiceSource>(); } },
+                { "severity", n => { Severity = n.GetEnumValue<AlertSeverity>(); } },
+                { "status", n => { Status = n.GetEnumValue<AlertStatus>(); } },
+                { "systemTags", n => { SystemTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "tenantId", n => { TenantId = n.GetStringValue(); } },
+                { "threatDisplayName", n => { ThreatDisplayName = n.GetStringValue(); } },
+                { "threatFamilyName", n => { ThreatFamilyName = n.GetStringValue(); } },
+                { "title", n => { Title = n.GetStringValue(); } },
             };
         }
         /// <summary>

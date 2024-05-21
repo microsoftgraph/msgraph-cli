@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.CategoryAxis {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.CategoryAxis
+{
     /// <summary>
     /// Provides operations to manage the categoryAxis property of the microsoft.graph.workbookChartAxes entity.
     /// </summary>
-    public class CategoryAxisRequestBuilder : BaseCliRequestBuilder 
+    public class CategoryAxisRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property categoryAxis for drives

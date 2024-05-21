@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetSharePointSiteUsageSiteCountsWithPeriod {
+namespace ApiSdk.Reports.GetSharePointSiteUsageSiteCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getSharePointSiteUsageSiteCounts method.
     /// </summary>
-    public class GetSharePointSiteUsageSiteCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetSharePointSiteUsageSiteCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getSharePointSiteUsageSiteCounts
+        /// Get the trend of total and active site count during the reporting period.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getsharepointsiteusagesitecounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSharePointSiteUsageSiteCounts";
+            command.Description = "Get the trend of total and active site count during the reporting period.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getsharepointsiteusagesitecounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetSharePointSiteUsageSiteCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getSharePointSiteUsageSiteCounts
+        /// Get the trend of total and active site count during the reporting period.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item.IncidentReport {
+namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item.IncidentReport
+{
     /// <summary>
     /// Provides operations to call the incidentReport method.
     /// </summary>
-    public class IncidentReportRequestBuilder : BaseCliRequestBuilder 
+    public class IncidentReportRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function incidentReport
+        /// Provide the Post-Incident Review (PIR) document of a specified service issue for tenant.  An issue only with status of PostIncidentReviewPublished indicates that the PIR document exists for the issue. The operation returns an error if the specified issue doesn&apos;t exist for the tenant or if PIR document does not exist for the issue.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function incidentReport";
+            command.Description = "Provide the Post-Incident Review (PIR) document of a specified service issue for tenant.  An issue only with status of PostIncidentReviewPublished indicates that the PIR document exists for the issue. The operation returns an error if the specified issue doesn't exist for the tenant or if PIR document does not exist for the issue.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0";
             var serviceHealthIssueIdOption = new Option<string>("--service-health-issue-id", description: "The unique identifier of serviceHealthIssue") {
             };
             serviceHealthIssueIdOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item.IncidentReport {
         {
         }
         /// <summary>
-        /// Invoke function incidentReport
+        /// Provide the Post-Incident Review (PIR) document of a specified service issue for tenant.  An issue only with status of PostIncidentReviewPublished indicates that the PIR document exists for the issue. The operation returns an error if the specified issue doesn&apos;t exist for the tenant or if PIR document does not exist for the issue.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

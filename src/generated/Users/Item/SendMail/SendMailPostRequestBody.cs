@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Users.Item.SendMail {
-    public class SendMailPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Users.Item.SendMail
+{
+    #pragma warning disable CS1591
+    public class SendMailPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -45,8 +48,8 @@ namespace ApiSdk.Users.Item.SendMail {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"Message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
-                {"SaveToSentItems", n => { SaveToSentItems = n.GetBoolValue(); } },
+                { "Message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
+                { "SaveToSentItems", n => { SaveToSentItems = n.GetBoolValue(); } },
             };
         }
         /// <summary>

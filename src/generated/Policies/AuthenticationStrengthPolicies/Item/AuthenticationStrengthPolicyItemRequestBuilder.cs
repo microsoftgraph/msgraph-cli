@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item {
+namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the authenticationStrengthPolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class AuthenticationStrengthPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class AuthenticationStrengthPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the combinationConfigurations property of the microsoft.graph.authenticationStrengthPolicy entity.

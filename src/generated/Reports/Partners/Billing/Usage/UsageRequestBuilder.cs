@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.Partners.Billing.Usage {
+namespace ApiSdk.Reports.Partners.Billing.Usage
+{
     /// <summary>
     /// Provides operations to manage the usage property of the microsoft.graph.partners.billing.billing entity.
     /// </summary>
-    public class UsageRequestBuilder : BaseCliRequestBuilder 
+    public class UsageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the billed property of the microsoft.graph.partners.billing.azureUsage entity.

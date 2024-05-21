@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dget {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dget
+{
     /// <summary>
     /// Provides operations to call the dget method.
     /// </summary>
-    public class DgetRequestBuilder : BaseCliRequestBuilder 
+    public class DgetRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dget

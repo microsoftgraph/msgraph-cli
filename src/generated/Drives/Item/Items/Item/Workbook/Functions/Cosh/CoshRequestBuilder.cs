@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Cosh {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Cosh
+{
     /// <summary>
     /// Provides operations to call the cosh method.
     /// </summary>
-    public class CoshRequestBuilder : BaseCliRequestBuilder 
+    public class CoshRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action cosh

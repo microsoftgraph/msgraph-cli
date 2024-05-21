@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Item.Catalog {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Item.Catalog
+{
     /// <summary>
     /// Provides operations to manage the catalog property of the microsoft.graph.accessPackageAssignmentPolicy entity.
     /// </summary>
-    public class CatalogRequestBuilder : BaseCliRequestBuilder 
+    public class CatalogRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Catalog of the access package containing this policy. Read-only.

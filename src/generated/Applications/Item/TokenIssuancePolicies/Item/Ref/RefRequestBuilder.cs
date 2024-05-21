@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Item.Ref {
+namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Item.Ref
+{
     /// <summary>
     /// Provides operations to manage the collection of application entities.
     /// </summary>
-    public class RefRequestBuilder : BaseCliRequestBuilder 
+    public class RefRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remove a tokenIssuancePolicy from an application.

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.VirtualEvents {
+namespace ApiSdk.Solutions.VirtualEvents
+{
     /// <summary>
     /// Provides operations to manage the virtualEvents property of the microsoft.graph.solutionsRoot entity.
     /// </summary>
-    public class VirtualEventsRequestBuilder : BaseCliRequestBuilder 
+    public class VirtualEventsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property virtualEvents for solutions

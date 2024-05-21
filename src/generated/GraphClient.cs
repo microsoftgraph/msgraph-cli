@@ -87,11 +87,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk {
+namespace ApiSdk
+{
     /// <summary>
     /// The main entry point of the SDK, exposes the configuration and the fluent API.
     /// </summary>
-    public class GraphClient : BaseCliRequestBuilder 
+    public class GraphClient : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the admin singleton.
@@ -778,6 +779,8 @@ namespace ApiSdk {
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildOnPremisesSynchronizationNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSubscriptionsNavCommand());
+            nonExecCommands.Add(builder.BuildSubscriptionsWithCommerceSubscriptionIdRbCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
@@ -1287,8 +1290,10 @@ namespace ApiSdk {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildApiConnectorsNavCommand());
+            nonExecCommands.Add(builder.BuildAuthenticationEventListenersNavCommand());
             nonExecCommands.Add(builder.BuildB2xUserFlowsNavCommand());
             nonExecCommands.Add(builder.BuildConditionalAccessNavCommand());
+            nonExecCommands.Add(builder.BuildCustomAuthenticationExtensionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildIdentityProvidersNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
@@ -1979,6 +1984,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildAttackSimulationNavCommand());
             nonExecCommands.Add(builder.BuildCasesNavCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildIdentitiesNavCommand());
             nonExecCommands.Add(builder.BuildIncidentsNavCommand());
             nonExecCommands.Add(builder.BuildLabelsNavCommand());
             nonExecCommands.Add(builder.BuildMicrosoftGraphSecurityRunHuntingQueryNavCommand());
@@ -2283,6 +2289,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildFindTenantInformationByDomainNameWithDomainNameRbCommand());
             nonExecCommands.Add(builder.BuildFindTenantInformationByTenantIdWithTenantIdRbCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMultiTenantOrganizationNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
             {

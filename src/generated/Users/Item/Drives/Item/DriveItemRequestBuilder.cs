@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Drives.Item {
+namespace ApiSdk.Users.Item.Drives.Item
+{
     /// <summary>
     /// Provides operations to manage the drives property of the microsoft.graph.user entity.
     /// </summary>
-    public class DriveItemRequestBuilder : BaseCliRequestBuilder 
+    public class DriveItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// A collection of drives available for this user. Read-only.

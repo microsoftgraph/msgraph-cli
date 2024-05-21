@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
+namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the groupLifecyclePolicies property of the microsoft.graph.group entity.
     /// </summary>
-    public class GroupLifecyclePolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class GroupLifecyclePolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the addGroup method.

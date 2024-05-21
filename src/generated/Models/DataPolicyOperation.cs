@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class DataPolicyOperation : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class DataPolicyOperation : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Represents when the request for this data policy operation was completed, in UTC time, using the ISO 8601 format. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Null until the operation completes.</summary>
         public DateTimeOffset? CompletedDateTime { get; set; }
@@ -49,12 +52,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"progress", n => { Progress = n.GetDoubleValue(); } },
-                {"status", n => { Status = n.GetEnumValue<DataPolicyOperationStatus>(); } },
-                {"storageLocation", n => { StorageLocation = n.GetStringValue(); } },
-                {"submittedDateTime", n => { SubmittedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"userId", n => { UserId = n.GetStringValue(); } },
+                { "completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "progress", n => { Progress = n.GetDoubleValue(); } },
+                { "status", n => { Status = n.GetEnumValue<DataPolicyOperationStatus>(); } },
+                { "storageLocation", n => { StorageLocation = n.GetStringValue(); } },
+                { "submittedDateTime", n => { SubmittedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "userId", n => { UserId = n.GetStringValue(); } },
             };
         }
         /// <summary>

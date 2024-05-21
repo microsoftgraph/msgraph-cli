@@ -26,11 +26,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook
+{
     /// <summary>
     /// Provides operations to manage the workbook property of the microsoft.graph.driveItem entity.
     /// </summary>
-    public class WorkbookRequestBuilder : BaseCliRequestBuilder 
+    public class WorkbookRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the application property of the microsoft.graph.workbook entity.

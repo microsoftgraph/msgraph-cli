@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item.Decline {
+namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item.Decline
+{
     /// <summary>
     /// Provides operations to call the decline method.
     /// </summary>
-    public class DeclineRequestBuilder : BaseCliRequestBuilder 
+    public class DeclineRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Decline invitation to the specified event in a user calendar. If the event allows proposals for new times, on declining the event, an invitee can choose to suggest an alternative time by including the proposedNewTime parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Represents a particular service offered by a booking business.
     /// </summary>
-    public class BookingService : Entity, IParsable 
+    public class BookingService : Entity, IParsable
     {
         /// <summary>Additional information that is sent to the customer when an appointment is confirmed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -136,27 +137,27 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"additionalInformation", n => { AdditionalInformation = n.GetStringValue(); } },
-                {"customQuestions", n => { CustomQuestions = n.GetCollectionOfObjectValues<BookingQuestionAssignment>(BookingQuestionAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"defaultDuration", n => { DefaultDuration = n.GetTimeSpanValue(); } },
-                {"defaultLocation", n => { DefaultLocation = n.GetObjectValue<Location>(Location.CreateFromDiscriminatorValue); } },
-                {"defaultPrice", n => { DefaultPrice = n.GetDoubleValue(); } },
-                {"defaultPriceType", n => { DefaultPriceType = n.GetEnumValue<BookingPriceType>(); } },
-                {"defaultReminders", n => { DefaultReminders = n.GetCollectionOfObjectValues<BookingReminder>(BookingReminder.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"isAnonymousJoinEnabled", n => { IsAnonymousJoinEnabled = n.GetBoolValue(); } },
-                {"isHiddenFromCustomers", n => { IsHiddenFromCustomers = n.GetBoolValue(); } },
-                {"isLocationOnline", n => { IsLocationOnline = n.GetBoolValue(); } },
-                {"languageTag", n => { LanguageTag = n.GetStringValue(); } },
-                {"maximumAttendeesCount", n => { MaximumAttendeesCount = n.GetIntValue(); } },
-                {"notes", n => { Notes = n.GetStringValue(); } },
-                {"postBuffer", n => { PostBuffer = n.GetTimeSpanValue(); } },
-                {"preBuffer", n => { PreBuffer = n.GetTimeSpanValue(); } },
-                {"schedulingPolicy", n => { SchedulingPolicy = n.GetObjectValue<BookingSchedulingPolicy>(BookingSchedulingPolicy.CreateFromDiscriminatorValue); } },
-                {"smsNotificationsEnabled", n => { SmsNotificationsEnabled = n.GetBoolValue(); } },
-                {"staffMemberIds", n => { StaffMemberIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"webUrl", n => { WebUrl = n.GetStringValue(); } },
+                { "additionalInformation", n => { AdditionalInformation = n.GetStringValue(); } },
+                { "customQuestions", n => { CustomQuestions = n.GetCollectionOfObjectValues<BookingQuestionAssignment>(BookingQuestionAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "defaultDuration", n => { DefaultDuration = n.GetTimeSpanValue(); } },
+                { "defaultLocation", n => { DefaultLocation = n.GetObjectValue<Location>(Location.CreateFromDiscriminatorValue); } },
+                { "defaultPrice", n => { DefaultPrice = n.GetDoubleValue(); } },
+                { "defaultPriceType", n => { DefaultPriceType = n.GetEnumValue<BookingPriceType>(); } },
+                { "defaultReminders", n => { DefaultReminders = n.GetCollectionOfObjectValues<BookingReminder>(BookingReminder.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "isAnonymousJoinEnabled", n => { IsAnonymousJoinEnabled = n.GetBoolValue(); } },
+                { "isHiddenFromCustomers", n => { IsHiddenFromCustomers = n.GetBoolValue(); } },
+                { "isLocationOnline", n => { IsLocationOnline = n.GetBoolValue(); } },
+                { "languageTag", n => { LanguageTag = n.GetStringValue(); } },
+                { "maximumAttendeesCount", n => { MaximumAttendeesCount = n.GetIntValue(); } },
+                { "notes", n => { Notes = n.GetStringValue(); } },
+                { "postBuffer", n => { PostBuffer = n.GetTimeSpanValue(); } },
+                { "preBuffer", n => { PreBuffer = n.GetTimeSpanValue(); } },
+                { "schedulingPolicy", n => { SchedulingPolicy = n.GetObjectValue<BookingSchedulingPolicy>(BookingSchedulingPolicy.CreateFromDiscriminatorValue); } },
+                { "smsNotificationsEnabled", n => { SmsNotificationsEnabled = n.GetBoolValue(); } },
+                { "staffMemberIds", n => { StaffMemberIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "webUrl", n => { WebUrl = n.GetStringValue(); } },
             };
         }
         /// <summary>

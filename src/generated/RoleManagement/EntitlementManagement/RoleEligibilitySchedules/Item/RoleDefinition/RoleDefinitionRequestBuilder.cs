@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.Item.RoleDefinition {
+namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.Item.RoleDefinition
+{
     /// <summary>
     /// Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleScheduleBase entity.
     /// </summary>
-    public class RoleDefinitionRequestBuilder : BaseCliRequestBuilder 
+    public class RoleDefinitionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Detailed information for the roleDefinition object that is referenced through the roleDefinitionId property.

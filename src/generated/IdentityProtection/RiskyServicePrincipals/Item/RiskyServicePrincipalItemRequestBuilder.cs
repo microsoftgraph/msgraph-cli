@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
+namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item
+{
     /// <summary>
     /// Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.
     /// </summary>
-    public class RiskyServicePrincipalItemRequestBuilder : BaseCliRequestBuilder 
+    public class RiskyServicePrincipalItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property riskyServicePrincipals for identityProtection

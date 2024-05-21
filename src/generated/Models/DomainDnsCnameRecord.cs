@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class DomainDnsCnameRecord : DomainDnsRecord, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class DomainDnsCnameRecord : DomainDnsRecord, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The canonical name of the CNAME record. Used to configure the CNAME record at the DNS host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -33,7 +36,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"canonicalName", n => { CanonicalName = n.GetStringValue(); } },
+                { "canonicalName", n => { CanonicalName = n.GetStringValue(); } },
             };
         }
         /// <summary>

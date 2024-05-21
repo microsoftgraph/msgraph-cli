@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
+namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect
+{
     /// <summary>
     /// Provides operations to call the disconnect method.
     /// </summary>
-    public class DisconnectRequestBuilder : BaseCliRequestBuilder 
+    public class DisconnectRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// A request to remove the active TeamViewer connector

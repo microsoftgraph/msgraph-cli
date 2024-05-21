@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetM365AppUserCountsWithPeriod {
+namespace ApiSdk.Reports.GetM365AppUserCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getM365AppUserCounts method.
     /// </summary>
-    public class GetM365AppUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetM365AppUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getM365AppUserCounts
+        /// Get a report that provides the trend in the number of active users for each app (Outlook, Word, Excel, PowerPoint, OneNote, and Teams) in your organization.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getm365appusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getM365AppUserCounts";
+            command.Description = "Get a report that provides the trend in the number of active users for each app (Outlook, Word, Excel, PowerPoint, OneNote, and Teams) in your organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getm365appusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetM365AppUserCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getM365AppUserCounts
+        /// Get a report that provides the trend in the number of active users for each app (Outlook, Word, Excel, PowerPoint, OneNote, and Teams) in your organization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

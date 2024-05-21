@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class MailClusterEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class MailClusterEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The clustering logic of the emails inside the cluster.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -74,12 +77,12 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"clusterBy", n => { ClusterBy = n.GetStringValue(); } },
-                {"clusterByValue", n => { ClusterByValue = n.GetStringValue(); } },
-                {"emailCount", n => { EmailCount = n.GetLongValue(); } },
-                {"networkMessageIds", n => { NetworkMessageIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"query", n => { Query = n.GetStringValue(); } },
-                {"urn", n => { Urn = n.GetStringValue(); } },
+                { "clusterBy", n => { ClusterBy = n.GetStringValue(); } },
+                { "clusterByValue", n => { ClusterByValue = n.GetStringValue(); } },
+                { "emailCount", n => { EmailCount = n.GetLongValue(); } },
+                { "networkMessageIds", n => { NetworkMessageIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "query", n => { Query = n.GetStringValue(); } },
+                { "urn", n => { Urn = n.GetStringValue(); } },
             };
         }
         /// <summary>

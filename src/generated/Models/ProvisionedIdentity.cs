@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ProvisionedIdentity : Identity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ProvisionedIdentity : Identity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Details of the identity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,8 +51,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"details", n => { Details = n.GetObjectValue<DetailsInfo>(DetailsInfo.CreateFromDiscriminatorValue); } },
-                {"identityType", n => { IdentityType = n.GetStringValue(); } },
+                { "details", n => { Details = n.GetObjectValue<DetailsInfo>(DetailsInfo.CreateFromDiscriminatorValue); } },
+                { "identityType", n => { IdentityType = n.GetStringValue(); } },
             };
         }
         /// <summary>

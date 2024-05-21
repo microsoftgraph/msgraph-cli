@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Search {
-    public class Acronym : SearchAnswer, IParsable 
+namespace ApiSdk.Models.Search
+{
+    #pragma warning disable CS1591
+    public class Acronym : SearchAnswer, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>What the acronym stands for.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -35,8 +38,8 @@ namespace ApiSdk.Models.Search {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"standsFor", n => { StandsFor = n.GetStringValue(); } },
-                {"state", n => { State = n.GetEnumValue<AnswerState>(); } },
+                { "standsFor", n => { StandsFor = n.GetStringValue(); } },
+                { "state", n => { State = n.GetEnumValue<AnswerState>(); } },
             };
         }
         /// <summary>

@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item
+{
     /// <summary>
     /// Provides operations to manage the cloudPCs property of the microsoft.graph.virtualEndpoint entity.
     /// </summary>
-    public class CloudPCItemRequestBuilder : BaseCliRequestBuilder 
+    public class CloudPCItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property cloudPCs for deviceManagement

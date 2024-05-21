@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Arabic {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Arabic
+{
     /// <summary>
     /// Provides operations to call the arabic method.
     /// </summary>
-    public class ArabicRequestBuilder : BaseCliRequestBuilder 
+    public class ArabicRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action arabic

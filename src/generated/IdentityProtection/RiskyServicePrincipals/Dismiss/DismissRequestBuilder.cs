@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Dismiss {
+namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Dismiss
+{
     /// <summary>
     /// Provides operations to call the dismiss method.
     /// </summary>
-    public class DismissRequestBuilder : BaseCliRequestBuilder 
+    public class DismissRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Dismiss the risk of one or more riskyServicePrincipal objects. This action sets the targeted service principal account&apos;s risk level to none. You can dismiss up to 60 service principal accounts in one request.

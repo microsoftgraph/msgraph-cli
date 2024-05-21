@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.CallRecords {
-    public class ServiceUserAgent : UserAgent, IParsable 
+namespace ApiSdk.Models.CallRecords
+{
+    #pragma warning disable CS1591
+    public class ServiceUserAgent : UserAgent, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The role property</summary>
         public ServiceRole? Role { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models.CallRecords {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"role", n => { Role = n.GetEnumValue<ServiceRole>(); } },
+                { "role", n => { Role = n.GetEnumValue<ServiceRole>(); } },
             };
         }
         /// <summary>

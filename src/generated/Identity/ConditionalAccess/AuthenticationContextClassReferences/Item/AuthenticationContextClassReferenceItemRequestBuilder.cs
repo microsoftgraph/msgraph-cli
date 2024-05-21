@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences.Item {
+namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences.Item
+{
     /// <summary>
     /// Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.
     /// </summary>
-    public class AuthenticationContextClassReferenceItemRequestBuilder : BaseCliRequestBuilder 
+    public class AuthenticationContextClassReferenceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an authenticationContextClassReference object that&apos;s not published or used by a conditional access policy.

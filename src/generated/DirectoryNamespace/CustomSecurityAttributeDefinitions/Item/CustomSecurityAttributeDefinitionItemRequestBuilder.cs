@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
+namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item
+{
     /// <summary>
     /// Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.
     /// </summary>
-    public class CustomSecurityAttributeDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class CustomSecurityAttributeDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.

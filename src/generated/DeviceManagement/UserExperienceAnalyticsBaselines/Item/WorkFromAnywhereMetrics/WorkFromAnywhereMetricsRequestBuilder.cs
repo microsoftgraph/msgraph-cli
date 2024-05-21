@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.WorkFromAnywhereMetrics {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.WorkFromAnywhereMetrics
+{
     /// <summary>
     /// Provides operations to manage the workFromAnywhereMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
     /// </summary>
-    public class WorkFromAnywhereMetricsRequestBuilder : BaseCliRequestBuilder 
+    public class WorkFromAnywhereMetricsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The scores and insights for the work from anywhere metrics.

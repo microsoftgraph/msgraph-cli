@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsOdd {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsOdd
+{
     /// <summary>
     /// Provides operations to call the isOdd method.
     /// </summary>
-    public class IsOddRequestBuilder : BaseCliRequestBuilder 
+    public class IsOddRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action isOdd

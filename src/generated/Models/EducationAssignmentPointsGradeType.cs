@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EducationAssignmentPointsGradeType : EducationAssignmentGradeType, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EducationAssignmentPointsGradeType : EducationAssignmentGradeType, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Max points possible for this assignment.</summary>
         public float? MaxPoints { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"maxPoints", n => { MaxPoints = n.GetFloatValue(); } },
+                { "maxPoints", n => { MaxPoints = n.GetFloatValue(); } },
             };
         }
         /// <summary>

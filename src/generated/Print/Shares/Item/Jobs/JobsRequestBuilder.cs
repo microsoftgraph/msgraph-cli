@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Shares.Item.Jobs {
+namespace ApiSdk.Print.Shares.Item.Jobs
+{
     /// <summary>
     /// Provides operations to manage the jobs property of the microsoft.graph.printerBase entity.
     /// </summary>
-    public class JobsRequestBuilder : BaseCliRequestBuilder 
+    public class JobsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the jobs property of the microsoft.graph.printerBase entity.
@@ -60,13 +61,14 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to jobs for print
+        /// Create a new printJob for a printerShare.  Also creates a new printDocument associated with the printJob.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-post-jobs?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create new navigation property to jobs for print";
+            command.Description = "Create a new printJob for a printerShare.  Also creates a new printDocument associated with the printJob.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-post-jobs?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
@@ -111,13 +113,14 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
             return command;
         }
         /// <summary>
-        /// The list of jobs that are queued for printing by the printer/printerShare.
+        /// Retrieve a list of print jobs associated with the printerShare.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-list-jobs?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The list of jobs that are queued for printing by the printer/printerShare.";
+            command.Description = "Retrieve a list of print jobs associated with the printerShare.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-list-jobs?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
@@ -199,7 +202,9 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -225,7 +230,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
         {
         }
         /// <summary>
-        /// The list of jobs that are queued for printing by the printer/printerShare.
+        /// Retrieve a list of print jobs associated with the printerShare.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,7 +249,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to jobs for print
+        /// Create a new printJob for a printerShare.  Also creates a new printDocument associated with the printJob.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -265,7 +270,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
             return requestInfo;
         }
         /// <summary>
-        /// The list of jobs that are queued for printing by the printer/printerShare.
+        /// Retrieve a list of print jobs associated with the printerShare.
         /// </summary>
         public class JobsRequestBuilderGetQueryParameters 
         {

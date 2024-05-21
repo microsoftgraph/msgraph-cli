@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Alerts_v2.Item {
+namespace ApiSdk.Security.Alerts_v2.Item
+{
     /// <summary>
     /// Provides operations to manage the alerts_v2 property of the microsoft.graph.security entity.
     /// </summary>
-    public class AlertItemRequestBuilder : BaseCliRequestBuilder 
+    public class AlertItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The comments property

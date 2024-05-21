@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.List.Operations.Item {
+namespace ApiSdk.Drives.Item.List.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.list entity.
     /// </summary>
-    public class RichLongRunningOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class RichLongRunningOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for drives

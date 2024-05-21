@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp.ContentVersions.Item.Files.Item.RenewUpload {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp.ContentVersions.Item.Files.Item.RenewUpload
+{
     /// <summary>
     /// Provides operations to call the renewUpload method.
     /// </summary>
-    public class RenewUploadRequestBuilder : BaseCliRequestBuilder 
+    public class RenewUploadRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Renews the SAS URI for an application file upload.

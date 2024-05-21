@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosVppApp {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosVppApp
+{
     /// <summary>
     /// Casts the previous resource to iosVppApp.
     /// </summary>
-    public class GraphIosVppAppRequestBuilder : BaseCliRequestBuilder 
+    public class GraphIosVppAppRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.

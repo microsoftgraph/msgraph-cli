@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Beta_Dist {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Beta_Dist
+{
     /// <summary>
     /// Provides operations to call the beta_Dist method.
     /// </summary>
-    public class Beta_DistRequestBuilder : BaseCliRequestBuilder 
+    public class Beta_DistRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action beta_Dist

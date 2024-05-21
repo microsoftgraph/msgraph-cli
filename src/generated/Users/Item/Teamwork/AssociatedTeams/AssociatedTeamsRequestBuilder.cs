@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams {
+namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams
+{
     /// <summary>
     /// Provides operations to manage the associatedTeams property of the microsoft.graph.userTeamwork entity.
     /// </summary>
-    public class AssociatedTeamsRequestBuilder : BaseCliRequestBuilder 
+    public class AssociatedTeamsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the associatedTeams property of the microsoft.graph.userTeamwork entity.
@@ -106,14 +107,13 @@ namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams {
             return command;
         }
         /// <summary>
-        /// Get the list of teams in Microsoft Teams that a user is associated with.Currently, a user can be associated with a team in two different ways:
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/associatedteaminfo-list?view=graph-rest-1.0" />
+        /// The list of associatedTeamInfo objects that a user is associated with.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of teams in Microsoft Teams that a user is associated with.Currently, a user can be associated with a team in two different ways:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/associatedteaminfo-list?view=graph-rest-1.0";
+            command.Description = "The list of associatedTeamInfo objects that a user is associated with.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -195,7 +195,9 @@ namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -221,7 +223,7 @@ namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams {
         {
         }
         /// <summary>
-        /// Get the list of teams in Microsoft Teams that a user is associated with.Currently, a user can be associated with a team in two different ways:
+        /// The list of associatedTeamInfo objects that a user is associated with.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +263,7 @@ namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of teams in Microsoft Teams that a user is associated with.Currently, a user can be associated with a team in two different ways:
+        /// The list of associatedTeamInfo objects that a user is associated with.
         /// </summary>
         public class AssociatedTeamsRequestBuilderGetQueryParameters 
         {

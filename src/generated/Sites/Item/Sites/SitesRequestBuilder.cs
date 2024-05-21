@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Sites {
+namespace ApiSdk.Sites.Item.Sites
+{
     /// <summary>
     /// Provides operations to manage the sites property of the microsoft.graph.site entity.
     /// </summary>
-    public class SitesRequestBuilder : BaseCliRequestBuilder 
+    public class SitesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the sites property of the microsoft.graph.site entity.
@@ -51,14 +52,14 @@ namespace ApiSdk.Sites.Item.Sites {
             return command;
         }
         /// <summary>
-        /// Get a collection of subsites defined for a [site][].
+        /// Get a collection of subsites defined for a site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list-subsites?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a collection of subsites defined for a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-subsites?view=graph-rest-1.0";
+            command.Description = "Get a collection of subsites defined for a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-subsites?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -140,7 +141,9 @@ namespace ApiSdk.Sites.Item.Sites {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -166,7 +169,7 @@ namespace ApiSdk.Sites.Item.Sites {
         {
         }
         /// <summary>
-        /// Get a collection of subsites defined for a [site][].
+        /// Get a collection of subsites defined for a site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +188,7 @@ namespace ApiSdk.Sites.Item.Sites {
             return requestInfo;
         }
         /// <summary>
-        /// Get a collection of subsites defined for a [site][].
+        /// Get a collection of subsites defined for a site.
         /// </summary>
         public class SitesRequestBuilderGetQueryParameters 
         {

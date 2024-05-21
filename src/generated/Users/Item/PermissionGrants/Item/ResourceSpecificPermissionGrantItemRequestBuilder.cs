@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.PermissionGrants.Item {
+namespace ApiSdk.Users.Item.PermissionGrants.Item
+{
     /// <summary>
     /// Provides operations to manage the permissionGrants property of the microsoft.graph.user entity.
     /// </summary>
-    public class ResourceSpecificPermissionGrantItemRequestBuilder : BaseCliRequestBuilder 
+    public class ResourceSpecificPermissionGrantItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property permissionGrants for users

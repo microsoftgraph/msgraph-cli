@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item.ActivatedUsing {
+namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item.ActivatedUsing
+{
     /// <summary>
     /// Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentSchedule entity.
     /// </summary>
-    public class ActivatedUsingRequestBuilder : BaseCliRequestBuilder 
+    public class ActivatedUsingRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// If the request is from an eligible administrator to activate a role, this parameter shows the related eligible assignment for that activation. Otherwise, it&apos;s null. Supports $expand.

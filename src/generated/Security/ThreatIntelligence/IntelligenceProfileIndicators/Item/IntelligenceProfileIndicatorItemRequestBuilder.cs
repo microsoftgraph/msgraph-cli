@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.IntelligenceProfileIndicators.Item {
+namespace ApiSdk.Security.ThreatIntelligence.IntelligenceProfileIndicators.Item
+{
     /// <summary>
     /// Provides operations to manage the intelligenceProfileIndicators property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class IntelligenceProfileIndicatorItemRequestBuilder : BaseCliRequestBuilder 
+    public class IntelligenceProfileIndicatorItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the artifact property of the microsoft.graph.security.indicator entity.

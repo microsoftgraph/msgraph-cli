@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetEmailAppUsageVersionsUserCountsWithPeriod {
+namespace ApiSdk.Reports.GetEmailAppUsageVersionsUserCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getEmailAppUsageVersionsUserCounts method.
     /// </summary>
-    public class GetEmailAppUsageVersionsUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetEmailAppUsageVersionsUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getEmailAppUsageVersionsUserCounts
+        /// Get the count of unique users by Outlook desktop version.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getemailappusageversionsusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getEmailAppUsageVersionsUserCounts";
+            command.Description = "Get the count of unique users by Outlook desktop version.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getemailappusageversionsusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetEmailAppUsageVersionsUserCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getEmailAppUsageVersionsUserCounts
+        /// Get the count of unique users by Outlook desktop version.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

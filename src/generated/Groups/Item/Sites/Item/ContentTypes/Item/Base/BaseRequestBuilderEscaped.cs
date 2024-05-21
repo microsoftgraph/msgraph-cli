@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.Base {
+namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.Base
+{
     /// <summary>
     /// Provides operations to manage the base property of the microsoft.graph.contentType entity.
     /// </summary>
-    public class BaseRequestBuilderEscaped : BaseCliRequestBuilder 
+    public class BaseRequestBuilderEscaped : BaseCliRequestBuilder
     {
         /// <summary>
         /// Parent contentType from which this content type is derived.

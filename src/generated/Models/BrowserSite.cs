@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Singleton entity which is used to specify IE mode site metadata
     /// </summary>
-    public class BrowserSite : Entity, IParsable 
+    public class BrowserSite : Entity, IParsable
     {
         /// <summary>Controls the behavior of redirected sites. If true, indicates that the site will open in Internet Explorer 11 or Microsoft Edge even if the site is navigated to as part of a HTTP or meta refresh redirection chain.</summary>
         public bool? AllowRedirect { get; set; }
@@ -76,18 +77,18 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"allowRedirect", n => { AllowRedirect = n.GetBoolValue(); } },
-                {"comment", n => { Comment = n.GetStringValue(); } },
-                {"compatibilityMode", n => { CompatibilityMode = n.GetEnumValue<BrowserSiteCompatibilityMode>(); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"deletedDateTime", n => { DeletedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"history", n => { History = n.GetCollectionOfObjectValues<BrowserSiteHistory>(BrowserSiteHistory.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"mergeType", n => { MergeType = n.GetEnumValue<BrowserSiteMergeType>(); } },
-                {"status", n => { Status = n.GetEnumValue<BrowserSiteStatus>(); } },
-                {"targetEnvironment", n => { TargetEnvironment = n.GetEnumValue<BrowserSiteTargetEnvironment>(); } },
-                {"webUrl", n => { WebUrl = n.GetStringValue(); } },
+                { "allowRedirect", n => { AllowRedirect = n.GetBoolValue(); } },
+                { "comment", n => { Comment = n.GetStringValue(); } },
+                { "compatibilityMode", n => { CompatibilityMode = n.GetEnumValue<BrowserSiteCompatibilityMode>(); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "deletedDateTime", n => { DeletedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "history", n => { History = n.GetCollectionOfObjectValues<BrowserSiteHistory>(BrowserSiteHistory.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "mergeType", n => { MergeType = n.GetEnumValue<BrowserSiteMergeType>(); } },
+                { "status", n => { Status = n.GetEnumValue<BrowserSiteStatus>(); } },
+                { "targetEnvironment", n => { TargetEnvironment = n.GetEnumValue<BrowserSiteTargetEnvironment>(); } },
+                { "webUrl", n => { WebUrl = n.GetStringValue(); } },
             };
         }
         /// <summary>

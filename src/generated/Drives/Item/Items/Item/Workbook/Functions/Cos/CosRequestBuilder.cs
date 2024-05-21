@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Cos {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Cos
+{
     /// <summary>
     /// Provides operations to call the cos method.
     /// </summary>
-    public class CosRequestBuilder : BaseCliRequestBuilder 
+    public class CosRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action cos

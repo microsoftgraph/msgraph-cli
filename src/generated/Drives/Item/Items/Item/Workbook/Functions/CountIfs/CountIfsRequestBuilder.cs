@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CountIfs {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CountIfs
+{
     /// <summary>
     /// Provides operations to call the countIfs method.
     /// </summary>
-    public class CountIfsRequestBuilder : BaseCliRequestBuilder 
+    public class CountIfsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action countIfs

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews {
+namespace ApiSdk.IdentityGovernance.AccessReviews
+{
     /// <summary>
     /// Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.
     /// </summary>
-    public class AccessReviewsRequestBuilder : BaseCliRequestBuilder 
+    public class AccessReviewsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the definitions property of the microsoft.graph.accessReviewSet entity.

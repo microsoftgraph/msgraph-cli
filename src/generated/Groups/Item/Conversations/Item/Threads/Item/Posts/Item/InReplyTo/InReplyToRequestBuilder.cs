@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyTo {
+namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.InReplyTo
+{
     /// <summary>
     /// Provides operations to manage the inReplyTo property of the microsoft.graph.post entity.
     /// </summary>
-    public class InReplyToRequestBuilder : BaseCliRequestBuilder 
+    public class InReplyToRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.post entity.

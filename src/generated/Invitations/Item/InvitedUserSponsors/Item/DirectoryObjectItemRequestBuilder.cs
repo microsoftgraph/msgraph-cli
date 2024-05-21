@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Invitations.Item.InvitedUserSponsors.Item {
+namespace ApiSdk.Invitations.Item.InvitedUserSponsors.Item
+{
     /// <summary>
     /// Provides operations to manage the invitedUserSponsors property of the microsoft.graph.invitation entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The users or groups who are sponsors of the invited user. Sponsors are users and groups that are responsible for guest users&apos; privileges in the tenant and for keeping the guest users&apos; information and access up to date.

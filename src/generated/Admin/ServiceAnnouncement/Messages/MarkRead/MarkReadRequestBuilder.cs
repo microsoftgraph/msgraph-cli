@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead {
+namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead
+{
     /// <summary>
     /// Provides operations to call the markRead method.
     /// </summary>
-    public class MarkReadRequestBuilder : BaseCliRequestBuilder 
+    public class MarkReadRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Mark a list of serviceUpdateMessages as read for the signed in user.

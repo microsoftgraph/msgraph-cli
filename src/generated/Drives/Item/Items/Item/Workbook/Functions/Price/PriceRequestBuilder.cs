@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Price {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Price
+{
     /// <summary>
     /// Provides operations to call the price method.
     /// </summary>
-    public class PriceRequestBuilder : BaseCliRequestBuilder 
+    public class PriceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action price

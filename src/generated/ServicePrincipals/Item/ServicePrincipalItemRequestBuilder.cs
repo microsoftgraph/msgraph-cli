@@ -43,11 +43,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item {
+namespace ApiSdk.ServicePrincipals.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of servicePrincipal entities.
     /// </summary>
-    public class ServicePrincipalItemRequestBuilder : BaseCliRequestBuilder 
+    public class ServicePrincipalItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the addKey method.

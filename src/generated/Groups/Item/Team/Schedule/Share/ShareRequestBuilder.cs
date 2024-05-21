@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Team.Schedule.Share {
+namespace ApiSdk.Groups.Item.Team.Schedule.Share
+{
     /// <summary>
     /// Provides operations to call the share method.
     /// </summary>
-    public class ShareRequestBuilder : BaseCliRequestBuilder 
+    public class ShareRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Share a schedule time range with schedule members. This action makes the collections of shift, openshift and timeOff items in the specified time range of the schedule viewable by the specified team members, including employees and managers. Each shift, openshift and timeOff instance in a schedule supports a draft version and a shared version of the item. The draft version is viewable by only managers, and the shared version is viewable by employees and managers. For each shift, openshift and timeOff instance in the specified time range, the share action updates the shared version from the draft version, so that in addition to managers, employees can also view the most current information about the item. The notifyTeam parameter further specifies which employees can view the item.

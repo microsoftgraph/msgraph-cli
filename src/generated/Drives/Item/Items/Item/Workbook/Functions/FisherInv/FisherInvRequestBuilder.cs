@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FisherInv {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FisherInv
+{
     /// <summary>
     /// Provides operations to call the fisherInv method.
     /// </summary>
-    public class FisherInvRequestBuilder : BaseCliRequestBuilder 
+    public class FisherInvRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action fisherInv

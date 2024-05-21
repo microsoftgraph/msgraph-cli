@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class CustomExtensionClientConfiguration : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class CustomExtensionClientConfiguration : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The max number of retries that Microsoft Entra ID makes to the external API. Values of 0 or 1 are supported. If null, the default for the service applies.</summary>
+        public int? MaximumRetries { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -44,8 +49,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"timeoutInMilliseconds", n => { TimeoutInMilliseconds = n.GetIntValue(); } },
+                { "maximumRetries", n => { MaximumRetries = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "timeoutInMilliseconds", n => { TimeoutInMilliseconds = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -55,6 +61,7 @@ namespace ApiSdk.Models {
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteIntValue("maximumRetries", MaximumRetries);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("timeoutInMilliseconds", TimeoutInMilliseconds);
             writer.WriteAdditionalData(AdditionalData);

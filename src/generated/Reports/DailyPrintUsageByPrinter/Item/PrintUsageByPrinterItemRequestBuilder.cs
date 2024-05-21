@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
+namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item
+{
     /// <summary>
     /// Provides operations to manage the dailyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
     /// </summary>
-    public class PrintUsageByPrinterItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrintUsageByPrinterItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property dailyPrintUsageByPrinter for reports

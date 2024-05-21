@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class SubmissionMailEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class SubmissionMailEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The networkMessageId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -98,15 +101,15 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"networkMessageId", n => { NetworkMessageId = n.GetStringValue(); } },
-                {"recipient", n => { Recipient = n.GetStringValue(); } },
-                {"reportType", n => { ReportType = n.GetStringValue(); } },
-                {"sender", n => { Sender = n.GetStringValue(); } },
-                {"senderIp", n => { SenderIp = n.GetStringValue(); } },
-                {"subject", n => { Subject = n.GetStringValue(); } },
-                {"submissionDateTime", n => { SubmissionDateTime = n.GetDateTimeOffsetValue(); } },
-                {"submissionId", n => { SubmissionId = n.GetStringValue(); } },
-                {"submitter", n => { Submitter = n.GetStringValue(); } },
+                { "networkMessageId", n => { NetworkMessageId = n.GetStringValue(); } },
+                { "recipient", n => { Recipient = n.GetStringValue(); } },
+                { "reportType", n => { ReportType = n.GetStringValue(); } },
+                { "sender", n => { Sender = n.GetStringValue(); } },
+                { "senderIp", n => { SenderIp = n.GetStringValue(); } },
+                { "subject", n => { Subject = n.GetStringValue(); } },
+                { "submissionDateTime", n => { SubmissionDateTime = n.GetDateTimeOffsetValue(); } },
+                { "submissionId", n => { SubmissionId = n.GetStringValue(); } },
+                { "submitter", n => { Submitter = n.GetStringValue(); } },
             };
         }
         /// <summary>

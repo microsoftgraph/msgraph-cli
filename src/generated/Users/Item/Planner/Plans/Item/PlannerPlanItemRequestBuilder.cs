@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Planner.Plans.Item {
+namespace ApiSdk.Users.Item.Planner.Plans.Item
+{
     /// <summary>
     /// Provides operations to manage the plans property of the microsoft.graph.plannerUser entity.
     /// </summary>
-    public class PlannerPlanItemRequestBuilder : BaseCliRequestBuilder 
+    public class PlannerPlanItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the buckets property of the microsoft.graph.plannerPlan entity.

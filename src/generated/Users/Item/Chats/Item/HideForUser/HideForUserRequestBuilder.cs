@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Chats.Item.HideForUser {
+namespace ApiSdk.Users.Item.Chats.Item.HideForUser
+{
     /// <summary>
     /// Provides operations to call the hideForUser method.
     /// </summary>
-    public class HideForUserRequestBuilder : BaseCliRequestBuilder 
+    public class HideForUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Hide a chat for a user.

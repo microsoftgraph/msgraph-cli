@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Nper {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Nper
+{
     /// <summary>
     /// Provides operations to call the nper method.
     /// </summary>
-    public class NperRequestBuilder : BaseCliRequestBuilder 
+    public class NperRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action nper

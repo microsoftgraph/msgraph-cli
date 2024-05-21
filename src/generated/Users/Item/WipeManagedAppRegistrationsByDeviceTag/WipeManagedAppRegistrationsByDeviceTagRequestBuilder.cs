@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag {
+namespace ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag
+{
     /// <summary>
     /// Provides operations to call the wipeManagedAppRegistrationsByDeviceTag method.
     /// </summary>
-    public class WipeManagedAppRegistrationsByDeviceTagRequestBuilder : BaseCliRequestBuilder 
+    public class WipeManagedAppRegistrationsByDeviceTagRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Issues a wipe operation on an app registration with specified device tag.

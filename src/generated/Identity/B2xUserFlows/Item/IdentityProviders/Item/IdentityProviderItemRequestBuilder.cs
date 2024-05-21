@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Item {
+namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Item
+{
     /// <summary>
     /// Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
     /// </summary>
-    public class IdentityProviderItemRequestBuilder : BaseCliRequestBuilder 
+    public class IdentityProviderItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The identity providers included in the user flow.

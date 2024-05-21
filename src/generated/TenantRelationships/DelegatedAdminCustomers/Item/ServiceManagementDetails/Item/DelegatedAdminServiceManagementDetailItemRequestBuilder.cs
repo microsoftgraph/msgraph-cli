@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagementDetails.Item {
+namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagementDetails.Item
+{
     /// <summary>
     /// Provides operations to manage the serviceManagementDetails property of the microsoft.graph.delegatedAdminCustomer entity.
     /// </summary>
-    public class DelegatedAdminServiceManagementDetailItemRequestBuilder : BaseCliRequestBuilder 
+    public class DelegatedAdminServiceManagementDetailItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property serviceManagementDetails for tenantRelationships

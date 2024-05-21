@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class RetentionLabel : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class RetentionLabel : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Specifies the action to take on the labeled document after the period specified by the retentionDuration property expires. The possible values are: none, delete, startDispositionReview, unknownFutureValue.</summary>
         public ApiSdk.Models.Security.ActionAfterRetentionPeriod? ActionAfterRetentionPeriod { get; set; }
@@ -119,23 +122,23 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"actionAfterRetentionPeriod", n => { ActionAfterRetentionPeriod = n.GetEnumValue<ActionAfterRetentionPeriod>(); } },
-                {"behaviorDuringRetentionPeriod", n => { BehaviorDuringRetentionPeriod = n.GetEnumValue<BehaviorDuringRetentionPeriod>(); } },
-                {"createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"defaultRecordBehavior", n => { DefaultRecordBehavior = n.GetEnumValue<DefaultRecordBehavior>(); } },
-                {"descriptionForAdmins", n => { DescriptionForAdmins = n.GetStringValue(); } },
-                {"descriptionForUsers", n => { DescriptionForUsers = n.GetStringValue(); } },
-                {"descriptors", n => { Descriptors = n.GetObjectValue<FilePlanDescriptor>(FilePlanDescriptor.CreateFromDiscriminatorValue); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"dispositionReviewStages", n => { DispositionReviewStages = n.GetCollectionOfObjectValues<DispositionReviewStage>(DispositionReviewStage.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"isInUse", n => { IsInUse = n.GetBoolValue(); } },
-                {"labelToBeApplied", n => { LabelToBeApplied = n.GetStringValue(); } },
-                {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"retentionDuration", n => { RetentionDuration = n.GetObjectValue<ApiSdk.Models.Security.RetentionDuration>(ApiSdk.Models.Security.RetentionDuration.CreateFromDiscriminatorValue); } },
-                {"retentionEventType", n => { RetentionEventType = n.GetObjectValue<ApiSdk.Models.Security.RetentionEventType>(ApiSdk.Models.Security.RetentionEventType.CreateFromDiscriminatorValue); } },
-                {"retentionTrigger", n => { RetentionTrigger = n.GetEnumValue<RetentionTrigger>(); } },
+                { "actionAfterRetentionPeriod", n => { ActionAfterRetentionPeriod = n.GetEnumValue<ActionAfterRetentionPeriod>(); } },
+                { "behaviorDuringRetentionPeriod", n => { BehaviorDuringRetentionPeriod = n.GetEnumValue<BehaviorDuringRetentionPeriod>(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "defaultRecordBehavior", n => { DefaultRecordBehavior = n.GetEnumValue<DefaultRecordBehavior>(); } },
+                { "descriptionForAdmins", n => { DescriptionForAdmins = n.GetStringValue(); } },
+                { "descriptionForUsers", n => { DescriptionForUsers = n.GetStringValue(); } },
+                { "descriptors", n => { Descriptors = n.GetObjectValue<FilePlanDescriptor>(FilePlanDescriptor.CreateFromDiscriminatorValue); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "dispositionReviewStages", n => { DispositionReviewStages = n.GetCollectionOfObjectValues<DispositionReviewStage>(DispositionReviewStage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "isInUse", n => { IsInUse = n.GetBoolValue(); } },
+                { "labelToBeApplied", n => { LabelToBeApplied = n.GetStringValue(); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "retentionDuration", n => { RetentionDuration = n.GetObjectValue<ApiSdk.Models.Security.RetentionDuration>(ApiSdk.Models.Security.RetentionDuration.CreateFromDiscriminatorValue); } },
+                { "retentionEventType", n => { RetentionEventType = n.GetObjectValue<ApiSdk.Models.Security.RetentionEventType>(ApiSdk.Models.Security.RetentionEventType.CreateFromDiscriminatorValue); } },
+                { "retentionTrigger", n => { RetentionTrigger = n.GetEnumValue<RetentionTrigger>(); } },
             };
         }
         /// <summary>

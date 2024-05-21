@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Not {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Not
+{
     /// <summary>
     /// Provides operations to call the not method.
     /// </summary>
-    public class NotRequestBuilder : BaseCliRequestBuilder 
+    public class NotRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action not

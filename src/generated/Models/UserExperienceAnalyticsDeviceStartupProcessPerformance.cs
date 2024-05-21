@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics device startup process performance.
     /// </summary>
-    public class UserExperienceAnalyticsDeviceStartupProcessPerformance : Entity, IParsable 
+    public class UserExperienceAnalyticsDeviceStartupProcessPerformance : Entity, IParsable
     {
         /// <summary>The count of devices which initiated this process on startup. Supports: $filter, $select, $OrderBy. Read-only.</summary>
         public long? DeviceCount { get; set; }
@@ -58,12 +59,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"deviceCount", n => { DeviceCount = n.GetLongValue(); } },
-                {"medianImpactInMs", n => { MedianImpactInMs = n.GetLongValue(); } },
-                {"processName", n => { ProcessName = n.GetStringValue(); } },
-                {"productName", n => { ProductName = n.GetStringValue(); } },
-                {"publisher", n => { Publisher = n.GetStringValue(); } },
-                {"totalImpactInMs", n => { TotalImpactInMs = n.GetLongValue(); } },
+                { "deviceCount", n => { DeviceCount = n.GetLongValue(); } },
+                { "medianImpactInMs", n => { MedianImpactInMs = n.GetLongValue(); } },
+                { "processName", n => { ProcessName = n.GetStringValue(); } },
+                { "productName", n => { ProductName = n.GetStringValue(); } },
+                { "publisher", n => { Publisher = n.GetStringValue(); } },
+                { "totalImpactInMs", n => { TotalImpactInMs = n.GetLongValue(); } },
             };
         }
         /// <summary>

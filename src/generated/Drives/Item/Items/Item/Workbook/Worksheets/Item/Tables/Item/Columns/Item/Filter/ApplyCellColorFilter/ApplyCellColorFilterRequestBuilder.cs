@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyCellColorFilter {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyCellColorFilter
+{
     /// <summary>
     /// Provides operations to call the applyCellColorFilter method.
     /// </summary>
-    public class ApplyCellColorFilterRequestBuilder : BaseCliRequestBuilder 
+    public class ApplyCellColorFilterRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action applyCellColorFilter

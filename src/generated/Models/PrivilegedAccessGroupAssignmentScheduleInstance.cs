@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class PrivilegedAccessGroupAssignmentScheduleInstance : PrivilegedAccessScheduleInstance, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class PrivilegedAccessGroupAssignmentScheduleInstance : PrivilegedAccessScheduleInstance, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The identifier of the membership or ownership assignment relationship to the group. Required. The possible values are: owner, member,  unknownFutureValue. Supports $filter (eq).</summary>
         public PrivilegedAccessGroupRelationships? AccessId { get; set; }
@@ -86,15 +89,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"accessId", n => { AccessId = n.GetEnumValue<PrivilegedAccessGroupRelationships>(); } },
-                {"activatedUsing", n => { ActivatedUsing = n.GetObjectValue<PrivilegedAccessGroupEligibilityScheduleInstance>(PrivilegedAccessGroupEligibilityScheduleInstance.CreateFromDiscriminatorValue); } },
-                {"assignmentScheduleId", n => { AssignmentScheduleId = n.GetStringValue(); } },
-                {"assignmentType", n => { AssignmentType = n.GetEnumValue<PrivilegedAccessGroupAssignmentType>(); } },
-                {"group", n => { Group = n.GetObjectValue<ApiSdk.Models.Group>(ApiSdk.Models.Group.CreateFromDiscriminatorValue); } },
-                {"groupId", n => { GroupId = n.GetStringValue(); } },
-                {"memberType", n => { MemberType = n.GetEnumValue<PrivilegedAccessGroupMemberType>(); } },
-                {"principal", n => { Principal = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
-                {"principalId", n => { PrincipalId = n.GetStringValue(); } },
+                { "accessId", n => { AccessId = n.GetEnumValue<PrivilegedAccessGroupRelationships>(); } },
+                { "activatedUsing", n => { ActivatedUsing = n.GetObjectValue<PrivilegedAccessGroupEligibilityScheduleInstance>(PrivilegedAccessGroupEligibilityScheduleInstance.CreateFromDiscriminatorValue); } },
+                { "assignmentScheduleId", n => { AssignmentScheduleId = n.GetStringValue(); } },
+                { "assignmentType", n => { AssignmentType = n.GetEnumValue<PrivilegedAccessGroupAssignmentType>(); } },
+                { "group", n => { Group = n.GetObjectValue<ApiSdk.Models.Group>(ApiSdk.Models.Group.CreateFromDiscriminatorValue); } },
+                { "groupId", n => { GroupId = n.GetStringValue(); } },
+                { "memberType", n => { MemberType = n.GetEnumValue<PrivilegedAccessGroupMemberType>(); } },
+                { "principal", n => { Principal = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
+                { "principalId", n => { PrincipalId = n.GetStringValue(); } },
             };
         }
         /// <summary>

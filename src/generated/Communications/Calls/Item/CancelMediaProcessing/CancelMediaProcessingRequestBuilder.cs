@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
+namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing
+{
     /// <summary>
     /// Provides operations to call the cancelMediaProcessing method.
     /// </summary>
-    public class CancelMediaProcessingRequestBuilder : BaseCliRequestBuilder 
+    public class CancelMediaProcessingRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The cancelMediaProcessing method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a subscribeToTone operation because it operates independent of any operation queue.

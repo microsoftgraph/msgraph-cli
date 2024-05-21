@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class InferenceClassificationOverride : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class InferenceClassificationOverride : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Specifies how incoming messages from a specific sender should always be classified as. The possible values are: focused, other.</summary>
         public InferenceClassificationType? ClassifyAs { get; set; }
@@ -35,8 +38,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"classifyAs", n => { ClassifyAs = n.GetEnumValue<InferenceClassificationType>(); } },
-                {"senderEmailAddress", n => { SenderEmailAddress = n.GetObjectValue<EmailAddress>(EmailAddress.CreateFromDiscriminatorValue); } },
+                { "classifyAs", n => { ClassifyAs = n.GetEnumValue<InferenceClassificationType>(); } },
+                { "senderEmailAddress", n => { SenderEmailAddress = n.GetObjectValue<EmailAddress>(EmailAddress.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

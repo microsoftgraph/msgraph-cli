@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityProtection.RiskyUsers.Dismiss {
+namespace ApiSdk.IdentityProtection.RiskyUsers.Dismiss
+{
     /// <summary>
     /// Provides operations to call the dismiss method.
     /// </summary>
-    public class DismissRequestBuilder : BaseCliRequestBuilder 
+    public class DismissRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Dismiss the risk of one or more riskyUser objects. This action sets the targeted user&apos;s risk level to none.

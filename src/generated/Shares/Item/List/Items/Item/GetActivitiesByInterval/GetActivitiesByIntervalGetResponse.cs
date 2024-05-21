@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Shares.Item.List.Items.Item.GetActivitiesByInterval {
-    public class GetActivitiesByIntervalGetResponse : BaseCollectionPaginationCountResponse, IParsable 
+namespace ApiSdk.Shares.Item.List.Items.Item.GetActivitiesByInterval
+{
+    #pragma warning disable CS1591
+    public class GetActivitiesByIntervalGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +37,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.GetActivitiesByInterval {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<ItemActivityStat>(ItemActivityStat.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ItemActivityStat>(ItemActivityStat.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

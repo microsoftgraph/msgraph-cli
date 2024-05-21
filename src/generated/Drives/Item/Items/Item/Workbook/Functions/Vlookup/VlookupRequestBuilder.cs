@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vlookup {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vlookup
+{
     /// <summary>
     /// Provides operations to call the vlookup method.
     /// </summary>
-    public class VlookupRequestBuilder : BaseCliRequestBuilder 
+    public class VlookupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action vlookup

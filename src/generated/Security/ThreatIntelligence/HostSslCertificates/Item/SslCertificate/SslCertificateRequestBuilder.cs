@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostSslCertificates.Item.SslCertificate {
+namespace ApiSdk.Security.ThreatIntelligence.HostSslCertificates.Item.SslCertificate
+{
     /// <summary>
     /// Provides operations to manage the sslCertificate property of the microsoft.graph.security.hostSslCertificate entity.
     /// </summary>
-    public class SslCertificateRequestBuilder : BaseCliRequestBuilder 
+    public class SslCertificateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The sslCertificate for this hostSslCertificate.

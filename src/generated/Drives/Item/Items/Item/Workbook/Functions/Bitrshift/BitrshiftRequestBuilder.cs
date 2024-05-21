@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitrshift {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitrshift
+{
     /// <summary>
     /// Provides operations to call the bitrshift method.
     /// </summary>
-    public class BitrshiftRequestBuilder : BaseCliRequestBuilder 
+    public class BitrshiftRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action bitrshift

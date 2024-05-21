@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
+namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate
+{
     /// <summary>
     /// Provides operations to manage the applePushNotificationCertificate property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class ApplePushNotificationCertificateRequestBuilder : BaseCliRequestBuilder 
+    public class ApplePushNotificationCertificateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property applePushNotificationCertificate for deviceManagement

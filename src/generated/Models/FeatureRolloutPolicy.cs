@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class FeatureRolloutPolicy : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class FeatureRolloutPolicy : Entity, IParsable
+    #pragma warning restore CS1591
     {
-        /// <summary>Nullable. Specifies a list of directoryObjects that feature is enabled for.</summary>
+        /// <summary>Nullable. Specifies a list of directoryObject resources that feature is enabled for.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DirectoryObject>? AppliesTo { get; set; }
@@ -55,12 +58,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"appliesTo", n => { AppliesTo = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"feature", n => { Feature = n.GetEnumValue<StagedFeatureName>(); } },
-                {"isAppliedToOrganization", n => { IsAppliedToOrganization = n.GetBoolValue(); } },
-                {"isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
+                { "appliesTo", n => { AppliesTo = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "feature", n => { Feature = n.GetEnumValue<StagedFeatureName>(); } },
+                { "isAppliedToOrganization", n => { IsAppliedToOrganization = n.GetBoolValue(); } },
+                { "isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
             };
         }
         /// <summary>

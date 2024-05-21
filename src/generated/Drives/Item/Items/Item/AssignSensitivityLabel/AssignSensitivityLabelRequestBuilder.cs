@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel {
+namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel
+{
     /// <summary>
     /// Provides operations to call the assignSensitivityLabel method.
     /// </summary>
-    public class AssignSensitivityLabelRequestBuilder : BaseCliRequestBuilder 
+    public class AssignSensitivityLabelRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action assignSensitivityLabel

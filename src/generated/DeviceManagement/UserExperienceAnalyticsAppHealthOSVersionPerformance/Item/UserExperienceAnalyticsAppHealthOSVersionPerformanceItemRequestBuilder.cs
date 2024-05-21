@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOSVersionPerformance.Item {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOSVersionPerformance.Item
+{
     /// <summary>
     /// Provides operations to manage the userExperienceAnalyticsAppHealthOSVersionPerformance property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsAppHealthOSVersionPerformance for deviceManagement

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ExportDeviceAndAppManagementData {
+namespace ApiSdk.Users.Item.ExportDeviceAndAppManagementData
+{
     /// <summary>
     /// Provides operations to call the exportDeviceAndAppManagementData method.
     /// </summary>
-    public class ExportDeviceAndAppManagementDataRequestBuilder : BaseCliRequestBuilder 
+    public class ExportDeviceAndAppManagementDataRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function exportDeviceAndAppManagementData

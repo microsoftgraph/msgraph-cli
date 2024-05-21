@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class SslCertificateEntity : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class SslCertificateEntity : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -114,16 +117,16 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"address", n => { Address = n.GetObjectValue<ApiSdk.Models.PhysicalAddress>(ApiSdk.Models.PhysicalAddress.CreateFromDiscriminatorValue); } },
-                {"alternateNames", n => { AlternateNames = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"commonName", n => { CommonName = n.GetStringValue(); } },
-                {"email", n => { Email = n.GetStringValue(); } },
-                {"givenName", n => { GivenName = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"organizationName", n => { OrganizationName = n.GetStringValue(); } },
-                {"organizationUnitName", n => { OrganizationUnitName = n.GetStringValue(); } },
-                {"serialNumber", n => { SerialNumber = n.GetStringValue(); } },
-                {"surname", n => { Surname = n.GetStringValue(); } },
+                { "address", n => { Address = n.GetObjectValue<ApiSdk.Models.PhysicalAddress>(ApiSdk.Models.PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "alternateNames", n => { AlternateNames = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "commonName", n => { CommonName = n.GetStringValue(); } },
+                { "email", n => { Email = n.GetStringValue(); } },
+                { "givenName", n => { GivenName = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "organizationName", n => { OrganizationName = n.GetStringValue(); } },
+                { "organizationUnitName", n => { OrganizationUnitName = n.GetStringValue(); } },
+                { "serialNumber", n => { SerialNumber = n.GetStringValue(); } },
+                { "surname", n => { Surname = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class WorkbookFilterCriteria : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class WorkbookFilterCriteria : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The color property</summary>
+        /// <summary>The color applied to the cell.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Color { get; set; }
@@ -17,7 +20,7 @@ namespace ApiSdk.Models {
 #else
         public string Color { get; set; }
 #endif
-        /// <summary>The criterion1 property</summary>
+        /// <summary>A custom criterion.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Criterion1 { get; set; }
@@ -25,7 +28,7 @@ namespace ApiSdk.Models {
 #else
         public string Criterion1 { get; set; }
 #endif
-        /// <summary>The criterion2 property</summary>
+        /// <summary>A custom criterion.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Criterion2 { get; set; }
@@ -33,7 +36,7 @@ namespace ApiSdk.Models {
 #else
         public string Criterion2 { get; set; }
 #endif
-        /// <summary>The dynamicCriteria property</summary>
+        /// <summary>A dynamic formula specified in a custom filter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DynamicCriteria { get; set; }
@@ -41,7 +44,7 @@ namespace ApiSdk.Models {
 #else
         public string DynamicCriteria { get; set; }
 #endif
-        /// <summary>The filterOn property</summary>
+        /// <summary>Indicates whether a filter is applied to a column.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FilterOn { get; set; }
@@ -49,7 +52,7 @@ namespace ApiSdk.Models {
 #else
         public string FilterOn { get; set; }
 #endif
-        /// <summary>The icon property</summary>
+        /// <summary>An icon applied to a cell via conditional formatting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public WorkbookIcon? Icon { get; set; }
@@ -65,7 +68,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The operator property</summary>
+        /// <summary>An operator in a cell; for example, =, &gt;, &lt;, &lt;=, or &lt;&gt;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Operator { get; set; }
@@ -73,7 +76,7 @@ namespace ApiSdk.Models {
 #else
         public string Operator { get; set; }
 #endif
-        /// <summary>The values property</summary>
+        /// <summary>The values that appear in the cell.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Json? Values { get; set; }
@@ -106,15 +109,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"color", n => { Color = n.GetStringValue(); } },
-                {"criterion1", n => { Criterion1 = n.GetStringValue(); } },
-                {"criterion2", n => { Criterion2 = n.GetStringValue(); } },
-                {"dynamicCriteria", n => { DynamicCriteria = n.GetStringValue(); } },
-                {"filterOn", n => { FilterOn = n.GetStringValue(); } },
-                {"icon", n => { Icon = n.GetObjectValue<WorkbookIcon>(WorkbookIcon.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"operator", n => { Operator = n.GetStringValue(); } },
-                {"values", n => { Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "color", n => { Color = n.GetStringValue(); } },
+                { "criterion1", n => { Criterion1 = n.GetStringValue(); } },
+                { "criterion2", n => { Criterion2 = n.GetStringValue(); } },
+                { "dynamicCriteria", n => { DynamicCriteria = n.GetStringValue(); } },
+                { "filterOn", n => { FilterOn = n.GetStringValue(); } },
+                { "icon", n => { Icon = n.GetObjectValue<WorkbookIcon>(WorkbookIcon.CreateFromDiscriminatorValue); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "operator", n => { Operator = n.GetStringValue(); } },
+                { "values", n => { Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

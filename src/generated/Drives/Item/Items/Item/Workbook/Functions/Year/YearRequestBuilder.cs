@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Year {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Year
+{
     /// <summary>
     /// Provides operations to call the year method.
     /// </summary>
-    public class YearRequestBuilder : BaseCliRequestBuilder 
+    public class YearRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action year

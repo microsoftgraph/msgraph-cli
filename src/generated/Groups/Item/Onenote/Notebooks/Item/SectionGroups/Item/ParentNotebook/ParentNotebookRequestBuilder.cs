@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.ParentNotebook {
+namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.ParentNotebook
+{
     /// <summary>
     /// Provides operations to manage the parentNotebook property of the microsoft.graph.sectionGroup entity.
     /// </summary>
-    public class ParentNotebookRequestBuilder : BaseCliRequestBuilder 
+    public class ParentNotebookRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The notebook that contains the section group. Read-only.

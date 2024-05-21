@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables
+{
     /// <summary>
     /// Provides operations to manage the tables property of the microsoft.graph.workbook entity.
     /// </summary>
-    public class TablesRequestBuilder : BaseCliRequestBuilder 
+    public class TablesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the add method.
@@ -174,14 +175,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of table objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/workbook-list-tables?view=graph-rest-1.0" />
+        /// Represents a collection of tables associated with the workbook. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of table objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/workbook-list-tables?view=graph-rest-1.0";
+            command.Description = "Represents a collection of tables associated with the workbook. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -269,7 +269,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -295,7 +297,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables {
         {
         }
         /// <summary>
-        /// Retrieve a list of table objects.
+        /// Represents a collection of tables associated with the workbook. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -335,7 +337,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of table objects.
+        /// Represents a collection of tables associated with the workbook. Read-only.
         /// </summary>
         public class TablesRequestBuilderGetQueryParameters 
         {

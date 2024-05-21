@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
+namespace ApiSdk.Applications.Item.SetVerifiedPublisher
+{
     /// <summary>
     /// Provides operations to call the setVerifiedPublisher method.
     /// </summary>
-    public class SetVerifiedPublisherRequestBuilder : BaseCliRequestBuilder 
+    public class SetVerifiedPublisherRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups {
+namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups
+{
     /// <summary>
     /// Provides operations to manage the sectionGroups property of the microsoft.graph.notebook entity.
     /// </summary>
-    public class SectionGroupsRequestBuilder : BaseCliRequestBuilder 
+    public class SectionGroupsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the sectionGroups property of the microsoft.graph.notebook entity.
@@ -58,14 +59,13 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups {
             return command;
         }
         /// <summary>
-        /// Create a new section group in the specified notebook.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/notebook-post-sectiongroups?view=graph-rest-1.0" />
+        /// Create new navigation property to sectionGroups for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new section group in the specified notebook.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/notebook-post-sectiongroups?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to sectionGroups for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -116,14 +116,13 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified notebook.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0" />
+        /// The section groups in the notebook. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of section groups from the specified notebook.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0";
+            command.Description = "The section groups in the notebook. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -211,7 +210,9 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -237,7 +238,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups {
         {
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified notebook.
+        /// The section groups in the notebook. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -256,7 +257,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new section group in the specified notebook.
+        /// Create new navigation property to sectionGroups for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -277,7 +278,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified notebook.
+        /// The section groups in the notebook. Read-only. Nullable.
         /// </summary>
         public class SectionGroupsRequestBuilderGetQueryParameters 
         {

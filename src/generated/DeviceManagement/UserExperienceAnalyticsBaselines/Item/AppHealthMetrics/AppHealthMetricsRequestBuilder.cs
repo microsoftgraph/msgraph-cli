@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.AppHealthMetrics {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.AppHealthMetrics
+{
     /// <summary>
     /// Provides operations to manage the appHealthMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
     /// </summary>
-    public class AppHealthMetricsRequestBuilder : BaseCliRequestBuilder 
+    public class AppHealthMetricsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The scores and insights for the application health metrics.

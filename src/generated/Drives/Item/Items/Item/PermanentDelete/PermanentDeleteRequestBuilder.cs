@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.PermanentDelete {
+namespace ApiSdk.Drives.Item.Items.Item.PermanentDelete
+{
     /// <summary>
     /// Provides operations to call the permanentDelete method.
     /// </summary>
-    public class PermanentDeleteRequestBuilder : BaseCliRequestBuilder 
+    public class PermanentDeleteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action permanentDelete

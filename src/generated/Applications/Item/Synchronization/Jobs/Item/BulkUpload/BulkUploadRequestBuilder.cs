@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.BulkUpload {
+namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.BulkUpload
+{
     /// <summary>
     /// Provides operations to manage the bulkUpload property of the microsoft.graph.synchronizationJob entity.
     /// </summary>
-    public class BulkUploadRequestBuilder : BaseCliRequestBuilder 
+    public class BulkUploadRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the application entity.
@@ -31,6 +32,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.BulkUpload {
             command.Description = "Provides operations to manage the media for the application entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetSharePointSiteUsageDetailWithDate {
+namespace ApiSdk.Reports.GetSharePointSiteUsageDetailWithDate
+{
     /// <summary>
     /// Provides operations to call the getSharePointSiteUsageDetail method.
     /// </summary>
-    public class GetSharePointSiteUsageDetailWithDateRequestBuilder : BaseCliRequestBuilder 
+    public class GetSharePointSiteUsageDetailWithDateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getSharePointSiteUsageDetail
+        /// Get details about SharePoint site usage.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSharePointSiteUsageDetail";
+            command.Description = "Get details about SharePoint site usage.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetSharePointSiteUsageDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getSharePointSiteUsageDetail
+        /// Get details about SharePoint site usage.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
+namespace ApiSdk.DeviceAppManagement.ManagedEBooks
+{
     /// <summary>
     /// Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class ManagedEBooksRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedEBooksRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.
@@ -105,14 +106,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the iosVppEBook objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-iosvppebook-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the managedEBook objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-managedebook-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the iosVppEBook objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-iosvppebook-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the managedEBook objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-managedebook-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -188,7 +189,9 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -214,7 +217,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
         {
         }
         /// <summary>
-        /// List properties and relationships of the iosVppEBook objects.
+        /// List properties and relationships of the managedEBook objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -254,7 +257,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the iosVppEBook objects.
+        /// List properties and relationships of the managedEBook objects.
         /// </summary>
         public class ManagedEBooksRequestBuilderGetQueryParameters 
         {

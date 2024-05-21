@@ -21,11 +21,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item {
+namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
+{
     /// <summary>
     /// Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
     /// </summary>
-    public class SynchronizationJobItemRequestBuilder : BaseCliRequestBuilder 
+    public class SynchronizationJobItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the bulkUpload property of the microsoft.graph.synchronizationJob entity.

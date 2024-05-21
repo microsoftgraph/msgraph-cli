@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions {
+namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions
+{
     /// <summary>
     /// Provides operations to manage the subscriptions property of the microsoft.graph.list entity.
     /// </summary>
-    public class SubscriptionsRequestBuilder : BaseCliRequestBuilder 
+    public class SubscriptionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the subscriptions property of the microsoft.graph.list entity.
@@ -206,7 +207,9 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

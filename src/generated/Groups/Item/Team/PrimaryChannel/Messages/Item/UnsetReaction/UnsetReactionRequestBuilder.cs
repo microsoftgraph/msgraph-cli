@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.UnsetReaction {
+namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.UnsetReaction
+{
     /// <summary>
     /// Provides operations to call the unsetReaction method.
     /// </summary>
-    public class UnsetReactionRequestBuilder : BaseCliRequestBuilder 
+    public class UnsetReactionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action unsetReaction

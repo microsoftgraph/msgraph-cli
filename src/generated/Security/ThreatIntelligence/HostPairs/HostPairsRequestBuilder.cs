@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostPairs {
+namespace ApiSdk.Security.ThreatIntelligence.HostPairs
+{
     /// <summary>
     /// Provides operations to manage the hostPairs property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class HostPairsRequestBuilder : BaseCliRequestBuilder 
+    public class HostPairsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the hostPairs property of the microsoft.graph.security.threatIntelligence entity.
@@ -183,7 +184,9 @@ namespace ApiSdk.Security.ThreatIntelligence.HostPairs {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

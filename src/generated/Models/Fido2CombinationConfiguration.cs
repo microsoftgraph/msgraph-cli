@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Fido2CombinationConfiguration : AuthenticationCombinationConfiguration, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Fido2CombinationConfiguration : AuthenticationCombinationConfiguration, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>A list of AAGUIDs allowed to be used as part of the specified authentication method combinations.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +43,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"allowedAAGUIDs", n => { AllowedAAGUIDs = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "allowedAAGUIDs", n => { AllowedAAGUIDs = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

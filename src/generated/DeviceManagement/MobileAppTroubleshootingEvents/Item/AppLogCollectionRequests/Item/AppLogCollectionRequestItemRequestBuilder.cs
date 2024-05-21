@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogCollectionRequests.Item {
+namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogCollectionRequests.Item
+{
     /// <summary>
     /// Provides operations to manage the appLogCollectionRequests property of the microsoft.graph.mobileAppTroubleshootingEvent entity.
     /// </summary>
-    public class AppLogCollectionRequestItemRequestBuilder : BaseCliRequestBuilder 
+    public class AppLogCollectionRequestItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the createDownloadUrl method.

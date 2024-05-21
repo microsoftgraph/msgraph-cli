@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipalsWithAppId {
+namespace ApiSdk.ServicePrincipalsWithAppId
+{
     /// <summary>
     /// Provides operations to manage the collection of servicePrincipal entities.
     /// </summary>
-    public class ServicePrincipalsWithAppIdRequestBuilder : BaseCliRequestBuilder 
+    public class ServicePrincipalsWithAppIdRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a servicePrincipal object.

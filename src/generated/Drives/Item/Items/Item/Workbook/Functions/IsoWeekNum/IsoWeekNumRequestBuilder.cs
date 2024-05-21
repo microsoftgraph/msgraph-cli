@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsoWeekNum {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsoWeekNum
+{
     /// <summary>
     /// Provides operations to call the isoWeekNum method.
     /// </summary>
-    public class IsoWeekNumRequestBuilder : BaseCliRequestBuilder 
+    public class IsoWeekNumRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action isoWeekNum

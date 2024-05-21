@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Isref {
-    public class IsrefPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Isref
+{
+    #pragma warning disable CS1591
+    public class IsrefPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -43,7 +46,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Isref {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"value", n => { Value = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "value", n => { Value = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

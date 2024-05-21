@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.ExternalConnectors {
-    public class ItemIdResolver : UrlToItemResolverBase, IParsable 
+namespace ApiSdk.Models.ExternalConnectors
+{
+    #pragma warning disable CS1591
+    public class ItemIdResolver : UrlToItemResolverBase, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Pattern that specifies how to form the ID of the external item that the URL represents. The named groups from the regular expression in urlPattern within the urlMatchInfo can be referenced by inserting the group name inside curly brackets.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,8 +51,8 @@ namespace ApiSdk.Models.ExternalConnectors {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"itemId", n => { ItemId = n.GetStringValue(); } },
-                {"urlMatchInfo", n => { UrlMatchInfo = n.GetObjectValue<ApiSdk.Models.ExternalConnectors.UrlMatchInfo>(ApiSdk.Models.ExternalConnectors.UrlMatchInfo.CreateFromDiscriminatorValue); } },
+                { "itemId", n => { ItemId = n.GetStringValue(); } },
+                { "urlMatchInfo", n => { UrlMatchInfo = n.GetObjectValue<ApiSdk.Models.ExternalConnectors.UrlMatchInfo>(ApiSdk.Models.ExternalConnectors.UrlMatchInfo.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

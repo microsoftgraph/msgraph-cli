@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Contacts.Item.MemberOf {
+namespace ApiSdk.Contacts.Item.MemberOf
+{
     /// <summary>
     /// Provides operations to manage the memberOf property of the microsoft.graph.orgContact entity.
     /// </summary>
-    public class MemberOfRequestBuilder : BaseCliRequestBuilder 
+    public class MemberOfRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the memberOf property of the microsoft.graph.orgContact entity.
@@ -102,14 +103,14 @@ namespace ApiSdk.Contacts.Item.MemberOf {
             return command;
         }
         /// <summary>
-        /// Groups that this contact is a member of. Read-only. Nullable. Supports $expand.
+        /// List the groups that this organizational contact is a member of.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/orgcontact-list-memberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Groups that this contact is a member of. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-list-memberof?view=graph-rest-1.0";
+            command.Description = "List the groups that this organizational contact is a member of.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-list-memberof?view=graph-rest-1.0";
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
@@ -198,7 +199,9 @@ namespace ApiSdk.Contacts.Item.MemberOf {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -224,7 +227,7 @@ namespace ApiSdk.Contacts.Item.MemberOf {
         {
         }
         /// <summary>
-        /// Groups that this contact is a member of. Read-only. Nullable. Supports $expand.
+        /// List the groups that this organizational contact is a member of.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +246,7 @@ namespace ApiSdk.Contacts.Item.MemberOf {
             return requestInfo;
         }
         /// <summary>
-        /// Groups that this contact is a member of. Read-only. Nullable. Supports $expand.
+        /// List the groups that this organizational contact is a member of.
         /// </summary>
         public class MemberOfRequestBuilderGetQueryParameters 
         {

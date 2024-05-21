@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.DisableLostMode {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.DisableLostMode
+{
     /// <summary>
     /// Provides operations to call the disableLostMode method.
     /// </summary>
-    public class DisableLostModeRequestBuilder : BaseCliRequestBuilder 
+    public class DisableLostModeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Disable lost mode

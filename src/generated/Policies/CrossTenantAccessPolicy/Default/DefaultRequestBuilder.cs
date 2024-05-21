@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
+namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default
+{
     /// <summary>
     /// Provides operations to manage the default property of the microsoft.graph.crossTenantAccessPolicy entity.
     /// </summary>
-    public class DefaultRequestBuilder : BaseCliRequestBuilder 
+    public class DefaultRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property default for policies

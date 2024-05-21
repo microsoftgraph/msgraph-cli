@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Connections.Item {
+namespace ApiSdk.Connections.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of externalConnection entities.
     /// </summary>
-    public class ExternalConnectionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ExternalConnectionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from connections

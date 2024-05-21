@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Return {
+namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Return
+{
     /// <summary>
     /// Provides operations to call the return method.
     /// </summary>
-    public class ReturnRequestBuilder : BaseCliRequestBuilder 
+    public class ReturnRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from &apos;submitted&apos; to &apos;returned&apos; and indicates that feedback is provided or grading is done. This action can only be done by the teacher.

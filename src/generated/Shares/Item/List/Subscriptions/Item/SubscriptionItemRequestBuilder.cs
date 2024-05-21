@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Shares.Item.List.Subscriptions.Item {
+namespace ApiSdk.Shares.Item.List.Subscriptions.Item
+{
     /// <summary>
     /// Provides operations to manage the subscriptions property of the microsoft.graph.list entity.
     /// </summary>
-    public class SubscriptionItemRequestBuilder : BaseCliRequestBuilder 
+    public class SubscriptionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property subscriptions for shares

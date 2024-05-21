@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class MailSearchFolder : MailFolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class MailSearchFolder : MailFolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The OData query to filter the messages.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -52,10 +55,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"filterQuery", n => { FilterQuery = n.GetStringValue(); } },
-                {"includeNestedFolders", n => { IncludeNestedFolders = n.GetBoolValue(); } },
-                {"isSupported", n => { IsSupported = n.GetBoolValue(); } },
-                {"sourceFolderIds", n => { SourceFolderIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "filterQuery", n => { FilterQuery = n.GetStringValue(); } },
+                { "includeNestedFolders", n => { IncludeNestedFolders = n.GetBoolValue(); } },
+                { "isSupported", n => { IsSupported = n.GetBoolValue(); } },
+                { "sourceFolderIds", n => { SourceFolderIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

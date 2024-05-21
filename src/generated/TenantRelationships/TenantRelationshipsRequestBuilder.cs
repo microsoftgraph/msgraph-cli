@@ -5,6 +5,7 @@ using ApiSdk.TenantRelationships.DelegatedAdminCustomers;
 using ApiSdk.TenantRelationships.DelegatedAdminRelationships;
 using ApiSdk.TenantRelationships.FindTenantInformationByDomainNameWithDomainName;
 using ApiSdk.TenantRelationships.FindTenantInformationByTenantIdWithTenantId;
+using ApiSdk.TenantRelationships.MultiTenantOrganization;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -18,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.TenantRelationships {
+namespace ApiSdk.TenantRelationships
+{
     /// <summary>
     /// Provides operations to manage the tenantRelationship singleton.
     /// </summary>
-    public class TenantRelationshipsRequestBuilder : BaseCliRequestBuilder 
+    public class TenantRelationshipsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
@@ -156,6 +158,31 @@ namespace ApiSdk.TenantRelationships {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the multiTenantOrganization property of the microsoft.graph.tenantRelationship entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMultiTenantOrganizationNavCommand()
+        {
+            var command = new Command("multi-tenant-organization");
+            command.Description = "Provides operations to manage the multiTenantOrganization property of the microsoft.graph.tenantRelationship entity.";
+            var builder = new MultiTenantOrganizationRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildJoinRequestNavCommand());
+            execCommands.Add(builder.BuildPutCommand());
+            nonExecCommands.Add(builder.BuildTenantsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

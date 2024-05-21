@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.RangeNamespace {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.RangeNamespace
+{
     /// <summary>
     /// Provides operations to call the range method.
     /// </summary>
-    public class RangeRequestBuilder : BaseCliRequestBuilder 
+    public class RangeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the range object associated with the entire table.

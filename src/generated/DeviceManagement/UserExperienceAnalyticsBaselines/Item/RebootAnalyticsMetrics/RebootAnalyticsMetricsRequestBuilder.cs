@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.RebootAnalyticsMetrics {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.RebootAnalyticsMetrics
+{
     /// <summary>
     /// Provides operations to manage the rebootAnalyticsMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
     /// </summary>
-    public class RebootAnalyticsMetricsRequestBuilder : BaseCliRequestBuilder 
+    public class RebootAnalyticsMetricsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The scores and insights for the reboot analytics metrics.

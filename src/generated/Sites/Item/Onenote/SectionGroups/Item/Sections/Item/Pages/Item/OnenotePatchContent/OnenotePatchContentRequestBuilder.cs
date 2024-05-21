@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.OnenotePatchContent {
+namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.OnenotePatchContent
+{
     /// <summary>
     /// Provides operations to call the onenotePatchContent method.
     /// </summary>
-    public class OnenotePatchContentRequestBuilder : BaseCliRequestBuilder 
+    public class OnenotePatchContentRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action onenotePatchContent

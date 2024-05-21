@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.DataLabels.Format.Fill.SetSolidColor {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.DataLabels.Format.Fill.SetSolidColor
+{
     /// <summary>
     /// Provides operations to call the setSolidColor method.
     /// </summary>
-    public class SetSolidColorRequestBuilder : BaseCliRequestBuilder 
+    public class SetSolidColorRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Sets the fill formatting of a chart element to a uniform color.

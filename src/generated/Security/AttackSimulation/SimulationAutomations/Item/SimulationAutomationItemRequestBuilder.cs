@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
+namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item
+{
     /// <summary>
     /// Provides operations to manage the simulationAutomations property of the microsoft.graph.attackSimulationRoot entity.
     /// </summary>
-    public class SimulationAutomationItemRequestBuilder : BaseCliRequestBuilder 
+    public class SimulationAutomationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property simulationAutomations for security

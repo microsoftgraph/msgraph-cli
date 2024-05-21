@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class UnclassifiedArtifact : Artifact, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class UnclassifiedArtifact : Artifact, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The kind for this unclassifiedArtifact resource, describing what this value means.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,8 +51,8 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"kind", n => { Kind = n.GetStringValue(); } },
-                {"value", n => { Value = n.GetStringValue(); } },
+                { "kind", n => { Kind = n.GetStringValue(); } },
+                { "value", n => { Value = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.RemoveFavorite {
+namespace ApiSdk.Groups.Item.RemoveFavorite
+{
     /// <summary>
     /// Provides operations to call the removeFavorite method.
     /// </summary>
-    public class RemoveFavoriteRequestBuilder : BaseCliRequestBuilder 
+    public class RemoveFavoriteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remove the group from the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only.

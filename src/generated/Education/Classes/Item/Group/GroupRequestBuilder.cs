@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.Group {
+namespace ApiSdk.Education.Classes.Item.Group
+{
     /// <summary>
     /// Provides operations to manage the group property of the microsoft.graph.educationClass entity.
     /// </summary>
-    public class GroupRequestBuilder : BaseCliRequestBuilder 
+    public class GroupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The underlying Microsoft 365 group object.

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Invitations.Item.InvitedUser {
+namespace ApiSdk.Invitations.Item.InvitedUser
+{
     /// <summary>
     /// Provides operations to manage the invitedUser property of the microsoft.graph.invitation entity.
     /// </summary>
-    public class InvitedUserRequestBuilder : BaseCliRequestBuilder 
+    public class InvitedUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The user created as part of the invitation creation. Read-Only

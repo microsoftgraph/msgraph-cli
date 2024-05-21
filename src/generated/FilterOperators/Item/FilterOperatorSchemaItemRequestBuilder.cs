@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.FilterOperators.Item {
+namespace ApiSdk.FilterOperators.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of filterOperatorSchema entities.
     /// </summary>
-    public class FilterOperatorSchemaItemRequestBuilder : BaseCliRequestBuilder 
+    public class FilterOperatorSchemaItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from filterOperators

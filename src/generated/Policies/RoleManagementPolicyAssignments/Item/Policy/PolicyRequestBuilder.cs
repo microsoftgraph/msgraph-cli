@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item.Policy {
+namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item.Policy
+{
     /// <summary>
     /// Provides operations to manage the policy property of the microsoft.graph.unifiedRoleManagementPolicyAssignment entity.
     /// </summary>
-    public class PolicyRequestBuilder : BaseCliRequestBuilder 
+    public class PolicyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The policy that&apos;s associated with a policy assignment. Supports $expand and a nested $expand of the rules and effectiveRules relationships for the policy.

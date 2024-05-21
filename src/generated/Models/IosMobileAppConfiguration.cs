@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties, inherited properties and actions for iOS mobile app configurations.
     /// </summary>
-    public class IosMobileAppConfiguration : ManagedDeviceMobileAppConfiguration, IParsable 
+    public class IosMobileAppConfiguration : ManagedDeviceMobileAppConfiguration, IParsable
     {
         /// <summary>mdm app configuration Base64 binary.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -51,8 +52,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"encodedSettingXml", n => { EncodedSettingXml = n.GetByteArrayValue(); } },
-                {"settings", n => { Settings = n.GetCollectionOfObjectValues<AppConfigurationSettingItem>(AppConfigurationSettingItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "encodedSettingXml", n => { EncodedSettingXml = n.GetByteArrayValue(); } },
+                { "settings", n => { Settings = n.GetCollectionOfObjectValues<AppConfigurationSettingItem>(AppConfigurationSettingItem.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

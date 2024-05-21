@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item {
+namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.Item
+{
     /// <summary>
     /// Provides operations to manage the agreementAcceptances property of the microsoft.graph.termsOfUseContainer entity.
     /// </summary>
-    public class AgreementAcceptanceItemRequestBuilder : BaseCliRequestBuilder 
+    public class AgreementAcceptanceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property agreementAcceptances for identityGovernance

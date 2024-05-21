@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttributeCollection {
+namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttributeCollection
+{
     /// <summary>
     /// Provides operations to manage the postAttributeCollection property of the microsoft.graph.userFlowApiConnectorConfiguration entity.
     /// </summary>
-    public class PostAttributeCollectionRequestBuilder : BaseCliRequestBuilder 
+    public class PostAttributeCollectionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property postAttributeCollection for identity

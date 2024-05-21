@@ -26,11 +26,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
+namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item
+{
     /// <summary>
     /// Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.
     /// </summary>
-    public class MessageItemRequestBuilder : BaseCliRequestBuilder 
+    public class MessageItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.message entity.
@@ -70,6 +71,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
             command.Description = "Provides operations to manage the media for the user entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

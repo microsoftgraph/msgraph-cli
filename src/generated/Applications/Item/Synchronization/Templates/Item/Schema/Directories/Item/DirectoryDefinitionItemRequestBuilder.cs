@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization.Templates.Item.Schema.Directories.Item {
+namespace ApiSdk.Applications.Item.Synchronization.Templates.Item.Schema.Directories.Item
+{
     /// <summary>
     /// Provides operations to manage the directories property of the microsoft.graph.synchronizationSchema entity.
     /// </summary>
-    public class DirectoryDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property directories for applications

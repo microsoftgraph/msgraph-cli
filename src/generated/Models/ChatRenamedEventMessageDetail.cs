@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ChatRenamedEventMessageDetail : EventMessageDetail, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ChatRenamedEventMessageDetail : EventMessageDetail, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The updated name of the chat.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,9 +59,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"chatDisplayName", n => { ChatDisplayName = n.GetStringValue(); } },
-                {"chatId", n => { ChatId = n.GetStringValue(); } },
-                {"initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "chatDisplayName", n => { ChatDisplayName = n.GetStringValue(); } },
+                { "chatId", n => { ChatId = n.GetStringValue(); } },
+                { "initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

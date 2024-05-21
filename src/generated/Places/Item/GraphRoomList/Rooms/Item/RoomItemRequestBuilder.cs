@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Places.Item.GraphRoomList.Rooms.Item {
+namespace ApiSdk.Places.Item.GraphRoomList.Rooms.Item
+{
     /// <summary>
     /// Provides operations to manage the rooms property of the microsoft.graph.roomList entity.
     /// </summary>
-    public class RoomItemRequestBuilder : BaseCliRequestBuilder 
+    public class RoomItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property rooms for places

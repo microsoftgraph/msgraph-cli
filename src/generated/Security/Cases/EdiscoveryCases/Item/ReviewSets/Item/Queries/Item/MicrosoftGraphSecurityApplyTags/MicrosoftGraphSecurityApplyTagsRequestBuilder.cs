@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.MicrosoftGraphSecurityApplyTags {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.MicrosoftGraphSecurityApplyTags
+{
     /// <summary>
     /// Provides operations to call the applyTags method.
     /// </summary>
-    public class MicrosoftGraphSecurityApplyTagsRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityApplyTagsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Apply tags to files in an eDiscovery review set. For details, see Tag documents in a review set in eDiscovery.

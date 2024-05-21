@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Me.Classes.Item {
+namespace ApiSdk.Education.Me.Classes.Item
+{
     /// <summary>
     /// Provides operations to manage the classes property of the microsoft.graph.educationUser entity.
     /// </summary>
-    public class EducationClassItemRequestBuilder : BaseCliRequestBuilder 
+    public class EducationClassItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Classes to which the user belongs. Nullable.

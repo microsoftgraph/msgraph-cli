@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class MailboxConfigurationEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class MailboxConfigurationEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The configurationId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -68,12 +71,12 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"configurationId", n => { ConfigurationId = n.GetStringValue(); } },
-                {"configurationType", n => { ConfigurationType = n.GetEnumValue<MailboxConfigurationType>(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"externalDirectoryObjectId", n => { ExternalDirectoryObjectId = n.GetGuidValue(); } },
-                {"mailboxPrimaryAddress", n => { MailboxPrimaryAddress = n.GetStringValue(); } },
-                {"upn", n => { Upn = n.GetStringValue(); } },
+                { "configurationId", n => { ConfigurationId = n.GetStringValue(); } },
+                { "configurationType", n => { ConfigurationType = n.GetEnumValue<MailboxConfigurationType>(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "externalDirectoryObjectId", n => { ExternalDirectoryObjectId = n.GetGuidValue(); } },
+                { "mailboxPrimaryAddress", n => { MailboxPrimaryAddress = n.GetStringValue(); } },
+                { "upn", n => { Upn = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
+namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item
+{
     /// <summary>
     /// Provides operations to manage the windowsAutopilotDeviceIdentities property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class WindowsAutopilotDeviceIdentityItemRequestBuilder : BaseCliRequestBuilder 
+    public class WindowsAutopilotDeviceIdentityItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the assignUserToDevice method.

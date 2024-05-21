@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Insights.Used.Item.Resource {
+namespace ApiSdk.Users.Item.Insights.Used.Item.Resource
+{
     /// <summary>
     /// Provides operations to manage the resource property of the microsoft.graph.usedInsight entity.
     /// </summary>
-    public class ResourceRequestBuilder : BaseCliRequestBuilder 
+    public class ResourceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.

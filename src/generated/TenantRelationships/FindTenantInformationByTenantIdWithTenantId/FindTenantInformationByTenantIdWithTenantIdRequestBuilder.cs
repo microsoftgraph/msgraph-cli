@@ -14,20 +14,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.TenantRelationships.FindTenantInformationByTenantIdWithTenantId {
+namespace ApiSdk.TenantRelationships.FindTenantInformationByTenantIdWithTenantId
+{
     /// <summary>
     /// Provides operations to call the findTenantInformationByTenantId method.
     /// </summary>
-    public class FindTenantInformationByTenantIdWithTenantIdRequestBuilder : BaseCliRequestBuilder 
+    public class FindTenantInformationByTenantIdWithTenantIdRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function findTenantInformationByTenantId
+        /// Given a tenant ID, search for a tenant and read its tenantInformation. You can use this API to validate tenant information and use the tenantId to configure cross-tenant cross-tenant access settings between you and the tenant.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tenantrelationship-findtenantinformationbytenantid?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function findTenantInformationByTenantId";
+            command.Description = "Given a tenant ID, search for a tenant and read its tenantInformation. You can use this API to validate tenant information and use the tenantId to configure cross-tenant cross-tenant access settings between you and the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tenantrelationship-findtenantinformationbytenantid?view=graph-rest-1.0";
             var tenantIdOption = new Option<string>("--tenant-id", description: "Usage: tenantId='{tenantId}'") {
             };
             tenantIdOption.IsRequired = true;
@@ -73,7 +75,7 @@ namespace ApiSdk.TenantRelationships.FindTenantInformationByTenantIdWithTenantId
         {
         }
         /// <summary>
-        /// Invoke function findTenantInformationByTenantId
+        /// Given a tenant ID, search for a tenant and read its tenantInformation. You can use this API to validate tenant information and use the tenantId to configure cross-tenant cross-tenant access settings between you and the tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

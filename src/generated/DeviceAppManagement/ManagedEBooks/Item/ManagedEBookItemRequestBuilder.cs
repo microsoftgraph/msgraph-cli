@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
+namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item
+{
     /// <summary>
     /// Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class ManagedEBookItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedEBookItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.managedEBook entity.

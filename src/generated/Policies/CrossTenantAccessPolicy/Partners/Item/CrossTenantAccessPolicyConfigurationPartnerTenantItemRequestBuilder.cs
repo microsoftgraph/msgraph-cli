@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
+namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item
+{
     /// <summary>
     /// Provides operations to manage the partners property of the microsoft.graph.crossTenantAccessPolicy entity.
     /// </summary>
-    public class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder : BaseCliRequestBuilder 
+    public class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a partner-specific configuration in a cross-tenant access policy. If a configuration includes a user synchronization policy, you must first delete the user synchronization policy before you can delete the partner-specific configuration.

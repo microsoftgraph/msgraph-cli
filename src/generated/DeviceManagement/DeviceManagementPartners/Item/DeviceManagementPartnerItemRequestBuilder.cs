@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item {
+namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item
+{
     /// <summary>
     /// Provides operations to manage the deviceManagementPartners property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DeviceManagementPartnerItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceManagementPartnerItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a deviceManagementPartner.

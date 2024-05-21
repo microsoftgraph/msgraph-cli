@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
+namespace ApiSdk.Communications.Calls.Item.PlayPrompt
+{
     /// <summary>
     /// Provides operations to call the playPrompt method.
     /// </summary>
-    public class PlayPromptRequestBuilder : BaseCliRequestBuilder 
+    public class PlayPromptRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Play a prompt in the call. For more information about how to handle operations, see commsOperation

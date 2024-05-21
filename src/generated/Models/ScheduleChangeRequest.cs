@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ScheduleChangeRequest : ChangeTrackedEntity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ScheduleChangeRequest : ChangeTrackedEntity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The assignedTo property</summary>
         public ScheduleChangeRequestActor? AssignedTo { get; set; }
@@ -80,14 +83,14 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"assignedTo", n => { AssignedTo = n.GetEnumValue<ScheduleChangeRequestActor>(); } },
-                {"managerActionDateTime", n => { ManagerActionDateTime = n.GetDateTimeOffsetValue(); } },
-                {"managerActionMessage", n => { ManagerActionMessage = n.GetStringValue(); } },
-                {"managerUserId", n => { ManagerUserId = n.GetStringValue(); } },
-                {"senderDateTime", n => { SenderDateTime = n.GetDateTimeOffsetValue(); } },
-                {"senderMessage", n => { SenderMessage = n.GetStringValue(); } },
-                {"senderUserId", n => { SenderUserId = n.GetStringValue(); } },
-                {"state", n => { State = n.GetEnumValue<ScheduleChangeState>(); } },
+                { "assignedTo", n => { AssignedTo = n.GetEnumValue<ScheduleChangeRequestActor>(); } },
+                { "managerActionDateTime", n => { ManagerActionDateTime = n.GetDateTimeOffsetValue(); } },
+                { "managerActionMessage", n => { ManagerActionMessage = n.GetStringValue(); } },
+                { "managerUserId", n => { ManagerUserId = n.GetStringValue(); } },
+                { "senderDateTime", n => { SenderDateTime = n.GetDateTimeOffsetValue(); } },
+                { "senderMessage", n => { SenderMessage = n.GetStringValue(); } },
+                { "senderUserId", n => { SenderUserId = n.GetStringValue(); } },
+                { "state", n => { State = n.GetEnumValue<ScheduleChangeState>(); } },
             };
         }
         /// <summary>

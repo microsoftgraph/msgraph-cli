@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AmorLinc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AmorLinc
+{
     /// <summary>
     /// Provides operations to call the amorLinc method.
     /// </summary>
-    public class AmorLincRequestBuilder : BaseCliRequestBuilder 
+    public class AmorLincRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action amorLinc

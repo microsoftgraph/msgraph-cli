@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Represents an icon for an app on the Home Screen
     /// </summary>
-    public class IosHomeScreenApp : IosHomeScreenItem, IParsable 
+    public class IosHomeScreenApp : IosHomeScreenItem, IParsable
     {
         /// <summary>BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -43,7 +44,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"bundleID", n => { BundleID = n.GetStringValue(); } },
+                { "bundleID", n => { BundleID = n.GetStringValue(); } },
             };
         }
         /// <summary>

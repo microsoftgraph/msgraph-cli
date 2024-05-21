@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WeekNum {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WeekNum
+{
     /// <summary>
     /// Provides operations to call the weekNum method.
     /// </summary>
-    public class WeekNumRequestBuilder : BaseCliRequestBuilder 
+    public class WeekNumRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action weekNum

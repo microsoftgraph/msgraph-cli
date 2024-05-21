@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ChangePassword {
+namespace ApiSdk.Users.Item.ChangePassword
+{
     /// <summary>
     /// Provides operations to call the changePassword method.
     /// </summary>
-    public class ChangePasswordRequestBuilder : BaseCliRequestBuilder 
+    public class ChangePasswordRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Enable the user to update their password. Any user can update their password without belonging to any administrator role.

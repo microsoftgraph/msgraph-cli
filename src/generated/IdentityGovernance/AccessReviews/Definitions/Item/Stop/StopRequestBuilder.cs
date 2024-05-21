@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
+namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop
+{
     /// <summary>
     /// Provides operations to call the stop method.
     /// </summary>
-    public class StopRequestBuilder : BaseCliRequestBuilder 
+    public class StopRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action stop

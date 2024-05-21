@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.UserProcessingResults.Item.TaskProcessingResults.Item {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.UserProcessingResults.Item.TaskProcessingResults.Item
+{
     /// <summary>
     /// Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.userProcessingResult entity.
     /// </summary>
-    public class TaskProcessingResultItemRequestBuilder : BaseCliRequestBuilder 
+    public class TaskProcessingResultItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The associated individual task execution.

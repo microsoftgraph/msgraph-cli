@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Delta {
+namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Delta
+{
     /// <summary>
     /// Provides operations to call the delta method.
     /// </summary>
-    public class DeltaRequestBuilder : BaseCliRequestBuilder 
+    public class DeltaRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function delta
+        /// Get a list of newly created or updated educationCategory objects without having to perform a full read of the collection.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationcategory-delta?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function delta";
+            command.Description = "Get a list of newly created or updated educationCategory objects without having to perform a full read of the collection.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationcategory-delta?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -114,7 +116,9 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Delta {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -140,7 +144,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Delta {
         {
         }
         /// <summary>
-        /// Invoke function delta
+        /// Get a list of newly created or updated educationCategory objects without having to perform a full read of the collection.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +163,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Delta {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function delta
+        /// Get a list of newly created or updated educationCategory objects without having to perform a full read of the collection.
         /// </summary>
         public class DeltaRequestBuilderGetQueryParameters 
         {

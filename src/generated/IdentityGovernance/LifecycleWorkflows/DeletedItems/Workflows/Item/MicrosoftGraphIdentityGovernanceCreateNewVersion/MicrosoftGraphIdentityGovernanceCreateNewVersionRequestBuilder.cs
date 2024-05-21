@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.MicrosoftGraphIdentityGovernanceCreateNewVersion {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.MicrosoftGraphIdentityGovernanceCreateNewVersion
+{
     /// <summary>
     /// Provides operations to call the createNewVersion method.
     /// </summary>
-    public class MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Create a new version of the workflow object.

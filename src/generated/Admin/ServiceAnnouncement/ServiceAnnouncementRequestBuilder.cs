@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement {
+namespace ApiSdk.Admin.ServiceAnnouncement
+{
     /// <summary>
     /// Provides operations to manage the serviceAnnouncement property of the microsoft.graph.admin entity.
     /// </summary>
-    public class ServiceAnnouncementRequestBuilder : BaseCliRequestBuilder 
+    public class ServiceAnnouncementRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property serviceAnnouncement for admin

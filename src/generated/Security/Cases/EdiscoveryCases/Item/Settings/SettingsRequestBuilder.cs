@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings
+{
     /// <summary>
     /// Provides operations to manage the settings property of the microsoft.graph.security.ediscoveryCase entity.
     /// </summary>
-    public class SettingsRequestBuilder : BaseCliRequestBuilder 
+    public class SettingsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property settings for security

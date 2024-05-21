@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class WorkbookWorksheetProtectionOptions : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class WorkbookWorksheetProtectionOptions : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -64,18 +67,18 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"allowAutoFilter", n => { AllowAutoFilter = n.GetBoolValue(); } },
-                {"allowDeleteColumns", n => { AllowDeleteColumns = n.GetBoolValue(); } },
-                {"allowDeleteRows", n => { AllowDeleteRows = n.GetBoolValue(); } },
-                {"allowFormatCells", n => { AllowFormatCells = n.GetBoolValue(); } },
-                {"allowFormatColumns", n => { AllowFormatColumns = n.GetBoolValue(); } },
-                {"allowFormatRows", n => { AllowFormatRows = n.GetBoolValue(); } },
-                {"allowInsertColumns", n => { AllowInsertColumns = n.GetBoolValue(); } },
-                {"allowInsertHyperlinks", n => { AllowInsertHyperlinks = n.GetBoolValue(); } },
-                {"allowInsertRows", n => { AllowInsertRows = n.GetBoolValue(); } },
-                {"allowPivotTables", n => { AllowPivotTables = n.GetBoolValue(); } },
-                {"allowSort", n => { AllowSort = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "allowAutoFilter", n => { AllowAutoFilter = n.GetBoolValue(); } },
+                { "allowDeleteColumns", n => { AllowDeleteColumns = n.GetBoolValue(); } },
+                { "allowDeleteRows", n => { AllowDeleteRows = n.GetBoolValue(); } },
+                { "allowFormatCells", n => { AllowFormatCells = n.GetBoolValue(); } },
+                { "allowFormatColumns", n => { AllowFormatColumns = n.GetBoolValue(); } },
+                { "allowFormatRows", n => { AllowFormatRows = n.GetBoolValue(); } },
+                { "allowInsertColumns", n => { AllowInsertColumns = n.GetBoolValue(); } },
+                { "allowInsertHyperlinks", n => { AllowInsertHyperlinks = n.GetBoolValue(); } },
+                { "allowInsertRows", n => { AllowInsertRows = n.GetBoolValue(); } },
+                { "allowPivotTables", n => { AllowPivotTables = n.GetBoolValue(); } },
+                { "allowSort", n => { AllowSort = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

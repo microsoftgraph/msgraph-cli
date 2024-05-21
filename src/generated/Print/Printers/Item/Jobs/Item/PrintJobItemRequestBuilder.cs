@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Printers.Item.Jobs.Item {
+namespace ApiSdk.Print.Printers.Item.Jobs.Item
+{
     /// <summary>
     /// Provides operations to manage the jobs property of the microsoft.graph.printerBase entity.
     /// </summary>
-    public class PrintJobItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrintJobItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the abort method.
@@ -129,13 +130,14 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
             return command;
         }
         /// <summary>
-        /// The list of jobs that are queued for printing by the printer/printerShare.
+        /// Retrieve the properties and relationships of a print job.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printjob-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The list of jobs that are queued for printing by the printer/printerShare.";
+            command.Description = "Retrieve the properties and relationships of a print job.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printjob-get?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -187,13 +189,14 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property jobs in print
+        /// Update a print job. Only the configuration property can be updated. Updating a print job will only succeed if there is a printTask in a processing state on the associated print job, started by a trigger that the requesting app created. For details about how to register a task trigger, see Extending Universal Print to support pull printing.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printjob-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property jobs in print";
+            command.Description = "Update a print job. Only the configuration property can be updated. Updating a print job will only succeed if there is a printTask in a processing state on the associated print job, started by a trigger that the requesting app created. For details about how to register a task trigger, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printjob-update?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -338,7 +341,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of jobs that are queued for printing by the printer/printerShare.
+        /// Retrieve the properties and relationships of a print job.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -357,7 +360,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property jobs in print
+        /// Update a print job. Only the configuration property can be updated. Updating a print job will only succeed if there is a printTask in a processing state on the associated print job, started by a trigger that the requesting app created. For details about how to register a task trigger, see Extending Universal Print to support pull printing.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -378,7 +381,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of jobs that are queued for printing by the printer/printerShare.
+        /// Retrieve the properties and relationships of a print job.
         /// </summary>
         public class PrintJobItemRequestBuilderGetQueryParameters 
         {

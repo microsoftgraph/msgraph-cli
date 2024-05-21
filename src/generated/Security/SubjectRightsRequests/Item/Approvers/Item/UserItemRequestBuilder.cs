@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.SubjectRightsRequests.Item.Approvers.Item {
+namespace ApiSdk.Security.SubjectRightsRequests.Item.Approvers.Item
+{
     /// <summary>
     /// Provides operations to manage the approvers property of the microsoft.graph.subjectRightsRequest entity.
     /// </summary>
-    public class UserItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Collection of users who can approve the request. Currently only supported for requests of type delete.

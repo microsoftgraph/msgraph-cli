@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedAppRegistrations.Item {
+namespace ApiSdk.Users.Item.ManagedAppRegistrations.Item
+{
     /// <summary>
     /// Provides operations to manage the managedAppRegistrations property of the microsoft.graph.user entity.
     /// </summary>
-    public class ManagedAppRegistrationItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedAppRegistrationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Zero or more managed app registrations that belong to the user.

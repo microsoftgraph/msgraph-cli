@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.RandBetween {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.RandBetween
+{
     /// <summary>
     /// Provides operations to call the randBetween method.
     /// </summary>
-    public class RandBetweenRequestBuilder : BaseCliRequestBuilder 
+    public class RandBetweenRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action randBetween

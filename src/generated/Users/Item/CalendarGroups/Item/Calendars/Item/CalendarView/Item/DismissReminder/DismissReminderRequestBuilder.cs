@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.DismissReminder {
+namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.DismissReminder
+{
     /// <summary>
     /// Provides operations to call the dismissReminder method.
     /// </summary>
-    public class DismissReminderRequestBuilder : BaseCliRequestBuilder 
+    public class DismissReminderRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Dismiss a reminder that has been triggered for an event in a user calendar.

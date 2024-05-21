@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.PermissionGrants.Item {
+namespace ApiSdk.PermissionGrants.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of resourceSpecificPermissionGrant entities.
     /// </summary>
-    public class ResourceSpecificPermissionGrantItemRequestBuilder : BaseCliRequestBuilder 
+    public class ResourceSpecificPermissionGrantItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.

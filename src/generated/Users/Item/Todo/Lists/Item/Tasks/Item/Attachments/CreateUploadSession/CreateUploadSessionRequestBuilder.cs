@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.CreateUploadSession {
+namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.CreateUploadSession
+{
     /// <summary>
     /// Provides operations to call the createUploadSession method.
     /// </summary>
-    public class CreateUploadSessionRequestBuilder : BaseCliRequestBuilder 
+    public class CreateUploadSessionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Create an upload session to iteratively upload ranges of a file as an attachment to a todoTask. As part of the response, this action returns an upload URL that you can use in subsequent sequential PUT queries. The request headers for each PUT operation let you specify the exact range of bytes to be uploaded. This allows the transfer to be resumed, in case the network connection is dropped during the upload. The following are the steps to attach a file to a Microsoft To Do task using an upload session: For an example that describes the end-to-end attachment process, see attach files to a To Do task.

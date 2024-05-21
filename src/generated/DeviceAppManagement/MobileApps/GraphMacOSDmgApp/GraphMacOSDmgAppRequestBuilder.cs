@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.GraphMacOSDmgApp {
+namespace ApiSdk.DeviceAppManagement.MobileApps.GraphMacOSDmgApp
+{
     /// <summary>
     /// Casts the previous resource to macOSDmgApp.
     /// </summary>
-    public class GraphMacOSDmgAppRequestBuilder : BaseCliRequestBuilder 
+    public class GraphMacOSDmgAppRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -121,7 +122,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.GraphMacOSDmgApp {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

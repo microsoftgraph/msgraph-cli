@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Sites.Remove {
-    public class RemovePostResponse : BaseCollectionPaginationCountResponse, IParsable 
+namespace ApiSdk.Sites.Remove
+{
+    #pragma warning disable CS1591
+    public class RemovePostResponse : BaseCollectionPaginationCountResponse, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +37,7 @@ namespace ApiSdk.Sites.Remove {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Site>(ApiSdk.Models.Site.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Site>(ApiSdk.Models.Site.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

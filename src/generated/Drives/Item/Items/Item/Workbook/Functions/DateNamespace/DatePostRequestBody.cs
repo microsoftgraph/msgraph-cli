@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DateNamespace {
-    public class DatePostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DateNamespace
+{
+    #pragma warning disable CS1591
+    public class DatePostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -59,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DateNamespace {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"day", n => { Day = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"month", n => { Month = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"year", n => { Year = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "day", n => { Day = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "month", n => { Month = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "year", n => { Year = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

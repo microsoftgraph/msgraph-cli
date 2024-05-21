@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.BookingBusinesses.Item.Publish {
+namespace ApiSdk.Solutions.BookingBusinesses.Item.Publish
+{
     /// <summary>
     /// Provides operations to call the publish method.
     /// </summary>
-    public class PublishRequestBuilder : BaseCliRequestBuilder 
+    public class PublishRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Make the scheduling page of a business available to external customers. Set the isPublished property to true, and the publicUrl property to the URL of the scheduling page.

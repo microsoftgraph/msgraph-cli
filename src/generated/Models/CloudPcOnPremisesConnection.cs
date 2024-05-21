@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class CloudPcOnPremisesConnection : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class CloudPcOnPremisesConnection : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The fully qualified domain name (FQDN) of the Active Directory domain you want to join. Maximum length is 255. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -135,22 +138,22 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"adDomainName", n => { AdDomainName = n.GetStringValue(); } },
-                {"adDomainPassword", n => { AdDomainPassword = n.GetStringValue(); } },
-                {"adDomainUsername", n => { AdDomainUsername = n.GetStringValue(); } },
-                {"alternateResourceUrl", n => { AlternateResourceUrl = n.GetStringValue(); } },
-                {"connectionType", n => { ConnectionType = n.GetEnumValue<CloudPcOnPremisesConnectionType>(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"healthCheckStatus", n => { HealthCheckStatus = n.GetEnumValue<CloudPcOnPremisesConnectionStatus>(); } },
-                {"healthCheckStatusDetail", n => { HealthCheckStatusDetail = n.GetObjectValue<CloudPcOnPremisesConnectionStatusDetail>(CloudPcOnPremisesConnectionStatusDetail.CreateFromDiscriminatorValue); } },
-                {"inUse", n => { InUse = n.GetBoolValue(); } },
-                {"organizationalUnit", n => { OrganizationalUnit = n.GetStringValue(); } },
-                {"resourceGroupId", n => { ResourceGroupId = n.GetStringValue(); } },
-                {"subnetId", n => { SubnetId = n.GetStringValue(); } },
-                {"subscriptionId", n => { SubscriptionId = n.GetStringValue(); } },
-                {"subscriptionName", n => { SubscriptionName = n.GetStringValue(); } },
-                {"virtualNetworkId", n => { VirtualNetworkId = n.GetStringValue(); } },
-                {"virtualNetworkLocation", n => { VirtualNetworkLocation = n.GetStringValue(); } },
+                { "adDomainName", n => { AdDomainName = n.GetStringValue(); } },
+                { "adDomainPassword", n => { AdDomainPassword = n.GetStringValue(); } },
+                { "adDomainUsername", n => { AdDomainUsername = n.GetStringValue(); } },
+                { "alternateResourceUrl", n => { AlternateResourceUrl = n.GetStringValue(); } },
+                { "connectionType", n => { ConnectionType = n.GetEnumValue<CloudPcOnPremisesConnectionType>(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "healthCheckStatus", n => { HealthCheckStatus = n.GetEnumValue<CloudPcOnPremisesConnectionStatus>(); } },
+                { "healthCheckStatusDetail", n => { HealthCheckStatusDetail = n.GetObjectValue<CloudPcOnPremisesConnectionStatusDetail>(CloudPcOnPremisesConnectionStatusDetail.CreateFromDiscriminatorValue); } },
+                { "inUse", n => { InUse = n.GetBoolValue(); } },
+                { "organizationalUnit", n => { OrganizationalUnit = n.GetStringValue(); } },
+                { "resourceGroupId", n => { ResourceGroupId = n.GetStringValue(); } },
+                { "subnetId", n => { SubnetId = n.GetStringValue(); } },
+                { "subscriptionId", n => { SubscriptionId = n.GetStringValue(); } },
+                { "subscriptionName", n => { SubscriptionName = n.GetStringValue(); } },
+                { "virtualNetworkId", n => { VirtualNetworkId = n.GetStringValue(); } },
+                { "virtualNetworkLocation", n => { VirtualNetworkLocation = n.GetStringValue(); } },
             };
         }
         /// <summary>

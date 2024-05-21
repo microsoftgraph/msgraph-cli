@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.ResourceScopes.Item {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.ResourceScopes.Item
+{
     /// <summary>
     /// Provides operations to manage the resourceScopes property of the microsoft.graph.accessPackageCatalog entity.
     /// </summary>
-    public class AccessPackageResourceScopeItemRequestBuilder : BaseCliRequestBuilder 
+    public class AccessPackageResourceScopeItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property resourceScopes for identityGovernance

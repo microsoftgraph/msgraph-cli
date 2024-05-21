@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConsentRequests.Item.Approval {
+namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConsentRequests.Item.Approval
+{
     /// <summary>
     /// Provides operations to manage the approval property of the microsoft.graph.userConsentRequest entity.
     /// </summary>
-    public class ApprovalRequestBuilder : BaseCliRequestBuilder 
+    public class ApprovalRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property approval for identityGovernance

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DcountA {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DcountA
+{
     /// <summary>
     /// Provides operations to call the dcountA method.
     /// </summary>
-    public class DcountARequestBuilder : BaseCliRequestBuilder 
+    public class DcountARequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dcountA

@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Agreements.Item {
+namespace ApiSdk.Agreements.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of agreement entities.
     /// </summary>
-    public class AgreementItemRequestBuilder : BaseCliRequestBuilder 
+    public class AgreementItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.

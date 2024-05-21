@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Abs {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Abs
+{
     /// <summary>
     /// Provides operations to call the abs method.
     /// </summary>
-    public class AbsRequestBuilder : BaseCliRequestBuilder 
+    public class AbsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action abs

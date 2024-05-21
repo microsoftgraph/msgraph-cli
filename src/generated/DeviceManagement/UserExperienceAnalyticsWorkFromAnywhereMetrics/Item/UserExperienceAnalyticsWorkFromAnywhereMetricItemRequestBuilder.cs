@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics.Item {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics.Item
+{
     /// <summary>
     /// Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereMetrics property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsWorkFromAnywhereMetrics for deviceManagement

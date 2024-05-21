@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.Redirect {
+namespace ApiSdk.Communications.Calls.Item.Redirect
+{
     /// <summary>
     /// Provides operations to call the redirect method.
     /// </summary>
-    public class RedirectRequestBuilder : BaseCliRequestBuilder 
+    public class RedirectRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Redirect an incoming call that hasn&apos;t been answered or rejected yet. The terms &apos;redirecting&apos; and &apos;forwarding&apos; a call are used interchangeably. The bot is expected to redirect the call before the call times out. The current timeout value is 15 seconds.

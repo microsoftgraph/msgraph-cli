@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
+namespace ApiSdk.Security.AttackSimulation.Simulations.Item
+{
     /// <summary>
     /// Provides operations to manage the simulations property of the microsoft.graph.attackSimulationRoot entity.
     /// </summary>
-    public class SimulationItemRequestBuilder : BaseCliRequestBuilder 
+    public class SimulationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an attack simulation campaign for a tenant.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv
+{
     /// <summary>
     /// Provides operations to call the gamma_Inv method.
     /// </summary>
-    public class Gamma_InvRequestBuilder : BaseCliRequestBuilder 
+    public class Gamma_InvRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action gamma_Inv

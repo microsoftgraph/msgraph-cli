@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.Resources.Item.Scopes.Item.Resource.Roles.Item.Resource.EnvironmentNamespace {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.Resources.Item.Scopes.Item.Resource.Roles.Item.Resource.EnvironmentNamespace
+{
     /// <summary>
     /// Provides operations to manage the environment property of the microsoft.graph.accessPackageResource entity.
     /// </summary>
-    public class EnvironmentRequestBuilder : BaseCliRequestBuilder 
+    public class EnvironmentRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment&apos;s originId.Supports $expand.

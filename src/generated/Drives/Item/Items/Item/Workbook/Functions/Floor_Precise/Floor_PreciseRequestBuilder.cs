@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Floor_Precise {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Floor_Precise
+{
     /// <summary>
     /// Provides operations to call the floor_Precise method.
     /// </summary>
-    public class Floor_PreciseRequestBuilder : BaseCliRequestBuilder 
+    public class Floor_PreciseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action floor_Precise

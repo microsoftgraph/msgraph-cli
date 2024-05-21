@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EventMessageRequest : EventMessage, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EventMessageRequest : EventMessage, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>True if the meeting organizer allows invitees to propose a new time when responding, false otherwise. Optional. Default is true.</summary>
         public bool? AllowNewTimeProposals { get; set; }
@@ -62,12 +65,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"allowNewTimeProposals", n => { AllowNewTimeProposals = n.GetBoolValue(); } },
-                {"meetingRequestType", n => { MeetingRequestType = n.GetEnumValue<MeetingRequestType>(); } },
-                {"previousEndDateTime", n => { PreviousEndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                {"previousLocation", n => { PreviousLocation = n.GetObjectValue<Location>(Location.CreateFromDiscriminatorValue); } },
-                {"previousStartDateTime", n => { PreviousStartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                {"responseRequested", n => { ResponseRequested = n.GetBoolValue(); } },
+                { "allowNewTimeProposals", n => { AllowNewTimeProposals = n.GetBoolValue(); } },
+                { "meetingRequestType", n => { MeetingRequestType = n.GetEnumValue<MeetingRequestType>(); } },
+                { "previousEndDateTime", n => { PreviousEndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "previousLocation", n => { PreviousLocation = n.GetObjectValue<Location>(Location.CreateFromDiscriminatorValue); } },
+                { "previousStartDateTime", n => { PreviousStartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "responseRequested", n => { ResponseRequested = n.GetBoolValue(); } },
             };
         }
         /// <summary>

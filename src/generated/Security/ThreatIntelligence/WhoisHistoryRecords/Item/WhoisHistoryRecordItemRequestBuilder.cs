@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.WhoisHistoryRecords.Item {
+namespace ApiSdk.Security.ThreatIntelligence.WhoisHistoryRecords.Item
+{
     /// <summary>
     /// Provides operations to manage the whoisHistoryRecords property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class WhoisHistoryRecordItemRequestBuilder : BaseCliRequestBuilder 
+    public class WhoisHistoryRecordItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property whoisHistoryRecords for security

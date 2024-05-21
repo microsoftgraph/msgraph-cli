@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Tabs {
+namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Tabs
+{
     /// <summary>
     /// Provides operations to manage the tabs property of the microsoft.graph.channel entity.
     /// </summary>
-    public class TabsRequestBuilder : BaseCliRequestBuilder 
+    public class TabsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the tabs property of the microsoft.graph.channel entity.
@@ -55,14 +56,13 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Tabs {
             return command;
         }
         /// <summary>
-        /// Add (pin) a tab to the specified channel within a team. The app must be preinstalled in the team and have the configurableTabs property defined in the app manifest.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-post-tabs?view=graph-rest-1.0" />
+        /// Create new navigation property to tabs for teamwork
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Add (pin) a tab to the specified channel within a team. The app must be preinstalled in the team and have the configurableTabs property defined in the app manifest.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post-tabs?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to tabs for teamwork";
             var deletedTeamIdOption = new Option<string>("--deleted-team-id", description: "The unique identifier of deletedTeam") {
             };
             deletedTeamIdOption.IsRequired = true;
@@ -113,14 +113,13 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Tabs {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of tabs in the specified channel within a team. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-list-tabs?view=graph-rest-1.0" />
+        /// A collection of all the tabs in the channel. A navigation property.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the list of tabs in the specified channel within a team. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-list-tabs?view=graph-rest-1.0";
+            command.Description = "A collection of all the tabs in the channel. A navigation property.";
             var deletedTeamIdOption = new Option<string>("--deleted-team-id", description: "The unique identifier of deletedTeam") {
             };
             deletedTeamIdOption.IsRequired = true;
@@ -208,7 +207,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Tabs {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -234,7 +235,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Tabs {
         {
         }
         /// <summary>
-        /// Retrieve the list of tabs in the specified channel within a team. 
+        /// A collection of all the tabs in the channel. A navigation property.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -253,7 +254,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Tabs {
             return requestInfo;
         }
         /// <summary>
-        /// Add (pin) a tab to the specified channel within a team. The app must be preinstalled in the team and have the configurableTabs property defined in the app manifest.
+        /// Create new navigation property to tabs for teamwork
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -274,7 +275,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Tabs {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of tabs in the specified channel within a team. 
+        /// A collection of all the tabs in the channel. A navigation property.
         /// </summary>
         public class TabsRequestBuilderGetQueryParameters 
         {

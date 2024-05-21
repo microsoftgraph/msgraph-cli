@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AttributeSet : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AttributeSet : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Description of the attribute set. Can be up to 128 characters long and include Unicode characters. Can be changed later.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -35,8 +38,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"maxAttributesPerSet", n => { MaxAttributesPerSet = n.GetIntValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "maxAttributesPerSet", n => { MaxAttributesPerSet = n.GetIntValue(); } },
             };
         }
         /// <summary>

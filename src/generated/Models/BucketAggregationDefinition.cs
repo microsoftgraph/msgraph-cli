@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class BucketAggregationDefinition : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class BucketAggregationDefinition : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -64,12 +67,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"isDescending", n => { IsDescending = n.GetBoolValue(); } },
-                {"minimumCount", n => { MinimumCount = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"prefixFilter", n => { PrefixFilter = n.GetStringValue(); } },
-                {"ranges", n => { Ranges = n.GetCollectionOfObjectValues<BucketAggregationRange>(BucketAggregationRange.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"sortBy", n => { SortBy = n.GetEnumValue<BucketAggregationSortProperty>(); } },
+                { "isDescending", n => { IsDescending = n.GetBoolValue(); } },
+                { "minimumCount", n => { MinimumCount = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "prefixFilter", n => { PrefixFilter = n.GetStringValue(); } },
+                { "ranges", n => { Ranges = n.GetCollectionOfObjectValues<BucketAggregationRange>(BucketAggregationRange.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sortBy", n => { SortBy = n.GetEnumValue<BucketAggregationSortProperty>(); } },
             };
         }
         /// <summary>

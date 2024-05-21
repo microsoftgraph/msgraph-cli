@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
+namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity
+{
     /// <summary>
     /// Provides operations to manage the activity property of the microsoft.graph.activityHistoryItem entity.
     /// </summary>
-    public class ActivityRequestBuilder : BaseCliRequestBuilder 
+    public class ActivityRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Optional. NavigationProperty/Containment; navigation property to the associated activity.

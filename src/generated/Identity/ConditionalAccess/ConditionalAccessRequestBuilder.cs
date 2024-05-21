@@ -14,11 +14,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.Identity.ConditionalAccess {
+namespace ApiSdk.Identity.ConditionalAccess
+{
     /// <summary>
     /// Builds and executes requests for operations under \identity\conditionalAccess
     /// </summary>
-    public class ConditionalAccessRequestBuilder : BaseCliRequestBuilder 
+    public class ConditionalAccessRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.

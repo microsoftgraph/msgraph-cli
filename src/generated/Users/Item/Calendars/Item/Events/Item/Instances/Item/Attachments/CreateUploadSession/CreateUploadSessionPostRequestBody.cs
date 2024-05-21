@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Attachments.CreateUploadSession {
-    public class CreateUploadSessionPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Attachments.CreateUploadSession
+{
+    #pragma warning disable CS1591
+    public class CreateUploadSessionPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -43,7 +46,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Instances.Item.Attachment
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"AttachmentItem", n => { AttachmentItem = n.GetObjectValue<ApiSdk.Models.AttachmentItem>(ApiSdk.Models.AttachmentItem.CreateFromDiscriminatorValue); } },
+                { "AttachmentItem", n => { AttachmentItem = n.GetObjectValue<ApiSdk.Models.AttachmentItem>(ApiSdk.Models.AttachmentItem.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

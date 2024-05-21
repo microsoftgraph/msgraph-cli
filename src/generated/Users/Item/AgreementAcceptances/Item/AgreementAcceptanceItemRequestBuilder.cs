@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.AgreementAcceptances.Item {
+namespace ApiSdk.Users.Item.AgreementAcceptances.Item
+{
     /// <summary>
     /// Provides operations to manage the agreementAcceptances property of the microsoft.graph.user entity.
     /// </summary>
-    public class AgreementAcceptanceItemRequestBuilder : BaseCliRequestBuilder 
+    public class AgreementAcceptanceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The user&apos;s terms of use acceptance statuses. Read-only. Nullable.

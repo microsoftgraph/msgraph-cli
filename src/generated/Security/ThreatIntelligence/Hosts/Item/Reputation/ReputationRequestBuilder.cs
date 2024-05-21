@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation {
+namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation
+{
     /// <summary>
     /// Provides operations to manage the reputation property of the microsoft.graph.security.host entity.
     /// </summary>
-    public class ReputationRequestBuilder : BaseCliRequestBuilder 
+    public class ReputationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property reputation for security

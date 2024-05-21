@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item {
+namespace ApiSdk.Users.Item.Planner.Plans.Item.Tasks.Item
+{
     /// <summary>
     /// Provides operations to manage the tasks property of the microsoft.graph.plannerPlan entity.
     /// </summary>
-    public class PlannerTaskItemRequestBuilder : BaseCliRequestBuilder 
+    public class PlannerTaskItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.

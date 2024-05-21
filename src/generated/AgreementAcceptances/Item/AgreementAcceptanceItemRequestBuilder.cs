@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.AgreementAcceptances.Item {
+namespace ApiSdk.AgreementAcceptances.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of agreementAcceptance entities.
     /// </summary>
-    public class AgreementAcceptanceItemRequestBuilder : BaseCliRequestBuilder 
+    public class AgreementAcceptanceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from agreementAcceptances

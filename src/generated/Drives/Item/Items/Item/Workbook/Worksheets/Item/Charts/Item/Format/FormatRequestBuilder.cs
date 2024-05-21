@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Format {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Format
+{
     /// <summary>
     /// Provides operations to manage the format property of the microsoft.graph.workbookChart entity.
     /// </summary>
-    public class FormatRequestBuilder : BaseCliRequestBuilder 
+    public class FormatRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property format for drives

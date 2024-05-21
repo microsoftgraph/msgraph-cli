@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.Partners {
+namespace ApiSdk.Reports.Partners
+{
     /// <summary>
     /// Provides operations to manage the partners property of the microsoft.graph.reportRoot entity.
     /// </summary>
-    public class PartnersRequestBuilder : BaseCliRequestBuilder 
+    public class PartnersRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the billing property of the microsoft.graph.partners entity.

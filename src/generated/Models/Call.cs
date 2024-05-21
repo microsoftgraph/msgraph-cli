@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Call : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Call : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The audioRoutingGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -205,30 +208,30 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"audioRoutingGroups", n => { AudioRoutingGroups = n.GetCollectionOfObjectValues<AudioRoutingGroup>(AudioRoutingGroup.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"callChainId", n => { CallChainId = n.GetStringValue(); } },
-                {"callOptions", n => { CallOptions = n.GetObjectValue<ApiSdk.Models.CallOptions>(ApiSdk.Models.CallOptions.CreateFromDiscriminatorValue); } },
-                {"callRoutes", n => { CallRoutes = n.GetCollectionOfObjectValues<CallRoute>(CallRoute.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"callbackUri", n => { CallbackUri = n.GetStringValue(); } },
-                {"chatInfo", n => { ChatInfo = n.GetObjectValue<ApiSdk.Models.ChatInfo>(ApiSdk.Models.ChatInfo.CreateFromDiscriminatorValue); } },
-                {"contentSharingSessions", n => { ContentSharingSessions = n.GetCollectionOfObjectValues<ContentSharingSession>(ContentSharingSession.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"direction", n => { Direction = n.GetEnumValue<CallDirection>(); } },
-                {"incomingContext", n => { IncomingContext = n.GetObjectValue<ApiSdk.Models.IncomingContext>(ApiSdk.Models.IncomingContext.CreateFromDiscriminatorValue); } },
-                {"mediaConfig", n => { MediaConfig = n.GetObjectValue<ApiSdk.Models.MediaConfig>(ApiSdk.Models.MediaConfig.CreateFromDiscriminatorValue); } },
-                {"mediaState", n => { MediaState = n.GetObjectValue<CallMediaState>(CallMediaState.CreateFromDiscriminatorValue); } },
-                {"meetingInfo", n => { MeetingInfo = n.GetObjectValue<ApiSdk.Models.MeetingInfo>(ApiSdk.Models.MeetingInfo.CreateFromDiscriminatorValue); } },
-                {"myParticipantId", n => { MyParticipantId = n.GetStringValue(); } },
-                {"operations", n => { Operations = n.GetCollectionOfObjectValues<CommsOperation>(CommsOperation.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"participants", n => { Participants = n.GetCollectionOfObjectValues<Participant>(Participant.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"requestedModalities", n => { RequestedModalities = n.GetCollectionOfEnumValues<Modality>()?.ToList(); } },
-                {"resultInfo", n => { ResultInfo = n.GetObjectValue<ApiSdk.Models.ResultInfo>(ApiSdk.Models.ResultInfo.CreateFromDiscriminatorValue); } },
-                {"source", n => { Source = n.GetObjectValue<ParticipantInfo>(ParticipantInfo.CreateFromDiscriminatorValue); } },
-                {"state", n => { State = n.GetEnumValue<CallState>(); } },
-                {"subject", n => { Subject = n.GetStringValue(); } },
-                {"targets", n => { Targets = n.GetCollectionOfObjectValues<InvitationParticipantInfo>(InvitationParticipantInfo.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"tenantId", n => { TenantId = n.GetStringValue(); } },
-                {"toneInfo", n => { ToneInfo = n.GetObjectValue<ApiSdk.Models.ToneInfo>(ApiSdk.Models.ToneInfo.CreateFromDiscriminatorValue); } },
-                {"transcription", n => { Transcription = n.GetObjectValue<CallTranscriptionInfo>(CallTranscriptionInfo.CreateFromDiscriminatorValue); } },
+                { "audioRoutingGroups", n => { AudioRoutingGroups = n.GetCollectionOfObjectValues<AudioRoutingGroup>(AudioRoutingGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "callChainId", n => { CallChainId = n.GetStringValue(); } },
+                { "callOptions", n => { CallOptions = n.GetObjectValue<ApiSdk.Models.CallOptions>(ApiSdk.Models.CallOptions.CreateFromDiscriminatorValue); } },
+                { "callRoutes", n => { CallRoutes = n.GetCollectionOfObjectValues<CallRoute>(CallRoute.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "callbackUri", n => { CallbackUri = n.GetStringValue(); } },
+                { "chatInfo", n => { ChatInfo = n.GetObjectValue<ApiSdk.Models.ChatInfo>(ApiSdk.Models.ChatInfo.CreateFromDiscriminatorValue); } },
+                { "contentSharingSessions", n => { ContentSharingSessions = n.GetCollectionOfObjectValues<ContentSharingSession>(ContentSharingSession.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "direction", n => { Direction = n.GetEnumValue<CallDirection>(); } },
+                { "incomingContext", n => { IncomingContext = n.GetObjectValue<ApiSdk.Models.IncomingContext>(ApiSdk.Models.IncomingContext.CreateFromDiscriminatorValue); } },
+                { "mediaConfig", n => { MediaConfig = n.GetObjectValue<ApiSdk.Models.MediaConfig>(ApiSdk.Models.MediaConfig.CreateFromDiscriminatorValue); } },
+                { "mediaState", n => { MediaState = n.GetObjectValue<CallMediaState>(CallMediaState.CreateFromDiscriminatorValue); } },
+                { "meetingInfo", n => { MeetingInfo = n.GetObjectValue<ApiSdk.Models.MeetingInfo>(ApiSdk.Models.MeetingInfo.CreateFromDiscriminatorValue); } },
+                { "myParticipantId", n => { MyParticipantId = n.GetStringValue(); } },
+                { "operations", n => { Operations = n.GetCollectionOfObjectValues<CommsOperation>(CommsOperation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "participants", n => { Participants = n.GetCollectionOfObjectValues<Participant>(Participant.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "requestedModalities", n => { RequestedModalities = n.GetCollectionOfEnumValues<Modality>()?.ToList(); } },
+                { "resultInfo", n => { ResultInfo = n.GetObjectValue<ApiSdk.Models.ResultInfo>(ApiSdk.Models.ResultInfo.CreateFromDiscriminatorValue); } },
+                { "source", n => { Source = n.GetObjectValue<ParticipantInfo>(ParticipantInfo.CreateFromDiscriminatorValue); } },
+                { "state", n => { State = n.GetEnumValue<CallState>(); } },
+                { "subject", n => { Subject = n.GetStringValue(); } },
+                { "targets", n => { Targets = n.GetCollectionOfObjectValues<InvitationParticipantInfo>(InvitationParticipantInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tenantId", n => { TenantId = n.GetStringValue(); } },
+                { "toneInfo", n => { ToneInfo = n.GetObjectValue<ApiSdk.Models.ToneInfo>(ApiSdk.Models.ToneInfo.CreateFromDiscriminatorValue); } },
+                { "transcription", n => { Transcription = n.GetObjectValue<CallTranscriptionInfo>(CallTranscriptionInfo.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

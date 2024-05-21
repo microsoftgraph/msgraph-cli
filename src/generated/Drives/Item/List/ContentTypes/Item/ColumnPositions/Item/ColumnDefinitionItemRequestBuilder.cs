@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnPositions.Item {
+namespace ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnPositions.Item
+{
     /// <summary>
     /// Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.
     /// </summary>
-    public class ColumnDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ColumnDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Column order information in a content type.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssignments.Item {
+namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssignments.Item
+{
     /// <summary>
     /// Provides operations to manage the accessAssignments property of the microsoft.graph.delegatedAdminRelationship entity.
     /// </summary>
-    public class DelegatedAdminAccessAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class DelegatedAdminAccessAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a delegatedAdminAccessAssignment object.

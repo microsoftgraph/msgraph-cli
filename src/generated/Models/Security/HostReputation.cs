@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class HostReputation : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class HostReputation : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The classification property</summary>
         public HostReputationClassification? Classification { get; set; }
@@ -37,9 +40,9 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"classification", n => { Classification = n.GetEnumValue<HostReputationClassification>(); } },
-                {"rules", n => { Rules = n.GetCollectionOfObjectValues<HostReputationRule>(HostReputationRule.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"score", n => { Score = n.GetIntValue(); } },
+                { "classification", n => { Classification = n.GetEnumValue<HostReputationClassification>(); } },
+                { "rules", n => { Rules = n.GetCollectionOfObjectValues<HostReputationRule>(HostReputationRule.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "score", n => { Score = n.GetIntValue(); } },
             };
         }
         /// <summary>

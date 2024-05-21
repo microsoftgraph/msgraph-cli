@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems
+{
     /// <summary>
     /// Provides operations to manage the deletedItems property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     /// </summary>
-    public class DeletedItemsRequestBuilder : BaseCliRequestBuilder 
+    public class DeletedItemsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property deletedItems for identityGovernance

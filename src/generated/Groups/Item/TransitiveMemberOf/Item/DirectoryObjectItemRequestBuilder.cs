@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.TransitiveMemberOf.Item {
+namespace ApiSdk.Groups.Item.TransitiveMemberOf.Item
+{
     /// <summary>
     /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.group entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The groups that a group is a member of, either directly or through nested membership. Nullable.

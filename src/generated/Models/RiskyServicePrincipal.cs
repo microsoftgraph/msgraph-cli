@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class RiskyServicePrincipal : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class RiskyServicePrincipal : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The globally unique identifier for the associated application (its appId property), if any.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -74,16 +77,16 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"appId", n => { AppId = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"history", n => { History = n.GetCollectionOfObjectValues<RiskyServicePrincipalHistoryItem>(RiskyServicePrincipalHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
-                {"isProcessing", n => { IsProcessing = n.GetBoolValue(); } },
-                {"riskDetail", n => { RiskDetail = n.GetEnumValue<RiskDetail>(); } },
-                {"riskLastUpdatedDateTime", n => { RiskLastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"riskLevel", n => { RiskLevel = n.GetEnumValue<RiskLevel>(); } },
-                {"riskState", n => { RiskState = n.GetEnumValue<RiskState>(); } },
-                {"servicePrincipalType", n => { ServicePrincipalType = n.GetStringValue(); } },
+                { "appId", n => { AppId = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "history", n => { History = n.GetCollectionOfObjectValues<RiskyServicePrincipalHistoryItem>(RiskyServicePrincipalHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
+                { "isProcessing", n => { IsProcessing = n.GetBoolValue(); } },
+                { "riskDetail", n => { RiskDetail = n.GetEnumValue<RiskDetail>(); } },
+                { "riskLastUpdatedDateTime", n => { RiskLastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "riskLevel", n => { RiskLevel = n.GetEnumValue<RiskLevel>(); } },
+                { "riskState", n => { RiskState = n.GetEnumValue<RiskState>(); } },
+                { "servicePrincipalType", n => { ServicePrincipalType = n.GetStringValue(); } },
             };
         }
         /// <summary>

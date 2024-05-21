@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.MemberOf.GraphGroup {
+namespace ApiSdk.Users.Item.MemberOf.GraphGroup
+{
     /// <summary>
     /// Casts the previous resource to group.
     /// </summary>
-    public class GraphGroupRequestBuilder : BaseCliRequestBuilder 
+    public class GraphGroupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -39,13 +40,14 @@ namespace ApiSdk.Users.Item.MemberOf.GraphGroup {
             return command;
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.group in the microsoft.graph.directoryObject collection
+        /// Get groups, directory roles, and administrative units that the user is a direct member of. This operation isn&apos;t transitive. To retrieve groups, directory roles, and administrative units that the user is a member through transitive membership, use the List user transitive memberOf API.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-memberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the items of type microsoft.graph.group in the microsoft.graph.directoryObject collection";
+            command.Description = "Get groups, directory roles, and administrative units that the user is a direct member of. This operation isn't transitive. To retrieve groups, directory roles, and administrative units that the user is a member through transitive membership, use the List user transitive memberOf API.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-memberof?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -134,7 +136,9 @@ namespace ApiSdk.Users.Item.MemberOf.GraphGroup {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -160,7 +164,7 @@ namespace ApiSdk.Users.Item.MemberOf.GraphGroup {
         {
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.group in the microsoft.graph.directoryObject collection
+        /// Get groups, directory roles, and administrative units that the user is a direct member of. This operation isn&apos;t transitive. To retrieve groups, directory roles, and administrative units that the user is a member through transitive membership, use the List user transitive memberOf API.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -179,7 +183,7 @@ namespace ApiSdk.Users.Item.MemberOf.GraphGroup {
             return requestInfo;
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.group in the microsoft.graph.directoryObject collection
+        /// Get groups, directory roles, and administrative units that the user is a direct member of. This operation isn&apos;t transitive. To retrieve groups, directory roles, and administrative units that the user is a member through transitive membership, use the List user transitive memberOf API.
         /// </summary>
         public class GraphGroupRequestBuilderGetQueryParameters 
         {

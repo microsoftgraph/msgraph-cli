@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// RotateBitLockerKeys device action result
     /// </summary>
-    public class RotateBitLockerKeysDeviceActionResult : DeviceActionResult, IParsable 
+    public class RotateBitLockerKeysDeviceActionResult : DeviceActionResult, IParsable
     {
         /// <summary>RotateBitLockerKeys action error code</summary>
         public int? ErrorCode { get; set; }
@@ -30,7 +31,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"errorCode", n => { ErrorCode = n.GetIntValue(); } },
+                { "errorCode", n => { ErrorCode = n.GetIntValue(); } },
             };
         }
         /// <summary>

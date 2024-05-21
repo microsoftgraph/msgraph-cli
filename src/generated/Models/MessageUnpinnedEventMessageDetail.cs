@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class MessageUnpinnedEventMessageDetail : EventMessageDetail, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class MessageUnpinnedEventMessageDetail : EventMessageDetail, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Date and time when the event occurred.</summary>
         public DateTimeOffset? EventDateTime { get; set; }
@@ -42,8 +45,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"eventDateTime", n => { EventDateTime = n.GetDateTimeOffsetValue(); } },
-                {"initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "eventDateTime", n => { EventDateTime = n.GetDateTimeOffsetValue(); } },
+                { "initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

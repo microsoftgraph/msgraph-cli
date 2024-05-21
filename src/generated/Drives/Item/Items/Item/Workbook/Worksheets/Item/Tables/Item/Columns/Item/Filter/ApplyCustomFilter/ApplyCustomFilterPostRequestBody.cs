@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyCustomFilter {
-    public class ApplyCustomFilterPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyCustomFilter
+{
+    #pragma warning disable CS1591
+    public class ApplyCustomFilterPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -58,9 +61,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"criteria1", n => { Criteria1 = n.GetStringValue(); } },
-                {"criteria2", n => { Criteria2 = n.GetStringValue(); } },
-                {"oper", n => { Oper = n.GetStringValue(); } },
+                { "criteria1", n => { Criteria1 = n.GetStringValue(); } },
+                { "criteria2", n => { Criteria2 = n.GetStringValue(); } },
+                { "oper", n => { Oper = n.GetStringValue(); } },
             };
         }
         /// <summary>

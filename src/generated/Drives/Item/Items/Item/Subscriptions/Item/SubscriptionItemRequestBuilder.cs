@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item {
+namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item
+{
     /// <summary>
     /// Provides operations to manage the subscriptions property of the microsoft.graph.driveItem entity.
     /// </summary>
-    public class SubscriptionItemRequestBuilder : BaseCliRequestBuilder 
+    public class SubscriptionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property subscriptions for drives

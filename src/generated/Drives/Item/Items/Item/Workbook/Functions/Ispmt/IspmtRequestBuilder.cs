@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ispmt {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ispmt
+{
     /// <summary>
     /// Provides operations to call the ispmt method.
     /// </summary>
-    public class IspmtRequestBuilder : BaseCliRequestBuilder 
+    public class IspmtRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action ispmt

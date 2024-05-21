@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class RegistryKeyState : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class RegistryKeyState : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -98,17 +101,17 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"hive", n => { Hive = n.GetEnumValue<RegistryHive>(); } },
-                {"key", n => { Key = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"oldKey", n => { OldKey = n.GetStringValue(); } },
-                {"oldValueData", n => { OldValueData = n.GetStringValue(); } },
-                {"oldValueName", n => { OldValueName = n.GetStringValue(); } },
-                {"operation", n => { Operation = n.GetEnumValue<RegistryOperation>(); } },
-                {"processId", n => { ProcessId = n.GetIntValue(); } },
-                {"valueData", n => { ValueData = n.GetStringValue(); } },
-                {"valueName", n => { ValueName = n.GetStringValue(); } },
-                {"valueType", n => { ValueType = n.GetEnumValue<RegistryValueType>(); } },
+                { "hive", n => { Hive = n.GetEnumValue<RegistryHive>(); } },
+                { "key", n => { Key = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "oldKey", n => { OldKey = n.GetStringValue(); } },
+                { "oldValueData", n => { OldValueData = n.GetStringValue(); } },
+                { "oldValueName", n => { OldValueName = n.GetStringValue(); } },
+                { "operation", n => { Operation = n.GetEnumValue<RegistryOperation>(); } },
+                { "processId", n => { ProcessId = n.GetIntValue(); } },
+                { "valueData", n => { ValueData = n.GetStringValue(); } },
+                { "valueName", n => { ValueName = n.GetStringValue(); } },
+                { "valueType", n => { ValueType = n.GetEnumValue<RegistryValueType>(); } },
             };
         }
         /// <summary>

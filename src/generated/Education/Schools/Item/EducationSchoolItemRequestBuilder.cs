@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Schools.Item {
+namespace ApiSdk.Education.Schools.Item
+{
     /// <summary>
     /// Provides operations to manage the schools property of the microsoft.graph.educationRoot entity.
     /// </summary>
-    public class EducationSchoolItemRequestBuilder : BaseCliRequestBuilder 
+    public class EducationSchoolItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the administrativeUnit property of the microsoft.graph.educationSchool entity.

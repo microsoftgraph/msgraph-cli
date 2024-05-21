@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.JoinedTeams.Item.SendActivityNotification {
+namespace ApiSdk.Users.Item.JoinedTeams.Item.SendActivityNotification
+{
     /// <summary>
     /// Provides operations to call the sendActivityNotification method.
     /// </summary>
-    public class SendActivityNotificationRequestBuilder : BaseCliRequestBuilder 
+    public class SendActivityNotificationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Send an activity feed notification in the scope of a team. For more information about sending notifications and the requirements for doing so, seesending Teams activity notifications.

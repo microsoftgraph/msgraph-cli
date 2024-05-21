@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
+namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary
+{
     /// <summary>
     /// Provides operations to manage the installSummary property of the microsoft.graph.managedEBook entity.
     /// </summary>
-    public class InstallSummaryRequestBuilder : BaseCliRequestBuilder 
+    public class InstallSummaryRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property installSummary for deviceAppManagement

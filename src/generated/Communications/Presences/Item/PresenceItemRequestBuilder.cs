@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Presences.Item {
+namespace ApiSdk.Communications.Presences.Item
+{
     /// <summary>
     /// Provides operations to manage the presences property of the microsoft.graph.cloudCommunications entity.
     /// </summary>
-    public class PresenceItemRequestBuilder : BaseCliRequestBuilder 
+    public class PresenceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the clearPresence method.

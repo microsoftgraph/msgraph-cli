@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ContactedReviewers.Item {
+namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ContactedReviewers.Item
+{
     /// <summary>
     /// Provides operations to manage the contactedReviewers property of the microsoft.graph.accessReviewInstance entity.
     /// </summary>
-    public class AccessReviewReviewerItemRequestBuilder : BaseCliRequestBuilder 
+    public class AccessReviewReviewerItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property contactedReviewers for identityGovernance

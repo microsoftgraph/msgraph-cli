@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Scheduled Action Configuration
     /// </summary>
-    public class DeviceComplianceActionItem : Entity, IParsable 
+    public class DeviceComplianceActionItem : Entity, IParsable
     {
         /// <summary>Scheduled Action Type Enum</summary>
         public DeviceComplianceActionType? ActionType { get; set; }
@@ -48,10 +49,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"actionType", n => { ActionType = n.GetEnumValue<DeviceComplianceActionType>(); } },
-                {"gracePeriodHours", n => { GracePeriodHours = n.GetIntValue(); } },
-                {"notificationMessageCCList", n => { NotificationMessageCCList = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"notificationTemplateId", n => { NotificationTemplateId = n.GetStringValue(); } },
+                { "actionType", n => { ActionType = n.GetEnumValue<DeviceComplianceActionType>(); } },
+                { "gracePeriodHours", n => { GracePeriodHours = n.GetIntValue(); } },
+                { "notificationMessageCCList", n => { NotificationMessageCCList = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "notificationTemplateId", n => { NotificationTemplateId = n.GetStringValue(); } },
             };
         }
         /// <summary>

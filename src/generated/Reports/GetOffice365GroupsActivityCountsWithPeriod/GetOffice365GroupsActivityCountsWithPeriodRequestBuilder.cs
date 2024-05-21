@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOffice365GroupsActivityCountsWithPeriod {
+namespace ApiSdk.Reports.GetOffice365GroupsActivityCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getOffice365GroupsActivityCounts method.
     /// </summary>
-    public class GetOffice365GroupsActivityCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetOffice365GroupsActivityCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getOffice365GroupsActivityCounts
+        /// Get the number of group activities across group workloads.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getoffice365groupsactivitycounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOffice365GroupsActivityCounts";
+            command.Description = "Get the number of group activities across group workloads.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getoffice365groupsactivitycounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getOffice365GroupsActivityCounts
+        /// Get the number of group activities across group workloads.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Today {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Today
+{
     /// <summary>
     /// Provides operations to call the today method.
     /// </summary>
-    public class TodayRequestBuilder : BaseCliRequestBuilder 
+    public class TodayRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action today

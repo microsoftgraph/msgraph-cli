@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
+namespace ApiSdk.DeviceManagement.TermsAndConditions.Item
+{
     /// <summary>
     /// Provides operations to manage the termsAndConditions property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class TermsAndConditionsItemRequestBuilder : BaseCliRequestBuilder 
+    public class TermsAndConditionsItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the acceptanceStatuses property of the microsoft.graph.termsAndConditions entity.

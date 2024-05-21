@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.EndUserNotifications.Item {
+namespace ApiSdk.Security.AttackSimulation.EndUserNotifications.Item
+{
     /// <summary>
     /// Provides operations to manage the endUserNotifications property of the microsoft.graph.attackSimulationRoot entity.
     /// </summary>
-    public class EndUserNotificationItemRequestBuilder : BaseCliRequestBuilder 
+    public class EndUserNotificationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property endUserNotifications for security

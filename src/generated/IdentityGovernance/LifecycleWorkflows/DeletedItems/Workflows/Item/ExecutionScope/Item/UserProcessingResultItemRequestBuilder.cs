@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.ExecutionScope.Item {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.ExecutionScope.Item
+{
     /// <summary>
     /// Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.
     /// </summary>
-    public class UserProcessingResultItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserProcessingResultItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The unique identifier of the Microsoft Entra identity that last modified the workflow object.

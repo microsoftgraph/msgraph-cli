@@ -13,21 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocation {
+namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocation
+{
     /// <summary>
     /// Provides operations to call the copyToDefaultContentLocation method.
     /// </summary>
-    public class CopyToDefaultContentLocationRequestBuilder : BaseCliRequestBuilder 
+    public class CopyToDefaultContentLocationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
+        /// Copy a file to a default content location in a content type. The file can then be added as a default file or template via a POST operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0";
+            command.Description = "Copy a file to a default content location in a content type. The file can then be added as a default file or template via a POST operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -94,7 +95,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefau
         {
         }
         /// <summary>
-        /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
+        /// Copy a file to a default content location in a content type. The file can then be added as a default file or template via a POST operation.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

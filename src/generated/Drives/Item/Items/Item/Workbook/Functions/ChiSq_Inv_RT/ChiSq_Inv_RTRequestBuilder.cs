@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Inv_RT {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Inv_RT
+{
     /// <summary>
     /// Provides operations to call the chiSq_Inv_RT method.
     /// </summary>
-    public class ChiSq_Inv_RTRequestBuilder : BaseCliRequestBuilder 
+    public class ChiSq_Inv_RTRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action chiSq_Inv_RT

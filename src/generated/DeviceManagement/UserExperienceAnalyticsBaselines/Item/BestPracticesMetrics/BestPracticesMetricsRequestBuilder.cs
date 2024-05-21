@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.BestPracticesMetrics {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.BestPracticesMetrics
+{
     /// <summary>
     /// Provides operations to manage the bestPracticesMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
     /// </summary>
-    public class BestPracticesMetricsRequestBuilder : BaseCliRequestBuilder 
+    public class BestPracticesMetricsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The scores and insights for the best practices metrics.

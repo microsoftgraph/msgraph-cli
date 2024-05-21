@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Device location
     /// </summary>
-    public class DeviceGeoLocation : IAdditionalDataHolder, IParsable 
+    public class DeviceGeoLocation : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -61,15 +62,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"altitude", n => { Altitude = n.GetDoubleValue(); } },
-                {"heading", n => { Heading = n.GetDoubleValue(); } },
-                {"horizontalAccuracy", n => { HorizontalAccuracy = n.GetDoubleValue(); } },
-                {"lastCollectedDateTime", n => { LastCollectedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"latitude", n => { Latitude = n.GetDoubleValue(); } },
-                {"longitude", n => { Longitude = n.GetDoubleValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"speed", n => { Speed = n.GetDoubleValue(); } },
-                {"verticalAccuracy", n => { VerticalAccuracy = n.GetDoubleValue(); } },
+                { "altitude", n => { Altitude = n.GetDoubleValue(); } },
+                { "heading", n => { Heading = n.GetDoubleValue(); } },
+                { "horizontalAccuracy", n => { HorizontalAccuracy = n.GetDoubleValue(); } },
+                { "lastCollectedDateTime", n => { LastCollectedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "latitude", n => { Latitude = n.GetDoubleValue(); } },
+                { "longitude", n => { Longitude = n.GetDoubleValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "speed", n => { Speed = n.GetDoubleValue(); } },
+                { "verticalAccuracy", n => { VerticalAccuracy = n.GetDoubleValue(); } },
             };
         }
         /// <summary>

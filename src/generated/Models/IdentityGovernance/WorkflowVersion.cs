@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.IdentityGovernance {
-    public class WorkflowVersion : WorkflowBase, IParsable 
+namespace ApiSdk.Models.IdentityGovernance
+{
+    #pragma warning disable CS1591
+    public class WorkflowVersion : WorkflowBase, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.</summary>
         public int? VersionNumber { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"versionNumber", n => { VersionNumber = n.GetIntValue(); } },
+                { "versionNumber", n => { VersionNumber = n.GetIntValue(); } },
             };
         }
         /// <summary>

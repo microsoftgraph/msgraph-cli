@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.F_Dist {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.F_Dist
+{
     /// <summary>
     /// Provides operations to call the f_Dist method.
     /// </summary>
-    public class F_DistRequestBuilder : BaseCliRequestBuilder 
+    public class F_DistRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action f_Dist

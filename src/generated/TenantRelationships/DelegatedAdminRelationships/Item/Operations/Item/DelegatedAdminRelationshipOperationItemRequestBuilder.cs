@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations.Item {
+namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.delegatedAdminRelationship entity.
     /// </summary>
-    public class DelegatedAdminRelationshipOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class DelegatedAdminRelationshipOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for tenantRelationships

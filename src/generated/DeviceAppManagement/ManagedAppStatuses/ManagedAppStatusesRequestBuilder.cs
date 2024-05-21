@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
+namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses
+{
     /// <summary>
     /// Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class ManagedAppStatusesRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedAppStatusesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.
@@ -98,14 +99,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the managedAppStatusRaw objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappstatusraw-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the managedAppStatus objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappstatus-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the managedAppStatusRaw objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappstatusraw-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the managedAppStatus objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappstatus-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -181,7 +182,9 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -207,7 +210,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
         {
         }
         /// <summary>
-        /// List properties and relationships of the managedAppStatusRaw objects.
+        /// List properties and relationships of the managedAppStatus objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -247,7 +250,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the managedAppStatusRaw objects.
+        /// List properties and relationships of the managedAppStatus objects.
         /// </summary>
         public class ManagedAppStatusesRequestBuilderGetQueryParameters 
         {

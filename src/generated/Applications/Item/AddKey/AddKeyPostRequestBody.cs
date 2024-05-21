@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Applications.Item.AddKey {
-    public class AddKeyPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Applications.Item.AddKey
+{
+    #pragma warning disable CS1591
+    public class AddKeyPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -59,9 +62,9 @@ namespace ApiSdk.Applications.Item.AddKey {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"keyCredential", n => { KeyCredential = n.GetObjectValue<ApiSdk.Models.KeyCredential>(ApiSdk.Models.KeyCredential.CreateFromDiscriminatorValue); } },
-                {"passwordCredential", n => { PasswordCredential = n.GetObjectValue<ApiSdk.Models.PasswordCredential>(ApiSdk.Models.PasswordCredential.CreateFromDiscriminatorValue); } },
-                {"proof", n => { Proof = n.GetStringValue(); } },
+                { "keyCredential", n => { KeyCredential = n.GetObjectValue<ApiSdk.Models.KeyCredential>(ApiSdk.Models.KeyCredential.CreateFromDiscriminatorValue); } },
+                { "passwordCredential", n => { PasswordCredential = n.GetObjectValue<ApiSdk.Models.PasswordCredential>(ApiSdk.Models.PasswordCredential.CreateFromDiscriminatorValue); } },
+                { "proof", n => { Proof = n.GetStringValue(); } },
             };
         }
         /// <summary>

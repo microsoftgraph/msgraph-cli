@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Apple push notification certificate.
     /// </summary>
-    public class ApplePushNotificationCertificate : Entity, IParsable 
+    public class ApplePushNotificationCertificate : Entity, IParsable
     {
         /// <summary>Apple Id of the account used to create the MDM push certificate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -80,14 +81,14 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"appleIdentifier", n => { AppleIdentifier = n.GetStringValue(); } },
-                {"certificate", n => { Certificate = n.GetStringValue(); } },
-                {"certificateSerialNumber", n => { CertificateSerialNumber = n.GetStringValue(); } },
-                {"certificateUploadFailureReason", n => { CertificateUploadFailureReason = n.GetStringValue(); } },
-                {"certificateUploadStatus", n => { CertificateUploadStatus = n.GetStringValue(); } },
-                {"expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"topicIdentifier", n => { TopicIdentifier = n.GetStringValue(); } },
+                { "appleIdentifier", n => { AppleIdentifier = n.GetStringValue(); } },
+                { "certificate", n => { Certificate = n.GetStringValue(); } },
+                { "certificateSerialNumber", n => { CertificateSerialNumber = n.GetStringValue(); } },
+                { "certificateUploadFailureReason", n => { CertificateUploadFailureReason = n.GetStringValue(); } },
+                { "certificateUploadStatus", n => { CertificateUploadStatus = n.GetStringValue(); } },
+                { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "topicIdentifier", n => { TopicIdentifier = n.GetStringValue(); } },
             };
         }
         /// <summary>

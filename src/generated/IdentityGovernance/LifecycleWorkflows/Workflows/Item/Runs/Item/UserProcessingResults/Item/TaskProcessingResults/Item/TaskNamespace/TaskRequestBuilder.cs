@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.UserProcessingResults.Item.TaskProcessingResults.Item.TaskNamespace {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.UserProcessingResults.Item.TaskProcessingResults.Item.TaskNamespace
+{
     /// <summary>
     /// Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
     /// </summary>
-    public class TaskRequestBuilder : BaseCliRequestBuilder 
+    public class TaskRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The related workflow task

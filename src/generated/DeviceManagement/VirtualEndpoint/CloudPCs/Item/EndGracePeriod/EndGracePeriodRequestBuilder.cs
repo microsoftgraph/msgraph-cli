@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.EndGracePeriod {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.EndGracePeriod
+{
     /// <summary>
     /// Provides operations to call the endGracePeriod method.
     /// </summary>
-    public class EndGracePeriodRequestBuilder : BaseCliRequestBuilder 
+    public class EndGracePeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// End the grace period for a specific cloudPC object. The grace period is triggered when the Cloud PC license is removed or the provisioning policy is unassigned. It allows users to access Cloud PCs for up to seven days before deprovisioning occurs. Ending the grace period immediately deprovisions the Cloud PC without waiting the seven days.

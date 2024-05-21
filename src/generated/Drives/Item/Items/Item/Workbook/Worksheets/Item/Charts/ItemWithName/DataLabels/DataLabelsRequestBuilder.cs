@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.DataLabels {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.DataLabels
+{
     /// <summary>
     /// Provides operations to manage the dataLabels property of the microsoft.graph.workbookChart entity.
     /// </summary>
-    public class DataLabelsRequestBuilder : BaseCliRequestBuilder 
+    public class DataLabelsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property dataLabels for drives
@@ -74,14 +75,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartdatalabels object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chartdatalabels-get?view=graph-rest-1.0" />
+        /// Represents the data labels on the chart. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of chartdatalabels object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chartdatalabels-get?view=graph-rest-1.0";
+            command.Description = "Represents the data labels on the chart. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -145,14 +145,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
             return command;
         }
         /// <summary>
-        /// Update the properties of chartdatalabels object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chartdatalabels-update?view=graph-rest-1.0" />
+        /// Update the navigation property dataLabels in drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of chartdatalabels object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chartdatalabels-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property dataLabels in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -248,7 +247,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartdatalabels object.
+        /// Represents the data labels on the chart. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +266,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of chartdatalabels object.
+        /// Update the navigation property dataLabels in drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -288,7 +287,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartdatalabels object.
+        /// Represents the data labels on the chart. Read-only.
         /// </summary>
         public class DataLabelsRequestBuilderGetQueryParameters 
         {

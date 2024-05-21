@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentReminderSms {
+namespace ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentReminderSms
+{
     /// <summary>
     /// Provides operations to call the sendVirtualAppointmentReminderSms method.
     /// </summary>
-    public class SendVirtualAppointmentReminderSmsRequestBuilder : BaseCliRequestBuilder 
+    public class SendVirtualAppointmentReminderSmsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Send an SMS reminder to external attendees for a Teams virtual appointment. This feature requires Teams premium and attendees must have a valid United States phone number to receive SMS notifications.

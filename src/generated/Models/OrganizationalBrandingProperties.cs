@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class OrganizationalBrandingProperties : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class OrganizationalBrandingProperties : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Color that appears in place of the background image in low-bandwidth connections. We recommend that you use the primary color of your banner logo or your organization color. Specify this in hexadecimal format, for example, white is #FFFFFF.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -54,6 +57,14 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public List<string> CdnList { get; set; }
+#endif
+        /// <summary>The contentCustomization property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.ContentCustomization? ContentCustomization { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.ContentCustomization ContentCustomization { get; set; }
 #endif
         /// <summary>A custom URL for resetting account credentials. This URL must be in ASCII format or non-ASCII characters must be URL encoded, and not exceed 128 characters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -271,36 +282,37 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"backgroundColor", n => { BackgroundColor = n.GetStringValue(); } },
-                {"backgroundImage", n => { BackgroundImage = n.GetByteArrayValue(); } },
-                {"backgroundImageRelativeUrl", n => { BackgroundImageRelativeUrl = n.GetStringValue(); } },
-                {"bannerLogo", n => { BannerLogo = n.GetByteArrayValue(); } },
-                {"bannerLogoRelativeUrl", n => { BannerLogoRelativeUrl = n.GetStringValue(); } },
-                {"cdnList", n => { CdnList = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"customAccountResetCredentialsUrl", n => { CustomAccountResetCredentialsUrl = n.GetStringValue(); } },
-                {"customCSS", n => { CustomCSS = n.GetByteArrayValue(); } },
-                {"customCSSRelativeUrl", n => { CustomCSSRelativeUrl = n.GetStringValue(); } },
-                {"customCannotAccessYourAccountText", n => { CustomCannotAccessYourAccountText = n.GetStringValue(); } },
-                {"customCannotAccessYourAccountUrl", n => { CustomCannotAccessYourAccountUrl = n.GetStringValue(); } },
-                {"customForgotMyPasswordText", n => { CustomForgotMyPasswordText = n.GetStringValue(); } },
-                {"customPrivacyAndCookiesText", n => { CustomPrivacyAndCookiesText = n.GetStringValue(); } },
-                {"customPrivacyAndCookiesUrl", n => { CustomPrivacyAndCookiesUrl = n.GetStringValue(); } },
-                {"customResetItNowText", n => { CustomResetItNowText = n.GetStringValue(); } },
-                {"customTermsOfUseText", n => { CustomTermsOfUseText = n.GetStringValue(); } },
-                {"customTermsOfUseUrl", n => { CustomTermsOfUseUrl = n.GetStringValue(); } },
-                {"favicon", n => { Favicon = n.GetByteArrayValue(); } },
-                {"faviconRelativeUrl", n => { FaviconRelativeUrl = n.GetStringValue(); } },
-                {"headerBackgroundColor", n => { HeaderBackgroundColor = n.GetStringValue(); } },
-                {"headerLogo", n => { HeaderLogo = n.GetByteArrayValue(); } },
-                {"headerLogoRelativeUrl", n => { HeaderLogoRelativeUrl = n.GetStringValue(); } },
-                {"loginPageLayoutConfiguration", n => { LoginPageLayoutConfiguration = n.GetObjectValue<ApiSdk.Models.LoginPageLayoutConfiguration>(ApiSdk.Models.LoginPageLayoutConfiguration.CreateFromDiscriminatorValue); } },
-                {"loginPageTextVisibilitySettings", n => { LoginPageTextVisibilitySettings = n.GetObjectValue<ApiSdk.Models.LoginPageTextVisibilitySettings>(ApiSdk.Models.LoginPageTextVisibilitySettings.CreateFromDiscriminatorValue); } },
-                {"signInPageText", n => { SignInPageText = n.GetStringValue(); } },
-                {"squareLogo", n => { SquareLogo = n.GetByteArrayValue(); } },
-                {"squareLogoDark", n => { SquareLogoDark = n.GetByteArrayValue(); } },
-                {"squareLogoDarkRelativeUrl", n => { SquareLogoDarkRelativeUrl = n.GetStringValue(); } },
-                {"squareLogoRelativeUrl", n => { SquareLogoRelativeUrl = n.GetStringValue(); } },
-                {"usernameHintText", n => { UsernameHintText = n.GetStringValue(); } },
+                { "backgroundColor", n => { BackgroundColor = n.GetStringValue(); } },
+                { "backgroundImage", n => { BackgroundImage = n.GetByteArrayValue(); } },
+                { "backgroundImageRelativeUrl", n => { BackgroundImageRelativeUrl = n.GetStringValue(); } },
+                { "bannerLogo", n => { BannerLogo = n.GetByteArrayValue(); } },
+                { "bannerLogoRelativeUrl", n => { BannerLogoRelativeUrl = n.GetStringValue(); } },
+                { "cdnList", n => { CdnList = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "contentCustomization", n => { ContentCustomization = n.GetObjectValue<ApiSdk.Models.ContentCustomization>(ApiSdk.Models.ContentCustomization.CreateFromDiscriminatorValue); } },
+                { "customAccountResetCredentialsUrl", n => { CustomAccountResetCredentialsUrl = n.GetStringValue(); } },
+                { "customCSS", n => { CustomCSS = n.GetByteArrayValue(); } },
+                { "customCSSRelativeUrl", n => { CustomCSSRelativeUrl = n.GetStringValue(); } },
+                { "customCannotAccessYourAccountText", n => { CustomCannotAccessYourAccountText = n.GetStringValue(); } },
+                { "customCannotAccessYourAccountUrl", n => { CustomCannotAccessYourAccountUrl = n.GetStringValue(); } },
+                { "customForgotMyPasswordText", n => { CustomForgotMyPasswordText = n.GetStringValue(); } },
+                { "customPrivacyAndCookiesText", n => { CustomPrivacyAndCookiesText = n.GetStringValue(); } },
+                { "customPrivacyAndCookiesUrl", n => { CustomPrivacyAndCookiesUrl = n.GetStringValue(); } },
+                { "customResetItNowText", n => { CustomResetItNowText = n.GetStringValue(); } },
+                { "customTermsOfUseText", n => { CustomTermsOfUseText = n.GetStringValue(); } },
+                { "customTermsOfUseUrl", n => { CustomTermsOfUseUrl = n.GetStringValue(); } },
+                { "favicon", n => { Favicon = n.GetByteArrayValue(); } },
+                { "faviconRelativeUrl", n => { FaviconRelativeUrl = n.GetStringValue(); } },
+                { "headerBackgroundColor", n => { HeaderBackgroundColor = n.GetStringValue(); } },
+                { "headerLogo", n => { HeaderLogo = n.GetByteArrayValue(); } },
+                { "headerLogoRelativeUrl", n => { HeaderLogoRelativeUrl = n.GetStringValue(); } },
+                { "loginPageLayoutConfiguration", n => { LoginPageLayoutConfiguration = n.GetObjectValue<ApiSdk.Models.LoginPageLayoutConfiguration>(ApiSdk.Models.LoginPageLayoutConfiguration.CreateFromDiscriminatorValue); } },
+                { "loginPageTextVisibilitySettings", n => { LoginPageTextVisibilitySettings = n.GetObjectValue<ApiSdk.Models.LoginPageTextVisibilitySettings>(ApiSdk.Models.LoginPageTextVisibilitySettings.CreateFromDiscriminatorValue); } },
+                { "signInPageText", n => { SignInPageText = n.GetStringValue(); } },
+                { "squareLogo", n => { SquareLogo = n.GetByteArrayValue(); } },
+                { "squareLogoDark", n => { SquareLogoDark = n.GetByteArrayValue(); } },
+                { "squareLogoDarkRelativeUrl", n => { SquareLogoDarkRelativeUrl = n.GetStringValue(); } },
+                { "squareLogoRelativeUrl", n => { SquareLogoRelativeUrl = n.GetStringValue(); } },
+                { "usernameHintText", n => { UsernameHintText = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -317,6 +329,7 @@ namespace ApiSdk.Models {
             writer.WriteByteArrayValue("bannerLogo", BannerLogo);
             writer.WriteStringValue("bannerLogoRelativeUrl", BannerLogoRelativeUrl);
             writer.WriteCollectionOfPrimitiveValues<string>("cdnList", CdnList);
+            writer.WriteObjectValue<ApiSdk.Models.ContentCustomization>("contentCustomization", ContentCustomization);
             writer.WriteStringValue("customAccountResetCredentialsUrl", CustomAccountResetCredentialsUrl);
             writer.WriteStringValue("customCannotAccessYourAccountText", CustomCannotAccessYourAccountText);
             writer.WriteStringValue("customCannotAccessYourAccountUrl", CustomCannotAccessYourAccountUrl);

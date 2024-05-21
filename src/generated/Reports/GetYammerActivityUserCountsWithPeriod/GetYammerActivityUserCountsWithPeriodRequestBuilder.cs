@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetYammerActivityUserCountsWithPeriod {
+namespace ApiSdk.Reports.GetYammerActivityUserCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getYammerActivityUserCounts method.
     /// </summary>
-    public class GetYammerActivityUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetYammerActivityUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getYammerActivityUserCounts
+        /// Get the trends on the number of unique users who posted, read, and liked Yammer messages.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getyammeractivityusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getYammerActivityUserCounts";
+            command.Description = "Get the trends on the number of unique users who posted, read, and liked Yammer messages.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getyammeractivityusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetYammerActivityUserCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getYammerActivityUserCounts
+        /// Get the trends on the number of unique users who posted, read, and liked Yammer messages.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

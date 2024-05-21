@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Printers.Item.Shares.Item {
+namespace ApiSdk.Print.Printers.Item.Shares.Item
+{
     /// <summary>
     /// Provides operations to manage the shares property of the microsoft.graph.printer entity.
     /// </summary>
-    public class PrinterShareItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrinterShareItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.

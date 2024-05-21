@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetNotebookFromWebUrl {
-    public class GetNotebookFromWebUrlPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetNotebookFromWebUrl
+{
+    #pragma warning disable CS1591
+    public class GetNotebookFromWebUrlPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -42,7 +45,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetNotebookFromWebUrl {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"webUrl", n => { WebUrl = n.GetStringValue(); } },
+                { "webUrl", n => { WebUrl = n.GetStringValue(); } },
             };
         }
         /// <summary>

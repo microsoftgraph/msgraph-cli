@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
+namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item
+{
     /// <summary>
     /// Provides operations to manage the childFolders property of the microsoft.graph.contactFolder entity.
     /// </summary>
-    public class ContactFolderItemRequestBuilder : BaseCliRequestBuilder 
+    public class ContactFolderItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the contacts property of the microsoft.graph.contactFolder entity.

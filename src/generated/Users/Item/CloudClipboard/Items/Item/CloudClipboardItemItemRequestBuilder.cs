@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.CloudClipboard.Items.Item {
+namespace ApiSdk.Users.Item.CloudClipboard.Items.Item
+{
     /// <summary>
     /// Provides operations to manage the items property of the microsoft.graph.cloudClipboardRoot entity.
     /// </summary>
-    public class CloudClipboardItemItemRequestBuilder : BaseCliRequestBuilder 
+    public class CloudClipboardItemItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property items for users

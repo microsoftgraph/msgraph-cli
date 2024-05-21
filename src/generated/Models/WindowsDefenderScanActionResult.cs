@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Windows Defender last scan result
     /// </summary>
-    public class WindowsDefenderScanActionResult : DeviceActionResult, IParsable 
+    public class WindowsDefenderScanActionResult : DeviceActionResult, IParsable
     {
         /// <summary>Scan type either full scan or quick scan</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -36,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"scanType", n => { ScanType = n.GetStringValue(); } },
+                { "scanType", n => { ScanType = n.GetStringValue(); } },
             };
         }
         /// <summary>

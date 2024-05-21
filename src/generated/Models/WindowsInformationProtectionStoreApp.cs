@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Store App for Windows information protection
     /// </summary>
-    public class WindowsInformationProtectionStoreApp : WindowsInformationProtectionApp, IParsable 
+    public class WindowsInformationProtectionStoreApp : WindowsInformationProtectionApp, IParsable
     {
         /// <summary>
         /// Instantiates a new <see cref="WindowsInformationProtectionStoreApp"/> and sets the default values.

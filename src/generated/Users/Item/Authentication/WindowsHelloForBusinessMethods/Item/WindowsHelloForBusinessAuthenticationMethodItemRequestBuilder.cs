@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
+namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item
+{
     /// <summary>
     /// Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.
     /// </summary>
-    public class WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder 
+    public class WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a windowsHelloForBusinessAuthenticationMethod object.

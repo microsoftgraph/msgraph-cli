@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.TransitiveMembers.Item {
+namespace ApiSdk.Groups.Item.TransitiveMembers.Item
+{
     /// <summary>
     /// Provides operations to manage the transitiveMembers property of the microsoft.graph.group entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The direct and transitive members of a group. Nullable.

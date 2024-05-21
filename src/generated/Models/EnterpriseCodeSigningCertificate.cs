@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EnterpriseCodeSigningCertificate : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EnterpriseCodeSigningCertificate : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The Windows Enterprise Code-Signing Certificate in the raw data format. Set to null once certificate has been uploaded and other properties have been populated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,14 +74,14 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"content", n => { Content = n.GetByteArrayValue(); } },
-                {"expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
-                {"issuer", n => { Issuer = n.GetStringValue(); } },
-                {"issuerName", n => { IssuerName = n.GetStringValue(); } },
-                {"status", n => { Status = n.GetEnumValue<CertificateStatus>(); } },
-                {"subject", n => { Subject = n.GetStringValue(); } },
-                {"subjectName", n => { SubjectName = n.GetStringValue(); } },
-                {"uploadDateTime", n => { UploadDateTime = n.GetDateTimeOffsetValue(); } },
+                { "content", n => { Content = n.GetByteArrayValue(); } },
+                { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
+                { "issuer", n => { Issuer = n.GetStringValue(); } },
+                { "issuerName", n => { IssuerName = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<CertificateStatus>(); } },
+                { "subject", n => { Subject = n.GetStringValue(); } },
+                { "subjectName", n => { SubjectName = n.GetStringValue(); } },
+                { "uploadDateTime", n => { UploadDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>

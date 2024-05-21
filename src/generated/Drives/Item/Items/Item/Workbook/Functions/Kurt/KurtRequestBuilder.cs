@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Kurt {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Kurt
+{
     /// <summary>
     /// Provides operations to call the kurt method.
     /// </summary>
-    public class KurtRequestBuilder : BaseCliRequestBuilder 
+    public class KurtRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action kurt

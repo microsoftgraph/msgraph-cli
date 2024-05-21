@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Functions.Item {
+namespace ApiSdk.Functions.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of attributeMappingFunctionSchema entities.
     /// </summary>
-    public class AttributeMappingFunctionSchemaItemRequestBuilder : BaseCliRequestBuilder 
+    public class AttributeMappingFunctionSchemaItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from functions

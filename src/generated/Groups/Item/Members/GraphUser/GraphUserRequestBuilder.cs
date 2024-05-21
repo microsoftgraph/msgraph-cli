@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Members.GraphUser {
+namespace ApiSdk.Groups.Item.Members.GraphUser
+{
     /// <summary>
     /// Casts the previous resource to user.
     /// </summary>
-    public class GraphUserRequestBuilder : BaseCliRequestBuilder 
+    public class GraphUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -39,13 +40,14 @@ namespace ApiSdk.Groups.Item.Members.GraphUser {
             return command;
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.user in the microsoft.graph.directoryObject collection
+        /// Get a list of the group&apos;s direct members. A group can have users, organizational contacts, devices, service principals and other groups as members. This operation is not transitive.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the items of type microsoft.graph.user in the microsoft.graph.directoryObject collection";
+            command.Description = "Get a list of the group's direct members. A group can have users, organizational contacts, devices, service principals and other groups as members. This operation is not transitive.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -134,7 +136,9 @@ namespace ApiSdk.Groups.Item.Members.GraphUser {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -160,7 +164,7 @@ namespace ApiSdk.Groups.Item.Members.GraphUser {
         {
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.user in the microsoft.graph.directoryObject collection
+        /// Get a list of the group&apos;s direct members. A group can have users, organizational contacts, devices, service principals and other groups as members. This operation is not transitive.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -179,7 +183,7 @@ namespace ApiSdk.Groups.Item.Members.GraphUser {
             return requestInfo;
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.user in the microsoft.graph.directoryObject collection
+        /// Get a list of the group&apos;s direct members. A group can have users, organizational contacts, devices, service principals and other groups as members. This operation is not transitive.
         /// </summary>
         public class GraphUserRequestBuilderGetQueryParameters 
         {

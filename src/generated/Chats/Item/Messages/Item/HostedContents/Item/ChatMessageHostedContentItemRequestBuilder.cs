@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
+namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item
+{
     /// <summary>
     /// Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.
     /// </summary>
-    public class ChatMessageHostedContentItemRequestBuilder : BaseCliRequestBuilder 
+    public class ChatMessageHostedContentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the chat entity.
@@ -31,6 +32,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.HostedContents.Item {
             command.Description = "Provides operations to manage the media for the chat entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

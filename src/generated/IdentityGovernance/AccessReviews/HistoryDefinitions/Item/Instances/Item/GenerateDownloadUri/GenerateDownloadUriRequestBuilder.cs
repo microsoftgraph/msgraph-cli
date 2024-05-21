@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instances.Item.GenerateDownloadUri {
+namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instances.Item.GenerateDownloadUri
+{
     /// <summary>
     /// Provides operations to call the generateDownloadUri method.
     /// </summary>
-    public class GenerateDownloadUriRequestBuilder : BaseCliRequestBuilder 
+    public class GenerateDownloadUriRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Generates a URI for an accessReviewHistoryInstance object the status for which is done. Each URI can be used to retrieve the instance&apos;s review history data. Each URI is valid for 24 hours and can be retrieved by fetching the downloadUri property from the accessReviewHistoryInstance object.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item {
+namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
+{
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.deviceCompliancePolicy entity.
     /// </summary>
-    public class DeviceCompliancePolicyAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceCompliancePolicyAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a deviceCompliancePolicyAssignment.

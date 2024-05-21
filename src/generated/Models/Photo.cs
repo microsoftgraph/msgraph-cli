@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Photo : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Photo : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -72,16 +75,16 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"cameraMake", n => { CameraMake = n.GetStringValue(); } },
-                {"cameraModel", n => { CameraModel = n.GetStringValue(); } },
-                {"exposureDenominator", n => { ExposureDenominator = n.GetDoubleValue(); } },
-                {"exposureNumerator", n => { ExposureNumerator = n.GetDoubleValue(); } },
-                {"fNumber", n => { FNumber = n.GetDoubleValue(); } },
-                {"focalLength", n => { FocalLength = n.GetDoubleValue(); } },
-                {"iso", n => { Iso = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"orientation", n => { Orientation = n.GetIntValue(); } },
-                {"takenDateTime", n => { TakenDateTime = n.GetDateTimeOffsetValue(); } },
+                { "cameraMake", n => { CameraMake = n.GetStringValue(); } },
+                { "cameraModel", n => { CameraModel = n.GetStringValue(); } },
+                { "exposureDenominator", n => { ExposureDenominator = n.GetDoubleValue(); } },
+                { "exposureNumerator", n => { ExposureNumerator = n.GetDoubleValue(); } },
+                { "fNumber", n => { FNumber = n.GetDoubleValue(); } },
+                { "focalLength", n => { FocalLength = n.GetDoubleValue(); } },
+                { "iso", n => { Iso = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "orientation", n => { Orientation = n.GetIntValue(); } },
+                { "takenDateTime", n => { TakenDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSources.Item {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSources.Item
+{
     /// <summary>
     /// Provides operations to manage the additionalSources property of the microsoft.graph.security.ediscoverySearch entity.
     /// </summary>
-    public class DataSourceItemRequestBuilder : BaseCliRequestBuilder 
+    public class DataSourceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property additionalSources for security

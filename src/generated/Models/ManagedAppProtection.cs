@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Policy used to configure detailed management settings for a specified set of apps
     /// </summary>
-    public class ManagedAppProtection : ManagedAppPolicy, IParsable 
+    public class ManagedAppProtection : ManagedAppPolicy, IParsable
     {
         /// <summary>Data storage locations where a user may store managed data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -127,33 +128,33 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"allowedDataStorageLocations", n => { AllowedDataStorageLocations = n.GetCollectionOfEnumValues<ManagedAppDataStorageLocation>()?.ToList(); } },
-                {"allowedInboundDataTransferSources", n => { AllowedInboundDataTransferSources = n.GetEnumValue<ManagedAppDataTransferLevel>(); } },
-                {"allowedOutboundClipboardSharingLevel", n => { AllowedOutboundClipboardSharingLevel = n.GetEnumValue<ManagedAppClipboardSharingLevel>(); } },
-                {"allowedOutboundDataTransferDestinations", n => { AllowedOutboundDataTransferDestinations = n.GetEnumValue<ManagedAppDataTransferLevel>(); } },
-                {"contactSyncBlocked", n => { ContactSyncBlocked = n.GetBoolValue(); } },
-                {"dataBackupBlocked", n => { DataBackupBlocked = n.GetBoolValue(); } },
-                {"deviceComplianceRequired", n => { DeviceComplianceRequired = n.GetBoolValue(); } },
-                {"disableAppPinIfDevicePinIsSet", n => { DisableAppPinIfDevicePinIsSet = n.GetBoolValue(); } },
-                {"fingerprintBlocked", n => { FingerprintBlocked = n.GetBoolValue(); } },
-                {"managedBrowser", n => { ManagedBrowser = n.GetEnumValue<ManagedBrowserType>(); } },
-                {"managedBrowserToOpenLinksRequired", n => { ManagedBrowserToOpenLinksRequired = n.GetBoolValue(); } },
-                {"maximumPinRetries", n => { MaximumPinRetries = n.GetIntValue(); } },
-                {"minimumPinLength", n => { MinimumPinLength = n.GetIntValue(); } },
-                {"minimumRequiredAppVersion", n => { MinimumRequiredAppVersion = n.GetStringValue(); } },
-                {"minimumRequiredOsVersion", n => { MinimumRequiredOsVersion = n.GetStringValue(); } },
-                {"minimumWarningAppVersion", n => { MinimumWarningAppVersion = n.GetStringValue(); } },
-                {"minimumWarningOsVersion", n => { MinimumWarningOsVersion = n.GetStringValue(); } },
-                {"organizationalCredentialsRequired", n => { OrganizationalCredentialsRequired = n.GetBoolValue(); } },
-                {"periodBeforePinReset", n => { PeriodBeforePinReset = n.GetTimeSpanValue(); } },
-                {"periodOfflineBeforeAccessCheck", n => { PeriodOfflineBeforeAccessCheck = n.GetTimeSpanValue(); } },
-                {"periodOfflineBeforeWipeIsEnforced", n => { PeriodOfflineBeforeWipeIsEnforced = n.GetTimeSpanValue(); } },
-                {"periodOnlineBeforeAccessCheck", n => { PeriodOnlineBeforeAccessCheck = n.GetTimeSpanValue(); } },
-                {"pinCharacterSet", n => { PinCharacterSet = n.GetEnumValue<ManagedAppPinCharacterSet>(); } },
-                {"pinRequired", n => { PinRequired = n.GetBoolValue(); } },
-                {"printBlocked", n => { PrintBlocked = n.GetBoolValue(); } },
-                {"saveAsBlocked", n => { SaveAsBlocked = n.GetBoolValue(); } },
-                {"simplePinBlocked", n => { SimplePinBlocked = n.GetBoolValue(); } },
+                { "allowedDataStorageLocations", n => { AllowedDataStorageLocations = n.GetCollectionOfEnumValues<ManagedAppDataStorageLocation>()?.ToList(); } },
+                { "allowedInboundDataTransferSources", n => { AllowedInboundDataTransferSources = n.GetEnumValue<ManagedAppDataTransferLevel>(); } },
+                { "allowedOutboundClipboardSharingLevel", n => { AllowedOutboundClipboardSharingLevel = n.GetEnumValue<ManagedAppClipboardSharingLevel>(); } },
+                { "allowedOutboundDataTransferDestinations", n => { AllowedOutboundDataTransferDestinations = n.GetEnumValue<ManagedAppDataTransferLevel>(); } },
+                { "contactSyncBlocked", n => { ContactSyncBlocked = n.GetBoolValue(); } },
+                { "dataBackupBlocked", n => { DataBackupBlocked = n.GetBoolValue(); } },
+                { "deviceComplianceRequired", n => { DeviceComplianceRequired = n.GetBoolValue(); } },
+                { "disableAppPinIfDevicePinIsSet", n => { DisableAppPinIfDevicePinIsSet = n.GetBoolValue(); } },
+                { "fingerprintBlocked", n => { FingerprintBlocked = n.GetBoolValue(); } },
+                { "managedBrowser", n => { ManagedBrowser = n.GetEnumValue<ManagedBrowserType>(); } },
+                { "managedBrowserToOpenLinksRequired", n => { ManagedBrowserToOpenLinksRequired = n.GetBoolValue(); } },
+                { "maximumPinRetries", n => { MaximumPinRetries = n.GetIntValue(); } },
+                { "minimumPinLength", n => { MinimumPinLength = n.GetIntValue(); } },
+                { "minimumRequiredAppVersion", n => { MinimumRequiredAppVersion = n.GetStringValue(); } },
+                { "minimumRequiredOsVersion", n => { MinimumRequiredOsVersion = n.GetStringValue(); } },
+                { "minimumWarningAppVersion", n => { MinimumWarningAppVersion = n.GetStringValue(); } },
+                { "minimumWarningOsVersion", n => { MinimumWarningOsVersion = n.GetStringValue(); } },
+                { "organizationalCredentialsRequired", n => { OrganizationalCredentialsRequired = n.GetBoolValue(); } },
+                { "periodBeforePinReset", n => { PeriodBeforePinReset = n.GetTimeSpanValue(); } },
+                { "periodOfflineBeforeAccessCheck", n => { PeriodOfflineBeforeAccessCheck = n.GetTimeSpanValue(); } },
+                { "periodOfflineBeforeWipeIsEnforced", n => { PeriodOfflineBeforeWipeIsEnforced = n.GetTimeSpanValue(); } },
+                { "periodOnlineBeforeAccessCheck", n => { PeriodOnlineBeforeAccessCheck = n.GetTimeSpanValue(); } },
+                { "pinCharacterSet", n => { PinCharacterSet = n.GetEnumValue<ManagedAppPinCharacterSet>(); } },
+                { "pinRequired", n => { PinRequired = n.GetBoolValue(); } },
+                { "printBlocked", n => { PrintBlocked = n.GetBoolValue(); } },
+                { "saveAsBlocked", n => { SaveAsBlocked = n.GetBoolValue(); } },
+                { "simplePinBlocked", n => { SimplePinBlocked = n.GetBoolValue(); } },
             };
         }
         /// <summary>

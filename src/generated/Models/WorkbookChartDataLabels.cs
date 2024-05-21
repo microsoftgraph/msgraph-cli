@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class WorkbookChartDataLabels : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class WorkbookChartDataLabels : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Represents the format of chart data labels, which includes fill and font formatting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -61,15 +64,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"format", n => { Format = n.GetObjectValue<WorkbookChartDataLabelFormat>(WorkbookChartDataLabelFormat.CreateFromDiscriminatorValue); } },
-                {"position", n => { Position = n.GetStringValue(); } },
-                {"separator", n => { Separator = n.GetStringValue(); } },
-                {"showBubbleSize", n => { ShowBubbleSize = n.GetBoolValue(); } },
-                {"showCategoryName", n => { ShowCategoryName = n.GetBoolValue(); } },
-                {"showLegendKey", n => { ShowLegendKey = n.GetBoolValue(); } },
-                {"showPercentage", n => { ShowPercentage = n.GetBoolValue(); } },
-                {"showSeriesName", n => { ShowSeriesName = n.GetBoolValue(); } },
-                {"showValue", n => { ShowValue = n.GetBoolValue(); } },
+                { "format", n => { Format = n.GetObjectValue<WorkbookChartDataLabelFormat>(WorkbookChartDataLabelFormat.CreateFromDiscriminatorValue); } },
+                { "position", n => { Position = n.GetStringValue(); } },
+                { "separator", n => { Separator = n.GetStringValue(); } },
+                { "showBubbleSize", n => { ShowBubbleSize = n.GetBoolValue(); } },
+                { "showCategoryName", n => { ShowCategoryName = n.GetBoolValue(); } },
+                { "showLegendKey", n => { ShowLegendKey = n.GetBoolValue(); } },
+                { "showPercentage", n => { ShowPercentage = n.GetBoolValue(); } },
+                { "showSeriesName", n => { ShowSeriesName = n.GetBoolValue(); } },
+                { "showValue", n => { ShowValue = n.GetBoolValue(); } },
             };
         }
         /// <summary>

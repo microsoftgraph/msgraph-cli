@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomainName {
+namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomainName
+{
     /// <summary>
     /// Provides operations to call the verifyWindowsEnrollmentAutoDiscovery method.
     /// </summary>
-    public class VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder : BaseCliRequestBuilder 
+    public class VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function verifyWindowsEnrollmentAutoDiscovery

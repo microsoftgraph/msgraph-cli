@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SynchronizationTaskExecution : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SynchronizationTaskExecution : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Identifier of the job run.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -82,21 +85,21 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"activityIdentifier", n => { ActivityIdentifier = n.GetStringValue(); } },
-                {"countEntitled", n => { CountEntitled = n.GetLongValue(); } },
-                {"countEntitledForProvisioning", n => { CountEntitledForProvisioning = n.GetLongValue(); } },
-                {"countEscrowed", n => { CountEscrowed = n.GetLongValue(); } },
-                {"countEscrowedRaw", n => { CountEscrowedRaw = n.GetLongValue(); } },
-                {"countExported", n => { CountExported = n.GetLongValue(); } },
-                {"countExports", n => { CountExports = n.GetLongValue(); } },
-                {"countImported", n => { CountImported = n.GetLongValue(); } },
-                {"countImportedDeltas", n => { CountImportedDeltas = n.GetLongValue(); } },
-                {"countImportedReferenceDeltas", n => { CountImportedReferenceDeltas = n.GetLongValue(); } },
-                {"error", n => { Error = n.GetObjectValue<SynchronizationError>(SynchronizationError.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"state", n => { State = n.GetEnumValue<SynchronizationTaskExecutionResult>(); } },
-                {"timeBegan", n => { TimeBegan = n.GetDateTimeOffsetValue(); } },
-                {"timeEnded", n => { TimeEnded = n.GetDateTimeOffsetValue(); } },
+                { "activityIdentifier", n => { ActivityIdentifier = n.GetStringValue(); } },
+                { "countEntitled", n => { CountEntitled = n.GetLongValue(); } },
+                { "countEntitledForProvisioning", n => { CountEntitledForProvisioning = n.GetLongValue(); } },
+                { "countEscrowed", n => { CountEscrowed = n.GetLongValue(); } },
+                { "countEscrowedRaw", n => { CountEscrowedRaw = n.GetLongValue(); } },
+                { "countExported", n => { CountExported = n.GetLongValue(); } },
+                { "countExports", n => { CountExports = n.GetLongValue(); } },
+                { "countImported", n => { CountImported = n.GetLongValue(); } },
+                { "countImportedDeltas", n => { CountImportedDeltas = n.GetLongValue(); } },
+                { "countImportedReferenceDeltas", n => { CountImportedReferenceDeltas = n.GetLongValue(); } },
+                { "error", n => { Error = n.GetObjectValue<SynchronizationError>(SynchronizationError.CreateFromDiscriminatorValue); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "state", n => { State = n.GetEnumValue<SynchronizationTaskExecutionResult>(); } },
+                { "timeBegan", n => { TimeBegan = n.GetDateTimeOffsetValue(); } },
+                { "timeEnded", n => { TimeEnded = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>

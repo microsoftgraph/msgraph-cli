@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.Item {
+namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.Item
+{
     /// <summary>
     /// Provides operations to manage the userStatuses property of the microsoft.graph.managedDeviceMobileAppConfiguration entity.
     /// </summary>
-    public class ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a managedDeviceMobileAppConfigurationUserStatus.

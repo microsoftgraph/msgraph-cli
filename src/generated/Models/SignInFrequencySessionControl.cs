@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SignInFrequencySessionControl : ConditionalAccessSessionControl, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SignInFrequencySessionControl : ConditionalAccessSessionControl, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The possible values are primaryAndSecondaryAuthentication, secondaryAuthentication, unknownFutureValue. This property isn&apos;t required when using frequencyInterval with the value of timeBased.</summary>
         public SignInFrequencyAuthenticationType? AuthenticationType { get; set; }
@@ -40,10 +43,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"authenticationType", n => { AuthenticationType = n.GetEnumValue<SignInFrequencyAuthenticationType>(); } },
-                {"frequencyInterval", n => { FrequencyInterval = n.GetEnumValue<SignInFrequencyInterval>(); } },
-                {"type", n => { Type = n.GetEnumValue<SigninFrequencyType>(); } },
-                {"value", n => { Value = n.GetIntValue(); } },
+                { "authenticationType", n => { AuthenticationType = n.GetEnumValue<SignInFrequencyAuthenticationType>(); } },
+                { "frequencyInterval", n => { FrequencyInterval = n.GetEnumValue<SignInFrequencyInterval>(); } },
+                { "type", n => { Type = n.GetEnumValue<SigninFrequencyType>(); } },
+                { "value", n => { Value = n.GetIntValue(); } },
             };
         }
         /// <summary>

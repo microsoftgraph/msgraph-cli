@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Norm_S_Inv {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Norm_S_Inv
+{
     /// <summary>
     /// Provides operations to call the norm_S_Inv method.
     /// </summary>
-    public class Norm_S_InvRequestBuilder : BaseCliRequestBuilder 
+    public class Norm_S_InvRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action norm_S_Inv

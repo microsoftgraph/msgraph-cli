@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
+namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade
+{
     /// <summary>
     /// Provides operations to call the upgrade method.
     /// </summary>
-    public class UpgradeRequestBuilder : BaseCliRequestBuilder 
+    public class UpgradeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Upgrade an app installation within a chat.

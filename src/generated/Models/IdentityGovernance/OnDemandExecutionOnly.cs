@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.IdentityGovernance {
-    public class OnDemandExecutionOnly : WorkflowExecutionConditions, IParsable 
+namespace ApiSdk.Models.IdentityGovernance
+{
+    #pragma warning disable CS1591
+    public class OnDemandExecutionOnly : WorkflowExecutionConditions, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>
         /// Instantiates a new <see cref="OnDemandExecutionOnly"/> and sets the default values.

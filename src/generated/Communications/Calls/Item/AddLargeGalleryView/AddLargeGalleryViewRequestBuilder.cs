@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.AddLargeGalleryView {
+namespace ApiSdk.Communications.Calls.Item.AddLargeGalleryView
+{
     /// <summary>
     /// Provides operations to call the addLargeGalleryView method.
     /// </summary>
-    public class AddLargeGalleryViewRequestBuilder : BaseCliRequestBuilder 
+    public class AddLargeGalleryViewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Add the large gallery view to a call.  For details about how to identify a large gallery view participant in a roster so that you can retrieve the relevant data to subscribe to the video feed, see Identify large gallery view participants in a roster.

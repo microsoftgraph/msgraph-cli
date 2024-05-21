@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item {
+namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item
+{
     /// <summary>
     /// Provides operations to manage the horizontalSections property of the microsoft.graph.canvasLayout entity.
     /// </summary>
-    public class HorizontalSectionItemRequestBuilder : BaseCliRequestBuilder 
+    public class HorizontalSectionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.horizontalSection entity.

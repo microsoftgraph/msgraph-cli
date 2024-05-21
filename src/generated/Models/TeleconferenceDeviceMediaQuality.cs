@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TeleconferenceDeviceMediaQuality : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TeleconferenceDeviceMediaQuality : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -103,28 +106,28 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"averageInboundJitter", n => { AverageInboundJitter = n.GetTimeSpanValue(); } },
-                {"averageInboundPacketLossRateInPercentage", n => { AverageInboundPacketLossRateInPercentage = n.GetDoubleValue(); } },
-                {"averageInboundRoundTripDelay", n => { AverageInboundRoundTripDelay = n.GetTimeSpanValue(); } },
-                {"averageOutboundJitter", n => { AverageOutboundJitter = n.GetTimeSpanValue(); } },
-                {"averageOutboundPacketLossRateInPercentage", n => { AverageOutboundPacketLossRateInPercentage = n.GetDoubleValue(); } },
-                {"averageOutboundRoundTripDelay", n => { AverageOutboundRoundTripDelay = n.GetTimeSpanValue(); } },
-                {"channelIndex", n => { ChannelIndex = n.GetIntValue(); } },
-                {"inboundPackets", n => { InboundPackets = n.GetLongValue(); } },
-                {"localIPAddress", n => { LocalIPAddress = n.GetStringValue(); } },
-                {"localPort", n => { LocalPort = n.GetIntValue(); } },
-                {"maximumInboundJitter", n => { MaximumInboundJitter = n.GetTimeSpanValue(); } },
-                {"maximumInboundPacketLossRateInPercentage", n => { MaximumInboundPacketLossRateInPercentage = n.GetDoubleValue(); } },
-                {"maximumInboundRoundTripDelay", n => { MaximumInboundRoundTripDelay = n.GetTimeSpanValue(); } },
-                {"maximumOutboundJitter", n => { MaximumOutboundJitter = n.GetTimeSpanValue(); } },
-                {"maximumOutboundPacketLossRateInPercentage", n => { MaximumOutboundPacketLossRateInPercentage = n.GetDoubleValue(); } },
-                {"maximumOutboundRoundTripDelay", n => { MaximumOutboundRoundTripDelay = n.GetTimeSpanValue(); } },
-                {"mediaDuration", n => { MediaDuration = n.GetTimeSpanValue(); } },
-                {"networkLinkSpeedInBytes", n => { NetworkLinkSpeedInBytes = n.GetLongValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"outboundPackets", n => { OutboundPackets = n.GetLongValue(); } },
-                {"remoteIPAddress", n => { RemoteIPAddress = n.GetStringValue(); } },
-                {"remotePort", n => { RemotePort = n.GetIntValue(); } },
+                { "averageInboundJitter", n => { AverageInboundJitter = n.GetTimeSpanValue(); } },
+                { "averageInboundPacketLossRateInPercentage", n => { AverageInboundPacketLossRateInPercentage = n.GetDoubleValue(); } },
+                { "averageInboundRoundTripDelay", n => { AverageInboundRoundTripDelay = n.GetTimeSpanValue(); } },
+                { "averageOutboundJitter", n => { AverageOutboundJitter = n.GetTimeSpanValue(); } },
+                { "averageOutboundPacketLossRateInPercentage", n => { AverageOutboundPacketLossRateInPercentage = n.GetDoubleValue(); } },
+                { "averageOutboundRoundTripDelay", n => { AverageOutboundRoundTripDelay = n.GetTimeSpanValue(); } },
+                { "channelIndex", n => { ChannelIndex = n.GetIntValue(); } },
+                { "inboundPackets", n => { InboundPackets = n.GetLongValue(); } },
+                { "localIPAddress", n => { LocalIPAddress = n.GetStringValue(); } },
+                { "localPort", n => { LocalPort = n.GetIntValue(); } },
+                { "maximumInboundJitter", n => { MaximumInboundJitter = n.GetTimeSpanValue(); } },
+                { "maximumInboundPacketLossRateInPercentage", n => { MaximumInboundPacketLossRateInPercentage = n.GetDoubleValue(); } },
+                { "maximumInboundRoundTripDelay", n => { MaximumInboundRoundTripDelay = n.GetTimeSpanValue(); } },
+                { "maximumOutboundJitter", n => { MaximumOutboundJitter = n.GetTimeSpanValue(); } },
+                { "maximumOutboundPacketLossRateInPercentage", n => { MaximumOutboundPacketLossRateInPercentage = n.GetDoubleValue(); } },
+                { "maximumOutboundRoundTripDelay", n => { MaximumOutboundRoundTripDelay = n.GetTimeSpanValue(); } },
+                { "mediaDuration", n => { MediaDuration = n.GetTimeSpanValue(); } },
+                { "networkLinkSpeedInBytes", n => { NetworkLinkSpeedInBytes = n.GetLongValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "outboundPackets", n => { OutboundPackets = n.GetLongValue(); } },
+                { "remoteIPAddress", n => { RemoteIPAddress = n.GetStringValue(); } },
+                { "remotePort", n => { RemotePort = n.GetIntValue(); } },
             };
         }
         /// <summary>

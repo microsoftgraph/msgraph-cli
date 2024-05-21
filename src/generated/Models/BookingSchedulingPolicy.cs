@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// This type represents the set of policies that dictate how bookings can be created in a Booking Calendar.
     /// </summary>
-    public class BookingSchedulingPolicy : IAdditionalDataHolder, IParsable 
+    public class BookingSchedulingPolicy : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -55,12 +56,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"allowStaffSelection", n => { AllowStaffSelection = n.GetBoolValue(); } },
-                {"maximumAdvance", n => { MaximumAdvance = n.GetTimeSpanValue(); } },
-                {"minimumLeadTime", n => { MinimumLeadTime = n.GetTimeSpanValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"sendConfirmationsToOwner", n => { SendConfirmationsToOwner = n.GetBoolValue(); } },
-                {"timeSlotInterval", n => { TimeSlotInterval = n.GetTimeSpanValue(); } },
+                { "allowStaffSelection", n => { AllowStaffSelection = n.GetBoolValue(); } },
+                { "maximumAdvance", n => { MaximumAdvance = n.GetTimeSpanValue(); } },
+                { "minimumLeadTime", n => { MinimumLeadTime = n.GetTimeSpanValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "sendConfirmationsToOwner", n => { SendConfirmationsToOwner = n.GetBoolValue(); } },
+                { "timeSlotInterval", n => { TimeSlotInterval = n.GetTimeSpanValue(); } },
             };
         }
         /// <summary>

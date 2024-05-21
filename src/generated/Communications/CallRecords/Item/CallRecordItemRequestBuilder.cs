@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.CallRecords.Item {
+namespace ApiSdk.Communications.CallRecords.Item
+{
     /// <summary>
     /// Provides operations to manage the callRecords property of the microsoft.graph.cloudCommunications entity.
     /// </summary>
-    public class CallRecordItemRequestBuilder : BaseCliRequestBuilder 
+    public class CallRecordItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property callRecords for communications

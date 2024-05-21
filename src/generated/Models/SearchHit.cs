@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SearchHit : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SearchHit : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -86,14 +89,14 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"contentSource", n => { ContentSource = n.GetStringValue(); } },
-                {"hitId", n => { HitId = n.GetStringValue(); } },
-                {"isCollapsed", n => { IsCollapsed = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"rank", n => { Rank = n.GetIntValue(); } },
-                {"resource", n => { Resource = n.GetObjectValue<Entity>(Entity.CreateFromDiscriminatorValue); } },
-                {"resultTemplateId", n => { ResultTemplateId = n.GetStringValue(); } },
-                {"summary", n => { Summary = n.GetStringValue(); } },
+                { "contentSource", n => { ContentSource = n.GetStringValue(); } },
+                { "hitId", n => { HitId = n.GetStringValue(); } },
+                { "isCollapsed", n => { IsCollapsed = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "rank", n => { Rank = n.GetIntValue(); } },
+                { "resource", n => { Resource = n.GetObjectValue<Entity>(Entity.CreateFromDiscriminatorValue); } },
+                { "resultTemplateId", n => { ResultTemplateId = n.GetStringValue(); } },
+                { "summary", n => { Summary = n.GetStringValue(); } },
             };
         }
         /// <summary>

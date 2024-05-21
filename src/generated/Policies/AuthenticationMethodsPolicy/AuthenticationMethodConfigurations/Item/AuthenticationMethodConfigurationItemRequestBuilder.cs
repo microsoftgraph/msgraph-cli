@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.Item {
+namespace ApiSdk.Policies.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.Item
+{
     /// <summary>
     /// Provides operations to manage the authenticationMethodConfigurations property of the microsoft.graph.authenticationMethodsPolicy entity.
     /// </summary>
-    public class AuthenticationMethodConfigurationItemRequestBuilder : BaseCliRequestBuilder 
+    public class AuthenticationMethodConfigurationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property authenticationMethodConfigurations for policies

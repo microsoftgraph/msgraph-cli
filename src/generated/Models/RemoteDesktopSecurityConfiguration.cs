@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class RemoteDesktopSecurityConfiguration : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class RemoteDesktopSecurityConfiguration : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Determines if Microsoft Entra ID RDS authentication protocol for RDP is enabled.</summary>
         public bool? IsRemoteDesktopProtocolEnabled { get; set; }
@@ -35,8 +38,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"isRemoteDesktopProtocolEnabled", n => { IsRemoteDesktopProtocolEnabled = n.GetBoolValue(); } },
-                {"targetDeviceGroups", n => { TargetDeviceGroups = n.GetCollectionOfObjectValues<TargetDeviceGroup>(TargetDeviceGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "isRemoteDesktopProtocolEnabled", n => { IsRemoteDesktopProtocolEnabled = n.GetBoolValue(); } },
+                { "targetDeviceGroups", n => { TargetDeviceGroups = n.GetCollectionOfObjectValues<TargetDeviceGroup>(TargetDeviceGroup.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

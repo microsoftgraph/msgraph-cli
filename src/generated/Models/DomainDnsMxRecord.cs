@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class DomainDnsMxRecord : DomainDnsRecord, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class DomainDnsMxRecord : DomainDnsRecord, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Value used when configuring the answer/destination/value of the MX record at the DNS host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -35,8 +38,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"mailExchange", n => { MailExchange = n.GetStringValue(); } },
-                {"preference", n => { Preference = n.GetIntValue(); } },
+                { "mailExchange", n => { MailExchange = n.GetStringValue(); } },
+                { "preference", n => { Preference = n.GetIntValue(); } },
             };
         }
         /// <summary>

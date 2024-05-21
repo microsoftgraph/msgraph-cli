@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.AddPassword {
+namespace ApiSdk.Applications.Item.AddPassword
+{
     /// <summary>
     /// Provides operations to call the addPassword method.
     /// </summary>
-    public class AddPasswordRequestBuilder : BaseCliRequestBuilder 
+    public class AddPasswordRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Adds a strong password or secret to an application. You can also add passwords while creating the application.

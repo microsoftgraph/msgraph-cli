@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites.Item {
+namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites.Item
+{
     /// <summary>
     /// Provides operations to manage the sites property of the microsoft.graph.browserSiteList entity.
     /// </summary>
-    public class BrowserSiteItemRequestBuilder : BaseCliRequestBuilder 
+    public class BrowserSiteItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a browserSite from a browserSiteList.

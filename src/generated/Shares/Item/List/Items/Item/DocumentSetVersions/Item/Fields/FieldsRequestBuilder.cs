@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.Item.Fields {
+namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.Item.Fields
+{
     /// <summary>
     /// Provides operations to manage the fields property of the microsoft.graph.listItemVersion entity.
     /// </summary>
-    public class FieldsRequestBuilder : BaseCliRequestBuilder 
+    public class FieldsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property fields for shares

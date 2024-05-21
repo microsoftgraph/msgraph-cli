@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleInstances.Item.Principal {
+namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleInstances.Item.Principal
+{
     /// <summary>
     /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleScheduleInstanceBase entity.
     /// </summary>
-    public class PrincipalRequestBuilder : BaseCliRequestBuilder 
+    public class PrincipalRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The principal that&apos;s getting a role assignment or role eligibility through the request.

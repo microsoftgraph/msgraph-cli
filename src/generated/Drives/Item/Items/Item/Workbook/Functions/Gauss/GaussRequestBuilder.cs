@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gauss {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gauss
+{
     /// <summary>
     /// Provides operations to call the gauss method.
     /// </summary>
-    public class GaussRequestBuilder : BaseCliRequestBuilder 
+    public class GaussRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action gauss

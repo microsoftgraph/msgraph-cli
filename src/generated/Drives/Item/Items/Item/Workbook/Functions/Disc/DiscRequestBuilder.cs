@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Disc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Disc
+{
     /// <summary>
     /// Provides operations to call the disc method.
     /// </summary>
-    public class DiscRequestBuilder : BaseCliRequestBuilder 
+    public class DiscRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action disc

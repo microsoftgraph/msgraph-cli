@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetSkypeForBusinessActivityUserDetailWithDate {
+namespace ApiSdk.Reports.GetSkypeForBusinessActivityUserDetailWithDate
+{
     /// <summary>
     /// Provides operations to call the getSkypeForBusinessActivityUserDetail method.
     /// </summary>
-    public class GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder : BaseCliRequestBuilder 
+    public class GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getSkypeForBusinessActivityUserDetail
+        /// Get details about Skype for Business activity by user.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSkypeForBusinessActivityUserDetail";
+            command.Description = "Get details about Skype for Business activity by user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessActivityUserDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getSkypeForBusinessActivityUserDetail
+        /// Get details about Skype for Business activity by user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

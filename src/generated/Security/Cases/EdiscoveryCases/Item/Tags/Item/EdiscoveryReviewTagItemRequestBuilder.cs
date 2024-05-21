@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item
+{
     /// <summary>
     /// Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.
     /// </summary>
-    public class EdiscoveryReviewTagItemRequestBuilder : BaseCliRequestBuilder 
+    public class EdiscoveryReviewTagItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the childTags property of the microsoft.graph.security.ediscoveryReviewTag entity.

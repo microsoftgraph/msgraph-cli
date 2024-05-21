@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.TokenLifetimePolicies.Item.AppliesTo {
+namespace ApiSdk.Policies.TokenLifetimePolicies.Item.AppliesTo
+{
     /// <summary>
     /// Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.
     /// </summary>
-    public class AppliesToRequestBuilder : BaseCliRequestBuilder 
+    public class AppliesToRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.
@@ -51,13 +52,14 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item.AppliesTo {
             return command;
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a tokenLifetimePolicy object has been applied to. The tokenLifetimePolicy can only be applied to application.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get appliesTo from policies";
+            command.Description = "Get a list of directoryObject objects that a tokenLifetimePolicy object has been applied to. The tokenLifetimePolicy can only be applied to application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0";
             var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "The unique identifier of tokenLifetimePolicy") {
             };
             tokenLifetimePolicyIdOption.IsRequired = true;
@@ -139,7 +141,9 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item.AppliesTo {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -165,7 +169,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item.AppliesTo {
         {
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a tokenLifetimePolicy object has been applied to. The tokenLifetimePolicy can only be applied to application.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -184,7 +188,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item.AppliesTo {
             return requestInfo;
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a tokenLifetimePolicy object has been applied to. The tokenLifetimePolicy can only be applied to application.
         /// </summary>
         public class AppliesToRequestBuilderGetQueryParameters 
         {

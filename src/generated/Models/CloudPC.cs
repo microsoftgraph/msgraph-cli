@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class CloudPC : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class CloudPC : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The Microsoft Entra device ID for the Cloud PC, also known as the Azure Active Directory (Azure AD) device ID, that consists of 32 characters in a GUID format. Generated on a VM joined to Microsoft Entra ID. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -119,20 +122,20 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"aadDeviceId", n => { AadDeviceId = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"gracePeriodEndDateTime", n => { GracePeriodEndDateTime = n.GetDateTimeOffsetValue(); } },
-                {"imageDisplayName", n => { ImageDisplayName = n.GetStringValue(); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"managedDeviceId", n => { ManagedDeviceId = n.GetStringValue(); } },
-                {"managedDeviceName", n => { ManagedDeviceName = n.GetStringValue(); } },
-                {"onPremisesConnectionName", n => { OnPremisesConnectionName = n.GetStringValue(); } },
-                {"provisioningPolicyId", n => { ProvisioningPolicyId = n.GetStringValue(); } },
-                {"provisioningPolicyName", n => { ProvisioningPolicyName = n.GetStringValue(); } },
-                {"provisioningType", n => { ProvisioningType = n.GetEnumValue<CloudPcProvisioningType>(); } },
-                {"servicePlanId", n => { ServicePlanId = n.GetStringValue(); } },
-                {"servicePlanName", n => { ServicePlanName = n.GetStringValue(); } },
-                {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
+                { "aadDeviceId", n => { AadDeviceId = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "gracePeriodEndDateTime", n => { GracePeriodEndDateTime = n.GetDateTimeOffsetValue(); } },
+                { "imageDisplayName", n => { ImageDisplayName = n.GetStringValue(); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "managedDeviceId", n => { ManagedDeviceId = n.GetStringValue(); } },
+                { "managedDeviceName", n => { ManagedDeviceName = n.GetStringValue(); } },
+                { "onPremisesConnectionName", n => { OnPremisesConnectionName = n.GetStringValue(); } },
+                { "provisioningPolicyId", n => { ProvisioningPolicyId = n.GetStringValue(); } },
+                { "provisioningPolicyName", n => { ProvisioningPolicyName = n.GetStringValue(); } },
+                { "provisioningType", n => { ProvisioningType = n.GetEnumValue<CloudPcProvisioningType>(); } },
+                { "servicePlanId", n => { ServicePlanId = n.GetStringValue(); } },
+                { "servicePlanName", n => { ServicePlanName = n.GetStringValue(); } },
+                { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
         }
         /// <summary>

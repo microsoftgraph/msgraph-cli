@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum {
-    public class SeriesSumPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum
+{
+    #pragma warning disable CS1591
+    public class SeriesSumPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -67,10 +70,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"coefficients", n => { Coefficients = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"m", n => { M = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"n", n => { N = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"x", n => { X = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "coefficients", n => { Coefficients = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "m", n => { M = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "n", n => { N = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "x", n => { X = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

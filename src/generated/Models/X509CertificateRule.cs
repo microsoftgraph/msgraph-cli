@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class X509CertificateRule : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class X509CertificateRule : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -17,6 +20,14 @@ namespace ApiSdk.Models {
 #else
         public string Identifier { get; set; }
 #endif
+        /// <summary>The issuerSubjectIdentifier property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? IssuerSubjectIdentifier { get; set; }
+#nullable restore
+#else
+        public string IssuerSubjectIdentifier { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -25,8 +36,18 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
+        /// <summary>The policyOidIdentifier property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PolicyOidIdentifier { get; set; }
+#nullable restore
+#else
+        public string PolicyOidIdentifier { get; set; }
+#endif
         /// <summary>The type of strong authentication mode. The possible values are: x509CertificateSingleFactor, x509CertificateMultiFactor, unknownFutureValue. Required.</summary>
         public ApiSdk.Models.X509CertificateAuthenticationMode? X509CertificateAuthenticationMode { get; set; }
+        /// <summary>The x509CertificateRequiredAffinityLevel property</summary>
+        public X509CertificateAffinityLevel? X509CertificateRequiredAffinityLevel { get; set; }
         /// <summary>The type of the X.509 certificate mode configuration rule. The possible values are: issuerSubject, policyOID, unknownFutureValue. Required.</summary>
         public ApiSdk.Models.X509CertificateRuleType? X509CertificateRuleType { get; set; }
         /// <summary>
@@ -54,10 +75,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"identifier", n => { Identifier = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"x509CertificateAuthenticationMode", n => { X509CertificateAuthenticationMode = n.GetEnumValue<X509CertificateAuthenticationMode>(); } },
-                {"x509CertificateRuleType", n => { X509CertificateRuleType = n.GetEnumValue<X509CertificateRuleType>(); } },
+                { "identifier", n => { Identifier = n.GetStringValue(); } },
+                { "issuerSubjectIdentifier", n => { IssuerSubjectIdentifier = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "policyOidIdentifier", n => { PolicyOidIdentifier = n.GetStringValue(); } },
+                { "x509CertificateAuthenticationMode", n => { X509CertificateAuthenticationMode = n.GetEnumValue<X509CertificateAuthenticationMode>(); } },
+                { "x509CertificateRequiredAffinityLevel", n => { X509CertificateRequiredAffinityLevel = n.GetEnumValue<X509CertificateAffinityLevel>(); } },
+                { "x509CertificateRuleType", n => { X509CertificateRuleType = n.GetEnumValue<X509CertificateRuleType>(); } },
             };
         }
         /// <summary>
@@ -68,8 +92,11 @@ namespace ApiSdk.Models {
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("identifier", Identifier);
+            writer.WriteStringValue("issuerSubjectIdentifier", IssuerSubjectIdentifier);
             writer.WriteStringValue("@odata.type", OdataType);
+            writer.WriteStringValue("policyOidIdentifier", PolicyOidIdentifier);
             writer.WriteEnumValue<X509CertificateAuthenticationMode>("x509CertificateAuthenticationMode", X509CertificateAuthenticationMode);
+            writer.WriteEnumValue<X509CertificateAffinityLevel>("x509CertificateRequiredAffinityLevel", X509CertificateRequiredAffinityLevel);
             writer.WriteEnumValue<X509CertificateRuleType>("x509CertificateRuleType", X509CertificateRuleType);
             writer.WriteAdditionalData(AdditionalData);
         }

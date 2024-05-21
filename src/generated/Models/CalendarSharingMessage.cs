@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class CalendarSharingMessage : Message, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class CalendarSharingMessage : Message, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The canAccept property</summary>
         public bool? CanAccept { get; set; }
@@ -58,10 +61,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"canAccept", n => { CanAccept = n.GetBoolValue(); } },
-                {"sharingMessageAction", n => { SharingMessageAction = n.GetObjectValue<CalendarSharingMessageAction>(CalendarSharingMessageAction.CreateFromDiscriminatorValue); } },
-                {"sharingMessageActions", n => { SharingMessageActions = n.GetCollectionOfObjectValues<CalendarSharingMessageAction>(CalendarSharingMessageAction.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"suggestedCalendarName", n => { SuggestedCalendarName = n.GetStringValue(); } },
+                { "canAccept", n => { CanAccept = n.GetBoolValue(); } },
+                { "sharingMessageAction", n => { SharingMessageAction = n.GetObjectValue<CalendarSharingMessageAction>(CalendarSharingMessageAction.CreateFromDiscriminatorValue); } },
+                { "sharingMessageActions", n => { SharingMessageActions = n.GetCollectionOfObjectValues<CalendarSharingMessageAction>(CalendarSharingMessageAction.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "suggestedCalendarName", n => { SuggestedCalendarName = n.GetStringValue(); } },
             };
         }
         /// <summary>

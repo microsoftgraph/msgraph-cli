@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EducationPointsOutcome : EducationOutcome, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EducationPointsOutcome : EducationOutcome, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The numeric grade the teacher has given the student for this assignment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,8 +51,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"points", n => { Points = n.GetObjectValue<EducationAssignmentPointsGrade>(EducationAssignmentPointsGrade.CreateFromDiscriminatorValue); } },
-                {"publishedPoints", n => { PublishedPoints = n.GetObjectValue<EducationAssignmentPointsGrade>(EducationAssignmentPointsGrade.CreateFromDiscriminatorValue); } },
+                { "points", n => { Points = n.GetObjectValue<EducationAssignmentPointsGrade>(EducationAssignmentPointsGrade.CreateFromDiscriminatorValue); } },
+                { "publishedPoints", n => { PublishedPoints = n.GetObjectValue<EducationAssignmentPointsGrade>(EducationAssignmentPointsGrade.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCos {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCos
+{
     /// <summary>
     /// Provides operations to call the imCos method.
     /// </summary>
-    public class ImCosRequestBuilder : BaseCliRequestBuilder 
+    public class ImCosRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imCos

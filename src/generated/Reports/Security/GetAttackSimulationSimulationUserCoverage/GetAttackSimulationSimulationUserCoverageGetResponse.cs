@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage {
-    public class GetAttackSimulationSimulationUserCoverageGetResponse : BaseCollectionPaginationCountResponse, IParsable 
+namespace ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage
+{
+    #pragma warning disable CS1591
+    public class GetAttackSimulationSimulationUserCoverageGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +37,7 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<AttackSimulationSimulationUserCoverage>(AttackSimulationSimulationUserCoverage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<AttackSimulationSimulationUserCoverage>(AttackSimulationSimulationUserCoverage.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

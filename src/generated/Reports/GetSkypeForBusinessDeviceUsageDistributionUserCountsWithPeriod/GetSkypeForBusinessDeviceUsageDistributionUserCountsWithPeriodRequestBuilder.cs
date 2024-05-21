@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriod {
+namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getSkypeForBusinessDeviceUsageDistributionUserCounts method.
     /// </summary>
-    public class GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getSkypeForBusinessDeviceUsageDistributionUserCounts
+        /// Get the number of users using unique devices in your organization. The report will show you the number of users per device including Windows, Windows phone, Android phone, iPhone, and iPad.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessdeviceusagedistributionusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSkypeForBusinessDeviceUsageDistributionUserCounts";
+            command.Description = "Get the number of users using unique devices in your organization. The report will show you the number of users per device including Windows, Windows phone, Android phone, iPhone, and iPad.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessdeviceusagedistributionusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageDistributionUserCountsWit
         {
         }
         /// <summary>
-        /// Invoke function getSkypeForBusinessDeviceUsageDistributionUserCounts
+        /// Get the number of users using unique devices in your organization. The report will show you the number of users per device including Windows, Windows phone, Android phone, iPhone, and iPad.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

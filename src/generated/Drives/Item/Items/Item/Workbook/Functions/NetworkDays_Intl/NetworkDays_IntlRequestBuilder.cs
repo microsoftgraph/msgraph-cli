@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.NetworkDays_Intl {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.NetworkDays_Intl
+{
     /// <summary>
     /// Provides operations to call the networkDays_Intl method.
     /// </summary>
-    public class NetworkDays_IntlRequestBuilder : BaseCliRequestBuilder 
+    public class NetworkDays_IntlRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action networkDays_Intl

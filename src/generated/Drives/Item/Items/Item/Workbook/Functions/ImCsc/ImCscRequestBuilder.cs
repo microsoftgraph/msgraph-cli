@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCsc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCsc
+{
     /// <summary>
     /// Provides operations to call the imCsc method.
     /// </summary>
-    public class ImCscRequestBuilder : BaseCliRequestBuilder 
+    public class ImCscRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imCsc

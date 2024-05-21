@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityApplyHold {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityApplyHold
+{
     /// <summary>
     /// Provides operations to call the applyHold method.
     /// </summary>
-    public class MicrosoftGraphSecurityApplyHoldRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityApplyHoldRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Start the process of applying hold on eDiscovery non-custodial data sources. After the operation is created, you can get the status by retrieving the Location parameter from the response headers. The location provides a URL that returns an eDiscoveryHoldOperation object.

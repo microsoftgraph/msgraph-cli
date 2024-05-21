@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TeleconferenceDeviceQuality : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TeleconferenceDeviceQuality : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -104,17 +107,17 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"callChainId", n => { CallChainId = n.GetGuidValue(); } },
-                {"cloudServiceDeploymentEnvironment", n => { CloudServiceDeploymentEnvironment = n.GetStringValue(); } },
-                {"cloudServiceDeploymentId", n => { CloudServiceDeploymentId = n.GetStringValue(); } },
-                {"cloudServiceInstanceName", n => { CloudServiceInstanceName = n.GetStringValue(); } },
-                {"cloudServiceName", n => { CloudServiceName = n.GetStringValue(); } },
-                {"deviceDescription", n => { DeviceDescription = n.GetStringValue(); } },
-                {"deviceName", n => { DeviceName = n.GetStringValue(); } },
-                {"mediaLegId", n => { MediaLegId = n.GetGuidValue(); } },
-                {"mediaQualityList", n => { MediaQualityList = n.GetCollectionOfObjectValues<TeleconferenceDeviceMediaQuality>(TeleconferenceDeviceMediaQuality.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"participantId", n => { ParticipantId = n.GetGuidValue(); } },
+                { "callChainId", n => { CallChainId = n.GetGuidValue(); } },
+                { "cloudServiceDeploymentEnvironment", n => { CloudServiceDeploymentEnvironment = n.GetStringValue(); } },
+                { "cloudServiceDeploymentId", n => { CloudServiceDeploymentId = n.GetStringValue(); } },
+                { "cloudServiceInstanceName", n => { CloudServiceInstanceName = n.GetStringValue(); } },
+                { "cloudServiceName", n => { CloudServiceName = n.GetStringValue(); } },
+                { "deviceDescription", n => { DeviceDescription = n.GetStringValue(); } },
+                { "deviceName", n => { DeviceName = n.GetStringValue(); } },
+                { "mediaLegId", n => { MediaLegId = n.GetGuidValue(); } },
+                { "mediaQualityList", n => { MediaQualityList = n.GetCollectionOfObjectValues<TeleconferenceDeviceMediaQuality>(TeleconferenceDeviceMediaQuality.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "participantId", n => { ParticipantId = n.GetGuidValue(); } },
             };
         }
         /// <summary>

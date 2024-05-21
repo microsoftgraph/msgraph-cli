@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods.Item {
+namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods.Item
+{
     /// <summary>
     /// Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.
     /// </summary>
-    public class TemporaryAccessPassAuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder 
+    public class TemporaryAccessPassAuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a users&apos;s temporaryAccessPassAuthenticationMethod object.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item.Versions.Item {
+namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item.Versions.Item
+{
     /// <summary>
     /// Provides operations to manage the versions property of the microsoft.graph.agreementFileLocalization entity.
     /// </summary>
-    public class AgreementFileVersionItemRequestBuilder : BaseCliRequestBuilder 
+    public class AgreementFileVersionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property versions for identityGovernance

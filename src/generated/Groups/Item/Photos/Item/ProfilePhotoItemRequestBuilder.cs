@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Photos.Item {
+namespace ApiSdk.Groups.Item.Photos.Item
+{
     /// <summary>
     /// Provides operations to manage the photos property of the microsoft.graph.group entity.
     /// </summary>
-    public class ProfilePhotoItemRequestBuilder : BaseCliRequestBuilder 
+    public class ProfilePhotoItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the group entity.
@@ -31,6 +32,7 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             command.Description = "Provides operations to manage the media for the group entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

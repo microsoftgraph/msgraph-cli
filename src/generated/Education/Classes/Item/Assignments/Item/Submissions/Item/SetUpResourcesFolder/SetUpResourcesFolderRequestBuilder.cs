@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SetUpResourcesFolder {
+namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SetUpResourcesFolder
+{
     /// <summary>
     /// Provides operations to call the setUpResourcesFolder method.
     /// </summary>
-    public class SetUpResourcesFolderRequestBuilder : BaseCliRequestBuilder 
+    public class SetUpResourcesFolderRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Trigger the creation of the SharePoint resource folder where all file-based resources (Word, Excel, and so on) should be uploaded for a given submission. Only teachers and students can perform this operation. Note that files must be located in this folder in order to be added as resources. Only a student in the class can determine what files to upload in a given submission-level resource folder. 

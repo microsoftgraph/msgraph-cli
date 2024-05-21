@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.AppRoleAssignments.Item {
+namespace ApiSdk.Groups.Item.AppRoleAssignments.Item
+{
     /// <summary>
     /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.group entity.
     /// </summary>
-    public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes an appRoleAssignment that a group has been granted.

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class RetentionDurationInDays : RetentionDuration, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class RetentionDurationInDays : RetentionDuration, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Specifies the time period in days for which an item with the applied retention label will be retained for.</summary>
         public int? Days { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"days", n => { Days = n.GetIntValue(); } },
+                { "days", n => { Days = n.GetIntValue(); } },
             };
         }
         /// <summary>

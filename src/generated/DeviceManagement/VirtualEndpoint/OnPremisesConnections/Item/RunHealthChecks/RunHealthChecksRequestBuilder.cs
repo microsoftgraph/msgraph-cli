@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item.RunHealthChecks {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item.RunHealthChecks
+{
     /// <summary>
     /// Provides operations to call the runHealthChecks method.
     /// </summary>
-    public class RunHealthChecksRequestBuilder : BaseCliRequestBuilder 
+    public class RunHealthChecksRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Run health checks on the cloudPcOnPremisesConnection object. It triggers a new health check for the cloudPcOnPremisesConnection (../resources/cloudpconpremisesconnection.md) object and changes the healthCheckStatus and [healthCheckStatusDetail properties when check finished.

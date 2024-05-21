@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Start {
+namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Start
+{
     /// <summary>
     /// Provides operations to call the start method.
     /// </summary>
-    public class StartRequestBuilder : BaseCliRequestBuilder 
+    public class StartRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Start an existing synchronization job. If the job is in a paused state, it continues processing changes from the point where it was paused. If the job is in quarantine, the quarantine status is cleared. Don&apos;t create scripts to call the start job continuously while it&apos;s running because that can cause the service to stop running. Use the start job only when the job is currently paused or in quarantine. 

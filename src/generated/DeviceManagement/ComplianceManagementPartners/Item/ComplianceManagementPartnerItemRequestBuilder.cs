@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
+namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item
+{
     /// <summary>
     /// Provides operations to manage the complianceManagementPartners property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class ComplianceManagementPartnerItemRequestBuilder : BaseCliRequestBuilder 
+    public class ComplianceManagementPartnerItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a complianceManagementPartner.

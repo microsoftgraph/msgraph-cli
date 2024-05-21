@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphApplication {
+namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphApplication
+{
     /// <summary>
     /// Casts the previous resource to application.
     /// </summary>
-    public class GraphApplicationRequestBuilder : BaseCliRequestBuilder 
+    public class GraphApplicationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.application

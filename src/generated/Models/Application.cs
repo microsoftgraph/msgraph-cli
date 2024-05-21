@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Application : DirectoryObject, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Application : DirectoryObject, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Defines custom behavior that a consuming service can use to call an app in specific contexts. For example, applications that can render file streams can set the addIns property for its &apos;FileHandler&apos; functionality. This lets services like Microsoft 365 call the application in the context of a document the user is working on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -137,7 +140,7 @@ namespace ApiSdk.Models {
 #else
         public List<HomeRealmDiscoveryPolicy> HomeRealmDiscoveryPolicies { get; set; }
 #endif
-        /// <summary>Also known as App ID URI, this value is set when an application is used as a resource app. The identifierUris acts as the prefix for the scopes you reference in your API&apos;s code, and it must be globally unique. You can use the default value provided, which is in the form api://&lt;application-client-id&gt;, or specify a more readable URI like https://contoso.com/api. For more information on valid identifierUris patterns and best practices, see Microsoft Entra application registration security best practices. Not nullable. Supports $filter (eq, ne, ge, le, startsWith).</summary>
+        /// <summary>Also known as App ID URI, this value is set when an application is used as a resource app. The identifierUris acts as the prefix for the scopes you reference in your API&apos;s code, and it must be globally unique. You can use the default value provided, which is in the form api://&lt;appId&gt;, or specify a more readable URI like https://contoso.com/api. For more information on valid identifierUris patterns and best practices, see Microsoft Entra application registration security best practices. Not nullable. Supports $filter (eq, ne, ge, le, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? IdentifierUris { get; set; }
@@ -370,52 +373,52 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"addIns", n => { AddIns = n.GetCollectionOfObjectValues<AddIn>(AddIn.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"api", n => { Api = n.GetObjectValue<ApiApplication>(ApiApplication.CreateFromDiscriminatorValue); } },
-                {"appId", n => { AppId = n.GetStringValue(); } },
-                {"appManagementPolicies", n => { AppManagementPolicies = n.GetCollectionOfObjectValues<AppManagementPolicy>(AppManagementPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"appRoles", n => { AppRoles = n.GetCollectionOfObjectValues<AppRole>(AppRole.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"applicationTemplateId", n => { ApplicationTemplateId = n.GetStringValue(); } },
-                {"certification", n => { Certification = n.GetObjectValue<ApiSdk.Models.Certification>(ApiSdk.Models.Certification.CreateFromDiscriminatorValue); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"createdOnBehalfOf", n => { CreatedOnBehalfOf = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
-                {"defaultRedirectUri", n => { DefaultRedirectUri = n.GetStringValue(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"disabledByMicrosoftStatus", n => { DisabledByMicrosoftStatus = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"extensionProperties", n => { ExtensionProperties = n.GetCollectionOfObjectValues<ExtensionProperty>(ExtensionProperty.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"federatedIdentityCredentials", n => { FederatedIdentityCredentials = n.GetCollectionOfObjectValues<FederatedIdentityCredential>(FederatedIdentityCredential.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"groupMembershipClaims", n => { GroupMembershipClaims = n.GetStringValue(); } },
-                {"homeRealmDiscoveryPolicies", n => { HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<HomeRealmDiscoveryPolicy>(HomeRealmDiscoveryPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"identifierUris", n => { IdentifierUris = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"info", n => { Info = n.GetObjectValue<InformationalUrl>(InformationalUrl.CreateFromDiscriminatorValue); } },
-                {"isDeviceOnlyAuthSupported", n => { IsDeviceOnlyAuthSupported = n.GetBoolValue(); } },
-                {"isFallbackPublicClient", n => { IsFallbackPublicClient = n.GetBoolValue(); } },
-                {"keyCredentials", n => { KeyCredentials = n.GetCollectionOfObjectValues<KeyCredential>(KeyCredential.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"logo", n => { Logo = n.GetByteArrayValue(); } },
-                {"notes", n => { Notes = n.GetStringValue(); } },
-                {"oauth2RequirePostResponse", n => { Oauth2RequirePostResponse = n.GetBoolValue(); } },
-                {"optionalClaims", n => { OptionalClaims = n.GetObjectValue<ApiSdk.Models.OptionalClaims>(ApiSdk.Models.OptionalClaims.CreateFromDiscriminatorValue); } },
-                {"owners", n => { Owners = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"parentalControlSettings", n => { ParentalControlSettings = n.GetObjectValue<ApiSdk.Models.ParentalControlSettings>(ApiSdk.Models.ParentalControlSettings.CreateFromDiscriminatorValue); } },
-                {"passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<PasswordCredential>(PasswordCredential.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"publicClient", n => { PublicClient = n.GetObjectValue<PublicClientApplication>(PublicClientApplication.CreateFromDiscriminatorValue); } },
-                {"publisherDomain", n => { PublisherDomain = n.GetStringValue(); } },
-                {"requestSignatureVerification", n => { RequestSignatureVerification = n.GetObjectValue<ApiSdk.Models.RequestSignatureVerification>(ApiSdk.Models.RequestSignatureVerification.CreateFromDiscriminatorValue); } },
-                {"requiredResourceAccess", n => { RequiredResourceAccess = n.GetCollectionOfObjectValues<ApiSdk.Models.RequiredResourceAccess>(ApiSdk.Models.RequiredResourceAccess.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"samlMetadataUrl", n => { SamlMetadataUrl = n.GetStringValue(); } },
-                {"serviceManagementReference", n => { ServiceManagementReference = n.GetStringValue(); } },
-                {"servicePrincipalLockConfiguration", n => { ServicePrincipalLockConfiguration = n.GetObjectValue<ApiSdk.Models.ServicePrincipalLockConfiguration>(ApiSdk.Models.ServicePrincipalLockConfiguration.CreateFromDiscriminatorValue); } },
-                {"signInAudience", n => { SignInAudience = n.GetStringValue(); } },
-                {"spa", n => { Spa = n.GetObjectValue<SpaApplication>(SpaApplication.CreateFromDiscriminatorValue); } },
-                {"synchronization", n => { Synchronization = n.GetObjectValue<ApiSdk.Models.Synchronization>(ApiSdk.Models.Synchronization.CreateFromDiscriminatorValue); } },
-                {"tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"tokenEncryptionKeyId", n => { TokenEncryptionKeyId = n.GetGuidValue(); } },
-                {"tokenIssuancePolicies", n => { TokenIssuancePolicies = n.GetCollectionOfObjectValues<TokenIssuancePolicy>(TokenIssuancePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"tokenLifetimePolicies", n => { TokenLifetimePolicies = n.GetCollectionOfObjectValues<TokenLifetimePolicy>(TokenLifetimePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"uniqueName", n => { UniqueName = n.GetStringValue(); } },
-                {"verifiedPublisher", n => { VerifiedPublisher = n.GetObjectValue<ApiSdk.Models.VerifiedPublisher>(ApiSdk.Models.VerifiedPublisher.CreateFromDiscriminatorValue); } },
-                {"web", n => { Web = n.GetObjectValue<WebApplication>(WebApplication.CreateFromDiscriminatorValue); } },
+                { "addIns", n => { AddIns = n.GetCollectionOfObjectValues<AddIn>(AddIn.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "api", n => { Api = n.GetObjectValue<ApiApplication>(ApiApplication.CreateFromDiscriminatorValue); } },
+                { "appId", n => { AppId = n.GetStringValue(); } },
+                { "appManagementPolicies", n => { AppManagementPolicies = n.GetCollectionOfObjectValues<AppManagementPolicy>(AppManagementPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appRoles", n => { AppRoles = n.GetCollectionOfObjectValues<AppRole>(AppRole.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "applicationTemplateId", n => { ApplicationTemplateId = n.GetStringValue(); } },
+                { "certification", n => { Certification = n.GetObjectValue<ApiSdk.Models.Certification>(ApiSdk.Models.Certification.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "createdOnBehalfOf", n => { CreatedOnBehalfOf = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
+                { "defaultRedirectUri", n => { DefaultRedirectUri = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "disabledByMicrosoftStatus", n => { DisabledByMicrosoftStatus = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "extensionProperties", n => { ExtensionProperties = n.GetCollectionOfObjectValues<ExtensionProperty>(ExtensionProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "federatedIdentityCredentials", n => { FederatedIdentityCredentials = n.GetCollectionOfObjectValues<FederatedIdentityCredential>(FederatedIdentityCredential.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "groupMembershipClaims", n => { GroupMembershipClaims = n.GetStringValue(); } },
+                { "homeRealmDiscoveryPolicies", n => { HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<HomeRealmDiscoveryPolicy>(HomeRealmDiscoveryPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "identifierUris", n => { IdentifierUris = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "info", n => { Info = n.GetObjectValue<InformationalUrl>(InformationalUrl.CreateFromDiscriminatorValue); } },
+                { "isDeviceOnlyAuthSupported", n => { IsDeviceOnlyAuthSupported = n.GetBoolValue(); } },
+                { "isFallbackPublicClient", n => { IsFallbackPublicClient = n.GetBoolValue(); } },
+                { "keyCredentials", n => { KeyCredentials = n.GetCollectionOfObjectValues<KeyCredential>(KeyCredential.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "logo", n => { Logo = n.GetByteArrayValue(); } },
+                { "notes", n => { Notes = n.GetStringValue(); } },
+                { "oauth2RequirePostResponse", n => { Oauth2RequirePostResponse = n.GetBoolValue(); } },
+                { "optionalClaims", n => { OptionalClaims = n.GetObjectValue<ApiSdk.Models.OptionalClaims>(ApiSdk.Models.OptionalClaims.CreateFromDiscriminatorValue); } },
+                { "owners", n => { Owners = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "parentalControlSettings", n => { ParentalControlSettings = n.GetObjectValue<ApiSdk.Models.ParentalControlSettings>(ApiSdk.Models.ParentalControlSettings.CreateFromDiscriminatorValue); } },
+                { "passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<PasswordCredential>(PasswordCredential.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "publicClient", n => { PublicClient = n.GetObjectValue<PublicClientApplication>(PublicClientApplication.CreateFromDiscriminatorValue); } },
+                { "publisherDomain", n => { PublisherDomain = n.GetStringValue(); } },
+                { "requestSignatureVerification", n => { RequestSignatureVerification = n.GetObjectValue<ApiSdk.Models.RequestSignatureVerification>(ApiSdk.Models.RequestSignatureVerification.CreateFromDiscriminatorValue); } },
+                { "requiredResourceAccess", n => { RequiredResourceAccess = n.GetCollectionOfObjectValues<ApiSdk.Models.RequiredResourceAccess>(ApiSdk.Models.RequiredResourceAccess.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "samlMetadataUrl", n => { SamlMetadataUrl = n.GetStringValue(); } },
+                { "serviceManagementReference", n => { ServiceManagementReference = n.GetStringValue(); } },
+                { "servicePrincipalLockConfiguration", n => { ServicePrincipalLockConfiguration = n.GetObjectValue<ApiSdk.Models.ServicePrincipalLockConfiguration>(ApiSdk.Models.ServicePrincipalLockConfiguration.CreateFromDiscriminatorValue); } },
+                { "signInAudience", n => { SignInAudience = n.GetStringValue(); } },
+                { "spa", n => { Spa = n.GetObjectValue<SpaApplication>(SpaApplication.CreateFromDiscriminatorValue); } },
+                { "synchronization", n => { Synchronization = n.GetObjectValue<ApiSdk.Models.Synchronization>(ApiSdk.Models.Synchronization.CreateFromDiscriminatorValue); } },
+                { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "tokenEncryptionKeyId", n => { TokenEncryptionKeyId = n.GetGuidValue(); } },
+                { "tokenIssuancePolicies", n => { TokenIssuancePolicies = n.GetCollectionOfObjectValues<TokenIssuancePolicy>(TokenIssuancePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tokenLifetimePolicies", n => { TokenLifetimePolicies = n.GetCollectionOfObjectValues<TokenLifetimePolicy>(TokenLifetimePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "uniqueName", n => { UniqueName = n.GetStringValue(); } },
+                { "verifiedPublisher", n => { VerifiedPublisher = n.GetObjectValue<ApiSdk.Models.VerifiedPublisher>(ApiSdk.Models.VerifiedPublisher.CreateFromDiscriminatorValue); } },
+                { "web", n => { Web = n.GetObjectValue<WebApplication>(WebApplication.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

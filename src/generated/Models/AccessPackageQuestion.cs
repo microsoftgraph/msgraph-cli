@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AccessPackageQuestion : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AccessPackageQuestion : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Specifies whether the requestor is allowed to edit answers to questions for an assignment by posting an update to accessPackageAssignmentRequest.</summary>
         public bool? IsAnswerEditable { get; set; }
@@ -53,11 +56,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"isAnswerEditable", n => { IsAnswerEditable = n.GetBoolValue(); } },
-                {"isRequired", n => { IsRequired = n.GetBoolValue(); } },
-                {"localizations", n => { Localizations = n.GetCollectionOfObjectValues<AccessPackageLocalizedText>(AccessPackageLocalizedText.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"sequence", n => { Sequence = n.GetIntValue(); } },
-                {"text", n => { Text = n.GetStringValue(); } },
+                { "isAnswerEditable", n => { IsAnswerEditable = n.GetBoolValue(); } },
+                { "isRequired", n => { IsRequired = n.GetBoolValue(); } },
+                { "localizations", n => { Localizations = n.GetCollectionOfObjectValues<AccessPackageLocalizedText>(AccessPackageLocalizedText.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sequence", n => { Sequence = n.GetIntValue(); } },
+                { "text", n => { Text = n.GetStringValue(); } },
             };
         }
         /// <summary>

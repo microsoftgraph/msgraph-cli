@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.RequestRemoteAssistance {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.RequestRemoteAssistance
+{
     /// <summary>
     /// Provides operations to call the requestRemoteAssistance method.
     /// </summary>
-    public class RequestRemoteAssistanceRequestBuilder : BaseCliRequestBuilder 
+    public class RequestRemoteAssistanceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Request remote assistance

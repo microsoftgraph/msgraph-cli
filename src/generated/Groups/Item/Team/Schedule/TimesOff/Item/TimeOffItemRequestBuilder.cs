@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff.Item {
+namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff.Item
+{
     /// <summary>
     /// Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.
     /// </summary>
-    public class TimeOffItemRequestBuilder : BaseCliRequestBuilder 
+    public class TimeOffItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Delete a timeOff instance from a schedule.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoff-delete?view=graph-rest-1.0" />
+        /// Delete navigation property timesOff for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a timeOff instance from a schedule.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoff-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property timesOff for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -63,14 +63,13 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOff object by ID.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoff-get?view=graph-rest-1.0" />
+        /// The instances of times off in the schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a timeOff object by ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoff-get?view=graph-rest-1.0";
+            command.Description = "The instances of times off in the schedule.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -115,14 +114,13 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff.Item {
             return command;
         }
         /// <summary>
-        /// Replace an existing timeOff object. If the specified timeOff object doesn&apos;t exist, this method returns 404 Not found.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoff-put?view=graph-rest-1.0" />
+        /// Update the navigation property timesOff in groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Replace an existing timeOff object. If the specified timeOff object doesn't exist, this method returns 404 Not found.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoff-put?view=graph-rest-1.0";
+            command.Description = "Update the navigation property timesOff in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -187,7 +185,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff.Item {
         {
         }
         /// <summary>
-        /// Delete a timeOff instance from a schedule.
+        /// Delete navigation property timesOff for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -206,7 +204,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOff object by ID.
+        /// The instances of times off in the schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -225,7 +223,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Replace an existing timeOff object. If the specified timeOff object doesn&apos;t exist, this method returns 404 Not found.
+        /// Update the navigation property timesOff in groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -246,7 +244,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimesOff.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOff object by ID.
+        /// The instances of times off in the schedule.
         /// </summary>
         public class TimeOffItemRequestBuilderGetQueryParameters 
         {

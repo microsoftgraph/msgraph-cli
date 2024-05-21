@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.GetByIds {
+namespace ApiSdk.Applications.GetByIds
+{
     /// <summary>
     /// Provides operations to call the getByIds method.
     /// </summary>
-    public class GetByIdsRequestBuilder : BaseCliRequestBuilder 
+    public class GetByIdsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Return the directory objects specified in a list of IDs. Only a subset of user properties are returned by default in v1.0. Some common uses for this function are to:
@@ -65,7 +66,9 @@ namespace ApiSdk.Applications.GetByIds {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

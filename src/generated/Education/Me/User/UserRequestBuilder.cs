@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Me.User {
+namespace ApiSdk.Education.Me.User
+{
     /// <summary>
     /// Provides operations to manage the user property of the microsoft.graph.educationUser entity.
     /// </summary>
-    public class UserRequestBuilder : BaseCliRequestBuilder 
+    public class UserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Retrieve the simple directory user that corresponds to this educationUser.

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.Apply {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.Apply
+{
     /// <summary>
     /// Provides operations to call the apply method.
     /// </summary>
-    public class ApplyRequestBuilder : BaseCliRequestBuilder 
+    public class ApplyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Apply the given filter criteria on the given column.

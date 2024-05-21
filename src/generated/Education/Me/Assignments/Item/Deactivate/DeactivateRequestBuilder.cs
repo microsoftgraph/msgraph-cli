@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Me.Assignments.Item.Deactivate {
+namespace ApiSdk.Education.Me.Assignments.Item.Deactivate
+{
     /// <summary>
     /// Provides operations to call the deactivate method.
     /// </summary>
-    public class DeactivateRequestBuilder : BaseCliRequestBuilder 
+    public class DeactivateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Mark an assigned educationAssignment as inactive to signal that the assignment has no further action items for teachers and students. This action can only be performed by a teacher on assigned assignments.

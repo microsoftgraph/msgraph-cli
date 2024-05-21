@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceEnvironments.Item {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceEnvironments.Item
+{
     /// <summary>
     /// Provides operations to manage the resourceEnvironments property of the microsoft.graph.entitlementManagement entity.
     /// </summary>
-    public class AccessPackageResourceEnvironmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class AccessPackageResourceEnvironmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property resourceEnvironments for identityGovernance

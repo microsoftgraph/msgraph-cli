@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Device Compilance Policy and Configuration for a Setting State summary
     /// </summary>
-    public class SettingStateDeviceSummary : Entity, IParsable 
+    public class SettingStateDeviceSummary : Entity, IParsable
     {
         /// <summary>Device Compliant count for the setting</summary>
         public int? CompliantDeviceCount { get; set; }
@@ -58,15 +59,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"compliantDeviceCount", n => { CompliantDeviceCount = n.GetIntValue(); } },
-                {"conflictDeviceCount", n => { ConflictDeviceCount = n.GetIntValue(); } },
-                {"errorDeviceCount", n => { ErrorDeviceCount = n.GetIntValue(); } },
-                {"instancePath", n => { InstancePath = n.GetStringValue(); } },
-                {"nonCompliantDeviceCount", n => { NonCompliantDeviceCount = n.GetIntValue(); } },
-                {"notApplicableDeviceCount", n => { NotApplicableDeviceCount = n.GetIntValue(); } },
-                {"remediatedDeviceCount", n => { RemediatedDeviceCount = n.GetIntValue(); } },
-                {"settingName", n => { SettingName = n.GetStringValue(); } },
-                {"unknownDeviceCount", n => { UnknownDeviceCount = n.GetIntValue(); } },
+                { "compliantDeviceCount", n => { CompliantDeviceCount = n.GetIntValue(); } },
+                { "conflictDeviceCount", n => { ConflictDeviceCount = n.GetIntValue(); } },
+                { "errorDeviceCount", n => { ErrorDeviceCount = n.GetIntValue(); } },
+                { "instancePath", n => { InstancePath = n.GetStringValue(); } },
+                { "nonCompliantDeviceCount", n => { NonCompliantDeviceCount = n.GetIntValue(); } },
+                { "notApplicableDeviceCount", n => { NotApplicableDeviceCount = n.GetIntValue(); } },
+                { "remediatedDeviceCount", n => { RemediatedDeviceCount = n.GetIntValue(); } },
+                { "settingName", n => { SettingName = n.GetStringValue(); } },
+                { "unknownDeviceCount", n => { UnknownDeviceCount = n.GetIntValue(); } },
             };
         }
         /// <summary>

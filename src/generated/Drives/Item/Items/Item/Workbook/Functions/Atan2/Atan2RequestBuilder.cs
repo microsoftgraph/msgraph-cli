@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Atan2 {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Atan2
+{
     /// <summary>
     /// Provides operations to call the atan2 method.
     /// </summary>
-    public class Atan2RequestBuilder : BaseCliRequestBuilder 
+    public class Atan2RequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action atan2

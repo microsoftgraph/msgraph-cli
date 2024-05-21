@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Left {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Left
+{
     /// <summary>
     /// Provides operations to call the left method.
     /// </summary>
-    public class LeftRequestBuilder : BaseCliRequestBuilder 
+    public class LeftRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action left

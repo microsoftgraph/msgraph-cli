@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Datevalue {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Datevalue
+{
     /// <summary>
     /// Provides operations to call the datevalue method.
     /// </summary>
-    public class DatevalueRequestBuilder : BaseCliRequestBuilder 
+    public class DatevalueRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action datevalue

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart {
+namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart
+{
     /// <summary>
     /// Provides operations to call the restart method.
     /// </summary>
-    public class RestartRequestBuilder : BaseCliRequestBuilder 
+    public class RestartRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors.

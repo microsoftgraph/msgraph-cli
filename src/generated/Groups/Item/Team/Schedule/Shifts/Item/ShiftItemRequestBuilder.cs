@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Team.Schedule.Shifts.Item {
+namespace ApiSdk.Groups.Item.Team.Schedule.Shifts.Item
+{
     /// <summary>
     /// Provides operations to manage the shifts property of the microsoft.graph.schedule entity.
     /// </summary>
-    public class ShiftItemRequestBuilder : BaseCliRequestBuilder 
+    public class ShiftItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Delete a shift from the schedule.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/shift-delete?view=graph-rest-1.0" />
+        /// Delete navigation property shifts for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a shift from the schedule.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/shift-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property shifts for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -63,14 +63,13 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a shift object by ID.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/shift-get?view=graph-rest-1.0" />
+        /// The shifts in the schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a shift object by ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/shift-get?view=graph-rest-1.0";
+            command.Description = "The shifts in the schedule.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -115,14 +114,13 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts.Item {
             return command;
         }
         /// <summary>
-        /// Replace an existing shift. If the specified shift doesn&apos;t exist, this method returns 404 Not found. The duration of a shift can&apos;t be less than 1 minute or longer than 24 hours.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/shift-put?view=graph-rest-1.0" />
+        /// Update the navigation property shifts in groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Replace an existing shift. If the specified shift doesn't exist, this method returns 404 Not found. The duration of a shift can't be less than 1 minute or longer than 24 hours.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/shift-put?view=graph-rest-1.0";
+            command.Description = "Update the navigation property shifts in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -187,7 +185,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts.Item {
         {
         }
         /// <summary>
-        /// Delete a shift from the schedule.
+        /// Delete navigation property shifts for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -206,7 +204,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a shift object by ID.
+        /// The shifts in the schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -225,7 +223,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Replace an existing shift. If the specified shift doesn&apos;t exist, this method returns 404 Not found. The duration of a shift can&apos;t be less than 1 minute or longer than 24 hours.
+        /// Update the navigation property shifts in groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -246,7 +244,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a shift object by ID.
+        /// The shifts in the schedule.
         /// </summary>
         public class ShiftItemRequestBuilderGetQueryParameters 
         {

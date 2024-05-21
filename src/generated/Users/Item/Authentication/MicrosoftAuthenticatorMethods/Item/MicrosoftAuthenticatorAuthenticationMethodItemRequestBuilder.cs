@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
+namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item
+{
     /// <summary>
     /// Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
     /// </summary>
-    public class MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a microsoftAuthenticatorAuthenticationMethod object.

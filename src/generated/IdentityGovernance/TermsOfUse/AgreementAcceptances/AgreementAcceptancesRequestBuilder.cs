@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances {
+namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances
+{
     /// <summary>
     /// Provides operations to manage the agreementAcceptances property of the microsoft.graph.termsOfUseContainer entity.
     /// </summary>
-    public class AgreementAcceptancesRequestBuilder : BaseCliRequestBuilder 
+    public class AgreementAcceptancesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the agreementAcceptances property of the microsoft.graph.termsOfUseContainer entity.
@@ -180,7 +181,9 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

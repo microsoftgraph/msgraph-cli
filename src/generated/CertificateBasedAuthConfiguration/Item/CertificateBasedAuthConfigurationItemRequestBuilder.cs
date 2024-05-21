@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
+namespace ApiSdk.CertificateBasedAuthConfiguration.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of certificateBasedAuthConfiguration entities.
     /// </summary>
-    public class CertificateBasedAuthConfigurationItemRequestBuilder : BaseCliRequestBuilder 
+    public class CertificateBasedAuthConfigurationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from certificateBasedAuthConfiguration

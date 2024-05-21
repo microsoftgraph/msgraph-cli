@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Pkcs12Certificate : ApiAuthenticationConfigurationBase, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Pkcs12Certificate : ApiAuthenticationConfigurationBase, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The password for the pfx file. Required. If no password is used, you must still provide a value of &apos;&apos;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,8 +51,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"password", n => { Password = n.GetStringValue(); } },
-                {"pkcs12Value", n => { Pkcs12Value = n.GetStringValue(); } },
+                { "password", n => { Password = n.GetStringValue(); } },
+                { "pkcs12Value", n => { Pkcs12Value = n.GetStringValue(); } },
             };
         }
         /// <summary>

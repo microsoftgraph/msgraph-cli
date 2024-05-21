@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.FilterOperators {
+namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.FilterOperators
+{
     /// <summary>
     /// Provides operations to call the filterOperators method.
     /// </summary>
-    public class FilterOperatorsRequestBuilder : BaseCliRequestBuilder 
+    public class FilterOperatorsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function filterOperators
+        /// List all operators supported in the scoping filters.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-filteroperators?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function filterOperators";
+            command.Description = "List all operators supported in the scoping filters.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-filteroperators?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -114,7 +116,9 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.FilterOperat
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -140,7 +144,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.FilterOperat
         {
         }
         /// <summary>
-        /// Invoke function filterOperators
+        /// List all operators supported in the scoping filters.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +163,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.FilterOperat
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function filterOperators
+        /// List all operators supported in the scoping filters.
         /// </summary>
         public class FilterOperatorsRequestBuilderGetQueryParameters 
         {

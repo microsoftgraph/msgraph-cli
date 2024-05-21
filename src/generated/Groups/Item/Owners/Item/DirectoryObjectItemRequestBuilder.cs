@@ -16,11 +16,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.Groups.Item.Owners.Item {
+namespace ApiSdk.Groups.Item.Owners.Item
+{
     /// <summary>
     /// Builds and executes requests for operations under \groups\{group-id}\owners\{directoryObject-id}
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Casts the previous resource to application.

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.SnoozeReminder {
+namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.SnoozeReminder
+{
     /// <summary>
     /// Provides operations to call the snoozeReminder method.
     /// </summary>
-    public class SnoozeReminderRequestBuilder : BaseCliRequestBuilder 
+    public class SnoozeReminderRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Postpone a reminder for an event in a user calendar until a new time.

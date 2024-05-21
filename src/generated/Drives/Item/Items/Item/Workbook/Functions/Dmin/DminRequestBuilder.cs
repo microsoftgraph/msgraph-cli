@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dmin {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dmin
+{
     /// <summary>
     /// Provides operations to call the dmin method.
     /// </summary>
-    public class DminRequestBuilder : BaseCliRequestBuilder 
+    public class DminRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dmin

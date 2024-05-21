@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.Assignments.Item.GradingCategory {
+namespace ApiSdk.Education.Classes.Item.Assignments.Item.GradingCategory
+{
     /// <summary>
     /// Provides operations to manage the gradingCategory property of the microsoft.graph.educationAssignment entity.
     /// </summary>
-    public class GradingCategoryRequestBuilder : BaseCliRequestBuilder 
+    public class GradingCategoryRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// When set, enables users to weight assignments differently when computing a class average grade.

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleInstances.Item.Group {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleInstances.Item.Group
+{
     /// <summary>
     /// Provides operations to manage the group property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance entity.
     /// </summary>
-    public class GroupRequestBuilder : BaseCliRequestBuilder 
+    public class GroupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.

@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.RegisteredDevices.Item {
+namespace ApiSdk.Users.Item.RegisteredDevices.Item
+{
     /// <summary>
     /// Provides operations to manage the registeredDevices property of the microsoft.graph.user entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Devices that are registered for the user. Read-only. Nullable. Supports $expand and returns up to 100 objects.

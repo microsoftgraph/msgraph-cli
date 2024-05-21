@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AccessPackage {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AccessPackage
+{
     /// <summary>
     /// Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignment entity.
     /// </summary>
-    public class AccessPackageRequestBuilder : BaseCliRequestBuilder 
+    public class AccessPackageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.

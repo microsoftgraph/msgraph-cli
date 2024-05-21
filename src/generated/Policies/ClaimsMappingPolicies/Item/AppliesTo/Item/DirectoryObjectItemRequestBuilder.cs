@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.ClaimsMappingPolicies.Item.AppliesTo.Item {
+namespace ApiSdk.Policies.ClaimsMappingPolicies.Item.AppliesTo.Item
+{
     /// <summary>
     /// Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get appliesTo from policies

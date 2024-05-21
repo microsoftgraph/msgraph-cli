@@ -13,20 +13,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetTeamsDeviceUsageUserDetailWithDate {
+namespace ApiSdk.Reports.GetTeamsDeviceUsageUserDetailWithDate
+{
     /// <summary>
     /// Provides operations to call the getTeamsDeviceUsageUserDetail method.
     /// </summary>
-    public class GetTeamsDeviceUsageUserDetailWithDateRequestBuilder : BaseCliRequestBuilder 
+    public class GetTeamsDeviceUsageUserDetailWithDateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getTeamsDeviceUsageUserDetail
+        /// Get details about Microsoft Teams device usage by user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getTeamsDeviceUsageUserDetail";
+            command.Description = "Get details about Microsoft Teams device usage by user.";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageUserDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getTeamsDeviceUsageUserDetail
+        /// Get details about Microsoft Teams device usage by user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Represents policy deployment summary per app.
     /// </summary>
-    public class ManagedAppPolicyDeploymentSummaryPerApp : IAdditionalDataHolder, IParsable 
+    public class ManagedAppPolicyDeploymentSummaryPerApp : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -55,9 +56,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"configurationAppliedUserCount", n => { ConfigurationAppliedUserCount = n.GetIntValue(); } },
-                {"mobileAppIdentifier", n => { MobileAppIdentifier = n.GetObjectValue<ApiSdk.Models.MobileAppIdentifier>(ApiSdk.Models.MobileAppIdentifier.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "configurationAppliedUserCount", n => { ConfigurationAppliedUserCount = n.GetIntValue(); } },
+                { "mobileAppIdentifier", n => { MobileAppIdentifier = n.GetObjectValue<ApiSdk.Models.MobileAppIdentifier>(ApiSdk.Models.MobileAppIdentifier.CreateFromDiscriminatorValue); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

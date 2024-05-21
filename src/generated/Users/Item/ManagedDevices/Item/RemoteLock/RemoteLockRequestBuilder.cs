@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.RemoteLock {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.RemoteLock
+{
     /// <summary>
     /// Provides operations to call the remoteLock method.
     /// </summary>
-    public class RemoteLockRequestBuilder : BaseCliRequestBuilder 
+    public class RemoteLockRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remote lock

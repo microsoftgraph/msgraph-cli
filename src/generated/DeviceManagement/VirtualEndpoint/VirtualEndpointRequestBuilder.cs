@@ -21,11 +21,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint
+{
     /// <summary>
     /// Provides operations to manage the virtualEndpoint property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class VirtualEndpointRequestBuilder : BaseCliRequestBuilder 
+    public class VirtualEndpointRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the auditEvents property of the microsoft.graph.virtualEndpoint entity.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sum {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sum
+{
     /// <summary>
     /// Provides operations to call the sum method.
     /// </summary>
-    public class SumRequestBuilder : BaseCliRequestBuilder 
+    public class SumRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action sum

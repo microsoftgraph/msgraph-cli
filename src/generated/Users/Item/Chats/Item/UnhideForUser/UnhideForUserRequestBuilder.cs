@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Chats.Item.UnhideForUser {
+namespace ApiSdk.Users.Item.Chats.Item.UnhideForUser
+{
     /// <summary>
     /// Provides operations to call the unhideForUser method.
     /// </summary>
-    public class UnhideForUserRequestBuilder : BaseCliRequestBuilder 
+    public class UnhideForUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Unhide a chat for a user.

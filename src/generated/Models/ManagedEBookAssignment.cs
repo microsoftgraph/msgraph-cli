@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties used to assign a eBook to a group.
     /// </summary>
-    public class ManagedEBookAssignment : Entity, IParsable 
+    public class ManagedEBookAssignment : Entity, IParsable
     {
         /// <summary>Possible values for the install intent chosen by the admin.</summary>
         public ApiSdk.Models.InstallIntent? InstallIntent { get; set; }
@@ -43,8 +44,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"installIntent", n => { InstallIntent = n.GetEnumValue<InstallIntent>(); } },
-                {"target", n => { Target = n.GetObjectValue<DeviceAndAppManagementAssignmentTarget>(DeviceAndAppManagementAssignmentTarget.CreateFromDiscriminatorValue); } },
+                { "installIntent", n => { InstallIntent = n.GetEnumValue<InstallIntent>(); } },
+                { "target", n => { Target = n.GetObjectValue<DeviceAndAppManagementAssignmentTarget>(DeviceAndAppManagementAssignmentTarget.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

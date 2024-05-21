@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Item.Refresh {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Item.Refresh
+{
     /// <summary>
     /// Provides operations to call the refresh method.
     /// </summary>
-    public class RefreshRequestBuilder : BaseCliRequestBuilder 
+    public class RefreshRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Refreshes the PivotTable.

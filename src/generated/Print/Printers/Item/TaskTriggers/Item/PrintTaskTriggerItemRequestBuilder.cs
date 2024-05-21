@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
+namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item
+{
     /// <summary>
     /// Provides operations to manage the taskTriggers property of the microsoft.graph.printer entity.
     /// </summary>
-    public class PrintTaskTriggerItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrintTaskTriggerItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the definition property of the microsoft.graph.printTaskTrigger entity.

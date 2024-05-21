@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
+namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps
+{
     /// <summary>
     /// Provides operations to call the syncMicrosoftStoreForBusinessApps method.
     /// </summary>
-    public class SyncMicrosoftStoreForBusinessAppsRequestBuilder : BaseCliRequestBuilder 
+    public class SyncMicrosoftStoreForBusinessAppsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Syncs Intune account with Microsoft Store For Business

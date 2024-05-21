@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.CreatedObjects.Item {
+namespace ApiSdk.Users.Item.CreatedObjects.Item
+{
     /// <summary>
     /// Provides operations to manage the createdObjects property of the microsoft.graph.user entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Directory objects that the user created. Read-only. Nullable.

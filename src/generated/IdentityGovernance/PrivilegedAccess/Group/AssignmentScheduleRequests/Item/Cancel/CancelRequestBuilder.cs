@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.Cancel {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.Cancel
+{
     /// <summary>
     /// Provides operations to call the cancel method.
     /// </summary>
-    public class CancelRequestBuilder : BaseCliRequestBuilder 
+    public class CancelRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Cancel an access assignment request to a group whose membership and ownership are governed by PIM.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DevicesWithDeviceId {
+namespace ApiSdk.DevicesWithDeviceId
+{
     /// <summary>
     /// Provides operations to manage the collection of device entities.
     /// </summary>
-    public class DevicesWithDeviceIdRequestBuilder : BaseCliRequestBuilder 
+    public class DevicesWithDeviceIdRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a registered device.

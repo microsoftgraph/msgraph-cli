@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.RoleManagementPolicies {
+namespace ApiSdk.Policies.RoleManagementPolicies
+{
     /// <summary>
     /// Provides operations to manage the roleManagementPolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class RoleManagementPoliciesRequestBuilder : BaseCliRequestBuilder 
+    public class RoleManagementPoliciesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the roleManagementPolicies property of the microsoft.graph.policyRoot entity.
@@ -184,7 +185,9 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class DelegatedPermissionClassification : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class DelegatedPermissionClassification : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The classification value. Possible values: low, medium (preview), high (preview). Doesn&apos;t support $filter.</summary>
         public PermissionClassificationType? Classification { get; set; }
@@ -43,9 +46,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"classification", n => { Classification = n.GetEnumValue<PermissionClassificationType>(); } },
-                {"permissionId", n => { PermissionId = n.GetStringValue(); } },
-                {"permissionName", n => { PermissionName = n.GetStringValue(); } },
+                { "classification", n => { Classification = n.GetEnumValue<PermissionClassificationType>(); } },
+                { "permissionId", n => { PermissionId = n.GetStringValue(); } },
+                { "permissionName", n => { PermissionName = n.GetStringValue(); } },
             };
         }
         /// <summary>

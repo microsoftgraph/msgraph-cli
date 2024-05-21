@@ -13,20 +13,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate {
+namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate
+{
     /// <summary>
     /// Provides operations to call the getTeamsUserActivityUserDetail method.
     /// </summary>
-    public class GetTeamsUserActivityUserDetailWithDateRequestBuilder : BaseCliRequestBuilder 
+    public class GetTeamsUserActivityUserDetailWithDateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getTeamsUserActivityUserDetail
+        /// Get details about Microsoft Teams user activity by user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getTeamsUserActivityUserDetail";
+            command.Description = "Get details about Microsoft Teams user activity by user.";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getTeamsUserActivityUserDetail
+        /// Get details about Microsoft Teams user activity by user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

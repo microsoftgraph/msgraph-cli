@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TimeOffItem : ScheduleEntity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TimeOffItem : ScheduleEntity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>ID of the timeOffReason for this timeOffItem. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -33,7 +36,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"timeOffReasonId", n => { TimeOffReasonId = n.GetStringValue(); } },
+                { "timeOffReasonId", n => { TimeOffReasonId = n.GetStringValue(); } },
             };
         }
         /// <summary>

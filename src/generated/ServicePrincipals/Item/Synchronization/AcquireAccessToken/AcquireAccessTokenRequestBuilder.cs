@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.Synchronization.AcquireAccessToken {
+namespace ApiSdk.ServicePrincipals.Item.Synchronization.AcquireAccessToken
+{
     /// <summary>
     /// Provides operations to call the acquireAccessToken method.
     /// </summary>
-    public class AcquireAccessTokenRequestBuilder : BaseCliRequestBuilder 
+    public class AcquireAccessTokenRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application.

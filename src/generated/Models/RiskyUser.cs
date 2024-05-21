@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class RiskyUser : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class RiskyUser : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The activity related to user risk level change</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,15 +69,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"history", n => { History = n.GetCollectionOfObjectValues<RiskyUserHistoryItem>(RiskyUserHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"isDeleted", n => { IsDeleted = n.GetBoolValue(); } },
-                {"isProcessing", n => { IsProcessing = n.GetBoolValue(); } },
-                {"riskDetail", n => { RiskDetail = n.GetEnumValue<RiskDetail>(); } },
-                {"riskLastUpdatedDateTime", n => { RiskLastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"riskLevel", n => { RiskLevel = n.GetEnumValue<RiskLevel>(); } },
-                {"riskState", n => { RiskState = n.GetEnumValue<RiskState>(); } },
-                {"userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
-                {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
+                { "history", n => { History = n.GetCollectionOfObjectValues<RiskyUserHistoryItem>(RiskyUserHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "isDeleted", n => { IsDeleted = n.GetBoolValue(); } },
+                { "isProcessing", n => { IsProcessing = n.GetBoolValue(); } },
+                { "riskDetail", n => { RiskDetail = n.GetEnumValue<RiskDetail>(); } },
+                { "riskLastUpdatedDateTime", n => { RiskLastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "riskLevel", n => { RiskLevel = n.GetEnumValue<RiskLevel>(); } },
+                { "riskState", n => { RiskState = n.GetEnumValue<RiskState>(); } },
+                { "userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
+                { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
         }
         /// <summary>

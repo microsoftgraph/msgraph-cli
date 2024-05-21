@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Users.Item.Classes {
+namespace ApiSdk.Education.Users.Item.Classes
+{
     /// <summary>
     /// Provides operations to manage the classes property of the microsoft.graph.educationUser entity.
     /// </summary>
-    public class ClassesRequestBuilder : BaseCliRequestBuilder 
+    public class ClassesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the classes property of the microsoft.graph.educationUser entity.
@@ -51,14 +52,13 @@ namespace ApiSdk.Education.Users.Item.Classes {
             return command;
         }
         /// <summary>
-        /// Get the educationClass resources an educationUser is a member of.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-list-classes?view=graph-rest-1.0" />
+        /// Classes to which the user belongs. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the educationClass resources an educationUser is a member of.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-list-classes?view=graph-rest-1.0";
+            command.Description = "Classes to which the user belongs. Nullable.";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -140,7 +140,9 @@ namespace ApiSdk.Education.Users.Item.Classes {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -166,7 +168,7 @@ namespace ApiSdk.Education.Users.Item.Classes {
         {
         }
         /// <summary>
-        /// Get the educationClass resources an educationUser is a member of.
+        /// Classes to which the user belongs. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +187,7 @@ namespace ApiSdk.Education.Users.Item.Classes {
             return requestInfo;
         }
         /// <summary>
-        /// Get the educationClass resources an educationUser is a member of.
+        /// Classes to which the user belongs. Nullable.
         /// </summary>
         public class ClassesRequestBuilderGetQueryParameters 
         {

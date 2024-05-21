@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ExportDeviceAndAppManagementDataWithSkipWithTop {
+namespace ApiSdk.Users.Item.ExportDeviceAndAppManagementDataWithSkipWithTop
+{
     /// <summary>
     /// Provides operations to call the exportDeviceAndAppManagementData method.
     /// </summary>
-    public class ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder : BaseCliRequestBuilder 
+    public class ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function exportDeviceAndAppManagementData

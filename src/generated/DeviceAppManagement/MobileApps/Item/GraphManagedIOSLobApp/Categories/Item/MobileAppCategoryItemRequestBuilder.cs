@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedIOSLobApp.Categories.Item {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedIOSLobApp.Categories.Item
+{
     /// <summary>
     /// Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
     /// </summary>
-    public class MobileAppCategoryItemRequestBuilder : BaseCliRequestBuilder 
+    public class MobileAppCategoryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The list of categories for this app.

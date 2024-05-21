@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.CallRecords {
-    public class DirectRoutingLogRow : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models.CallRecords
+{
+    #pragma warning disable CS1591
+    public class DirectRoutingLogRow : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -156,28 +159,28 @@ namespace ApiSdk.Models.CallRecords {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"callEndSubReason", n => { CallEndSubReason = n.GetIntValue(); } },
-                {"callType", n => { CallType = n.GetStringValue(); } },
-                {"calleeNumber", n => { CalleeNumber = n.GetStringValue(); } },
-                {"callerNumber", n => { CallerNumber = n.GetStringValue(); } },
-                {"correlationId", n => { CorrelationId = n.GetStringValue(); } },
-                {"duration", n => { Duration = n.GetIntValue(); } },
-                {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
-                {"failureDateTime", n => { FailureDateTime = n.GetDateTimeOffsetValue(); } },
-                {"finalSipCode", n => { FinalSipCode = n.GetIntValue(); } },
-                {"finalSipCodePhrase", n => { FinalSipCodePhrase = n.GetStringValue(); } },
-                {"id", n => { Id = n.GetStringValue(); } },
-                {"inviteDateTime", n => { InviteDateTime = n.GetDateTimeOffsetValue(); } },
-                {"mediaBypassEnabled", n => { MediaBypassEnabled = n.GetBoolValue(); } },
-                {"mediaPathLocation", n => { MediaPathLocation = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"signalingLocation", n => { SignalingLocation = n.GetStringValue(); } },
-                {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
-                {"successfulCall", n => { SuccessfulCall = n.GetBoolValue(); } },
-                {"trunkFullyQualifiedDomainName", n => { TrunkFullyQualifiedDomainName = n.GetStringValue(); } },
-                {"userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
-                {"userId", n => { UserId = n.GetStringValue(); } },
-                {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
+                { "callEndSubReason", n => { CallEndSubReason = n.GetIntValue(); } },
+                { "callType", n => { CallType = n.GetStringValue(); } },
+                { "calleeNumber", n => { CalleeNumber = n.GetStringValue(); } },
+                { "callerNumber", n => { CallerNumber = n.GetStringValue(); } },
+                { "correlationId", n => { CorrelationId = n.GetStringValue(); } },
+                { "duration", n => { Duration = n.GetIntValue(); } },
+                { "endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
+                { "failureDateTime", n => { FailureDateTime = n.GetDateTimeOffsetValue(); } },
+                { "finalSipCode", n => { FinalSipCode = n.GetIntValue(); } },
+                { "finalSipCodePhrase", n => { FinalSipCodePhrase = n.GetStringValue(); } },
+                { "id", n => { Id = n.GetStringValue(); } },
+                { "inviteDateTime", n => { InviteDateTime = n.GetDateTimeOffsetValue(); } },
+                { "mediaBypassEnabled", n => { MediaBypassEnabled = n.GetBoolValue(); } },
+                { "mediaPathLocation", n => { MediaPathLocation = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "signalingLocation", n => { SignalingLocation = n.GetStringValue(); } },
+                { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
+                { "successfulCall", n => { SuccessfulCall = n.GetBoolValue(); } },
+                { "trunkFullyQualifiedDomainName", n => { TrunkFullyQualifiedDomainName = n.GetStringValue(); } },
+                { "userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
+                { "userId", n => { UserId = n.GetStringValue(); } },
+                { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
         }
         /// <summary>

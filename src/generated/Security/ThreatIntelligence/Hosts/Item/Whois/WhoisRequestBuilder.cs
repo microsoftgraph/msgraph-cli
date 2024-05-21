@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Whois {
+namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Whois
+{
     /// <summary>
     /// Provides operations to manage the whois property of the microsoft.graph.security.host entity.
     /// </summary>
-    public class WhoisRequestBuilder : BaseCliRequestBuilder 
+    public class WhoisRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the specified whoisRecord resource.  Specify the desired whoisRecord in one of the following two ways:- Identify a host and get its current whoisRecord. - Specify an id value to get the corresponding whoisRecord.

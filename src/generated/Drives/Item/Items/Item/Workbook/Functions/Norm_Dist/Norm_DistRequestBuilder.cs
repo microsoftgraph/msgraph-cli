@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Norm_Dist {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Norm_Dist
+{
     /// <summary>
     /// Provides operations to call the norm_Dist method.
     /// </summary>
-    public class Norm_DistRequestBuilder : BaseCliRequestBuilder 
+    public class Norm_DistRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action norm_Dist

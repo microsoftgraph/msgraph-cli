@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item {
+namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the activityBasedTimeoutPolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class ActivityBasedTimeoutPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class ActivityBasedTimeoutPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.

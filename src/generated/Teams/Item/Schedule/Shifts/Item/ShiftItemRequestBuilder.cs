@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
+namespace ApiSdk.Teams.Item.Schedule.Shifts.Item
+{
     /// <summary>
     /// Provides operations to manage the shifts property of the microsoft.graph.schedule entity.
     /// </summary>
-    public class ShiftItemRequestBuilder : BaseCliRequestBuilder 
+    public class ShiftItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a shift from the schedule.

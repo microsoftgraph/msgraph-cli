@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Right {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Right
+{
     /// <summary>
     /// Provides operations to call the right method.
     /// </summary>
-    public class RightRequestBuilder : BaseCliRequestBuilder 
+    public class RightRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action right

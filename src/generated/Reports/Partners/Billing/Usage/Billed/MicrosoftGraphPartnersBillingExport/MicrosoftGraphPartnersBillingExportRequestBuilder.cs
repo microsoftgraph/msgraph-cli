@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.Partners.Billing.Usage.Billed.MicrosoftGraphPartnersBillingExport {
+namespace ApiSdk.Reports.Partners.Billing.Usage.Billed.MicrosoftGraphPartnersBillingExport
+{
     /// <summary>
     /// Provides operations to call the export method.
     /// </summary>
-    public class MicrosoftGraphPartnersBillingExportRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphPartnersBillingExportRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Export the billed Azure usage data.

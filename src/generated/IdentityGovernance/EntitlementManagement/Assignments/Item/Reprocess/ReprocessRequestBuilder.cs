@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Reprocess {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Reprocess
+{
     /// <summary>
     /// Provides operations to call the reprocess method.
     /// </summary>
-    public class ReprocessRequestBuilder : BaseCliRequestBuilder 
+    public class ReprocessRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// In Microsoft Entra entitlement management, callers can automatically reevaluate and enforce an accessPackageAssignment object of a user’s assignments for a specific access package. The state of the access package assignment must be Delivered for the administrator to reprocess the user&apos;s assignment. Only admins with the Access Package Assignment Manager role, or higher, in Microsoft Entra entitlement management can perform this action.

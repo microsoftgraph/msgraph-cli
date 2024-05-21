@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.CallRecords {
-    public class DeviceInfo : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models.CallRecords
+{
+    #pragma warning disable CS1591
+    public class DeviceInfo : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -108,28 +111,28 @@ namespace ApiSdk.Models.CallRecords {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"captureDeviceDriver", n => { CaptureDeviceDriver = n.GetStringValue(); } },
-                {"captureDeviceName", n => { CaptureDeviceName = n.GetStringValue(); } },
-                {"captureNotFunctioningEventRatio", n => { CaptureNotFunctioningEventRatio = n.GetFloatValue(); } },
-                {"cpuInsufficentEventRatio", n => { CpuInsufficentEventRatio = n.GetFloatValue(); } },
-                {"deviceClippingEventRatio", n => { DeviceClippingEventRatio = n.GetFloatValue(); } },
-                {"deviceGlitchEventRatio", n => { DeviceGlitchEventRatio = n.GetFloatValue(); } },
-                {"howlingEventCount", n => { HowlingEventCount = n.GetIntValue(); } },
-                {"initialSignalLevelRootMeanSquare", n => { InitialSignalLevelRootMeanSquare = n.GetFloatValue(); } },
-                {"lowSpeechLevelEventRatio", n => { LowSpeechLevelEventRatio = n.GetFloatValue(); } },
-                {"lowSpeechToNoiseEventRatio", n => { LowSpeechToNoiseEventRatio = n.GetFloatValue(); } },
-                {"micGlitchRate", n => { MicGlitchRate = n.GetFloatValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"receivedNoiseLevel", n => { ReceivedNoiseLevel = n.GetIntValue(); } },
-                {"receivedSignalLevel", n => { ReceivedSignalLevel = n.GetIntValue(); } },
-                {"renderDeviceDriver", n => { RenderDeviceDriver = n.GetStringValue(); } },
-                {"renderDeviceName", n => { RenderDeviceName = n.GetStringValue(); } },
-                {"renderMuteEventRatio", n => { RenderMuteEventRatio = n.GetFloatValue(); } },
-                {"renderNotFunctioningEventRatio", n => { RenderNotFunctioningEventRatio = n.GetFloatValue(); } },
-                {"renderZeroVolumeEventRatio", n => { RenderZeroVolumeEventRatio = n.GetFloatValue(); } },
-                {"sentNoiseLevel", n => { SentNoiseLevel = n.GetIntValue(); } },
-                {"sentSignalLevel", n => { SentSignalLevel = n.GetIntValue(); } },
-                {"speakerGlitchRate", n => { SpeakerGlitchRate = n.GetFloatValue(); } },
+                { "captureDeviceDriver", n => { CaptureDeviceDriver = n.GetStringValue(); } },
+                { "captureDeviceName", n => { CaptureDeviceName = n.GetStringValue(); } },
+                { "captureNotFunctioningEventRatio", n => { CaptureNotFunctioningEventRatio = n.GetFloatValue(); } },
+                { "cpuInsufficentEventRatio", n => { CpuInsufficentEventRatio = n.GetFloatValue(); } },
+                { "deviceClippingEventRatio", n => { DeviceClippingEventRatio = n.GetFloatValue(); } },
+                { "deviceGlitchEventRatio", n => { DeviceGlitchEventRatio = n.GetFloatValue(); } },
+                { "howlingEventCount", n => { HowlingEventCount = n.GetIntValue(); } },
+                { "initialSignalLevelRootMeanSquare", n => { InitialSignalLevelRootMeanSquare = n.GetFloatValue(); } },
+                { "lowSpeechLevelEventRatio", n => { LowSpeechLevelEventRatio = n.GetFloatValue(); } },
+                { "lowSpeechToNoiseEventRatio", n => { LowSpeechToNoiseEventRatio = n.GetFloatValue(); } },
+                { "micGlitchRate", n => { MicGlitchRate = n.GetFloatValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "receivedNoiseLevel", n => { ReceivedNoiseLevel = n.GetIntValue(); } },
+                { "receivedSignalLevel", n => { ReceivedSignalLevel = n.GetIntValue(); } },
+                { "renderDeviceDriver", n => { RenderDeviceDriver = n.GetStringValue(); } },
+                { "renderDeviceName", n => { RenderDeviceName = n.GetStringValue(); } },
+                { "renderMuteEventRatio", n => { RenderMuteEventRatio = n.GetFloatValue(); } },
+                { "renderNotFunctioningEventRatio", n => { RenderNotFunctioningEventRatio = n.GetFloatValue(); } },
+                { "renderZeroVolumeEventRatio", n => { RenderZeroVolumeEventRatio = n.GetFloatValue(); } },
+                { "sentNoiseLevel", n => { SentNoiseLevel = n.GetIntValue(); } },
+                { "sentSignalLevel", n => { SentSignalLevel = n.GetIntValue(); } },
+                { "speakerGlitchRate", n => { SpeakerGlitchRate = n.GetFloatValue(); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImArgument {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImArgument
+{
     /// <summary>
     /// Provides operations to call the imArgument method.
     /// </summary>
-    public class ImArgumentRequestBuilder : BaseCliRequestBuilder 
+    public class ImArgumentRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imArgument

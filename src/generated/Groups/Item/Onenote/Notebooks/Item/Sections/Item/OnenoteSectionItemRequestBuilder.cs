@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
+namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item
+{
     /// <summary>
     /// Provides operations to manage the sections property of the microsoft.graph.notebook entity.
     /// </summary>
-    public class OnenoteSectionItemRequestBuilder : BaseCliRequestBuilder 
+    public class OnenoteSectionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the copyToNotebook method.

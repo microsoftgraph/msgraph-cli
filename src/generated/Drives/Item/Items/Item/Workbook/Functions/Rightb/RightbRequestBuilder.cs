@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rightb {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rightb
+{
     /// <summary>
     /// Provides operations to call the rightb method.
     /// </summary>
-    public class RightbRequestBuilder : BaseCliRequestBuilder 
+    public class RightbRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action rightb

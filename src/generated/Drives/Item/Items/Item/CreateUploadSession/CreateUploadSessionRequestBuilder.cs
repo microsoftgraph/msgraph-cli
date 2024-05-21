@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.CreateUploadSession {
+namespace ApiSdk.Drives.Item.Items.Item.CreateUploadSession
+{
     /// <summary>
     /// Provides operations to call the createUploadSession method.
     /// </summary>
-    public class CreateUploadSessionRequestBuilder : BaseCliRequestBuilder 
+    public class CreateUploadSessionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action createUploadSession

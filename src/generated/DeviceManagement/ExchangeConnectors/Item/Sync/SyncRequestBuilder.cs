@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync {
+namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync
+{
     /// <summary>
     /// Provides operations to call the sync method.
     /// </summary>
-    public class SyncRequestBuilder : BaseCliRequestBuilder 
+    public class SyncRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

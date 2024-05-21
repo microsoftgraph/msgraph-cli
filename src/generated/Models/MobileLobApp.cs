@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// An abstract base class containing properties for all mobile line of business apps.
     /// </summary>
-    public class MobileLobApp : MobileApp, IParsable 
+    public class MobileLobApp : MobileApp, IParsable
     {
         /// <summary>The internal committed content version.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -73,10 +74,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"committedContentVersion", n => { CommittedContentVersion = n.GetStringValue(); } },
-                {"contentVersions", n => { ContentVersions = n.GetCollectionOfObjectValues<MobileAppContent>(MobileAppContent.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"fileName", n => { FileName = n.GetStringValue(); } },
-                {"size", n => { Size = n.GetLongValue(); } },
+                { "committedContentVersion", n => { CommittedContentVersion = n.GetStringValue(); } },
+                { "contentVersions", n => { ContentVersions = n.GetCollectionOfObjectValues<MobileAppContent>(MobileAppContent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "fileName", n => { FileName = n.GetStringValue(); } },
+                { "size", n => { Size = n.GetLongValue(); } },
             };
         }
         /// <summary>

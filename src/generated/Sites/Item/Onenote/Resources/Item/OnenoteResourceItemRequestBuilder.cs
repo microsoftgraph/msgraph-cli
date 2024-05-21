@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Onenote.Resources.Item {
+namespace ApiSdk.Sites.Item.Onenote.Resources.Item
+{
     /// <summary>
     /// Provides operations to manage the resources property of the microsoft.graph.onenote entity.
     /// </summary>
-    public class OnenoteResourceItemRequestBuilder : BaseCliRequestBuilder 
+    public class OnenoteResourceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the site entity.

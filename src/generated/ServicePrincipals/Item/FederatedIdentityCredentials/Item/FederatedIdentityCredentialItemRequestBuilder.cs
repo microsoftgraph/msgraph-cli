@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item {
+namespace ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item
+{
     /// <summary>
     /// Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class FederatedIdentityCredentialItemRequestBuilder : BaseCliRequestBuilder 
+    public class FederatedIdentityCredentialItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property federatedIdentityCredentials for servicePrincipals

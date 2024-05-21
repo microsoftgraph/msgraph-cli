@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Decisions.Item.Insights.Item {
+namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Decisions.Item.Insights.Item
+{
     /// <summary>
     /// Provides operations to manage the insights property of the microsoft.graph.accessReviewInstanceDecisionItem entity.
     /// </summary>
-    public class GovernanceInsightItemRequestBuilder : BaseCliRequestBuilder 
+    public class GovernanceInsightItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property insights for identityGovernance

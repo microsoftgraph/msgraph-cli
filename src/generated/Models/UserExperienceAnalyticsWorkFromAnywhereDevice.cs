@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics device for work from anywhere report.
     /// </summary>
-    public class UserExperienceAnalyticsWorkFromAnywhereDevice : Entity, IParsable 
+    public class UserExperienceAnalyticsWorkFromAnywhereDevice : Entity, IParsable
     {
         /// <summary>When TRUE, indicates the intune device&apos;s autopilot profile is assigned. When FALSE, indicates it&apos;s not Assigned. Supports: $select, $OrderBy. Read-only.</summary>
         public bool? AutoPilotProfileAssigned { get; set; }
@@ -162,40 +163,40 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"autoPilotProfileAssigned", n => { AutoPilotProfileAssigned = n.GetBoolValue(); } },
-                {"autoPilotRegistered", n => { AutoPilotRegistered = n.GetBoolValue(); } },
-                {"azureAdDeviceId", n => { AzureAdDeviceId = n.GetStringValue(); } },
-                {"azureAdJoinType", n => { AzureAdJoinType = n.GetStringValue(); } },
-                {"azureAdRegistered", n => { AzureAdRegistered = n.GetBoolValue(); } },
-                {"cloudIdentityScore", n => { CloudIdentityScore = n.GetDoubleValue(); } },
-                {"cloudManagementScore", n => { CloudManagementScore = n.GetDoubleValue(); } },
-                {"cloudProvisioningScore", n => { CloudProvisioningScore = n.GetDoubleValue(); } },
-                {"compliancePolicySetToIntune", n => { CompliancePolicySetToIntune = n.GetBoolValue(); } },
-                {"deviceId", n => { DeviceId = n.GetStringValue(); } },
-                {"deviceName", n => { DeviceName = n.GetStringValue(); } },
-                {"healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
-                {"isCloudManagedGatewayEnabled", n => { IsCloudManagedGatewayEnabled = n.GetBoolValue(); } },
-                {"managedBy", n => { ManagedBy = n.GetStringValue(); } },
-                {"manufacturer", n => { Manufacturer = n.GetStringValue(); } },
-                {"model", n => { Model = n.GetStringValue(); } },
-                {"osCheckFailed", n => { OsCheckFailed = n.GetBoolValue(); } },
-                {"osDescription", n => { OsDescription = n.GetStringValue(); } },
-                {"osVersion", n => { OsVersion = n.GetStringValue(); } },
-                {"otherWorkloadsSetToIntune", n => { OtherWorkloadsSetToIntune = n.GetBoolValue(); } },
-                {"ownership", n => { Ownership = n.GetStringValue(); } },
-                {"processor64BitCheckFailed", n => { Processor64BitCheckFailed = n.GetBoolValue(); } },
-                {"processorCoreCountCheckFailed", n => { ProcessorCoreCountCheckFailed = n.GetBoolValue(); } },
-                {"processorFamilyCheckFailed", n => { ProcessorFamilyCheckFailed = n.GetBoolValue(); } },
-                {"processorSpeedCheckFailed", n => { ProcessorSpeedCheckFailed = n.GetBoolValue(); } },
-                {"ramCheckFailed", n => { RamCheckFailed = n.GetBoolValue(); } },
-                {"secureBootCheckFailed", n => { SecureBootCheckFailed = n.GetBoolValue(); } },
-                {"serialNumber", n => { SerialNumber = n.GetStringValue(); } },
-                {"storageCheckFailed", n => { StorageCheckFailed = n.GetBoolValue(); } },
-                {"tenantAttached", n => { TenantAttached = n.GetBoolValue(); } },
-                {"tpmCheckFailed", n => { TpmCheckFailed = n.GetBoolValue(); } },
-                {"upgradeEligibility", n => { UpgradeEligibility = n.GetEnumValue<OperatingSystemUpgradeEligibility>(); } },
-                {"windowsScore", n => { WindowsScore = n.GetDoubleValue(); } },
-                {"workFromAnywhereScore", n => { WorkFromAnywhereScore = n.GetDoubleValue(); } },
+                { "autoPilotProfileAssigned", n => { AutoPilotProfileAssigned = n.GetBoolValue(); } },
+                { "autoPilotRegistered", n => { AutoPilotRegistered = n.GetBoolValue(); } },
+                { "azureAdDeviceId", n => { AzureAdDeviceId = n.GetStringValue(); } },
+                { "azureAdJoinType", n => { AzureAdJoinType = n.GetStringValue(); } },
+                { "azureAdRegistered", n => { AzureAdRegistered = n.GetBoolValue(); } },
+                { "cloudIdentityScore", n => { CloudIdentityScore = n.GetDoubleValue(); } },
+                { "cloudManagementScore", n => { CloudManagementScore = n.GetDoubleValue(); } },
+                { "cloudProvisioningScore", n => { CloudProvisioningScore = n.GetDoubleValue(); } },
+                { "compliancePolicySetToIntune", n => { CompliancePolicySetToIntune = n.GetBoolValue(); } },
+                { "deviceId", n => { DeviceId = n.GetStringValue(); } },
+                { "deviceName", n => { DeviceName = n.GetStringValue(); } },
+                { "healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
+                { "isCloudManagedGatewayEnabled", n => { IsCloudManagedGatewayEnabled = n.GetBoolValue(); } },
+                { "managedBy", n => { ManagedBy = n.GetStringValue(); } },
+                { "manufacturer", n => { Manufacturer = n.GetStringValue(); } },
+                { "model", n => { Model = n.GetStringValue(); } },
+                { "osCheckFailed", n => { OsCheckFailed = n.GetBoolValue(); } },
+                { "osDescription", n => { OsDescription = n.GetStringValue(); } },
+                { "osVersion", n => { OsVersion = n.GetStringValue(); } },
+                { "otherWorkloadsSetToIntune", n => { OtherWorkloadsSetToIntune = n.GetBoolValue(); } },
+                { "ownership", n => { Ownership = n.GetStringValue(); } },
+                { "processor64BitCheckFailed", n => { Processor64BitCheckFailed = n.GetBoolValue(); } },
+                { "processorCoreCountCheckFailed", n => { ProcessorCoreCountCheckFailed = n.GetBoolValue(); } },
+                { "processorFamilyCheckFailed", n => { ProcessorFamilyCheckFailed = n.GetBoolValue(); } },
+                { "processorSpeedCheckFailed", n => { ProcessorSpeedCheckFailed = n.GetBoolValue(); } },
+                { "ramCheckFailed", n => { RamCheckFailed = n.GetBoolValue(); } },
+                { "secureBootCheckFailed", n => { SecureBootCheckFailed = n.GetBoolValue(); } },
+                { "serialNumber", n => { SerialNumber = n.GetStringValue(); } },
+                { "storageCheckFailed", n => { StorageCheckFailed = n.GetBoolValue(); } },
+                { "tenantAttached", n => { TenantAttached = n.GetBoolValue(); } },
+                { "tpmCheckFailed", n => { TpmCheckFailed = n.GetBoolValue(); } },
+                { "upgradeEligibility", n => { UpgradeEligibility = n.GetEnumValue<OperatingSystemUpgradeEligibility>(); } },
+                { "windowsScore", n => { WindowsScore = n.GetDoubleValue(); } },
+                { "workFromAnywhereScore", n => { WorkFromAnywhereScore = n.GetDoubleValue(); } },
             };
         }
         /// <summary>

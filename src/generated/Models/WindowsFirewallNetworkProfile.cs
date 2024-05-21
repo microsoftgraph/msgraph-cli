@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Windows Firewall Profile Policies.
     /// </summary>
-    public class WindowsFirewallNetworkProfile : IAdditionalDataHolder, IParsable 
+    public class WindowsFirewallNetworkProfile : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -69,19 +70,19 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"authorizedApplicationRulesFromGroupPolicyMerged", n => { AuthorizedApplicationRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
-                {"connectionSecurityRulesFromGroupPolicyMerged", n => { ConnectionSecurityRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
-                {"firewallEnabled", n => { FirewallEnabled = n.GetEnumValue<StateManagementSetting>(); } },
-                {"globalPortRulesFromGroupPolicyMerged", n => { GlobalPortRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
-                {"inboundConnectionsBlocked", n => { InboundConnectionsBlocked = n.GetBoolValue(); } },
-                {"inboundNotificationsBlocked", n => { InboundNotificationsBlocked = n.GetBoolValue(); } },
-                {"incomingTrafficBlocked", n => { IncomingTrafficBlocked = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"outboundConnectionsBlocked", n => { OutboundConnectionsBlocked = n.GetBoolValue(); } },
-                {"policyRulesFromGroupPolicyMerged", n => { PolicyRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
-                {"securedPacketExemptionAllowed", n => { SecuredPacketExemptionAllowed = n.GetBoolValue(); } },
-                {"stealthModeBlocked", n => { StealthModeBlocked = n.GetBoolValue(); } },
-                {"unicastResponsesToMulticastBroadcastsBlocked", n => { UnicastResponsesToMulticastBroadcastsBlocked = n.GetBoolValue(); } },
+                { "authorizedApplicationRulesFromGroupPolicyMerged", n => { AuthorizedApplicationRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
+                { "connectionSecurityRulesFromGroupPolicyMerged", n => { ConnectionSecurityRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
+                { "firewallEnabled", n => { FirewallEnabled = n.GetEnumValue<StateManagementSetting>(); } },
+                { "globalPortRulesFromGroupPolicyMerged", n => { GlobalPortRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
+                { "inboundConnectionsBlocked", n => { InboundConnectionsBlocked = n.GetBoolValue(); } },
+                { "inboundNotificationsBlocked", n => { InboundNotificationsBlocked = n.GetBoolValue(); } },
+                { "incomingTrafficBlocked", n => { IncomingTrafficBlocked = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "outboundConnectionsBlocked", n => { OutboundConnectionsBlocked = n.GetBoolValue(); } },
+                { "policyRulesFromGroupPolicyMerged", n => { PolicyRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
+                { "securedPacketExemptionAllowed", n => { SecuredPacketExemptionAllowed = n.GetBoolValue(); } },
+                { "stealthModeBlocked", n => { StealthModeBlocked = n.GetBoolValue(); } },
+                { "unicastResponsesToMulticastBroadcastsBlocked", n => { UnicastResponsesToMulticastBroadcastsBlocked = n.GetBoolValue(); } },
             };
         }
         /// <summary>

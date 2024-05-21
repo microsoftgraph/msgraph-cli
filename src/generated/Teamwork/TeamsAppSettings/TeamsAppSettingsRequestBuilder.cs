@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teamwork.TeamsAppSettings {
+namespace ApiSdk.Teamwork.TeamsAppSettings
+{
     /// <summary>
     /// Provides operations to manage the teamsAppSettings property of the microsoft.graph.teamwork entity.
     /// </summary>
-    public class TeamsAppSettingsRequestBuilder : BaseCliRequestBuilder 
+    public class TeamsAppSettingsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property teamsAppSettings for teamwork

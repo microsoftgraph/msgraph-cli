@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts
+{
     /// <summary>
     /// Provides operations to manage the charts property of the microsoft.graph.workbookWorksheet entity.
     /// </summary>
-    public class ChartsRequestBuilder : BaseCliRequestBuilder 
+    public class ChartsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the add method.
@@ -87,14 +88,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new Chart.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheet-post-charts?view=graph-rest-1.0" />
+        /// Create new navigation property to charts for drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to create a new Chart.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-post-charts?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to charts for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -221,14 +221,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of chart objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheet-list-charts?view=graph-rest-1.0" />
+        /// Returns collection of charts that are part of the worksheet. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of chart objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-list-charts?view=graph-rest-1.0";
+            command.Description = "Returns collection of charts that are part of the worksheet. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -322,7 +321,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -348,7 +349,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         {
         }
         /// <summary>
-        /// Retrieve a list of chart objects.
+        /// Returns collection of charts that are part of the worksheet. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -367,7 +368,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new Chart.
+        /// Create new navigation property to charts for drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -388,7 +389,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of chart objects.
+        /// Returns collection of charts that are part of the worksheet. Read-only.
         /// </summary>
         public class ChartsRequestBuilderGetQueryParameters 
         {

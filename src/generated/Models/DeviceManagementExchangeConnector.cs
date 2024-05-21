@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Entity which represents a connection to an Exchange environment.
     /// </summary>
-    public class DeviceManagementExchangeConnector : Entity, IParsable 
+    public class DeviceManagementExchangeConnector : Entity, IParsable
     {
         /// <summary>The name of the server hosting the Exchange Connector.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -82,15 +83,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"connectorServerName", n => { ConnectorServerName = n.GetStringValue(); } },
-                {"exchangeAlias", n => { ExchangeAlias = n.GetStringValue(); } },
-                {"exchangeConnectorType", n => { ExchangeConnectorType = n.GetEnumValue<DeviceManagementExchangeConnectorType>(); } },
-                {"exchangeOrganization", n => { ExchangeOrganization = n.GetStringValue(); } },
-                {"lastSyncDateTime", n => { LastSyncDateTime = n.GetDateTimeOffsetValue(); } },
-                {"primarySmtpAddress", n => { PrimarySmtpAddress = n.GetStringValue(); } },
-                {"serverName", n => { ServerName = n.GetStringValue(); } },
-                {"status", n => { Status = n.GetEnumValue<DeviceManagementExchangeConnectorStatus>(); } },
-                {"version", n => { Version = n.GetStringValue(); } },
+                { "connectorServerName", n => { ConnectorServerName = n.GetStringValue(); } },
+                { "exchangeAlias", n => { ExchangeAlias = n.GetStringValue(); } },
+                { "exchangeConnectorType", n => { ExchangeConnectorType = n.GetEnumValue<DeviceManagementExchangeConnectorType>(); } },
+                { "exchangeOrganization", n => { ExchangeOrganization = n.GetStringValue(); } },
+                { "lastSyncDateTime", n => { LastSyncDateTime = n.GetDateTimeOffsetValue(); } },
+                { "primarySmtpAddress", n => { PrimarySmtpAddress = n.GetStringValue(); } },
+                { "serverName", n => { ServerName = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<DeviceManagementExchangeConnectorStatus>(); } },
+                { "version", n => { Version = n.GetStringValue(); } },
             };
         }
         /// <summary>

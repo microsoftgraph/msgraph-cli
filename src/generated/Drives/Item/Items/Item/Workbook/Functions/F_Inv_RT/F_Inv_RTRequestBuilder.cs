@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.F_Inv_RT {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.F_Inv_RT
+{
     /// <summary>
     /// Provides operations to call the f_Inv_RT method.
     /// </summary>
-    public class F_Inv_RTRequestBuilder : BaseCliRequestBuilder 
+    public class F_Inv_RTRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action f_Inv_RT

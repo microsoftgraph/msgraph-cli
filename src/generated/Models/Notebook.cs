@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Notebook : OnenoteEntityHierarchyModel, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Notebook : OnenoteEntityHierarchyModel, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Indicates whether this is the user&apos;s default notebook. Read-only.</summary>
         public bool? IsDefault { get; set; }
@@ -78,14 +81,14 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"isDefault", n => { IsDefault = n.GetBoolValue(); } },
-                {"isShared", n => { IsShared = n.GetBoolValue(); } },
-                {"links", n => { Links = n.GetObjectValue<NotebookLinks>(NotebookLinks.CreateFromDiscriminatorValue); } },
-                {"sectionGroups", n => { SectionGroups = n.GetCollectionOfObjectValues<SectionGroup>(SectionGroup.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"sectionGroupsUrl", n => { SectionGroupsUrl = n.GetStringValue(); } },
-                {"sections", n => { Sections = n.GetCollectionOfObjectValues<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"sectionsUrl", n => { SectionsUrl = n.GetStringValue(); } },
-                {"userRole", n => { UserRole = n.GetEnumValue<OnenoteUserRole>(); } },
+                { "isDefault", n => { IsDefault = n.GetBoolValue(); } },
+                { "isShared", n => { IsShared = n.GetBoolValue(); } },
+                { "links", n => { Links = n.GetObjectValue<NotebookLinks>(NotebookLinks.CreateFromDiscriminatorValue); } },
+                { "sectionGroups", n => { SectionGroups = n.GetCollectionOfObjectValues<SectionGroup>(SectionGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sectionGroupsUrl", n => { SectionGroupsUrl = n.GetStringValue(); } },
+                { "sections", n => { Sections = n.GetCollectionOfObjectValues<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sectionsUrl", n => { SectionsUrl = n.GetStringValue(); } },
+                { "userRole", n => { UserRole = n.GetEnumValue<OnenoteUserRole>(); } },
             };
         }
         /// <summary>

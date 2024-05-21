@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels {
+namespace ApiSdk.Security.Labels
+{
     /// <summary>
     /// Provides operations to manage the labels property of the microsoft.graph.security entity.
     /// </summary>
-    public class LabelsRequestBuilder : BaseCliRequestBuilder 
+    public class LabelsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the authorities property of the microsoft.graph.security.labelsRoot entity.

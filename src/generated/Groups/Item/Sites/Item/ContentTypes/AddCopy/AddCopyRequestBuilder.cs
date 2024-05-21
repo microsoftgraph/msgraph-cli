@@ -14,21 +14,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopy {
+namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopy
+{
     /// <summary>
     /// Provides operations to call the addCopy method.
     /// </summary>
-    public class AddCopyRequestBuilder : BaseCliRequestBuilder 
+    public class AddCopyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Add a copy of a [content type][contentType] from a [site][site] to a [list][list].
+        /// Add a copy of a content type from a site to a list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-addcopy?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Add a copy of a [content type][contentType] from a [site][site] to a [list][list].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-addcopy?view=graph-rest-1.0";
+            command.Description = "Add a copy of a content type from a site to a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-addcopy?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -93,7 +94,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopy {
         {
         }
         /// <summary>
-        /// Add a copy of a [content type][contentType] from a [site][site] to a [list][list].
+        /// Add a copy of a content type from a site to a list.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

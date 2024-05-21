@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.UsedRange {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.UsedRange
+{
     /// <summary>
     /// Provides operations to call the usedRange method.
     /// </summary>
-    public class UsedRangeRequestBuilder : BaseCliRequestBuilder 
+    public class UsedRangeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function usedRange

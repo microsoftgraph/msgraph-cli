@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Triggers.RetentionEvents.Item.RetentionEventType {
+namespace ApiSdk.Security.Triggers.RetentionEvents.Item.RetentionEventType
+{
     /// <summary>
     /// Provides operations to manage the retentionEventType property of the microsoft.graph.security.retentionEvent entity.
     /// </summary>
-    public class RetentionEventTypeRequestBuilder : BaseCliRequestBuilder 
+    public class RetentionEventTypeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Specifies the event that will start the retention period for labels that use this event type when an event is created.

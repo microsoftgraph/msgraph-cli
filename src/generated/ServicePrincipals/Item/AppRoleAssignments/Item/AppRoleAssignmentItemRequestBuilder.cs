@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Item {
+namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Item
+{
     /// <summary>
     /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes an appRoleAssignment that a service principal has been granted. App roles which are assigned to service principals are also known as application permissions. Deleting an app role assignment for a service principal is equivalent to revoking the app-only permission grant.
@@ -63,13 +64,14 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Item {
             return command;
         }
         /// <summary>
-        /// App role assignment for another app or service, granted to this service principal. Supports $expand.
+        /// Read the properties and relationships of an appRoleAssignment object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/approleassignment-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "App role assignment for another app or service, granted to this service principal. Supports $expand.";
+            command.Description = "Read the properties and relationships of an appRoleAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/approleassignment-get?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -78,11 +80,6 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Item {
             };
             appRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(appRoleAssignmentIdOption);
-            var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
-                Arity = ArgumentArity.ZeroOrMore
-            };
-            consistencyLevelOption.IsRequired = false;
-            command.AddOption(consistencyLevelOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -100,7 +97,6 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Item {
             command.SetHandler(async (invocationContext) => {
                 var servicePrincipalId = invocationContext.ParseResult.GetValueForOption(servicePrincipalIdOption);
                 var appRoleAssignmentId = invocationContext.ParseResult.GetValueForOption(appRoleAssignmentIdOption);
-                var consistencyLevel = invocationContext.ParseResult.GetValueForOption(consistencyLevelOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
@@ -115,7 +111,6 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Item {
                 });
                 if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
                 if (appRoleAssignmentId is not null) requestInfo.PathParameters.Add("appRoleAssignment%2Did", appRoleAssignmentId);
-                if (consistencyLevel is not null) requestInfo.Headers.Add("ConsistencyLevel", consistencyLevel);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -218,7 +213,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// App role assignment for another app or service, granted to this service principal. Supports $expand.
+        /// Read the properties and relationships of an appRoleAssignment object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +253,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// App role assignment for another app or service, granted to this service principal. Supports $expand.
+        /// Read the properties and relationships of an appRoleAssignment object.
         /// </summary>
         public class AppRoleAssignmentItemRequestBuilderGetQueryParameters 
         {

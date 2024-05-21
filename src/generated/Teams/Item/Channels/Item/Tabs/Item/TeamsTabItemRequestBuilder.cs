@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item {
+namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item
+{
     /// <summary>
     /// Provides operations to manage the tabs property of the microsoft.graph.channel entity.
     /// </summary>
-    public class TeamsTabItemRequestBuilder : BaseCliRequestBuilder 
+    public class TeamsTabItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Removes (unpins) a tab from the specified channel within a team. 

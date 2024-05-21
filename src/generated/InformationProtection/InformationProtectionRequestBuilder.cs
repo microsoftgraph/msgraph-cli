@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.InformationProtection {
+namespace ApiSdk.InformationProtection
+{
     /// <summary>
     /// Provides operations to manage the informationProtection singleton.
     /// </summary>
-    public class InformationProtectionRequestBuilder : BaseCliRequestBuilder 
+    public class InformationProtectionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the bitlocker property of the microsoft.graph.informationProtection entity.

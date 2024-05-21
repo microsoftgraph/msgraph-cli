@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.Trainings.Item {
+namespace ApiSdk.Security.AttackSimulation.Trainings.Item
+{
     /// <summary>
     /// Provides operations to manage the trainings property of the microsoft.graph.attackSimulationRoot entity.
     /// </summary>
-    public class TrainingItemRequestBuilder : BaseCliRequestBuilder 
+    public class TrainingItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property trainings for security

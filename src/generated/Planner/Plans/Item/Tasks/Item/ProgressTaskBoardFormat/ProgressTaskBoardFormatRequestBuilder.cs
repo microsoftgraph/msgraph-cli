@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
+namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat
+{
     /// <summary>
     /// Provides operations to manage the progressTaskBoardFormat property of the microsoft.graph.plannerTask entity.
     /// </summary>
-    public class ProgressTaskBoardFormatRequestBuilder : BaseCliRequestBuilder 
+    public class ProgressTaskBoardFormatRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property progressTaskBoardFormat for planner
@@ -62,14 +63,13 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of plannerProgressTaskBoardTaskFormat object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of plannerProgressTaskBoardTaskFormat object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -122,13 +122,12 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
         }
         /// <summary>
         /// Update the navigation property progressTaskBoardFormat in planner
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property progressTaskBoardFormat in planner\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property progressTaskBoardFormat in planner";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of plannerProgressTaskBoardTaskFormat object.
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of plannerProgressTaskBoardTaskFormat object.
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
         /// </summary>
         public class ProgressTaskBoardFormatRequestBuilderGetQueryParameters 
         {

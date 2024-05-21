@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.LandingPages.Item {
+namespace ApiSdk.Security.AttackSimulation.LandingPages.Item
+{
     /// <summary>
     /// Provides operations to manage the landingPages property of the microsoft.graph.attackSimulationRoot entity.
     /// </summary>
-    public class LandingPageItemRequestBuilder : BaseCliRequestBuilder 
+    public class LandingPageItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property landingPages for security

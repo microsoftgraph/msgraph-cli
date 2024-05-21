@@ -13,20 +13,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetM365AppUserDetailWithPeriod {
+namespace ApiSdk.Reports.GetM365AppUserDetailWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getM365AppUserDetail method.
     /// </summary>
-    public class GetM365AppUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetM365AppUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getM365AppUserDetail
+        /// Get a report that provides the details about which apps and platforms users have used.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getM365AppUserDetail";
+            command.Description = "Get a report that provides the details about which apps and platforms users have used.";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetM365AppUserDetailWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getM365AppUserDetail
+        /// Get a report that provides the details about which apps and platforms users have used.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

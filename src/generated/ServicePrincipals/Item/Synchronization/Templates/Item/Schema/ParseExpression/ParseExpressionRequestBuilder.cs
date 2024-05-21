@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.ParseExpression {
+namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.ParseExpression
+{
     /// <summary>
     /// Provides operations to call the parseExpression method.
     /// </summary>
-    public class ParseExpressionRequestBuilder : BaseCliRequestBuilder 
+    public class ParseExpressionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Parse a given string expression into an attributeMappingSource object. For more information about expressions, see Writing Expressions for Attribute Mappings in Microsoft Entra ID.

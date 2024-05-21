@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Renew {
+namespace ApiSdk.Groups.Item.Renew
+{
     /// <summary>
     /// Provides operations to call the renew method.
     /// </summary>
-    public class RenewRequestBuilder : BaseCliRequestBuilder 
+    public class RenewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Renews a group&apos;s expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.

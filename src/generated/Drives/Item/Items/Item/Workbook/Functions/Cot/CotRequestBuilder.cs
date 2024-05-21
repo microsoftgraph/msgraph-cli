@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Cot {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Cot
+{
     /// <summary>
     /// Provides operations to call the cot method.
     /// </summary>
-    public class CotRequestBuilder : BaseCliRequestBuilder 
+    public class CotRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action cot

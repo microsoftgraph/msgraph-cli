@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Roman {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Roman
+{
     /// <summary>
     /// Provides operations to call the roman method.
     /// </summary>
-    public class RomanRequestBuilder : BaseCliRequestBuilder 
+    public class RomanRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action roman

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Places.Item.GraphRoomList {
+namespace ApiSdk.Places.Item.GraphRoomList
+{
     /// <summary>
     /// Casts the previous resource to roomList.
     /// </summary>
-    public class GraphRoomListRequestBuilder : BaseCliRequestBuilder 
+    public class GraphRoomListRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the item of type microsoft.graph.place as microsoft.graph.roomList

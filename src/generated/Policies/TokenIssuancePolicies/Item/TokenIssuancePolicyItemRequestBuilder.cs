@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
+namespace ApiSdk.Policies.TokenIssuancePolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class TokenIssuancePolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class TokenIssuancePolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.

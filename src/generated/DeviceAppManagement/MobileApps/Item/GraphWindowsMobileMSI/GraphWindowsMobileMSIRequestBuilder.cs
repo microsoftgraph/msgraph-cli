@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI
+{
     /// <summary>
     /// Casts the previous resource to windowsMobileMSI.
     /// </summary>
-    public class GraphWindowsMobileMSIRequestBuilder : BaseCliRequestBuilder 
+    public class GraphWindowsMobileMSIRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.

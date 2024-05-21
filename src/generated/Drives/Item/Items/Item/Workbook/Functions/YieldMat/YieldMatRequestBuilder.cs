@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YieldMat {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YieldMat
+{
     /// <summary>
     /// Provides operations to call the yieldMat method.
     /// </summary>
-    public class YieldMatRequestBuilder : BaseCliRequestBuilder 
+    public class YieldMatRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action yieldMat

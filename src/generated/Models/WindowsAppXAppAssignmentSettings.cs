@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties used when assigning a Windows AppX mobile app to a group.
     /// </summary>
-    public class WindowsAppXAppAssignmentSettings : MobileAppAssignmentSettings, IParsable 
+    public class WindowsAppXAppAssignmentSettings : MobileAppAssignmentSettings, IParsable
     {
         /// <summary>When TRUE, indicates that device execution context will be used for the AppX mobile app. When FALSE, indicates that user context will be used for the AppX mobile app. By default, this property is set to FALSE. Once this property has been set to TRUE it cannot be changed.</summary>
         public bool? UseDeviceContext { get; set; }
@@ -37,7 +38,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"useDeviceContext", n => { UseDeviceContext = n.GetBoolValue(); } },
+                { "useDeviceContext", n => { UseDeviceContext = n.GetBoolValue(); } },
             };
         }
         /// <summary>

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics hardware readiness entity contains account level information about hardware blockers for windows upgrade.
     /// </summary>
-    public class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric : Entity, IParsable 
+    public class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric : Entity, IParsable
     {
         /// <summary>The percentage of devices for which OS check has failed. Valid values 0 to 100. Supports: $select, $OrderBy. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308</summary>
         public double? OsCheckFailedPercentage { get; set; }
@@ -50,17 +51,17 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"osCheckFailedPercentage", n => { OsCheckFailedPercentage = n.GetDoubleValue(); } },
-                {"processor64BitCheckFailedPercentage", n => { Processor64BitCheckFailedPercentage = n.GetDoubleValue(); } },
-                {"processorCoreCountCheckFailedPercentage", n => { ProcessorCoreCountCheckFailedPercentage = n.GetDoubleValue(); } },
-                {"processorFamilyCheckFailedPercentage", n => { ProcessorFamilyCheckFailedPercentage = n.GetDoubleValue(); } },
-                {"processorSpeedCheckFailedPercentage", n => { ProcessorSpeedCheckFailedPercentage = n.GetDoubleValue(); } },
-                {"ramCheckFailedPercentage", n => { RamCheckFailedPercentage = n.GetDoubleValue(); } },
-                {"secureBootCheckFailedPercentage", n => { SecureBootCheckFailedPercentage = n.GetDoubleValue(); } },
-                {"storageCheckFailedPercentage", n => { StorageCheckFailedPercentage = n.GetDoubleValue(); } },
-                {"totalDeviceCount", n => { TotalDeviceCount = n.GetIntValue(); } },
-                {"tpmCheckFailedPercentage", n => { TpmCheckFailedPercentage = n.GetDoubleValue(); } },
-                {"upgradeEligibleDeviceCount", n => { UpgradeEligibleDeviceCount = n.GetIntValue(); } },
+                { "osCheckFailedPercentage", n => { OsCheckFailedPercentage = n.GetDoubleValue(); } },
+                { "processor64BitCheckFailedPercentage", n => { Processor64BitCheckFailedPercentage = n.GetDoubleValue(); } },
+                { "processorCoreCountCheckFailedPercentage", n => { ProcessorCoreCountCheckFailedPercentage = n.GetDoubleValue(); } },
+                { "processorFamilyCheckFailedPercentage", n => { ProcessorFamilyCheckFailedPercentage = n.GetDoubleValue(); } },
+                { "processorSpeedCheckFailedPercentage", n => { ProcessorSpeedCheckFailedPercentage = n.GetDoubleValue(); } },
+                { "ramCheckFailedPercentage", n => { RamCheckFailedPercentage = n.GetDoubleValue(); } },
+                { "secureBootCheckFailedPercentage", n => { SecureBootCheckFailedPercentage = n.GetDoubleValue(); } },
+                { "storageCheckFailedPercentage", n => { StorageCheckFailedPercentage = n.GetDoubleValue(); } },
+                { "totalDeviceCount", n => { TotalDeviceCount = n.GetIntValue(); } },
+                { "tpmCheckFailedPercentage", n => { TpmCheckFailedPercentage = n.GetDoubleValue(); } },
+                { "upgradeEligibleDeviceCount", n => { UpgradeEligibleDeviceCount = n.GetIntValue(); } },
             };
         }
         /// <summary>

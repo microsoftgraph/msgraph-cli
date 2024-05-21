@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Shares.Item.List.Items.Item.CreateLink {
+namespace ApiSdk.Shares.Item.List.Items.Item.CreateLink
+{
     /// <summary>
     /// Provides operations to call the createLink method.
     /// </summary>
-    public class CreateLinkRequestBuilder : BaseCliRequestBuilder 
+    public class CreateLinkRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action createLink

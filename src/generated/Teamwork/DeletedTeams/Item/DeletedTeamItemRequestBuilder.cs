@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teamwork.DeletedTeams.Item {
+namespace ApiSdk.Teamwork.DeletedTeams.Item
+{
     /// <summary>
     /// Provides operations to manage the deletedTeams property of the microsoft.graph.teamwork entity.
     /// </summary>
-    public class DeletedTeamItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeletedTeamItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the channels property of the microsoft.graph.deletedTeam entity.

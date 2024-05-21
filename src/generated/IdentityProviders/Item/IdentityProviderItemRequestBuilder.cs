@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityProviders.Item {
+namespace ApiSdk.IdentityProviders.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of identityProvider entities.
     /// </summary>
-    public class IdentityProviderItemRequestBuilder : BaseCliRequestBuilder 
+    public class IdentityProviderItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an existing identityProvider.

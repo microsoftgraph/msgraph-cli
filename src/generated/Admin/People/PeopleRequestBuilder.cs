@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.People {
+namespace ApiSdk.Admin.People
+{
     /// <summary>
     /// Provides operations to manage the people property of the microsoft.graph.admin entity.
     /// </summary>
-    public class PeopleRequestBuilder : BaseCliRequestBuilder 
+    public class PeopleRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Retrieve the properties and relationships of a peopleAdminSettings object.

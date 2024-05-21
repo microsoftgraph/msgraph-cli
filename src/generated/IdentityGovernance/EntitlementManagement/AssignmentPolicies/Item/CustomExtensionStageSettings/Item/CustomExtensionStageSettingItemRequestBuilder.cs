@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Item.CustomExtensionStageSettings.Item {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Item.CustomExtensionStageSettings.Item
+{
     /// <summary>
     /// Provides operations to manage the customExtensionStageSettings property of the microsoft.graph.accessPackageAssignmentPolicy entity.
     /// </summary>
-    public class CustomExtensionStageSettingItemRequestBuilder : BaseCliRequestBuilder 
+    public class CustomExtensionStageSettingItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the customExtension property of the microsoft.graph.customExtensionStageSetting entity.

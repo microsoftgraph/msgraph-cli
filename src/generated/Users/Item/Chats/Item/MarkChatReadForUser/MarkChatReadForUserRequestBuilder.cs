@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Chats.Item.MarkChatReadForUser {
+namespace ApiSdk.Users.Item.Chats.Item.MarkChatReadForUser
+{
     /// <summary>
     /// Provides operations to call the markChatReadForUser method.
     /// </summary>
-    public class MarkChatReadForUserRequestBuilder : BaseCliRequestBuilder 
+    public class MarkChatReadForUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Mark a chat as read for a user.

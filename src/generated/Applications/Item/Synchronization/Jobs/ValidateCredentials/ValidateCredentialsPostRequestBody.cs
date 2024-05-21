@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization.Jobs.ValidateCredentials {
-    public class ValidateCredentialsPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Applications.Item.Synchronization.Jobs.ValidateCredentials
+{
+    #pragma warning disable CS1591
+    public class ValidateCredentialsPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -61,10 +64,10 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.ValidateCredentials {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"applicationIdentifier", n => { ApplicationIdentifier = n.GetStringValue(); } },
-                {"credentials", n => { Credentials = n.GetCollectionOfObjectValues<SynchronizationSecretKeyStringValuePair>(SynchronizationSecretKeyStringValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"templateId", n => { TemplateId = n.GetStringValue(); } },
-                {"useSavedCredentials", n => { UseSavedCredentials = n.GetBoolValue(); } },
+                { "applicationIdentifier", n => { ApplicationIdentifier = n.GetStringValue(); } },
+                { "credentials", n => { Credentials = n.GetCollectionOfObjectValues<SynchronizationSecretKeyStringValuePair>(SynchronizationSecretKeyStringValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "templateId", n => { TemplateId = n.GetStringValue(); } },
+                { "useSavedCredentials", n => { UseSavedCredentials = n.GetBoolValue(); } },
             };
         }
         /// <summary>

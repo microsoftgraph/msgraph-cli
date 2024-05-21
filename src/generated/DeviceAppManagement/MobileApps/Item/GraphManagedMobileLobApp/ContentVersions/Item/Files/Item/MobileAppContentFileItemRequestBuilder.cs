@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.ContentVersions.Item.Files.Item {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.ContentVersions.Item.Files.Item
+{
     /// <summary>
     /// Provides operations to manage the files property of the microsoft.graph.mobileAppContent entity.
     /// </summary>
-    public class MobileAppContentFileItemRequestBuilder : BaseCliRequestBuilder 
+    public class MobileAppContentFileItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the commit method.

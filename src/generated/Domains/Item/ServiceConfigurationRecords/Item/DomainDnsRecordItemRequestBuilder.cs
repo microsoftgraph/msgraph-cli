@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Domains.Item.ServiceConfigurationRecords.Item {
+namespace ApiSdk.Domains.Item.ServiceConfigurationRecords.Item
+{
     /// <summary>
     /// Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.
     /// </summary>
-    public class DomainDnsRecordItemRequestBuilder : BaseCliRequestBuilder 
+    public class DomainDnsRecordItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property serviceConfigurationRecords for domains

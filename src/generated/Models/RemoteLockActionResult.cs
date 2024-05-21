@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Lock action result with a pin to unlock
     /// </summary>
-    public class RemoteLockActionResult : DeviceActionResult, IParsable 
+    public class RemoteLockActionResult : DeviceActionResult, IParsable
     {
         /// <summary>Pin to unlock the client</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -36,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"unlockPin", n => { UnlockPin = n.GetStringValue(); } },
+                { "unlockPin", n => { UnlockPin = n.GetStringValue(); } },
             };
         }
         /// <summary>

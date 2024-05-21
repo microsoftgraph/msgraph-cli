@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sinh {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sinh
+{
     /// <summary>
     /// Provides operations to call the sinh method.
     /// </summary>
-    public class SinhRequestBuilder : BaseCliRequestBuilder 
+    public class SinhRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action sinh

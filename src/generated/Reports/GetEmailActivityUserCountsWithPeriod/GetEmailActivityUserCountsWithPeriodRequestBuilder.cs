@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetEmailActivityUserCountsWithPeriod {
+namespace ApiSdk.Reports.GetEmailActivityUserCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getEmailActivityUserCounts method.
     /// </summary>
-    public class GetEmailActivityUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetEmailActivityUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getEmailActivityUserCounts
+        /// Enables you to understand trends on the number of unique users who are performing email activities like send, read, and receive.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getemailactivityusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getEmailActivityUserCounts";
+            command.Description = "Enables you to understand trends on the number of unique users who are performing email activities like send, read, and receive.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getemailactivityusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetEmailActivityUserCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getEmailActivityUserCounts
+        /// Enables you to understand trends on the number of unique users who are performing email activities like send, read, and receive.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

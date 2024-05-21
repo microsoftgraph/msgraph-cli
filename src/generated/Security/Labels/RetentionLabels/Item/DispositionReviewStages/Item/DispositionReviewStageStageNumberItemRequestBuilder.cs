@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.RetentionLabels.Item.DispositionReviewStages.Item {
+namespace ApiSdk.Security.Labels.RetentionLabels.Item.DispositionReviewStages.Item
+{
     /// <summary>
     /// Provides operations to manage the dispositionReviewStages property of the microsoft.graph.security.retentionLabel entity.
     /// </summary>
-    public class DispositionReviewStageStageNumberItemRequestBuilder : BaseCliRequestBuilder 
+    public class DispositionReviewStageStageNumberItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property dispositionReviewStages for security

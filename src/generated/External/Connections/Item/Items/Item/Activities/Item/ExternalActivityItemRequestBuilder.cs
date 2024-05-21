@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item {
+namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item
+{
     /// <summary>
     /// Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
     /// </summary>
-    public class ExternalActivityItemRequestBuilder : BaseCliRequestBuilder 
+    public class ExternalActivityItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property activities for external

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Invitations.Item {
+namespace ApiSdk.Invitations.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of invitation entities.
     /// </summary>
-    public class InvitationItemRequestBuilder : BaseCliRequestBuilder 
+    public class InvitationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from invitations

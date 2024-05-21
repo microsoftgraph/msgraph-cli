@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselJ {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselJ
+{
     /// <summary>
     /// Provides operations to call the besselJ method.
     /// </summary>
-    public class BesselJRequestBuilder : BaseCliRequestBuilder 
+    public class BesselJRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action besselJ

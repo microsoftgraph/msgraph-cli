@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.FollowedSites.Item {
+namespace ApiSdk.Users.Item.FollowedSites.Item
+{
     /// <summary>
     /// Provides operations to manage the followedSites property of the microsoft.graph.user entity.
     /// </summary>
-    public class SiteItemRequestBuilder : BaseCliRequestBuilder 
+    public class SiteItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get followedSites from users

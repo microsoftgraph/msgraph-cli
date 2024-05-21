@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetYammerActivityCountsWithPeriod {
+namespace ApiSdk.Reports.GetYammerActivityCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getYammerActivityCounts method.
     /// </summary>
-    public class GetYammerActivityCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetYammerActivityCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getYammerActivityCounts
+        /// Get the trends on the amount of Yammer activity in your organization by how many messages were posted, read, and liked.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getyammeractivitycounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getYammerActivityCounts";
+            command.Description = "Get the trends on the amount of Yammer activity in your organization by how many messages were posted, read, and liked.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getyammeractivitycounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetYammerActivityCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getYammerActivityCounts
+        /// Get the trends on the amount of Yammer activity in your organization by how many messages were posted, read, and liked.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

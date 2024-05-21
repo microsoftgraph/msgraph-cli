@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ApplicationsWithAppId {
+namespace ApiSdk.ApplicationsWithAppId
+{
     /// <summary>
     /// Provides operations to manage the collection of application entities.
     /// </summary>
-    public class ApplicationsWithAppIdRequestBuilder : BaseCliRequestBuilder 
+    public class ApplicationsWithAppIdRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.

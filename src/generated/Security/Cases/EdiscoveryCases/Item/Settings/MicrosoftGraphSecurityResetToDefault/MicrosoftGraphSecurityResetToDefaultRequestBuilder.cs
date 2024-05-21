@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.MicrosoftGraphSecurityResetToDefault {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.MicrosoftGraphSecurityResetToDefault
+{
     /// <summary>
     /// Provides operations to call the resetToDefault method.
     /// </summary>
-    public class MicrosoftGraphSecurityResetToDefaultRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityResetToDefaultRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reset a caseSettings object to the default values.

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TitleArea : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TitleArea : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -86,17 +89,17 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"alternativeText", n => { AlternativeText = n.GetStringValue(); } },
-                {"enableGradientEffect", n => { EnableGradientEffect = n.GetBoolValue(); } },
-                {"imageWebUrl", n => { ImageWebUrl = n.GetStringValue(); } },
-                {"layout", n => { Layout = n.GetEnumValue<TitleAreaLayoutType>(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"serverProcessedContent", n => { ServerProcessedContent = n.GetObjectValue<ApiSdk.Models.ServerProcessedContent>(ApiSdk.Models.ServerProcessedContent.CreateFromDiscriminatorValue); } },
-                {"showAuthor", n => { ShowAuthor = n.GetBoolValue(); } },
-                {"showPublishedDate", n => { ShowPublishedDate = n.GetBoolValue(); } },
-                {"showTextBlockAboveTitle", n => { ShowTextBlockAboveTitle = n.GetBoolValue(); } },
-                {"textAboveTitle", n => { TextAboveTitle = n.GetStringValue(); } },
-                {"textAlignment", n => { TextAlignment = n.GetEnumValue<TitleAreaTextAlignmentType>(); } },
+                { "alternativeText", n => { AlternativeText = n.GetStringValue(); } },
+                { "enableGradientEffect", n => { EnableGradientEffect = n.GetBoolValue(); } },
+                { "imageWebUrl", n => { ImageWebUrl = n.GetStringValue(); } },
+                { "layout", n => { Layout = n.GetEnumValue<TitleAreaLayoutType>(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "serverProcessedContent", n => { ServerProcessedContent = n.GetObjectValue<ApiSdk.Models.ServerProcessedContent>(ApiSdk.Models.ServerProcessedContent.CreateFromDiscriminatorValue); } },
+                { "showAuthor", n => { ShowAuthor = n.GetBoolValue(); } },
+                { "showPublishedDate", n => { ShowPublishedDate = n.GetBoolValue(); } },
+                { "showTextBlockAboveTitle", n => { ShowTextBlockAboveTitle = n.GetBoolValue(); } },
+                { "textAboveTitle", n => { TextAboveTitle = n.GetStringValue(); } },
+                { "textAlignment", n => { TextAlignment = n.GetEnumValue<TitleAreaTextAlignmentType>(); } },
             };
         }
         /// <summary>

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class PrivilegedAccessGroupEligibilitySchedule : PrivilegedAccessSchedule, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class PrivilegedAccessGroupEligibilitySchedule : PrivilegedAccessSchedule, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The identifier of the membership or ownership eligibility to the group that is governed by PIM. Required. The possible values are: owner, member. Supports $filter (eq).</summary>
         public PrivilegedAccessGroupRelationships? AccessId { get; set; }
@@ -68,12 +71,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"accessId", n => { AccessId = n.GetEnumValue<PrivilegedAccessGroupRelationships>(); } },
-                {"group", n => { Group = n.GetObjectValue<ApiSdk.Models.Group>(ApiSdk.Models.Group.CreateFromDiscriminatorValue); } },
-                {"groupId", n => { GroupId = n.GetStringValue(); } },
-                {"memberType", n => { MemberType = n.GetEnumValue<PrivilegedAccessGroupMemberType>(); } },
-                {"principal", n => { Principal = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
-                {"principalId", n => { PrincipalId = n.GetStringValue(); } },
+                { "accessId", n => { AccessId = n.GetEnumValue<PrivilegedAccessGroupRelationships>(); } },
+                { "group", n => { Group = n.GetObjectValue<ApiSdk.Models.Group>(ApiSdk.Models.Group.CreateFromDiscriminatorValue); } },
+                { "groupId", n => { GroupId = n.GetStringValue(); } },
+                { "memberType", n => { MemberType = n.GetEnumValue<PrivilegedAccessGroupMemberType>(); } },
+                { "principal", n => { Principal = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
+                { "principalId", n => { PrincipalId = n.GetStringValue(); } },
             };
         }
         /// <summary>

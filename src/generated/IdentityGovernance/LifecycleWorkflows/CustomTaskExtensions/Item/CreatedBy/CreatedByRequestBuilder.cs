@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item.CreatedBy {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item.CreatedBy
+{
     /// <summary>
     /// Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.customTaskExtension entity.
     /// </summary>
-    public class CreatedByRequestBuilder : BaseCliRequestBuilder 
+    public class CreatedByRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The unique identifier of the Microsoft Entra user that created the custom task extension.Supports $filter(eq, ne) and $expand.

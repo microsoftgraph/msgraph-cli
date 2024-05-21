@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.Group {
+namespace ApiSdk.Teams.Item.Group
+{
     /// <summary>
     /// Provides operations to manage the group property of the microsoft.graph.team entity.
     /// </summary>
-    public class GroupRequestBuilder : BaseCliRequestBuilder 
+    public class GroupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get group from teams

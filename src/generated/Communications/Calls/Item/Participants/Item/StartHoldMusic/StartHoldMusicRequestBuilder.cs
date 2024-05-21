@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
+namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic
+{
     /// <summary>
     /// Provides operations to call the startHoldMusic method.
     /// </summary>
-    public class StartHoldMusicRequestBuilder : BaseCliRequestBuilder 
+    public class StartHoldMusicRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Put a participant on hold and play music in the background.

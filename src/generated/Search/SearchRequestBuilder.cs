@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Search {
+namespace ApiSdk.Search
+{
     /// <summary>
     /// Provides operations to manage the searchEntity singleton.
     /// </summary>
-    public class SearchRequestBuilder : BaseCliRequestBuilder 
+    public class SearchRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the acronyms property of the microsoft.graph.searchEntity entity.

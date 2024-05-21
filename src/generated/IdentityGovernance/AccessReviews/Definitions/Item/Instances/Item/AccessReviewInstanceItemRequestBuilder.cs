@@ -23,11 +23,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item {
+namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item
+{
     /// <summary>
     /// Provides operations to manage the instances property of the microsoft.graph.accessReviewScheduleDefinition entity.
     /// </summary>
-    public class AccessReviewInstanceItemRequestBuilder : BaseCliRequestBuilder 
+    public class AccessReviewInstanceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the acceptRecommendations method.

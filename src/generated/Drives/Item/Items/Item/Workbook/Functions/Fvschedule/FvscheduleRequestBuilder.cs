@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fvschedule {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fvschedule
+{
     /// <summary>
     /// Provides operations to call the fvschedule method.
     /// </summary>
-    public class FvscheduleRequestBuilder : BaseCliRequestBuilder 
+    public class FvscheduleRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action fvschedule

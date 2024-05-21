@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsReport {
+namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsReport
+{
     /// <summary>
     /// Provides operations to call the getDeviceManagementIntentSettingsReport method.
     /// </summary>
-    public class GetDeviceManagementIntentSettingsReportRequestBuilder : BaseCliRequestBuilder 
+    public class GetDeviceManagementIntentSettingsReportRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

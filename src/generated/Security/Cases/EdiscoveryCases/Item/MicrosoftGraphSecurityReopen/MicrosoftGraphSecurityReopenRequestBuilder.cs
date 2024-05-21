@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityReopen {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityReopen
+{
     /// <summary>
     /// Provides operations to call the reopen method.
     /// </summary>
-    public class MicrosoftGraphSecurityReopenRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityReopenRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.

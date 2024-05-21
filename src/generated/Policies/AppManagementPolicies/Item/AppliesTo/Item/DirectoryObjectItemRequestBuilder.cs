@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.AppManagementPolicies.Item.AppliesTo.Item {
+namespace ApiSdk.Policies.AppManagementPolicies.Item.AppliesTo.Item
+{
     /// <summary>
     /// Provides operations to manage the appliesTo property of the microsoft.graph.appManagementPolicy entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Collection of applications and service principals to which the policy is applied.

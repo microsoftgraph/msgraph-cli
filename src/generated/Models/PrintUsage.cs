@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class PrintUsage : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class PrintUsage : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The blackAndWhitePageCount property</summary>
         public long? BlackAndWhitePageCount { get; set; }
@@ -54,17 +57,17 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"blackAndWhitePageCount", n => { BlackAndWhitePageCount = n.GetLongValue(); } },
-                {"colorPageCount", n => { ColorPageCount = n.GetLongValue(); } },
-                {"completedBlackAndWhiteJobCount", n => { CompletedBlackAndWhiteJobCount = n.GetLongValue(); } },
-                {"completedColorJobCount", n => { CompletedColorJobCount = n.GetLongValue(); } },
-                {"completedJobCount", n => { CompletedJobCount = n.GetLongValue(); } },
-                {"doubleSidedSheetCount", n => { DoubleSidedSheetCount = n.GetLongValue(); } },
-                {"incompleteJobCount", n => { IncompleteJobCount = n.GetLongValue(); } },
-                {"mediaSheetCount", n => { MediaSheetCount = n.GetLongValue(); } },
-                {"pageCount", n => { PageCount = n.GetLongValue(); } },
-                {"singleSidedSheetCount", n => { SingleSidedSheetCount = n.GetLongValue(); } },
-                {"usageDate", n => { UsageDate = n.GetDateValue(); } },
+                { "blackAndWhitePageCount", n => { BlackAndWhitePageCount = n.GetLongValue(); } },
+                { "colorPageCount", n => { ColorPageCount = n.GetLongValue(); } },
+                { "completedBlackAndWhiteJobCount", n => { CompletedBlackAndWhiteJobCount = n.GetLongValue(); } },
+                { "completedColorJobCount", n => { CompletedColorJobCount = n.GetLongValue(); } },
+                { "completedJobCount", n => { CompletedJobCount = n.GetLongValue(); } },
+                { "doubleSidedSheetCount", n => { DoubleSidedSheetCount = n.GetLongValue(); } },
+                { "incompleteJobCount", n => { IncompleteJobCount = n.GetLongValue(); } },
+                { "mediaSheetCount", n => { MediaSheetCount = n.GetLongValue(); } },
+                { "pageCount", n => { PageCount = n.GetLongValue(); } },
+                { "singleSidedSheetCount", n => { SingleSidedSheetCount = n.GetLongValue(); } },
+                { "usageDate", n => { UsageDate = n.GetDateValue(); } },
             };
         }
         /// <summary>

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// This topic provides descriptions of the declared methods, properties and relationships exposed by the windows81GeneralConfiguration resource.
     /// </summary>
-    public class Windows81GeneralConfiguration : DeviceConfiguration, IParsable 
+    public class Windows81GeneralConfiguration : DeviceConfiguration, IParsable
     {
         /// <summary>Indicates whether or not to Block the user from adding email accounts to the device that are not associated with a Microsoft account.</summary>
         public bool? AccountsBlockAddingNonMicrosoftAccountEmail { get; set; }
@@ -119,39 +120,39 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"accountsBlockAddingNonMicrosoftAccountEmail", n => { AccountsBlockAddingNonMicrosoftAccountEmail = n.GetBoolValue(); } },
-                {"applyOnlyToWindows81", n => { ApplyOnlyToWindows81 = n.GetBoolValue(); } },
-                {"browserBlockAutofill", n => { BrowserBlockAutofill = n.GetBoolValue(); } },
-                {"browserBlockAutomaticDetectionOfIntranetSites", n => { BrowserBlockAutomaticDetectionOfIntranetSites = n.GetBoolValue(); } },
-                {"browserBlockEnterpriseModeAccess", n => { BrowserBlockEnterpriseModeAccess = n.GetBoolValue(); } },
-                {"browserBlockJavaScript", n => { BrowserBlockJavaScript = n.GetBoolValue(); } },
-                {"browserBlockPlugins", n => { BrowserBlockPlugins = n.GetBoolValue(); } },
-                {"browserBlockPopups", n => { BrowserBlockPopups = n.GetBoolValue(); } },
-                {"browserBlockSendingDoNotTrackHeader", n => { BrowserBlockSendingDoNotTrackHeader = n.GetBoolValue(); } },
-                {"browserBlockSingleWordEntryOnIntranetSites", n => { BrowserBlockSingleWordEntryOnIntranetSites = n.GetBoolValue(); } },
-                {"browserEnterpriseModeSiteListLocation", n => { BrowserEnterpriseModeSiteListLocation = n.GetStringValue(); } },
-                {"browserInternetSecurityLevel", n => { BrowserInternetSecurityLevel = n.GetEnumValue<InternetSiteSecurityLevel>(); } },
-                {"browserIntranetSecurityLevel", n => { BrowserIntranetSecurityLevel = n.GetEnumValue<SiteSecurityLevel>(); } },
-                {"browserLoggingReportLocation", n => { BrowserLoggingReportLocation = n.GetStringValue(); } },
-                {"browserRequireFirewall", n => { BrowserRequireFirewall = n.GetBoolValue(); } },
-                {"browserRequireFraudWarning", n => { BrowserRequireFraudWarning = n.GetBoolValue(); } },
-                {"browserRequireHighSecurityForRestrictedSites", n => { BrowserRequireHighSecurityForRestrictedSites = n.GetBoolValue(); } },
-                {"browserRequireSmartScreen", n => { BrowserRequireSmartScreen = n.GetBoolValue(); } },
-                {"browserTrustedSitesSecurityLevel", n => { BrowserTrustedSitesSecurityLevel = n.GetEnumValue<SiteSecurityLevel>(); } },
-                {"cellularBlockDataRoaming", n => { CellularBlockDataRoaming = n.GetBoolValue(); } },
-                {"diagnosticsBlockDataSubmission", n => { DiagnosticsBlockDataSubmission = n.GetBoolValue(); } },
-                {"passwordBlockPicturePasswordAndPin", n => { PasswordBlockPicturePasswordAndPin = n.GetBoolValue(); } },
-                {"passwordExpirationDays", n => { PasswordExpirationDays = n.GetIntValue(); } },
-                {"passwordMinimumCharacterSetCount", n => { PasswordMinimumCharacterSetCount = n.GetIntValue(); } },
-                {"passwordMinimumLength", n => { PasswordMinimumLength = n.GetIntValue(); } },
-                {"passwordMinutesOfInactivityBeforeScreenTimeout", n => { PasswordMinutesOfInactivityBeforeScreenTimeout = n.GetIntValue(); } },
-                {"passwordPreviousPasswordBlockCount", n => { PasswordPreviousPasswordBlockCount = n.GetIntValue(); } },
-                {"passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<RequiredPasswordType>(); } },
-                {"passwordSignInFailureCountBeforeFactoryReset", n => { PasswordSignInFailureCountBeforeFactoryReset = n.GetIntValue(); } },
-                {"storageRequireDeviceEncryption", n => { StorageRequireDeviceEncryption = n.GetBoolValue(); } },
-                {"updatesRequireAutomaticUpdates", n => { UpdatesRequireAutomaticUpdates = n.GetBoolValue(); } },
-                {"userAccountControlSettings", n => { UserAccountControlSettings = n.GetEnumValue<WindowsUserAccountControlSettings>(); } },
-                {"workFoldersUrl", n => { WorkFoldersUrl = n.GetStringValue(); } },
+                { "accountsBlockAddingNonMicrosoftAccountEmail", n => { AccountsBlockAddingNonMicrosoftAccountEmail = n.GetBoolValue(); } },
+                { "applyOnlyToWindows81", n => { ApplyOnlyToWindows81 = n.GetBoolValue(); } },
+                { "browserBlockAutofill", n => { BrowserBlockAutofill = n.GetBoolValue(); } },
+                { "browserBlockAutomaticDetectionOfIntranetSites", n => { BrowserBlockAutomaticDetectionOfIntranetSites = n.GetBoolValue(); } },
+                { "browserBlockEnterpriseModeAccess", n => { BrowserBlockEnterpriseModeAccess = n.GetBoolValue(); } },
+                { "browserBlockJavaScript", n => { BrowserBlockJavaScript = n.GetBoolValue(); } },
+                { "browserBlockPlugins", n => { BrowserBlockPlugins = n.GetBoolValue(); } },
+                { "browserBlockPopups", n => { BrowserBlockPopups = n.GetBoolValue(); } },
+                { "browserBlockSendingDoNotTrackHeader", n => { BrowserBlockSendingDoNotTrackHeader = n.GetBoolValue(); } },
+                { "browserBlockSingleWordEntryOnIntranetSites", n => { BrowserBlockSingleWordEntryOnIntranetSites = n.GetBoolValue(); } },
+                { "browserEnterpriseModeSiteListLocation", n => { BrowserEnterpriseModeSiteListLocation = n.GetStringValue(); } },
+                { "browserInternetSecurityLevel", n => { BrowserInternetSecurityLevel = n.GetEnumValue<InternetSiteSecurityLevel>(); } },
+                { "browserIntranetSecurityLevel", n => { BrowserIntranetSecurityLevel = n.GetEnumValue<SiteSecurityLevel>(); } },
+                { "browserLoggingReportLocation", n => { BrowserLoggingReportLocation = n.GetStringValue(); } },
+                { "browserRequireFirewall", n => { BrowserRequireFirewall = n.GetBoolValue(); } },
+                { "browserRequireFraudWarning", n => { BrowserRequireFraudWarning = n.GetBoolValue(); } },
+                { "browserRequireHighSecurityForRestrictedSites", n => { BrowserRequireHighSecurityForRestrictedSites = n.GetBoolValue(); } },
+                { "browserRequireSmartScreen", n => { BrowserRequireSmartScreen = n.GetBoolValue(); } },
+                { "browserTrustedSitesSecurityLevel", n => { BrowserTrustedSitesSecurityLevel = n.GetEnumValue<SiteSecurityLevel>(); } },
+                { "cellularBlockDataRoaming", n => { CellularBlockDataRoaming = n.GetBoolValue(); } },
+                { "diagnosticsBlockDataSubmission", n => { DiagnosticsBlockDataSubmission = n.GetBoolValue(); } },
+                { "passwordBlockPicturePasswordAndPin", n => { PasswordBlockPicturePasswordAndPin = n.GetBoolValue(); } },
+                { "passwordExpirationDays", n => { PasswordExpirationDays = n.GetIntValue(); } },
+                { "passwordMinimumCharacterSetCount", n => { PasswordMinimumCharacterSetCount = n.GetIntValue(); } },
+                { "passwordMinimumLength", n => { PasswordMinimumLength = n.GetIntValue(); } },
+                { "passwordMinutesOfInactivityBeforeScreenTimeout", n => { PasswordMinutesOfInactivityBeforeScreenTimeout = n.GetIntValue(); } },
+                { "passwordPreviousPasswordBlockCount", n => { PasswordPreviousPasswordBlockCount = n.GetIntValue(); } },
+                { "passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<RequiredPasswordType>(); } },
+                { "passwordSignInFailureCountBeforeFactoryReset", n => { PasswordSignInFailureCountBeforeFactoryReset = n.GetIntValue(); } },
+                { "storageRequireDeviceEncryption", n => { StorageRequireDeviceEncryption = n.GetBoolValue(); } },
+                { "updatesRequireAutomaticUpdates", n => { UpdatesRequireAutomaticUpdates = n.GetBoolValue(); } },
+                { "userAccountControlSettings", n => { UserAccountControlSettings = n.GetEnumValue<WindowsUserAccountControlSettings>(); } },
+                { "workFoldersUrl", n => { WorkFoldersUrl = n.GetStringValue(); } },
             };
         }
         /// <summary>

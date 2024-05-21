@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.AttendanceRecords.Item {
+namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.AttendanceRecords.Item
+{
     /// <summary>
     /// Provides operations to manage the attendanceRecords property of the microsoft.graph.meetingAttendanceReport entity.
     /// </summary>
-    public class AttendanceRecordItemRequestBuilder : BaseCliRequestBuilder 
+    public class AttendanceRecordItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property attendanceRecords for users

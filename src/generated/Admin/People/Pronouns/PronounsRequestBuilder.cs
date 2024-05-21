@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.People.Pronouns {
+namespace ApiSdk.Admin.People.Pronouns
+{
     /// <summary>
     /// Provides operations to manage the pronouns property of the microsoft.graph.peopleAdminSettings entity.
     /// </summary>
-    public class PronounsRequestBuilder : BaseCliRequestBuilder 
+    public class PronounsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the properties of the pronounsSettings resource for an organization.  For more information on settings to manage pronouns support, see Manage pronouns settings for an organization using the Microsoft Graph API.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AccrIntM {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AccrIntM
+{
     /// <summary>
     /// Provides operations to call the accrIntM method.
     /// </summary>
-    public class AccrIntMRequestBuilder : BaseCliRequestBuilder 
+    public class AccrIntMRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action accrIntM

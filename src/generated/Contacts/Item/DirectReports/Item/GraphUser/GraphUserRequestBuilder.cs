@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Contacts.Item.DirectReports.Item.GraphUser {
+namespace ApiSdk.Contacts.Item.DirectReports.Item.GraphUser
+{
     /// <summary>
     /// Casts the previous resource to user.
     /// </summary>
-    public class GraphUserRequestBuilder : BaseCliRequestBuilder 
+    public class GraphUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.user

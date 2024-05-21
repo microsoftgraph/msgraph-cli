@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability {
-    public class GetStaffAvailabilityPostResponse : BaseCollectionPaginationCountResponse, IParsable 
+namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability
+{
+    #pragma warning disable CS1591
+    public class GetStaffAvailabilityPostResponse : BaseCollectionPaginationCountResponse, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +37,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<StaffAvailabilityItem>(StaffAvailabilityItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<StaffAvailabilityItem>(StaffAvailabilityItem.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.SearchWithQ {
+namespace ApiSdk.Drives.Item.SearchWithQ
+{
     /// <summary>
     /// Provides operations to call the search method.
     /// </summary>
-    public class SearchWithQRequestBuilder : BaseCliRequestBuilder 
+    public class SearchWithQRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function search
+        /// Search the hierarchy of items for items matching a query.You can search within a folder hierarchy, a whole drive, or files shared with the current user.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-search?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function search";
+            command.Description = "Search the hierarchy of items for items matching a query.You can search within a folder hierarchy, a whole drive, or files shared with the current user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-search?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -114,7 +116,9 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -140,7 +144,7 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
         {
         }
         /// <summary>
-        /// Invoke function search
+        /// Search the hierarchy of items for items matching a query.You can search within a folder hierarchy, a whole drive, or files shared with the current user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +163,7 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function search
+        /// Search the hierarchy of items for items matching a query.You can search within a folder hierarchy, a whole drive, or files shared with the current user.
         /// </summary>
         public class SearchWithQRequestBuilderGetQueryParameters 
         {

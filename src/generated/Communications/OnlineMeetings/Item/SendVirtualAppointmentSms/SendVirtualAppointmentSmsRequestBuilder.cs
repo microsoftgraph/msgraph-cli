@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.OnlineMeetings.Item.SendVirtualAppointmentSms {
+namespace ApiSdk.Communications.OnlineMeetings.Item.SendVirtualAppointmentSms
+{
     /// <summary>
     /// Provides operations to call the sendVirtualAppointmentSms method.
     /// </summary>
-    public class SendVirtualAppointmentSmsRequestBuilder : BaseCliRequestBuilder 
+    public class SendVirtualAppointmentSmsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Send an SMS notification to external attendees when a Teams virtual appointment is confirmed, rescheduled, or canceled. This feature requires Teams premium. Attendees must have a valid United States phone number to receive these SMS notifications.

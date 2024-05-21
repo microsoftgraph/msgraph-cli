@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item.AllowedMembers.Item {
+namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item.AllowedMembers.Item
+{
     /// <summary>
     /// Provides operations to manage the allowedMembers property of the microsoft.graph.sharedWithChannelTeamInfo entity.
     /// </summary>
-    public class ConversationMemberItemRequestBuilder : BaseCliRequestBuilder 
+    public class ConversationMemberItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// A collection of team members who have access to the shared channel.

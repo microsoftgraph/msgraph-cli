@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Partners.Billing {
-    public class Manifest : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Partners.Billing
+{
+    #pragma warning disable CS1591
+    public class Manifest : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The total file count for this partner tenant ID.</summary>
         public int? BlobCount { get; set; }
@@ -93,16 +96,16 @@ namespace ApiSdk.Models.Partners.Billing {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"blobCount", n => { BlobCount = n.GetIntValue(); } },
-                {"blobs", n => { Blobs = n.GetCollectionOfObjectValues<Blob>(Blob.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"dataFormat", n => { DataFormat = n.GetStringValue(); } },
-                {"eTag", n => { ETag = n.GetStringValue(); } },
-                {"partitionType", n => { PartitionType = n.GetStringValue(); } },
-                {"partnerTenantId", n => { PartnerTenantId = n.GetStringValue(); } },
-                {"rootDirectory", n => { RootDirectory = n.GetStringValue(); } },
-                {"sasToken", n => { SasToken = n.GetStringValue(); } },
-                {"schemaVersion", n => { SchemaVersion = n.GetStringValue(); } },
+                { "blobCount", n => { BlobCount = n.GetIntValue(); } },
+                { "blobs", n => { Blobs = n.GetCollectionOfObjectValues<Blob>(Blob.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "dataFormat", n => { DataFormat = n.GetStringValue(); } },
+                { "eTag", n => { ETag = n.GetStringValue(); } },
+                { "partitionType", n => { PartitionType = n.GetStringValue(); } },
+                { "partnerTenantId", n => { PartnerTenantId = n.GetStringValue(); } },
+                { "rootDirectory", n => { RootDirectory = n.GetStringValue(); } },
+                { "sasToken", n => { SasToken = n.GetStringValue(); } },
+                { "schemaVersion", n => { SchemaVersion = n.GetStringValue(); } },
             };
         }
         /// <summary>

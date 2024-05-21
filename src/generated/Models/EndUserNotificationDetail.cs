@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EndUserNotificationDetail : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EndUserNotificationDetail : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Email HTML content.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -67,12 +70,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"emailContent", n => { EmailContent = n.GetStringValue(); } },
-                {"isDefaultLangauge", n => { IsDefaultLangauge = n.GetBoolValue(); } },
-                {"language", n => { Language = n.GetStringValue(); } },
-                {"locale", n => { Locale = n.GetStringValue(); } },
-                {"sentFrom", n => { SentFrom = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
-                {"subject", n => { Subject = n.GetStringValue(); } },
+                { "emailContent", n => { EmailContent = n.GetStringValue(); } },
+                { "isDefaultLangauge", n => { IsDefaultLangauge = n.GetBoolValue(); } },
+                { "language", n => { Language = n.GetStringValue(); } },
+                { "locale", n => { Locale = n.GetStringValue(); } },
+                { "sentFrom", n => { SentFrom = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
+                { "subject", n => { Subject = n.GetStringValue(); } },
             };
         }
         /// <summary>

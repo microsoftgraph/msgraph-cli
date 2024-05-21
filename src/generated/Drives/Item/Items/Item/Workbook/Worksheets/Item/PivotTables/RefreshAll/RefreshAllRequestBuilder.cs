@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.RefreshAll {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.RefreshAll
+{
     /// <summary>
     /// Provides operations to call the refreshAll method.
     /// </summary>
-    public class RefreshAllRequestBuilder : BaseCliRequestBuilder 
+    public class RefreshAllRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Refreshes the PivotTable within a given worksheet.

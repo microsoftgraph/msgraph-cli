@@ -380,11 +380,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions
+{
     /// <summary>
     /// Provides operations to manage the functions property of the microsoft.graph.workbook entity.
     /// </summary>
-    public class FunctionsRequestBuilder : BaseCliRequestBuilder 
+    public class FunctionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the abs method.

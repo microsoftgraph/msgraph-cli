@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs.Item {
+namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs.Item
+{
     /// <summary>
     /// Provides operations to manage the runs property of the microsoft.graph.simulationAutomation entity.
     /// </summary>
-    public class SimulationAutomationRunItemRequestBuilder : BaseCliRequestBuilder 
+    public class SimulationAutomationRunItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property runs for security

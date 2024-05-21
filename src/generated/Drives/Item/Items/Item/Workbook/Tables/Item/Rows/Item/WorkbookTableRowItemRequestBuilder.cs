@@ -15,21 +15,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.Item {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.Item
+{
     /// <summary>
     /// Provides operations to manage the rows property of the microsoft.graph.workbookTable entity.
     /// </summary>
-    public class WorkbookTableRowItemRequestBuilder : BaseCliRequestBuilder 
+    public class WorkbookTableRowItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Deletes the row from the table.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablerow-delete?view=graph-rest-1.0" />
+        /// Delete navigation property rows for drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes the row from the table.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablerow-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property rows for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -76,14 +76,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of tablerow object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablerow-get?view=graph-rest-1.0" />
+        /// Represents a collection of all the rows in the table. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of tablerow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablerow-get?view=graph-rest-1.0";
+            command.Description = "Represents a collection of all the rows in the table. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -147,14 +146,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of tablerow object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablerow-update?view=graph-rest-1.0" />
+        /// Update the navigation property rows in drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of tablerow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablerow-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property rows in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -248,7 +246,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.Item {
         {
         }
         /// <summary>
-        /// Deletes the row from the table.
+        /// Delete navigation property rows for drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +265,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of tablerow object.
+        /// Represents a collection of all the rows in the table. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -286,7 +284,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of tablerow object.
+        /// Update the navigation property rows in drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -307,7 +305,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of tablerow object.
+        /// Represents a collection of all the rows in the table. Read-only.
         /// </summary>
         public class WorkbookTableRowItemRequestBuilderGetQueryParameters 
         {

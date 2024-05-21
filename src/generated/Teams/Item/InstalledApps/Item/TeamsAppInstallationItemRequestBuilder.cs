@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.InstalledApps.Item {
+namespace ApiSdk.Teams.Item.InstalledApps.Item
+{
     /// <summary>
     /// Provides operations to manage the installedApps property of the microsoft.graph.team entity.
     /// </summary>
-    public class TeamsAppInstallationItemRequestBuilder : BaseCliRequestBuilder 
+    public class TeamsAppInstallationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Uninstalls an app from the specified team.

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.CallRecords {
-    public class MediaStream : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models.CallRecords
+{
+    #pragma warning disable CS1591
+    public class MediaStream : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -13,13 +16,13 @@ namespace ApiSdk.Models.CallRecords {
         public ApiSdk.Models.CallRecords.AudioCodec? AudioCodec { get; set; }
         /// <summary>Average Network Mean Opinion Score degradation for stream. Represents how much the network loss and jitter has impacted the quality of received audio.</summary>
         public float? AverageAudioDegradation { get; set; }
-        /// <summary>Average jitter for the stream computed as specified in [RFC 3550][], denoted in [ISO 8601][] format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
+        /// <summary>Average jitter for the stream computed as specified in RFC 3550, denoted in ISO 8601 format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
         public TimeSpan? AverageAudioNetworkJitter { get; set; }
         /// <summary>Average estimated bandwidth available between two endpoints in bits per second.</summary>
         public long? AverageBandwidthEstimate { get; set; }
         /// <summary>Average duration of the received freezing time in the video stream.</summary>
         public TimeSpan? AverageFreezeDuration { get; set; }
-        /// <summary>Average jitter for the stream computed as specified in [RFC 3550][], denoted in [ISO 8601][] format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
+        /// <summary>Average jitter for the stream computed as specified in RFC 3550, denoted in ISO 8601 format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
         public TimeSpan? AverageJitter { get; set; }
         /// <summary>Average packet loss rate for stream.</summary>
         public float? AveragePacketLossRate { get; set; }
@@ -27,13 +30,13 @@ namespace ApiSdk.Models.CallRecords {
         public float? AverageRatioOfConcealedSamples { get; set; }
         /// <summary>Average frames per second received for all video streams computed over the duration of the session.</summary>
         public float? AverageReceivedFrameRate { get; set; }
-        /// <summary>Average network propagation round-trip time computed as specified in [RFC 3550][], denoted in [ISO 8601][] format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
+        /// <summary>Average network propagation round-trip time computed as specified in RFC 3550, denoted in ISO 8601 format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
         public TimeSpan? AverageRoundTripTime { get; set; }
         /// <summary>Average percentage of video frames lost as displayed to the user.</summary>
         public float? AverageVideoFrameLossPercentage { get; set; }
         /// <summary>Average frames per second received for a video stream, computed over the duration of the session.</summary>
         public float? AverageVideoFrameRate { get; set; }
-        /// <summary>Average fraction of packets lost, as specified in [RFC 3550][], computed over the duration of the session.</summary>
+        /// <summary>Average fraction of packets lost, as specified in RFC 3550, computed over the duration of the session.</summary>
         public float? AverageVideoPacketLossRate { get; set; }
         /// <summary>UTC time when the stream ended. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. This field is only available for streams that use the SIP protocol.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
@@ -43,15 +46,15 @@ namespace ApiSdk.Models.CallRecords {
         public float? LowFrameRateRatio { get; set; }
         /// <summary>Fraction of the call that the client is running less than 70% expected video processing capability.</summary>
         public float? LowVideoProcessingCapabilityRatio { get; set; }
-        /// <summary>Maximum of audio network jitter computed over each of the 20 second windows during the session, denoted in [ISO 8601][] format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
+        /// <summary>Maximum of audio network jitter computed over each of the 20 second windows during the session, denoted in ISO 8601 format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
         public TimeSpan? MaxAudioNetworkJitter { get; set; }
-        /// <summary>Maximum jitter for the stream computed as specified in RFC 3550, denoted in [ISO 8601][] format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
+        /// <summary>Maximum jitter for the stream computed as specified in RFC 3550, denoted in ISO 8601 format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
         public TimeSpan? MaxJitter { get; set; }
         /// <summary>Maximum packet loss rate for the stream.</summary>
         public float? MaxPacketLossRate { get; set; }
         /// <summary>Maximum ratio of packets concealed by the healer.</summary>
         public float? MaxRatioOfConcealedSamples { get; set; }
-        /// <summary>Maximum network propagation round-trip time computed as specified in [RFC 3550][], denoted in [ISO 8601][] format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
+        /// <summary>Maximum network propagation round-trip time computed as specified in RFC 3550, denoted in ISO 8601 format. For example, 1 second is denoted as &apos;PT1S&apos;, where &apos;P&apos; is the duration designator, &apos;T&apos; is the time designator, and &apos;S&apos; is the second designator.</summary>
         public TimeSpan? MaxRoundTripTime { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -108,37 +111,37 @@ namespace ApiSdk.Models.CallRecords {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"audioCodec", n => { AudioCodec = n.GetEnumValue<AudioCodec>(); } },
-                {"averageAudioDegradation", n => { AverageAudioDegradation = n.GetFloatValue(); } },
-                {"averageAudioNetworkJitter", n => { AverageAudioNetworkJitter = n.GetTimeSpanValue(); } },
-                {"averageBandwidthEstimate", n => { AverageBandwidthEstimate = n.GetLongValue(); } },
-                {"averageFreezeDuration", n => { AverageFreezeDuration = n.GetTimeSpanValue(); } },
-                {"averageJitter", n => { AverageJitter = n.GetTimeSpanValue(); } },
-                {"averagePacketLossRate", n => { AveragePacketLossRate = n.GetFloatValue(); } },
-                {"averageRatioOfConcealedSamples", n => { AverageRatioOfConcealedSamples = n.GetFloatValue(); } },
-                {"averageReceivedFrameRate", n => { AverageReceivedFrameRate = n.GetFloatValue(); } },
-                {"averageRoundTripTime", n => { AverageRoundTripTime = n.GetTimeSpanValue(); } },
-                {"averageVideoFrameLossPercentage", n => { AverageVideoFrameLossPercentage = n.GetFloatValue(); } },
-                {"averageVideoFrameRate", n => { AverageVideoFrameRate = n.GetFloatValue(); } },
-                {"averageVideoPacketLossRate", n => { AverageVideoPacketLossRate = n.GetFloatValue(); } },
-                {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
-                {"isAudioForwardErrorCorrectionUsed", n => { IsAudioForwardErrorCorrectionUsed = n.GetBoolValue(); } },
-                {"lowFrameRateRatio", n => { LowFrameRateRatio = n.GetFloatValue(); } },
-                {"lowVideoProcessingCapabilityRatio", n => { LowVideoProcessingCapabilityRatio = n.GetFloatValue(); } },
-                {"maxAudioNetworkJitter", n => { MaxAudioNetworkJitter = n.GetTimeSpanValue(); } },
-                {"maxJitter", n => { MaxJitter = n.GetTimeSpanValue(); } },
-                {"maxPacketLossRate", n => { MaxPacketLossRate = n.GetFloatValue(); } },
-                {"maxRatioOfConcealedSamples", n => { MaxRatioOfConcealedSamples = n.GetFloatValue(); } },
-                {"maxRoundTripTime", n => { MaxRoundTripTime = n.GetTimeSpanValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"packetUtilization", n => { PacketUtilization = n.GetLongValue(); } },
-                {"postForwardErrorCorrectionPacketLossRate", n => { PostForwardErrorCorrectionPacketLossRate = n.GetFloatValue(); } },
-                {"rmsFreezeDuration", n => { RmsFreezeDuration = n.GetTimeSpanValue(); } },
-                {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
-                {"streamDirection", n => { StreamDirection = n.GetEnumValue<MediaStreamDirection>(); } },
-                {"streamId", n => { StreamId = n.GetStringValue(); } },
-                {"videoCodec", n => { VideoCodec = n.GetEnumValue<VideoCodec>(); } },
-                {"wasMediaBypassed", n => { WasMediaBypassed = n.GetBoolValue(); } },
+                { "audioCodec", n => { AudioCodec = n.GetEnumValue<AudioCodec>(); } },
+                { "averageAudioDegradation", n => { AverageAudioDegradation = n.GetFloatValue(); } },
+                { "averageAudioNetworkJitter", n => { AverageAudioNetworkJitter = n.GetTimeSpanValue(); } },
+                { "averageBandwidthEstimate", n => { AverageBandwidthEstimate = n.GetLongValue(); } },
+                { "averageFreezeDuration", n => { AverageFreezeDuration = n.GetTimeSpanValue(); } },
+                { "averageJitter", n => { AverageJitter = n.GetTimeSpanValue(); } },
+                { "averagePacketLossRate", n => { AveragePacketLossRate = n.GetFloatValue(); } },
+                { "averageRatioOfConcealedSamples", n => { AverageRatioOfConcealedSamples = n.GetFloatValue(); } },
+                { "averageReceivedFrameRate", n => { AverageReceivedFrameRate = n.GetFloatValue(); } },
+                { "averageRoundTripTime", n => { AverageRoundTripTime = n.GetTimeSpanValue(); } },
+                { "averageVideoFrameLossPercentage", n => { AverageVideoFrameLossPercentage = n.GetFloatValue(); } },
+                { "averageVideoFrameRate", n => { AverageVideoFrameRate = n.GetFloatValue(); } },
+                { "averageVideoPacketLossRate", n => { AverageVideoPacketLossRate = n.GetFloatValue(); } },
+                { "endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
+                { "isAudioForwardErrorCorrectionUsed", n => { IsAudioForwardErrorCorrectionUsed = n.GetBoolValue(); } },
+                { "lowFrameRateRatio", n => { LowFrameRateRatio = n.GetFloatValue(); } },
+                { "lowVideoProcessingCapabilityRatio", n => { LowVideoProcessingCapabilityRatio = n.GetFloatValue(); } },
+                { "maxAudioNetworkJitter", n => { MaxAudioNetworkJitter = n.GetTimeSpanValue(); } },
+                { "maxJitter", n => { MaxJitter = n.GetTimeSpanValue(); } },
+                { "maxPacketLossRate", n => { MaxPacketLossRate = n.GetFloatValue(); } },
+                { "maxRatioOfConcealedSamples", n => { MaxRatioOfConcealedSamples = n.GetFloatValue(); } },
+                { "maxRoundTripTime", n => { MaxRoundTripTime = n.GetTimeSpanValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "packetUtilization", n => { PacketUtilization = n.GetLongValue(); } },
+                { "postForwardErrorCorrectionPacketLossRate", n => { PostForwardErrorCorrectionPacketLossRate = n.GetFloatValue(); } },
+                { "rmsFreezeDuration", n => { RmsFreezeDuration = n.GetTimeSpanValue(); } },
+                { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
+                { "streamDirection", n => { StreamDirection = n.GetEnumValue<MediaStreamDirection>(); } },
+                { "streamId", n => { StreamId = n.GetStringValue(); } },
+                { "videoCodec", n => { VideoCodec = n.GetEnumValue<VideoCodec>(); } },
+                { "wasMediaBypassed", n => { WasMediaBypassed = n.GetBoolValue(); } },
             };
         }
         /// <summary>

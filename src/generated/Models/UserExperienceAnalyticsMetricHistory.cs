@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics metric history.
     /// </summary>
-    public class UserExperienceAnalyticsMetricHistory : Entity, IParsable 
+    public class UserExperienceAnalyticsMetricHistory : Entity, IParsable
     {
         /// <summary>The Intune device id of the device.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -46,9 +47,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"deviceId", n => { DeviceId = n.GetStringValue(); } },
-                {"metricDateTime", n => { MetricDateTime = n.GetDateTimeOffsetValue(); } },
-                {"metricType", n => { MetricType = n.GetStringValue(); } },
+                { "deviceId", n => { DeviceId = n.GetStringValue(); } },
+                { "metricDateTime", n => { MetricDateTime = n.GetDateTimeOffsetValue(); } },
+                { "metricType", n => { MetricType = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.Item.Discover {
+namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.Item.Discover
+{
     /// <summary>
     /// Provides operations to call the discover method.
     /// </summary>
-    public class DiscoverRequestBuilder : BaseCliRequestBuilder 
+    public class DiscoverRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Discover the latest schema definition for provisioning to an application. 

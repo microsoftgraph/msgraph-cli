@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ChatMessageMentionedIdentitySet : IdentitySet, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ChatMessageMentionedIdentitySet : IdentitySet, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>If present, represents a conversation (for example, team or channel) @mentioned in a message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +43,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"conversation", n => { Conversation = n.GetObjectValue<TeamworkConversationIdentity>(TeamworkConversationIdentity.CreateFromDiscriminatorValue); } },
+                { "conversation", n => { Conversation = n.GetObjectValue<TeamworkConversationIdentity>(TeamworkConversationIdentity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

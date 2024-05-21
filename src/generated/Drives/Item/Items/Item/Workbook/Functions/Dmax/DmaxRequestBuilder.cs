@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dmax {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dmax
+{
     /// <summary>
     /// Provides operations to call the dmax method.
     /// </summary>
-    public class DmaxRequestBuilder : BaseCliRequestBuilder 
+    public class DmaxRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dmax

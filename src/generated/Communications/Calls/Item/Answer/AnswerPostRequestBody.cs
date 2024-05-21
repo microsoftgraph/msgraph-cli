@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Communications.Calls.Item.Answer {
-    public class AnswerPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Communications.Calls.Item.Answer
+{
+    #pragma warning disable CS1591
+    public class AnswerPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The acceptedModalities property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -69,11 +72,11 @@ namespace ApiSdk.Communications.Calls.Item.Answer {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"acceptedModalities", n => { AcceptedModalities = n.GetCollectionOfEnumValues<Modality>()?.ToList(); } },
-                {"callOptions", n => { CallOptions = n.GetObjectValue<IncomingCallOptions>(IncomingCallOptions.CreateFromDiscriminatorValue); } },
-                {"callbackUri", n => { CallbackUri = n.GetStringValue(); } },
-                {"mediaConfig", n => { MediaConfig = n.GetObjectValue<ApiSdk.Models.MediaConfig>(ApiSdk.Models.MediaConfig.CreateFromDiscriminatorValue); } },
-                {"participantCapacity", n => { ParticipantCapacity = n.GetIntValue(); } },
+                { "acceptedModalities", n => { AcceptedModalities = n.GetCollectionOfEnumValues<Modality>()?.ToList(); } },
+                { "callOptions", n => { CallOptions = n.GetObjectValue<IncomingCallOptions>(IncomingCallOptions.CreateFromDiscriminatorValue); } },
+                { "callbackUri", n => { CallbackUri = n.GetStringValue(); } },
+                { "mediaConfig", n => { MediaConfig = n.GetObjectValue<ApiSdk.Models.MediaConfig>(ApiSdk.Models.MediaConfig.CreateFromDiscriminatorValue); } },
+                { "participantCapacity", n => { ParticipantCapacity = n.GetIntValue(); } },
             };
         }
         /// <summary>

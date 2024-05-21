@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.EoMonth {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.EoMonth
+{
     /// <summary>
     /// Provides operations to call the eoMonth method.
     /// </summary>
-    public class EoMonthRequestBuilder : BaseCliRequestBuilder 
+    public class EoMonthRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action eoMonth

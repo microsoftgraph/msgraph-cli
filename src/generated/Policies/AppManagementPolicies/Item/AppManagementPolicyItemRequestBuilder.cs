@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.AppManagementPolicies.Item {
+namespace ApiSdk.Policies.AppManagementPolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class AppManagementPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class AppManagementPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.appManagementPolicy entity.

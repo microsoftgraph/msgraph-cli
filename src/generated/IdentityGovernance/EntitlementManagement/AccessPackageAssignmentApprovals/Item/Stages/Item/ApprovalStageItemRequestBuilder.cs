@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmentApprovals.Item.Stages.Item {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmentApprovals.Item.Stages.Item
+{
     /// <summary>
     /// Provides operations to manage the stages property of the microsoft.graph.approval entity.
     /// </summary>
-    public class ApprovalStageItemRequestBuilder : BaseCliRequestBuilder 
+    public class ApprovalStageItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property stages for identityGovernance

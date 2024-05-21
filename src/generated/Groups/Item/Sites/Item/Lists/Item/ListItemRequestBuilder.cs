@@ -22,11 +22,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item
+{
     /// <summary>
     /// Provides operations to manage the lists property of the microsoft.graph.site entity.
     /// </summary>
-    public class ListItemRequestBuilder : BaseCliRequestBuilder 
+    public class ListItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.list entity.
@@ -174,14 +175,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return command;
         }
         /// <summary>
-        /// Returns the metadata for a [list][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-get?view=graph-rest-1.0" />
+        /// The collection of lists under this site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Returns the metadata for a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-get?view=graph-rest-1.0";
+            command.Description = "The collection of lists under this site.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -441,7 +441,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for a [list][].
+        /// The collection of lists under this site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -481,7 +481,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for a [list][].
+        /// The collection of lists under this site.
         /// </summary>
         public class ListItemRequestBuilderGetQueryParameters 
         {

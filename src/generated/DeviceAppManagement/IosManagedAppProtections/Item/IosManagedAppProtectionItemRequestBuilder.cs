@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item {
+namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item
+{
     /// <summary>
     /// Provides operations to manage the iosManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class IosManagedAppProtectionItemRequestBuilder : BaseCliRequestBuilder 
+    public class IosManagedAppProtectionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the apps property of the microsoft.graph.iosManagedAppProtection entity.

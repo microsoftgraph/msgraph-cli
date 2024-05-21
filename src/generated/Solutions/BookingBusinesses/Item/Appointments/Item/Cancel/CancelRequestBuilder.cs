@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel {
+namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel
+{
     /// <summary>
     /// Provides operations to call the cancel method.
     /// </summary>
-    public class CancelRequestBuilder : BaseCliRequestBuilder 
+    public class CancelRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.

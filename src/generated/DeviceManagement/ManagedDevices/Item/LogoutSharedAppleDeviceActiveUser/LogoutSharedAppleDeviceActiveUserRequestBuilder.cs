@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ManagedDevices.Item.LogoutSharedAppleDeviceActiveUser {
+namespace ApiSdk.DeviceManagement.ManagedDevices.Item.LogoutSharedAppleDeviceActiveUser
+{
     /// <summary>
     /// Provides operations to call the logoutSharedAppleDeviceActiveUser method.
     /// </summary>
-    public class LogoutSharedAppleDeviceActiveUserRequestBuilder : BaseCliRequestBuilder 
+    public class LogoutSharedAppleDeviceActiveUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Logout shared Apple device active user

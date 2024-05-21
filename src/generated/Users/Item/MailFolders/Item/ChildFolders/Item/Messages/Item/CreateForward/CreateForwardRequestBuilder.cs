@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.CreateForward {
+namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.CreateForward
+{
     /// <summary>
     /// Provides operations to call the createForward method.
     /// </summary>
-    public class CreateForwardRequestBuilder : BaseCliRequestBuilder 
+    public class CreateForwardRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Create a draft to forward an existing message, in either JSON or MIME format. When using JSON format, you can:- Specify either a comment or the body property of the message parameter. Specifying both will return an HTTP 400 Bad Request error.- Specify either the toRecipients parameter or the toRecipients property of the message parameter. Specifying both or specifying neither will return an HTTP 400 Bad Request error.- Update the draft later to add content to the body or change other message properties. When using MIME format:- Provide the applicable Internet message headers and the MIME content, all encoded in base64 format in the request body.- Add any attachments and S/MIME properties to the MIME content. Send the draft message in a subsequent operation. Alternatively, forward a message in a single operation.

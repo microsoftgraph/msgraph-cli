@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupDays {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupDays
+{
     /// <summary>
     /// Provides operations to call the coupDays method.
     /// </summary>
-    public class CoupDaysRequestBuilder : BaseCliRequestBuilder 
+    public class CoupDaysRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action coupDays

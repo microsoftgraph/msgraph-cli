@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties and inherited properties for the macOS LOB App.
     /// </summary>
-    public class MacOSLobApp : MobileLobApp, IParsable 
+    public class MacOSLobApp : MobileLobApp, IParsable
     {
         /// <summary>The build number of the package. This should match the package CFBundleShortVersionString of the .pkg file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -89,15 +90,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"buildNumber", n => { BuildNumber = n.GetStringValue(); } },
-                {"bundleId", n => { BundleId = n.GetStringValue(); } },
-                {"childApps", n => { ChildApps = n.GetCollectionOfObjectValues<MacOSLobChildApp>(MacOSLobChildApp.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"ignoreVersionDetection", n => { IgnoreVersionDetection = n.GetBoolValue(); } },
-                {"installAsManaged", n => { InstallAsManaged = n.GetBoolValue(); } },
-                {"md5Hash", n => { Md5Hash = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"md5HashChunkSize", n => { Md5HashChunkSize = n.GetIntValue(); } },
-                {"minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<MacOSMinimumOperatingSystem>(MacOSMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
-                {"versionNumber", n => { VersionNumber = n.GetStringValue(); } },
+                { "buildNumber", n => { BuildNumber = n.GetStringValue(); } },
+                { "bundleId", n => { BundleId = n.GetStringValue(); } },
+                { "childApps", n => { ChildApps = n.GetCollectionOfObjectValues<MacOSLobChildApp>(MacOSLobChildApp.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "ignoreVersionDetection", n => { IgnoreVersionDetection = n.GetBoolValue(); } },
+                { "installAsManaged", n => { InstallAsManaged = n.GetBoolValue(); } },
+                { "md5Hash", n => { Md5Hash = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "md5HashChunkSize", n => { Md5HashChunkSize = n.GetIntValue(); } },
+                { "minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<MacOSMinimumOperatingSystem>(MacOSMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
+                { "versionNumber", n => { VersionNumber = n.GetStringValue(); } },
             };
         }
         /// <summary>

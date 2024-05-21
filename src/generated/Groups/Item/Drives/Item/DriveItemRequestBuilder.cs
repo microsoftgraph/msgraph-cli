@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Drives.Item {
+namespace ApiSdk.Groups.Item.Drives.Item
+{
     /// <summary>
     /// Provides operations to manage the drives property of the microsoft.graph.group entity.
     /// </summary>
-    public class DriveItemRequestBuilder : BaseCliRequestBuilder 
+    public class DriveItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The group&apos;s drives. Read-only.

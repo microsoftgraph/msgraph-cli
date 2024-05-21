@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teamwork.DeletedChats.Item.UndoDelete {
+namespace ApiSdk.Teamwork.DeletedChats.Item.UndoDelete
+{
     /// <summary>
     /// Provides operations to call the undoDelete method.
     /// </summary>
-    public class UndoDeleteRequestBuilder : BaseCliRequestBuilder 
+    public class UndoDeleteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Restore a  deletedChat to an active chat.

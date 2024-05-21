@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps {
+namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps
+{
     /// <summary>
     /// Provides operations to call the targetApps method.
     /// </summary>
-    public class TargetAppsRequestBuilder : BaseCliRequestBuilder 
+    public class TargetAppsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

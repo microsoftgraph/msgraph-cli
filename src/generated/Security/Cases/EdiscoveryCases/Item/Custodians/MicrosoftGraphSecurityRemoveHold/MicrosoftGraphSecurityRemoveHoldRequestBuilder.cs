@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold
+{
     /// <summary>
     /// Provides operations to call the removeHold method.
     /// </summary>
-    public class MicrosoftGraphSecurityRemoveHoldRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityRemoveHoldRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action removeHold

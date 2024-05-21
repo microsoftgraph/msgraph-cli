@@ -10,11 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Item {
+namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Item
+{
     /// <summary>
     /// Builds and executes requests for operations under \applications\{application-id}\tokenIssuancePolicies\{tokenIssuancePolicy-id}
     /// </summary>
-    public class TokenIssuancePolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class TokenIssuancePolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the collection of application entities.

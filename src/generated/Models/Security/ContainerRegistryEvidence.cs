@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class ContainerRegistryEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class ContainerRegistryEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The registry URI.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +43,7 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"registry", n => { Registry = n.GetStringValue(); } },
+                { "registry", n => { Registry = n.GetStringValue(); } },
             };
         }
         /// <summary>

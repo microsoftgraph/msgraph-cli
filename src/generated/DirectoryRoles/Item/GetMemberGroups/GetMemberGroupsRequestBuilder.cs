@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryRoles.Item.GetMemberGroups {
+namespace ApiSdk.DirectoryRoles.Item.GetMemberGroups
+{
     /// <summary>
     /// Provides operations to call the getMemberGroups method.
     /// </summary>
-    public class GetMemberGroupsRequestBuilder : BaseCliRequestBuilder 
+    public class GetMemberGroupsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Return all the group IDs for the groups that the specified user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. This API returns up to 11,000 group IDs. If more than 11,000 results are available, it returns a 400 Bad Request error with the Directory_ResultSizeLimitExceeded error code. As a workaround, use the List group transitive memberOf API.
@@ -71,7 +72,9 @@ namespace ApiSdk.DirectoryRoles.Item.GetMemberGroups {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

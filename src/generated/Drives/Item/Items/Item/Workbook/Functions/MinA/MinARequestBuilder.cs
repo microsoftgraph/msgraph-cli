@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MinA {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MinA
+{
     /// <summary>
     /// Provides operations to call the minA method.
     /// </summary>
-    public class MinARequestBuilder : BaseCliRequestBuilder 
+    public class MinARequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action minA

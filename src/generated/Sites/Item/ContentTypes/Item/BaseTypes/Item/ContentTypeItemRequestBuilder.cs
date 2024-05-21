@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.ContentTypes.Item.BaseTypes.Item {
+namespace ApiSdk.Sites.Item.ContentTypes.Item.BaseTypes.Item
+{
     /// <summary>
     /// Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.
     /// </summary>
-    public class ContentTypeItemRequestBuilder : BaseCliRequestBuilder 
+    public class ContentTypeItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The collection of content types that are ancestors of this content type.

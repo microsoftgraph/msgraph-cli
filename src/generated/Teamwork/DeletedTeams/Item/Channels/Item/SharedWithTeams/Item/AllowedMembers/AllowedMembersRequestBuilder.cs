@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.AllowedMembers {
+namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.AllowedMembers
+{
     /// <summary>
     /// Provides operations to manage the allowedMembers property of the microsoft.graph.sharedWithChannelTeamInfo entity.
     /// </summary>
-    public class AllowedMembersRequestBuilder : BaseCliRequestBuilder 
+    public class AllowedMembersRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the allowedMembers property of the microsoft.graph.sharedWithChannelTeamInfo entity.
@@ -51,14 +52,13 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.A
             return command;
         }
         /// <summary>
-        /// Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with Guest role- Users who are externally authenticated in the tenant
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0" />
+        /// A collection of team members who have access to the shared channel.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with Guest role- Users who are externally authenticated in the tenant\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0";
+            command.Description = "A collection of team members who have access to the shared channel.";
             var deletedTeamIdOption = new Option<string>("--deleted-team-id", description: "The unique identifier of deletedTeam") {
             };
             deletedTeamIdOption.IsRequired = true;
@@ -152,7 +152,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.A
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -178,7 +180,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.A
         {
         }
         /// <summary>
-        /// Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with Guest role- Users who are externally authenticated in the tenant
+        /// A collection of team members who have access to the shared channel.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -197,7 +199,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.A
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with Guest role- Users who are externally authenticated in the tenant
+        /// A collection of team members who have access to the shared channel.
         /// </summary>
         public class AllowedMembersRequestBuilderGetQueryParameters 
         {

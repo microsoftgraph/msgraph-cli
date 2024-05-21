@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class FileHashEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class FileHashEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The algorithm property</summary>
         public FileHashAlgorithm? Algorithm { get; set; }
@@ -42,8 +45,8 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"algorithm", n => { Algorithm = n.GetEnumValue<FileHashAlgorithm>(); } },
-                {"value", n => { Value = n.GetStringValue(); } },
+                { "algorithm", n => { Algorithm = n.GetEnumValue<FileHashAlgorithm>(); } },
+                { "value", n => { Value = n.GetStringValue(); } },
             };
         }
         /// <summary>

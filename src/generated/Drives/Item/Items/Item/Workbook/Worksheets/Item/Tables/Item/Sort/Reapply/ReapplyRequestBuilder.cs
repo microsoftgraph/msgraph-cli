@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Sort.Reapply {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Sort.Reapply
+{
     /// <summary>
     /// Provides operations to call the reapply method.
     /// </summary>
-    public class ReapplyRequestBuilder : BaseCliRequestBuilder 
+    public class ReapplyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reapplies the current sorting parameters to the table.

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityRelease {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityRelease
+{
     /// <summary>
     /// Provides operations to call the release method.
     /// </summary>
-    public class MicrosoftGraphSecurityReleaseRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityReleaseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Release a custodian from a case. For details, see Release a custodian from a case.

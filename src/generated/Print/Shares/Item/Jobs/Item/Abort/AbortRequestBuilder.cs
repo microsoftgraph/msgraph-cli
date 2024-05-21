@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Shares.Item.Jobs.Item.Abort {
+namespace ApiSdk.Print.Shares.Item.Jobs.Item.Abort
+{
     /// <summary>
     /// Provides operations to call the abort method.
     /// </summary>
-    public class AbortRequestBuilder : BaseCliRequestBuilder 
+    public class AbortRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Abort a print job. Only applications using application permissions can abort a print job. Aborting a print job will only succeed if there is a printTask in a processing state on the associated print job, started by a trigger that the requesting app created. For details about how to register a task trigger, see Extending Universal Print to support pull printing.

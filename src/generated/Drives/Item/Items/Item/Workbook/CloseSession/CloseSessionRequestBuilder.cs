@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.CloseSession {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.CloseSession
+{
     /// <summary>
     /// Provides operations to call the closeSession method.
     /// </summary>
-    public class CloseSessionRequestBuilder : BaseCliRequestBuilder 
+    public class CloseSessionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Use this API to close an existing workbook session.

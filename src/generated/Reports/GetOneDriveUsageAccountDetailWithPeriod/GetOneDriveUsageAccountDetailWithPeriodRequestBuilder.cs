@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOneDriveUsageAccountDetailWithPeriod {
+namespace ApiSdk.Reports.GetOneDriveUsageAccountDetailWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getOneDriveUsageAccountDetail method.
     /// </summary>
-    public class GetOneDriveUsageAccountDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetOneDriveUsageAccountDetailWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function getOneDriveUsageAccountDetail

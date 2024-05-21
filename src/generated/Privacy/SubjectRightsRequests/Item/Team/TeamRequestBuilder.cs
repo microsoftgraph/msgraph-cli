@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team {
+namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team
+{
     /// <summary>
     /// Provides operations to manage the team property of the microsoft.graph.subjectRightsRequest entity.
     /// </summary>
-    public class TeamRequestBuilder : BaseCliRequestBuilder 
+    public class TeamRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Information about the Microsoft Teams team that was created for the request.

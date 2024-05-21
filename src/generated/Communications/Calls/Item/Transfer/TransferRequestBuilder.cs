@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.Transfer {
+namespace ApiSdk.Communications.Calls.Item.Transfer
+{
     /// <summary>
     /// Provides operations to call the transfer method.
     /// </summary>
-    public class TransferRequestBuilder : BaseCliRequestBuilder 
+    public class TransferRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly.

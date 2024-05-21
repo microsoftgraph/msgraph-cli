@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item.Tasks.Item {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item.Tasks.Item
+{
     /// <summary>
     /// Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowTemplate entity.
     /// </summary>
-    public class TaskItemRequestBuilder : BaseCliRequestBuilder 
+    public class TaskItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Represents the configured tasks to execute and their execution sequence within a workflow. This relationship is expanded by default.

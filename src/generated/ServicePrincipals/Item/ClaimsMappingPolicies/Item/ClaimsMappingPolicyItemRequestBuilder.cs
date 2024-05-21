@@ -10,11 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Item {
+namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Item
+{
     /// <summary>
     /// Builds and executes requests for operations under \servicePrincipals\{servicePrincipal-id}\claimsMappingPolicies\{claimsMappingPolicy-id}
     /// </summary>
-    public class ClaimsMappingPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class ClaimsMappingPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.

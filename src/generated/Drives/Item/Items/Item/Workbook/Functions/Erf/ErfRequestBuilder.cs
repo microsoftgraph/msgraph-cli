@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf
+{
     /// <summary>
     /// Provides operations to call the erf method.
     /// </summary>
-    public class ErfRequestBuilder : BaseCliRequestBuilder 
+    public class ErfRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action erf

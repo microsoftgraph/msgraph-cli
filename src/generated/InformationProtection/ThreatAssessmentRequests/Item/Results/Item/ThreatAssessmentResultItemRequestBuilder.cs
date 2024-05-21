@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Item {
+namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Item
+{
     /// <summary>
     /// Provides operations to manage the results property of the microsoft.graph.threatAssessmentRequest entity.
     /// </summary>
-    public class ThreatAssessmentResultItemRequestBuilder : BaseCliRequestBuilder 
+    public class ThreatAssessmentResultItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property results for informationProtection

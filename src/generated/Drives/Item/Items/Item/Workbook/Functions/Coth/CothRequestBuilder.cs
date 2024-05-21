@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Coth {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Coth
+{
     /// <summary>
     /// Provides operations to call the coth method.
     /// </summary>
-    public class CothRequestBuilder : BaseCliRequestBuilder 
+    public class CothRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action coth

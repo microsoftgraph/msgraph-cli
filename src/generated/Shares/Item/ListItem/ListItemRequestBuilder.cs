@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Shares.Item.ListItem {
+namespace ApiSdk.Shares.Item.ListItem
+{
     /// <summary>
     /// Provides operations to manage the listItem property of the microsoft.graph.sharedDriveItem entity.
     /// </summary>
-    public class ListItemRequestBuilder : BaseCliRequestBuilder 
+    public class ListItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Used to access the underlying listItem

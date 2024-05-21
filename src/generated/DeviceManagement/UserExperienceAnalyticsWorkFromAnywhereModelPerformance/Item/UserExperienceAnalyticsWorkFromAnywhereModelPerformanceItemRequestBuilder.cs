@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereModelPerformance.Item {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereModelPerformance.Item
+{
     /// <summary>
     /// Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereModelPerformance property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class UserExperienceAnalyticsWorkFromAnywhereModelPerformanceItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserExperienceAnalyticsWorkFromAnywhereModelPerformanceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsWorkFromAnywhereModelPerformance for deviceManagement

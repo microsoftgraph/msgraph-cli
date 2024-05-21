@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.ResetPasscode {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.ResetPasscode
+{
     /// <summary>
     /// Provides operations to call the resetPasscode method.
     /// </summary>
-    public class ResetPasscodeRequestBuilder : BaseCliRequestBuilder 
+    public class ResetPasscodeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reset passcode

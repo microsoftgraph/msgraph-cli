@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments {
+namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments
+{
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppProtection entity.
     /// </summary>
-    public class AssignmentsRequestBuilder : BaseCliRequestBuilder 
+    public class AssignmentsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppProtection entity.
@@ -104,13 +105,14 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        /// List properties and relationships of the targetedManagedAppPolicyAssignment objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedapppolicyassignment-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
+            command.Description = "List properties and relationships of the targetedManagedAppPolicyAssignment objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedapppolicyassignment-list?view=graph-rest-1.0";
             var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
@@ -192,7 +194,9 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -218,7 +222,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments {
         {
         }
         /// <summary>
-        /// Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        /// List properties and relationships of the targetedManagedAppPolicyAssignment objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +262,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments {
             return requestInfo;
         }
         /// <summary>
-        /// Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        /// List properties and relationships of the targetedManagedAppPolicyAssignment objects.
         /// </summary>
         public class AssignmentsRequestBuilderGetQueryParameters 
         {

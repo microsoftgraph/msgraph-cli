@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
+namespace ApiSdk.EmployeeExperience.LearningProviders.Item
+{
     /// <summary>
     /// Provides operations to manage the learningProviders property of the microsoft.graph.employeeExperience entity.
     /// </summary>
-    public class LearningProviderItemRequestBuilder : BaseCliRequestBuilder 
+    public class LearningProviderItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a learningProvider resource and remove its registration in Viva Learning for a tenant.

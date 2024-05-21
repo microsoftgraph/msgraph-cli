@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The history for the site modifications
     /// </summary>
-    public class BrowserSiteHistory : IAdditionalDataHolder, IParsable 
+    public class BrowserSiteHistory : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -71,14 +72,14 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"allowRedirect", n => { AllowRedirect = n.GetBoolValue(); } },
-                {"comment", n => { Comment = n.GetStringValue(); } },
-                {"compatibilityMode", n => { CompatibilityMode = n.GetEnumValue<BrowserSiteCompatibilityMode>(); } },
-                {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                {"mergeType", n => { MergeType = n.GetEnumValue<BrowserSiteMergeType>(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"publishedDateTime", n => { PublishedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"targetEnvironment", n => { TargetEnvironment = n.GetEnumValue<BrowserSiteTargetEnvironment>(); } },
+                { "allowRedirect", n => { AllowRedirect = n.GetBoolValue(); } },
+                { "comment", n => { Comment = n.GetStringValue(); } },
+                { "compatibilityMode", n => { CompatibilityMode = n.GetEnumValue<BrowserSiteCompatibilityMode>(); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "mergeType", n => { MergeType = n.GetEnumValue<BrowserSiteMergeType>(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "publishedDateTime", n => { PublishedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "targetEnvironment", n => { TargetEnvironment = n.GetEnumValue<BrowserSiteTargetEnvironment>(); } },
             };
         }
         /// <summary>

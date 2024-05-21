@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Reprocess {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Reprocess
+{
     /// <summary>
     /// Provides operations to call the reprocess method.
     /// </summary>
-    public class ReprocessRequestBuilder : BaseCliRequestBuilder 
+    public class ReprocessRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// In Microsoft Entra entitlement management, callers can automatically retry a user&apos;s request for access to an access package. It&apos;s performed on an accessPackageAssignmentRequest object whose requestState is in a DeliveryFailed or PartiallyDelivered state.  You can only reprocess a request within 14 days from the time the original request was completed. For requests completed more than 14 days, you will need to ask the users to cancel the request(s) and make a new request in the MyAccess portal.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GammaLn_Precise {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GammaLn_Precise
+{
     /// <summary>
     /// Provides operations to call the gammaLn_Precise method.
     /// </summary>
-    public class GammaLn_PreciseRequestBuilder : BaseCliRequestBuilder 
+    public class GammaLn_PreciseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action gammaLn_Precise

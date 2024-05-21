@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
+namespace ApiSdk.Policies.AuthenticationFlowsPolicy
+{
     /// <summary>
     /// Provides operations to manage the authenticationFlowsPolicy property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class AuthenticationFlowsPolicyRequestBuilder : BaseCliRequestBuilder 
+    public class AuthenticationFlowsPolicyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property authenticationFlowsPolicy for policies

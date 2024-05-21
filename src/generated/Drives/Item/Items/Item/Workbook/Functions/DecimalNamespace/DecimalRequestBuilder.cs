@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DecimalNamespace {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DecimalNamespace
+{
     /// <summary>
     /// Provides operations to call the decimal method.
     /// </summary>
-    public class DecimalRequestBuilder : BaseCliRequestBuilder 
+    public class DecimalRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action decimal

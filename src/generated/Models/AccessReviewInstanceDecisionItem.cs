@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AccessReviewInstanceDecisionItem : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AccessReviewInstanceDecisionItem : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The identifier of the accessReviewInstance parent. Supports $select. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -125,20 +128,20 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"accessReviewId", n => { AccessReviewId = n.GetStringValue(); } },
-                {"appliedBy", n => { AppliedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
-                {"appliedDateTime", n => { AppliedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"applyResult", n => { ApplyResult = n.GetStringValue(); } },
-                {"decision", n => { Decision = n.GetStringValue(); } },
-                {"insights", n => { Insights = n.GetCollectionOfObjectValues<GovernanceInsight>(GovernanceInsight.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"justification", n => { Justification = n.GetStringValue(); } },
-                {"principal", n => { Principal = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
-                {"principalLink", n => { PrincipalLink = n.GetStringValue(); } },
-                {"recommendation", n => { Recommendation = n.GetStringValue(); } },
-                {"resource", n => { Resource = n.GetObjectValue<AccessReviewInstanceDecisionItemResource>(AccessReviewInstanceDecisionItemResource.CreateFromDiscriminatorValue); } },
-                {"resourceLink", n => { ResourceLink = n.GetStringValue(); } },
-                {"reviewedBy", n => { ReviewedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
-                {"reviewedDateTime", n => { ReviewedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "accessReviewId", n => { AccessReviewId = n.GetStringValue(); } },
+                { "appliedBy", n => { AppliedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
+                { "appliedDateTime", n => { AppliedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "applyResult", n => { ApplyResult = n.GetStringValue(); } },
+                { "decision", n => { Decision = n.GetStringValue(); } },
+                { "insights", n => { Insights = n.GetCollectionOfObjectValues<GovernanceInsight>(GovernanceInsight.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "justification", n => { Justification = n.GetStringValue(); } },
+                { "principal", n => { Principal = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                { "principalLink", n => { PrincipalLink = n.GetStringValue(); } },
+                { "recommendation", n => { Recommendation = n.GetStringValue(); } },
+                { "resource", n => { Resource = n.GetObjectValue<AccessReviewInstanceDecisionItemResource>(AccessReviewInstanceDecisionItemResource.CreateFromDiscriminatorValue); } },
+                { "resourceLink", n => { ResourceLink = n.GetStringValue(); } },
+                { "reviewedBy", n => { ReviewedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
+                { "reviewedDateTime", n => { ReviewedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>

@@ -14,20 +14,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.CellWithRowWithColumn {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.CellWithRowWithColumn
+{
     /// <summary>
     /// Provides operations to call the cell method.
     /// </summary>
-    public class CellWithRowWithColumnRequestBuilder : BaseCliRequestBuilder 
+    public class CellWithRowWithColumnRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function cell
+        /// Gets the range object containing the single cell based on row and column numbers. The cell can be outside the bounds of its parent range, so long as it&apos;s stays within the worksheet grid.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheet-cell?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function cell";
+            command.Description = "Gets the range object containing the single cell based on row and column numbers. The cell can be outside the bounds of its parent range, so long as it's stays within the worksheet grid.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-cell?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -97,7 +99,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.CellWithRowWith
         {
         }
         /// <summary>
-        /// Invoke function cell
+        /// Gets the range object containing the single cell based on row and column numbers. The cell can be outside the bounds of its parent range, so long as it&apos;s stays within the worksheet grid.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization {
+namespace ApiSdk.Applications.Item.Synchronization
+{
     /// <summary>
     /// Provides operations to manage the synchronization property of the microsoft.graph.application entity.
     /// </summary>
-    public class SynchronizationRequestBuilder : BaseCliRequestBuilder 
+    public class SynchronizationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the acquireAccessToken method.

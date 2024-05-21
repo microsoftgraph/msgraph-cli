@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class ServicePrincipalEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class ServicePrincipalEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The appId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -74,12 +77,12 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"appId", n => { AppId = n.GetStringValue(); } },
-                {"appOwnerTenantId", n => { AppOwnerTenantId = n.GetStringValue(); } },
-                {"servicePrincipalName", n => { ServicePrincipalName = n.GetStringValue(); } },
-                {"servicePrincipalObjectId", n => { ServicePrincipalObjectId = n.GetStringValue(); } },
-                {"servicePrincipalType", n => { ServicePrincipalType = n.GetEnumValue<ServicePrincipalType>(); } },
-                {"tenantId", n => { TenantId = n.GetStringValue(); } },
+                { "appId", n => { AppId = n.GetStringValue(); } },
+                { "appOwnerTenantId", n => { AppOwnerTenantId = n.GetStringValue(); } },
+                { "servicePrincipalName", n => { ServicePrincipalName = n.GetStringValue(); } },
+                { "servicePrincipalObjectId", n => { ServicePrincipalObjectId = n.GetStringValue(); } },
+                { "servicePrincipalType", n => { ServicePrincipalType = n.GetEnumValue<ServicePrincipalType>(); } },
+                { "tenantId", n => { TenantId = n.GetStringValue(); } },
             };
         }
         /// <summary>

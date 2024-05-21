@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostSslCertificates.Item {
+namespace ApiSdk.Security.ThreatIntelligence.HostSslCertificates.Item
+{
     /// <summary>
     /// Provides operations to manage the hostSslCertificates property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class HostSslCertificateItemRequestBuilder : BaseCliRequestBuilder 
+    public class HostSslCertificateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property hostSslCertificates for security

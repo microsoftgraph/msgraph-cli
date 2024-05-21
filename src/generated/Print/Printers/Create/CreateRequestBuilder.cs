@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Printers.Create {
+namespace ApiSdk.Print.Printers.Create
+{
     /// <summary>
     /// Provides operations to call the create method.
     /// </summary>
-    public class CreateRequestBuilder : BaseCliRequestBuilder 
+    public class CreateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Create (register) a printer with the Universal Print service. This is a long-running operation and as such, it returns a printerCreateOperation that can be used to track and verify the registration of the printer. For help creating the required Certificate Signing Request (CSR) for creating printer, see the CSR generation code sample.

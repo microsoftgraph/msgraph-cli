@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.TaskDefinitions.Item {
+namespace ApiSdk.Print.TaskDefinitions.Item
+{
     /// <summary>
     /// Provides operations to manage the taskDefinitions property of the microsoft.graph.print entity.
     /// </summary>
-    public class PrintTaskDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrintTaskDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a taskDefinition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.

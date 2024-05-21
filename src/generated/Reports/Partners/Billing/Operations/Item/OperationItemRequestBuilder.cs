@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.Partners.Billing.Operations.Item {
+namespace ApiSdk.Reports.Partners.Billing.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.partners.billing.billing entity.
     /// </summary>
-    public class OperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class OperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for reports

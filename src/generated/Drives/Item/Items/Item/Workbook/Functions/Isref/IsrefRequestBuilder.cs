@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Isref {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Isref
+{
     /// <summary>
     /// Provides operations to call the isref method.
     /// </summary>
-    public class IsrefRequestBuilder : BaseCliRequestBuilder 
+    public class IsrefRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action isref

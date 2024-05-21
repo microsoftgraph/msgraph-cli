@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GeoMean {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GeoMean
+{
     /// <summary>
     /// Provides operations to call the geoMean method.
     /// </summary>
-    public class GeoMeanRequestBuilder : BaseCliRequestBuilder 
+    public class GeoMeanRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action geoMean

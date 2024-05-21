@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityRemoveHold {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityRemoveHold
+{
     /// <summary>
     /// Provides operations to call the removeHold method.
     /// </summary>
-    public class MicrosoftGraphSecurityRemoveHoldRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityRemoveHoldRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Start the process of removing hold from eDiscovery custodians. After the operation is created, you can get the status by retrieving the Location parameter from the response headers. The location provides a URL that will return an eDiscoveryHoldOperation object.

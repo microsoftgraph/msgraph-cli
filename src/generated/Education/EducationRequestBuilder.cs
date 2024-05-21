@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education {
+namespace ApiSdk.Education
+{
     /// <summary>
     /// Provides operations to manage the educationRoot singleton.
     /// </summary>
-    public class EducationRequestBuilder : BaseCliRequestBuilder 
+    public class EducationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the classes property of the microsoft.graph.educationRoot entity.

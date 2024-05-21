@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.DataBodyRange {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.DataBodyRange
+{
     /// <summary>
     /// Provides operations to call the dataBodyRange method.
     /// </summary>
-    public class DataBodyRangeRequestBuilder : BaseCliRequestBuilder 
+    public class DataBodyRangeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Gets the range object associated with the data body of the table.

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.CreatedBy {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.CreatedBy
+{
     /// <summary>
     /// Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.workflowBase entity.
     /// </summary>
-    public class CreatedByRequestBuilder : BaseCliRequestBuilder 
+    public class CreatedByRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The user who created the workflow.

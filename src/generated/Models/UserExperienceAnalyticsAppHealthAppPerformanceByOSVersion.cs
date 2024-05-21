@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics application performance entity contains app performance details by OS version.
     /// </summary>
-    public class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion : Entity, IParsable 
+    public class UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion : Entity, IParsable
     {
         /// <summary>The number of devices where the application has been active. Valid values 0 to 2147483647. Supports: $select, $OrderBy. Read-only. Valid values -2147483648 to 2147483647</summary>
         public int? ActiveDeviceCount { get; set; }
@@ -76,15 +77,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"activeDeviceCount", n => { ActiveDeviceCount = n.GetIntValue(); } },
-                {"appCrashCount", n => { AppCrashCount = n.GetIntValue(); } },
-                {"appDisplayName", n => { AppDisplayName = n.GetStringValue(); } },
-                {"appName", n => { AppName = n.GetStringValue(); } },
-                {"appPublisher", n => { AppPublisher = n.GetStringValue(); } },
-                {"appUsageDuration", n => { AppUsageDuration = n.GetIntValue(); } },
-                {"meanTimeToFailureInMinutes", n => { MeanTimeToFailureInMinutes = n.GetIntValue(); } },
-                {"osBuildNumber", n => { OsBuildNumber = n.GetStringValue(); } },
-                {"osVersion", n => { OsVersion = n.GetStringValue(); } },
+                { "activeDeviceCount", n => { ActiveDeviceCount = n.GetIntValue(); } },
+                { "appCrashCount", n => { AppCrashCount = n.GetIntValue(); } },
+                { "appDisplayName", n => { AppDisplayName = n.GetStringValue(); } },
+                { "appName", n => { AppName = n.GetStringValue(); } },
+                { "appPublisher", n => { AppPublisher = n.GetStringValue(); } },
+                { "appUsageDuration", n => { AppUsageDuration = n.GetIntValue(); } },
+                { "meanTimeToFailureInMinutes", n => { MeanTimeToFailureInMinutes = n.GetIntValue(); } },
+                { "osBuildNumber", n => { OsBuildNumber = n.GetStringValue(); } },
+                { "osVersion", n => { OsVersion = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -10,11 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Item {
+namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Item
+{
     /// <summary>
     /// Builds and executes requests for operations under \servicePrincipals\{servicePrincipal-id}\homeRealmDiscoveryPolicies\{homeRealmDiscoveryPolicy-id}
     /// </summary>
-    public class HomeRealmDiscoveryPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class HomeRealmDiscoveryPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.

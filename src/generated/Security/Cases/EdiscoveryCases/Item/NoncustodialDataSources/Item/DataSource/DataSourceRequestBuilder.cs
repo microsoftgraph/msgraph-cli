@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.DataSource {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.DataSource
+{
     /// <summary>
     /// Provides operations to manage the dataSource property of the microsoft.graph.security.ediscoveryNoncustodialDataSource entity.
     /// </summary>
-    public class DataSourceRequestBuilder : BaseCliRequestBuilder 
+    public class DataSourceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property dataSource for security

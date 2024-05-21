@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Item.TermsAndConditions {
+namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Item.TermsAndConditions
+{
     /// <summary>
     /// Provides operations to manage the termsAndConditions property of the microsoft.graph.termsAndConditionsAcceptanceStatus entity.
     /// </summary>
-    public class TermsAndConditionsRequestBuilder : BaseCliRequestBuilder 
+    public class TermsAndConditionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Navigation link to the terms and conditions that are assigned.

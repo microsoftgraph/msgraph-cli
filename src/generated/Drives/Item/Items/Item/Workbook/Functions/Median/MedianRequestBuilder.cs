@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Median {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Median
+{
     /// <summary>
     /// Provides operations to call the median method.
     /// </summary>
-    public class MedianRequestBuilder : BaseCliRequestBuilder 
+    public class MedianRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action median

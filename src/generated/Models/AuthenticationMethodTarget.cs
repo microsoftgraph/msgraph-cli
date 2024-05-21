@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AuthenticationMethodTarget : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AuthenticationMethodTarget : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Determines if the user is enforced to register the authentication method.</summary>
         public bool? IsRegistrationRequired { get; set; }
@@ -35,8 +38,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"isRegistrationRequired", n => { IsRegistrationRequired = n.GetBoolValue(); } },
-                {"targetType", n => { TargetType = n.GetEnumValue<AuthenticationMethodTargetType>(); } },
+                { "isRegistrationRequired", n => { IsRegistrationRequired = n.GetBoolValue(); } },
+                { "targetType", n => { TargetType = n.GetEnumValue<AuthenticationMethodTargetType>(); } },
             };
         }
         /// <summary>

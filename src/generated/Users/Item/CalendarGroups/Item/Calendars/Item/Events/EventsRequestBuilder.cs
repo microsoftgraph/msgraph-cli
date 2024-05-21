@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
+namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events
+{
     /// <summary>
     /// Provides operations to manage the events property of the microsoft.graph.calendar entity.
     /// </summary>
-    public class EventsRequestBuilder : BaseCliRequestBuilder 
+    public class EventsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the events property of the microsoft.graph.calendar entity.
@@ -66,14 +67,13 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-post-events?view=graph-rest-1.0" />
+        /// Create new navigation property to events for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-post-events?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to events for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -147,14 +147,13 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of events in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, orget the instances of an event.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-list-events?view=graph-rest-1.0" />
+        /// The events in the calendar. Navigation property. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of events in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, orget the instances of an event.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-list-events?view=graph-rest-1.0";
+            command.Description = "The events in the calendar. Navigation property. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -242,7 +241,9 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -268,7 +269,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
         {
         }
         /// <summary>
-        /// Retrieve a list of events in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, orget the instances of an event.
+        /// The events in the calendar. Navigation property. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -287,7 +288,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
+        /// Create new navigation property to events for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -308,7 +309,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of events in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, orget the instances of an event.
+        /// The events in the calendar. Navigation property. Read-only.
         /// </summary>
         public class EventsRequestBuilderGetQueryParameters 
         {

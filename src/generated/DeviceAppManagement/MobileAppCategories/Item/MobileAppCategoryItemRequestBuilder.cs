@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
+namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item
+{
     /// <summary>
     /// Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class MobileAppCategoryItemRequestBuilder : BaseCliRequestBuilder 
+    public class MobileAppCategoryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a mobileAppCategory.

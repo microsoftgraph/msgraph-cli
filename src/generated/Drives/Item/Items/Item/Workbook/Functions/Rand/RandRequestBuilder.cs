@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rand {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rand
+{
     /// <summary>
     /// Provides operations to call the rand method.
     /// </summary>
-    public class RandRequestBuilder : BaseCliRequestBuilder 
+    public class RandRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action rand

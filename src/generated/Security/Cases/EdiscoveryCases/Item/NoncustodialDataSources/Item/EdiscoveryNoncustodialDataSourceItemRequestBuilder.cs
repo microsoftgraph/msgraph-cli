@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item
+{
     /// <summary>
     /// Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
     /// </summary>
-    public class EdiscoveryNoncustodialDataSourceItemRequestBuilder : BaseCliRequestBuilder 
+    public class EdiscoveryNoncustodialDataSourceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the dataSource property of the microsoft.graph.security.ediscoveryNoncustodialDataSource entity.

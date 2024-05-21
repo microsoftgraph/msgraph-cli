@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.IdentityGovernance {
-    public class CustomTaskExtension : ApiSdk.Models.CustomCalloutExtension, IParsable 
+namespace ApiSdk.Models.IdentityGovernance
+{
+    #pragma warning disable CS1591
+    public class CustomTaskExtension : ApiSdk.Models.CustomCalloutExtension, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The callback configuration for a custom task extension.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -60,11 +63,11 @@ namespace ApiSdk.Models.IdentityGovernance {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"callbackConfiguration", n => { CallbackConfiguration = n.GetObjectValue<ApiSdk.Models.CustomExtensionCallbackConfiguration>(ApiSdk.Models.CustomExtensionCallbackConfiguration.CreateFromDiscriminatorValue); } },
-                {"createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "callbackConfiguration", n => { CallbackConfiguration = n.GetObjectValue<ApiSdk.Models.CustomExtensionCallbackConfiguration>(ApiSdk.Models.CustomExtensionCallbackConfiguration.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>

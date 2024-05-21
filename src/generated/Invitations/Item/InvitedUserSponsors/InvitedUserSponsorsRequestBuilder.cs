@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Invitations.Item.InvitedUserSponsors {
+namespace ApiSdk.Invitations.Item.InvitedUserSponsors
+{
     /// <summary>
     /// Provides operations to manage the invitedUserSponsors property of the microsoft.graph.invitation entity.
     /// </summary>
-    public class InvitedUserSponsorsRequestBuilder : BaseCliRequestBuilder 
+    public class InvitedUserSponsorsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the invitedUserSponsors property of the microsoft.graph.invitation entity.
@@ -139,7 +140,9 @@ namespace ApiSdk.Invitations.Item.InvitedUserSponsors {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

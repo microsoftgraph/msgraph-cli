@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Privacy {
+namespace ApiSdk.Privacy
+{
     /// <summary>
     /// Provides operations to manage the privacy singleton.
     /// </summary>
-    public class PrivacyRequestBuilder : BaseCliRequestBuilder 
+    public class PrivacyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get privacy

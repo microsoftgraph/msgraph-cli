@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Radians {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Radians
+{
     /// <summary>
     /// Provides operations to call the radians method.
     /// </summary>
-    public class RadiansRequestBuilder : BaseCliRequestBuilder 
+    public class RadiansRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action radians

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImTan {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImTan
+{
     /// <summary>
     /// Provides operations to call the imTan method.
     /// </summary>
-    public class ImTanRequestBuilder : BaseCliRequestBuilder 
+    public class ImTanRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imTan

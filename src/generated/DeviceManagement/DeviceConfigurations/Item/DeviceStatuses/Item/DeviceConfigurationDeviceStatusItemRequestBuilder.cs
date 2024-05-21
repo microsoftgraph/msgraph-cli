@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item {
+namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item
+{
     /// <summary>
     /// Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceConfiguration entity.
     /// </summary>
-    public class DeviceConfigurationDeviceStatusItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceConfigurationDeviceStatusItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a deviceConfigurationDeviceStatus.

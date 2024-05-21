@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.DeviceRegistrationPolicy {
+namespace ApiSdk.Policies.DeviceRegistrationPolicy
+{
     /// <summary>
     /// Provides operations to manage the deviceRegistrationPolicy property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class DeviceRegistrationPolicyRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceRegistrationPolicyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get deviceRegistrationPolicy from policies

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Second {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Second
+{
     /// <summary>
     /// Provides operations to call the second method.
     /// </summary>
-    public class SecondRequestBuilder : BaseCliRequestBuilder 
+    public class SecondRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action second

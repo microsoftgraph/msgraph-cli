@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.CitationTemplate {
+namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.CitationTemplate
+{
     /// <summary>
     /// Provides operations to manage the citationTemplate property of the microsoft.graph.security.filePlanDescriptor entity.
     /// </summary>
-    public class CitationTemplateRequestBuilder : BaseCliRequestBuilder 
+    public class CitationTemplateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.

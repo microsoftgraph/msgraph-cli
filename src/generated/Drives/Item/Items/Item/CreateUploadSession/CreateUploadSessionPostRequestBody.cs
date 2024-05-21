@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.CreateUploadSession {
-    public class CreateUploadSessionPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Drives.Item.Items.Item.CreateUploadSession
+{
+    #pragma warning disable CS1591
+    public class CreateUploadSessionPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -43,7 +46,7 @@ namespace ApiSdk.Drives.Item.Items.Item.CreateUploadSession {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"item", n => { Item = n.GetObjectValue<DriveItemUploadableProperties>(DriveItemUploadableProperties.CreateFromDiscriminatorValue); } },
+                { "item", n => { Item = n.GetObjectValue<DriveItemUploadableProperties>(DriveItemUploadableProperties.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

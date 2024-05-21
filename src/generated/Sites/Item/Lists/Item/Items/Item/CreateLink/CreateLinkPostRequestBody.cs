@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.CreateLink {
-    public class CreateLinkPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.CreateLink
+{
+    #pragma warning disable CS1591
+    public class CreateLinkPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -81,14 +84,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.CreateLink {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
-                {"message", n => { Message = n.GetStringValue(); } },
-                {"password", n => { Password = n.GetStringValue(); } },
-                {"recipients", n => { Recipients = n.GetCollectionOfObjectValues<DriveRecipient>(DriveRecipient.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"retainInheritedPermissions", n => { RetainInheritedPermissions = n.GetBoolValue(); } },
-                {"scope", n => { Scope = n.GetStringValue(); } },
-                {"sendNotification", n => { SendNotification = n.GetBoolValue(); } },
-                {"type", n => { Type = n.GetStringValue(); } },
+                { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
+                { "message", n => { Message = n.GetStringValue(); } },
+                { "password", n => { Password = n.GetStringValue(); } },
+                { "recipients", n => { Recipients = n.GetCollectionOfObjectValues<DriveRecipient>(DriveRecipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "retainInheritedPermissions", n => { RetainInheritedPermissions = n.GetBoolValue(); } },
+                { "scope", n => { Scope = n.GetStringValue(); } },
+                { "sendNotification", n => { SendNotification = n.GetBoolValue(); } },
+                { "type", n => { Type = n.GetStringValue(); } },
             };
         }
         /// <summary>

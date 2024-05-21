@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Leftb {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Leftb
+{
     /// <summary>
     /// Provides operations to call the leftb method.
     /// </summary>
-    public class LeftbRequestBuilder : BaseCliRequestBuilder 
+    public class LeftbRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action leftb

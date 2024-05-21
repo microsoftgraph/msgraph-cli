@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Partners.Billing {
-    public class Billing : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Partners.Billing
+{
+    #pragma warning disable CS1591
+    public class Billing : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Represents metadata for the exported data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,10 +60,10 @@ namespace ApiSdk.Models.Partners.Billing {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"manifests", n => { Manifests = n.GetCollectionOfObjectValues<Manifest>(Manifest.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"operations", n => { Operations = n.GetCollectionOfObjectValues<Operation>(Operation.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"reconciliation", n => { Reconciliation = n.GetObjectValue<BillingReconciliation>(BillingReconciliation.CreateFromDiscriminatorValue); } },
-                {"usage", n => { Usage = n.GetObjectValue<AzureUsage>(AzureUsage.CreateFromDiscriminatorValue); } },
+                { "manifests", n => { Manifests = n.GetCollectionOfObjectValues<Manifest>(Manifest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "operations", n => { Operations = n.GetCollectionOfObjectValues<Operation>(Operation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "reconciliation", n => { Reconciliation = n.GetObjectValue<BillingReconciliation>(BillingReconciliation.CreateFromDiscriminatorValue); } },
+                { "usage", n => { Usage = n.GetObjectValue<AzureUsage>(AzureUsage.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

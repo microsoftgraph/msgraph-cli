@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.False {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.False
+{
     /// <summary>
     /// Provides operations to call the false method.
     /// </summary>
-    public class FalseRequestBuilder : BaseCliRequestBuilder 
+    public class FalseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action false

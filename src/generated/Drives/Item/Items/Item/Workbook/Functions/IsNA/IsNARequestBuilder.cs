@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsNA {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsNA
+{
     /// <summary>
     /// Provides operations to call the isNA method.
     /// </summary>
-    public class IsNARequestBuilder : BaseCliRequestBuilder 
+    public class IsNARequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action isNA

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
+namespace ApiSdk.Policies.TokenLifetimePolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class TokenLifetimePolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class TokenLifetimePolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.

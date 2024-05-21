@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Tan {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Tan
+{
     /// <summary>
     /// Provides operations to call the tan method.
     /// </summary>
-    public class TanRequestBuilder : BaseCliRequestBuilder 
+    public class TanRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action tan

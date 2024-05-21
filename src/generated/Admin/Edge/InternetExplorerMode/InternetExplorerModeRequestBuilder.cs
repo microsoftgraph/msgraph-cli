@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.Edge.InternetExplorerMode {
+namespace ApiSdk.Admin.Edge.InternetExplorerMode
+{
     /// <summary>
     /// Provides operations to manage the internetExplorerMode property of the microsoft.graph.edge entity.
     /// </summary>
-    public class InternetExplorerModeRequestBuilder : BaseCliRequestBuilder 
+    public class InternetExplorerModeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property internetExplorerMode for admin

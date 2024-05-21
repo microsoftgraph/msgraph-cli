@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Groups.Item.Team.Archive {
-    public class ArchivePostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Groups.Item.Team.Archive
+{
+    #pragma warning disable CS1591
+    public class ArchivePostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -36,7 +39,7 @@ namespace ApiSdk.Groups.Item.Team.Archive {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"shouldSetSpoSiteReadOnlyForMembers", n => { ShouldSetSpoSiteReadOnlyForMembers = n.GetBoolValue(); } },
+                { "shouldSetSpoSiteReadOnlyForMembers", n => { ShouldSetSpoSiteReadOnlyForMembers = n.GetBoolValue(); } },
             };
         }
         /// <summary>

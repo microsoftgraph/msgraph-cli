@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithDate {
+namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithDate
+{
     /// <summary>
     /// Provides operations to call the getSkypeForBusinessDeviceUsageUserDetail method.
     /// </summary>
-    public class GetSkypeForBusinessDeviceUsageUserDetailWithDateRequestBuilder : BaseCliRequestBuilder 
+    public class GetSkypeForBusinessDeviceUsageUserDetailWithDateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getSkypeForBusinessDeviceUsageUserDetail
+        /// Get details about Skype for Business device usage by user.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessdeviceusageuserdetail?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSkypeForBusinessDeviceUsageUserDetail";
+            command.Description = "Get details about Skype for Business device usage by user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessdeviceusageuserdetail?view=graph-rest-1.0";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getSkypeForBusinessDeviceUsageUserDetail
+        /// Get details about Skype for Business device usage by user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

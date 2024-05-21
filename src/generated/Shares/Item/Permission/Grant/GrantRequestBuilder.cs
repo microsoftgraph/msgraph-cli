@@ -13,21 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Shares.Item.Permission.Grant {
+namespace ApiSdk.Shares.Item.Permission.Grant
+{
     /// <summary>
     /// Provides operations to call the grant method.
     /// </summary>
-    public class GrantRequestBuilder : BaseCliRequestBuilder 
+    public class GrantRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Grant users access to a link represented by a [permission][].
+        /// Grant users access to a link represented by a permission.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Grant users access to a link represented by a [permission][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
+            command.Description = "Grant users access to a link represented by a permission.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -71,7 +72,9 @@ namespace ApiSdk.Shares.Item.Permission.Grant {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -97,7 +100,7 @@ namespace ApiSdk.Shares.Item.Permission.Grant {
         {
         }
         /// <summary>
-        /// Grant users access to a link represented by a [permission][].
+        /// Grant users access to a link represented by a permission.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

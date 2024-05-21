@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TeamworkUserIdentity : Identity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TeamworkUserIdentity : Identity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Type of user. Possible values are: aadUser, onPremiseAadUser, anonymousGuest, federatedUser, personalMicrosoftAccountUser, skypeUser, phoneUser, unknownFutureValue and emailUser.</summary>
         public TeamworkUserIdentityType? UserIdentityType { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"userIdentityType", n => { UserIdentityType = n.GetEnumValue<TeamworkUserIdentityType>(); } },
+                { "userIdentityType", n => { UserIdentityType = n.GetEnumValue<TeamworkUserIdentityType>(); } },
             };
         }
         /// <summary>

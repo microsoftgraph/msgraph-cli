@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Tanh {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Tanh
+{
     /// <summary>
     /// Provides operations to call the tanh method.
     /// </summary>
-    public class TanhRequestBuilder : BaseCliRequestBuilder 
+    public class TanhRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action tanh

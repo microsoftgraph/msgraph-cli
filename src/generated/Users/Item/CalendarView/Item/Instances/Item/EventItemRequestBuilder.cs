@@ -24,11 +24,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item {
+namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item
+{
     /// <summary>
     /// Provides operations to manage the instances property of the microsoft.graph.event entity.
     /// </summary>
-    public class EventItemRequestBuilder : BaseCliRequestBuilder 
+    public class EventItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the accept method.

@@ -24,11 +24,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Authentication {
+namespace ApiSdk.Users.Item.Authentication
+{
     /// <summary>
     /// Provides operations to manage the authentication property of the microsoft.graph.user entity.
     /// </summary>
-    public class AuthenticationRequestBuilder : BaseCliRequestBuilder 
+    public class AuthenticationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property authentication for users

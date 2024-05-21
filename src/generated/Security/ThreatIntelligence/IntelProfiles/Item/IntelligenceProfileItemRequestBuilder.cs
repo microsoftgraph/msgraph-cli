@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item {
+namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item
+{
     /// <summary>
     /// Provides operations to manage the intelProfiles property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class IntelligenceProfileItemRequestBuilder : BaseCliRequestBuilder 
+    public class IntelligenceProfileItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property intelProfiles for security

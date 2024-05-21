@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item {
+namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item
+{
     /// <summary>
     /// Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeetingBase entity.
     /// </summary>
-    public class MeetingAttendanceReportItemRequestBuilder : BaseCliRequestBuilder 
+    public class MeetingAttendanceReportItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the attendanceRecords property of the microsoft.graph.meetingAttendanceReport entity.

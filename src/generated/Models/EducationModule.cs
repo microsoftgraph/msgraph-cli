@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EducationModule : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EducationModule : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The display name of the user that created the module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -81,16 +84,16 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"isPinned", n => { IsPinned = n.GetBoolValue(); } },
-                {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"resources", n => { Resources = n.GetCollectionOfObjectValues<EducationModuleResource>(EducationModuleResource.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"resourcesFolderUrl", n => { ResourcesFolderUrl = n.GetStringValue(); } },
-                {"status", n => { Status = n.GetEnumValue<EducationModuleStatus>(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "isPinned", n => { IsPinned = n.GetBoolValue(); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "resources", n => { Resources = n.GetCollectionOfObjectValues<EducationModuleResource>(EducationModuleResource.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "resourcesFolderUrl", n => { ResourcesFolderUrl = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<EducationModuleStatus>(); } },
             };
         }
         /// <summary>

@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Chats.GetAllMessages {
+namespace ApiSdk.Users.Item.Chats.GetAllMessages
+{
     /// <summary>
     /// Provides operations to call the getAllMessages method.
     /// </summary>
-    public class GetAllMessagesRequestBuilder : BaseCliRequestBuilder 
+    public class GetAllMessagesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getAllMessages
+        /// Get all messages from all chats that a user is a participant in, including one-on-one chats, group chats, and meeting chats.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chats-getallmessages?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getAllMessages";
+            command.Description = "Get all messages from all chats that a user is a participant in, including one-on-one chats, group chats, and meeting chats.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chats-getallmessages?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -114,7 +116,9 @@ namespace ApiSdk.Users.Item.Chats.GetAllMessages {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -140,7 +144,7 @@ namespace ApiSdk.Users.Item.Chats.GetAllMessages {
         {
         }
         /// <summary>
-        /// Invoke function getAllMessages
+        /// Get all messages from all chats that a user is a participant in, including one-on-one chats, group chats, and meeting chats.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +163,7 @@ namespace ApiSdk.Users.Item.Chats.GetAllMessages {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getAllMessages
+        /// Get all messages from all chats that a user is a participant in, including one-on-one chats, group chats, and meeting chats.
         /// </summary>
         public class GetAllMessagesRequestBuilderGetQueryParameters 
         {

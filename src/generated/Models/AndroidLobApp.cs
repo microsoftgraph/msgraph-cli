@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties and inherited properties for Android Line Of Business apps.
     /// </summary>
-    public class AndroidLobApp : MobileLobApp, IParsable 
+    public class AndroidLobApp : MobileLobApp, IParsable
     {
         /// <summary>The value for the minimum applicable operating system.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -67,10 +68,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<AndroidMinimumOperatingSystem>(AndroidMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
-                {"packageId", n => { PackageId = n.GetStringValue(); } },
-                {"versionCode", n => { VersionCode = n.GetStringValue(); } },
-                {"versionName", n => { VersionName = n.GetStringValue(); } },
+                { "minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<AndroidMinimumOperatingSystem>(AndroidMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
+                { "packageId", n => { PackageId = n.GetStringValue(); } },
+                { "versionCode", n => { VersionCode = n.GetStringValue(); } },
+                { "versionName", n => { VersionName = n.GetStringValue(); } },
             };
         }
         /// <summary>

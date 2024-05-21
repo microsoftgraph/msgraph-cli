@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// OMA Settings Base64 definition.
     /// </summary>
-    public class OmaSettingBase64 : OmaSetting, IParsable 
+    public class OmaSettingBase64 : OmaSetting, IParsable
     {
         /// <summary>File name associated with the Value property (.cer</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -51,8 +52,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"fileName", n => { FileName = n.GetStringValue(); } },
-                {"value", n => { Value = n.GetStringValue(); } },
+                { "fileName", n => { FileName = n.GetStringValue(); } },
+                { "value", n => { Value = n.GetStringValue(); } },
             };
         }
         /// <summary>

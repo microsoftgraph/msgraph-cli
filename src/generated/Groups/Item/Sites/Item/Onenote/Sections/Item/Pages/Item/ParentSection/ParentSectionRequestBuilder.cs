@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item.Pages.Item.ParentSection {
+namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item.Pages.Item.ParentSection
+{
     /// <summary>
     /// Provides operations to manage the parentSection property of the microsoft.graph.onenotePage entity.
     /// </summary>
-    public class ParentSectionRequestBuilder : BaseCliRequestBuilder 
+    public class ParentSectionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The section that contains the page. Read-only.

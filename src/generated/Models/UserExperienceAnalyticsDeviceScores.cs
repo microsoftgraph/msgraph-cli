@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics device scores entity consolidates the various Endpoint Analytics scores.
     /// </summary>
-    public class UserExperienceAnalyticsDeviceScores : Entity, IParsable 
+    public class UserExperienceAnalyticsDeviceScores : Entity, IParsable
     {
         /// <summary>Indicates a score calculated from application health data to indicate when a device is having problems running one or more applications. Valid values range from 0-100. Value -1 means associated score is unavailable. A higher score indicates a healthier device. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308</summary>
         public double? AppReliabilityScore { get; set; }
@@ -64,15 +65,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"appReliabilityScore", n => { AppReliabilityScore = n.GetDoubleValue(); } },
-                {"batteryHealthScore", n => { BatteryHealthScore = n.GetDoubleValue(); } },
-                {"deviceName", n => { DeviceName = n.GetStringValue(); } },
-                {"endpointAnalyticsScore", n => { EndpointAnalyticsScore = n.GetDoubleValue(); } },
-                {"healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
-                {"manufacturer", n => { Manufacturer = n.GetStringValue(); } },
-                {"model", n => { Model = n.GetStringValue(); } },
-                {"startupPerformanceScore", n => { StartupPerformanceScore = n.GetDoubleValue(); } },
-                {"workFromAnywhereScore", n => { WorkFromAnywhereScore = n.GetDoubleValue(); } },
+                { "appReliabilityScore", n => { AppReliabilityScore = n.GetDoubleValue(); } },
+                { "batteryHealthScore", n => { BatteryHealthScore = n.GetDoubleValue(); } },
+                { "deviceName", n => { DeviceName = n.GetStringValue(); } },
+                { "endpointAnalyticsScore", n => { EndpointAnalyticsScore = n.GetDoubleValue(); } },
+                { "healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
+                { "manufacturer", n => { Manufacturer = n.GetStringValue(); } },
+                { "model", n => { Model = n.GetStringValue(); } },
+                { "startupPerformanceScore", n => { StartupPerformanceScore = n.GetDoubleValue(); } },
+                { "workFromAnywhereScore", n => { WorkFromAnywhereScore = n.GetDoubleValue(); } },
             };
         }
         /// <summary>

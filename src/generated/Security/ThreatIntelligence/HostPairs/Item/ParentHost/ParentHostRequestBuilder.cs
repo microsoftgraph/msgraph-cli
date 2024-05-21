@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostPairs.Item.ParentHost {
+namespace ApiSdk.Security.ThreatIntelligence.HostPairs.Item.ParentHost
+{
     /// <summary>
     /// Provides operations to manage the parentHost property of the microsoft.graph.security.hostPair entity.
     /// </summary>
-    public class ParentHostRequestBuilder : BaseCliRequestBuilder 
+    public class ParentHostRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Host used to reach the childHost.

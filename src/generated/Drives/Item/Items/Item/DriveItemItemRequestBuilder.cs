@@ -45,11 +45,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item {
+namespace ApiSdk.Drives.Item.Items.Item
+{
     /// <summary>
     /// Provides operations to manage the items property of the microsoft.graph.drive entity.
     /// </summary>
-    public class DriveItemItemRequestBuilder : BaseCliRequestBuilder 
+    public class DriveItemItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the analytics property of the microsoft.graph.driveItem entity.
@@ -166,6 +167,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
             command.Description = "Provides operations to manage the media for the drive entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -250,14 +252,13 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Delete a DriveItem by using its ID or path.Deleting items using this method moves the items to the recycle bin instead of permanently deleting the item.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-delete?view=graph-rest-1.0" />
+        /// Delete navigation property items for drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a DriveItem by using its ID or path.Deleting items using this method moves the items to the recycle bin instead of permanently deleting the item.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property items for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -510,14 +511,13 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item&apos;s parentReference property.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-update?view=graph-rest-1.0" />
+        /// Update the navigation property items in drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item's parentReference property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property items in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -847,7 +847,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         {
         }
         /// <summary>
-        /// Delete a DriveItem by using its ID or path.Deleting items using this method moves the items to the recycle bin instead of permanently deleting the item.
+        /// Delete navigation property items for drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -885,7 +885,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item&apos;s parentReference property.
+        /// Update the navigation property items in drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Count {
+namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Count
+{
     /// <summary>
     /// Provides operations to count the resources in the collection.
     /// </summary>
-    public class CountRequestBuilder : BaseCliRequestBuilder 
+    public class CountRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the number of the resource
@@ -31,6 +32,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Count {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
+            var startOption = new Option<string>("--start", description: "The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00") {
+            };
+            startOption.IsRequired = true;
+            command.AddOption(startOption);
+            var endOption = new Option<string>("--end", description: "The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00") {
+            };
+            endOption.IsRequired = true;
+            command.AddOption(endOption);
             var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
             };
             searchOption.IsRequired = false;
@@ -41,12 +50,16 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Count {
             command.AddOption(filterOption);
             command.SetHandler(async (invocationContext) => {
                 var bookingBusinessId = invocationContext.ParseResult.GetValueForOption(bookingBusinessIdOption);
+                var start = invocationContext.ParseResult.GetValueForOption(startOption);
+                var end = invocationContext.ParseResult.GetValueForOption(endOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(start)) q.QueryParameters.Start = start;
+                    if (!string.IsNullOrEmpty(end)) q.QueryParameters.End = end;
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                 });
@@ -65,14 +78,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Count {
         /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/calendarView/$count{?%24filter,%24search}", pathParameters)
+        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/calendarView/$count?end={end}&start={start}{&%24filter,%24search}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/calendarView/$count{?%24filter,%24search}", rawUrl)
+        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/calendarView/$count?end={end}&start={start}{&%24filter,%24search}", rawUrl)
         {
         }
         /// <summary>
@@ -99,6 +112,16 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Count {
         /// </summary>
         public class CountRequestBuilderGetQueryParameters 
         {
+            /// <summary>The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("end")]
+            public string? End { get; set; }
+#nullable restore
+#else
+            [QueryParameter("end")]
+            public string End { get; set; }
+#endif
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -118,6 +141,16 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Count {
 #else
             [QueryParameter("%24search")]
             public string Search { get; set; }
+#endif
+            /// <summary>The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("start")]
+            public string? Start { get; set; }
+#nullable restore
+#else
+            [QueryParameter("start")]
+            public string Start { get; set; }
 #endif
         }
     }

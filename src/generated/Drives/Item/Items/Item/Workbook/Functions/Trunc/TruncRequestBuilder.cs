@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Trunc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Trunc
+{
     /// <summary>
     /// Provides operations to call the trunc method.
     /// </summary>
-    public class TruncRequestBuilder : BaseCliRequestBuilder 
+    public class TruncRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action trunc

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.ListItem {
+namespace ApiSdk.Drives.Item.Items.Item.ListItem
+{
     /// <summary>
     /// Provides operations to manage the listItem property of the microsoft.graph.driveItem entity.
     /// </summary>
-    public class ListItemRequestBuilder : BaseCliRequestBuilder 
+    public class ListItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// For drives in SharePoint, the associated document library list item. Read-only. Nullable.

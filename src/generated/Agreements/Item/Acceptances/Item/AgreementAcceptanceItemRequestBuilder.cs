@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Agreements.Item.Acceptances.Item {
+namespace ApiSdk.Agreements.Item.Acceptances.Item
+{
     /// <summary>
     /// Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.
     /// </summary>
-    public class AgreementAcceptanceItemRequestBuilder : BaseCliRequestBuilder 
+    public class AgreementAcceptanceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property acceptances for agreements

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Analytics.LastSevenDays {
+namespace ApiSdk.Groups.Item.Sites.Item.Analytics.LastSevenDays
+{
     /// <summary>
     /// Provides operations to manage the lastSevenDays property of the microsoft.graph.itemAnalytics entity.
     /// </summary>
-    public class LastSevenDaysRequestBuilder : BaseCliRequestBuilder 
+    public class LastSevenDaysRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get lastSevenDays from groups

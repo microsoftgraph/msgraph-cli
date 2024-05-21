@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithPeriod {
+namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getSkypeForBusinessDeviceUsageUserDetail method.
     /// </summary>
-    public class GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function getSkypeForBusinessDeviceUsageUserDetail

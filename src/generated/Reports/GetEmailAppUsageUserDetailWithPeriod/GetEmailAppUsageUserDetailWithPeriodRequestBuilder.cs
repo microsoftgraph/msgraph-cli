@@ -13,20 +13,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithPeriod {
+namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getEmailAppUsageUserDetail method.
     /// </summary>
-    public class GetEmailAppUsageUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetEmailAppUsageUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getEmailAppUsageUserDetail
+        /// Get details about which activities users performed on the various email apps.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getEmailAppUsageUserDetail";
+            command.Description = "Get details about which activities users performed on the various email apps.";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getEmailAppUsageUserDetail
+        /// Get details about which activities users performed on the various email apps.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

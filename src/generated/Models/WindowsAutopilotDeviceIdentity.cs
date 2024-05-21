@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The windowsAutopilotDeviceIdentity resource represents a Windows Autopilot Device.
     /// </summary>
-    public class WindowsAutopilotDeviceIdentity : Entity, IParsable 
+    public class WindowsAutopilotDeviceIdentity : Entity, IParsable
     {
         /// <summary>Addressable user name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -144,22 +145,22 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"addressableUserName", n => { AddressableUserName = n.GetStringValue(); } },
-                {"azureActiveDirectoryDeviceId", n => { AzureActiveDirectoryDeviceId = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"enrollmentState", n => { EnrollmentState = n.GetEnumValue<EnrollmentState>(); } },
-                {"groupTag", n => { GroupTag = n.GetStringValue(); } },
-                {"lastContactedDateTime", n => { LastContactedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"managedDeviceId", n => { ManagedDeviceId = n.GetStringValue(); } },
-                {"manufacturer", n => { Manufacturer = n.GetStringValue(); } },
-                {"model", n => { Model = n.GetStringValue(); } },
-                {"productKey", n => { ProductKey = n.GetStringValue(); } },
-                {"purchaseOrderIdentifier", n => { PurchaseOrderIdentifier = n.GetStringValue(); } },
-                {"resourceName", n => { ResourceName = n.GetStringValue(); } },
-                {"serialNumber", n => { SerialNumber = n.GetStringValue(); } },
-                {"skuNumber", n => { SkuNumber = n.GetStringValue(); } },
-                {"systemFamily", n => { SystemFamily = n.GetStringValue(); } },
-                {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
+                { "addressableUserName", n => { AddressableUserName = n.GetStringValue(); } },
+                { "azureActiveDirectoryDeviceId", n => { AzureActiveDirectoryDeviceId = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "enrollmentState", n => { EnrollmentState = n.GetEnumValue<EnrollmentState>(); } },
+                { "groupTag", n => { GroupTag = n.GetStringValue(); } },
+                { "lastContactedDateTime", n => { LastContactedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "managedDeviceId", n => { ManagedDeviceId = n.GetStringValue(); } },
+                { "manufacturer", n => { Manufacturer = n.GetStringValue(); } },
+                { "model", n => { Model = n.GetStringValue(); } },
+                { "productKey", n => { ProductKey = n.GetStringValue(); } },
+                { "purchaseOrderIdentifier", n => { PurchaseOrderIdentifier = n.GetStringValue(); } },
+                { "resourceName", n => { ResourceName = n.GetStringValue(); } },
+                { "serialNumber", n => { SerialNumber = n.GetStringValue(); } },
+                { "skuNumber", n => { SkuNumber = n.GetStringValue(); } },
+                { "systemFamily", n => { SystemFamily = n.GetStringValue(); } },
+                { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
         }
         /// <summary>

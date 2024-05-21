@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Participant : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Participant : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The info property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -79,15 +82,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"info", n => { Info = n.GetObjectValue<ParticipantInfo>(ParticipantInfo.CreateFromDiscriminatorValue); } },
-                {"isInLobby", n => { IsInLobby = n.GetBoolValue(); } },
-                {"isMuted", n => { IsMuted = n.GetBoolValue(); } },
-                {"mediaStreams", n => { MediaStreams = n.GetCollectionOfObjectValues<MediaStream>(MediaStream.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"metadata", n => { Metadata = n.GetStringValue(); } },
-                {"recordingInfo", n => { RecordingInfo = n.GetObjectValue<ApiSdk.Models.RecordingInfo>(ApiSdk.Models.RecordingInfo.CreateFromDiscriminatorValue); } },
-                {"removedState", n => { RemovedState = n.GetObjectValue<ApiSdk.Models.RemovedState>(ApiSdk.Models.RemovedState.CreateFromDiscriminatorValue); } },
-                {"restrictedExperience", n => { RestrictedExperience = n.GetObjectValue<OnlineMeetingRestricted>(OnlineMeetingRestricted.CreateFromDiscriminatorValue); } },
-                {"rosterSequenceNumber", n => { RosterSequenceNumber = n.GetLongValue(); } },
+                { "info", n => { Info = n.GetObjectValue<ParticipantInfo>(ParticipantInfo.CreateFromDiscriminatorValue); } },
+                { "isInLobby", n => { IsInLobby = n.GetBoolValue(); } },
+                { "isMuted", n => { IsMuted = n.GetBoolValue(); } },
+                { "mediaStreams", n => { MediaStreams = n.GetCollectionOfObjectValues<MediaStream>(MediaStream.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "metadata", n => { Metadata = n.GetStringValue(); } },
+                { "recordingInfo", n => { RecordingInfo = n.GetObjectValue<ApiSdk.Models.RecordingInfo>(ApiSdk.Models.RecordingInfo.CreateFromDiscriminatorValue); } },
+                { "removedState", n => { RemovedState = n.GetObjectValue<ApiSdk.Models.RemovedState>(ApiSdk.Models.RemovedState.CreateFromDiscriminatorValue); } },
+                { "restrictedExperience", n => { RestrictedExperience = n.GetObjectValue<OnlineMeetingRestricted>(OnlineMeetingRestricted.CreateFromDiscriminatorValue); } },
+                { "rosterSequenceNumber", n => { RosterSequenceNumber = n.GetLongValue(); } },
             };
         }
         /// <summary>

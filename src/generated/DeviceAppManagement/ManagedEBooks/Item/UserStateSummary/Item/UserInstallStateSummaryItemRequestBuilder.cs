@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
+namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item
+{
     /// <summary>
     /// Provides operations to manage the userStateSummary property of the microsoft.graph.managedEBook entity.
     /// </summary>
-    public class UserInstallStateSummaryItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserInstallStateSummaryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a userInstallStateSummary.

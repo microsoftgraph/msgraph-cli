@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item
+{
     /// <summary>
     /// Provides operations to manage the children property of the microsoft.graph.termStore.set entity.
     /// </summary>
-    public class TermItemRequestBuilder : BaseCliRequestBuilder 
+    public class TermItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property children for groups

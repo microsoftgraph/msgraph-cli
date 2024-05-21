@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
+namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class HomeRealmDiscoveryPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class HomeRealmDiscoveryPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.

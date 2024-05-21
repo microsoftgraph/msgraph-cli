@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.Item {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.Item
+{
     /// <summary>
     /// Provides operations to manage the deviceImages property of the microsoft.graph.virtualEndpoint entity.
     /// </summary>
-    public class CloudPcDeviceImageItemRequestBuilder : BaseCliRequestBuilder 
+    public class CloudPcDeviceImageItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a cloudPcDeviceImage object.

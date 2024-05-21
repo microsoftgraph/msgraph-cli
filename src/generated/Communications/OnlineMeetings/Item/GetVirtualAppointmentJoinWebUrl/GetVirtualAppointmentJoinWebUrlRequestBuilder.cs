@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl {
+namespace ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl
+{
     /// <summary>
     /// Provides operations to call the getVirtualAppointmentJoinWebUrl method.
     /// </summary>
-    public class GetVirtualAppointmentJoinWebUrlRequestBuilder : BaseCliRequestBuilder 
+    public class GetVirtualAppointmentJoinWebUrlRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getVirtualAppointmentJoinWebUrl
+        /// Get a join web URL for a Microsoft Virtual Appointment. This web URL includes enhanced business-to-customer experiences such as mobile browser join and virtual lobby rooms. With Teams Premium, you can configure a custom lobby room experience for attendees by adding your company logo and access the Virtual Appointments usage report for organizational analytics.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualappointment-getvirtualappointmentjoinweburl?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getVirtualAppointmentJoinWebUrl";
+            command.Description = "Get a join web URL for a Microsoft Virtual Appointment. This web URL includes enhanced business-to-customer experiences such as mobile browser join and virtual lobby rooms. With Teams Premium, you can configure a custom lobby room experience for attendees by adding your company logo and access the Virtual Appointments usage report for organizational analytics.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualappointment-getvirtualappointmentjoinweburl?view=graph-rest-1.0";
             var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
@@ -72,7 +74,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWeb
         {
         }
         /// <summary>
-        /// Invoke function getVirtualAppointmentJoinWebUrl
+        /// Get a join web URL for a Microsoft Virtual Appointment. This web URL includes enhanced business-to-customer experiences such as mobile browser join and virtual lobby rooms. With Teams Premium, you can configure a custom lobby room experience for attendees by adding your company logo and access the Virtual Appointments usage report for organizational analytics.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

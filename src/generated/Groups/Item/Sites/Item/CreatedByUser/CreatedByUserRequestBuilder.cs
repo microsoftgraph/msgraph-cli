@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.CreatedByUser {
+namespace ApiSdk.Groups.Item.Sites.Item.CreatedByUser
+{
     /// <summary>
     /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
     /// </summary>
-    public class CreatedByUserRequestBuilder : BaseCliRequestBuilder 
+    public class CreatedByUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Identity of the user who created the item. Read-only.

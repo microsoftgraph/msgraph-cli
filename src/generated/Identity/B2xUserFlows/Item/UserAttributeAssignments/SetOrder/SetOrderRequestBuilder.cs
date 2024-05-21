@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder {
+namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder
+{
     /// <summary>
     /// Provides operations to call the setOrder method.
     /// </summary>
-    public class SetOrderRequestBuilder : BaseCliRequestBuilder 
+    public class SetOrderRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Set the order of identityUserFlowAttributeAssignments being collected within a user flow.

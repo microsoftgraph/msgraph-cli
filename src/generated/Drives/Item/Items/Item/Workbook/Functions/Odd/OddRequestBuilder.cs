@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Odd {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Odd
+{
     /// <summary>
     /// Provides operations to call the odd method.
     /// </summary>
-    public class OddRequestBuilder : BaseCliRequestBuilder 
+    public class OddRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action odd

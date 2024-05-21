@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Simulation : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Simulation : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue, oAuthConsentGrant. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: oAuthConsentGrant. For more information on the types of social engineering attack techniques, see simulations.</summary>
         public SimulationAttackTechnique? AttackTechnique { get; set; }
@@ -157,30 +160,30 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"attackTechnique", n => { AttackTechnique = n.GetEnumValue<SimulationAttackTechnique>(); } },
-                {"attackType", n => { AttackType = n.GetEnumValue<SimulationAttackType>(); } },
-                {"automationId", n => { AutomationId = n.GetStringValue(); } },
-                {"completionDateTime", n => { CompletionDateTime = n.GetDateTimeOffsetValue(); } },
-                {"createdBy", n => { CreatedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"durationInDays", n => { DurationInDays = n.GetIntValue(); } },
-                {"endUserNotificationSetting", n => { EndUserNotificationSetting = n.GetObjectValue<ApiSdk.Models.EndUserNotificationSetting>(ApiSdk.Models.EndUserNotificationSetting.CreateFromDiscriminatorValue); } },
-                {"excludedAccountTarget", n => { ExcludedAccountTarget = n.GetObjectValue<AccountTargetContent>(AccountTargetContent.CreateFromDiscriminatorValue); } },
-                {"includedAccountTarget", n => { IncludedAccountTarget = n.GetObjectValue<AccountTargetContent>(AccountTargetContent.CreateFromDiscriminatorValue); } },
-                {"isAutomated", n => { IsAutomated = n.GetBoolValue(); } },
-                {"landingPage", n => { LandingPage = n.GetObjectValue<ApiSdk.Models.LandingPage>(ApiSdk.Models.LandingPage.CreateFromDiscriminatorValue); } },
-                {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"launchDateTime", n => { LaunchDateTime = n.GetDateTimeOffsetValue(); } },
-                {"loginPage", n => { LoginPage = n.GetObjectValue<ApiSdk.Models.LoginPage>(ApiSdk.Models.LoginPage.CreateFromDiscriminatorValue); } },
-                {"oAuthConsentAppDetail", n => { OAuthConsentAppDetail = n.GetObjectValue<ApiSdk.Models.OAuthConsentAppDetail>(ApiSdk.Models.OAuthConsentAppDetail.CreateFromDiscriminatorValue); } },
-                {"payload", n => { Payload = n.GetObjectValue<ApiSdk.Models.Payload>(ApiSdk.Models.Payload.CreateFromDiscriminatorValue); } },
-                {"payloadDeliveryPlatform", n => { PayloadDeliveryPlatform = n.GetEnumValue<PayloadDeliveryPlatform>(); } },
-                {"report", n => { Report = n.GetObjectValue<SimulationReport>(SimulationReport.CreateFromDiscriminatorValue); } },
-                {"status", n => { Status = n.GetEnumValue<SimulationStatus>(); } },
-                {"trainingSetting", n => { TrainingSetting = n.GetObjectValue<ApiSdk.Models.TrainingSetting>(ApiSdk.Models.TrainingSetting.CreateFromDiscriminatorValue); } },
+                { "attackTechnique", n => { AttackTechnique = n.GetEnumValue<SimulationAttackTechnique>(); } },
+                { "attackType", n => { AttackType = n.GetEnumValue<SimulationAttackType>(); } },
+                { "automationId", n => { AutomationId = n.GetStringValue(); } },
+                { "completionDateTime", n => { CompletionDateTime = n.GetDateTimeOffsetValue(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "durationInDays", n => { DurationInDays = n.GetIntValue(); } },
+                { "endUserNotificationSetting", n => { EndUserNotificationSetting = n.GetObjectValue<ApiSdk.Models.EndUserNotificationSetting>(ApiSdk.Models.EndUserNotificationSetting.CreateFromDiscriminatorValue); } },
+                { "excludedAccountTarget", n => { ExcludedAccountTarget = n.GetObjectValue<AccountTargetContent>(AccountTargetContent.CreateFromDiscriminatorValue); } },
+                { "includedAccountTarget", n => { IncludedAccountTarget = n.GetObjectValue<AccountTargetContent>(AccountTargetContent.CreateFromDiscriminatorValue); } },
+                { "isAutomated", n => { IsAutomated = n.GetBoolValue(); } },
+                { "landingPage", n => { LandingPage = n.GetObjectValue<ApiSdk.Models.LandingPage>(ApiSdk.Models.LandingPage.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "launchDateTime", n => { LaunchDateTime = n.GetDateTimeOffsetValue(); } },
+                { "loginPage", n => { LoginPage = n.GetObjectValue<ApiSdk.Models.LoginPage>(ApiSdk.Models.LoginPage.CreateFromDiscriminatorValue); } },
+                { "oAuthConsentAppDetail", n => { OAuthConsentAppDetail = n.GetObjectValue<ApiSdk.Models.OAuthConsentAppDetail>(ApiSdk.Models.OAuthConsentAppDetail.CreateFromDiscriminatorValue); } },
+                { "payload", n => { Payload = n.GetObjectValue<ApiSdk.Models.Payload>(ApiSdk.Models.Payload.CreateFromDiscriminatorValue); } },
+                { "payloadDeliveryPlatform", n => { PayloadDeliveryPlatform = n.GetEnumValue<PayloadDeliveryPlatform>(); } },
+                { "report", n => { Report = n.GetObjectValue<SimulationReport>(SimulationReport.CreateFromDiscriminatorValue); } },
+                { "status", n => { Status = n.GetEnumValue<SimulationStatus>(); } },
+                { "trainingSetting", n => { TrainingSetting = n.GetObjectValue<ApiSdk.Models.TrainingSetting>(ApiSdk.Models.TrainingSetting.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

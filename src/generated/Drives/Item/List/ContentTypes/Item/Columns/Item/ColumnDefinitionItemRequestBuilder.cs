@@ -15,21 +15,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
+namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item
+{
     /// <summary>
     /// Provides operations to manage the columns property of the microsoft.graph.contentType entity.
     /// </summary>
-    public class ColumnDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ColumnDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Remove a [column][columndefinition] from a [site][], a [list][], or a [content type][contentType].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/columndefinition-delete?view=graph-rest-1.0" />
+        /// Delete navigation property columns for drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a [column][columndefinition] from a [site][], a [list][], or a [content type][contentType].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/columndefinition-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property columns for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -70,14 +70,13 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the metadata for a [site][], a [list][], or a [contentType][] [column][columnDefinition].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/columndefinition-get?view=graph-rest-1.0" />
+        /// The collection of column definitions for this content type.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the metadata for a [site][], a [list][], or a [contentType][] [column][columnDefinition].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/columndefinition-get?view=graph-rest-1.0";
+            command.Description = "The collection of column definitions for this content type.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -135,14 +134,13 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
             return command;
         }
         /// <summary>
-        /// Update a [site][], a [list][], or a [content type][contentType] [column][columnDefinition].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/columndefinition-update?view=graph-rest-1.0" />
+        /// Update the navigation property columns in drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update a [site][], a [list][], or a [content type][contentType] [column][columnDefinition].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/columndefinition-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property columns in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -230,7 +228,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
         {
         }
         /// <summary>
-        /// Remove a [column][columndefinition] from a [site][], a [list][], or a [content type][contentType].
+        /// Delete navigation property columns for drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +247,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a [site][], a [list][], or a [contentType][] [column][columnDefinition].
+        /// The collection of column definitions for this content type.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +266,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update a [site][], a [list][], or a [content type][contentType] [column][columnDefinition].
+        /// Update the navigation property columns in drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -289,7 +287,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a [site][], a [list][], or a [contentType][] [column][columnDefinition].
+        /// The collection of column definitions for this content type.
         /// </summary>
         public class ColumnDefinitionItemRequestBuilderGetQueryParameters 
         {

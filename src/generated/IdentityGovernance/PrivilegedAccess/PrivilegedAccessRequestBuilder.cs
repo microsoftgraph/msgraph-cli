@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess
+{
     /// <summary>
     /// Provides operations to manage the privilegedAccess property of the microsoft.graph.identityGovernance entity.
     /// </summary>
-    public class PrivilegedAccessRequestBuilder : BaseCliRequestBuilder 
+    public class PrivilegedAccessRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property privilegedAccess for identityGovernance

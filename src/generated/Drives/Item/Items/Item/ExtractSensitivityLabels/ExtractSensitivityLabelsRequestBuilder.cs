@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.ExtractSensitivityLabels {
+namespace ApiSdk.Drives.Item.Items.Item.ExtractSensitivityLabels
+{
     /// <summary>
     /// Provides operations to call the extractSensitivityLabels method.
     /// </summary>
-    public class ExtractSensitivityLabelsRequestBuilder : BaseCliRequestBuilder 
+    public class ExtractSensitivityLabelsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action extractSensitivityLabels

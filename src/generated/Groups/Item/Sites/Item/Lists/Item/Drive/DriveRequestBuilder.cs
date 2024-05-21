@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Drive {
+namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Drive
+{
     /// <summary>
     /// Provides operations to manage the drive property of the microsoft.graph.list entity.
     /// </summary>
-    public class DriveRequestBuilder : BaseCliRequestBuilder 
+    public class DriveRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Allows access to the list as a drive resource with driveItems. Only present on document libraries.

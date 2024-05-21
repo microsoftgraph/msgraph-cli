@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Oct2Hex {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Oct2Hex
+{
     /// <summary>
     /// Provides operations to call the oct2Hex method.
     /// </summary>
-    public class Oct2HexRequestBuilder : BaseCliRequestBuilder 
+    public class Oct2HexRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action oct2Hex

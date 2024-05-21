@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.DeviceBootPerformanceMetrics {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.DeviceBootPerformanceMetrics
+{
     /// <summary>
     /// Provides operations to manage the deviceBootPerformanceMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
     /// </summary>
-    public class DeviceBootPerformanceMetricsRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceBootPerformanceMetricsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The scores and insights for the device boot performance metrics.

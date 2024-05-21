@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lenb {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lenb
+{
     /// <summary>
     /// Provides operations to call the lenb method.
     /// </summary>
-    public class LenbRequestBuilder : BaseCliRequestBuilder 
+    public class LenbRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action lenb

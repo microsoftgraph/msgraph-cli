@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.TermStores {
+namespace ApiSdk.Groups.Item.Sites.Item.TermStores
+{
     /// <summary>
     /// Provides operations to manage the termStores property of the microsoft.graph.site entity.
     /// </summary>
-    public class TermStoresRequestBuilder : BaseCliRequestBuilder 
+    public class TermStoresRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the termStores property of the microsoft.graph.site entity.
@@ -207,7 +208,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
