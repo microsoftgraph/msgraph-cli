@@ -28,7 +28,7 @@ namespace ApiSdk.Reports.GetTeamsTeamActivityDetailWithDate
         {
             var command = new Command("get");
             command.Description = "Get details about Microsoft Teams activity by team. The numbers include activities for both licensed and nonlicensed users.";
-            var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
+            var dateOption = new Option<Date?>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
             command.AddOption(dateOption);

@@ -36,7 +36,7 @@ namespace ApiSdk.Models
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The registrationCampaign property</summary>
+        /// <summary>Represents content options to customize during MFA proofup interruptions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<KeyValue>? RegistrationCampaign { get; set; }
@@ -44,7 +44,7 @@ namespace ApiSdk.Models
 #else
         public List<KeyValue> RegistrationCampaign { get; set; }
 #endif
-        /// <summary>The registrationCampaignRelativeUrl property</summary>
+        /// <summary>The relative URL of the content options to customize during MFA proofup interruptions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RegistrationCampaignRelativeUrl { get; set; }

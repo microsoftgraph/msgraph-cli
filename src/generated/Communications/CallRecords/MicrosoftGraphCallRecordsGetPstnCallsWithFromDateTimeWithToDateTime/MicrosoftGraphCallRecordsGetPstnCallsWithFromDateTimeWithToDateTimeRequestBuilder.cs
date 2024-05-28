@@ -28,11 +28,11 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCall
         {
             var command = new Command("get");
             command.Description = "Get log of PSTN calls as a collection of pstnCallLogRow entries.";
-            var fromDateTimeOption = new Option<string>("--from-date-time", description: "Usage: fromDateTime={fromDateTime}") {
+            var fromDateTimeOption = new Option<DateTimeOffset?>("--from-date-time", description: "Usage: fromDateTime={fromDateTime}") {
             };
             fromDateTimeOption.IsRequired = true;
             command.AddOption(fromDateTimeOption);
-            var toDateTimeOption = new Option<string>("--to-date-time", description: "Usage: toDateTime={toDateTime}") {
+            var toDateTimeOption = new Option<DateTimeOffset?>("--to-date-time", description: "Usage: toDateTime={toDateTime}") {
             };
             toDateTimeOption.IsRequired = true;
             command.AddOption(toDateTimeOption);

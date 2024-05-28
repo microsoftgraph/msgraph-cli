@@ -28,7 +28,7 @@ namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate
         {
             var command = new Command("get");
             command.Description = "Get details about Microsoft Teams user activity by user.";
-            var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
+            var dateOption = new Option<Date?>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
             command.AddOption(dateOption);

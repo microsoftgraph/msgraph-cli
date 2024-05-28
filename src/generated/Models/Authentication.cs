@@ -50,7 +50,7 @@ namespace ApiSdk.Models
 #else
         public List<LongRunningOperation> Operations { get; set; }
 #endif
-        /// <summary>Represents the password that&apos;s registered to a user for authentication. For security, the password itself will never be returned in the object, but action can be taken to reset a password.</summary>
+        /// <summary>Represents the password registered to a user for authentication. For security, the password itself is never returned in the object, but action can be taken to reset a password.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<PasswordAuthenticationMethod>? PasswordMethods { get; set; }
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
 #else
         public List<PhoneAuthenticationMethod> PhoneMethods { get; set; }
 #endif
-        /// <summary>The software OATH TOTP applications registered to a user for authentication.</summary>
+        /// <summary>The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SoftwareOathAuthenticationMethod>? SoftwareOathMethods { get; set; }

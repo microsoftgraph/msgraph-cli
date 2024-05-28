@@ -28,11 +28,11 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRo
         {
             var command = new Command("get");
             command.Description = "Get a log of direct routing calls as a collection of directRoutingLogRow entries.";
-            var fromDateTimeOption = new Option<string>("--from-date-time", description: "Usage: fromDateTime={fromDateTime}") {
+            var fromDateTimeOption = new Option<DateTimeOffset?>("--from-date-time", description: "Usage: fromDateTime={fromDateTime}") {
             };
             fromDateTimeOption.IsRequired = true;
             command.AddOption(fromDateTimeOption);
-            var toDateTimeOption = new Option<string>("--to-date-time", description: "Usage: toDateTime={toDateTime}") {
+            var toDateTimeOption = new Option<DateTimeOffset?>("--to-date-time", description: "Usage: toDateTime={toDateTime}") {
             };
             toDateTimeOption.IsRequired = true;
             command.AddOption(toDateTimeOption);

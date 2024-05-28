@@ -12,7 +12,7 @@ namespace ApiSdk.Models
     {
         /// <summary>The dataType property</summary>
         public IdentityUserFlowAttributeDataType? DataType { get; set; }
-        /// <summary>The description of the user flow attribute that&apos;s shown to the user at the time of sign-up.</summary>
+        /// <summary>The description of the user flow attribute that&apos;s shown to the user at the time of sign up.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }

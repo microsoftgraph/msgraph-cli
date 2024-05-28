@@ -65,6 +65,7 @@ using ApiSdk.ServicePrincipalsWithAppId;
 using ApiSdk.Shares;
 using ApiSdk.Sites;
 using ApiSdk.Solutions;
+using ApiSdk.Storage;
 using ApiSdk.SubscribedSkus;
 using ApiSdk.Subscriptions;
 using ApiSdk.Teams;
@@ -1291,6 +1292,7 @@ namespace ApiSdk
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildApiConnectorsNavCommand());
             nonExecCommands.Add(builder.BuildAuthenticationEventListenersNavCommand());
+            nonExecCommands.Add(builder.BuildAuthenticationEventsFlowsNavCommand());
             nonExecCommands.Add(builder.BuildB2xUserFlowsNavCommand());
             nonExecCommands.Add(builder.BuildConditionalAccessNavCommand());
             nonExecCommands.Add(builder.BuildCustomAuthenticationExtensionsNavCommand());
@@ -1878,6 +1880,7 @@ namespace ApiSdk
             command.AddCommand(BuildSharesNavCommand());
             command.AddCommand(BuildSitesNavCommand());
             command.AddCommand(BuildSolutionsNavCommand());
+            command.AddCommand(BuildStorageNavCommand());
             command.AddCommand(BuildSubscribedSkusNavCommand());
             command.AddCommand(BuildSubscriptionsNavCommand());
             command.AddCommand(BuildTeamsNavCommand());
@@ -2128,6 +2131,30 @@ namespace ApiSdk
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildVirtualEventsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the storage singleton.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildStorageNavCommand()
+        {
+            var command = new Command("storage");
+            command.Description = "Provides operations to manage the storage singleton.";
+            var builder = new StorageRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildFileStorageNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);

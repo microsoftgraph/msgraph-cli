@@ -169,14 +169,14 @@ namespace ApiSdk.External.Connections.Item.Items.Item
             return command;
         }
         /// <summary>
-        /// Create a new externalItem object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-put-items?view=graph-rest-1.0" />
+        /// Update the properties of an externalItem object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalitem-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Create a new externalItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-put-items?view=graph-rest-1.0";
+            command.Description = "Update the properties of an externalItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalitem-update?view=graph-rest-1.0";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -279,7 +279,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item
             return requestInfo;
         }
         /// <summary>
-        /// Create a new externalItem object.
+        /// Update the properties of an externalItem object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

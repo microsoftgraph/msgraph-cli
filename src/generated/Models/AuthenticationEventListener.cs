@@ -37,7 +37,11 @@ namespace ApiSdk.Models
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
+                "#microsoft.graph.onAttributeCollectionListener" => new OnAttributeCollectionListener(),
+                "#microsoft.graph.onAuthenticationMethodLoadStartListener" => new OnAuthenticationMethodLoadStartListener(),
+                "#microsoft.graph.onInteractiveAuthFlowStartListener" => new OnInteractiveAuthFlowStartListener(),
                 "#microsoft.graph.onTokenIssuanceStartListener" => new OnTokenIssuanceStartListener(),
+                "#microsoft.graph.onUserCreateStartListener" => new OnUserCreateStartListener(),
                 _ => new AuthenticationEventListener(),
             };
         }

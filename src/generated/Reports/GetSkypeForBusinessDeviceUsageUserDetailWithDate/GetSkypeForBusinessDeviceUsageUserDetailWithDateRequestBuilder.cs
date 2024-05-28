@@ -29,7 +29,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithDate
         {
             var command = new Command("get");
             command.Description = "Get details about Skype for Business device usage by user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessdeviceusageuserdetail?view=graph-rest-1.0";
-            var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
+            var dateOption = new Option<Date?>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
             command.AddOption(dateOption);

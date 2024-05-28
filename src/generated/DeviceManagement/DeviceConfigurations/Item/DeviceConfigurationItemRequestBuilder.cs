@@ -74,14 +74,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
             return command;
         }
         /// <summary>
-        /// Deletes a iosDeviceFeaturesConfiguration.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-iosdevicefeaturesconfiguration-delete?view=graph-rest-1.0" />
+        /// Deletes a macOSCustomConfiguration.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-macoscustomconfiguration-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a iosDeviceFeaturesConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-iosdevicefeaturesconfiguration-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a macOSCustomConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-macoscustomconfiguration-delete?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -183,14 +183,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the androidCustomConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the windows10CustomConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10customconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the androidCustomConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the windows10CustomConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10customconfiguration-get?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -253,14 +253,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
             return command;
         }
         /// <summary>
-        /// Update the properties of a androidWorkProfileCustomConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidworkprofilecustomconfiguration-update?view=graph-rest-1.0" />
+        /// Update the properties of a windows81GeneralConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows81generalconfiguration-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a androidWorkProfileCustomConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidworkprofilecustomconfiguration-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a windows81GeneralConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows81generalconfiguration-update?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -365,7 +365,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
         {
         }
         /// <summary>
-        /// Deletes a iosDeviceFeaturesConfiguration.
+        /// Deletes a macOSCustomConfiguration.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -384,7 +384,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the androidCustomConfiguration object.
+        /// Read properties and relationships of the windows10CustomConfiguration object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -403,7 +403,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a androidWorkProfileCustomConfiguration object.
+        /// Update the properties of a windows81GeneralConfiguration object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -424,7 +424,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the androidCustomConfiguration object.
+        /// Read properties and relationships of the windows10CustomConfiguration object.
         /// </summary>
         public class DeviceConfigurationItemRequestBuilderGetQueryParameters 
         {

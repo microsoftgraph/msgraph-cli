@@ -22,13 +22,13 @@ namespace ApiSdk.Users.Item.Authentication.PasswordMethods.Item
     public class PasswordAuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Represents the password that&apos;s registered to a user for authentication. For security, the password itself will never be returned in the object, but action can be taken to reset a password.
+        /// Represents the password registered to a user for authentication. For security, the password itself is never returned in the object, but action can be taken to reset a password.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Represents the password that's registered to a user for authentication. For security, the password itself will never be returned in the object, but action can be taken to reset a password.";
+            command.Description = "Represents the password registered to a user for authentication. For security, the password itself is never returned in the object, but action can be taken to reset a password.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -94,7 +94,7 @@ namespace ApiSdk.Users.Item.Authentication.PasswordMethods.Item
         {
         }
         /// <summary>
-        /// Represents the password that&apos;s registered to a user for authentication. For security, the password itself will never be returned in the object, but action can be taken to reset a password.
+        /// Represents the password registered to a user for authentication. For security, the password itself is never returned in the object, but action can be taken to reset a password.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -113,7 +113,7 @@ namespace ApiSdk.Users.Item.Authentication.PasswordMethods.Item
             return requestInfo;
         }
         /// <summary>
-        /// Represents the password that&apos;s registered to a user for authentication. For security, the password itself will never be returned in the object, but action can be taken to reset a password.
+        /// Represents the password registered to a user for authentication. For security, the password itself is never returned in the object, but action can be taken to reset a password.
         /// </summary>
         public class PasswordAuthenticationMethodItemRequestBuilderGetQueryParameters 
         {

@@ -28,7 +28,7 @@ namespace ApiSdk.Reports.GetEmailActivityUserDetailWithDate
         {
             var command = new Command("get");
             command.Description = "Get details about email activity users have performed.";
-            var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
+            var dateOption = new Option<Date?>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
             command.AddOption(dateOption);
