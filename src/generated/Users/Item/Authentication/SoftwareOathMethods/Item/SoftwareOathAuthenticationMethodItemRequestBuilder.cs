@@ -64,13 +64,13 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods.Item
             return command;
         }
         /// <summary>
-        /// The software OATH TOTP applications registered to a user for authentication.
+        /// The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The software OATH TOTP applications registered to a user for authentication.";
+            command.Description = "The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -155,7 +155,7 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods.Item
             return requestInfo;
         }
         /// <summary>
-        /// The software OATH TOTP applications registered to a user for authentication.
+        /// The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -174,7 +174,7 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods.Item
             return requestInfo;
         }
         /// <summary>
-        /// The software OATH TOTP applications registered to a user for authentication.
+        /// The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.
         /// </summary>
         public class SoftwareOathAuthenticationMethodItemRequestBuilderGetQueryParameters 
         {

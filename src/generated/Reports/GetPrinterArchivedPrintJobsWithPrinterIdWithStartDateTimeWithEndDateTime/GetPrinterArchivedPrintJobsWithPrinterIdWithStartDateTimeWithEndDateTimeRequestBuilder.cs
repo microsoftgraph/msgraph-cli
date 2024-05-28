@@ -33,11 +33,11 @@ namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTi
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            var startDateTimeOption = new Option<string>("--start-date-time", description: "Usage: startDateTime={startDateTime}") {
+            var startDateTimeOption = new Option<DateTimeOffset?>("--start-date-time", description: "Usage: startDateTime={startDateTime}") {
             };
             startDateTimeOption.IsRequired = true;
             command.AddOption(startDateTimeOption);
-            var endDateTimeOption = new Option<string>("--end-date-time", description: "Usage: endDateTime={endDateTime}") {
+            var endDateTimeOption = new Option<DateTimeOffset?>("--end-date-time", description: "Usage: endDateTime={endDateTime}") {
             };
             endDateTimeOption.IsRequired = true;
             command.AddOption(endDateTimeOption);

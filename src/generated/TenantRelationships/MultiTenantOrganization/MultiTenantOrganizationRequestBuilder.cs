@@ -89,14 +89,14 @@ namespace ApiSdk.TenantRelationships.MultiTenantOrganization
             return command;
         }
         /// <summary>
-        /// Update the properties of a multitenant organization.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/multitenantorganization-update?view=graph-rest-1.0" />
+        /// Create a new multitenant organization. By default, the creator tenant becomes an owner tenant upon successful creation. Only owner tenants can manage a multitenant organization.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tenantrelationship-put-multitenantorganization?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Update the properties of a multitenant organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/multitenantorganization-update?view=graph-rest-1.0";
+            command.Description = "Create a new multitenant organization. By default, the creator tenant becomes an owner tenant upon successful creation. Only owner tenants can manage a multitenant organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tenantrelationship-put-multitenantorganization?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -195,7 +195,7 @@ namespace ApiSdk.TenantRelationships.MultiTenantOrganization
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a multitenant organization.
+        /// Create a new multitenant organization. By default, the creator tenant becomes an owner tenant upon successful creation. Only owner tenants can manage a multitenant organization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

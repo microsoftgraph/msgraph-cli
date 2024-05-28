@@ -87,14 +87,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the androidManagedAppRegistration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the iosManagedAppRegistration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-iosmanagedappregistration-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the androidManagedAppRegistration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the iosManagedAppRegistration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-iosmanagedappregistration-get?view=graph-rest-1.0";
             var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
@@ -278,7 +278,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the androidManagedAppRegistration object.
+        /// Read properties and relationships of the iosManagedAppRegistration object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -318,7 +318,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the androidManagedAppRegistration object.
+        /// Read properties and relationships of the iosManagedAppRegistration object.
         /// </summary>
         public class ManagedAppRegistrationItemRequestBuilderGetQueryParameters 
         {

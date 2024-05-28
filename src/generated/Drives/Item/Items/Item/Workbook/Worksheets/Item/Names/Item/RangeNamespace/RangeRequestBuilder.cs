@@ -22,14 +22,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.Item.Rang
     public class RangeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Retrieve the properties and relationships of range object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/range-get?view=graph-rest-1.0" />
+        /// Returns the range object that is associated with the name. Throws an exception if the named item&apos;s type is not a range.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/nameditem-range?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of range object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/range-get?view=graph-rest-1.0";
+            command.Description = "Returns the range object that is associated with the name. Throws an exception if the named item's type is not a range.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/nameditem-range?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -93,7 +93,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.Item.Rang
         {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of range object.
+        /// Returns the range object that is associated with the name. Throws an exception if the named item&apos;s type is not a range.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

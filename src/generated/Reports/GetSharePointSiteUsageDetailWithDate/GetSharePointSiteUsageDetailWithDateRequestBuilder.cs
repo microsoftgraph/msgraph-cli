@@ -29,7 +29,7 @@ namespace ApiSdk.Reports.GetSharePointSiteUsageDetailWithDate
         {
             var command = new Command("get");
             command.Description = "Get details about SharePoint site usage.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0";
-            var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
+            var dateOption = new Option<Date?>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
             command.AddOption(dateOption);
