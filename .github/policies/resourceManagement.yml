@@ -16,7 +16,7 @@ configuration:
       - isIssue
       - isOpen
       - hasLabel:
-          label: 'Needs: Author Feedback'
+          label: 'status:waiting-for-author-feedback'
       - hasLabel:
           label: 'Status: No Recent Activity'
       - noActivitySince:
@@ -33,7 +33,7 @@ configuration:
       - isIssue
       - isOpen
       - hasLabel:
-          label: 'Needs: Author Feedback'
+          label: 'status:waiting-for-author-feedback'
       - noActivitySince:
           days: 4
       - isNotLabeledWith:
@@ -101,12 +101,12 @@ configuration:
       - isActivitySender:
           issueAuthor: True
       - hasLabel:
-          label: 'Needs: Author Feedback'
+          label: 'status:waiting-for-author-feedback'
       then:
       - addLabel:
           label: "Needs: Attention \U0001F44B"
       - removeLabel:
-          label: 'Needs: Author Feedback'
+          label: 'status:waiting-for-author-feedback'
       description:
     - if:
       - payloadType: Issues
@@ -131,7 +131,7 @@ configuration:
           isRegex: False
       then:
       - addLabel:
-          label: 'Needs: Author Feedback'
+          label: 'status:waiting-for-author-feedback'
       description:
     - if:
       - payloadType: Issue_Comment
