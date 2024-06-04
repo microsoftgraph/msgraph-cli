@@ -53,7 +53,7 @@ namespace ApiSdk.Models
         /// <summary>Width of the video, in pixels.</summary>
         public int? Width { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Video"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Video"/> and sets the default values.
         /// </summary>
         public Video()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Video"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Video"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Video CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Video CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Video();
+            return new ApiSdk.Models.Video();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The description of this rubric level.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EducationItemBody? Description { get; set; }
+        public ApiSdk.Models.EducationItemBody? Description { get; set; }
 #nullable restore
 #else
-        public EducationItemBody Description { get; set; }
+        public ApiSdk.Models.EducationItemBody Description { get; set; }
 #endif
         /// <summary>The name of this rubric level.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,10 +31,10 @@ namespace ApiSdk.Models
         /// <summary>Null if this is a no-points rubric; educationAssignmentPointsGradeType if it&apos;s a points rubric.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EducationAssignmentGradeType? Grading { get; set; }
+        public ApiSdk.Models.EducationAssignmentGradeType? Grading { get; set; }
 #nullable restore
 #else
-        public EducationAssignmentGradeType Grading { get; set; }
+        public ApiSdk.Models.EducationAssignmentGradeType Grading { get; set; }
 #endif
         /// <summary>The ID of this resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -53,7 +53,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RubricLevel"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RubricLevel"/> and sets the default values.
         /// </summary>
         public RubricLevel()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RubricLevel"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RubricLevel"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RubricLevel CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.RubricLevel CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RubricLevel();
+            return new ApiSdk.Models.RubricLevel();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -77,9 +77,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "description", n => { Description = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
+                { "description", n => { Description = n.GetObjectValue<ApiSdk.Models.EducationItemBody>(ApiSdk.Models.EducationItemBody.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "grading", n => { Grading = n.GetObjectValue<EducationAssignmentGradeType>(EducationAssignmentGradeType.CreateFromDiscriminatorValue); } },
+                { "grading", n => { Grading = n.GetObjectValue<ApiSdk.Models.EducationAssignmentGradeType>(ApiSdk.Models.EducationAssignmentGradeType.CreateFromDiscriminatorValue); } },
                 { "levelId", n => { LevelId = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -91,9 +91,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<EducationItemBody>("description", Description);
+            writer.WriteObjectValue<ApiSdk.Models.EducationItemBody>("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<EducationAssignmentGradeType>("grading", Grading);
+            writer.WriteObjectValue<ApiSdk.Models.EducationAssignmentGradeType>("grading", Grading);
             writer.WriteStringValue("levelId", LevelId);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

@@ -61,14 +61,14 @@ namespace ApiSdk.Reports.GetOneDriveActivityUserDetailWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOneDriveActivityUserDetailWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOneDriveActivityUserDetailWithPeriod.GetOneDriveActivityUserDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOneDriveActivityUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOneDriveActivityUserDetail(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOneDriveActivityUserDetailWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOneDriveActivityUserDetailWithPeriod.GetOneDriveActivityUserDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOneDriveActivityUserDetailWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOneDriveActivityUserDetail(period='{period}')", rawUrl)

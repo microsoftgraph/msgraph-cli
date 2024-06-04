@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class Hostname : Host, IParsable
+    public class Hostname : ApiSdk.Models.Security.Host, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The company or individual who registered this hostname, from WHOIS data.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Security
         public string Registrar { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Hostname"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.Hostname"/> and sets the default values.
         /// </summary>
         public Hostname() : base()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Hostname"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.Hostname"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Hostname CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.Hostname CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Hostname();
+            return new ApiSdk.Models.Security.Hostname();
         }
         /// <summary>
         /// The deserialization information for the current model

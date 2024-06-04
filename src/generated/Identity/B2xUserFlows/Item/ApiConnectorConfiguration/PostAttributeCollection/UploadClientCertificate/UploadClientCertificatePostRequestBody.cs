@@ -29,7 +29,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
         public string Pkcs12Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UploadClientCertificatePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttributeCollection.UploadClientCertificate.UploadClientCertificatePostRequestBody"/> and sets the default values.
         /// </summary>
         public UploadClientCertificatePostRequestBody()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UploadClientCertificatePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttributeCollection.UploadClientCertificate.UploadClientCertificatePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UploadClientCertificatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttributeCollection.UploadClientCertificate.UploadClientCertificatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UploadClientCertificatePostRequestBody();
+            return new ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttributeCollection.UploadClientCertificate.UploadClientCertificatePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

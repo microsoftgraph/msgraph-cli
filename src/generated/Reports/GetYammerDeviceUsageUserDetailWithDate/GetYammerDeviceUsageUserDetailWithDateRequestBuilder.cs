@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetYammerDeviceUsageUserDetailWithDate
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetYammerDeviceUsageUserDetailWithDateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetYammerDeviceUsageUserDetailWithDate.GetYammerDeviceUsageUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetYammerDeviceUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getYammerDeviceUsageUserDetail(date={date})", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetYammerDeviceUsageUserDetailWithDateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetYammerDeviceUsageUserDetailWithDate.GetYammerDeviceUsageUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetYammerDeviceUsageUserDetailWithDateRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getYammerDeviceUsageUserDetail(date={date})", rawUrl)

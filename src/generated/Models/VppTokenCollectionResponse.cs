@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class VppTokenCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class VppTokenCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<VppToken>? Value { get; set; }
+        public List<ApiSdk.Models.VppToken>? Value { get; set; }
 #nullable restore
 #else
-        public List<VppToken> Value { get; set; }
+        public List<ApiSdk.Models.VppToken> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="VppTokenCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.VppTokenCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new VppTokenCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.VppTokenCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new VppTokenCollectionResponse();
+            return new ApiSdk.Models.VppTokenCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<VppToken>(VppToken.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.VppToken>(ApiSdk.Models.VppToken.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<VppToken>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.VppToken>("value", Value);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace ApiSdk.Models.IdentityGovernance
         public string Rule { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RuleBasedSubjectSet"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityGovernance.RuleBasedSubjectSet"/> and sets the default values.
         /// </summary>
         public RuleBasedSubjectSet() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RuleBasedSubjectSet"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.RuleBasedSubjectSet"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RuleBasedSubjectSet CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.RuleBasedSubjectSet CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RuleBasedSubjectSet();
+            return new ApiSdk.Models.IdentityGovernance.RuleBasedSubjectSet();
         }
         /// <summary>
         /// The deserialization information for the current model

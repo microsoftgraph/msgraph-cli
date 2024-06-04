@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// The identifier for the deployment an app.
     /// </summary>
-    public class ManagedMobileApp : Entity, IParsable
+    public class ManagedMobileApp : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The identifier for an app with it&apos;s operating system type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ManagedMobileApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ManagedMobileApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ManagedMobileApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ManagedMobileApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedMobileApp();
+            return new ApiSdk.Models.ManagedMobileApp();
         }
         /// <summary>
         /// The deserialization information for the current model

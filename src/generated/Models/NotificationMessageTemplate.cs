@@ -9,10 +9,10 @@ namespace ApiSdk.Models
     /// <summary>
     /// Notification messages are messages that are sent to end users who are determined to be not-compliant with the compliance policies defined by the administrator. Administrators choose notifications and configure them in the Intune Admin Console using the compliance policy creation page under the “Actions for non-compliance” section. Use the notificationMessageTemplate object to create your own custom notifications for administrators to choose while configuring actions for non-compliance.
     /// </summary>
-    public class NotificationMessageTemplate : Entity, IParsable
+    public class NotificationMessageTemplate : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Branding Options for the Message Template. Branding is defined in the Intune Admin Console.</summary>
-        public NotificationTemplateBrandingOptions? BrandingOptions { get; set; }
+        public ApiSdk.Models.NotificationTemplateBrandingOptions? BrandingOptions { get; set; }
         /// <summary>The default locale to fallback onto when the requested locale is not available.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -34,10 +34,10 @@ namespace ApiSdk.Models
         /// <summary>The list of localized messages for this Notification Message Template.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LocalizedNotificationMessage>? LocalizedNotificationMessages { get; set; }
+        public List<ApiSdk.Models.LocalizedNotificationMessage>? LocalizedNotificationMessages { get; set; }
 #nullable restore
 #else
-        public List<LocalizedNotificationMessage> LocalizedNotificationMessages { get; set; }
+        public List<ApiSdk.Models.LocalizedNotificationMessage> LocalizedNotificationMessages { get; set; }
 #endif
         /// <summary>List of Scope Tags for this Entity instance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -50,12 +50,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="NotificationMessageTemplate"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.NotificationMessageTemplate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new NotificationMessageTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.NotificationMessageTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new NotificationMessageTemplate();
+            return new ApiSdk.Models.NotificationMessageTemplate();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,11 +65,11 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "brandingOptions", n => { BrandingOptions = n.GetEnumValue<NotificationTemplateBrandingOptions>(); } },
+                { "brandingOptions", n => { BrandingOptions = n.GetEnumValue<ApiSdk.Models.NotificationTemplateBrandingOptions>(); } },
                 { "defaultLocale", n => { DefaultLocale = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "localizedNotificationMessages", n => { LocalizedNotificationMessages = n.GetCollectionOfObjectValues<LocalizedNotificationMessage>(LocalizedNotificationMessage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "localizedNotificationMessages", n => { LocalizedNotificationMessages = n.GetCollectionOfObjectValues<ApiSdk.Models.LocalizedNotificationMessage>(ApiSdk.Models.LocalizedNotificationMessage.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "roleScopeTagIds", n => { RoleScopeTagIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
@@ -81,11 +81,11 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<NotificationTemplateBrandingOptions>("brandingOptions", BrandingOptions);
+            writer.WriteEnumValue<ApiSdk.Models.NotificationTemplateBrandingOptions>("brandingOptions", BrandingOptions);
             writer.WriteStringValue("defaultLocale", DefaultLocale);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteCollectionOfObjectValues<LocalizedNotificationMessage>("localizedNotificationMessages", LocalizedNotificationMessages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.LocalizedNotificationMessage>("localizedNotificationMessages", LocalizedNotificationMessages);
             writer.WriteCollectionOfPrimitiveValues<string>("roleScopeTagIds", RoleScopeTagIds);
         }
     }

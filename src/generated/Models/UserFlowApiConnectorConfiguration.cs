@@ -23,21 +23,21 @@ namespace ApiSdk.Models
         /// <summary>The postAttributeCollection property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentityApiConnector? PostAttributeCollection { get; set; }
+        public ApiSdk.Models.IdentityApiConnector? PostAttributeCollection { get; set; }
 #nullable restore
 #else
-        public IdentityApiConnector PostAttributeCollection { get; set; }
+        public ApiSdk.Models.IdentityApiConnector PostAttributeCollection { get; set; }
 #endif
         /// <summary>The postFederationSignup property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentityApiConnector? PostFederationSignup { get; set; }
+        public ApiSdk.Models.IdentityApiConnector? PostFederationSignup { get; set; }
 #nullable restore
 #else
-        public IdentityApiConnector PostFederationSignup { get; set; }
+        public ApiSdk.Models.IdentityApiConnector PostFederationSignup { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UserFlowApiConnectorConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UserFlowApiConnectorConfiguration"/> and sets the default values.
         /// </summary>
         public UserFlowApiConnectorConfiguration()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserFlowApiConnectorConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserFlowApiConnectorConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UserFlowApiConnectorConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UserFlowApiConnectorConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserFlowApiConnectorConfiguration();
+            return new ApiSdk.Models.UserFlowApiConnectorConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,8 +62,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "postAttributeCollection", n => { PostAttributeCollection = n.GetObjectValue<IdentityApiConnector>(IdentityApiConnector.CreateFromDiscriminatorValue); } },
-                { "postFederationSignup", n => { PostFederationSignup = n.GetObjectValue<IdentityApiConnector>(IdentityApiConnector.CreateFromDiscriminatorValue); } },
+                { "postAttributeCollection", n => { PostAttributeCollection = n.GetObjectValue<ApiSdk.Models.IdentityApiConnector>(ApiSdk.Models.IdentityApiConnector.CreateFromDiscriminatorValue); } },
+                { "postFederationSignup", n => { PostFederationSignup = n.GetObjectValue<ApiSdk.Models.IdentityApiConnector>(ApiSdk.Models.IdentityApiConnector.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,8 +74,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<IdentityApiConnector>("postAttributeCollection", PostAttributeCollection);
-            writer.WriteObjectValue<IdentityApiConnector>("postFederationSignup", PostFederationSignup);
+            writer.WriteObjectValue<ApiSdk.Models.IdentityApiConnector>("postAttributeCollection", PostAttributeCollection);
+            writer.WriteObjectValue<ApiSdk.Models.IdentityApiConnector>("postFederationSignup", PostFederationSignup);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

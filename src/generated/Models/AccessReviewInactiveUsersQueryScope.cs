@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessReviewInactiveUsersQueryScope : AccessReviewQueryScope, IParsable
+    public class AccessReviewInactiveUsersQueryScope : ApiSdk.Models.AccessReviewQueryScope, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Defines the duration of inactivity. Inactivity is based on the last sign in date of the user compared to the access review instance&apos;s start date. If this property is not specified, it&apos;s assigned the default value PT0S.</summary>
         public TimeSpan? InactiveDuration { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AccessReviewInactiveUsersQueryScope"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessReviewInactiveUsersQueryScope"/> and sets the default values.
         /// </summary>
         public AccessReviewInactiveUsersQueryScope() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessReviewInactiveUsersQueryScope"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessReviewInactiveUsersQueryScope"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessReviewInactiveUsersQueryScope CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessReviewInactiveUsersQueryScope CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessReviewInactiveUsersQueryScope();
+            return new ApiSdk.Models.AccessReviewInactiveUsersQueryScope();
         }
         /// <summary>
         /// The deserialization information for the current model

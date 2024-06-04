@@ -7,82 +7,82 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookChartAxis : Entity, IParsable
+    public class WorkbookChartAxis : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents the formatting of a chart object, which includes line and font formatting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartAxisFormat? Format { get; set; }
+        public ApiSdk.Models.WorkbookChartAxisFormat? Format { get; set; }
 #nullable restore
 #else
-        public WorkbookChartAxisFormat Format { get; set; }
+        public ApiSdk.Models.WorkbookChartAxisFormat Format { get; set; }
 #endif
         /// <summary>Returns a gridlines object that represents the major gridlines for the specified axis. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartGridlines? MajorGridlines { get; set; }
+        public ApiSdk.Models.WorkbookChartGridlines? MajorGridlines { get; set; }
 #nullable restore
 #else
-        public WorkbookChartGridlines MajorGridlines { get; set; }
+        public ApiSdk.Models.WorkbookChartGridlines MajorGridlines { get; set; }
 #endif
         /// <summary>Represents the interval between two major tick marks. Can be set to a numeric value or an empty string.  The returned value is always a number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? MajorUnit { get; set; }
+        public ApiSdk.Models.Json? MajorUnit { get; set; }
 #nullable restore
 #else
-        public Json MajorUnit { get; set; }
+        public ApiSdk.Models.Json MajorUnit { get; set; }
 #endif
         /// <summary>Represents the maximum value on the value axis.  Can be set to a numeric value or an empty string (for automatic axis values).  The returned value is always a number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Maximum { get; set; }
+        public ApiSdk.Models.Json? Maximum { get; set; }
 #nullable restore
 #else
-        public Json Maximum { get; set; }
+        public ApiSdk.Models.Json Maximum { get; set; }
 #endif
         /// <summary>Represents the minimum value on the value axis. Can be set to a numeric value or an empty string (for automatic axis values).  The returned value is always a number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Minimum { get; set; }
+        public ApiSdk.Models.Json? Minimum { get; set; }
 #nullable restore
 #else
-        public Json Minimum { get; set; }
+        public ApiSdk.Models.Json Minimum { get; set; }
 #endif
         /// <summary>Returns a Gridlines object that represents the minor gridlines for the specified axis. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartGridlines? MinorGridlines { get; set; }
+        public ApiSdk.Models.WorkbookChartGridlines? MinorGridlines { get; set; }
 #nullable restore
 #else
-        public WorkbookChartGridlines MinorGridlines { get; set; }
+        public ApiSdk.Models.WorkbookChartGridlines MinorGridlines { get; set; }
 #endif
         /// <summary>Represents the interval between two minor tick marks. &apos;Can be set to a numeric value or an empty string (for automatic axis values). The returned value is always a number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? MinorUnit { get; set; }
+        public ApiSdk.Models.Json? MinorUnit { get; set; }
 #nullable restore
 #else
-        public Json MinorUnit { get; set; }
+        public ApiSdk.Models.Json MinorUnit { get; set; }
 #endif
         /// <summary>Represents the axis title. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartAxisTitle? Title { get; set; }
+        public ApiSdk.Models.WorkbookChartAxisTitle? Title { get; set; }
 #nullable restore
 #else
-        public WorkbookChartAxisTitle Title { get; set; }
+        public ApiSdk.Models.WorkbookChartAxisTitle Title { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookChartAxis"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookChartAxis"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookChartAxis CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookChartAxis CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookChartAxis();
+            return new ApiSdk.Models.WorkbookChartAxis();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -92,14 +92,14 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "format", n => { Format = n.GetObjectValue<WorkbookChartAxisFormat>(WorkbookChartAxisFormat.CreateFromDiscriminatorValue); } },
-                { "majorGridlines", n => { MajorGridlines = n.GetObjectValue<WorkbookChartGridlines>(WorkbookChartGridlines.CreateFromDiscriminatorValue); } },
-                { "majorUnit", n => { MajorUnit = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "maximum", n => { Maximum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "minimum", n => { Minimum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "minorGridlines", n => { MinorGridlines = n.GetObjectValue<WorkbookChartGridlines>(WorkbookChartGridlines.CreateFromDiscriminatorValue); } },
-                { "minorUnit", n => { MinorUnit = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "title", n => { Title = n.GetObjectValue<WorkbookChartAxisTitle>(WorkbookChartAxisTitle.CreateFromDiscriminatorValue); } },
+                { "format", n => { Format = n.GetObjectValue<ApiSdk.Models.WorkbookChartAxisFormat>(ApiSdk.Models.WorkbookChartAxisFormat.CreateFromDiscriminatorValue); } },
+                { "majorGridlines", n => { MajorGridlines = n.GetObjectValue<ApiSdk.Models.WorkbookChartGridlines>(ApiSdk.Models.WorkbookChartGridlines.CreateFromDiscriminatorValue); } },
+                { "majorUnit", n => { MajorUnit = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "maximum", n => { Maximum = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "minimum", n => { Minimum = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "minorGridlines", n => { MinorGridlines = n.GetObjectValue<ApiSdk.Models.WorkbookChartGridlines>(ApiSdk.Models.WorkbookChartGridlines.CreateFromDiscriminatorValue); } },
+                { "minorUnit", n => { MinorUnit = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "title", n => { Title = n.GetObjectValue<ApiSdk.Models.WorkbookChartAxisTitle>(ApiSdk.Models.WorkbookChartAxisTitle.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -110,14 +110,14 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartAxisFormat>("format", Format);
-            writer.WriteObjectValue<WorkbookChartGridlines>("majorGridlines", MajorGridlines);
-            writer.WriteObjectValue<Json>("majorUnit", MajorUnit);
-            writer.WriteObjectValue<Json>("maximum", Maximum);
-            writer.WriteObjectValue<Json>("minimum", Minimum);
-            writer.WriteObjectValue<WorkbookChartGridlines>("minorGridlines", MinorGridlines);
-            writer.WriteObjectValue<Json>("minorUnit", MinorUnit);
-            writer.WriteObjectValue<WorkbookChartAxisTitle>("title", Title);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartAxisFormat>("format", Format);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartGridlines>("majorGridlines", MajorGridlines);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("majorUnit", MajorUnit);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("maximum", Maximum);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("minimum", Minimum);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartGridlines>("minorGridlines", MinorGridlines);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("minorUnit", MinorUnit);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartAxisTitle>("title", Title);
         }
     }
 }

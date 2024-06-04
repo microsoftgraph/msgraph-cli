@@ -16,37 +16,37 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum
         /// <summary>The coefficients property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Coefficients { get; set; }
+        public ApiSdk.Models.Json? Coefficients { get; set; }
 #nullable restore
 #else
-        public Json Coefficients { get; set; }
+        public ApiSdk.Models.Json Coefficients { get; set; }
 #endif
         /// <summary>The m property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? M { get; set; }
+        public ApiSdk.Models.Json? M { get; set; }
 #nullable restore
 #else
-        public Json M { get; set; }
+        public ApiSdk.Models.Json M { get; set; }
 #endif
         /// <summary>The n property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? N { get; set; }
+        public ApiSdk.Models.Json? N { get; set; }
 #nullable restore
 #else
-        public Json N { get; set; }
+        public ApiSdk.Models.Json N { get; set; }
 #endif
         /// <summary>The x property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? X { get; set; }
+        public ApiSdk.Models.Json? X { get; set; }
 #nullable restore
 #else
-        public Json X { get; set; }
+        public ApiSdk.Models.Json X { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SeriesSumPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum.SeriesSumPostRequestBody"/> and sets the default values.
         /// </summary>
         public SeriesSumPostRequestBody()
         {
@@ -55,12 +55,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SeriesSumPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum.SeriesSumPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SeriesSumPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum.SeriesSumPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SeriesSumPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum.SeriesSumPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,10 +70,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "coefficients", n => { Coefficients = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "m", n => { M = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "n", n => { N = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "x", n => { X = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "coefficients", n => { Coefficients = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "m", n => { M = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "n", n => { N = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "x", n => { X = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -83,10 +83,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("coefficients", Coefficients);
-            writer.WriteObjectValue<Json>("m", M);
-            writer.WriteObjectValue<Json>("n", N);
-            writer.WriteObjectValue<Json>("x", X);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("coefficients", Coefficients);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("m", M);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("n", N);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("x", X);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

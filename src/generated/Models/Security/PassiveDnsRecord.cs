@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class PassiveDnsRecord : Artifact, IParsable
+    public class PassiveDnsRecord : ApiSdk.Models.Security.Artifact, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The artifact property</summary>
@@ -27,10 +27,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The parentHost property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Host? ParentHost { get; set; }
+        public ApiSdk.Models.Security.Host? ParentHost { get; set; }
 #nullable restore
 #else
-        public Host ParentHost { get; set; }
+        public ApiSdk.Models.Security.Host ParentHost { get; set; }
 #endif
         /// <summary>The DNS record type for this passiveDnsRecord entry.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,7 +41,7 @@ namespace ApiSdk.Models.Security
         public string RecordType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PassiveDnsRecord"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.PassiveDnsRecord"/> and sets the default values.
         /// </summary>
         public PassiveDnsRecord() : base()
         {
@@ -50,12 +50,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PassiveDnsRecord"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.PassiveDnsRecord"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PassiveDnsRecord CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.PassiveDnsRecord CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PassiveDnsRecord();
+            return new ApiSdk.Models.Security.PassiveDnsRecord();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,7 +69,7 @@ namespace ApiSdk.Models.Security
                 { "collectedDateTime", n => { CollectedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastSeenDateTime", n => { LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
-                { "parentHost", n => { ParentHost = n.GetObjectValue<Host>(Host.CreateFromDiscriminatorValue); } },
+                { "parentHost", n => { ParentHost = n.GetObjectValue<ApiSdk.Models.Security.Host>(ApiSdk.Models.Security.Host.CreateFromDiscriminatorValue); } },
                 { "recordType", n => { RecordType = n.GetStringValue(); } },
             };
         }
@@ -85,7 +85,7 @@ namespace ApiSdk.Models.Security
             writer.WriteDateTimeOffsetValue("collectedDateTime", CollectedDateTime);
             writer.WriteDateTimeOffsetValue("firstSeenDateTime", FirstSeenDateTime);
             writer.WriteDateTimeOffsetValue("lastSeenDateTime", LastSeenDateTime);
-            writer.WriteObjectValue<Host>("parentHost", ParentHost);
+            writer.WriteObjectValue<ApiSdk.Models.Security.Host>("parentHost", ParentHost);
             writer.WriteStringValue("recordType", RecordType);
         }
     }

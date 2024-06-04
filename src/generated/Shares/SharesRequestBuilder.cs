@@ -31,7 +31,7 @@ namespace ApiSdk.Shares
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new SharedDriveItemItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.SharedDriveItemItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildCreatedByUserNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildDriveItemNavCommand());
@@ -53,7 +53,7 @@ namespace ApiSdk.Shares
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -88,7 +88,7 @@ namespace ApiSdk.Shares
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SharedDriveItem>(SharedDriveItem.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.SharedDriveItem>(ApiSdk.Models.SharedDriveItem.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -113,7 +113,7 @@ namespace ApiSdk.Shares
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
-            var sharedDriveItemIndexer = new SharedDriveItemItemRequestBuilder(PathParameters);
+            var sharedDriveItemIndexer = new ApiSdk.Shares.Item.SharedDriveItemItemRequestBuilder(PathParameters);
             var command = sharedDriveItemIndexer.BuildListNavCommand();
             command.Description = "Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -205,14 +205,14 @@ namespace ApiSdk.Shares
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SharesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Shares.SharesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SharesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SharesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Shares.SharesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SharesRequestBuilder(string rawUrl) : base("{+baseurl}/shares{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -225,11 +225,11 @@ namespace ApiSdk.Shares
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SharesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Shares.SharesRequestBuilder.SharesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SharesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Shares.SharesRequestBuilder.SharesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -245,11 +245,11 @@ namespace ApiSdk.Shares
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(SharedDriveItem body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.SharedDriveItem body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(SharedDriveItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.SharedDriveItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

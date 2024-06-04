@@ -39,7 +39,7 @@ namespace ApiSdk.Models
         public string UploadUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UploadSession"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UploadSession"/> and sets the default values.
         /// </summary>
         public UploadSession()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UploadSession"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UploadSession"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UploadSession CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UploadSession CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UploadSession();
+            return new ApiSdk.Models.UploadSession();
         }
         /// <summary>
         /// The deserialization information for the current model

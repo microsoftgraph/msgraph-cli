@@ -7,19 +7,19 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ListItemVersion : BaseItemVersion, IParsable
+    public class ListItemVersion : ApiSdk.Models.BaseItemVersion, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A collection of the fields and values for this version of the list item.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FieldValueSet? Fields { get; set; }
+        public ApiSdk.Models.FieldValueSet? Fields { get; set; }
 #nullable restore
 #else
-        public FieldValueSet Fields { get; set; }
+        public ApiSdk.Models.FieldValueSet Fields { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ListItemVersion"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ListItemVersion"/> and sets the default values.
         /// </summary>
         public ListItemVersion() : base()
         {
@@ -28,16 +28,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ListItemVersion"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ListItemVersion"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ListItemVersion CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ListItemVersion CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.documentSetVersion" => new DocumentSetVersion(),
-                _ => new ListItemVersion(),
+                "#microsoft.graph.documentSetVersion" => new ApiSdk.Models.DocumentSetVersion(),
+                _ => new ApiSdk.Models.ListItemVersion(),
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "fields", n => { Fields = n.GetObjectValue<FieldValueSet>(FieldValueSet.CreateFromDiscriminatorValue); } },
+                { "fields", n => { Fields = n.GetObjectValue<ApiSdk.Models.FieldValueSet>(ApiSdk.Models.FieldValueSet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -59,7 +59,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<FieldValueSet>("fields", Fields);
+            writer.WriteObjectValue<ApiSdk.Models.FieldValueSet>("fields", Fields);
         }
     }
 }

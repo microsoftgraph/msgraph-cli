@@ -33,7 +33,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item
         {
             var command = new Command("assigned-to-task-board-format");
             command.Description = "Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
-            var builder = new AssignedToTaskBoardFormatRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.AssignedToTaskBoardFormat.AssignedToTaskBoardFormatRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -52,7 +52,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item
         {
             var command = new Command("bucket-task-board-format");
             command.Description = "Provides operations to manage the bucketTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
-            var builder = new BucketTaskBoardFormatRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.BucketTaskBoardFormat.BucketTaskBoardFormatRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -118,7 +118,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item
         {
             var command = new Command("details");
             command.Description = "Provides operations to manage the details property of the microsoft.graph.plannerTask entity.";
-            var builder = new DetailsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.Details.DetailsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -234,7 +234,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<PlannerTask>(PlannerTask.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.PlannerTask>(ApiSdk.Models.PlannerTask.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -264,7 +264,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item
         {
             var command = new Command("progress-task-board-format");
             command.Description = "Provides operations to manage the progressTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
-            var builder = new ProgressTaskBoardFormatRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat.ProgressTaskBoardFormatRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -276,14 +276,14 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PlannerTaskItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.PlannerTaskItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PlannerTaskItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/planner/plans/{plannerPlan%2Did}/tasks/{plannerTask%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PlannerTaskItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.PlannerTaskItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PlannerTaskItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/planner/plans/{plannerPlan%2Did}/tasks/{plannerTask%2Did}{?%24expand,%24select}", rawUrl)
@@ -315,11 +315,11 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PlannerTaskItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.PlannerTaskItemRequestBuilder.PlannerTaskItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PlannerTaskItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.PlannerTaskItemRequestBuilder.PlannerTaskItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -335,11 +335,11 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PlannerTask body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PlannerTask body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PlannerTask body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PlannerTask body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

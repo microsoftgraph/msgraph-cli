@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageSubject : Entity, IParsable
+    public class AccessPackageSubject : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The connected organization of the subject. Read-only. Nullable.</summary>
@@ -59,16 +59,16 @@ namespace ApiSdk.Models
         public string PrincipalName { get; set; }
 #endif
         /// <summary>The resource type of the subject. The possible values are: notSpecified, user, servicePrincipal, unknownFutureValue.</summary>
-        public AccessPackageSubjectType? SubjectType { get; set; }
+        public ApiSdk.Models.AccessPackageSubjectType? SubjectType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageSubject"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageSubject"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageSubject CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageSubject CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageSubject();
+            return new ApiSdk.Models.AccessPackageSubject();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,7 +84,7 @@ namespace ApiSdk.Models
                 { "objectId", n => { ObjectId = n.GetStringValue(); } },
                 { "onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
                 { "principalName", n => { PrincipalName = n.GetStringValue(); } },
-                { "subjectType", n => { SubjectType = n.GetEnumValue<AccessPackageSubjectType>(); } },
+                { "subjectType", n => { SubjectType = n.GetEnumValue<ApiSdk.Models.AccessPackageSubjectType>(); } },
             };
         }
         /// <summary>
@@ -101,7 +101,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("objectId", ObjectId);
             writer.WriteStringValue("onPremisesSecurityIdentifier", OnPremisesSecurityIdentifier);
             writer.WriteStringValue("principalName", PrincipalName);
-            writer.WriteEnumValue<AccessPackageSubjectType>("subjectType", SubjectType);
+            writer.WriteEnumValue<ApiSdk.Models.AccessPackageSubjectType>("subjectType", SubjectType);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         /// <summary>Number of repeat offences of the user in attack simulation and training campaigns.</summary>
         public int? RepeatOffenceCount { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AttackSimulationRepeatOffender"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AttackSimulationRepeatOffender"/> and sets the default values.
         /// </summary>
         public AttackSimulationRepeatOffender()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AttackSimulationRepeatOffender"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AttackSimulationRepeatOffender"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AttackSimulationRepeatOffender CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AttackSimulationRepeatOffender CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AttackSimulationRepeatOffender();
+            return new ApiSdk.Models.AttackSimulationRepeatOffender();
         }
         /// <summary>
         /// The deserialization information for the current model

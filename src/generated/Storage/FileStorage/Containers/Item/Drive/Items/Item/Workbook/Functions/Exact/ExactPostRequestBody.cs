@@ -16,21 +16,21 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The text1 property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Text1 { get; set; }
+        public ApiSdk.Models.Json? Text1 { get; set; }
 #nullable restore
 #else
-        public Json Text1 { get; set; }
+        public ApiSdk.Models.Json Text1 { get; set; }
 #endif
         /// <summary>The text2 property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Text2 { get; set; }
+        public ApiSdk.Models.Json? Text2 { get; set; }
 #nullable restore
 #else
-        public Json Text2 { get; set; }
+        public ApiSdk.Models.Json Text2 { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ExactPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Exact.ExactPostRequestBody"/> and sets the default values.
         /// </summary>
         public ExactPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ExactPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Exact.ExactPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ExactPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Exact.ExactPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ExactPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Exact.ExactPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "text1", n => { Text1 = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "text2", n => { Text2 = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "text1", n => { Text1 = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "text2", n => { Text2 = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("text1", Text1);
-            writer.WriteObjectValue<Json>("text2", Text2);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("text1", Text1);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("text2", Text2);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

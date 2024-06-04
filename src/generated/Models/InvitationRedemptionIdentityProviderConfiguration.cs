@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The fallback identity provider to be used in case no primary identity provider can be used for guest invitation redemption. Possible values are: defaultConfiguredIdp, emailOneTimePasscode, or microsoftAccount.</summary>
-        public B2bIdentityProvidersType? FallbackIdentityProvider { get; set; }
+        public ApiSdk.Models.B2bIdentityProvidersType? FallbackIdentityProvider { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -25,13 +25,13 @@ namespace ApiSdk.Models
         /// <summary>Collection of identity providers in priority order of preference to be used for guest invitation redemption. Possible values are: azureActiveDirectory, externalFederation, or socialIdentityProviders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<B2bIdentityProvidersType?>? PrimaryIdentityProviderPrecedenceOrder { get; set; }
+        public List<ApiSdk.Models.B2bIdentityProvidersType?>? PrimaryIdentityProviderPrecedenceOrder { get; set; }
 #nullable restore
 #else
-        public List<B2bIdentityProvidersType?> PrimaryIdentityProviderPrecedenceOrder { get; set; }
+        public List<ApiSdk.Models.B2bIdentityProvidersType?> PrimaryIdentityProviderPrecedenceOrder { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="InvitationRedemptionIdentityProviderConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.InvitationRedemptionIdentityProviderConfiguration"/> and sets the default values.
         /// </summary>
         public InvitationRedemptionIdentityProviderConfiguration()
         {
@@ -40,16 +40,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="InvitationRedemptionIdentityProviderConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.InvitationRedemptionIdentityProviderConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static InvitationRedemptionIdentityProviderConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.InvitationRedemptionIdentityProviderConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.defaultInvitationRedemptionIdentityProviderConfiguration" => new DefaultInvitationRedemptionIdentityProviderConfiguration(),
-                _ => new InvitationRedemptionIdentityProviderConfiguration(),
+                "#microsoft.graph.defaultInvitationRedemptionIdentityProviderConfiguration" => new ApiSdk.Models.DefaultInvitationRedemptionIdentityProviderConfiguration(),
+                _ => new ApiSdk.Models.InvitationRedemptionIdentityProviderConfiguration(),
             };
         }
         /// <summary>
@@ -60,9 +60,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "fallbackIdentityProvider", n => { FallbackIdentityProvider = n.GetEnumValue<B2bIdentityProvidersType>(); } },
+                { "fallbackIdentityProvider", n => { FallbackIdentityProvider = n.GetEnumValue<ApiSdk.Models.B2bIdentityProvidersType>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "primaryIdentityProviderPrecedenceOrder", n => { PrimaryIdentityProviderPrecedenceOrder = n.GetCollectionOfEnumValues<B2bIdentityProvidersType>()?.ToList(); } },
+                { "primaryIdentityProviderPrecedenceOrder", n => { PrimaryIdentityProviderPrecedenceOrder = n.GetCollectionOfEnumValues<ApiSdk.Models.B2bIdentityProvidersType>()?.ToList(); } },
             };
         }
         /// <summary>
@@ -72,9 +72,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<B2bIdentityProvidersType>("fallbackIdentityProvider", FallbackIdentityProvider);
+            writer.WriteEnumValue<ApiSdk.Models.B2bIdentityProvidersType>("fallbackIdentityProvider", FallbackIdentityProvider);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfEnumValues<B2bIdentityProvidersType>("primaryIdentityProviderPrecedenceOrder", PrimaryIdentityProviderPrecedenceOrder);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.B2bIdentityProvidersType>("primaryIdentityProviderPrecedenceOrder", PrimaryIdentityProviderPrecedenceOrder);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

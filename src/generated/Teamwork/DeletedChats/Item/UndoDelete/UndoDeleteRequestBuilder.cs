@@ -50,14 +50,14 @@ namespace ApiSdk.Teamwork.DeletedChats.Item.UndoDelete
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UndoDeleteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.DeletedChats.Item.UndoDelete.UndoDeleteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UndoDeleteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/deletedChats/{deletedChat%2Did}/undoDelete", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UndoDeleteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.DeletedChats.Item.UndoDelete.UndoDeleteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UndoDeleteRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/deletedChats/{deletedChat%2Did}/undoDelete", rawUrl)

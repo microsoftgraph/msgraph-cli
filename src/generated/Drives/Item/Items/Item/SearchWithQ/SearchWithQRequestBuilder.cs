@@ -136,14 +136,14 @@ namespace ApiSdk.Drives.Item.Items.Item.SearchWithQ
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SearchWithQRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.SearchWithQ.SearchWithQRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SearchWithQRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/search(q='{q}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SearchWithQRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.SearchWithQ.SearchWithQRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SearchWithQRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/search(q='{q}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -156,11 +156,11 @@ namespace ApiSdk.Drives.Item.Items.Item.SearchWithQ
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SearchWithQRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.Items.Item.SearchWithQ.SearchWithQRequestBuilder.SearchWithQRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SearchWithQRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.Items.Item.SearchWithQ.SearchWithQRequestBuilder.SearchWithQRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

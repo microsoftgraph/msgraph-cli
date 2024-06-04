@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrivilegedAccessSchedule : Entity, IParsable
+    public class PrivilegedAccessSchedule : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>When the schedule was created. Optional.</summary>
@@ -25,10 +25,10 @@ namespace ApiSdk.Models
         /// <summary>Represents the period of the access assignment or eligibility. The scheduleInfo can represent a single occurrence or multiple recurring instances. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestSchedule? ScheduleInfo { get; set; }
+        public ApiSdk.Models.RequestSchedule? ScheduleInfo { get; set; }
 #nullable restore
 #else
-        public RequestSchedule ScheduleInfo { get; set; }
+        public ApiSdk.Models.RequestSchedule ScheduleInfo { get; set; }
 #endif
         /// <summary>The status of the access assignment or eligibility request. The possible values are: Canceled, Denied, Failed, Granted, PendingAdminDecision, PendingApproval, PendingProvisioning, PendingScheduleCreation, Provisioned, Revoked, and ScheduleCreated. Not nullable. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,17 +41,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrivilegedAccessSchedule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrivilegedAccessSchedule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrivilegedAccessSchedule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrivilegedAccessSchedule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.privilegedAccessGroupAssignmentSchedule" => new PrivilegedAccessGroupAssignmentSchedule(),
-                "#microsoft.graph.privilegedAccessGroupEligibilitySchedule" => new PrivilegedAccessGroupEligibilitySchedule(),
-                _ => new PrivilegedAccessSchedule(),
+                "#microsoft.graph.privilegedAccessGroupAssignmentSchedule" => new ApiSdk.Models.PrivilegedAccessGroupAssignmentSchedule(),
+                "#microsoft.graph.privilegedAccessGroupEligibilitySchedule" => new ApiSdk.Models.PrivilegedAccessGroupEligibilitySchedule(),
+                _ => new ApiSdk.Models.PrivilegedAccessSchedule(),
             };
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "createdUsing", n => { CreatedUsing = n.GetStringValue(); } },
                 { "modifiedDateTime", n => { ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "scheduleInfo", n => { ScheduleInfo = n.GetObjectValue<RequestSchedule>(RequestSchedule.CreateFromDiscriminatorValue); } },
+                { "scheduleInfo", n => { ScheduleInfo = n.GetObjectValue<ApiSdk.Models.RequestSchedule>(ApiSdk.Models.RequestSchedule.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetStringValue(); } },
             };
         }
@@ -80,7 +80,7 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("createdUsing", CreatedUsing);
             writer.WriteDateTimeOffsetValue("modifiedDateTime", ModifiedDateTime);
-            writer.WriteObjectValue<RequestSchedule>("scheduleInfo", ScheduleInfo);
+            writer.WriteObjectValue<ApiSdk.Models.RequestSchedule>("scheduleInfo", ScheduleInfo);
             writer.WriteStringValue("status", Status);
         }
     }

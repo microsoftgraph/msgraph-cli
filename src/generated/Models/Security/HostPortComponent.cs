@@ -15,10 +15,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The component property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public HostComponent? Component { get; set; }
+        public ApiSdk.Models.Security.HostComponent? Component { get; set; }
 #nullable restore
 #else
-        public HostComponent Component { get; set; }
+        public ApiSdk.Models.Security.HostComponent Component { get; set; }
 #endif
         /// <summary>The first date and time when Microsoft Defender Threat Intelligence observed the hostPortComponent. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? FirstSeenDateTime { get; set; }
@@ -35,7 +35,7 @@ namespace ApiSdk.Models.Security
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="HostPortComponent"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.HostPortComponent"/> and sets the default values.
         /// </summary>
         public HostPortComponent()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HostPortComponent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.HostPortComponent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static HostPortComponent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.HostPortComponent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HostPortComponent();
+            return new ApiSdk.Models.Security.HostPortComponent();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,7 +59,7 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "component", n => { Component = n.GetObjectValue<HostComponent>(HostComponent.CreateFromDiscriminatorValue); } },
+                { "component", n => { Component = n.GetObjectValue<ApiSdk.Models.Security.HostComponent>(ApiSdk.Models.Security.HostComponent.CreateFromDiscriminatorValue); } },
                 { "firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
                 { "isRecent", n => { IsRecent = n.GetBoolValue(); } },
                 { "lastSeenDateTime", n => { LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
@@ -73,7 +73,7 @@ namespace ApiSdk.Models.Security
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<HostComponent>("component", Component);
+            writer.WriteObjectValue<ApiSdk.Models.Security.HostComponent>("component", Component);
             writer.WriteDateTimeOffsetValue("firstSeenDateTime", FirstSeenDateTime);
             writer.WriteBoolValue("isRecent", IsRecent);
             writer.WriteDateTimeOffsetValue("lastSeenDateTime", LastSeenDateTime);

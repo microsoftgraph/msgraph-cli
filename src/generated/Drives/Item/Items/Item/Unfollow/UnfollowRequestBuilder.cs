@@ -56,14 +56,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Unfollow
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnfollowRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Unfollow.UnfollowRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnfollowRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/unfollow", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnfollowRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Unfollow.UnfollowRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnfollowRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/unfollow", rawUrl)

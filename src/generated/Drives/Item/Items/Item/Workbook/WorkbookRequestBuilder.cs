@@ -41,7 +41,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("application");
             command.Description = "Provides operations to manage the application property of the microsoft.graph.workbook entity.";
-            var builder = new ApplicationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Application.ApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCalculateNavCommand());
@@ -66,7 +66,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("close-session");
             command.Description = "Provides operations to call the closeSession method.";
-            var builder = new CloseSessionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.CloseSession.CloseSessionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -83,7 +83,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("comments");
             command.Description = "Provides operations to manage the comments property of the microsoft.graph.workbook entity.";
-            var builder = new CommentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Comments.CommentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -110,7 +110,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("create-session");
             command.Description = "Provides operations to call the createSession method.";
-            var builder = new CreateSessionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.CreateSession.CreateSessionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -168,7 +168,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("functions");
             command.Description = "Provides operations to manage the functions property of the microsoft.graph.workbook entity.";
-            var builder = new FunctionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FunctionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAbsNavCommand());
@@ -616,7 +616,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("names");
             command.Description = "Provides operations to manage the names property of the microsoft.graph.workbook entity.";
-            var builder = new NamesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Names.NamesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddFormulaLocalNavCommand());
@@ -645,7 +645,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.workbook entity.";
-            var builder = new OperationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Operations.OperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -729,7 +729,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("refresh-session");
             command.Description = "Provides operations to call the refreshSession method.";
-            var builder = new RefreshSessionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.RefreshSession.RefreshSessionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -746,7 +746,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("session-info-resource-with-key");
             command.Description = "Provides operations to call the sessionInfoResource method.";
-            var builder = new SessionInfoResourceWithKeyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.SessionInfoResourceWithKey.SessionInfoResourceWithKeyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -763,7 +763,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("table-row-operation-result-with-key");
             command.Description = "Provides operations to call the tableRowOperationResult method.";
-            var builder = new TableRowOperationResultWithKeyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.TableRowOperationResultWithKey.TableRowOperationResultWithKeyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -780,7 +780,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("tables");
             command.Description = "Provides operations to manage the tables property of the microsoft.graph.workbook entity.";
-            var builder = new TablesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Tables.TablesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddNavCommand());
@@ -809,7 +809,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         {
             var command = new Command("worksheets");
             command.Description = "Provides operations to manage the worksheets property of the microsoft.graph.workbook entity.";
-            var builder = new WorksheetsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.WorksheetsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddNavCommand());
@@ -830,14 +830,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="WorkbookRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.WorkbookRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WorkbookRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="WorkbookRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.WorkbookRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public WorkbookRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook{?%24expand,%24select}", rawUrl)
@@ -869,11 +869,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.Items.Item.Workbook.WorkbookRequestBuilder.WorkbookRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.Items.Item.Workbook.WorkbookRequestBuilder.WorkbookRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

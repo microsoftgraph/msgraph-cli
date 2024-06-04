@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Room : Place, IParsable
+    public class Room : ApiSdk.Models.Place, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Specifies the name of the audio device in the room.</summary>
@@ -91,7 +91,7 @@ namespace ApiSdk.Models
         public string VideoDeviceName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Room"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Room"/> and sets the default values.
         /// </summary>
         public Room() : base()
         {
@@ -100,12 +100,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Room"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Room"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Room CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Room CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Room();
+            return new ApiSdk.Models.Room();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -116,7 +116,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "audioDeviceName", n => { AudioDeviceName = n.GetStringValue(); } },
-                { "bookingType", n => { BookingType = n.GetEnumValue<BookingType>(); } },
+                { "bookingType", n => { BookingType = n.GetEnumValue<ApiSdk.Models.BookingType>(); } },
                 { "building", n => { Building = n.GetStringValue(); } },
                 { "capacity", n => { Capacity = n.GetIntValue(); } },
                 { "displayDeviceName", n => { DisplayDeviceName = n.GetStringValue(); } },
@@ -139,7 +139,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("audioDeviceName", AudioDeviceName);
-            writer.WriteEnumValue<BookingType>("bookingType", BookingType);
+            writer.WriteEnumValue<ApiSdk.Models.BookingType>("bookingType", BookingType);
             writer.WriteStringValue("building", Building);
             writer.WriteIntValue("capacity", Capacity);
             writer.WriteStringValue("displayDeviceName", DisplayDeviceName);

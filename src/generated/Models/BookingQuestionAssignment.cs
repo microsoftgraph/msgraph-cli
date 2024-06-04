@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string QuestionId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="BookingQuestionAssignment"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.BookingQuestionAssignment"/> and sets the default values.
         /// </summary>
         public BookingQuestionAssignment()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BookingQuestionAssignment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BookingQuestionAssignment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BookingQuestionAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.BookingQuestionAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BookingQuestionAssignment();
+            return new ApiSdk.Models.BookingQuestionAssignment();
         }
         /// <summary>
         /// The deserialization information for the current model

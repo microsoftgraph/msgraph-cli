@@ -74,14 +74,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RequestorRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Requestor.RequestorRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RequestorRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignmentRequests/{accessPackageAssignmentRequest%2Did}/requestor{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RequestorRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Requestor.RequestorRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RequestorRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/assignmentRequests/{accessPackageAssignmentRequest%2Did}/requestor{?%24expand,%24select}", rawUrl)
@@ -94,11 +94,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RequestorRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Requestor.RequestorRequestBuilder.RequestorRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RequestorRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Requestor.RequestorRequestBuilder.RequestorRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

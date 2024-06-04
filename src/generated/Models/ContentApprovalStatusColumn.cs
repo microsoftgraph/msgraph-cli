@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ContentApprovalStatusColumn"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ContentApprovalStatusColumn"/> and sets the default values.
         /// </summary>
         public ContentApprovalStatusColumn()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ContentApprovalStatusColumn"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ContentApprovalStatusColumn"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ContentApprovalStatusColumn CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ContentApprovalStatusColumn CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ContentApprovalStatusColumn();
+            return new ApiSdk.Models.ContentApprovalStatusColumn();
         }
         /// <summary>
         /// The deserialization information for the current model

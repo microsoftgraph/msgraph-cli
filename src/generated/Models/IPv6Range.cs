@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// IPv6 Range definition.
     /// </summary>
-    public class IPv6Range : IpRange, IParsable
+    public class IPv6Range : ApiSdk.Models.IpRange, IParsable
     {
         /// <summary>Lower address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -28,7 +28,7 @@ namespace ApiSdk.Models
         public string UpperAddress { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IPv6Range"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IPv6Range"/> and sets the default values.
         /// </summary>
         public IPv6Range() : base()
         {
@@ -37,12 +37,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IPv6Range"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IPv6Range"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IPv6Range CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IPv6Range CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IPv6Range();
+            return new ApiSdk.Models.IPv6Range();
         }
         /// <summary>
         /// The deserialization information for the current model

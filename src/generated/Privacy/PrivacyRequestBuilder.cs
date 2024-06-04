@@ -121,7 +121,7 @@ namespace ApiSdk.Privacy
         {
             var command = new Command("subject-rights-requests");
             command.Description = "Provides operations to manage the subjectRightsRequests property of the microsoft.graph.privacy entity.";
-            var builder = new SubjectRightsRequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Privacy.SubjectRightsRequests.SubjectRightsRequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -141,14 +141,14 @@ namespace ApiSdk.Privacy
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PrivacyRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Privacy.PrivacyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PrivacyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PrivacyRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Privacy.PrivacyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PrivacyRequestBuilder(string rawUrl) : base("{+baseurl}/privacy{?%24expand,%24select}", rawUrl)
@@ -161,11 +161,11 @@ namespace ApiSdk.Privacy
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrivacyRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Privacy.PrivacyRequestBuilder.PrivacyRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrivacyRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Privacy.PrivacyRequestBuilder.PrivacyRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

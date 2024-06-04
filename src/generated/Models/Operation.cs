@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Operation : Entity, IParsable
+    public class Operation : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The start time of the operation.</summary>
@@ -15,20 +15,20 @@ namespace ApiSdk.Models
         /// <summary>The time of the last action of the operation.</summary>
         public DateTimeOffset? LastActionDateTime { get; set; }
         /// <summary>The current status of the operation: notStarted, running, completed, failed</summary>
-        public OperationStatus? Status { get; set; }
+        public ApiSdk.Models.OperationStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Operation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Operation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Operation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Operation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.onenoteOperation" => new OnenoteOperation(),
-                _ => new Operation(),
+                "#microsoft.graph.onenoteOperation" => new ApiSdk.Models.OnenoteOperation(),
+                _ => new ApiSdk.Models.Operation(),
             };
         }
         /// <summary>
@@ -41,7 +41,7 @@ namespace ApiSdk.Models
             {
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastActionDateTime", n => { LastActionDateTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<OperationStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.OperationStatus>(); } },
             };
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDateTimeOffsetValue("lastActionDateTime", LastActionDateTime);
-            writer.WriteEnumValue<OperationStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.OperationStatus>("status", Status);
         }
     }
 }

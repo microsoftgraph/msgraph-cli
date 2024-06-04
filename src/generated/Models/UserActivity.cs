@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UserActivity : Entity, IParsable
+    public class UserActivity : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Required. URL used to launch the activity in the best native experience represented by the appId. Might launch a web-based app if no native app exists.</summary>
@@ -45,10 +45,10 @@ namespace ApiSdk.Models
         /// <summary>Optional. A custom piece of data - JSON-LD extensible description of content according to schema.org syntax.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? ContentInfo { get; set; }
+        public ApiSdk.Models.Json? ContentInfo { get; set; }
 #nullable restore
 #else
-        public Json ContentInfo { get; set; }
+        public ApiSdk.Models.Json ContentInfo { get; set; }
 #endif
         /// <summary>Optional. Used in the event the content can be rendered outside of a native or web-based app experience (for example, a pointer to an item in an RSS feed).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -73,10 +73,10 @@ namespace ApiSdk.Models
         /// <summary>Optional. NavigationProperty/Containment; navigation property to the activity&apos;s historyItems.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ActivityHistoryItem>? HistoryItems { get; set; }
+        public List<ApiSdk.Models.ActivityHistoryItem>? HistoryItems { get; set; }
 #nullable restore
 #else
-        public List<ActivityHistoryItem> HistoryItems { get; set; }
+        public List<ApiSdk.Models.ActivityHistoryItem> HistoryItems { get; set; }
 #endif
         /// <summary>Set by the server. DateTime in UTC when the object was modified on the server.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
@@ -93,20 +93,20 @@ namespace ApiSdk.Models
         /// <summary>The visualElements property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public VisualInfo? VisualElements { get; set; }
+        public ApiSdk.Models.VisualInfo? VisualElements { get; set; }
 #nullable restore
 #else
-        public VisualInfo VisualElements { get; set; }
+        public ApiSdk.Models.VisualInfo VisualElements { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserActivity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserActivity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserActivity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserActivity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserActivity();
+            return new ApiSdk.Models.UserActivity();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -120,16 +120,16 @@ namespace ApiSdk.Models
                 { "activitySourceHost", n => { ActivitySourceHost = n.GetStringValue(); } },
                 { "appActivityId", n => { AppActivityId = n.GetStringValue(); } },
                 { "appDisplayName", n => { AppDisplayName = n.GetStringValue(); } },
-                { "contentInfo", n => { ContentInfo = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "contentInfo", n => { ContentInfo = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
                 { "contentUrl", n => { ContentUrl = n.GetStringValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 { "fallbackUrl", n => { FallbackUrl = n.GetStringValue(); } },
-                { "historyItems", n => { HistoryItems = n.GetCollectionOfObjectValues<ActivityHistoryItem>(ActivityHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "historyItems", n => { HistoryItems = n.GetCollectionOfObjectValues<ApiSdk.Models.ActivityHistoryItem>(ApiSdk.Models.ActivityHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<Status>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.Status>(); } },
                 { "userTimezone", n => { UserTimezone = n.GetStringValue(); } },
-                { "visualElements", n => { VisualElements = n.GetObjectValue<VisualInfo>(VisualInfo.CreateFromDiscriminatorValue); } },
+                { "visualElements", n => { VisualElements = n.GetObjectValue<ApiSdk.Models.VisualInfo>(ApiSdk.Models.VisualInfo.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -144,16 +144,16 @@ namespace ApiSdk.Models
             writer.WriteStringValue("activitySourceHost", ActivitySourceHost);
             writer.WriteStringValue("appActivityId", AppActivityId);
             writer.WriteStringValue("appDisplayName", AppDisplayName);
-            writer.WriteObjectValue<Json>("contentInfo", ContentInfo);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("contentInfo", ContentInfo);
             writer.WriteStringValue("contentUrl", ContentUrl);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteStringValue("fallbackUrl", FallbackUrl);
-            writer.WriteCollectionOfObjectValues<ActivityHistoryItem>("historyItems", HistoryItems);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ActivityHistoryItem>("historyItems", HistoryItems);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteEnumValue<Status>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.Status>("status", Status);
             writer.WriteStringValue("userTimezone", UserTimezone);
-            writer.WriteObjectValue<VisualInfo>("visualElements", VisualElements);
+            writer.WriteObjectValue<ApiSdk.Models.VisualInfo>("visualElements", VisualElements);
         }
     }
 }

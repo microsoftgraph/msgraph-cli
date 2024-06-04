@@ -31,7 +31,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("clear");
             command.Description = "Provides operations to call the clear method.";
-            var builder = new ClearRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.Clear.ClearRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -226,7 +226,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<WorkbookChartFill>(WorkbookChartFill.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.WorkbookChartFill>(ApiSdk.Models.WorkbookChartFill.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -258,7 +258,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("set-solid-color");
             command.Description = "Provides operations to call the setSolidColor method.";
-            var builder = new SetSolidColorRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.SetSolidColor.SetSolidColorRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -268,14 +268,14 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="FillRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.FillRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FillRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/storage/fileStorage/containers/{fileStorageContainer%2Did}/drive/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/series/{workbookChartSeries%2Did}/format/fill{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="FillRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.FillRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FillRequestBuilder(string rawUrl) : base("{+baseurl}/storage/fileStorage/containers/{fileStorageContainer%2Did}/drive/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/series/{workbookChartSeries%2Did}/format/fill{?%24expand,%24select}", rawUrl)
@@ -307,11 +307,11 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FillRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.FillRequestBuilder.FillRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FillRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.FillRequestBuilder.FillRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -327,11 +327,11 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(WorkbookChartFill body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.WorkbookChartFill body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(WorkbookChartFill body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.WorkbookChartFill body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

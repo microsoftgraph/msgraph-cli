@@ -39,7 +39,7 @@ namespace ApiSdk.DirectoryRoleTemplates.ValidateProperties
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ValidatePropertiesPostRequestBody>(ValidatePropertiesPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.DirectoryRoleTemplates.ValidateProperties.ValidatePropertiesPostRequestBody>(ApiSdk.DirectoryRoleTemplates.ValidateProperties.ValidatePropertiesPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -57,14 +57,14 @@ namespace ApiSdk.DirectoryRoleTemplates.ValidateProperties
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ValidatePropertiesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryRoleTemplates.ValidateProperties.ValidatePropertiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ValidatePropertiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoleTemplates/validateProperties", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ValidatePropertiesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryRoleTemplates.ValidateProperties.ValidatePropertiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ValidatePropertiesRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoleTemplates/validateProperties", rawUrl)
@@ -78,11 +78,11 @@ namespace ApiSdk.DirectoryRoleTemplates.ValidateProperties
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ValidatePropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DirectoryRoleTemplates.ValidateProperties.ValidatePropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ValidatePropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DirectoryRoleTemplates.ValidateProperties.ValidatePropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

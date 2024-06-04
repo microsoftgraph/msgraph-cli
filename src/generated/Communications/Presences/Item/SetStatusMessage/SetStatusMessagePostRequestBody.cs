@@ -16,13 +16,13 @@ namespace ApiSdk.Communications.Presences.Item.SetStatusMessage
         /// <summary>The statusMessage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PresenceStatusMessage? StatusMessage { get; set; }
+        public ApiSdk.Models.PresenceStatusMessage? StatusMessage { get; set; }
 #nullable restore
 #else
-        public PresenceStatusMessage StatusMessage { get; set; }
+        public ApiSdk.Models.PresenceStatusMessage StatusMessage { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SetStatusMessagePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Presences.Item.SetStatusMessage.SetStatusMessagePostRequestBody"/> and sets the default values.
         /// </summary>
         public SetStatusMessagePostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Communications.Presences.Item.SetStatusMessage
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SetStatusMessagePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.Presences.Item.SetStatusMessage.SetStatusMessagePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SetStatusMessagePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.Presences.Item.SetStatusMessage.SetStatusMessagePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SetStatusMessagePostRequestBody();
+            return new ApiSdk.Communications.Presences.Item.SetStatusMessage.SetStatusMessagePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Communications.Presences.Item.SetStatusMessage
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "statusMessage", n => { StatusMessage = n.GetObjectValue<PresenceStatusMessage>(PresenceStatusMessage.CreateFromDiscriminatorValue); } },
+                { "statusMessage", n => { StatusMessage = n.GetObjectValue<ApiSdk.Models.PresenceStatusMessage>(ApiSdk.Models.PresenceStatusMessage.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Communications.Presences.Item.SetStatusMessage
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<PresenceStatusMessage>("statusMessage", StatusMessage);
+            writer.WriteObjectValue<ApiSdk.Models.PresenceStatusMessage>("statusMessage", StatusMessage);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

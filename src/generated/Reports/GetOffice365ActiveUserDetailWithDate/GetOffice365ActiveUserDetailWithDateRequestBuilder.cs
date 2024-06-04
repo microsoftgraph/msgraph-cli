@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetOffice365ActiveUserDetailWithDate
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOffice365ActiveUserDetailWithDateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOffice365ActiveUserDetailWithDate.GetOffice365ActiveUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOffice365ActiveUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365ActiveUserDetail(date={date})", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOffice365ActiveUserDetailWithDateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOffice365ActiveUserDetailWithDate.GetOffice365ActiveUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOffice365ActiveUserDetailWithDateRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOffice365ActiveUserDetail(date={date})", rawUrl)

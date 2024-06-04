@@ -15,7 +15,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>The count property</summary>
         public int? Count { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ApplyTopItemsFilterPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyTopItemsFilter.ApplyTopItemsFilterPostRequestBody"/> and sets the default values.
         /// </summary>
         public ApplyTopItemsFilterPostRequestBody()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ApplyTopItemsFilterPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyTopItemsFilter.ApplyTopItemsFilterPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ApplyTopItemsFilterPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyTopItemsFilter.ApplyTopItemsFilterPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ApplyTopItemsFilterPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyTopItemsFilter.ApplyTopItemsFilterPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance
         public Tuple<List<Command>, List<Command>> BuildCommand()
         {
             var executables = new List<Command>();
-            var builder = new UserExperienceAnalyticsDevicePerformanceItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.Item.UserExperienceAnalyticsDevicePerformanceItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());
@@ -45,7 +45,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -203,7 +203,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance
         {
             var command = new Command("summarize-device-performance-devices-with-summarize-by");
             command.Description = "Provides operations to call the summarizeDevicePerformanceDevices method.";
-            var builder = new SummarizeDevicePerformanceDevicesWithSummarizeByRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.SummarizeDevicePerformanceDevicesWithSummarizeBy.SummarizeDevicePerformanceDevicesWithSummarizeByRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -213,14 +213,14 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsDevicePerformanceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.UserExperienceAnalyticsDevicePerformanceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserExperienceAnalyticsDevicePerformanceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsDevicePerformance{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsDevicePerformanceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.UserExperienceAnalyticsDevicePerformanceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserExperienceAnalyticsDevicePerformanceRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsDevicePerformance{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -233,11 +233,11 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsDevicePerformanceRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.UserExperienceAnalyticsDevicePerformanceRequestBuilder.UserExperienceAnalyticsDevicePerformanceRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsDevicePerformanceRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.UserExperienceAnalyticsDevicePerformanceRequestBuilder.UserExperienceAnalyticsDevicePerformanceRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

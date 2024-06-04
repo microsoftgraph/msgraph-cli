@@ -9,12 +9,12 @@ namespace ApiSdk.Models
     /// <summary>
     /// OMA Settings DateTime definition.
     /// </summary>
-    public class OmaSettingDateTime : OmaSetting, IParsable
+    public class OmaSettingDateTime : ApiSdk.Models.OmaSetting, IParsable
     {
         /// <summary>Value.</summary>
         public DateTimeOffset? Value { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="OmaSettingDateTime"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OmaSettingDateTime"/> and sets the default values.
         /// </summary>
         public OmaSettingDateTime() : base()
         {
@@ -23,12 +23,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OmaSettingDateTime"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OmaSettingDateTime"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OmaSettingDateTime CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OmaSettingDateTime CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OmaSettingDateTime();
+            return new ApiSdk.Models.OmaSettingDateTime();
         }
         /// <summary>
         /// The deserialization information for the current model

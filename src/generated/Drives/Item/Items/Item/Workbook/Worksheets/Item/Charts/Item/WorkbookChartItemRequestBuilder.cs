@@ -42,7 +42,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("axes");
             command.Description = "Provides operations to manage the axes property of the microsoft.graph.workbookChart entity.";
-            var builder = new AxesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.AxesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCategoryAxisNavCommand());
@@ -69,7 +69,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("data-labels");
             command.Description = "Provides operations to manage the dataLabels property of the microsoft.graph.workbookChart entity.";
-            var builder = new DataLabelsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.DataLabels.DataLabelsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -147,7 +147,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("format");
             command.Description = "Provides operations to manage the format property of the microsoft.graph.workbookChart entity.";
-            var builder = new FormatRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Format.FormatRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -243,7 +243,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("image");
             command.Description = "Provides operations to call the image method.";
-            var builder = new ImageRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Image.ImageRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -260,7 +260,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("image-with-width");
             command.Description = "Provides operations to call the image method.";
-            var builder = new ImageWithWidthRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWidth.ImageWithWidthRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -277,7 +277,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("image-with-width-with-height");
             command.Description = "Provides operations to call the image method.";
-            var builder = new ImageWithWidthWithHeightRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWidthWithHeight.ImageWithWidthWithHeightRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -294,7 +294,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("image-with-width-with-height-with-fitting-mode");
             command.Description = "Provides operations to call the image method.";
-            var builder = new ImageWithWidthWithHeightWithFittingModeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWidthWithHeightWithFittingMode.ImageWithWidthWithHeightWithFittingModeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -311,7 +311,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("legend");
             command.Description = "Provides operations to manage the legend property of the microsoft.graph.workbookChart entity.";
-            var builder = new LegendRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Legend.LegendRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -374,7 +374,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<WorkbookChart>(WorkbookChart.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.WorkbookChart>(ApiSdk.Models.WorkbookChart.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -405,7 +405,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("series");
             command.Description = "Provides operations to manage the series property of the microsoft.graph.workbookChart entity.";
-            var builder = new SeriesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.SeriesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -433,7 +433,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("set-data");
             command.Description = "Provides operations to call the setData method.";
-            var builder = new SetDataRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.SetData.SetDataRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -450,7 +450,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("set-position");
             command.Description = "Provides operations to call the setPosition method.";
-            var builder = new SetPositionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.SetPosition.SetPositionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -467,7 +467,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("title");
             command.Description = "Provides operations to manage the title property of the microsoft.graph.workbookChart entity.";
-            var builder = new TitleRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Title.TitleRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -492,7 +492,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         {
             var command = new Command("worksheet");
             command.Description = "Provides operations to manage the worksheet property of the microsoft.graph.workbookChart entity.";
-            var builder = new WorksheetRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Worksheet.WorksheetRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -502,14 +502,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="WorkbookChartItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.WorkbookChartItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WorkbookChartItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="WorkbookChartItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.WorkbookChartItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public WorkbookChartItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}{?%24expand,%24select}", rawUrl)
@@ -541,11 +541,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookChartItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.WorkbookChartItemRequestBuilder.WorkbookChartItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookChartItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.WorkbookChartItemRequestBuilder.WorkbookChartItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -561,11 +561,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(WorkbookChart body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.WorkbookChart body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(WorkbookChart body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.WorkbookChart body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

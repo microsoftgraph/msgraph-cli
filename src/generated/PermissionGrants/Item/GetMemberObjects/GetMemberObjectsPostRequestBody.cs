@@ -15,7 +15,7 @@ namespace ApiSdk.PermissionGrants.Item.GetMemberObjects
         /// <summary>The securityEnabledOnly property</summary>
         public bool? SecurityEnabledOnly { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="GetMemberObjectsPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.PermissionGrants.Item.GetMemberObjects.GetMemberObjectsPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetMemberObjectsPostRequestBody()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.PermissionGrants.Item.GetMemberObjects
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetMemberObjectsPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.PermissionGrants.Item.GetMemberObjects.GetMemberObjectsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetMemberObjectsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.PermissionGrants.Item.GetMemberObjects.GetMemberObjectsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetMemberObjectsPostRequestBody();
+            return new ApiSdk.PermissionGrants.Item.GetMemberObjects.GetMemberObjectsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

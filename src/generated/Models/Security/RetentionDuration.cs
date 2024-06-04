@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Security
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RetentionDuration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.RetentionDuration"/> and sets the default values.
         /// </summary>
         public RetentionDuration()
         {
@@ -30,17 +30,17 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RetentionDuration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.RetentionDuration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RetentionDuration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.RetentionDuration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.retentionDurationForever" => new RetentionDurationForever(),
-                "#microsoft.graph.security.retentionDurationInDays" => new RetentionDurationInDays(),
-                _ => new RetentionDuration(),
+                "#microsoft.graph.security.retentionDurationForever" => new ApiSdk.Models.Security.RetentionDurationForever(),
+                "#microsoft.graph.security.retentionDurationInDays" => new ApiSdk.Models.Security.RetentionDurationInDays(),
+                _ => new ApiSdk.Models.Security.RetentionDuration(),
             };
         }
         /// <summary>

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class RelyingPartyDetailedSummary : Entity, IParsable
+    public class RelyingPartyDetailedSummary : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Number of failed sign ins on AD FS in the period specified. Supports $orderby, $filter (eq).</summary>
@@ -17,10 +17,10 @@ namespace ApiSdk.Models
         /// <summary>Specifies all the validations checks done on applications config details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<KeyValuePair>? MigrationValidationDetails { get; set; }
+        public List<ApiSdk.Models.KeyValuePair>? MigrationValidationDetails { get; set; }
 #nullable restore
 #else
-        public List<KeyValuePair> MigrationValidationDetails { get; set; }
+        public List<ApiSdk.Models.KeyValuePair> MigrationValidationDetails { get; set; }
 #endif
         /// <summary>Identifies the relying party to this federation service. It&apos;s used when issuing claims to the relying party. Supports $orderby, $filter (eq).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,12 +65,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RelyingPartyDetailedSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RelyingPartyDetailedSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RelyingPartyDetailedSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.RelyingPartyDetailedSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RelyingPartyDetailedSummary();
+            return new ApiSdk.Models.RelyingPartyDetailedSummary();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -81,8 +81,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "failedSignInCount", n => { FailedSignInCount = n.GetLongValue(); } },
-                { "migrationStatus", n => { MigrationStatus = n.GetEnumValue<MigrationStatus>(); } },
-                { "migrationValidationDetails", n => { MigrationValidationDetails = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "migrationStatus", n => { MigrationStatus = n.GetEnumValue<ApiSdk.Models.MigrationStatus>(); } },
+                { "migrationValidationDetails", n => { MigrationValidationDetails = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>(ApiSdk.Models.KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "relyingPartyId", n => { RelyingPartyId = n.GetStringValue(); } },
                 { "relyingPartyName", n => { RelyingPartyName = n.GetStringValue(); } },
                 { "replyUrls", n => { ReplyUrls = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
@@ -102,8 +102,8 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteLongValue("failedSignInCount", FailedSignInCount);
-            writer.WriteEnumValue<MigrationStatus>("migrationStatus", MigrationStatus);
-            writer.WriteCollectionOfObjectValues<KeyValuePair>("migrationValidationDetails", MigrationValidationDetails);
+            writer.WriteEnumValue<ApiSdk.Models.MigrationStatus>("migrationStatus", MigrationStatus);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>("migrationValidationDetails", MigrationValidationDetails);
             writer.WriteStringValue("relyingPartyId", RelyingPartyId);
             writer.WriteStringValue("relyingPartyName", RelyingPartyName);
             writer.WriteCollectionOfPrimitiveValues<string>("replyUrls", ReplyUrls);

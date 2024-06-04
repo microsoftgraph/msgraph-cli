@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem
         {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the drive entity.";
-            var builder = new ContentRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content.ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -100,14 +100,14 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DriveItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.List.Items.Item.DriveItem.DriveItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/items/{listItem%2Did}/driveItem{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DriveItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.List.Items.Item.DriveItem.DriveItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/items/{listItem%2Did}/driveItem{?%24expand,%24select}", rawUrl)
@@ -120,11 +120,11 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.List.Items.Item.DriveItem.DriveItemRequestBuilder.DriveItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.List.Items.Item.DriveItem.DriveItemRequestBuilder.DriveItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

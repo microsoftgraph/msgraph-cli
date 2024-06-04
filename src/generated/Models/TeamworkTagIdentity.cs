@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamworkTagIdentity : Identity, IParsable
+    public class TeamworkTagIdentity : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>
-        /// Instantiates a new <see cref="TeamworkTagIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TeamworkTagIdentity"/> and sets the default values.
         /// </summary>
         public TeamworkTagIdentity() : base()
         {
@@ -20,12 +20,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamworkTagIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamworkTagIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamworkTagIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamworkTagIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamworkTagIdentity();
+            return new ApiSdk.Models.TeamworkTagIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model

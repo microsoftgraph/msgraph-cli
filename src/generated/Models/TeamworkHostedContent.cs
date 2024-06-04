@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamworkHostedContent : Entity, IParsable
+    public class TeamworkHostedContent : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Write only. Bytes for the hosted content (such as images).</summary>
@@ -29,16 +29,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamworkHostedContent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamworkHostedContent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamworkHostedContent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamworkHostedContent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.chatMessageHostedContent" => new ChatMessageHostedContent(),
-                _ => new TeamworkHostedContent(),
+                "#microsoft.graph.chatMessageHostedContent" => new ApiSdk.Models.ChatMessageHostedContent(),
+                _ => new ApiSdk.Models.TeamworkHostedContent(),
             };
         }
         /// <summary>

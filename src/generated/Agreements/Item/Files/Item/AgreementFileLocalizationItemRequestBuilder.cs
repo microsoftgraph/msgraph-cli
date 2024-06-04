@@ -157,7 +157,7 @@ namespace ApiSdk.Agreements.Item.Files.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AgreementFileLocalization>(AgreementFileLocalization.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.AgreementFileLocalization>(ApiSdk.Models.AgreementFileLocalization.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -186,7 +186,7 @@ namespace ApiSdk.Agreements.Item.Files.Item
         {
             var command = new Command("versions");
             command.Description = "Provides operations to manage the versions property of the microsoft.graph.agreementFileLocalization entity.";
-            var builder = new VersionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Agreements.Item.Files.Item.Versions.VersionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -206,14 +206,14 @@ namespace ApiSdk.Agreements.Item.Files.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AgreementFileLocalizationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Agreements.Item.Files.Item.AgreementFileLocalizationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AgreementFileLocalizationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/agreements/{agreement%2Did}/files/{agreementFileLocalization%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AgreementFileLocalizationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Agreements.Item.Files.Item.AgreementFileLocalizationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AgreementFileLocalizationItemRequestBuilder(string rawUrl) : base("{+baseurl}/agreements/{agreement%2Did}/files/{agreementFileLocalization%2Did}{?%24expand,%24select}", rawUrl)
@@ -245,11 +245,11 @@ namespace ApiSdk.Agreements.Item.Files.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AgreementFileLocalizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Agreements.Item.Files.Item.AgreementFileLocalizationItemRequestBuilder.AgreementFileLocalizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AgreementFileLocalizationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Agreements.Item.Files.Item.AgreementFileLocalizationItemRequestBuilder.AgreementFileLocalizationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -265,11 +265,11 @@ namespace ApiSdk.Agreements.Item.Files.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AgreementFileLocalization body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AgreementFileLocalization body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AgreementFileLocalization body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AgreementFileLocalization body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

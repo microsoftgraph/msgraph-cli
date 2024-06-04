@@ -16,61 +16,61 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vdb
         /// <summary>The cost property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Cost { get; set; }
+        public ApiSdk.Models.Json? Cost { get; set; }
 #nullable restore
 #else
-        public Json Cost { get; set; }
+        public ApiSdk.Models.Json Cost { get; set; }
 #endif
         /// <summary>The endPeriod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? EndPeriod { get; set; }
+        public ApiSdk.Models.Json? EndPeriod { get; set; }
 #nullable restore
 #else
-        public Json EndPeriod { get; set; }
+        public ApiSdk.Models.Json EndPeriod { get; set; }
 #endif
         /// <summary>The factor property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Factor { get; set; }
+        public ApiSdk.Models.Json? Factor { get; set; }
 #nullable restore
 #else
-        public Json Factor { get; set; }
+        public ApiSdk.Models.Json Factor { get; set; }
 #endif
         /// <summary>The life property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Life { get; set; }
+        public ApiSdk.Models.Json? Life { get; set; }
 #nullable restore
 #else
-        public Json Life { get; set; }
+        public ApiSdk.Models.Json Life { get; set; }
 #endif
         /// <summary>The noSwitch property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? NoSwitch { get; set; }
+        public ApiSdk.Models.Json? NoSwitch { get; set; }
 #nullable restore
 #else
-        public Json NoSwitch { get; set; }
+        public ApiSdk.Models.Json NoSwitch { get; set; }
 #endif
         /// <summary>The salvage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Salvage { get; set; }
+        public ApiSdk.Models.Json? Salvage { get; set; }
 #nullable restore
 #else
-        public Json Salvage { get; set; }
+        public ApiSdk.Models.Json Salvage { get; set; }
 #endif
         /// <summary>The startPeriod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? StartPeriod { get; set; }
+        public ApiSdk.Models.Json? StartPeriod { get; set; }
 #nullable restore
 #else
-        public Json StartPeriod { get; set; }
+        public ApiSdk.Models.Json StartPeriod { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="VdbPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vdb.VdbPostRequestBody"/> and sets the default values.
         /// </summary>
         public VdbPostRequestBody()
         {
@@ -79,12 +79,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vdb
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="VdbPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vdb.VdbPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static VdbPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vdb.VdbPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new VdbPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vdb.VdbPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -94,13 +94,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vdb
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "cost", n => { Cost = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "endPeriod", n => { EndPeriod = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "factor", n => { Factor = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "life", n => { Life = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "noSwitch", n => { NoSwitch = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "salvage", n => { Salvage = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "startPeriod", n => { StartPeriod = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "cost", n => { Cost = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "endPeriod", n => { EndPeriod = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "factor", n => { Factor = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "life", n => { Life = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "noSwitch", n => { NoSwitch = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "salvage", n => { Salvage = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "startPeriod", n => { StartPeriod = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -110,13 +110,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vdb
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("cost", Cost);
-            writer.WriteObjectValue<Json>("endPeriod", EndPeriod);
-            writer.WriteObjectValue<Json>("factor", Factor);
-            writer.WriteObjectValue<Json>("life", Life);
-            writer.WriteObjectValue<Json>("noSwitch", NoSwitch);
-            writer.WriteObjectValue<Json>("salvage", Salvage);
-            writer.WriteObjectValue<Json>("startPeriod", StartPeriod);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("cost", Cost);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("endPeriod", EndPeriod);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("factor", Factor);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("life", Life);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("noSwitch", NoSwitch);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("salvage", Salvage);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("startPeriod", StartPeriod);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

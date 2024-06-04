@@ -62,14 +62,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.RestoreVersion
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RestoreVersionRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Versions.Item.RestoreVersion.RestoreVersionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RestoreVersionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/versions/{driveItemVersion%2Did}/restoreVersion", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RestoreVersionRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Versions.Item.RestoreVersion.RestoreVersionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RestoreVersionRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/versions/{driveItemVersion%2Did}/restoreVersion", rawUrl)

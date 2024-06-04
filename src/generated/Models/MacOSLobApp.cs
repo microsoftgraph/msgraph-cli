@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties and inherited properties for the macOS LOB App.
     /// </summary>
-    public class MacOSLobApp : MobileLobApp, IParsable
+    public class MacOSLobApp : ApiSdk.Models.MobileLobApp, IParsable
     {
         /// <summary>The build number of the package. This should match the package CFBundleShortVersionString of the .pkg file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -30,10 +30,10 @@ namespace ApiSdk.Models
         /// <summary>List of ComplexType macOSLobChildApp objects. Represents the apps expected to be installed by the package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MacOSLobChildApp>? ChildApps { get; set; }
+        public List<ApiSdk.Models.MacOSLobChildApp>? ChildApps { get; set; }
 #nullable restore
 #else
-        public List<MacOSLobChildApp> ChildApps { get; set; }
+        public List<ApiSdk.Models.MacOSLobChildApp> ChildApps { get; set; }
 #endif
         /// <summary>When TRUE, indicates that the app&apos;s version will NOT be used to detect if the app is installed on a device. When FALSE, indicates that the app&apos;s version will be used to detect if the app is installed on a device. Set this to true for apps that use a self update feature.</summary>
         public bool? IgnoreVersionDetection { get; set; }
@@ -52,10 +52,10 @@ namespace ApiSdk.Models
         /// <summary>ComplexType macOSMinimumOperatingSystem that indicates the minimum operating system applicable for the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MacOSMinimumOperatingSystem? MinimumSupportedOperatingSystem { get; set; }
+        public ApiSdk.Models.MacOSMinimumOperatingSystem? MinimumSupportedOperatingSystem { get; set; }
 #nullable restore
 #else
-        public MacOSMinimumOperatingSystem MinimumSupportedOperatingSystem { get; set; }
+        public ApiSdk.Models.MacOSMinimumOperatingSystem MinimumSupportedOperatingSystem { get; set; }
 #endif
         /// <summary>The version number of the package. This should match the package CFBundleVersion in the packageinfo file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
         public string VersionNumber { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MacOSLobApp"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MacOSLobApp"/> and sets the default values.
         /// </summary>
         public MacOSLobApp() : base()
         {
@@ -75,12 +75,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MacOSLobApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MacOSLobApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MacOSLobApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MacOSLobApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MacOSLobApp();
+            return new ApiSdk.Models.MacOSLobApp();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -92,12 +92,12 @@ namespace ApiSdk.Models
             {
                 { "buildNumber", n => { BuildNumber = n.GetStringValue(); } },
                 { "bundleId", n => { BundleId = n.GetStringValue(); } },
-                { "childApps", n => { ChildApps = n.GetCollectionOfObjectValues<MacOSLobChildApp>(MacOSLobChildApp.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "childApps", n => { ChildApps = n.GetCollectionOfObjectValues<ApiSdk.Models.MacOSLobChildApp>(ApiSdk.Models.MacOSLobChildApp.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "ignoreVersionDetection", n => { IgnoreVersionDetection = n.GetBoolValue(); } },
                 { "installAsManaged", n => { InstallAsManaged = n.GetBoolValue(); } },
                 { "md5Hash", n => { Md5Hash = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "md5HashChunkSize", n => { Md5HashChunkSize = n.GetIntValue(); } },
-                { "minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<MacOSMinimumOperatingSystem>(MacOSMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
+                { "minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<ApiSdk.Models.MacOSMinimumOperatingSystem>(ApiSdk.Models.MacOSMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
                 { "versionNumber", n => { VersionNumber = n.GetStringValue(); } },
             };
         }
@@ -111,12 +111,12 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("buildNumber", BuildNumber);
             writer.WriteStringValue("bundleId", BundleId);
-            writer.WriteCollectionOfObjectValues<MacOSLobChildApp>("childApps", ChildApps);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MacOSLobChildApp>("childApps", ChildApps);
             writer.WriteBoolValue("ignoreVersionDetection", IgnoreVersionDetection);
             writer.WriteBoolValue("installAsManaged", InstallAsManaged);
             writer.WriteCollectionOfPrimitiveValues<string>("md5Hash", Md5Hash);
             writer.WriteIntValue("md5HashChunkSize", Md5HashChunkSize);
-            writer.WriteObjectValue<MacOSMinimumOperatingSystem>("minimumSupportedOperatingSystem", MinimumSupportedOperatingSystem);
+            writer.WriteObjectValue<ApiSdk.Models.MacOSMinimumOperatingSystem>("minimumSupportedOperatingSystem", MinimumSupportedOperatingSystem);
             writer.WriteStringValue("versionNumber", VersionNumber);
         }
     }

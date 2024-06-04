@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SingleServicePrincipal : SubjectSet, IParsable
+    public class SingleServicePrincipal : ApiSdk.Models.SubjectSet, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Description of this service principal.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models
         public string ServicePrincipalId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SingleServicePrincipal"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SingleServicePrincipal"/> and sets the default values.
         /// </summary>
         public SingleServicePrincipal() : base()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SingleServicePrincipal"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SingleServicePrincipal"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SingleServicePrincipal CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SingleServicePrincipal CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SingleServicePrincipal();
+            return new ApiSdk.Models.SingleServicePrincipal();
         }
         /// <summary>
         /// The deserialization information for the current model

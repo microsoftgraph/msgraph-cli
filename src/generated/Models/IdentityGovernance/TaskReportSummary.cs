@@ -29,7 +29,7 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>The number of unprocessed tasks in a report.</summary>
         public int? UnprocessedTasks { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TaskReportSummary"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityGovernance.TaskReportSummary"/> and sets the default values.
         /// </summary>
         public TaskReportSummary()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TaskReportSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.TaskReportSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TaskReportSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IdentityGovernance.TaskReportSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TaskReportSummary();
+            return new ApiSdk.Models.IdentityGovernance.TaskReportSummary();
         }
         /// <summary>
         /// The deserialization information for the current model

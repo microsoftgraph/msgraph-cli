@@ -33,7 +33,7 @@ namespace ApiSdk.Communications.CallRecords
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new CallRecordItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.CallRecords.Item.CallRecordItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());
@@ -48,7 +48,7 @@ namespace ApiSdk.Communications.CallRecords
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.CallRecords.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -83,7 +83,7 @@ namespace ApiSdk.Communications.CallRecords
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CallRecord>(CallRecord.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.CallRecords.CallRecord>(ApiSdk.Models.CallRecords.CallRecord.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -206,7 +206,7 @@ namespace ApiSdk.Communications.CallRecords
         {
             var command = new Command("microsoft-graph-call-records-get-direct-routing-calls-with-from-date-time-with-to-date-time");
             command.Description = "Provides operations to call the getDirectRoutingCalls method.";
-            var builder = new MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTime.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -223,7 +223,7 @@ namespace ApiSdk.Communications.CallRecords
         {
             var command = new Command("microsoft-graph-call-records-get-pstn-calls-with-from-date-time-with-to-date-time");
             command.Description = "Provides operations to call the getPstnCalls method.";
-            var builder = new MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTime.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -233,14 +233,14 @@ namespace ApiSdk.Communications.CallRecords
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CallRecordsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.CallRecords.CallRecordsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CallRecordsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/callRecords{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CallRecordsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.CallRecords.CallRecordsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CallRecordsRequestBuilder(string rawUrl) : base("{+baseurl}/communications/callRecords{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -253,11 +253,11 @@ namespace ApiSdk.Communications.CallRecords
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CallRecordsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.CallRecords.CallRecordsRequestBuilder.CallRecordsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CallRecordsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.CallRecords.CallRecordsRequestBuilder.CallRecordsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -273,11 +273,11 @@ namespace ApiSdk.Communications.CallRecords
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(CallRecord body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.CallRecords.CallRecord body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(CallRecord body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.CallRecords.CallRecord body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

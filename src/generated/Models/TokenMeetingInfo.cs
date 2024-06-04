@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TokenMeetingInfo : MeetingInfo, IParsable
+    public class TokenMeetingInfo : ApiSdk.Models.MeetingInfo, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The token used to join the call.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string Token { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TokenMeetingInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TokenMeetingInfo"/> and sets the default values.
         /// </summary>
         public TokenMeetingInfo() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TokenMeetingInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TokenMeetingInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TokenMeetingInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TokenMeetingInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TokenMeetingInfo();
+            return new ApiSdk.Models.TokenMeetingInfo();
         }
         /// <summary>
         /// The deserialization information for the current model

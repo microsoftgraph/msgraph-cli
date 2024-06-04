@@ -150,7 +150,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode
         {
             var command = new Command("site-lists");
             command.Description = "Provides operations to manage the siteLists property of the microsoft.graph.internetExplorerMode entity.";
-            var builder = new SiteListsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.SiteListsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -170,14 +170,14 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="InternetExplorerModeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.Edge.InternetExplorerMode.InternetExplorerModeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public InternetExplorerModeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/edge/internetExplorerMode{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="InternetExplorerModeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.Edge.InternetExplorerMode.InternetExplorerModeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public InternetExplorerModeRequestBuilder(string rawUrl) : base("{+baseurl}/admin/edge/internetExplorerMode{?%24expand,%24select}", rawUrl)
@@ -209,11 +209,11 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InternetExplorerModeRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.Edge.InternetExplorerMode.InternetExplorerModeRequestBuilder.InternetExplorerModeRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InternetExplorerModeRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.Edge.InternetExplorerMode.InternetExplorerModeRequestBuilder.InternetExplorerModeRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

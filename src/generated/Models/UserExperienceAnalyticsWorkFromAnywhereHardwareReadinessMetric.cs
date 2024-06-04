@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// The user experience analytics hardware readiness entity contains account level information about hardware blockers for windows upgrade.
     /// </summary>
-    public class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric : Entity, IParsable
+    public class UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The percentage of devices for which OS check has failed. Valid values 0 to 100. Supports: $select, $OrderBy. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308</summary>
         public double? OsCheckFailedPercentage { get; set; }
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric();
+            return new ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric();
         }
         /// <summary>
         /// The deserialization information for the current model

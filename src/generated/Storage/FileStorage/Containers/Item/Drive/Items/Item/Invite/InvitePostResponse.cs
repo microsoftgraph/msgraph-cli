@@ -8,7 +8,7 @@ using System;
 namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Invite
 {
     #pragma warning disable CS1591
-    public class InvitePostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class InvitePostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
@@ -22,12 +22,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Invite
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="InvitePostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Invite.InvitePostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new InvitePostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Invite.InvitePostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new InvitePostResponse();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Invite.InvitePostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

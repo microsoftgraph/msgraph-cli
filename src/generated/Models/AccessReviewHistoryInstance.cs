@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessReviewHistoryInstance : Entity, IParsable
+    public class AccessReviewHistoryInstance : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Uri that can be used to retrieve review history data. This URI will be active for 24 hours after being generated. Required.</summary>
@@ -29,16 +29,16 @@ namespace ApiSdk.Models
         /// <summary>Timestamp when the instance&apos;s history data is scheduled to be generated.</summary>
         public DateTimeOffset? RunDateTime { get; set; }
         /// <summary>Represents the status of the review history data collection. The possible values are: done, inProgress, error, requested, unknownFutureValue. Once the status has been marked as done, a link can be generated to retrieve the instance&apos;s data by calling generateDownloadUri method.</summary>
-        public AccessReviewHistoryStatus? Status { get; set; }
+        public ApiSdk.Models.AccessReviewHistoryStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessReviewHistoryInstance"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessReviewHistoryInstance"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessReviewHistoryInstance CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessReviewHistoryInstance CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessReviewHistoryInstance();
+            return new ApiSdk.Models.AccessReviewHistoryInstance();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
                 { "reviewHistoryPeriodEndDateTime", n => { ReviewHistoryPeriodEndDateTime = n.GetDateTimeOffsetValue(); } },
                 { "reviewHistoryPeriodStartDateTime", n => { ReviewHistoryPeriodStartDateTime = n.GetDateTimeOffsetValue(); } },
                 { "runDateTime", n => { RunDateTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<AccessReviewHistoryStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.AccessReviewHistoryStatus>(); } },
             };
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("reviewHistoryPeriodEndDateTime", ReviewHistoryPeriodEndDateTime);
             writer.WriteDateTimeOffsetValue("reviewHistoryPeriodStartDateTime", ReviewHistoryPeriodStartDateTime);
             writer.WriteDateTimeOffsetValue("runDateTime", RunDateTime);
-            writer.WriteEnumValue<AccessReviewHistoryStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.AccessReviewHistoryStatus>("status", Status);
         }
     }
 }

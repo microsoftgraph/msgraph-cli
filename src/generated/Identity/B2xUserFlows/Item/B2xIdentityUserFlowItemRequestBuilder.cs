@@ -34,7 +34,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item
         {
             var command = new Command("api-connector-configuration");
             command.Description = "The apiConnectorConfiguration property";
-            var builder = new ApiConnectorConfigurationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.ApiConnectorConfigurationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -147,7 +147,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item
         {
             var command = new Command("identity-providers");
             command.Description = "Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.";
-            var builder = new IdentityProvidersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.IdentityProvidersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -173,7 +173,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item
         {
             var command = new Command("languages");
             command.Description = "Provides operations to manage the languages property of the microsoft.graph.b2xIdentityUserFlow entity.";
-            var builder = new LanguagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.B2xUserFlows.Item.Languages.LanguagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -223,7 +223,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<B2xIdentityUserFlow>(B2xIdentityUserFlow.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.B2xIdentityUserFlow>(ApiSdk.Models.B2xIdentityUserFlow.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -251,7 +251,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item
         {
             var command = new Command("user-attribute-assignments");
             command.Description = "Provides operations to manage the userAttributeAssignments property of the microsoft.graph.b2xIdentityUserFlow entity.";
-            var builder = new UserAttributeAssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.UserAttributeAssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -280,7 +280,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item
         {
             var command = new Command("user-flow-identity-providers");
             command.Description = "Provides operations to manage the userFlowIdentityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.";
-            var builder = new UserFlowIdentityProvidersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.UserFlowIdentityProvidersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -300,14 +300,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="B2xIdentityUserFlowItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.B2xIdentityUserFlowItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public B2xIdentityUserFlowItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="B2xIdentityUserFlowItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.B2xIdentityUserFlowItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public B2xIdentityUserFlowItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}{?%24expand,%24select}", rawUrl)
@@ -339,11 +339,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<B2xIdentityUserFlowItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.B2xUserFlows.Item.B2xIdentityUserFlowItemRequestBuilder.B2xIdentityUserFlowItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<B2xIdentityUserFlowItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.B2xUserFlows.Item.B2xIdentityUserFlowItemRequestBuilder.B2xIdentityUserFlowItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -359,11 +359,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(B2xIdentityUserFlow body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.B2xIdentityUserFlow body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(B2xIdentityUserFlow body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.B2xIdentityUserFlow body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

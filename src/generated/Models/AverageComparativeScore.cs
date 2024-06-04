@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AverageComparativeScore"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AverageComparativeScore"/> and sets the default values.
         /// </summary>
         public AverageComparativeScore()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AverageComparativeScore"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AverageComparativeScore"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AverageComparativeScore CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AverageComparativeScore CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AverageComparativeScore();
+            return new ApiSdk.Models.AverageComparativeScore();
         }
         /// <summary>
         /// The deserialization information for the current model

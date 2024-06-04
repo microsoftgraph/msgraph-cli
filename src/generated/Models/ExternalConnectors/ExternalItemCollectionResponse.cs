@@ -13,20 +13,20 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ExternalItem>? Value { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ExternalItem>? Value { get; set; }
 #nullable restore
 #else
-        public List<ExternalItem> Value { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ExternalItem> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ExternalItemCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.ExternalItemCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ExternalItemCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ExternalConnectors.ExternalItemCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ExternalItemCollectionResponse();
+            return new ApiSdk.Models.ExternalConnectors.ExternalItemCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.ExternalConnectors
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<ExternalItem>(ExternalItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ExternalItem>(ApiSdk.Models.ExternalConnectors.ExternalItem.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.ExternalConnectors
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ExternalItem>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ExternalItem>("value", Value);
         }
     }
 }

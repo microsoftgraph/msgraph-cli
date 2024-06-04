@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods
         public Tuple<List<Command>, List<Command>> BuildCommand()
         {
             var executables = new List<Command>();
-            var builder = new SoftwareOathAuthenticationMethodItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Authentication.SoftwareOathMethods.Item.SoftwareOathAuthenticationMethodItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             return new(executables, new(0));
@@ -43,7 +43,7 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Authentication.SoftwareOathMethods.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -155,14 +155,14 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SoftwareOathMethodsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Authentication.SoftwareOathMethods.SoftwareOathMethodsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SoftwareOathMethodsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/softwareOathMethods{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SoftwareOathMethodsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Authentication.SoftwareOathMethods.SoftwareOathMethodsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SoftwareOathMethodsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/softwareOathMethods{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -175,11 +175,11 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SoftwareOathMethodsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Authentication.SoftwareOathMethods.SoftwareOathMethodsRequestBuilder.SoftwareOathMethodsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SoftwareOathMethodsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Authentication.SoftwareOathMethods.SoftwareOathMethodsRequestBuilder.SoftwareOathMethodsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

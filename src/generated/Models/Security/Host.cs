@@ -7,119 +7,119 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class Host : Artifact, IParsable
+    public class Host : ApiSdk.Models.Security.Artifact, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostPair>? ChildHostPairs { get; set; }
+        public List<ApiSdk.Models.Security.HostPair>? ChildHostPairs { get; set; }
 #nullable restore
 #else
-        public List<HostPair> ChildHostPairs { get; set; }
+        public List<ApiSdk.Models.Security.HostPair> ChildHostPairs { get; set; }
 #endif
         /// <summary>The hostComponents that are associated with this host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostComponent>? Components { get; set; }
+        public List<ApiSdk.Models.Security.HostComponent>? Components { get; set; }
 #nullable restore
 #else
-        public List<HostComponent> Components { get; set; }
+        public List<ApiSdk.Models.Security.HostComponent> Components { get; set; }
 #endif
         /// <summary>The hostCookies that are associated with this host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostCookie>? Cookies { get; set; }
+        public List<ApiSdk.Models.Security.HostCookie>? Cookies { get; set; }
 #nullable restore
 #else
-        public List<HostCookie> Cookies { get; set; }
+        public List<ApiSdk.Models.Security.HostCookie> Cookies { get; set; }
 #endif
         /// <summary>The first date and time when this host was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? FirstSeenDateTime { get; set; }
         /// <summary>The hostPairs that are associated with this host, where this host is either the parentHost or childHost.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostPair>? HostPairs { get; set; }
+        public List<ApiSdk.Models.Security.HostPair>? HostPairs { get; set; }
 #nullable restore
 #else
-        public List<HostPair> HostPairs { get; set; }
+        public List<ApiSdk.Models.Security.HostPair> HostPairs { get; set; }
 #endif
         /// <summary>The most recent date and time when this host was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastSeenDateTime { get; set; }
         /// <summary>The hostPairs that are associated with a host, where that host is the childHost and has an incoming pairing with a parentHost.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostPair>? ParentHostPairs { get; set; }
+        public List<ApiSdk.Models.Security.HostPair>? ParentHostPairs { get; set; }
 #nullable restore
 #else
-        public List<HostPair> ParentHostPairs { get; set; }
+        public List<ApiSdk.Models.Security.HostPair> ParentHostPairs { get; set; }
 #endif
         /// <summary>Passive DNS retrieval about this host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PassiveDnsRecord>? PassiveDns { get; set; }
+        public List<ApiSdk.Models.Security.PassiveDnsRecord>? PassiveDns { get; set; }
 #nullable restore
 #else
-        public List<PassiveDnsRecord> PassiveDns { get; set; }
+        public List<ApiSdk.Models.Security.PassiveDnsRecord> PassiveDns { get; set; }
 #endif
         /// <summary>Reverse passive DNS retrieval about this host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PassiveDnsRecord>? PassiveDnsReverse { get; set; }
+        public List<ApiSdk.Models.Security.PassiveDnsRecord>? PassiveDnsReverse { get; set; }
 #nullable restore
 #else
-        public List<PassiveDnsRecord> PassiveDnsReverse { get; set; }
+        public List<ApiSdk.Models.Security.PassiveDnsRecord> PassiveDnsReverse { get; set; }
 #endif
         /// <summary>The hostPorts associated with a host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostPort>? Ports { get; set; }
+        public List<ApiSdk.Models.Security.HostPort>? Ports { get; set; }
 #nullable restore
 #else
-        public List<HostPort> Ports { get; set; }
+        public List<ApiSdk.Models.Security.HostPort> Ports { get; set; }
 #endif
         /// <summary>Represents a calculated reputation of this host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public HostReputation? Reputation { get; set; }
+        public ApiSdk.Models.Security.HostReputation? Reputation { get; set; }
 #nullable restore
 #else
-        public HostReputation Reputation { get; set; }
+        public ApiSdk.Models.Security.HostReputation Reputation { get; set; }
 #endif
         /// <summary>The hostSslCertificates that are associated with this host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostSslCertificate>? SslCertificates { get; set; }
+        public List<ApiSdk.Models.Security.HostSslCertificate>? SslCertificates { get; set; }
 #nullable restore
 #else
-        public List<HostSslCertificate> SslCertificates { get; set; }
+        public List<ApiSdk.Models.Security.HostSslCertificate> SslCertificates { get; set; }
 #endif
         /// <summary>The subdomains that are associated with this host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Subdomain>? Subdomains { get; set; }
+        public List<ApiSdk.Models.Security.Subdomain>? Subdomains { get; set; }
 #nullable restore
 #else
-        public List<Subdomain> Subdomains { get; set; }
+        public List<ApiSdk.Models.Security.Subdomain> Subdomains { get; set; }
 #endif
         /// <summary>The hostTrackers that are associated with this host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostTracker>? Trackers { get; set; }
+        public List<ApiSdk.Models.Security.HostTracker>? Trackers { get; set; }
 #nullable restore
 #else
-        public List<HostTracker> Trackers { get; set; }
+        public List<ApiSdk.Models.Security.HostTracker> Trackers { get; set; }
 #endif
         /// <summary>The most recent whoisRecord for this host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WhoisRecord? Whois { get; set; }
+        public ApiSdk.Models.Security.WhoisRecord? Whois { get; set; }
 #nullable restore
 #else
-        public WhoisRecord Whois { get; set; }
+        public ApiSdk.Models.Security.WhoisRecord Whois { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Host"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.Host"/> and sets the default values.
         /// </summary>
         public Host() : base()
         {
@@ -128,17 +128,17 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Host"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.Host"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Host CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.Host CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.hostname" => new Hostname(),
-                "#microsoft.graph.security.ipAddress" => new IpAddress(),
-                _ => new Host(),
+                "#microsoft.graph.security.hostname" => new ApiSdk.Models.Security.Hostname(),
+                "#microsoft.graph.security.ipAddress" => new ApiSdk.Models.Security.IpAddress(),
+                _ => new ApiSdk.Models.Security.Host(),
             };
         }
         /// <summary>
@@ -149,21 +149,21 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "childHostPairs", n => { ChildHostPairs = n.GetCollectionOfObjectValues<HostPair>(HostPair.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "components", n => { Components = n.GetCollectionOfObjectValues<HostComponent>(HostComponent.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "cookies", n => { Cookies = n.GetCollectionOfObjectValues<HostCookie>(HostCookie.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "childHostPairs", n => { ChildHostPairs = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostPair>(ApiSdk.Models.Security.HostPair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "components", n => { Components = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostComponent>(ApiSdk.Models.Security.HostComponent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "cookies", n => { Cookies = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostCookie>(ApiSdk.Models.Security.HostCookie.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
-                { "hostPairs", n => { HostPairs = n.GetCollectionOfObjectValues<HostPair>(HostPair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "hostPairs", n => { HostPairs = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostPair>(ApiSdk.Models.Security.HostPair.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "lastSeenDateTime", n => { LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
-                { "parentHostPairs", n => { ParentHostPairs = n.GetCollectionOfObjectValues<HostPair>(HostPair.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "passiveDns", n => { PassiveDns = n.GetCollectionOfObjectValues<PassiveDnsRecord>(PassiveDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "passiveDnsReverse", n => { PassiveDnsReverse = n.GetCollectionOfObjectValues<PassiveDnsRecord>(PassiveDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "ports", n => { Ports = n.GetCollectionOfObjectValues<HostPort>(HostPort.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "reputation", n => { Reputation = n.GetObjectValue<HostReputation>(HostReputation.CreateFromDiscriminatorValue); } },
-                { "sslCertificates", n => { SslCertificates = n.GetCollectionOfObjectValues<HostSslCertificate>(HostSslCertificate.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "subdomains", n => { Subdomains = n.GetCollectionOfObjectValues<Subdomain>(Subdomain.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "trackers", n => { Trackers = n.GetCollectionOfObjectValues<HostTracker>(HostTracker.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "whois", n => { Whois = n.GetObjectValue<WhoisRecord>(WhoisRecord.CreateFromDiscriminatorValue); } },
+                { "parentHostPairs", n => { ParentHostPairs = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostPair>(ApiSdk.Models.Security.HostPair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "passiveDns", n => { PassiveDns = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.PassiveDnsRecord>(ApiSdk.Models.Security.PassiveDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "passiveDnsReverse", n => { PassiveDnsReverse = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.PassiveDnsRecord>(ApiSdk.Models.Security.PassiveDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "ports", n => { Ports = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostPort>(ApiSdk.Models.Security.HostPort.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "reputation", n => { Reputation = n.GetObjectValue<ApiSdk.Models.Security.HostReputation>(ApiSdk.Models.Security.HostReputation.CreateFromDiscriminatorValue); } },
+                { "sslCertificates", n => { SslCertificates = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostSslCertificate>(ApiSdk.Models.Security.HostSslCertificate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "subdomains", n => { Subdomains = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.Subdomain>(ApiSdk.Models.Security.Subdomain.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "trackers", n => { Trackers = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostTracker>(ApiSdk.Models.Security.HostTracker.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "whois", n => { Whois = n.GetObjectValue<ApiSdk.Models.Security.WhoisRecord>(ApiSdk.Models.Security.WhoisRecord.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -174,21 +174,21 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<HostPair>("childHostPairs", ChildHostPairs);
-            writer.WriteCollectionOfObjectValues<HostComponent>("components", Components);
-            writer.WriteCollectionOfObjectValues<HostCookie>("cookies", Cookies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostPair>("childHostPairs", ChildHostPairs);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostComponent>("components", Components);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostCookie>("cookies", Cookies);
             writer.WriteDateTimeOffsetValue("firstSeenDateTime", FirstSeenDateTime);
-            writer.WriteCollectionOfObjectValues<HostPair>("hostPairs", HostPairs);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostPair>("hostPairs", HostPairs);
             writer.WriteDateTimeOffsetValue("lastSeenDateTime", LastSeenDateTime);
-            writer.WriteCollectionOfObjectValues<HostPair>("parentHostPairs", ParentHostPairs);
-            writer.WriteCollectionOfObjectValues<PassiveDnsRecord>("passiveDns", PassiveDns);
-            writer.WriteCollectionOfObjectValues<PassiveDnsRecord>("passiveDnsReverse", PassiveDnsReverse);
-            writer.WriteCollectionOfObjectValues<HostPort>("ports", Ports);
-            writer.WriteObjectValue<HostReputation>("reputation", Reputation);
-            writer.WriteCollectionOfObjectValues<HostSslCertificate>("sslCertificates", SslCertificates);
-            writer.WriteCollectionOfObjectValues<Subdomain>("subdomains", Subdomains);
-            writer.WriteCollectionOfObjectValues<HostTracker>("trackers", Trackers);
-            writer.WriteObjectValue<WhoisRecord>("whois", Whois);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostPair>("parentHostPairs", ParentHostPairs);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.PassiveDnsRecord>("passiveDns", PassiveDns);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.PassiveDnsRecord>("passiveDnsReverse", PassiveDnsReverse);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostPort>("ports", Ports);
+            writer.WriteObjectValue<ApiSdk.Models.Security.HostReputation>("reputation", Reputation);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostSslCertificate>("sslCertificates", SslCertificates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.Subdomain>("subdomains", Subdomains);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostTracker>("trackers", Trackers);
+            writer.WriteObjectValue<ApiSdk.Models.Security.WhoisRecord>("whois", Whois);
         }
     }
 }

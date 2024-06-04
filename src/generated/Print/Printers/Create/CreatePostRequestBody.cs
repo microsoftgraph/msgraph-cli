@@ -16,10 +16,10 @@ namespace ApiSdk.Print.Printers.Create
         /// <summary>The certificateSigningRequest property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PrintCertificateSigningRequest? CertificateSigningRequest { get; set; }
+        public ApiSdk.Models.PrintCertificateSigningRequest? CertificateSigningRequest { get; set; }
 #nullable restore
 #else
-        public PrintCertificateSigningRequest CertificateSigningRequest { get; set; }
+        public ApiSdk.Models.PrintCertificateSigningRequest CertificateSigningRequest { get; set; }
 #endif
         /// <summary>The connectorId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,7 +64,7 @@ namespace ApiSdk.Print.Printers.Create
         public string PhysicalDeviceId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CreatePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.Printers.Create.CreatePostRequestBody"/> and sets the default values.
         /// </summary>
         public CreatePostRequestBody()
         {
@@ -73,12 +73,12 @@ namespace ApiSdk.Print.Printers.Create
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CreatePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Print.Printers.Create.CreatePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CreatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Print.Printers.Create.CreatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CreatePostRequestBody();
+            return new ApiSdk.Print.Printers.Create.CreatePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,7 +88,7 @@ namespace ApiSdk.Print.Printers.Create
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "certificateSigningRequest", n => { CertificateSigningRequest = n.GetObjectValue<PrintCertificateSigningRequest>(PrintCertificateSigningRequest.CreateFromDiscriminatorValue); } },
+                { "certificateSigningRequest", n => { CertificateSigningRequest = n.GetObjectValue<ApiSdk.Models.PrintCertificateSigningRequest>(ApiSdk.Models.PrintCertificateSigningRequest.CreateFromDiscriminatorValue); } },
                 { "connectorId", n => { ConnectorId = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "hasPhysicalDevice", n => { HasPhysicalDevice = n.GetBoolValue(); } },
@@ -104,7 +104,7 @@ namespace ApiSdk.Print.Printers.Create
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<PrintCertificateSigningRequest>("certificateSigningRequest", CertificateSigningRequest);
+            writer.WriteObjectValue<ApiSdk.Models.PrintCertificateSigningRequest>("certificateSigningRequest", CertificateSigningRequest);
             writer.WriteStringValue("connectorId", ConnectorId);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("hasPhysicalDevice", HasPhysicalDevice);

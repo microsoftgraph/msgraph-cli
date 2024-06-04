@@ -34,7 +34,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
         {
             var command = new Command("activated-using");
             command.Description = "Provides operations to manage the activatedUsing property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.";
-            var builder = new ActivatedUsingRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.ActivatedUsing.ActivatedUsingRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -51,7 +51,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
         {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
-            var builder = new CancelRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.Cancel.CancelRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -202,7 +202,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<PrivilegedAccessGroupAssignmentScheduleRequest>(PrivilegedAccessGroupAssignmentScheduleRequest.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.PrivilegedAccessGroupAssignmentScheduleRequest>(ApiSdk.Models.PrivilegedAccessGroupAssignmentScheduleRequest.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -230,7 +230,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
         {
             var command = new Command("principal");
             command.Description = "Provides operations to manage the principal property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.";
-            var builder = new PrincipalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.Principal.PrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -247,7 +247,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
         {
             var command = new Command("target-schedule");
             command.Description = "Provides operations to manage the targetSchedule property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.";
-            var builder = new TargetScheduleRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.TargetSchedule.TargetScheduleRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -257,14 +257,14 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleRequests/{privilegedAccessGroupAssignmentScheduleRequest%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleRequests/{privilegedAccessGroupAssignmentScheduleRequest%2Did}{?%24expand,%24select}", rawUrl)
@@ -296,11 +296,11 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilder.PrivilegedAccessGroupAssignmentScheduleRequestItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -316,11 +316,11 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PrivilegedAccessGroupAssignmentScheduleRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PrivilegedAccessGroupAssignmentScheduleRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PrivilegedAccessGroupAssignmentScheduleRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PrivilegedAccessGroupAssignmentScheduleRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

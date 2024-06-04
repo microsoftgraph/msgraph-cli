@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// A complex type to store file or folder rule data for a Win32 LOB app.
     /// </summary>
-    public class Win32LobAppFileSystemRule : Win32LobAppRule, IParsable
+    public class Win32LobAppFileSystemRule : ApiSdk.Models.Win32LobAppRule, IParsable
     {
         /// <summary>A value indicating whether to expand environment variables in the 32-bit context on 64-bit systems.</summary>
         public bool? Check32BitOn64System { get; set; }
@@ -30,9 +30,9 @@ namespace ApiSdk.Models
         public string FileOrFolderName { get; set; }
 #endif
         /// <summary>A list of possible operations for rules used to make determinations about an application based on files or folders. Unless noted, can be used with either detection or requirement rules.</summary>
-        public Win32LobAppFileSystemOperationType? OperationType { get; set; }
+        public ApiSdk.Models.Win32LobAppFileSystemOperationType? OperationType { get; set; }
         /// <summary>Contains properties for detection operator.</summary>
-        public Win32LobAppRuleOperator? Operator { get; set; }
+        public ApiSdk.Models.Win32LobAppRuleOperator? Operator { get; set; }
         /// <summary>The file or folder path to look up.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -42,7 +42,7 @@ namespace ApiSdk.Models
         public string Path { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Win32LobAppFileSystemRule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Win32LobAppFileSystemRule"/> and sets the default values.
         /// </summary>
         public Win32LobAppFileSystemRule() : base()
         {
@@ -51,12 +51,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Win32LobAppFileSystemRule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Win32LobAppFileSystemRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Win32LobAppFileSystemRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Win32LobAppFileSystemRule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Win32LobAppFileSystemRule();
+            return new ApiSdk.Models.Win32LobAppFileSystemRule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,8 +69,8 @@ namespace ApiSdk.Models
                 { "check32BitOn64System", n => { Check32BitOn64System = n.GetBoolValue(); } },
                 { "comparisonValue", n => { ComparisonValue = n.GetStringValue(); } },
                 { "fileOrFolderName", n => { FileOrFolderName = n.GetStringValue(); } },
-                { "operationType", n => { OperationType = n.GetEnumValue<Win32LobAppFileSystemOperationType>(); } },
-                { "operator", n => { Operator = n.GetEnumValue<Win32LobAppRuleOperator>(); } },
+                { "operationType", n => { OperationType = n.GetEnumValue<ApiSdk.Models.Win32LobAppFileSystemOperationType>(); } },
+                { "operator", n => { Operator = n.GetEnumValue<ApiSdk.Models.Win32LobAppRuleOperator>(); } },
                 { "path", n => { Path = n.GetStringValue(); } },
             };
         }
@@ -85,8 +85,8 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("check32BitOn64System", Check32BitOn64System);
             writer.WriteStringValue("comparisonValue", ComparisonValue);
             writer.WriteStringValue("fileOrFolderName", FileOrFolderName);
-            writer.WriteEnumValue<Win32LobAppFileSystemOperationType>("operationType", OperationType);
-            writer.WriteEnumValue<Win32LobAppRuleOperator>("operator", Operator);
+            writer.WriteEnumValue<ApiSdk.Models.Win32LobAppFileSystemOperationType>("operationType", OperationType);
+            writer.WriteEnumValue<ApiSdk.Models.Win32LobAppRuleOperator>("operator", Operator);
             writer.WriteStringValue("path", Path);
         }
     }

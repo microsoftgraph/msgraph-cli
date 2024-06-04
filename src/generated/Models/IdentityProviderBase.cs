@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class IdentityProviderBase : Entity, IParsable
+    public class IdentityProviderBase : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The display name of the identity provider.</summary>
@@ -21,21 +21,21 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IdentityProviderBase"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityProviderBase"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IdentityProviderBase CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityProviderBase CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.appleManagedIdentityProvider" => new AppleManagedIdentityProvider(),
-                "#microsoft.graph.builtInIdentityProvider" => new BuiltInIdentityProvider(),
-                "#microsoft.graph.internalDomainFederation" => new InternalDomainFederation(),
-                "#microsoft.graph.samlOrWsFedExternalDomainFederation" => new SamlOrWsFedExternalDomainFederation(),
-                "#microsoft.graph.samlOrWsFedProvider" => new SamlOrWsFedProvider(),
-                "#microsoft.graph.socialIdentityProvider" => new SocialIdentityProvider(),
-                _ => new IdentityProviderBase(),
+                "#microsoft.graph.appleManagedIdentityProvider" => new ApiSdk.Models.AppleManagedIdentityProvider(),
+                "#microsoft.graph.builtInIdentityProvider" => new ApiSdk.Models.BuiltInIdentityProvider(),
+                "#microsoft.graph.internalDomainFederation" => new ApiSdk.Models.InternalDomainFederation(),
+                "#microsoft.graph.samlOrWsFedExternalDomainFederation" => new ApiSdk.Models.SamlOrWsFedExternalDomainFederation(),
+                "#microsoft.graph.samlOrWsFedProvider" => new ApiSdk.Models.SamlOrWsFedProvider(),
+                "#microsoft.graph.socialIdentityProvider" => new ApiSdk.Models.SocialIdentityProvider(),
+                _ => new ApiSdk.Models.IdentityProviderBase(),
             };
         }
         /// <summary>

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageAssignmentPolicy : Entity, IParsable
+    public class AccessPackageAssignmentPolicy : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Access package containing this policy. Read-only.  Supports $expand.</summary>
@@ -23,28 +23,28 @@ namespace ApiSdk.Models
         /// <summary>This property is only present for an auto assignment policy; if absent, this is a request-based policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageAutomaticRequestSettings? AutomaticRequestSettings { get; set; }
+        public ApiSdk.Models.AccessPackageAutomaticRequestSettings? AutomaticRequestSettings { get; set; }
 #nullable restore
 #else
-        public AccessPackageAutomaticRequestSettings AutomaticRequestSettings { get; set; }
+        public ApiSdk.Models.AccessPackageAutomaticRequestSettings AutomaticRequestSettings { get; set; }
 #endif
         /// <summary>Catalog of the access package containing this policy. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageCatalog? Catalog { get; set; }
+        public ApiSdk.Models.AccessPackageCatalog? Catalog { get; set; }
 #nullable restore
 #else
-        public AccessPackageCatalog Catalog { get; set; }
+        public ApiSdk.Models.AccessPackageCatalog Catalog { get; set; }
 #endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CustomExtensionStageSetting>? CustomExtensionStageSettings { get; set; }
+        public List<ApiSdk.Models.CustomExtensionStageSetting>? CustomExtensionStageSettings { get; set; }
 #nullable restore
 #else
-        public List<CustomExtensionStageSetting> CustomExtensionStageSettings { get; set; }
+        public List<ApiSdk.Models.CustomExtensionStageSetting> CustomExtensionStageSettings { get; set; }
 #endif
         /// <summary>The description of the policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,62 +65,62 @@ namespace ApiSdk.Models
         /// <summary>The expiration date for assignments created in this policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ExpirationPattern? Expiration { get; set; }
+        public ApiSdk.Models.ExpirationPattern? Expiration { get; set; }
 #nullable restore
 #else
-        public ExpirationPattern Expiration { get; set; }
+        public ApiSdk.Models.ExpirationPattern Expiration { get; set; }
 #endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? ModifiedDateTime { get; set; }
         /// <summary>Questions that are posed to the  requestor.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessPackageQuestion>? Questions { get; set; }
+        public List<ApiSdk.Models.AccessPackageQuestion>? Questions { get; set; }
 #nullable restore
 #else
-        public List<AccessPackageQuestion> Questions { get; set; }
+        public List<ApiSdk.Models.AccessPackageQuestion> Questions { get; set; }
 #endif
         /// <summary>Specifies the settings for approval of requests for an access package assignment through this policy. For example, if approval is required for new requests.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageAssignmentApprovalSettings? RequestApprovalSettings { get; set; }
+        public ApiSdk.Models.AccessPackageAssignmentApprovalSettings? RequestApprovalSettings { get; set; }
 #nullable restore
 #else
-        public AccessPackageAssignmentApprovalSettings RequestApprovalSettings { get; set; }
+        public ApiSdk.Models.AccessPackageAssignmentApprovalSettings RequestApprovalSettings { get; set; }
 #endif
         /// <summary>Provides additional settings to select who can create a request for an access package assignment through this policy, and what they can include in their request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageAssignmentRequestorSettings? RequestorSettings { get; set; }
+        public ApiSdk.Models.AccessPackageAssignmentRequestorSettings? RequestorSettings { get; set; }
 #nullable restore
 #else
-        public AccessPackageAssignmentRequestorSettings RequestorSettings { get; set; }
+        public ApiSdk.Models.AccessPackageAssignmentRequestorSettings RequestorSettings { get; set; }
 #endif
         /// <summary>Settings for access reviews of assignments through this policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageAssignmentReviewSettings? ReviewSettings { get; set; }
+        public ApiSdk.Models.AccessPackageAssignmentReviewSettings? ReviewSettings { get; set; }
 #nullable restore
 #else
-        public AccessPackageAssignmentReviewSettings ReviewSettings { get; set; }
+        public ApiSdk.Models.AccessPackageAssignmentReviewSettings ReviewSettings { get; set; }
 #endif
         /// <summary>The principals that can be assigned access from an access package through this policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectSet>? SpecificAllowedTargets { get; set; }
+        public List<ApiSdk.Models.SubjectSet>? SpecificAllowedTargets { get; set; }
 #nullable restore
 #else
-        public List<SubjectSet> SpecificAllowedTargets { get; set; }
+        public List<ApiSdk.Models.SubjectSet> SpecificAllowedTargets { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageAssignmentPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageAssignmentPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageAssignmentPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageAssignmentPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageAssignmentPolicy();
+            return new ApiSdk.Models.AccessPackageAssignmentPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -131,20 +131,20 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "accessPackage", n => { AccessPackage = n.GetObjectValue<ApiSdk.Models.AccessPackage>(ApiSdk.Models.AccessPackage.CreateFromDiscriminatorValue); } },
-                { "allowedTargetScope", n => { AllowedTargetScope = n.GetEnumValue<AllowedTargetScope>(); } },
-                { "automaticRequestSettings", n => { AutomaticRequestSettings = n.GetObjectValue<AccessPackageAutomaticRequestSettings>(AccessPackageAutomaticRequestSettings.CreateFromDiscriminatorValue); } },
-                { "catalog", n => { Catalog = n.GetObjectValue<AccessPackageCatalog>(AccessPackageCatalog.CreateFromDiscriminatorValue); } },
+                { "allowedTargetScope", n => { AllowedTargetScope = n.GetEnumValue<ApiSdk.Models.AllowedTargetScope>(); } },
+                { "automaticRequestSettings", n => { AutomaticRequestSettings = n.GetObjectValue<ApiSdk.Models.AccessPackageAutomaticRequestSettings>(ApiSdk.Models.AccessPackageAutomaticRequestSettings.CreateFromDiscriminatorValue); } },
+                { "catalog", n => { Catalog = n.GetObjectValue<ApiSdk.Models.AccessPackageCatalog>(ApiSdk.Models.AccessPackageCatalog.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "customExtensionStageSettings", n => { CustomExtensionStageSettings = n.GetCollectionOfObjectValues<CustomExtensionStageSetting>(CustomExtensionStageSetting.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "customExtensionStageSettings", n => { CustomExtensionStageSettings = n.GetCollectionOfObjectValues<ApiSdk.Models.CustomExtensionStageSetting>(ApiSdk.Models.CustomExtensionStageSetting.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "expiration", n => { Expiration = n.GetObjectValue<ExpirationPattern>(ExpirationPattern.CreateFromDiscriminatorValue); } },
+                { "expiration", n => { Expiration = n.GetObjectValue<ApiSdk.Models.ExpirationPattern>(ApiSdk.Models.ExpirationPattern.CreateFromDiscriminatorValue); } },
                 { "modifiedDateTime", n => { ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "questions", n => { Questions = n.GetCollectionOfObjectValues<AccessPackageQuestion>(AccessPackageQuestion.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "requestApprovalSettings", n => { RequestApprovalSettings = n.GetObjectValue<AccessPackageAssignmentApprovalSettings>(AccessPackageAssignmentApprovalSettings.CreateFromDiscriminatorValue); } },
-                { "requestorSettings", n => { RequestorSettings = n.GetObjectValue<AccessPackageAssignmentRequestorSettings>(AccessPackageAssignmentRequestorSettings.CreateFromDiscriminatorValue); } },
-                { "reviewSettings", n => { ReviewSettings = n.GetObjectValue<AccessPackageAssignmentReviewSettings>(AccessPackageAssignmentReviewSettings.CreateFromDiscriminatorValue); } },
-                { "specificAllowedTargets", n => { SpecificAllowedTargets = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "questions", n => { Questions = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessPackageQuestion>(ApiSdk.Models.AccessPackageQuestion.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "requestApprovalSettings", n => { RequestApprovalSettings = n.GetObjectValue<ApiSdk.Models.AccessPackageAssignmentApprovalSettings>(ApiSdk.Models.AccessPackageAssignmentApprovalSettings.CreateFromDiscriminatorValue); } },
+                { "requestorSettings", n => { RequestorSettings = n.GetObjectValue<ApiSdk.Models.AccessPackageAssignmentRequestorSettings>(ApiSdk.Models.AccessPackageAssignmentRequestorSettings.CreateFromDiscriminatorValue); } },
+                { "reviewSettings", n => { ReviewSettings = n.GetObjectValue<ApiSdk.Models.AccessPackageAssignmentReviewSettings>(ApiSdk.Models.AccessPackageAssignmentReviewSettings.CreateFromDiscriminatorValue); } },
+                { "specificAllowedTargets", n => { SpecificAllowedTargets = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectSet>(ApiSdk.Models.SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -156,20 +156,20 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.AccessPackage>("accessPackage", AccessPackage);
-            writer.WriteEnumValue<AllowedTargetScope>("allowedTargetScope", AllowedTargetScope);
-            writer.WriteObjectValue<AccessPackageAutomaticRequestSettings>("automaticRequestSettings", AutomaticRequestSettings);
-            writer.WriteObjectValue<AccessPackageCatalog>("catalog", Catalog);
+            writer.WriteEnumValue<ApiSdk.Models.AllowedTargetScope>("allowedTargetScope", AllowedTargetScope);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageAutomaticRequestSettings>("automaticRequestSettings", AutomaticRequestSettings);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageCatalog>("catalog", Catalog);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteCollectionOfObjectValues<CustomExtensionStageSetting>("customExtensionStageSettings", CustomExtensionStageSettings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CustomExtensionStageSetting>("customExtensionStageSettings", CustomExtensionStageSettings);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<ExpirationPattern>("expiration", Expiration);
+            writer.WriteObjectValue<ApiSdk.Models.ExpirationPattern>("expiration", Expiration);
             writer.WriteDateTimeOffsetValue("modifiedDateTime", ModifiedDateTime);
-            writer.WriteCollectionOfObjectValues<AccessPackageQuestion>("questions", Questions);
-            writer.WriteObjectValue<AccessPackageAssignmentApprovalSettings>("requestApprovalSettings", RequestApprovalSettings);
-            writer.WriteObjectValue<AccessPackageAssignmentRequestorSettings>("requestorSettings", RequestorSettings);
-            writer.WriteObjectValue<AccessPackageAssignmentReviewSettings>("reviewSettings", ReviewSettings);
-            writer.WriteCollectionOfObjectValues<SubjectSet>("specificAllowedTargets", SpecificAllowedTargets);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessPackageQuestion>("questions", Questions);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageAssignmentApprovalSettings>("requestApprovalSettings", RequestApprovalSettings);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageAssignmentRequestorSettings>("requestorSettings", RequestorSettings);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageAssignmentReviewSettings>("reviewSettings", ReviewSettings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectSet>("specificAllowedTargets", SpecificAllowedTargets);
         }
     }
 }

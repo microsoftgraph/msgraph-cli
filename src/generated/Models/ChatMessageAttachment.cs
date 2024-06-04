@@ -77,7 +77,7 @@ namespace ApiSdk.Models
         public string ThumbnailUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ChatMessageAttachment"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ChatMessageAttachment"/> and sets the default values.
         /// </summary>
         public ChatMessageAttachment()
         {
@@ -86,12 +86,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChatMessageAttachment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ChatMessageAttachment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ChatMessageAttachment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ChatMessageAttachment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChatMessageAttachment();
+            return new ApiSdk.Models.ChatMessageAttachment();
         }
         /// <summary>
         /// The deserialization information for the current model

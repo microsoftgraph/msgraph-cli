@@ -9,19 +9,19 @@ namespace ApiSdk.Models
     /// <summary>
     /// The user experience analytics device startup score history.
     /// </summary>
-    public class UserExperienceAnalyticsScoreHistory : Entity, IParsable
+    public class UserExperienceAnalyticsScoreHistory : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The device startup date time. The value cannot be modified and is automatically populated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: &apos;2014-01-01T00:00:00Z&apos;. Returned by default.</summary>
         public DateTimeOffset? StartupDateTime { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsScoreHistory"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsScoreHistory"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsScoreHistory CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserExperienceAnalyticsScoreHistory CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsScoreHistory();
+            return new ApiSdk.Models.UserExperienceAnalyticsScoreHistory();
         }
         /// <summary>
         /// The deserialization information for the current model

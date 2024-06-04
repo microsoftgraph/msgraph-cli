@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string Uri { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MediaInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MediaInfo"/> and sets the default values.
         /// </summary>
         public MediaInfo()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MediaInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MediaInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MediaInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MediaInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MediaInfo();
+            return new ApiSdk.Models.MediaInfo();
         }
         /// <summary>
         /// The deserialization information for the current model

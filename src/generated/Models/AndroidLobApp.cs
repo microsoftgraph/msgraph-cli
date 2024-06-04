@@ -9,15 +9,15 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties and inherited properties for Android Line Of Business apps.
     /// </summary>
-    public class AndroidLobApp : MobileLobApp, IParsable
+    public class AndroidLobApp : ApiSdk.Models.MobileLobApp, IParsable
     {
         /// <summary>The value for the minimum applicable operating system.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AndroidMinimumOperatingSystem? MinimumSupportedOperatingSystem { get; set; }
+        public ApiSdk.Models.AndroidMinimumOperatingSystem? MinimumSupportedOperatingSystem { get; set; }
 #nullable restore
 #else
-        public AndroidMinimumOperatingSystem MinimumSupportedOperatingSystem { get; set; }
+        public ApiSdk.Models.AndroidMinimumOperatingSystem MinimumSupportedOperatingSystem { get; set; }
 #endif
         /// <summary>The package identifier.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -44,7 +44,7 @@ namespace ApiSdk.Models
         public string VersionName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AndroidLobApp"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AndroidLobApp"/> and sets the default values.
         /// </summary>
         public AndroidLobApp() : base()
         {
@@ -53,12 +53,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AndroidLobApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AndroidLobApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AndroidLobApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AndroidLobApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AndroidLobApp();
+            return new ApiSdk.Models.AndroidLobApp();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,7 +68,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<AndroidMinimumOperatingSystem>(AndroidMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
+                { "minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<ApiSdk.Models.AndroidMinimumOperatingSystem>(ApiSdk.Models.AndroidMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
                 { "packageId", n => { PackageId = n.GetStringValue(); } },
                 { "versionCode", n => { VersionCode = n.GetStringValue(); } },
                 { "versionName", n => { VersionName = n.GetStringValue(); } },
@@ -82,7 +82,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<AndroidMinimumOperatingSystem>("minimumSupportedOperatingSystem", MinimumSupportedOperatingSystem);
+            writer.WriteObjectValue<ApiSdk.Models.AndroidMinimumOperatingSystem>("minimumSupportedOperatingSystem", MinimumSupportedOperatingSystem);
             writer.WriteStringValue("packageId", PackageId);
             writer.WriteStringValue("versionCode", VersionCode);
             writer.WriteStringValue("versionName", VersionName);

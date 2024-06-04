@@ -118,7 +118,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace
         {
             var command = new Command("localizations");
             command.Description = "Provides operations to manage the localizations property of the microsoft.graph.agreementFile entity.";
-            var builder = new LocalizationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Agreements.Item.FileNamespace.Localizations.LocalizationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -168,7 +168,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AgreementFile>(AgreementFile.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.AgreementFile>(ApiSdk.Models.AgreementFile.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -189,14 +189,14 @@ namespace ApiSdk.Agreements.Item.FileNamespace
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="FileRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Agreements.Item.FileNamespace.FileRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FileRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/agreements/{agreement%2Did}/file{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="FileRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Agreements.Item.FileNamespace.FileRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FileRequestBuilder(string rawUrl) : base("{+baseurl}/agreements/{agreement%2Did}/file{?%24expand,%24select}", rawUrl)
@@ -228,11 +228,11 @@ namespace ApiSdk.Agreements.Item.FileNamespace
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FileRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Agreements.Item.FileNamespace.FileRequestBuilder.FileRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FileRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Agreements.Item.FileNamespace.FileRequestBuilder.FileRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -248,11 +248,11 @@ namespace ApiSdk.Agreements.Item.FileNamespace
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AgreementFile body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AgreementFile body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AgreementFile body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AgreementFile body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

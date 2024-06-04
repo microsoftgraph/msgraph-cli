@@ -32,7 +32,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item
         {
             var command = new Command("activate");
             command.Description = "Provides operations to call the activate method.";
-            var builder = new ActivateRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Activate.ActivateRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -84,7 +84,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item
         {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.fileStorageContainer entity.";
-            var builder = new DriveRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.DriveRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildBundlesNavCommand());
@@ -194,7 +194,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<FileStorageContainer>(FileStorageContainer.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.FileStorageContainer>(ApiSdk.Models.FileStorageContainer.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -222,7 +222,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item
         {
             var command = new Command("permissions");
             command.Description = "Provides operations to manage the permissions property of the microsoft.graph.fileStorageContainer entity.";
-            var builder = new PermissionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Permissions.PermissionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -242,14 +242,14 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="FileStorageContainerItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.FileStorageContainerItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FileStorageContainerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/storage/fileStorage/containers/{fileStorageContainer%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="FileStorageContainerItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.FileStorageContainerItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FileStorageContainerItemRequestBuilder(string rawUrl) : base("{+baseurl}/storage/fileStorage/containers/{fileStorageContainer%2Did}{?%24expand,%24select}", rawUrl)
@@ -281,11 +281,11 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FileStorageContainerItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Storage.FileStorage.Containers.Item.FileStorageContainerItemRequestBuilder.FileStorageContainerItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FileStorageContainerItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Storage.FileStorage.Containers.Item.FileStorageContainerItemRequestBuilder.FileStorageContainerItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -301,11 +301,11 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(FileStorageContainer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.FileStorageContainer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(FileStorageContainer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.FileStorageContainer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

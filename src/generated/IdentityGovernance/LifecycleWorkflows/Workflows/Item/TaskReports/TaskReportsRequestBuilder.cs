@@ -32,7 +32,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReport
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new TaskReportItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReports.Item.TaskReportItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildTaskDefinitionNavCommand());
             commands.Add(builder.BuildTaskNavCommand());
@@ -47,7 +47,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReport
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReports.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -167,7 +167,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReport
         {
             var command = new Command("microsoft-graph-identity-governance-summary-with-start-date-time-with-end-date-time");
             command.Description = "Provides operations to call the summary method.";
-            var builder = new MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReports.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTime.MicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -177,14 +177,14 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReport
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TaskReportsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReports.TaskReportsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TaskReportsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/taskReports{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TaskReportsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReports.TaskReportsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TaskReportsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/taskReports{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -197,11 +197,11 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReport
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskReportsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReports.TaskReportsRequestBuilder.TaskReportsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskReportsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReports.TaskReportsRequestBuilder.TaskReportsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

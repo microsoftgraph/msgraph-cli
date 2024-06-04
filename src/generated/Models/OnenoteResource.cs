@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class OnenoteResource : OnenoteEntityBaseModel, IParsable
+    public class OnenoteResource : ApiSdk.Models.OnenoteEntityBaseModel, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The content stream</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models
         public string ContentUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OnenoteResource"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OnenoteResource"/> and sets the default values.
         /// </summary>
         public OnenoteResource() : base()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnenoteResource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnenoteResource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OnenoteResource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OnenoteResource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnenoteResource();
+            return new ApiSdk.Models.OnenoteResource();
         }
         /// <summary>
         /// The deserialization information for the current model

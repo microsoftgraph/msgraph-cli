@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AzureAdPopTokenAuthentication : CustomExtensionAuthenticationConfiguration, IParsable
+    public class AzureAdPopTokenAuthentication : ApiSdk.Models.CustomExtensionAuthenticationConfiguration, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>
-        /// Instantiates a new <see cref="AzureAdPopTokenAuthentication"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AzureAdPopTokenAuthentication"/> and sets the default values.
         /// </summary>
         public AzureAdPopTokenAuthentication() : base()
         {
@@ -20,12 +20,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AzureAdPopTokenAuthentication"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AzureAdPopTokenAuthentication"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AzureAdPopTokenAuthentication CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AzureAdPopTokenAuthentication CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AzureAdPopTokenAuthentication();
+            return new ApiSdk.Models.AzureAdPopTokenAuthentication();
         }
         /// <summary>
         /// The deserialization information for the current model

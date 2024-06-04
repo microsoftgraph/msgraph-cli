@@ -45,9 +45,9 @@ namespace ApiSdk.Models.Security
         public string RelatedDetailsUrl { get; set; }
 #endif
         /// <summary>The severity property</summary>
-        public HostReputationRuleSeverity? Severity { get; set; }
+        public ApiSdk.Models.Security.HostReputationRuleSeverity? Severity { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="HostReputationRule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.HostReputationRule"/> and sets the default values.
         /// </summary>
         public HostReputationRule()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HostReputationRule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.HostReputationRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static HostReputationRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.HostReputationRule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HostReputationRule();
+            return new ApiSdk.Models.Security.HostReputationRule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -75,7 +75,7 @@ namespace ApiSdk.Models.Security
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "relatedDetailsUrl", n => { RelatedDetailsUrl = n.GetStringValue(); } },
-                { "severity", n => { Severity = n.GetEnumValue<HostReputationRuleSeverity>(); } },
+                { "severity", n => { Severity = n.GetEnumValue<ApiSdk.Models.Security.HostReputationRuleSeverity>(); } },
             };
         }
         /// <summary>
@@ -89,7 +89,7 @@ namespace ApiSdk.Models.Security
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("relatedDetailsUrl", RelatedDetailsUrl);
-            writer.WriteEnumValue<HostReputationRuleSeverity>("severity", Severity);
+            writer.WriteEnumValue<ApiSdk.Models.Security.HostReputationRuleSeverity>("severity", Severity);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

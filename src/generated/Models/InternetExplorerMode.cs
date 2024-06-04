@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class InternetExplorerMode : Entity, IParsable
+    public class InternetExplorerMode : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A collection of site lists to support Internet Explorer mode.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<BrowserSiteList>? SiteLists { get; set; }
+        public List<ApiSdk.Models.BrowserSiteList>? SiteLists { get; set; }
 #nullable restore
 #else
-        public List<BrowserSiteList> SiteLists { get; set; }
+        public List<ApiSdk.Models.BrowserSiteList> SiteLists { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="InternetExplorerMode"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.InternetExplorerMode"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new InternetExplorerMode CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.InternetExplorerMode CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new InternetExplorerMode();
+            return new ApiSdk.Models.InternetExplorerMode();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "siteLists", n => { SiteLists = n.GetCollectionOfObjectValues<BrowserSiteList>(BrowserSiteList.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "siteLists", n => { SiteLists = n.GetCollectionOfObjectValues<ApiSdk.Models.BrowserSiteList>(ApiSdk.Models.BrowserSiteList.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<BrowserSiteList>("siteLists", SiteLists);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.BrowserSiteList>("siteLists", SiteLists);
         }
     }
 }

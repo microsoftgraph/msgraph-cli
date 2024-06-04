@@ -73,14 +73,14 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DiscoverRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.Item.Discover.DiscoverRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DiscoverRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}/schema/directories/{directoryDefinition%2Did}/discover", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DiscoverRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.Item.Discover.DiscoverRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DiscoverRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}/schema/directories/{directoryDefinition%2Did}/discover", rawUrl)

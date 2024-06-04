@@ -30,7 +30,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item
         {
             var command = new Command("applies-to");
             command.Description = "Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.";
-            var builder = new AppliesToRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.ClaimsMappingPolicies.Item.AppliesTo.AppliesToRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -169,7 +169,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ClaimsMappingPolicy>(ClaimsMappingPolicy.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ClaimsMappingPolicy>(ApiSdk.Models.ClaimsMappingPolicy.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -190,14 +190,14 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ClaimsMappingPolicyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.ClaimsMappingPolicies.Item.ClaimsMappingPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ClaimsMappingPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/claimsMappingPolicies/{claimsMappingPolicy%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ClaimsMappingPolicyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.ClaimsMappingPolicies.Item.ClaimsMappingPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ClaimsMappingPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/claimsMappingPolicies/{claimsMappingPolicy%2Did}{?%24expand,%24select}", rawUrl)
@@ -229,11 +229,11 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ClaimsMappingPolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.ClaimsMappingPolicies.Item.ClaimsMappingPolicyItemRequestBuilder.ClaimsMappingPolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ClaimsMappingPolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.ClaimsMappingPolicies.Item.ClaimsMappingPolicyItemRequestBuilder.ClaimsMappingPolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -249,11 +249,11 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ClaimsMappingPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ClaimsMappingPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ClaimsMappingPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ClaimsMappingPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

@@ -13,20 +13,20 @@ namespace ApiSdk.Models.Security
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostPair>? Value { get; set; }
+        public List<ApiSdk.Models.Security.HostPair>? Value { get; set; }
 #nullable restore
 #else
-        public List<HostPair> Value { get; set; }
+        public List<ApiSdk.Models.Security.HostPair> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HostPairCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.HostPairCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new HostPairCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.HostPairCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HostPairCollectionResponse();
+            return new ApiSdk.Models.Security.HostPairCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<HostPair>(HostPair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostPair>(ApiSdk.Models.Security.HostPair.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<HostPair>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostPair>("value", Value);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item
         {
             var command = new Command("activities");
             command.Description = "Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.";
-            var builder = new ActivitiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.External.Connections.Item.Items.Item.Activities.ActivitiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -159,7 +159,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item
         {
             var command = new Command("microsoft-graph-external-connectors-add-activities");
             command.Description = "Provides operations to call the addActivities method.";
-            var builder = new MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.External.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAddActivities.MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -205,7 +205,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ExternalItem>(ExternalItem.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ExternalConnectors.ExternalItem>(ApiSdk.Models.ExternalConnectors.ExternalItem.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -227,14 +227,14 @@ namespace ApiSdk.External.Connections.Item.Items.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ExternalItemItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.External.Connections.Item.Items.Item.ExternalItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ExternalItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ExternalItemItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.External.Connections.Item.Items.Item.ExternalItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ExternalItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}{?%24expand,%24select}", rawUrl)
@@ -266,11 +266,11 @@ namespace ApiSdk.External.Connections.Item.Items.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ExternalItemItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.External.Connections.Item.Items.Item.ExternalItemItemRequestBuilder.ExternalItemItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ExternalItemItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.External.Connections.Item.Items.Item.ExternalItemItemRequestBuilder.ExternalItemItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -286,11 +286,11 @@ namespace ApiSdk.External.Connections.Item.Items.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(ExternalItem body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(ApiSdk.Models.ExternalConnectors.ExternalItem body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(ExternalItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(ApiSdk.Models.ExternalConnectors.ExternalItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

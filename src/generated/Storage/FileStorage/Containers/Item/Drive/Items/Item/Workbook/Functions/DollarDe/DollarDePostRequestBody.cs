@@ -16,21 +16,21 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The fraction property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Fraction { get; set; }
+        public ApiSdk.Models.Json? Fraction { get; set; }
 #nullable restore
 #else
-        public Json Fraction { get; set; }
+        public ApiSdk.Models.Json Fraction { get; set; }
 #endif
         /// <summary>The fractionalDollar property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? FractionalDollar { get; set; }
+        public ApiSdk.Models.Json? FractionalDollar { get; set; }
 #nullable restore
 #else
-        public Json FractionalDollar { get; set; }
+        public ApiSdk.Models.Json FractionalDollar { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DollarDePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DollarDe.DollarDePostRequestBody"/> and sets the default values.
         /// </summary>
         public DollarDePostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DollarDePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DollarDe.DollarDePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DollarDePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DollarDe.DollarDePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DollarDePostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DollarDe.DollarDePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "fraction", n => { Fraction = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "fractionalDollar", n => { FractionalDollar = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "fraction", n => { Fraction = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "fractionalDollar", n => { FractionalDollar = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("fraction", Fraction);
-            writer.WriteObjectValue<Json>("fractionalDollar", FractionalDollar);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("fraction", Fraction);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("fractionalDollar", FractionalDollar);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

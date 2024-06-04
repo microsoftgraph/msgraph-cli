@@ -61,14 +61,14 @@ namespace ApiSdk.Users.Item.ReprocessLicenseAssignment
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ReprocessLicenseAssignmentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.ReprocessLicenseAssignment.ReprocessLicenseAssignmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ReprocessLicenseAssignmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/reprocessLicenseAssignment", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ReprocessLicenseAssignmentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.ReprocessLicenseAssignment.ReprocessLicenseAssignmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ReprocessLicenseAssignmentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/reprocessLicenseAssignment", rawUrl)

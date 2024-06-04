@@ -83,7 +83,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         {
             var command = new Command("mailbox-settings");
             command.Description = "The mailboxSettings property";
-            var builder = new MailboxSettingsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.CreatedBy.MailboxSettings.MailboxSettingsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
@@ -101,7 +101,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
-            var builder = new ServiceProvisioningErrorsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.CreatedBy.ServiceProvisioningErrors.ServiceProvisioningErrorsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -117,14 +117,14 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CreatedByRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.CreatedBy.CreatedByRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CreatedByRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/createdBy{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CreatedByRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.CreatedBy.CreatedByRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CreatedByRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/createdBy{?%24expand,%24select}", rawUrl)
@@ -137,11 +137,11 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CreatedByRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.CreatedBy.CreatedByRequestBuilder.CreatedByRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CreatedByRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.CreatedBy.CreatedByRequestBuilder.CreatedByRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

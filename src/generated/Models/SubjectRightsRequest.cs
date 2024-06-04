@@ -7,34 +7,34 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SubjectRightsRequest : Entity, IParsable
+    public class SubjectRightsRequest : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Collection of users who can approve the request. Currently only supported for requests of type delete.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<User>? Approvers { get; set; }
+        public List<ApiSdk.Models.User>? Approvers { get; set; }
 #nullable restore
 #else
-        public List<User> Approvers { get; set; }
+        public List<ApiSdk.Models.User> Approvers { get; set; }
 #endif
         /// <summary>Identity that the request is assigned to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Identity? AssignedTo { get; set; }
+        public ApiSdk.Models.Identity? AssignedTo { get; set; }
 #nullable restore
 #else
-        public Identity AssignedTo { get; set; }
+        public ApiSdk.Models.Identity AssignedTo { get; set; }
 #endif
         /// <summary>The date and time when the request was closed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? ClosedDateTime { get; set; }
         /// <summary>Collection of users who can collaborate on the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<User>? Collaborators { get; set; }
+        public List<ApiSdk.Models.User>? Collaborators { get; set; }
 #nullable restore
 #else
-        public List<User> Collaborators { get; set; }
+        public List<ApiSdk.Models.User> Collaborators { get; set; }
 #endif
         /// <summary>KQL based content query that should be used for search. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,10 +47,10 @@ namespace ApiSdk.Models
         /// <summary>Identity information for the entity that created the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? CreatedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet CreatedBy { get; set; }
 #endif
         /// <summary>The date and time when the request was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -91,10 +91,10 @@ namespace ApiSdk.Models
         /// <summary>Collection of history change events.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectRightsRequestHistory>? History { get; set; }
+        public List<ApiSdk.Models.SubjectRightsRequestHistory>? History { get; set; }
 #nullable restore
 #else
-        public List<SubjectRightsRequestHistory> History { get; set; }
+        public List<ApiSdk.Models.SubjectRightsRequestHistory> History { get; set; }
 #endif
         /// <summary>Include all versions of the documents. By default, the current copies of the documents are returned. If SharePoint sites have versioning enabled, including all versions includes the historical copies of the documents. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.</summary>
         public bool? IncludeAllVersions { get; set; }
@@ -103,38 +103,38 @@ namespace ApiSdk.Models
         /// <summary>Insight about the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SubjectRightsRequestDetail? Insight { get; set; }
+        public ApiSdk.Models.SubjectRightsRequestDetail? Insight { get; set; }
 #nullable restore
 #else
-        public SubjectRightsRequestDetail Insight { get; set; }
+        public ApiSdk.Models.SubjectRightsRequestDetail Insight { get; set; }
 #endif
         /// <summary>The date and time when the request is internally due. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? InternalDueDateTime { get; set; }
         /// <summary>Identity information for the entity that last modified the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet LastModifiedBy { get; set; }
 #endif
         /// <summary>The date and time when the request was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>The mailbox locations that should be searched. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SubjectRightsRequestMailboxLocation? MailboxLocations { get; set; }
+        public ApiSdk.Models.SubjectRightsRequestMailboxLocation? MailboxLocations { get; set; }
 #nullable restore
 #else
-        public SubjectRightsRequestMailboxLocation MailboxLocations { get; set; }
+        public ApiSdk.Models.SubjectRightsRequestMailboxLocation MailboxLocations { get; set; }
 #endif
         /// <summary>List of notes associated with the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthoredNote>? Notes { get; set; }
+        public List<ApiSdk.Models.AuthoredNote>? Notes { get; set; }
 #nullable restore
 #else
-        public List<AuthoredNote> Notes { get; set; }
+        public List<ApiSdk.Models.AuthoredNote> Notes { get; set; }
 #endif
         /// <summary>Pause the request after estimate has finished. By default, the data estimate runs and then pauses, allowing you to preview results and then select the option to retrieve data in the UI. You can set this property to false if you want it to perform the estimate and then automatically begin with the retrieval of the content. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.</summary>
         public bool? PauseAfterEstimate { get; set; }
@@ -149,21 +149,21 @@ namespace ApiSdk.Models
         /// <summary>The SharePoint and OneDrive site locations that should be searched. This property is defined only for APIs accessed using the /security query path and not the /privacy query path.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SubjectRightsRequestSiteLocation? SiteLocations { get; set; }
+        public ApiSdk.Models.SubjectRightsRequestSiteLocation? SiteLocations { get; set; }
 #nullable restore
 #else
-        public SubjectRightsRequestSiteLocation SiteLocations { get; set; }
+        public ApiSdk.Models.SubjectRightsRequestSiteLocation SiteLocations { get; set; }
 #endif
         /// <summary>Information about the different stages for the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectRightsRequestStageDetail>? Stages { get; set; }
+        public List<ApiSdk.Models.SubjectRightsRequestStageDetail>? Stages { get; set; }
 #nullable restore
 #else
-        public List<SubjectRightsRequestStageDetail> Stages { get; set; }
+        public List<ApiSdk.Models.SubjectRightsRequestStageDetail> Stages { get; set; }
 #endif
         /// <summary>The status of the request. Possible values are: active, closed, unknownFutureValue.</summary>
-        public SubjectRightsRequestStatus? Status { get; set; }
+        public ApiSdk.Models.SubjectRightsRequestStatus? Status { get; set; }
         /// <summary>Information about the Microsoft Teams team that was created for the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -173,16 +173,16 @@ namespace ApiSdk.Models
         public ApiSdk.Models.Team Team { get; set; }
 #endif
         /// <summary>The type of the request. Possible values are: export, delete, access, tagForAction, unknownFutureValue.</summary>
-        public SubjectRightsRequestType? Type { get; set; }
+        public ApiSdk.Models.SubjectRightsRequestType? Type { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SubjectRightsRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SubjectRightsRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SubjectRightsRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SubjectRightsRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SubjectRightsRequest();
+            return new ApiSdk.Models.SubjectRightsRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -192,34 +192,34 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "approvers", n => { Approvers = n.GetCollectionOfObjectValues<User>(User.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "assignedTo", n => { AssignedTo = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                { "approvers", n => { Approvers = n.GetCollectionOfObjectValues<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignedTo", n => { AssignedTo = n.GetObjectValue<ApiSdk.Models.Identity>(ApiSdk.Models.Identity.CreateFromDiscriminatorValue); } },
                 { "closedDateTime", n => { ClosedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "collaborators", n => { Collaborators = n.GetCollectionOfObjectValues<User>(User.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "collaborators", n => { Collaborators = n.GetCollectionOfObjectValues<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "contentQuery", n => { ContentQuery = n.GetStringValue(); } },
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "dataSubject", n => { DataSubject = n.GetObjectValue<ApiSdk.Models.DataSubject>(ApiSdk.Models.DataSubject.CreateFromDiscriminatorValue); } },
-                { "dataSubjectType", n => { DataSubjectType = n.GetEnumValue<DataSubjectType>(); } },
+                { "dataSubjectType", n => { DataSubjectType = n.GetEnumValue<ApiSdk.Models.DataSubjectType>(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "externalId", n => { ExternalId = n.GetStringValue(); } },
-                { "history", n => { History = n.GetCollectionOfObjectValues<SubjectRightsRequestHistory>(SubjectRightsRequestHistory.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "history", n => { History = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequestHistory>(ApiSdk.Models.SubjectRightsRequestHistory.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "includeAllVersions", n => { IncludeAllVersions = n.GetBoolValue(); } },
                 { "includeAuthoredContent", n => { IncludeAuthoredContent = n.GetBoolValue(); } },
-                { "insight", n => { Insight = n.GetObjectValue<SubjectRightsRequestDetail>(SubjectRightsRequestDetail.CreateFromDiscriminatorValue); } },
+                { "insight", n => { Insight = n.GetObjectValue<ApiSdk.Models.SubjectRightsRequestDetail>(ApiSdk.Models.SubjectRightsRequestDetail.CreateFromDiscriminatorValue); } },
                 { "internalDueDateTime", n => { InternalDueDateTime = n.GetDateTimeOffsetValue(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "mailboxLocations", n => { MailboxLocations = n.GetObjectValue<SubjectRightsRequestMailboxLocation>(SubjectRightsRequestMailboxLocation.CreateFromDiscriminatorValue); } },
-                { "notes", n => { Notes = n.GetCollectionOfObjectValues<AuthoredNote>(AuthoredNote.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "mailboxLocations", n => { MailboxLocations = n.GetObjectValue<ApiSdk.Models.SubjectRightsRequestMailboxLocation>(ApiSdk.Models.SubjectRightsRequestMailboxLocation.CreateFromDiscriminatorValue); } },
+                { "notes", n => { Notes = n.GetCollectionOfObjectValues<ApiSdk.Models.AuthoredNote>(ApiSdk.Models.AuthoredNote.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "pauseAfterEstimate", n => { PauseAfterEstimate = n.GetBoolValue(); } },
                 { "regulations", n => { Regulations = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "siteLocations", n => { SiteLocations = n.GetObjectValue<SubjectRightsRequestSiteLocation>(SubjectRightsRequestSiteLocation.CreateFromDiscriminatorValue); } },
-                { "stages", n => { Stages = n.GetCollectionOfObjectValues<SubjectRightsRequestStageDetail>(SubjectRightsRequestStageDetail.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "status", n => { Status = n.GetEnumValue<SubjectRightsRequestStatus>(); } },
+                { "siteLocations", n => { SiteLocations = n.GetObjectValue<ApiSdk.Models.SubjectRightsRequestSiteLocation>(ApiSdk.Models.SubjectRightsRequestSiteLocation.CreateFromDiscriminatorValue); } },
+                { "stages", n => { Stages = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequestStageDetail>(ApiSdk.Models.SubjectRightsRequestStageDetail.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.SubjectRightsRequestStatus>(); } },
                 { "team", n => { Team = n.GetObjectValue<ApiSdk.Models.Team>(ApiSdk.Models.Team.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetEnumValue<SubjectRightsRequestType>(); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.SubjectRightsRequestType>(); } },
             };
         }
         /// <summary>
@@ -230,34 +230,34 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<User>("approvers", Approvers);
-            writer.WriteObjectValue<Identity>("assignedTo", AssignedTo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.User>("approvers", Approvers);
+            writer.WriteObjectValue<ApiSdk.Models.Identity>("assignedTo", AssignedTo);
             writer.WriteDateTimeOffsetValue("closedDateTime", ClosedDateTime);
-            writer.WriteCollectionOfObjectValues<User>("collaborators", Collaborators);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.User>("collaborators", Collaborators);
             writer.WriteStringValue("contentQuery", ContentQuery);
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<ApiSdk.Models.DataSubject>("dataSubject", DataSubject);
-            writer.WriteEnumValue<DataSubjectType>("dataSubjectType", DataSubjectType);
+            writer.WriteEnumValue<ApiSdk.Models.DataSubjectType>("dataSubjectType", DataSubjectType);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("externalId", ExternalId);
-            writer.WriteCollectionOfObjectValues<SubjectRightsRequestHistory>("history", History);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequestHistory>("history", History);
             writer.WriteBoolValue("includeAllVersions", IncludeAllVersions);
             writer.WriteBoolValue("includeAuthoredContent", IncludeAuthoredContent);
-            writer.WriteObjectValue<SubjectRightsRequestDetail>("insight", Insight);
+            writer.WriteObjectValue<ApiSdk.Models.SubjectRightsRequestDetail>("insight", Insight);
             writer.WriteDateTimeOffsetValue("internalDueDateTime", InternalDueDateTime);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteObjectValue<SubjectRightsRequestMailboxLocation>("mailboxLocations", MailboxLocations);
-            writer.WriteCollectionOfObjectValues<AuthoredNote>("notes", Notes);
+            writer.WriteObjectValue<ApiSdk.Models.SubjectRightsRequestMailboxLocation>("mailboxLocations", MailboxLocations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuthoredNote>("notes", Notes);
             writer.WriteBoolValue("pauseAfterEstimate", PauseAfterEstimate);
             writer.WriteCollectionOfPrimitiveValues<string>("regulations", Regulations);
-            writer.WriteObjectValue<SubjectRightsRequestSiteLocation>("siteLocations", SiteLocations);
-            writer.WriteCollectionOfObjectValues<SubjectRightsRequestStageDetail>("stages", Stages);
-            writer.WriteEnumValue<SubjectRightsRequestStatus>("status", Status);
+            writer.WriteObjectValue<ApiSdk.Models.SubjectRightsRequestSiteLocation>("siteLocations", SiteLocations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequestStageDetail>("stages", Stages);
+            writer.WriteEnumValue<ApiSdk.Models.SubjectRightsRequestStatus>("status", Status);
             writer.WriteObjectValue<ApiSdk.Models.Team>("team", Team);
-            writer.WriteEnumValue<SubjectRightsRequestType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.SubjectRightsRequestType>("type", Type);
         }
     }
 }

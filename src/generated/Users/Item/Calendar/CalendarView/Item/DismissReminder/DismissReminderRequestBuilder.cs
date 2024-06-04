@@ -56,14 +56,14 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.DismissReminder
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DismissReminderRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Calendar.CalendarView.Item.DismissReminder.DismissReminderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DismissReminderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar/calendarView/{event%2Did}/dismissReminder", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DismissReminderRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Calendar.CalendarView.Item.DismissReminder.DismissReminderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DismissReminderRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendar/calendarView/{event%2Did}/dismissReminder", rawUrl)

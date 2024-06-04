@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Errors in the validation result of a customAuthenticationExtension.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<GenericError>? Errors { get; set; }
+        public List<ApiSdk.Models.GenericError>? Errors { get; set; }
 #nullable restore
 #else
-        public List<GenericError> Errors { get; set; }
+        public List<ApiSdk.Models.GenericError> Errors { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,13 +31,13 @@ namespace ApiSdk.Models
         /// <summary>Warnings in the validation result of a customAuthenticationExtension.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<GenericError>? Warnings { get; set; }
+        public List<ApiSdk.Models.GenericError>? Warnings { get; set; }
 #nullable restore
 #else
-        public List<GenericError> Warnings { get; set; }
+        public List<ApiSdk.Models.GenericError> Warnings { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationConfigurationValidation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AuthenticationConfigurationValidation"/> and sets the default values.
         /// </summary>
         public AuthenticationConfigurationValidation()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationConfigurationValidation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationConfigurationValidation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AuthenticationConfigurationValidation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AuthenticationConfigurationValidation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthenticationConfigurationValidation();
+            return new ApiSdk.Models.AuthenticationConfigurationValidation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,9 +61,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "errors", n => { Errors = n.GetCollectionOfObjectValues<GenericError>(GenericError.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<ApiSdk.Models.GenericError>(ApiSdk.Models.GenericError.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<GenericError>(GenericError.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<ApiSdk.Models.GenericError>(ApiSdk.Models.GenericError.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -73,9 +73,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<GenericError>("errors", Errors);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.GenericError>("errors", Errors);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<GenericError>("warnings", Warnings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.GenericError>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

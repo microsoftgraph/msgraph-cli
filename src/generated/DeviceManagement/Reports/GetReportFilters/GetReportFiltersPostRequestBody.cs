@@ -73,7 +73,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetReportFilters
         /// <summary>The top property</summary>
         public int? Top { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="GetReportFiltersPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.Reports.GetReportFilters.GetReportFiltersPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetReportFiltersPostRequestBody()
         {
@@ -82,12 +82,12 @@ namespace ApiSdk.DeviceManagement.Reports.GetReportFilters
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetReportFiltersPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.Reports.GetReportFilters.GetReportFiltersPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetReportFiltersPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DeviceManagement.Reports.GetReportFilters.GetReportFiltersPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetReportFiltersPostRequestBody();
+            return new ApiSdk.DeviceManagement.Reports.GetReportFilters.GetReportFiltersPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

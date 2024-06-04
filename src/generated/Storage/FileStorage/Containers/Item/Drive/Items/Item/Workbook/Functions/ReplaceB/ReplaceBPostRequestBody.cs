@@ -16,37 +16,37 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The newText property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? NewText { get; set; }
+        public ApiSdk.Models.Json? NewText { get; set; }
 #nullable restore
 #else
-        public Json NewText { get; set; }
+        public ApiSdk.Models.Json NewText { get; set; }
 #endif
         /// <summary>The numBytes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? NumBytes { get; set; }
+        public ApiSdk.Models.Json? NumBytes { get; set; }
 #nullable restore
 #else
-        public Json NumBytes { get; set; }
+        public ApiSdk.Models.Json NumBytes { get; set; }
 #endif
         /// <summary>The oldText property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? OldText { get; set; }
+        public ApiSdk.Models.Json? OldText { get; set; }
 #nullable restore
 #else
-        public Json OldText { get; set; }
+        public ApiSdk.Models.Json OldText { get; set; }
 #endif
         /// <summary>The startNum property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? StartNum { get; set; }
+        public ApiSdk.Models.Json? StartNum { get; set; }
 #nullable restore
 #else
-        public Json StartNum { get; set; }
+        public ApiSdk.Models.Json StartNum { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ReplaceBPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.ReplaceB.ReplaceBPostRequestBody"/> and sets the default values.
         /// </summary>
         public ReplaceBPostRequestBody()
         {
@@ -55,12 +55,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ReplaceBPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.ReplaceB.ReplaceBPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ReplaceBPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.ReplaceB.ReplaceBPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ReplaceBPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.ReplaceB.ReplaceBPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,10 +70,10 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "newText", n => { NewText = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "numBytes", n => { NumBytes = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "oldText", n => { OldText = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "startNum", n => { StartNum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "newText", n => { NewText = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "numBytes", n => { NumBytes = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "oldText", n => { OldText = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "startNum", n => { StartNum = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -83,10 +83,10 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("newText", NewText);
-            writer.WriteObjectValue<Json>("numBytes", NumBytes);
-            writer.WriteObjectValue<Json>("oldText", OldText);
-            writer.WriteObjectValue<Json>("startNum", StartNum);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("newText", NewText);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("numBytes", NumBytes);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("oldText", OldText);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("startNum", StartNum);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

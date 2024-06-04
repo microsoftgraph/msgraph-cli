@@ -9,15 +9,15 @@ namespace ApiSdk.Models
     /// <summary>
     /// Compliance management partner for all platforms
     /// </summary>
-    public class ComplianceManagementPartner : Entity, IParsable
+    public class ComplianceManagementPartner : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>User groups which enroll Android devices through partner.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ComplianceManagementPartnerAssignment>? AndroidEnrollmentAssignments { get; set; }
+        public List<ApiSdk.Models.ComplianceManagementPartnerAssignment>? AndroidEnrollmentAssignments { get; set; }
 #nullable restore
 #else
-        public List<ComplianceManagementPartnerAssignment> AndroidEnrollmentAssignments { get; set; }
+        public List<ApiSdk.Models.ComplianceManagementPartnerAssignment> AndroidEnrollmentAssignments { get; set; }
 #endif
         /// <summary>Partner onboarded for Android devices.</summary>
         public bool? AndroidOnboarded { get; set; }
@@ -32,10 +32,10 @@ namespace ApiSdk.Models
         /// <summary>User groups which enroll ios devices through partner.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ComplianceManagementPartnerAssignment>? IosEnrollmentAssignments { get; set; }
+        public List<ApiSdk.Models.ComplianceManagementPartnerAssignment>? IosEnrollmentAssignments { get; set; }
 #nullable restore
 #else
-        public List<ComplianceManagementPartnerAssignment> IosEnrollmentAssignments { get; set; }
+        public List<ApiSdk.Models.ComplianceManagementPartnerAssignment> IosEnrollmentAssignments { get; set; }
 #endif
         /// <summary>Partner onboarded for ios devices.</summary>
         public bool? IosOnboarded { get; set; }
@@ -44,24 +44,24 @@ namespace ApiSdk.Models
         /// <summary>User groups which enroll Mac devices through partner.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ComplianceManagementPartnerAssignment>? MacOsEnrollmentAssignments { get; set; }
+        public List<ApiSdk.Models.ComplianceManagementPartnerAssignment>? MacOsEnrollmentAssignments { get; set; }
 #nullable restore
 #else
-        public List<ComplianceManagementPartnerAssignment> MacOsEnrollmentAssignments { get; set; }
+        public List<ApiSdk.Models.ComplianceManagementPartnerAssignment> MacOsEnrollmentAssignments { get; set; }
 #endif
         /// <summary>Partner onboarded for Mac devices.</summary>
         public bool? MacOsOnboarded { get; set; }
         /// <summary>Partner state of this tenant.</summary>
-        public DeviceManagementPartnerTenantState? PartnerState { get; set; }
+        public ApiSdk.Models.DeviceManagementPartnerTenantState? PartnerState { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ComplianceManagementPartner"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ComplianceManagementPartner"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ComplianceManagementPartner CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ComplianceManagementPartner CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ComplianceManagementPartner();
+            return new ApiSdk.Models.ComplianceManagementPartner();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,15 +71,15 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "androidEnrollmentAssignments", n => { AndroidEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "androidEnrollmentAssignments", n => { AndroidEnrollmentAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.ComplianceManagementPartnerAssignment>(ApiSdk.Models.ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "androidOnboarded", n => { AndroidOnboarded = n.GetBoolValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "iosEnrollmentAssignments", n => { IosEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "iosEnrollmentAssignments", n => { IosEnrollmentAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.ComplianceManagementPartnerAssignment>(ApiSdk.Models.ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "iosOnboarded", n => { IosOnboarded = n.GetBoolValue(); } },
                 { "lastHeartbeatDateTime", n => { LastHeartbeatDateTime = n.GetDateTimeOffsetValue(); } },
-                { "macOsEnrollmentAssignments", n => { MacOsEnrollmentAssignments = n.GetCollectionOfObjectValues<ComplianceManagementPartnerAssignment>(ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "macOsEnrollmentAssignments", n => { MacOsEnrollmentAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.ComplianceManagementPartnerAssignment>(ApiSdk.Models.ComplianceManagementPartnerAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "macOsOnboarded", n => { MacOsOnboarded = n.GetBoolValue(); } },
-                { "partnerState", n => { PartnerState = n.GetEnumValue<DeviceManagementPartnerTenantState>(); } },
+                { "partnerState", n => { PartnerState = n.GetEnumValue<ApiSdk.Models.DeviceManagementPartnerTenantState>(); } },
             };
         }
         /// <summary>
@@ -90,15 +90,15 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ComplianceManagementPartnerAssignment>("androidEnrollmentAssignments", AndroidEnrollmentAssignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ComplianceManagementPartnerAssignment>("androidEnrollmentAssignments", AndroidEnrollmentAssignments);
             writer.WriteBoolValue("androidOnboarded", AndroidOnboarded);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<ComplianceManagementPartnerAssignment>("iosEnrollmentAssignments", IosEnrollmentAssignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ComplianceManagementPartnerAssignment>("iosEnrollmentAssignments", IosEnrollmentAssignments);
             writer.WriteBoolValue("iosOnboarded", IosOnboarded);
             writer.WriteDateTimeOffsetValue("lastHeartbeatDateTime", LastHeartbeatDateTime);
-            writer.WriteCollectionOfObjectValues<ComplianceManagementPartnerAssignment>("macOsEnrollmentAssignments", MacOsEnrollmentAssignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ComplianceManagementPartnerAssignment>("macOsEnrollmentAssignments", MacOsEnrollmentAssignments);
             writer.WriteBoolValue("macOsOnboarded", MacOsOnboarded);
-            writer.WriteEnumValue<DeviceManagementPartnerTenantState>("partnerState", PartnerState);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceManagementPartnerTenantState>("partnerState", PartnerState);
         }
     }
 }

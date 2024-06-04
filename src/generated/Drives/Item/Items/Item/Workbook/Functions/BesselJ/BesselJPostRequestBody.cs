@@ -16,21 +16,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselJ
         /// <summary>The n property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? N { get; set; }
+        public ApiSdk.Models.Json? N { get; set; }
 #nullable restore
 #else
-        public Json N { get; set; }
+        public ApiSdk.Models.Json N { get; set; }
 #endif
         /// <summary>The x property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? X { get; set; }
+        public ApiSdk.Models.Json? X { get; set; }
 #nullable restore
 #else
-        public Json X { get; set; }
+        public ApiSdk.Models.Json X { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="BesselJPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselJ.BesselJPostRequestBody"/> and sets the default values.
         /// </summary>
         public BesselJPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselJ
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BesselJPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselJ.BesselJPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BesselJPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselJ.BesselJPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BesselJPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselJ.BesselJPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselJ
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "n", n => { N = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "x", n => { X = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "n", n => { N = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "x", n => { X = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselJ
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("n", N);
-            writer.WriteObjectValue<Json>("x", X);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("n", N);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("x", X);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

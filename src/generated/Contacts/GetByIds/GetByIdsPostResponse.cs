@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.Contacts.GetByIds
 {
     #pragma warning disable CS1591
-    public class GetByIdsPostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetByIdsPostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? Value { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? Value { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> Value { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetByIdsPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Contacts.GetByIds.GetByIdsPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetByIdsPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Contacts.GetByIds.GetByIdsPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetByIdsPostResponse();
+            return new ApiSdk.Contacts.GetByIds.GetByIdsPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Contacts.GetByIds
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Contacts.GetByIds
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("value", Value);
         }
     }
 }

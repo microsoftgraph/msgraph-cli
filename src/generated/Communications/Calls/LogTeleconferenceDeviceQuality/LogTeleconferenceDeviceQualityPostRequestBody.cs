@@ -16,13 +16,13 @@ namespace ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality
         /// <summary>The quality property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeleconferenceDeviceQuality? Quality { get; set; }
+        public ApiSdk.Models.TeleconferenceDeviceQuality? Quality { get; set; }
 #nullable restore
 #else
-        public TeleconferenceDeviceQuality Quality { get; set; }
+        public ApiSdk.Models.TeleconferenceDeviceQuality Quality { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="LogTeleconferenceDeviceQualityPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality.LogTeleconferenceDeviceQualityPostRequestBody"/> and sets the default values.
         /// </summary>
         public LogTeleconferenceDeviceQualityPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LogTeleconferenceDeviceQualityPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality.LogTeleconferenceDeviceQualityPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static LogTeleconferenceDeviceQualityPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality.LogTeleconferenceDeviceQualityPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LogTeleconferenceDeviceQualityPostRequestBody();
+            return new ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality.LogTeleconferenceDeviceQualityPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "quality", n => { Quality = n.GetObjectValue<TeleconferenceDeviceQuality>(TeleconferenceDeviceQuality.CreateFromDiscriminatorValue); } },
+                { "quality", n => { Quality = n.GetObjectValue<ApiSdk.Models.TeleconferenceDeviceQuality>(ApiSdk.Models.TeleconferenceDeviceQuality.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<TeleconferenceDeviceQuality>("quality", Quality);
+            writer.WriteObjectValue<ApiSdk.Models.TeleconferenceDeviceQuality>("quality", Quality);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

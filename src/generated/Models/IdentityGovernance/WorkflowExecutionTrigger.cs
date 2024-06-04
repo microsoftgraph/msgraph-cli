@@ -21,7 +21,7 @@ namespace ApiSdk.Models.IdentityGovernance
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WorkflowExecutionTrigger"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityGovernance.WorkflowExecutionTrigger"/> and sets the default values.
         /// </summary>
         public WorkflowExecutionTrigger()
         {
@@ -30,16 +30,16 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkflowExecutionTrigger"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.WorkflowExecutionTrigger"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WorkflowExecutionTrigger CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IdentityGovernance.WorkflowExecutionTrigger CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger" => new TimeBasedAttributeTrigger(),
-                _ => new WorkflowExecutionTrigger(),
+                "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger" => new ApiSdk.Models.IdentityGovernance.TimeBasedAttributeTrigger(),
+                _ => new ApiSdk.Models.IdentityGovernance.WorkflowExecutionTrigger(),
             };
         }
         /// <summary>

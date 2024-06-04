@@ -39,13 +39,13 @@ namespace ApiSdk.Models
         /// <summary>Defines whether users can be synchronized from the partner tenant. Key.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CrossTenantUserSyncInbound? UserSyncInbound { get; set; }
+        public ApiSdk.Models.CrossTenantUserSyncInbound? UserSyncInbound { get; set; }
 #nullable restore
 #else
-        public CrossTenantUserSyncInbound UserSyncInbound { get; set; }
+        public ApiSdk.Models.CrossTenantUserSyncInbound UserSyncInbound { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CrossTenantIdentitySyncPolicyPartner"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CrossTenantIdentitySyncPolicyPartner"/> and sets the default values.
         /// </summary>
         public CrossTenantIdentitySyncPolicyPartner()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CrossTenantIdentitySyncPolicyPartner"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CrossTenantIdentitySyncPolicyPartner"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CrossTenantIdentitySyncPolicyPartner CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CrossTenantIdentitySyncPolicyPartner CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CrossTenantIdentitySyncPolicyPartner();
+            return new ApiSdk.Models.CrossTenantIdentitySyncPolicyPartner();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "tenantId", n => { TenantId = n.GetStringValue(); } },
-                { "userSyncInbound", n => { UserSyncInbound = n.GetObjectValue<CrossTenantUserSyncInbound>(CrossTenantUserSyncInbound.CreateFromDiscriminatorValue); } },
+                { "userSyncInbound", n => { UserSyncInbound = n.GetObjectValue<ApiSdk.Models.CrossTenantUserSyncInbound>(ApiSdk.Models.CrossTenantUserSyncInbound.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("tenantId", TenantId);
-            writer.WriteObjectValue<CrossTenantUserSyncInbound>("userSyncInbound", UserSyncInbound);
+            writer.WriteObjectValue<ApiSdk.Models.CrossTenantUserSyncInbound>("userSyncInbound", UserSyncInbound);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

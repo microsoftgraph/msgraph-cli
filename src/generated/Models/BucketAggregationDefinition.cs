@@ -35,15 +35,15 @@ namespace ApiSdk.Models
         /// <summary>Specifies the manual ranges to compute the aggregations. This is only valid for nonstring refiners of date or numeric type. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<BucketAggregationRange>? Ranges { get; set; }
+        public List<ApiSdk.Models.BucketAggregationRange>? Ranges { get; set; }
 #nullable restore
 #else
-        public List<BucketAggregationRange> Ranges { get; set; }
+        public List<ApiSdk.Models.BucketAggregationRange> Ranges { get; set; }
 #endif
         /// <summary>The sortBy property</summary>
-        public BucketAggregationSortProperty? SortBy { get; set; }
+        public ApiSdk.Models.BucketAggregationSortProperty? SortBy { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="BucketAggregationDefinition"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.BucketAggregationDefinition"/> and sets the default values.
         /// </summary>
         public BucketAggregationDefinition()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BucketAggregationDefinition"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BucketAggregationDefinition"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BucketAggregationDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.BucketAggregationDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BucketAggregationDefinition();
+            return new ApiSdk.Models.BucketAggregationDefinition();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,8 +71,8 @@ namespace ApiSdk.Models
                 { "minimumCount", n => { MinimumCount = n.GetIntValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "prefixFilter", n => { PrefixFilter = n.GetStringValue(); } },
-                { "ranges", n => { Ranges = n.GetCollectionOfObjectValues<BucketAggregationRange>(BucketAggregationRange.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "sortBy", n => { SortBy = n.GetEnumValue<BucketAggregationSortProperty>(); } },
+                { "ranges", n => { Ranges = n.GetCollectionOfObjectValues<ApiSdk.Models.BucketAggregationRange>(ApiSdk.Models.BucketAggregationRange.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sortBy", n => { SortBy = n.GetEnumValue<ApiSdk.Models.BucketAggregationSortProperty>(); } },
             };
         }
         /// <summary>
@@ -86,8 +86,8 @@ namespace ApiSdk.Models
             writer.WriteIntValue("minimumCount", MinimumCount);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("prefixFilter", PrefixFilter);
-            writer.WriteCollectionOfObjectValues<BucketAggregationRange>("ranges", Ranges);
-            writer.WriteEnumValue<BucketAggregationSortProperty>("sortBy", SortBy);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.BucketAggregationRange>("ranges", Ranges);
+            writer.WriteEnumValue<ApiSdk.Models.BucketAggregationSortProperty>("sortBy", SortBy);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -21,7 +21,7 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing
         public string ClientContext { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CancelMediaProcessingPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.CancelMediaProcessing.CancelMediaProcessingPostRequestBody"/> and sets the default values.
         /// </summary>
         public CancelMediaProcessingPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CancelMediaProcessingPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.Calls.Item.CancelMediaProcessing.CancelMediaProcessingPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CancelMediaProcessingPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.Calls.Item.CancelMediaProcessing.CancelMediaProcessingPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CancelMediaProcessingPostRequestBody();
+            return new ApiSdk.Communications.Calls.Item.CancelMediaProcessing.CancelMediaProcessingPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

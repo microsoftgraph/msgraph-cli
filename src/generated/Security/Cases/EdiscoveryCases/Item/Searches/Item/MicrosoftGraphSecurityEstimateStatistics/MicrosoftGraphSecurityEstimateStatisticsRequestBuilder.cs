@@ -56,14 +56,14 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGrap
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftGraphSecurityEstimateStatisticsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGraphSecurityEstimateStatistics.MicrosoftGraphSecurityEstimateStatisticsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}/microsoft.graph.security.estimateStatistics", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftGraphSecurityEstimateStatisticsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGraphSecurityEstimateStatistics.MicrosoftGraphSecurityEstimateStatisticsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}/microsoft.graph.security.estimateStatistics", rawUrl)

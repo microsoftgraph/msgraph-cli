@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OnUserCreateStartHandler"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OnUserCreateStartHandler"/> and sets the default values.
         /// </summary>
         public OnUserCreateStartHandler()
         {
@@ -30,16 +30,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnUserCreateStartHandler"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnUserCreateStartHandler"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static OnUserCreateStartHandler CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.OnUserCreateStartHandler CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.onUserCreateStartExternalUsersSelfServiceSignUp" => new OnUserCreateStartExternalUsersSelfServiceSignUp(),
-                _ => new OnUserCreateStartHandler(),
+                "#microsoft.graph.onUserCreateStartExternalUsersSelfServiceSignUp" => new ApiSdk.Models.OnUserCreateStartExternalUsersSelfServiceSignUp(),
+                _ => new ApiSdk.Models.OnUserCreateStartHandler(),
             };
         }
         /// <summary>

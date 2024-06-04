@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// The user experience analytics device startup history entity contains device boot performance history details.
     /// </summary>
-    public class UserExperienceAnalyticsDeviceStartupHistory : Entity, IParsable
+    public class UserExperienceAnalyticsDeviceStartupHistory : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The device core boot time in milliseconds. Supports: $select, $OrderBy. Read-only.</summary>
         public int? CoreBootTimeInMs { get; set; }
@@ -44,7 +44,7 @@ namespace ApiSdk.Models
         /// <summary>The time for desktop to become responsive during login process in milliseconds. Supports: $select, $OrderBy. Read-only.</summary>
         public int? ResponsiveDesktopTimeInMs { get; set; }
         /// <summary>Operating System restart category.</summary>
-        public UserExperienceAnalyticsOperatingSystemRestartCategory? RestartCategory { get; set; }
+        public ApiSdk.Models.UserExperienceAnalyticsOperatingSystemRestartCategory? RestartCategory { get; set; }
         /// <summary>OS restart fault bucket. The fault bucket is used to find additional information about a system crash. Supports: $select, $OrderBy. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -70,12 +70,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsDeviceStartupHistory"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsDeviceStartupHistory"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsDeviceStartupHistory CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserExperienceAnalyticsDeviceStartupHistory CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsDeviceStartupHistory();
+            return new ApiSdk.Models.UserExperienceAnalyticsDeviceStartupHistory();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -95,7 +95,7 @@ namespace ApiSdk.Models
                 { "isFirstLogin", n => { IsFirstLogin = n.GetBoolValue(); } },
                 { "operatingSystemVersion", n => { OperatingSystemVersion = n.GetStringValue(); } },
                 { "responsiveDesktopTimeInMs", n => { ResponsiveDesktopTimeInMs = n.GetIntValue(); } },
-                { "restartCategory", n => { RestartCategory = n.GetEnumValue<UserExperienceAnalyticsOperatingSystemRestartCategory>(); } },
+                { "restartCategory", n => { RestartCategory = n.GetEnumValue<ApiSdk.Models.UserExperienceAnalyticsOperatingSystemRestartCategory>(); } },
                 { "restartFaultBucket", n => { RestartFaultBucket = n.GetStringValue(); } },
                 { "restartStopCode", n => { RestartStopCode = n.GetStringValue(); } },
                 { "startTime", n => { StartTime = n.GetDateTimeOffsetValue(); } },
@@ -121,7 +121,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("isFirstLogin", IsFirstLogin);
             writer.WriteStringValue("operatingSystemVersion", OperatingSystemVersion);
             writer.WriteIntValue("responsiveDesktopTimeInMs", ResponsiveDesktopTimeInMs);
-            writer.WriteEnumValue<UserExperienceAnalyticsOperatingSystemRestartCategory>("restartCategory", RestartCategory);
+            writer.WriteEnumValue<ApiSdk.Models.UserExperienceAnalyticsOperatingSystemRestartCategory>("restartCategory", RestartCategory);
             writer.WriteStringValue("restartFaultBucket", RestartFaultBucket);
             writer.WriteStringValue("restartStopCode", RestartStopCode);
             writer.WriteDateTimeOffsetValue("startTime", StartTime);

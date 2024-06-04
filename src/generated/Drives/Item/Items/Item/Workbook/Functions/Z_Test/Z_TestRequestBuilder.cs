@@ -57,7 +57,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Z_TestPostRequestBody>(Z_TestPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test.Z_TestPostRequestBody>(ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test.Z_TestPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -79,14 +79,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="Z_TestRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test.Z_TestRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public Z_TestRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/z_Test", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="Z_TestRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test.Z_TestRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public Z_TestRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/z_Test", rawUrl)
@@ -100,11 +100,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Z_TestPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test.Z_TestPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Z_TestPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test.Z_TestPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

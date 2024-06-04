@@ -34,7 +34,7 @@ namespace ApiSdk.Models
         /// <summary>Whether Windows Update for Business is managed by Intune</summary>
         public bool? WindowsUpdateForBusiness { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ConfigurationManagerClientEnabledFeatures"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ConfigurationManagerClientEnabledFeatures"/> and sets the default values.
         /// </summary>
         public ConfigurationManagerClientEnabledFeatures()
         {
@@ -43,12 +43,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConfigurationManagerClientEnabledFeatures"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConfigurationManagerClientEnabledFeatures"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ConfigurationManagerClientEnabledFeatures CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ConfigurationManagerClientEnabledFeatures CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConfigurationManagerClientEnabledFeatures();
+            return new ApiSdk.Models.ConfigurationManagerClientEnabledFeatures();
         }
         /// <summary>
         /// The deserialization information for the current model

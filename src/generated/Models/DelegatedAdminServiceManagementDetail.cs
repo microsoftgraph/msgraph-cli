@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DelegatedAdminServiceManagementDetail : Entity, IParsable
+    public class DelegatedAdminServiceManagementDetail : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The URL of the management portal for the managed service. Read-only.</summary>
@@ -29,12 +29,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DelegatedAdminServiceManagementDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DelegatedAdminServiceManagementDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DelegatedAdminServiceManagementDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DelegatedAdminServiceManagementDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DelegatedAdminServiceManagementDetail();
+            return new ApiSdk.Models.DelegatedAdminServiceManagementDetail();
         }
         /// <summary>
         /// The deserialization information for the current model

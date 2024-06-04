@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class EdiscoveryCustodian : DataSourceContainer, IParsable
+    public class EdiscoveryCustodian : ApiSdk.Models.Security.DataSourceContainer, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Date and time the custodian acknowledged a hold notification.</summary>
@@ -23,37 +23,37 @@ namespace ApiSdk.Models.Security
         /// <summary>Operation entity that represents the latest indexing for the custodian.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EdiscoveryIndexOperation? LastIndexOperation { get; set; }
+        public ApiSdk.Models.Security.EdiscoveryIndexOperation? LastIndexOperation { get; set; }
 #nullable restore
 #else
-        public EdiscoveryIndexOperation LastIndexOperation { get; set; }
+        public ApiSdk.Models.Security.EdiscoveryIndexOperation LastIndexOperation { get; set; }
 #endif
         /// <summary>Data source entity for SharePoint sites associated with the custodian.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SiteSource>? SiteSources { get; set; }
+        public List<ApiSdk.Models.Security.SiteSource>? SiteSources { get; set; }
 #nullable restore
 #else
-        public List<SiteSource> SiteSources { get; set; }
+        public List<ApiSdk.Models.Security.SiteSource> SiteSources { get; set; }
 #endif
         /// <summary>Data source entity for groups associated with the custodian.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UnifiedGroupSource>? UnifiedGroupSources { get; set; }
+        public List<ApiSdk.Models.Security.UnifiedGroupSource>? UnifiedGroupSources { get; set; }
 #nullable restore
 #else
-        public List<UnifiedGroupSource> UnifiedGroupSources { get; set; }
+        public List<ApiSdk.Models.Security.UnifiedGroupSource> UnifiedGroupSources { get; set; }
 #endif
         /// <summary>Data source entity for a the custodian. This is the container for a custodian&apos;s mailbox and OneDrive for Business site.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserSource>? UserSources { get; set; }
+        public List<ApiSdk.Models.Security.UserSource>? UserSources { get; set; }
 #nullable restore
 #else
-        public List<UserSource> UserSources { get; set; }
+        public List<ApiSdk.Models.Security.UserSource> UserSources { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EdiscoveryCustodian"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.EdiscoveryCustodian"/> and sets the default values.
         /// </summary>
         public EdiscoveryCustodian() : base()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EdiscoveryCustodian"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.EdiscoveryCustodian"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EdiscoveryCustodian CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.EdiscoveryCustodian CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EdiscoveryCustodian();
+            return new ApiSdk.Models.Security.EdiscoveryCustodian();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,10 +79,10 @@ namespace ApiSdk.Models.Security
             {
                 { "acknowledgedDateTime", n => { AcknowledgedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "email", n => { Email = n.GetStringValue(); } },
-                { "lastIndexOperation", n => { LastIndexOperation = n.GetObjectValue<EdiscoveryIndexOperation>(EdiscoveryIndexOperation.CreateFromDiscriminatorValue); } },
-                { "siteSources", n => { SiteSources = n.GetCollectionOfObjectValues<SiteSource>(SiteSource.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "unifiedGroupSources", n => { UnifiedGroupSources = n.GetCollectionOfObjectValues<UnifiedGroupSource>(UnifiedGroupSource.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "userSources", n => { UserSources = n.GetCollectionOfObjectValues<UserSource>(UserSource.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "lastIndexOperation", n => { LastIndexOperation = n.GetObjectValue<ApiSdk.Models.Security.EdiscoveryIndexOperation>(ApiSdk.Models.Security.EdiscoveryIndexOperation.CreateFromDiscriminatorValue); } },
+                { "siteSources", n => { SiteSources = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.SiteSource>(ApiSdk.Models.Security.SiteSource.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "unifiedGroupSources", n => { UnifiedGroupSources = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.UnifiedGroupSource>(ApiSdk.Models.Security.UnifiedGroupSource.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "userSources", n => { UserSources = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.UserSource>(ApiSdk.Models.Security.UserSource.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -95,10 +95,10 @@ namespace ApiSdk.Models.Security
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("acknowledgedDateTime", AcknowledgedDateTime);
             writer.WriteStringValue("email", Email);
-            writer.WriteObjectValue<EdiscoveryIndexOperation>("lastIndexOperation", LastIndexOperation);
-            writer.WriteCollectionOfObjectValues<SiteSource>("siteSources", SiteSources);
-            writer.WriteCollectionOfObjectValues<UnifiedGroupSource>("unifiedGroupSources", UnifiedGroupSources);
-            writer.WriteCollectionOfObjectValues<UserSource>("userSources", UserSources);
+            writer.WriteObjectValue<ApiSdk.Models.Security.EdiscoveryIndexOperation>("lastIndexOperation", LastIndexOperation);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.SiteSource>("siteSources", SiteSources);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.UnifiedGroupSource>("unifiedGroupSources", UnifiedGroupSources);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.UserSource>("userSources", UserSources);
         }
     }
 }

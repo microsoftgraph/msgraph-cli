@@ -13,14 +13,14 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Defines who can join the Teams live event. Possible values are listed in the following table.</summary>
-        public BroadcastMeetingAudience? AllowedAudience { get; set; }
+        public ApiSdk.Models.BroadcastMeetingAudience? AllowedAudience { get; set; }
         /// <summary>Caption settings of a Teams live event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public BroadcastMeetingCaptionSettings? Captions { get; set; }
+        public ApiSdk.Models.BroadcastMeetingCaptionSettings? Captions { get; set; }
 #nullable restore
 #else
-        public BroadcastMeetingCaptionSettings Captions { get; set; }
+        public ApiSdk.Models.BroadcastMeetingCaptionSettings Captions { get; set; }
 #endif
         /// <summary>Indicates whether attendee report is enabled for this Teams live event. Default value is false.</summary>
         public bool? IsAttendeeReportEnabled { get; set; }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="BroadcastMeetingSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.BroadcastMeetingSettings"/> and sets the default values.
         /// </summary>
         public BroadcastMeetingSettings()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BroadcastMeetingSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BroadcastMeetingSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BroadcastMeetingSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.BroadcastMeetingSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BroadcastMeetingSettings();
+            return new ApiSdk.Models.BroadcastMeetingSettings();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,8 +63,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "allowedAudience", n => { AllowedAudience = n.GetEnumValue<BroadcastMeetingAudience>(); } },
-                { "captions", n => { Captions = n.GetObjectValue<BroadcastMeetingCaptionSettings>(BroadcastMeetingCaptionSettings.CreateFromDiscriminatorValue); } },
+                { "allowedAudience", n => { AllowedAudience = n.GetEnumValue<ApiSdk.Models.BroadcastMeetingAudience>(); } },
+                { "captions", n => { Captions = n.GetObjectValue<ApiSdk.Models.BroadcastMeetingCaptionSettings>(ApiSdk.Models.BroadcastMeetingCaptionSettings.CreateFromDiscriminatorValue); } },
                 { "isAttendeeReportEnabled", n => { IsAttendeeReportEnabled = n.GetBoolValue(); } },
                 { "isQuestionAndAnswerEnabled", n => { IsQuestionAndAnswerEnabled = n.GetBoolValue(); } },
                 { "isRecordingEnabled", n => { IsRecordingEnabled = n.GetBoolValue(); } },
@@ -79,8 +79,8 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<BroadcastMeetingAudience>("allowedAudience", AllowedAudience);
-            writer.WriteObjectValue<BroadcastMeetingCaptionSettings>("captions", Captions);
+            writer.WriteEnumValue<ApiSdk.Models.BroadcastMeetingAudience>("allowedAudience", AllowedAudience);
+            writer.WriteObjectValue<ApiSdk.Models.BroadcastMeetingCaptionSettings>("captions", Captions);
             writer.WriteBoolValue("isAttendeeReportEnabled", IsAttendeeReportEnabled);
             writer.WriteBoolValue("isQuestionAndAnswerEnabled", IsQuestionAndAnswerEnabled);
             writer.WriteBoolValue("isRecordingEnabled", IsRecordingEnabled);

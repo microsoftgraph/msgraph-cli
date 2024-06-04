@@ -14,17 +14,17 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Targe
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The appGroupType property</summary>
-        public TargetedManagedAppGroupType? AppGroupType { get; set; }
+        public ApiSdk.Models.TargetedManagedAppGroupType? AppGroupType { get; set; }
         /// <summary>The apps property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ManagedMobileApp>? Apps { get; set; }
+        public List<ApiSdk.Models.ManagedMobileApp>? Apps { get; set; }
 #nullable restore
 #else
-        public List<ManagedMobileApp> Apps { get; set; }
+        public List<ApiSdk.Models.ManagedMobileApp> Apps { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TargetAppsPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps.TargetAppsPostRequestBody"/> and sets the default values.
         /// </summary>
         public TargetAppsPostRequestBody()
         {
@@ -33,12 +33,12 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Targe
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TargetAppsPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps.TargetAppsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TargetAppsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps.TargetAppsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TargetAppsPostRequestBody();
+            return new ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps.TargetAppsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,8 +48,8 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Targe
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "appGroupType", n => { AppGroupType = n.GetEnumValue<TargetedManagedAppGroupType>(); } },
-                { "apps", n => { Apps = n.GetCollectionOfObjectValues<ManagedMobileApp>(ManagedMobileApp.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appGroupType", n => { AppGroupType = n.GetEnumValue<ApiSdk.Models.TargetedManagedAppGroupType>(); } },
+                { "apps", n => { Apps = n.GetCollectionOfObjectValues<ApiSdk.Models.ManagedMobileApp>(ApiSdk.Models.ManagedMobileApp.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -59,8 +59,8 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Targe
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<TargetedManagedAppGroupType>("appGroupType", AppGroupType);
-            writer.WriteCollectionOfObjectValues<ManagedMobileApp>("apps", Apps);
+            writer.WriteEnumValue<ApiSdk.Models.TargetedManagedAppGroupType>("appGroupType", AppGroupType);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ManagedMobileApp>("apps", Apps);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

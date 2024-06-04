@@ -7,28 +7,28 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookChartGridlines : Entity, IParsable
+    public class WorkbookChartGridlines : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents the formatting of chart gridlines. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartGridlinesFormat? Format { get; set; }
+        public ApiSdk.Models.WorkbookChartGridlinesFormat? Format { get; set; }
 #nullable restore
 #else
-        public WorkbookChartGridlinesFormat Format { get; set; }
+        public ApiSdk.Models.WorkbookChartGridlinesFormat Format { get; set; }
 #endif
         /// <summary>Boolean value representing if the axis gridlines are visible or not.</summary>
         public bool? Visible { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookChartGridlines"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookChartGridlines"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookChartGridlines CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookChartGridlines CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookChartGridlines();
+            return new ApiSdk.Models.WorkbookChartGridlines();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -38,7 +38,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "format", n => { Format = n.GetObjectValue<WorkbookChartGridlinesFormat>(WorkbookChartGridlinesFormat.CreateFromDiscriminatorValue); } },
+                { "format", n => { Format = n.GetObjectValue<ApiSdk.Models.WorkbookChartGridlinesFormat>(ApiSdk.Models.WorkbookChartGridlinesFormat.CreateFromDiscriminatorValue); } },
                 { "visible", n => { Visible = n.GetBoolValue(); } },
             };
         }
@@ -50,7 +50,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartGridlinesFormat>("format", Format);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartGridlinesFormat>("format", Format);
             writer.WriteBoolValue("visible", Visible);
         }
     }

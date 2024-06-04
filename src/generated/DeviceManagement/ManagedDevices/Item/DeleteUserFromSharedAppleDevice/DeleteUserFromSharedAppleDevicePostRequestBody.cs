@@ -21,7 +21,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeleteUserFromSharedAppleD
         public string UserPrincipalName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DeleteUserFromSharedAppleDevicePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.DeleteUserFromSharedAppleDevice.DeleteUserFromSharedAppleDevicePostRequestBody"/> and sets the default values.
         /// </summary>
         public DeleteUserFromSharedAppleDevicePostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeleteUserFromSharedAppleD
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeleteUserFromSharedAppleDevicePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.DeleteUserFromSharedAppleDevice.DeleteUserFromSharedAppleDevicePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DeleteUserFromSharedAppleDevicePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DeviceManagement.ManagedDevices.Item.DeleteUserFromSharedAppleDevice.DeleteUserFromSharedAppleDevicePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeleteUserFromSharedAppleDevicePostRequestBody();
+            return new ApiSdk.DeviceManagement.ManagedDevices.Item.DeleteUserFromSharedAppleDevice.DeleteUserFromSharedAppleDevicePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

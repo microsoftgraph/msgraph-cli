@@ -50,14 +50,14 @@ namespace ApiSdk.Groups.Item.SubscribeByMail
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SubscribeByMailRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.SubscribeByMail.SubscribeByMailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SubscribeByMailRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/subscribeByMail", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SubscribeByMailRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.SubscribeByMail.SubscribeByMailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SubscribeByMailRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/subscribeByMail", rawUrl)

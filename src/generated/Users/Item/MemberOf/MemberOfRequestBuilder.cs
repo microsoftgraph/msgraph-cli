@@ -34,7 +34,7 @@ namespace ApiSdk.Users.Item.MemberOf
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MemberOf.Item.DirectoryObjectItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildGraphAdministrativeUnitByIdNavCommand());
             commands.Add(builder.BuildGraphDirectoryRoleByIdNavCommand());
@@ -49,7 +49,7 @@ namespace ApiSdk.Users.Item.MemberOf
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MemberOf.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -66,7 +66,7 @@ namespace ApiSdk.Users.Item.MemberOf
         {
             var command = new Command("graph-administrative-unit");
             command.Description = "Casts the previous resource to administrativeUnit.";
-            var builder = new GraphAdministrativeUnitRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MemberOf.GraphAdministrativeUnit.GraphAdministrativeUnitRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -89,7 +89,7 @@ namespace ApiSdk.Users.Item.MemberOf
         {
             var command = new Command("graph-directory-role");
             command.Description = "Casts the previous resource to directoryRole.";
-            var builder = new GraphDirectoryRoleRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MemberOf.GraphDirectoryRole.GraphDirectoryRoleRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -112,7 +112,7 @@ namespace ApiSdk.Users.Item.MemberOf
         {
             var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
-            var builder = new GraphGroupRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MemberOf.GraphGroup.GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -238,14 +238,14 @@ namespace ApiSdk.Users.Item.MemberOf
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MemberOfRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.MemberOf.MemberOfRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MemberOfRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/memberOf{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MemberOfRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.MemberOf.MemberOfRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MemberOfRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/memberOf{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -258,11 +258,11 @@ namespace ApiSdk.Users.Item.MemberOf
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MemberOfRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.MemberOf.MemberOfRequestBuilder.MemberOfRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MemberOfRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.MemberOf.MemberOfRequestBuilder.MemberOfRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

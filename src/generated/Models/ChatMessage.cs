@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ChatMessage : Entity, IParsable
+    public class ChatMessage : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>References to attached objects like files, tabs, meetings etc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ChatMessageAttachment>? Attachments { get; set; }
+        public List<ApiSdk.Models.ChatMessageAttachment>? Attachments { get; set; }
 #nullable restore
 #else
-        public List<ChatMessageAttachment> Attachments { get; set; }
+        public List<ApiSdk.Models.ChatMessageAttachment> Attachments { get; set; }
 #endif
         /// <summary>The body property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemBody? Body { get; set; }
+        public ApiSdk.Models.ItemBody? Body { get; set; }
 #nullable restore
 #else
-        public ItemBody Body { get; set; }
+        public ApiSdk.Models.ItemBody Body { get; set; }
 #endif
         /// <summary>If the message was sent in a channel, represents identity of the channel.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,29 +57,29 @@ namespace ApiSdk.Models
         /// <summary>Read-only. If present, represents details of an event that happened in a chat, a channel, or a team, for example, adding new members. For event messages, the messageType property will be set to systemEventMessage.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EventMessageDetail? EventDetail { get; set; }
+        public ApiSdk.Models.EventMessageDetail? EventDetail { get; set; }
 #nullable restore
 #else
-        public EventMessageDetail EventDetail { get; set; }
+        public ApiSdk.Models.EventMessageDetail EventDetail { get; set; }
 #endif
         /// <summary>Details of the sender of the chat message. Can only be set during migration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ChatMessageFromIdentitySet? From { get; set; }
+        public ApiSdk.Models.ChatMessageFromIdentitySet? From { get; set; }
 #nullable restore
 #else
-        public ChatMessageFromIdentitySet From { get; set; }
+        public ApiSdk.Models.ChatMessageFromIdentitySet From { get; set; }
 #endif
         /// <summary>Content in a message hosted by Microsoft Teams - for example, images or code snippets.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ChatMessageHostedContent>? HostedContents { get; set; }
+        public List<ApiSdk.Models.ChatMessageHostedContent>? HostedContents { get; set; }
 #nullable restore
 #else
-        public List<ChatMessageHostedContent> HostedContents { get; set; }
+        public List<ApiSdk.Models.ChatMessageHostedContent> HostedContents { get; set; }
 #endif
         /// <summary>The importance property</summary>
-        public ChatMessageImportance? Importance { get; set; }
+        public ApiSdk.Models.ChatMessageImportance? Importance { get; set; }
         /// <summary>Read only. Timestamp when edits to the chat message were made. Triggers an &apos;Edited&apos; flag in the Teams UI. If no edits are made the value is null.</summary>
         public DateTimeOffset? LastEditedDateTime { get; set; }
         /// <summary>Read only. Timestamp when the chat message is created (initial setting) or modified, including when a reaction is added or removed.</summary>
@@ -95,44 +95,44 @@ namespace ApiSdk.Models
         /// <summary>List of entities mentioned in the chat message. Supported entities are: user, bot, team, and channel.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ChatMessageMention>? Mentions { get; set; }
+        public List<ApiSdk.Models.ChatMessageMention>? Mentions { get; set; }
 #nullable restore
 #else
-        public List<ChatMessageMention> Mentions { get; set; }
+        public List<ApiSdk.Models.ChatMessageMention> Mentions { get; set; }
 #endif
         /// <summary>List of activity history of a message item, including modification time and actions, such as reactionAdded, reactionRemoved, or reaction changes, on the message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ChatMessageHistoryItem>? MessageHistory { get; set; }
+        public List<ApiSdk.Models.ChatMessageHistoryItem>? MessageHistory { get; set; }
 #nullable restore
 #else
-        public List<ChatMessageHistoryItem> MessageHistory { get; set; }
+        public List<ApiSdk.Models.ChatMessageHistoryItem> MessageHistory { get; set; }
 #endif
         /// <summary>The messageType property</summary>
-        public ChatMessageType? MessageType { get; set; }
+        public ApiSdk.Models.ChatMessageType? MessageType { get; set; }
         /// <summary>Defines the properties of a policy violation set by a data loss prevention (DLP) application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ChatMessagePolicyViolation? PolicyViolation { get; set; }
+        public ApiSdk.Models.ChatMessagePolicyViolation? PolicyViolation { get; set; }
 #nullable restore
 #else
-        public ChatMessagePolicyViolation PolicyViolation { get; set; }
+        public ApiSdk.Models.ChatMessagePolicyViolation PolicyViolation { get; set; }
 #endif
         /// <summary>Reactions for this chat message (for example, Like).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ChatMessageReaction>? Reactions { get; set; }
+        public List<ApiSdk.Models.ChatMessageReaction>? Reactions { get; set; }
 #nullable restore
 #else
-        public List<ChatMessageReaction> Reactions { get; set; }
+        public List<ApiSdk.Models.ChatMessageReaction> Reactions { get; set; }
 #endif
         /// <summary>Replies for a specified message. Supports $expand for channel messages.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ChatMessage>? Replies { get; set; }
+        public List<ApiSdk.Models.ChatMessage>? Replies { get; set; }
 #nullable restore
 #else
-        public List<ChatMessage> Replies { get; set; }
+        public List<ApiSdk.Models.ChatMessage> Replies { get; set; }
 #endif
         /// <summary>Read-only. ID of the parent chat message or root chat message of the thread. (Only applies to chat messages in channels, not chats.)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -169,12 +169,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChatMessage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ChatMessage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ChatMessage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ChatMessage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChatMessage();
+            return new ApiSdk.Models.ChatMessage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -184,26 +184,26 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<ChatMessageAttachment>(ChatMessageAttachment.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "body", n => { Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<ApiSdk.Models.ChatMessageAttachment>(ApiSdk.Models.ChatMessageAttachment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "body", n => { Body = n.GetObjectValue<ApiSdk.Models.ItemBody>(ApiSdk.Models.ItemBody.CreateFromDiscriminatorValue); } },
                 { "channelIdentity", n => { ChannelIdentity = n.GetObjectValue<ApiSdk.Models.ChannelIdentity>(ApiSdk.Models.ChannelIdentity.CreateFromDiscriminatorValue); } },
                 { "chatId", n => { ChatId = n.GetStringValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "deletedDateTime", n => { DeletedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "etag", n => { Etag = n.GetStringValue(); } },
-                { "eventDetail", n => { EventDetail = n.GetObjectValue<EventMessageDetail>(EventMessageDetail.CreateFromDiscriminatorValue); } },
-                { "from", n => { From = n.GetObjectValue<ChatMessageFromIdentitySet>(ChatMessageFromIdentitySet.CreateFromDiscriminatorValue); } },
-                { "hostedContents", n => { HostedContents = n.GetCollectionOfObjectValues<ChatMessageHostedContent>(ChatMessageHostedContent.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "importance", n => { Importance = n.GetEnumValue<ChatMessageImportance>(); } },
+                { "eventDetail", n => { EventDetail = n.GetObjectValue<ApiSdk.Models.EventMessageDetail>(ApiSdk.Models.EventMessageDetail.CreateFromDiscriminatorValue); } },
+                { "from", n => { From = n.GetObjectValue<ApiSdk.Models.ChatMessageFromIdentitySet>(ApiSdk.Models.ChatMessageFromIdentitySet.CreateFromDiscriminatorValue); } },
+                { "hostedContents", n => { HostedContents = n.GetCollectionOfObjectValues<ApiSdk.Models.ChatMessageHostedContent>(ApiSdk.Models.ChatMessageHostedContent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "importance", n => { Importance = n.GetEnumValue<ApiSdk.Models.ChatMessageImportance>(); } },
                 { "lastEditedDateTime", n => { LastEditedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "locale", n => { Locale = n.GetStringValue(); } },
-                { "mentions", n => { Mentions = n.GetCollectionOfObjectValues<ChatMessageMention>(ChatMessageMention.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "messageHistory", n => { MessageHistory = n.GetCollectionOfObjectValues<ChatMessageHistoryItem>(ChatMessageHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "messageType", n => { MessageType = n.GetEnumValue<ChatMessageType>(); } },
-                { "policyViolation", n => { PolicyViolation = n.GetObjectValue<ChatMessagePolicyViolation>(ChatMessagePolicyViolation.CreateFromDiscriminatorValue); } },
-                { "reactions", n => { Reactions = n.GetCollectionOfObjectValues<ChatMessageReaction>(ChatMessageReaction.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "replies", n => { Replies = n.GetCollectionOfObjectValues<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "mentions", n => { Mentions = n.GetCollectionOfObjectValues<ApiSdk.Models.ChatMessageMention>(ApiSdk.Models.ChatMessageMention.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "messageHistory", n => { MessageHistory = n.GetCollectionOfObjectValues<ApiSdk.Models.ChatMessageHistoryItem>(ApiSdk.Models.ChatMessageHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "messageType", n => { MessageType = n.GetEnumValue<ApiSdk.Models.ChatMessageType>(); } },
+                { "policyViolation", n => { PolicyViolation = n.GetObjectValue<ApiSdk.Models.ChatMessagePolicyViolation>(ApiSdk.Models.ChatMessagePolicyViolation.CreateFromDiscriminatorValue); } },
+                { "reactions", n => { Reactions = n.GetCollectionOfObjectValues<ApiSdk.Models.ChatMessageReaction>(ApiSdk.Models.ChatMessageReaction.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "replies", n => { Replies = n.GetCollectionOfObjectValues<ApiSdk.Models.ChatMessage>(ApiSdk.Models.ChatMessage.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "replyToId", n => { ReplyToId = n.GetStringValue(); } },
                 { "subject", n => { Subject = n.GetStringValue(); } },
                 { "summary", n => { Summary = n.GetStringValue(); } },
@@ -218,26 +218,26 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ChatMessageAttachment>("attachments", Attachments);
-            writer.WriteObjectValue<ItemBody>("body", Body);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ChatMessageAttachment>("attachments", Attachments);
+            writer.WriteObjectValue<ApiSdk.Models.ItemBody>("body", Body);
             writer.WriteObjectValue<ApiSdk.Models.ChannelIdentity>("channelIdentity", ChannelIdentity);
             writer.WriteStringValue("chatId", ChatId);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDateTimeOffsetValue("deletedDateTime", DeletedDateTime);
             writer.WriteStringValue("etag", Etag);
-            writer.WriteObjectValue<EventMessageDetail>("eventDetail", EventDetail);
-            writer.WriteObjectValue<ChatMessageFromIdentitySet>("from", From);
-            writer.WriteCollectionOfObjectValues<ChatMessageHostedContent>("hostedContents", HostedContents);
-            writer.WriteEnumValue<ChatMessageImportance>("importance", Importance);
+            writer.WriteObjectValue<ApiSdk.Models.EventMessageDetail>("eventDetail", EventDetail);
+            writer.WriteObjectValue<ApiSdk.Models.ChatMessageFromIdentitySet>("from", From);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ChatMessageHostedContent>("hostedContents", HostedContents);
+            writer.WriteEnumValue<ApiSdk.Models.ChatMessageImportance>("importance", Importance);
             writer.WriteDateTimeOffsetValue("lastEditedDateTime", LastEditedDateTime);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("locale", Locale);
-            writer.WriteCollectionOfObjectValues<ChatMessageMention>("mentions", Mentions);
-            writer.WriteCollectionOfObjectValues<ChatMessageHistoryItem>("messageHistory", MessageHistory);
-            writer.WriteEnumValue<ChatMessageType>("messageType", MessageType);
-            writer.WriteObjectValue<ChatMessagePolicyViolation>("policyViolation", PolicyViolation);
-            writer.WriteCollectionOfObjectValues<ChatMessageReaction>("reactions", Reactions);
-            writer.WriteCollectionOfObjectValues<ChatMessage>("replies", Replies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ChatMessageMention>("mentions", Mentions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ChatMessageHistoryItem>("messageHistory", MessageHistory);
+            writer.WriteEnumValue<ApiSdk.Models.ChatMessageType>("messageType", MessageType);
+            writer.WriteObjectValue<ApiSdk.Models.ChatMessagePolicyViolation>("policyViolation", PolicyViolation);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ChatMessageReaction>("reactions", Reactions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ChatMessage>("replies", Replies);
             writer.WriteStringValue("replyToId", ReplyToId);
             writer.WriteStringValue("subject", Subject);
             writer.WriteStringValue("summary", Summary);

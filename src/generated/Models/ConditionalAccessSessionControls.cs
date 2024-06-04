@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>Session control to enforce application restrictions. Only Exchange Online and Sharepoint Online support this session control.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ApplicationEnforcedRestrictionsSessionControl? ApplicationEnforcedRestrictions { get; set; }
+        public ApiSdk.Models.ApplicationEnforcedRestrictionsSessionControl? ApplicationEnforcedRestrictions { get; set; }
 #nullable restore
 #else
-        public ApplicationEnforcedRestrictionsSessionControl ApplicationEnforcedRestrictions { get; set; }
+        public ApiSdk.Models.ApplicationEnforcedRestrictionsSessionControl ApplicationEnforcedRestrictions { get; set; }
 #endif
         /// <summary>Session control to apply cloud app security.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CloudAppSecuritySessionControl? CloudAppSecurity { get; set; }
+        public ApiSdk.Models.CloudAppSecuritySessionControl? CloudAppSecurity { get; set; }
 #nullable restore
 #else
-        public CloudAppSecuritySessionControl CloudAppSecurity { get; set; }
+        public ApiSdk.Models.CloudAppSecuritySessionControl CloudAppSecurity { get; set; }
 #endif
         /// <summary>Session control that determines whether it is acceptable for Microsoft Entra ID to extend existing sessions based on information collected prior to an outage or not.</summary>
         public bool? DisableResilienceDefaults { get; set; }
@@ -41,21 +41,21 @@ namespace ApiSdk.Models
         /// <summary>Session control to define whether to persist cookies or not. All apps should be selected for this session control to work correctly.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PersistentBrowserSessionControl? PersistentBrowser { get; set; }
+        public ApiSdk.Models.PersistentBrowserSessionControl? PersistentBrowser { get; set; }
 #nullable restore
 #else
-        public PersistentBrowserSessionControl PersistentBrowser { get; set; }
+        public ApiSdk.Models.PersistentBrowserSessionControl PersistentBrowser { get; set; }
 #endif
         /// <summary>Session control to enforce signin frequency.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SignInFrequencySessionControl? SignInFrequency { get; set; }
+        public ApiSdk.Models.SignInFrequencySessionControl? SignInFrequency { get; set; }
 #nullable restore
 #else
-        public SignInFrequencySessionControl SignInFrequency { get; set; }
+        public ApiSdk.Models.SignInFrequencySessionControl SignInFrequency { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ConditionalAccessSessionControls"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ConditionalAccessSessionControls"/> and sets the default values.
         /// </summary>
         public ConditionalAccessSessionControls()
         {
@@ -64,12 +64,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConditionalAccessSessionControls"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConditionalAccessSessionControls"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ConditionalAccessSessionControls CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ConditionalAccessSessionControls CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConditionalAccessSessionControls();
+            return new ApiSdk.Models.ConditionalAccessSessionControls();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,12 +79,12 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "applicationEnforcedRestrictions", n => { ApplicationEnforcedRestrictions = n.GetObjectValue<ApplicationEnforcedRestrictionsSessionControl>(ApplicationEnforcedRestrictionsSessionControl.CreateFromDiscriminatorValue); } },
-                { "cloudAppSecurity", n => { CloudAppSecurity = n.GetObjectValue<CloudAppSecuritySessionControl>(CloudAppSecuritySessionControl.CreateFromDiscriminatorValue); } },
+                { "applicationEnforcedRestrictions", n => { ApplicationEnforcedRestrictions = n.GetObjectValue<ApiSdk.Models.ApplicationEnforcedRestrictionsSessionControl>(ApiSdk.Models.ApplicationEnforcedRestrictionsSessionControl.CreateFromDiscriminatorValue); } },
+                { "cloudAppSecurity", n => { CloudAppSecurity = n.GetObjectValue<ApiSdk.Models.CloudAppSecuritySessionControl>(ApiSdk.Models.CloudAppSecuritySessionControl.CreateFromDiscriminatorValue); } },
                 { "disableResilienceDefaults", n => { DisableResilienceDefaults = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "persistentBrowser", n => { PersistentBrowser = n.GetObjectValue<PersistentBrowserSessionControl>(PersistentBrowserSessionControl.CreateFromDiscriminatorValue); } },
-                { "signInFrequency", n => { SignInFrequency = n.GetObjectValue<SignInFrequencySessionControl>(SignInFrequencySessionControl.CreateFromDiscriminatorValue); } },
+                { "persistentBrowser", n => { PersistentBrowser = n.GetObjectValue<ApiSdk.Models.PersistentBrowserSessionControl>(ApiSdk.Models.PersistentBrowserSessionControl.CreateFromDiscriminatorValue); } },
+                { "signInFrequency", n => { SignInFrequency = n.GetObjectValue<ApiSdk.Models.SignInFrequencySessionControl>(ApiSdk.Models.SignInFrequencySessionControl.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -94,12 +94,12 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ApplicationEnforcedRestrictionsSessionControl>("applicationEnforcedRestrictions", ApplicationEnforcedRestrictions);
-            writer.WriteObjectValue<CloudAppSecuritySessionControl>("cloudAppSecurity", CloudAppSecurity);
+            writer.WriteObjectValue<ApiSdk.Models.ApplicationEnforcedRestrictionsSessionControl>("applicationEnforcedRestrictions", ApplicationEnforcedRestrictions);
+            writer.WriteObjectValue<ApiSdk.Models.CloudAppSecuritySessionControl>("cloudAppSecurity", CloudAppSecurity);
             writer.WriteBoolValue("disableResilienceDefaults", DisableResilienceDefaults);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<PersistentBrowserSessionControl>("persistentBrowser", PersistentBrowser);
-            writer.WriteObjectValue<SignInFrequencySessionControl>("signInFrequency", SignInFrequency);
+            writer.WriteObjectValue<ApiSdk.Models.PersistentBrowserSessionControl>("persistentBrowser", PersistentBrowser);
+            writer.WriteObjectValue<ApiSdk.Models.SignInFrequencySessionControl>("signInFrequency", SignInFrequency);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

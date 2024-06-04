@@ -16,10 +16,10 @@ namespace ApiSdk.Models
         /// <summary>The days of the week on which the user works.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DayOfWeekObject?>? DaysOfWeek { get; set; }
+        public List<ApiSdk.Models.DayOfWeekObject?>? DaysOfWeek { get; set; }
 #nullable restore
 #else
-        public List<DayOfWeekObject?> DaysOfWeek { get; set; }
+        public List<ApiSdk.Models.DayOfWeekObject?> DaysOfWeek { get; set; }
 #endif
         /// <summary>The time of the day that the user stops working.</summary>
         public Time? EndTime { get; set; }
@@ -36,13 +36,13 @@ namespace ApiSdk.Models
         /// <summary>The time zone to which the working hours apply.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TimeZoneBase? TimeZone { get; set; }
+        public ApiSdk.Models.TimeZoneBase? TimeZone { get; set; }
 #nullable restore
 #else
-        public TimeZoneBase TimeZone { get; set; }
+        public ApiSdk.Models.TimeZoneBase TimeZone { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WorkingHours"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WorkingHours"/> and sets the default values.
         /// </summary>
         public WorkingHours()
         {
@@ -51,12 +51,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkingHours"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkingHours"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WorkingHours CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WorkingHours CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkingHours();
+            return new ApiSdk.Models.WorkingHours();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,11 +66,11 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "daysOfWeek", n => { DaysOfWeek = n.GetCollectionOfEnumValues<DayOfWeekObject>()?.ToList(); } },
+                { "daysOfWeek", n => { DaysOfWeek = n.GetCollectionOfEnumValues<ApiSdk.Models.DayOfWeekObject>()?.ToList(); } },
                 { "endTime", n => { EndTime = n.GetTimeValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "startTime", n => { StartTime = n.GetTimeValue(); } },
-                { "timeZone", n => { TimeZone = n.GetObjectValue<TimeZoneBase>(TimeZoneBase.CreateFromDiscriminatorValue); } },
+                { "timeZone", n => { TimeZone = n.GetObjectValue<ApiSdk.Models.TimeZoneBase>(ApiSdk.Models.TimeZoneBase.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -80,11 +80,11 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfEnumValues<DayOfWeekObject>("daysOfWeek", DaysOfWeek);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.DayOfWeekObject>("daysOfWeek", DaysOfWeek);
             writer.WriteTimeValue("endTime", EndTime);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteTimeValue("startTime", StartTime);
-            writer.WriteObjectValue<TimeZoneBase>("timeZone", TimeZone);
+            writer.WriteObjectValue<ApiSdk.Models.TimeZoneBase>("timeZone", TimeZone);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

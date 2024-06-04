@@ -7,42 +7,42 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class BaseItemVersion : Entity, IParsable
+    public class BaseItemVersion : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Identity of the user which last modified the version. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet LastModifiedBy { get; set; }
 #endif
         /// <summary>Date and time the version was last modified. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Indicates the publication status of this particular version. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PublicationFacet? Publication { get; set; }
+        public ApiSdk.Models.PublicationFacet? Publication { get; set; }
 #nullable restore
 #else
-        public PublicationFacet Publication { get; set; }
+        public ApiSdk.Models.PublicationFacet Publication { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BaseItemVersion"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BaseItemVersion"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new BaseItemVersion CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.BaseItemVersion CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.documentSetVersion" => new DocumentSetVersion(),
-                "#microsoft.graph.driveItemVersion" => new DriveItemVersion(),
-                "#microsoft.graph.listItemVersion" => new ListItemVersion(),
-                _ => new BaseItemVersion(),
+                "#microsoft.graph.documentSetVersion" => new ApiSdk.Models.DocumentSetVersion(),
+                "#microsoft.graph.driveItemVersion" => new ApiSdk.Models.DriveItemVersion(),
+                "#microsoft.graph.listItemVersion" => new ApiSdk.Models.ListItemVersion(),
+                _ => new ApiSdk.Models.BaseItemVersion(),
             };
         }
         /// <summary>
@@ -53,9 +53,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "publication", n => { Publication = n.GetObjectValue<PublicationFacet>(PublicationFacet.CreateFromDiscriminatorValue); } },
+                { "publication", n => { Publication = n.GetObjectValue<ApiSdk.Models.PublicationFacet>(ApiSdk.Models.PublicationFacet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -66,9 +66,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteObjectValue<PublicationFacet>("publication", Publication);
+            writer.WriteObjectValue<ApiSdk.Models.PublicationFacet>("publication", Publication);
         }
     }
 }

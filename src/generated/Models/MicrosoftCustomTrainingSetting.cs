@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class MicrosoftCustomTrainingSetting : TrainingSetting, IParsable
+    public class MicrosoftCustomTrainingSetting : ApiSdk.Models.TrainingSetting, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The completion date and time of the training. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
@@ -15,15 +15,15 @@ namespace ApiSdk.Models
         /// <summary>The mapping details of the associated training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MicrosoftTrainingAssignmentMapping>? TrainingAssignmentMappings { get; set; }
+        public List<ApiSdk.Models.MicrosoftTrainingAssignmentMapping>? TrainingAssignmentMappings { get; set; }
 #nullable restore
 #else
-        public List<MicrosoftTrainingAssignmentMapping> TrainingAssignmentMappings { get; set; }
+        public List<ApiSdk.Models.MicrosoftTrainingAssignmentMapping> TrainingAssignmentMappings { get; set; }
 #endif
         /// <summary>The training completion duration that needs to be provided before scheduling the training. Possible values are: week, fortnite, month, unknownFutureValue.</summary>
         public ApiSdk.Models.TrainingCompletionDuration? TrainingCompletionDuration { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftCustomTrainingSetting"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MicrosoftCustomTrainingSetting"/> and sets the default values.
         /// </summary>
         public MicrosoftCustomTrainingSetting() : base()
         {
@@ -32,12 +32,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MicrosoftCustomTrainingSetting"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MicrosoftCustomTrainingSetting"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MicrosoftCustomTrainingSetting CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MicrosoftCustomTrainingSetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MicrosoftCustomTrainingSetting();
+            return new ApiSdk.Models.MicrosoftCustomTrainingSetting();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,8 +48,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "completionDateTime", n => { CompletionDateTime = n.GetDateTimeOffsetValue(); } },
-                { "trainingAssignmentMappings", n => { TrainingAssignmentMappings = n.GetCollectionOfObjectValues<MicrosoftTrainingAssignmentMapping>(MicrosoftTrainingAssignmentMapping.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "trainingCompletionDuration", n => { TrainingCompletionDuration = n.GetEnumValue<TrainingCompletionDuration>(); } },
+                { "trainingAssignmentMappings", n => { TrainingAssignmentMappings = n.GetCollectionOfObjectValues<ApiSdk.Models.MicrosoftTrainingAssignmentMapping>(ApiSdk.Models.MicrosoftTrainingAssignmentMapping.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "trainingCompletionDuration", n => { TrainingCompletionDuration = n.GetEnumValue<ApiSdk.Models.TrainingCompletionDuration>(); } },
             };
         }
         /// <summary>
@@ -61,8 +61,8 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("completionDateTime", CompletionDateTime);
-            writer.WriteCollectionOfObjectValues<MicrosoftTrainingAssignmentMapping>("trainingAssignmentMappings", TrainingAssignmentMappings);
-            writer.WriteEnumValue<TrainingCompletionDuration>("trainingCompletionDuration", TrainingCompletionDuration);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MicrosoftTrainingAssignmentMapping>("trainingAssignmentMappings", TrainingAssignmentMappings);
+            writer.WriteEnumValue<ApiSdk.Models.TrainingCompletionDuration>("trainingCompletionDuration", TrainingCompletionDuration);
         }
     }
 }

@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.Users.Item.GetMailTips
 {
     #pragma warning disable CS1591
-    public class GetMailTipsPostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetMailTipsPostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MailTips>? Value { get; set; }
+        public List<ApiSdk.Models.MailTips>? Value { get; set; }
 #nullable restore
 #else
-        public List<MailTips> Value { get; set; }
+        public List<ApiSdk.Models.MailTips> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetMailTipsPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.GetMailTips.GetMailTipsPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetMailTipsPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Users.Item.GetMailTips.GetMailTipsPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetMailTipsPostResponse();
+            return new ApiSdk.Users.Item.GetMailTips.GetMailTipsPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Users.Item.GetMailTips
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<MailTips>(MailTips.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.MailTips>(ApiSdk.Models.MailTips.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Users.Item.GetMailTips
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<MailTips>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MailTips>("value", Value);
         }
     }
 }

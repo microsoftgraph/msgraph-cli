@@ -38,7 +38,7 @@ namespace ApiSdk.Organization.Item
         {
             var command = new Command("branding");
             command.Description = "Provides operations to manage the branding property of the microsoft.graph.organization entity.";
-            var builder = new BrandingRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.Branding.BrandingRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildBackgroundImageNavCommand());
@@ -70,7 +70,7 @@ namespace ApiSdk.Organization.Item
         {
             var command = new Command("certificate-based-auth-configuration");
             command.Description = "Provides operations to manage the certificateBasedAuthConfiguration property of the microsoft.graph.organization entity.";
-            var builder = new CertificateBasedAuthConfigurationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.CertificateBasedAuthConfigurationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -97,7 +97,7 @@ namespace ApiSdk.Organization.Item
         {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.CheckMemberGroups.CheckMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -114,7 +114,7 @@ namespace ApiSdk.Organization.Item
         {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.CheckMemberObjects.CheckMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -166,7 +166,7 @@ namespace ApiSdk.Organization.Item
         {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.organization entity.";
-            var builder = new ExtensionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.Extensions.ExtensionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -246,7 +246,7 @@ namespace ApiSdk.Organization.Item
         {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.GetMemberGroups.GetMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -263,7 +263,7 @@ namespace ApiSdk.Organization.Item
         {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.GetMemberObjects.GetMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -332,7 +332,7 @@ namespace ApiSdk.Organization.Item
         {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.Restore.RestoreRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -349,7 +349,7 @@ namespace ApiSdk.Organization.Item
         {
             var command = new Command("set-mobile-device-management-authority");
             command.Description = "Provides operations to call the setMobileDeviceManagementAuthority method.";
-            var builder = new SetMobileDeviceManagementAuthorityRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority.SetMobileDeviceManagementAuthorityRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -359,14 +359,14 @@ namespace ApiSdk.Organization.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="OrganizationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.OrganizationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OrganizationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="OrganizationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.OrganizationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OrganizationItemRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}{?%24expand,%24select}", rawUrl)
@@ -398,11 +398,11 @@ namespace ApiSdk.Organization.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OrganizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Organization.Item.OrganizationItemRequestBuilder.OrganizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OrganizationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Organization.Item.OrganizationItemRequestBuilder.OrganizationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

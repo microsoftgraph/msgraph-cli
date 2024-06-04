@@ -121,7 +121,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item
         {
             var command = new Command("landing-page");
             command.Description = "Provides operations to manage the landingPage property of the microsoft.graph.simulation entity.";
-            var builder = new LandingPageRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.Simulations.Item.LandingPage.LandingPageRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -138,7 +138,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item
         {
             var command = new Command("login-page");
             command.Description = "Provides operations to manage the loginPage property of the microsoft.graph.simulation entity.";
-            var builder = new LoginPageRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.Simulations.Item.LoginPage.LoginPageRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -179,7 +179,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Simulation>(Simulation.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Simulation>(ApiSdk.Models.Simulation.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -207,7 +207,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item
         {
             var command = new Command("payload");
             command.Description = "Provides operations to manage the payload property of the microsoft.graph.simulation entity.";
-            var builder = new PayloadRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.Simulations.Item.Payload.PayloadRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -217,14 +217,14 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SimulationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.AttackSimulation.Simulations.Item.SimulationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SimulationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SimulationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.AttackSimulation.Simulations.Item.SimulationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SimulationItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}{?%24expand,%24select}", rawUrl)
@@ -256,11 +256,11 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SimulationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.AttackSimulation.Simulations.Item.SimulationItemRequestBuilder.SimulationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SimulationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.AttackSimulation.Simulations.Item.SimulationItemRequestBuilder.SimulationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -276,11 +276,11 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Simulation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Simulation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Simulation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Simulation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

@@ -46,7 +46,7 @@ namespace ApiSdk.Models
         public string OmaUri { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OmaSetting"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OmaSetting"/> and sets the default values.
         /// </summary>
         public OmaSetting()
         {
@@ -55,22 +55,22 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OmaSetting"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OmaSetting"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static OmaSetting CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.OmaSetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.omaSettingBase64" => new OmaSettingBase64(),
-                "#microsoft.graph.omaSettingBoolean" => new OmaSettingBoolean(),
-                "#microsoft.graph.omaSettingDateTime" => new OmaSettingDateTime(),
-                "#microsoft.graph.omaSettingFloatingPoint" => new OmaSettingFloatingPoint(),
-                "#microsoft.graph.omaSettingInteger" => new OmaSettingInteger(),
-                "#microsoft.graph.omaSettingString" => new OmaSettingString(),
-                "#microsoft.graph.omaSettingStringXml" => new OmaSettingStringXml(),
-                _ => new OmaSetting(),
+                "#microsoft.graph.omaSettingBase64" => new ApiSdk.Models.OmaSettingBase64(),
+                "#microsoft.graph.omaSettingBoolean" => new ApiSdk.Models.OmaSettingBoolean(),
+                "#microsoft.graph.omaSettingDateTime" => new ApiSdk.Models.OmaSettingDateTime(),
+                "#microsoft.graph.omaSettingFloatingPoint" => new ApiSdk.Models.OmaSettingFloatingPoint(),
+                "#microsoft.graph.omaSettingInteger" => new ApiSdk.Models.OmaSettingInteger(),
+                "#microsoft.graph.omaSettingString" => new ApiSdk.Models.OmaSettingString(),
+                "#microsoft.graph.omaSettingStringXml" => new ApiSdk.Models.OmaSettingStringXml(),
+                _ => new ApiSdk.Models.OmaSetting(),
             };
         }
         /// <summary>

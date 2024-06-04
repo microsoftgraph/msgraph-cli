@@ -60,14 +60,14 @@ namespace ApiSdk.Domains.Item.Promote
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PromoteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Domains.Item.Promote.PromoteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PromoteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/promote", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PromoteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Domains.Item.Promote.PromoteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PromoteRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/promote", rawUrl)

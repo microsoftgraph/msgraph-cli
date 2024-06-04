@@ -7,20 +7,20 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Payload : Entity, IParsable
+    public class Payload : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The branch of a payload. Possible values are: unknown, other, americanExpress, capitalOne, dhl, docuSign, dropbox, facebook, firstAmerican, microsoft, netflix, scotiabank, sendGrid, stewartTitle, tesco, wellsFargo, syrinxCloud, adobe, teams, zoom, unknownFutureValue.</summary>
-        public PayloadBrand? Brand { get; set; }
+        public ApiSdk.Models.PayloadBrand? Brand { get; set; }
         /// <summary>The complexity of a payload. Possible values are: unknown, low, medium, high, unknownFutureValue.</summary>
-        public PayloadComplexity? Complexity { get; set; }
+        public ApiSdk.Models.PayloadComplexity? Complexity { get; set; }
         /// <summary>Identity of the user who created the attack simulation and training campaign payload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EmailIdentity? CreatedBy { get; set; }
+        public ApiSdk.Models.EmailIdentity? CreatedBy { get; set; }
 #nullable restore
 #else
-        public EmailIdentity CreatedBy { get; set; }
+        public ApiSdk.Models.EmailIdentity CreatedBy { get; set; }
 #endif
         /// <summary>Date and time when the attack simulation and training campaign payload. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -35,10 +35,10 @@ namespace ApiSdk.Models
         /// <summary>Additional details about the payload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PayloadDetail? Detail { get; set; }
+        public ApiSdk.Models.PayloadDetail? Detail { get; set; }
 #nullable restore
 #else
-        public PayloadDetail Detail { get; set; }
+        public ApiSdk.Models.PayloadDetail Detail { get; set; }
 #endif
         /// <summary>Display name of the attack simulation and training campaign payload. Supports $filter and $orderby.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -49,7 +49,7 @@ namespace ApiSdk.Models
         public string DisplayName { get; set; }
 #endif
         /// <summary>Industry of a payload. Possible values are: unknown, other, banking, businessServices, consumerServices, education, energy, construction, consulting, financialServices, government, hospitality, insurance, legal, courierServices, IT, healthcare, manufacturing, retail, telecom, realEstate, unknownFutureValue.</summary>
-        public PayloadIndustry? Industry { get; set; }
+        public ApiSdk.Models.PayloadIndustry? Industry { get; set; }
         /// <summary>Indicates whether the attack simulation and training campaign payload was created from an automation flow. Supports $filter and $orderby.</summary>
         public bool? IsAutomated { get; set; }
         /// <summary>Indicates whether the payload is controversial.</summary>
@@ -67,10 +67,10 @@ namespace ApiSdk.Models
         /// <summary>Identity of the user who most recently modified the attack simulation and training campaign payload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EmailIdentity? LastModifiedBy { get; set; }
+        public ApiSdk.Models.EmailIdentity? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public EmailIdentity LastModifiedBy { get; set; }
+        public ApiSdk.Models.EmailIdentity LastModifiedBy { get; set; }
 #endif
         /// <summary>Date and time when the attack simulation and training campaign payload was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
@@ -83,28 +83,28 @@ namespace ApiSdk.Models
         public List<string> PayloadTags { get; set; }
 #endif
         /// <summary>The payload delivery platform for a simulation. Possible values are: unknown, sms, email, teams, unknownFutureValue.</summary>
-        public PayloadDeliveryPlatform? Platform { get; set; }
+        public ApiSdk.Models.PayloadDeliveryPlatform? Platform { get; set; }
         /// <summary>Predicted probability for a payload to phish a targeted user.</summary>
         public double? PredictedCompromiseRate { get; set; }
         /// <summary>Attack type of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, social, cloud, endpoint, unknownFutureValue.</summary>
         public ApiSdk.Models.SimulationAttackType? SimulationAttackType { get; set; }
         /// <summary>The source property</summary>
-        public SimulationContentSource? Source { get; set; }
+        public ApiSdk.Models.SimulationContentSource? Source { get; set; }
         /// <summary>Simulation content status. Supports $filter and $orderby. Possible values are: unknown, draft, ready, archive, delete, unknownFutureValue.</summary>
-        public SimulationContentStatus? Status { get; set; }
+        public ApiSdk.Models.SimulationContentStatus? Status { get; set; }
         /// <summary>The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue, oAuthConsentGrant. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: oAuthConsentGrant. For more information on the types of social engineering attack techniques, see simulations.</summary>
-        public SimulationAttackTechnique? Technique { get; set; }
+        public ApiSdk.Models.SimulationAttackTechnique? Technique { get; set; }
         /// <summary>The theme of a payload. Possible values are: unknown, other, accountActivation, accountVerification, billing, cleanUpMail, controversial, documentReceived, expense, fax, financeReport, incomingMessages, invoice, itemReceived, loginAlert, mailReceived, password, payment, payroll, personalizedOffer, quarantine, remoteWork, reviewMessage, securityUpdate, serviceSuspended, signatureRequired, upgradeMailboxStorage, verifyMailbox, voicemail, advertisement, employeeEngagement, unknownFutureValue.</summary>
-        public PayloadTheme? Theme { get; set; }
+        public ApiSdk.Models.PayloadTheme? Theme { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Payload"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Payload"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Payload CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Payload CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Payload();
+            return new ApiSdk.Models.Payload();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -114,28 +114,28 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "brand", n => { Brand = n.GetEnumValue<PayloadBrand>(); } },
-                { "complexity", n => { Complexity = n.GetEnumValue<PayloadComplexity>(); } },
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
+                { "brand", n => { Brand = n.GetEnumValue<ApiSdk.Models.PayloadBrand>(); } },
+                { "complexity", n => { Complexity = n.GetEnumValue<ApiSdk.Models.PayloadComplexity>(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.EmailIdentity>(ApiSdk.Models.EmailIdentity.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "detail", n => { Detail = n.GetObjectValue<PayloadDetail>(PayloadDetail.CreateFromDiscriminatorValue); } },
+                { "detail", n => { Detail = n.GetObjectValue<ApiSdk.Models.PayloadDetail>(ApiSdk.Models.PayloadDetail.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "industry", n => { Industry = n.GetEnumValue<PayloadIndustry>(); } },
+                { "industry", n => { Industry = n.GetEnumValue<ApiSdk.Models.PayloadIndustry>(); } },
                 { "isAutomated", n => { IsAutomated = n.GetBoolValue(); } },
                 { "isControversial", n => { IsControversial = n.GetBoolValue(); } },
                 { "isCurrentEvent", n => { IsCurrentEvent = n.GetBoolValue(); } },
                 { "language", n => { Language = n.GetStringValue(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.EmailIdentity>(ApiSdk.Models.EmailIdentity.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "payloadTags", n => { PayloadTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "platform", n => { Platform = n.GetEnumValue<PayloadDeliveryPlatform>(); } },
+                { "platform", n => { Platform = n.GetEnumValue<ApiSdk.Models.PayloadDeliveryPlatform>(); } },
                 { "predictedCompromiseRate", n => { PredictedCompromiseRate = n.GetDoubleValue(); } },
-                { "simulationAttackType", n => { SimulationAttackType = n.GetEnumValue<SimulationAttackType>(); } },
-                { "source", n => { Source = n.GetEnumValue<SimulationContentSource>(); } },
-                { "status", n => { Status = n.GetEnumValue<SimulationContentStatus>(); } },
-                { "technique", n => { Technique = n.GetEnumValue<SimulationAttackTechnique>(); } },
-                { "theme", n => { Theme = n.GetEnumValue<PayloadTheme>(); } },
+                { "simulationAttackType", n => { SimulationAttackType = n.GetEnumValue<ApiSdk.Models.SimulationAttackType>(); } },
+                { "source", n => { Source = n.GetEnumValue<ApiSdk.Models.SimulationContentSource>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.SimulationContentStatus>(); } },
+                { "technique", n => { Technique = n.GetEnumValue<ApiSdk.Models.SimulationAttackTechnique>(); } },
+                { "theme", n => { Theme = n.GetEnumValue<ApiSdk.Models.PayloadTheme>(); } },
             };
         }
         /// <summary>
@@ -146,28 +146,28 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<PayloadBrand>("brand", Brand);
-            writer.WriteEnumValue<PayloadComplexity>("complexity", Complexity);
-            writer.WriteObjectValue<EmailIdentity>("createdBy", CreatedBy);
+            writer.WriteEnumValue<ApiSdk.Models.PayloadBrand>("brand", Brand);
+            writer.WriteEnumValue<ApiSdk.Models.PayloadComplexity>("complexity", Complexity);
+            writer.WriteObjectValue<ApiSdk.Models.EmailIdentity>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<PayloadDetail>("detail", Detail);
+            writer.WriteObjectValue<ApiSdk.Models.PayloadDetail>("detail", Detail);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<PayloadIndustry>("industry", Industry);
+            writer.WriteEnumValue<ApiSdk.Models.PayloadIndustry>("industry", Industry);
             writer.WriteBoolValue("isAutomated", IsAutomated);
             writer.WriteBoolValue("isControversial", IsControversial);
             writer.WriteBoolValue("isCurrentEvent", IsCurrentEvent);
             writer.WriteStringValue("language", Language);
-            writer.WriteObjectValue<EmailIdentity>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.EmailIdentity>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("payloadTags", PayloadTags);
-            writer.WriteEnumValue<PayloadDeliveryPlatform>("platform", Platform);
+            writer.WriteEnumValue<ApiSdk.Models.PayloadDeliveryPlatform>("platform", Platform);
             writer.WriteDoubleValue("predictedCompromiseRate", PredictedCompromiseRate);
-            writer.WriteEnumValue<SimulationAttackType>("simulationAttackType", SimulationAttackType);
-            writer.WriteEnumValue<SimulationContentSource>("source", Source);
-            writer.WriteEnumValue<SimulationContentStatus>("status", Status);
-            writer.WriteEnumValue<SimulationAttackTechnique>("technique", Technique);
-            writer.WriteEnumValue<PayloadTheme>("theme", Theme);
+            writer.WriteEnumValue<ApiSdk.Models.SimulationAttackType>("simulationAttackType", SimulationAttackType);
+            writer.WriteEnumValue<ApiSdk.Models.SimulationContentSource>("source", Source);
+            writer.WriteEnumValue<ApiSdk.Models.SimulationContentStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.SimulationAttackTechnique>("technique", Technique);
+            writer.WriteEnumValue<ApiSdk.Models.PayloadTheme>("theme", Theme);
         }
     }
 }

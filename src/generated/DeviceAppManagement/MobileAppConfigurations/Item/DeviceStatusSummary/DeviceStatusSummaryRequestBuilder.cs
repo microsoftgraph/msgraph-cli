@@ -141,7 +141,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ManagedDeviceMobileAppConfigurationDeviceSummary>(ManagedDeviceMobileAppConfigurationDeviceSummary.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceSummary>(ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceSummary.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -162,14 +162,14 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceStatusSummaryRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSummary.DeviceStatusSummaryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceStatusSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileAppConfigurations/{managedDeviceMobileAppConfiguration%2Did}/deviceStatusSummary{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceStatusSummaryRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSummary.DeviceStatusSummaryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeviceStatusSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileAppConfigurations/{managedDeviceMobileAppConfiguration%2Did}/deviceStatusSummary{?%24expand,%24select}", rawUrl)
@@ -201,11 +201,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceStatusSummaryRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSummary.DeviceStatusSummaryRequestBuilder.DeviceStatusSummaryRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceStatusSummaryRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSummary.DeviceStatusSummaryRequestBuilder.DeviceStatusSummaryRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -221,11 +221,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ManagedDeviceMobileAppConfigurationDeviceSummary body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceSummary body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ManagedDeviceMobileAppConfigurationDeviceSummary body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceSummary body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

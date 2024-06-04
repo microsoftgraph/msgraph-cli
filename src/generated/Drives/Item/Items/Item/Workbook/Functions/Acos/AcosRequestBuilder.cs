@@ -57,7 +57,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AcosPostRequestBody>(AcosPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos.AcosPostRequestBody>(ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos.AcosPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -79,14 +79,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AcosRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos.AcosRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AcosRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/acos", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AcosRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos.AcosRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AcosRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/acos", rawUrl)
@@ -100,11 +100,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AcosPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos.AcosPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(AcosPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos.AcosPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

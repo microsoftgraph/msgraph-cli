@@ -49,14 +49,14 @@ namespace ApiSdk.Contacts.Item.RetryServiceProvisioning
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RetryServiceProvisioningRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Contacts.Item.RetryServiceProvisioning.RetryServiceProvisioningRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RetryServiceProvisioningRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/retryServiceProvisioning", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RetryServiceProvisioningRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Contacts.Item.RetryServiceProvisioning.RetryServiceProvisioningRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RetryServiceProvisioningRequestBuilder(string rawUrl) : base("{+baseurl}/contacts/{orgContact%2Did}/retryServiceProvisioning", rawUrl)

@@ -15,7 +15,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead
         /// <summary>The value property</summary>
         public bool? Value { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MarkReadPostResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead.MarkReadPostResponse"/> and sets the default values.
         /// </summary>
         public MarkReadPostResponse()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MarkReadPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead.MarkReadPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MarkReadPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead.MarkReadPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MarkReadPostResponse();
+            return new ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead.MarkReadPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -54,7 +54,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.Accept
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AcceptPostRequestBody>(AcceptPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.Events.Item.Instances.Item.Accept.AcceptPostRequestBody>(ApiSdk.Groups.Item.Events.Item.Instances.Item.Accept.AcceptPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -75,14 +75,14 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.Accept
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AcceptRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Events.Item.Instances.Item.Accept.AcceptRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AcceptRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/events/{event%2Did}/instances/{event%2Did1}/accept", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AcceptRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Events.Item.Instances.Item.Accept.AcceptRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AcceptRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/events/{event%2Did}/instances/{event%2Did1}/accept", rawUrl)
@@ -96,11 +96,11 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.Accept
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AcceptPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Groups.Item.Events.Item.Instances.Item.Accept.AcceptPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(AcceptPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Groups.Item.Events.Item.Instances.Item.Accept.AcceptPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

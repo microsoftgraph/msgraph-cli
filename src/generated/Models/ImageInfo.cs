@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ImageInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ImageInfo"/> and sets the default values.
         /// </summary>
         public ImageInfo()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ImageInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ImageInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ImageInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ImageInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ImageInfo();
+            return new ApiSdk.Models.ImageInfo();
         }
         /// <summary>
         /// The deserialization information for the current model

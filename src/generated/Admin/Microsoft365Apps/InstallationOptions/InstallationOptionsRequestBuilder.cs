@@ -124,7 +124,7 @@ namespace ApiSdk.Admin.Microsoft365Apps.InstallationOptions
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<M365AppsInstallationOptions>(M365AppsInstallationOptions.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.M365AppsInstallationOptions>(ApiSdk.Models.M365AppsInstallationOptions.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -144,14 +144,14 @@ namespace ApiSdk.Admin.Microsoft365Apps.InstallationOptions
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="InstallationOptionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.Microsoft365Apps.InstallationOptions.InstallationOptionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public InstallationOptionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/microsoft365Apps/installationOptions{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="InstallationOptionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.Microsoft365Apps.InstallationOptions.InstallationOptionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public InstallationOptionsRequestBuilder(string rawUrl) : base("{+baseurl}/admin/microsoft365Apps/installationOptions{?%24expand,%24select}", rawUrl)
@@ -183,11 +183,11 @@ namespace ApiSdk.Admin.Microsoft365Apps.InstallationOptions
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InstallationOptionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.Microsoft365Apps.InstallationOptions.InstallationOptionsRequestBuilder.InstallationOptionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InstallationOptionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.Microsoft365Apps.InstallationOptions.InstallationOptionsRequestBuilder.InstallationOptionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -203,11 +203,11 @@ namespace ApiSdk.Admin.Microsoft365Apps.InstallationOptions
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(M365AppsInstallationOptions body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.M365AppsInstallationOptions body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(M365AppsInstallationOptions body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.M365AppsInstallationOptions body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

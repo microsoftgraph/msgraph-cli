@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class IoTDeviceEvidence : AlertEvidence, IParsable
+    public class IoTDeviceEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The deviceId property</summary>
@@ -51,14 +51,14 @@ namespace ApiSdk.Models.Security
         public string DeviceType { get; set; }
 #endif
         /// <summary>The importance property</summary>
-        public IoTDeviceImportanceType? Importance { get; set; }
+        public ApiSdk.Models.Security.IoTDeviceImportanceType? Importance { get; set; }
         /// <summary>The ioTHub property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AzureResourceEvidence? IoTHub { get; set; }
+        public ApiSdk.Models.Security.AzureResourceEvidence? IoTHub { get; set; }
 #nullable restore
 #else
-        public AzureResourceEvidence IoTHub { get; set; }
+        public ApiSdk.Models.Security.AzureResourceEvidence IoTHub { get; set; }
 #endif
         /// <summary>The ioTSecurityAgentId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,10 +71,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The ipAddress property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IpEvidence? IpAddress { get; set; }
+        public ApiSdk.Models.Security.IpEvidence? IpAddress { get; set; }
 #nullable restore
 #else
-        public IpEvidence IpAddress { get; set; }
+        public ApiSdk.Models.Security.IpEvidence IpAddress { get; set; }
 #endif
         /// <summary>The isAuthorized property</summary>
         public bool? IsAuthorized { get; set; }
@@ -109,10 +109,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The nics property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public NicEvidence? Nics { get; set; }
+        public ApiSdk.Models.Security.NicEvidence? Nics { get; set; }
 #nullable restore
 #else
-        public NicEvidence Nics { get; set; }
+        public ApiSdk.Models.Security.NicEvidence Nics { get; set; }
 #endif
         /// <summary>The operatingSystem property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -181,10 +181,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The sourceRef property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UrlEvidence? SourceRef { get; set; }
+        public ApiSdk.Models.Security.UrlEvidence? SourceRef { get; set; }
 #nullable restore
 #else
-        public UrlEvidence SourceRef { get; set; }
+        public ApiSdk.Models.Security.UrlEvidence SourceRef { get; set; }
 #endif
         /// <summary>The zone property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -195,7 +195,7 @@ namespace ApiSdk.Models.Security
         public string Zone { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IoTDeviceEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.IoTDeviceEvidence"/> and sets the default values.
         /// </summary>
         public IoTDeviceEvidence() : base()
         {
@@ -204,12 +204,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IoTDeviceEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.IoTDeviceEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IoTDeviceEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.IoTDeviceEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IoTDeviceEvidence();
+            return new ApiSdk.Models.Security.IoTDeviceEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -224,17 +224,17 @@ namespace ApiSdk.Models.Security
                 { "devicePageLink", n => { DevicePageLink = n.GetStringValue(); } },
                 { "deviceSubType", n => { DeviceSubType = n.GetStringValue(); } },
                 { "deviceType", n => { DeviceType = n.GetStringValue(); } },
-                { "importance", n => { Importance = n.GetEnumValue<IoTDeviceImportanceType>(); } },
-                { "ioTHub", n => { IoTHub = n.GetObjectValue<AzureResourceEvidence>(AzureResourceEvidence.CreateFromDiscriminatorValue); } },
+                { "importance", n => { Importance = n.GetEnumValue<ApiSdk.Models.Security.IoTDeviceImportanceType>(); } },
+                { "ioTHub", n => { IoTHub = n.GetObjectValue<ApiSdk.Models.Security.AzureResourceEvidence>(ApiSdk.Models.Security.AzureResourceEvidence.CreateFromDiscriminatorValue); } },
                 { "ioTSecurityAgentId", n => { IoTSecurityAgentId = n.GetStringValue(); } },
-                { "ipAddress", n => { IpAddress = n.GetObjectValue<IpEvidence>(IpEvidence.CreateFromDiscriminatorValue); } },
+                { "ipAddress", n => { IpAddress = n.GetObjectValue<ApiSdk.Models.Security.IpEvidence>(ApiSdk.Models.Security.IpEvidence.CreateFromDiscriminatorValue); } },
                 { "isAuthorized", n => { IsAuthorized = n.GetBoolValue(); } },
                 { "isProgramming", n => { IsProgramming = n.GetBoolValue(); } },
                 { "isScanner", n => { IsScanner = n.GetBoolValue(); } },
                 { "macAddress", n => { MacAddress = n.GetStringValue(); } },
                 { "manufacturer", n => { Manufacturer = n.GetStringValue(); } },
                 { "model", n => { Model = n.GetStringValue(); } },
-                { "nics", n => { Nics = n.GetObjectValue<NicEvidence>(NicEvidence.CreateFromDiscriminatorValue); } },
+                { "nics", n => { Nics = n.GetObjectValue<ApiSdk.Models.Security.NicEvidence>(ApiSdk.Models.Security.NicEvidence.CreateFromDiscriminatorValue); } },
                 { "operatingSystem", n => { OperatingSystem = n.GetStringValue(); } },
                 { "owners", n => { Owners = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "protocols", n => { Protocols = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
@@ -243,7 +243,7 @@ namespace ApiSdk.Models.Security
                 { "serialNumber", n => { SerialNumber = n.GetStringValue(); } },
                 { "site", n => { Site = n.GetStringValue(); } },
                 { "source", n => { Source = n.GetStringValue(); } },
-                { "sourceRef", n => { SourceRef = n.GetObjectValue<UrlEvidence>(UrlEvidence.CreateFromDiscriminatorValue); } },
+                { "sourceRef", n => { SourceRef = n.GetObjectValue<ApiSdk.Models.Security.UrlEvidence>(ApiSdk.Models.Security.UrlEvidence.CreateFromDiscriminatorValue); } },
                 { "zone", n => { Zone = n.GetStringValue(); } },
             };
         }
@@ -260,17 +260,17 @@ namespace ApiSdk.Models.Security
             writer.WriteStringValue("devicePageLink", DevicePageLink);
             writer.WriteStringValue("deviceSubType", DeviceSubType);
             writer.WriteStringValue("deviceType", DeviceType);
-            writer.WriteEnumValue<IoTDeviceImportanceType>("importance", Importance);
-            writer.WriteObjectValue<AzureResourceEvidence>("ioTHub", IoTHub);
+            writer.WriteEnumValue<ApiSdk.Models.Security.IoTDeviceImportanceType>("importance", Importance);
+            writer.WriteObjectValue<ApiSdk.Models.Security.AzureResourceEvidence>("ioTHub", IoTHub);
             writer.WriteStringValue("ioTSecurityAgentId", IoTSecurityAgentId);
-            writer.WriteObjectValue<IpEvidence>("ipAddress", IpAddress);
+            writer.WriteObjectValue<ApiSdk.Models.Security.IpEvidence>("ipAddress", IpAddress);
             writer.WriteBoolValue("isAuthorized", IsAuthorized);
             writer.WriteBoolValue("isProgramming", IsProgramming);
             writer.WriteBoolValue("isScanner", IsScanner);
             writer.WriteStringValue("macAddress", MacAddress);
             writer.WriteStringValue("manufacturer", Manufacturer);
             writer.WriteStringValue("model", Model);
-            writer.WriteObjectValue<NicEvidence>("nics", Nics);
+            writer.WriteObjectValue<ApiSdk.Models.Security.NicEvidence>("nics", Nics);
             writer.WriteStringValue("operatingSystem", OperatingSystem);
             writer.WriteCollectionOfPrimitiveValues<string>("owners", Owners);
             writer.WriteCollectionOfPrimitiveValues<string>("protocols", Protocols);
@@ -279,7 +279,7 @@ namespace ApiSdk.Models.Security
             writer.WriteStringValue("serialNumber", SerialNumber);
             writer.WriteStringValue("site", Site);
             writer.WriteStringValue("source", Source);
-            writer.WriteObjectValue<UrlEvidence>("sourceRef", SourceRef);
+            writer.WriteObjectValue<ApiSdk.Models.Security.UrlEvidence>("sourceRef", SourceRef);
             writer.WriteStringValue("zone", Zone);
         }
     }

@@ -29,9 +29,9 @@ namespace ApiSdk.Models.Security
         public string OdataType { get; set; }
 #endif
         /// <summary>The status of the distribution. The possible values are: pending, error, success, notAvaliable.</summary>
-        public EventStatusType? Status { get; set; }
+        public ApiSdk.Models.Security.EventStatusType? Status { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="RetentionEventStatus"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.RetentionEventStatus"/> and sets the default values.
         /// </summary>
         public RetentionEventStatus()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RetentionEventStatus"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.RetentionEventStatus"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RetentionEventStatus CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.RetentionEventStatus CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RetentionEventStatus();
+            return new ApiSdk.Models.Security.RetentionEventStatus();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,7 +57,7 @@ namespace ApiSdk.Models.Security
             {
                 { "error", n => { Error = n.GetObjectValue<ApiSdk.Models.PublicError>(ApiSdk.Models.PublicError.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<EventStatusType>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.Security.EventStatusType>(); } },
             };
         }
         /// <summary>
@@ -69,7 +69,7 @@ namespace ApiSdk.Models.Security
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<ApiSdk.Models.PublicError>("error", Error);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<EventStatusType>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.Security.EventStatusType>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

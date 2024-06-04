@@ -151,14 +151,14 @@ namespace ApiSdk.Organization.Item.Branding.SquareLogoDark
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SquareLogoDarkRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.SquareLogoDark.SquareLogoDarkRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SquareLogoDarkRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/squareLogoDark", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SquareLogoDarkRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.SquareLogoDark.SquareLogoDarkRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SquareLogoDarkRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/squareLogoDark", rawUrl)

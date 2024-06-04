@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Movies rating labels in United States</summary>
-        public RatingUnitedStatesMoviesType? MovieRating { get; set; }
+        public ApiSdk.Models.RatingUnitedStatesMoviesType? MovieRating { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -23,9 +23,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>TV content rating labels in United States</summary>
-        public RatingUnitedStatesTelevisionType? TvRating { get; set; }
+        public ApiSdk.Models.RatingUnitedStatesTelevisionType? TvRating { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MediaContentRatingUnitedStates"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MediaContentRatingUnitedStates"/> and sets the default values.
         /// </summary>
         public MediaContentRatingUnitedStates()
         {
@@ -34,12 +34,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MediaContentRatingUnitedStates"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MediaContentRatingUnitedStates"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MediaContentRatingUnitedStates CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MediaContentRatingUnitedStates CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MediaContentRatingUnitedStates();
+            return new ApiSdk.Models.MediaContentRatingUnitedStates();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,9 +49,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "movieRating", n => { MovieRating = n.GetEnumValue<RatingUnitedStatesMoviesType>(); } },
+                { "movieRating", n => { MovieRating = n.GetEnumValue<ApiSdk.Models.RatingUnitedStatesMoviesType>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "tvRating", n => { TvRating = n.GetEnumValue<RatingUnitedStatesTelevisionType>(); } },
+                { "tvRating", n => { TvRating = n.GetEnumValue<ApiSdk.Models.RatingUnitedStatesTelevisionType>(); } },
             };
         }
         /// <summary>
@@ -61,9 +61,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<RatingUnitedStatesMoviesType>("movieRating", MovieRating);
+            writer.WriteEnumValue<ApiSdk.Models.RatingUnitedStatesMoviesType>("movieRating", MovieRating);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<RatingUnitedStatesTelevisionType>("tvRating", TvRating);
+            writer.WriteEnumValue<ApiSdk.Models.RatingUnitedStatesTelevisionType>("tvRating", TvRating);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

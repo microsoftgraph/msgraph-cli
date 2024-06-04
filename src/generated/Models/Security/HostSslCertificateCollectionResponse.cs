@@ -13,20 +13,20 @@ namespace ApiSdk.Models.Security
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostSslCertificate>? Value { get; set; }
+        public List<ApiSdk.Models.Security.HostSslCertificate>? Value { get; set; }
 #nullable restore
 #else
-        public List<HostSslCertificate> Value { get; set; }
+        public List<ApiSdk.Models.Security.HostSslCertificate> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HostSslCertificateCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.HostSslCertificateCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new HostSslCertificateCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.HostSslCertificateCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HostSslCertificateCollectionResponse();
+            return new ApiSdk.Models.Security.HostSslCertificateCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<HostSslCertificate>(HostSslCertificate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostSslCertificate>(ApiSdk.Models.Security.HostSslCertificate.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<HostSslCertificate>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostSslCertificate>("value", Value);
         }
     }
 }

@@ -58,7 +58,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.ParseEx
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ParseExpressionPostRequestBody>(ParseExpressionPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.ParseExpression.ParseExpressionPostRequestBody>(ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.ParseExpression.ParseExpressionPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -80,14 +80,14 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.ParseEx
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ParseExpressionRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.ParseExpression.ParseExpressionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ParseExpressionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/{synchronizationJob%2Did}/schema/parseExpression", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ParseExpressionRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.ParseExpression.ParseExpressionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ParseExpressionRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/{synchronizationJob%2Did}/schema/parseExpression", rawUrl)
@@ -101,11 +101,11 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.ParseEx
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ParseExpressionPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.ParseExpression.ParseExpressionPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ParseExpressionPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.ParseExpression.ParseExpressionPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

@@ -95,13 +95,13 @@ namespace ApiSdk.Models
         /// <summary>List of role scope tags.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CloudPcUserRoleScopeTagInfo>? UserRoleScopeTags { get; set; }
+        public List<ApiSdk.Models.CloudPcUserRoleScopeTagInfo>? UserRoleScopeTags { get; set; }
 #nullable restore
 #else
-        public List<CloudPcUserRoleScopeTagInfo> UserRoleScopeTags { get; set; }
+        public List<ApiSdk.Models.CloudPcUserRoleScopeTagInfo> UserRoleScopeTags { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CloudPcAuditActor"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CloudPcAuditActor"/> and sets the default values.
         /// </summary>
         public CloudPcAuditActor()
         {
@@ -110,12 +110,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudPcAuditActor"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudPcAuditActor"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CloudPcAuditActor CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CloudPcAuditActor CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudPcAuditActor();
+            return new ApiSdk.Models.CloudPcAuditActor();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -135,7 +135,7 @@ namespace ApiSdk.Models
                 { "userId", n => { UserId = n.GetStringValue(); } },
                 { "userPermissions", n => { UserPermissions = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
-                { "userRoleScopeTags", n => { UserRoleScopeTags = n.GetCollectionOfObjectValues<CloudPcUserRoleScopeTagInfo>(CloudPcUserRoleScopeTagInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "userRoleScopeTags", n => { UserRoleScopeTags = n.GetCollectionOfObjectValues<ApiSdk.Models.CloudPcUserRoleScopeTagInfo>(ApiSdk.Models.CloudPcUserRoleScopeTagInfo.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -155,7 +155,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("userId", UserId);
             writer.WriteCollectionOfPrimitiveValues<string>("userPermissions", UserPermissions);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);
-            writer.WriteCollectionOfObjectValues<CloudPcUserRoleScopeTagInfo>("userRoleScopeTags", UserRoleScopeTags);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CloudPcUserRoleScopeTagInfo>("userRoleScopeTags", UserRoleScopeTags);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

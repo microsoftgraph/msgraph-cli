@@ -13,20 +13,20 @@ namespace ApiSdk.Models.Partners.Billing
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Operation>? Value { get; set; }
+        public List<ApiSdk.Models.Partners.Billing.Operation>? Value { get; set; }
 #nullable restore
 #else
-        public List<Operation> Value { get; set; }
+        public List<ApiSdk.Models.Partners.Billing.Operation> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OperationCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Partners.Billing.OperationCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OperationCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Partners.Billing.OperationCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OperationCollectionResponse();
+            return new ApiSdk.Models.Partners.Billing.OperationCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Partners.Billing
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<Operation>(Operation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Partners.Billing.Operation>(ApiSdk.Models.Partners.Billing.Operation.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Partners.Billing
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Operation>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Partners.Billing.Operation>("value", Value);
         }
     }
 }

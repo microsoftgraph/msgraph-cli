@@ -24,10 +24,10 @@ namespace ApiSdk.Models
         /// <summary>A list of apps, folders, and web clips to appear on a page. This collection can contain a maximum of 500 elements.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<IosHomeScreenItem>? Icons { get; set; }
+        public List<ApiSdk.Models.IosHomeScreenItem>? Icons { get; set; }
 #nullable restore
 #else
-        public List<IosHomeScreenItem> Icons { get; set; }
+        public List<ApiSdk.Models.IosHomeScreenItem> Icons { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -38,7 +38,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IosHomeScreenPage"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IosHomeScreenPage"/> and sets the default values.
         /// </summary>
         public IosHomeScreenPage()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosHomeScreenPage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosHomeScreenPage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IosHomeScreenPage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IosHomeScreenPage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IosHomeScreenPage();
+            return new ApiSdk.Models.IosHomeScreenPage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "icons", n => { Icons = n.GetCollectionOfObjectValues<IosHomeScreenItem>(IosHomeScreenItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "icons", n => { Icons = n.GetCollectionOfObjectValues<ApiSdk.Models.IosHomeScreenItem>(ApiSdk.Models.IosHomeScreenItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -75,7 +75,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<IosHomeScreenItem>("icons", Icons);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IosHomeScreenItem>("icons", Icons);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

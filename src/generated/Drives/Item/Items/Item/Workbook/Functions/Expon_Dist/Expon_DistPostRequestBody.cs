@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Expon_Dist
         /// <summary>The cumulative property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Cumulative { get; set; }
+        public ApiSdk.Models.Json? Cumulative { get; set; }
 #nullable restore
 #else
-        public Json Cumulative { get; set; }
+        public ApiSdk.Models.Json Cumulative { get; set; }
 #endif
         /// <summary>The lambda property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Lambda { get; set; }
+        public ApiSdk.Models.Json? Lambda { get; set; }
 #nullable restore
 #else
-        public Json Lambda { get; set; }
+        public ApiSdk.Models.Json Lambda { get; set; }
 #endif
         /// <summary>The x property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? X { get; set; }
+        public ApiSdk.Models.Json? X { get; set; }
 #nullable restore
 #else
-        public Json X { get; set; }
+        public ApiSdk.Models.Json X { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Expon_DistPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Expon_Dist.Expon_DistPostRequestBody"/> and sets the default values.
         /// </summary>
         public Expon_DistPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Expon_Dist
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Expon_DistPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Expon_Dist.Expon_DistPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Expon_DistPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Expon_Dist.Expon_DistPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Expon_DistPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Expon_Dist.Expon_DistPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Expon_Dist
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "cumulative", n => { Cumulative = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "lambda", n => { Lambda = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "x", n => { X = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "cumulative", n => { Cumulative = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "lambda", n => { Lambda = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "x", n => { X = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Expon_Dist
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("cumulative", Cumulative);
-            writer.WriteObjectValue<Json>("lambda", Lambda);
-            writer.WriteObjectValue<Json>("x", X);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("cumulative", Cumulative);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("lambda", Lambda);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("x", X);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

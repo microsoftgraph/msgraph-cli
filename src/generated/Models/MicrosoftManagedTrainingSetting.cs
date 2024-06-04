@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class MicrosoftManagedTrainingSetting : TrainingSetting, IParsable
+    public class MicrosoftManagedTrainingSetting : ApiSdk.Models.TrainingSetting, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The completion date for the training. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
@@ -15,7 +15,7 @@ namespace ApiSdk.Models
         /// <summary>The training completion duration that needs to be provided before scheduling the training. The possible values are: week, fortnite, month, unknownFutureValue.</summary>
         public ApiSdk.Models.TrainingCompletionDuration? TrainingCompletionDuration { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftManagedTrainingSetting"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MicrosoftManagedTrainingSetting"/> and sets the default values.
         /// </summary>
         public MicrosoftManagedTrainingSetting() : base()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MicrosoftManagedTrainingSetting"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MicrosoftManagedTrainingSetting"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MicrosoftManagedTrainingSetting CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MicrosoftManagedTrainingSetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MicrosoftManagedTrainingSetting();
+            return new ApiSdk.Models.MicrosoftManagedTrainingSetting();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,7 +40,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "completionDateTime", n => { CompletionDateTime = n.GetDateTimeOffsetValue(); } },
-                { "trainingCompletionDuration", n => { TrainingCompletionDuration = n.GetEnumValue<TrainingCompletionDuration>(); } },
+                { "trainingCompletionDuration", n => { TrainingCompletionDuration = n.GetEnumValue<ApiSdk.Models.TrainingCompletionDuration>(); } },
             };
         }
         /// <summary>
@@ -52,7 +52,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("completionDateTime", CompletionDateTime);
-            writer.WriteEnumValue<TrainingCompletionDuration>("trainingCompletionDuration", TrainingCompletionDuration);
+            writer.WriteEnumValue<ApiSdk.Models.TrainingCompletionDuration>("trainingCompletionDuration", TrainingCompletionDuration);
         }
     }
 }

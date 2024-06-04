@@ -72,14 +72,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.IsPublished
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="IsPublishedRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.IsPublished.IsPublishedRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IsPublishedRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/isPublished()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="IsPublishedRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.IsPublished.IsPublishedRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IsPublishedRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/isPublished()", rawUrl)

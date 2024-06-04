@@ -16,21 +16,21 @@ namespace ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationC
         /// <summary>The authenticationConfiguration property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CustomExtensionAuthenticationConfiguration? AuthenticationConfiguration { get; set; }
+        public ApiSdk.Models.CustomExtensionAuthenticationConfiguration? AuthenticationConfiguration { get; set; }
 #nullable restore
 #else
-        public CustomExtensionAuthenticationConfiguration AuthenticationConfiguration { get; set; }
+        public ApiSdk.Models.CustomExtensionAuthenticationConfiguration AuthenticationConfiguration { get; set; }
 #endif
         /// <summary>The endpointConfiguration property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CustomExtensionEndpointConfiguration? EndpointConfiguration { get; set; }
+        public ApiSdk.Models.CustomExtensionEndpointConfiguration? EndpointConfiguration { get; set; }
 #nullable restore
 #else
-        public CustomExtensionEndpointConfiguration EndpointConfiguration { get; set; }
+        public ApiSdk.Models.CustomExtensionEndpointConfiguration EndpointConfiguration { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ValidateAuthenticationConfigurationPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationConfiguration.ValidateAuthenticationConfigurationPostRequestBody"/> and sets the default values.
         /// </summary>
         public ValidateAuthenticationConfigurationPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationC
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ValidateAuthenticationConfigurationPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationConfiguration.ValidateAuthenticationConfigurationPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ValidateAuthenticationConfigurationPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationConfiguration.ValidateAuthenticationConfigurationPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ValidateAuthenticationConfigurationPostRequestBody();
+            return new ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationConfiguration.ValidateAuthenticationConfigurationPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationC
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "authenticationConfiguration", n => { AuthenticationConfiguration = n.GetObjectValue<CustomExtensionAuthenticationConfiguration>(CustomExtensionAuthenticationConfiguration.CreateFromDiscriminatorValue); } },
-                { "endpointConfiguration", n => { EndpointConfiguration = n.GetObjectValue<CustomExtensionEndpointConfiguration>(CustomExtensionEndpointConfiguration.CreateFromDiscriminatorValue); } },
+                { "authenticationConfiguration", n => { AuthenticationConfiguration = n.GetObjectValue<ApiSdk.Models.CustomExtensionAuthenticationConfiguration>(ApiSdk.Models.CustomExtensionAuthenticationConfiguration.CreateFromDiscriminatorValue); } },
+                { "endpointConfiguration", n => { EndpointConfiguration = n.GetObjectValue<ApiSdk.Models.CustomExtensionEndpointConfiguration>(ApiSdk.Models.CustomExtensionEndpointConfiguration.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationC
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<CustomExtensionAuthenticationConfiguration>("authenticationConfiguration", AuthenticationConfiguration);
-            writer.WriteObjectValue<CustomExtensionEndpointConfiguration>("endpointConfiguration", EndpointConfiguration);
+            writer.WriteObjectValue<ApiSdk.Models.CustomExtensionAuthenticationConfiguration>("authenticationConfiguration", AuthenticationConfiguration);
+            writer.WriteObjectValue<ApiSdk.Models.CustomExtensionEndpointConfiguration>("endpointConfiguration", EndpointConfiguration);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

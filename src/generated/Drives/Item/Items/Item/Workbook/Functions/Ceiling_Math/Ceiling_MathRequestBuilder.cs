@@ -57,7 +57,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Ceiling_MathPostRequestBody>(Ceiling_MathPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math.Ceiling_MathPostRequestBody>(ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math.Ceiling_MathPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -79,14 +79,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="Ceiling_MathRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math.Ceiling_MathRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public Ceiling_MathRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/ceiling_Math", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="Ceiling_MathRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math.Ceiling_MathRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public Ceiling_MathRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/ceiling_Math", rawUrl)
@@ -100,11 +100,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Ceiling_MathPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math.Ceiling_MathPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Ceiling_MathPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math.Ceiling_MathPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

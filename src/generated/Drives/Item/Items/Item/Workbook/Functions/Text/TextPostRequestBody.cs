@@ -16,21 +16,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Text
         /// <summary>The formatText property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? FormatText { get; set; }
+        public ApiSdk.Models.Json? FormatText { get; set; }
 #nullable restore
 #else
-        public Json FormatText { get; set; }
+        public ApiSdk.Models.Json FormatText { get; set; }
 #endif
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Value { get; set; }
+        public ApiSdk.Models.Json? Value { get; set; }
 #nullable restore
 #else
-        public Json Value { get; set; }
+        public ApiSdk.Models.Json Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TextPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Text.TextPostRequestBody"/> and sets the default values.
         /// </summary>
         public TextPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Text
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TextPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Text.TextPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TextPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Text.TextPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TextPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Text.TextPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Text
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "formatText", n => { FormatText = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "value", n => { Value = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "formatText", n => { FormatText = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "value", n => { Value = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Text
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("formatText", FormatText);
-            writer.WriteObjectValue<Json>("value", Value);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("formatText", FormatText);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

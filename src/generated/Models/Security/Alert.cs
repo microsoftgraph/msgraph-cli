@@ -21,10 +21,10 @@ namespace ApiSdk.Models.Security
         /// <summary>A collection of other alert properties, including user-defined properties. Any custom details defined in the alert, and any dynamic content in the alert details, are stored here.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Dictionary? AdditionalDataProperty { get; set; }
+        public ApiSdk.Models.Security.Dictionary? AdditionalDataProperty { get; set; }
 #nullable restore
 #else
-        public Dictionary AdditionalDataProperty { get; set; }
+        public ApiSdk.Models.Security.Dictionary AdditionalDataProperty { get; set; }
 #endif
         /// <summary>The ID of the policy that generated the alert, and populated when there is a specific policy that generated the alert, whether configured by a customer or a built-in policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -59,14 +59,14 @@ namespace ApiSdk.Models.Security
         public string Category { get; set; }
 #endif
         /// <summary>Specifies whether the alert represents a true threat. Possible values are: unknown, falsePositive, truePositive, informationalExpectedActivity, unknownFutureValue.</summary>
-        public AlertClassification? Classification { get; set; }
+        public ApiSdk.Models.Security.AlertClassification? Classification { get; set; }
         /// <summary>Array of comments created by the Security Operations (SecOps) team during the alert management process.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AlertComment>? Comments { get; set; }
+        public List<ApiSdk.Models.Security.AlertComment>? Comments { get; set; }
 #nullable restore
 #else
-        public List<AlertComment> Comments { get; set; }
+        public List<ApiSdk.Models.Security.AlertComment> Comments { get; set; }
 #endif
         /// <summary>Time when Microsoft 365 Defender created the alert.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -89,14 +89,14 @@ namespace ApiSdk.Models.Security
         public string DetectorId { get; set; }
 #endif
         /// <summary>Specifies the result of the investigation, whether the alert represents a true attack and if so, the nature of the attack. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.</summary>
-        public AlertDetermination? Determination { get; set; }
+        public ApiSdk.Models.Security.AlertDetermination? Determination { get; set; }
         /// <summary>Collection of evidence related to the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AlertEvidence>? Evidence { get; set; }
+        public List<ApiSdk.Models.Security.AlertEvidence>? Evidence { get; set; }
 #nullable restore
 #else
-        public List<AlertEvidence> Evidence { get; set; }
+        public List<ApiSdk.Models.Security.AlertEvidence> Evidence { get; set; }
 #endif
         /// <summary>The earliest activity associated with the alert.</summary>
         public DateTimeOffset? FirstActivityDateTime { get; set; }
@@ -157,9 +157,9 @@ namespace ApiSdk.Models.Security
         /// <summary>The serviceSource property</summary>
         public ApiSdk.Models.Security.ServiceSource? ServiceSource { get; set; }
         /// <summary>The severity property</summary>
-        public AlertSeverity? Severity { get; set; }
+        public ApiSdk.Models.Security.AlertSeverity? Severity { get; set; }
         /// <summary>The status property</summary>
-        public AlertStatus? Status { get; set; }
+        public ApiSdk.Models.Security.AlertStatus? Status { get; set; }
         /// <summary>The system tags associated with the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -203,12 +203,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Alert"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.Alert"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Alert CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.Alert CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Alert();
+            return new ApiSdk.Models.Security.Alert();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -219,19 +219,19 @@ namespace ApiSdk.Models.Security
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "actorDisplayName", n => { ActorDisplayName = n.GetStringValue(); } },
-                { "additionalData", n => { AdditionalDataProperty = n.GetObjectValue<Dictionary>(Dictionary.CreateFromDiscriminatorValue); } },
+                { "additionalData", n => { AdditionalDataProperty = n.GetObjectValue<ApiSdk.Models.Security.Dictionary>(ApiSdk.Models.Security.Dictionary.CreateFromDiscriminatorValue); } },
                 { "alertPolicyId", n => { AlertPolicyId = n.GetStringValue(); } },
                 { "alertWebUrl", n => { AlertWebUrl = n.GetStringValue(); } },
                 { "assignedTo", n => { AssignedTo = n.GetStringValue(); } },
                 { "category", n => { Category = n.GetStringValue(); } },
-                { "classification", n => { Classification = n.GetEnumValue<AlertClassification>(); } },
-                { "comments", n => { Comments = n.GetCollectionOfObjectValues<AlertComment>(AlertComment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "classification", n => { Classification = n.GetEnumValue<ApiSdk.Models.Security.AlertClassification>(); } },
+                { "comments", n => { Comments = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.AlertComment>(ApiSdk.Models.Security.AlertComment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "detectionSource", n => { DetectionSource = n.GetEnumValue<DetectionSource>(); } },
+                { "detectionSource", n => { DetectionSource = n.GetEnumValue<ApiSdk.Models.Security.DetectionSource>(); } },
                 { "detectorId", n => { DetectorId = n.GetStringValue(); } },
-                { "determination", n => { Determination = n.GetEnumValue<AlertDetermination>(); } },
-                { "evidence", n => { Evidence = n.GetCollectionOfObjectValues<AlertEvidence>(AlertEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "determination", n => { Determination = n.GetEnumValue<ApiSdk.Models.Security.AlertDetermination>(); } },
+                { "evidence", n => { Evidence = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.AlertEvidence>(ApiSdk.Models.Security.AlertEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "firstActivityDateTime", n => { FirstActivityDateTime = n.GetDateTimeOffsetValue(); } },
                 { "incidentId", n => { IncidentId = n.GetStringValue(); } },
                 { "incidentWebUrl", n => { IncidentWebUrl = n.GetStringValue(); } },
@@ -242,9 +242,9 @@ namespace ApiSdk.Models.Security
                 { "providerAlertId", n => { ProviderAlertId = n.GetStringValue(); } },
                 { "recommendedActions", n => { RecommendedActions = n.GetStringValue(); } },
                 { "resolvedDateTime", n => { ResolvedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "serviceSource", n => { ServiceSource = n.GetEnumValue<ServiceSource>(); } },
-                { "severity", n => { Severity = n.GetEnumValue<AlertSeverity>(); } },
-                { "status", n => { Status = n.GetEnumValue<AlertStatus>(); } },
+                { "serviceSource", n => { ServiceSource = n.GetEnumValue<ApiSdk.Models.Security.ServiceSource>(); } },
+                { "severity", n => { Severity = n.GetEnumValue<ApiSdk.Models.Security.AlertSeverity>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.Security.AlertStatus>(); } },
                 { "systemTags", n => { SystemTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "tenantId", n => { TenantId = n.GetStringValue(); } },
                 { "threatDisplayName", n => { ThreatDisplayName = n.GetStringValue(); } },
@@ -261,19 +261,19 @@ namespace ApiSdk.Models.Security
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("actorDisplayName", ActorDisplayName);
-            writer.WriteObjectValue<Dictionary>("additionalData", AdditionalDataProperty);
+            writer.WriteObjectValue<ApiSdk.Models.Security.Dictionary>("additionalData", AdditionalDataProperty);
             writer.WriteStringValue("alertPolicyId", AlertPolicyId);
             writer.WriteStringValue("alertWebUrl", AlertWebUrl);
             writer.WriteStringValue("assignedTo", AssignedTo);
             writer.WriteStringValue("category", Category);
-            writer.WriteEnumValue<AlertClassification>("classification", Classification);
-            writer.WriteCollectionOfObjectValues<AlertComment>("comments", Comments);
+            writer.WriteEnumValue<ApiSdk.Models.Security.AlertClassification>("classification", Classification);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.AlertComment>("comments", Comments);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
-            writer.WriteEnumValue<DetectionSource>("detectionSource", DetectionSource);
+            writer.WriteEnumValue<ApiSdk.Models.Security.DetectionSource>("detectionSource", DetectionSource);
             writer.WriteStringValue("detectorId", DetectorId);
-            writer.WriteEnumValue<AlertDetermination>("determination", Determination);
-            writer.WriteCollectionOfObjectValues<AlertEvidence>("evidence", Evidence);
+            writer.WriteEnumValue<ApiSdk.Models.Security.AlertDetermination>("determination", Determination);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.AlertEvidence>("evidence", Evidence);
             writer.WriteDateTimeOffsetValue("firstActivityDateTime", FirstActivityDateTime);
             writer.WriteStringValue("incidentId", IncidentId);
             writer.WriteStringValue("incidentWebUrl", IncidentWebUrl);
@@ -284,9 +284,9 @@ namespace ApiSdk.Models.Security
             writer.WriteStringValue("providerAlertId", ProviderAlertId);
             writer.WriteStringValue("recommendedActions", RecommendedActions);
             writer.WriteDateTimeOffsetValue("resolvedDateTime", ResolvedDateTime);
-            writer.WriteEnumValue<ServiceSource>("serviceSource", ServiceSource);
-            writer.WriteEnumValue<AlertSeverity>("severity", Severity);
-            writer.WriteEnumValue<AlertStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.Security.ServiceSource>("serviceSource", ServiceSource);
+            writer.WriteEnumValue<ApiSdk.Models.Security.AlertSeverity>("severity", Severity);
+            writer.WriteEnumValue<ApiSdk.Models.Security.AlertStatus>("status", Status);
             writer.WriteCollectionOfPrimitiveValues<string>("systemTags", SystemTags);
             writer.WriteStringValue("tenantId", TenantId);
             writer.WriteStringValue("threatDisplayName", ThreatDisplayName);

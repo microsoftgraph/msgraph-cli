@@ -16,21 +16,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Delta
         /// <summary>The number1 property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Number1 { get; set; }
+        public ApiSdk.Models.Json? Number1 { get; set; }
 #nullable restore
 #else
-        public Json Number1 { get; set; }
+        public ApiSdk.Models.Json Number1 { get; set; }
 #endif
         /// <summary>The number2 property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Number2 { get; set; }
+        public ApiSdk.Models.Json? Number2 { get; set; }
 #nullable restore
 #else
-        public Json Number2 { get; set; }
+        public ApiSdk.Models.Json Number2 { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DeltaPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Delta.DeltaPostRequestBody"/> and sets the default values.
         /// </summary>
         public DeltaPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Delta
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeltaPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Delta.DeltaPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DeltaPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Delta.DeltaPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeltaPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Delta.DeltaPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Delta
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "number1", n => { Number1 = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "number2", n => { Number2 = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "number1", n => { Number1 = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "number2", n => { Number2 = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Delta
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("number1", Number1);
-            writer.WriteObjectValue<Json>("number2", Number2);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("number1", Number1);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("number2", Number2);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

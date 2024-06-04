@@ -35,29 +35,29 @@ namespace ApiSdk.Models
         /// <summary>List of simulation events of a user in the attack simulation and training campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserSimulationEventInfo>? SimulationEvents { get; set; }
+        public List<ApiSdk.Models.UserSimulationEventInfo>? SimulationEvents { get; set; }
 #nullable restore
 #else
-        public List<UserSimulationEventInfo> SimulationEvents { get; set; }
+        public List<ApiSdk.Models.UserSimulationEventInfo> SimulationEvents { get; set; }
 #endif
         /// <summary>User in an attack simulation and training campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AttackSimulationUser? SimulationUser { get; set; }
+        public ApiSdk.Models.AttackSimulationUser? SimulationUser { get; set; }
 #nullable restore
 #else
-        public AttackSimulationUser SimulationUser { get; set; }
+        public ApiSdk.Models.AttackSimulationUser SimulationUser { get; set; }
 #endif
         /// <summary>List of training events of a user in the attack simulation and training campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserTrainingEventInfo>? TrainingEvents { get; set; }
+        public List<ApiSdk.Models.UserTrainingEventInfo>? TrainingEvents { get; set; }
 #nullable restore
 #else
-        public List<UserTrainingEventInfo> TrainingEvents { get; set; }
+        public List<ApiSdk.Models.UserTrainingEventInfo> TrainingEvents { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UserSimulationDetails"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UserSimulationDetails"/> and sets the default values.
         /// </summary>
         public UserSimulationDetails()
         {
@@ -66,12 +66,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserSimulationDetails"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserSimulationDetails"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UserSimulationDetails CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UserSimulationDetails CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserSimulationDetails();
+            return new ApiSdk.Models.UserSimulationDetails();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,9 +88,9 @@ namespace ApiSdk.Models
                 { "isCompromised", n => { IsCompromised = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "reportedPhishDateTime", n => { ReportedPhishDateTime = n.GetDateTimeOffsetValue(); } },
-                { "simulationEvents", n => { SimulationEvents = n.GetCollectionOfObjectValues<UserSimulationEventInfo>(UserSimulationEventInfo.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "simulationUser", n => { SimulationUser = n.GetObjectValue<AttackSimulationUser>(AttackSimulationUser.CreateFromDiscriminatorValue); } },
-                { "trainingEvents", n => { TrainingEvents = n.GetCollectionOfObjectValues<UserTrainingEventInfo>(UserTrainingEventInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "simulationEvents", n => { SimulationEvents = n.GetCollectionOfObjectValues<ApiSdk.Models.UserSimulationEventInfo>(ApiSdk.Models.UserSimulationEventInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "simulationUser", n => { SimulationUser = n.GetObjectValue<ApiSdk.Models.AttackSimulationUser>(ApiSdk.Models.AttackSimulationUser.CreateFromDiscriminatorValue); } },
+                { "trainingEvents", n => { TrainingEvents = n.GetCollectionOfObjectValues<ApiSdk.Models.UserTrainingEventInfo>(ApiSdk.Models.UserTrainingEventInfo.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -107,9 +107,9 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("isCompromised", IsCompromised);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDateTimeOffsetValue("reportedPhishDateTime", ReportedPhishDateTime);
-            writer.WriteCollectionOfObjectValues<UserSimulationEventInfo>("simulationEvents", SimulationEvents);
-            writer.WriteObjectValue<AttackSimulationUser>("simulationUser", SimulationUser);
-            writer.WriteCollectionOfObjectValues<UserTrainingEventInfo>("trainingEvents", TrainingEvents);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserSimulationEventInfo>("simulationEvents", SimulationEvents);
+            writer.WriteObjectValue<ApiSdk.Models.AttackSimulationUser>("simulationUser", SimulationUser);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserTrainingEventInfo>("trainingEvents", TrainingEvents);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

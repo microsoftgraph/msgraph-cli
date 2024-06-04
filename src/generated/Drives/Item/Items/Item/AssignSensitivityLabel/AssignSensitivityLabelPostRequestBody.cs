@@ -14,7 +14,7 @@ namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The assignmentMethod property</summary>
-        public SensitivityLabelAssignmentMethod? AssignmentMethod { get; set; }
+        public ApiSdk.Models.SensitivityLabelAssignmentMethod? AssignmentMethod { get; set; }
         /// <summary>The justificationText property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -32,7 +32,7 @@ namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel
         public string SensitivityLabelId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AssignSensitivityLabelPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel.AssignSensitivityLabelPostRequestBody"/> and sets the default values.
         /// </summary>
         public AssignSensitivityLabelPostRequestBody()
         {
@@ -41,12 +41,12 @@ namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AssignSensitivityLabelPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel.AssignSensitivityLabelPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AssignSensitivityLabelPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel.AssignSensitivityLabelPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AssignSensitivityLabelPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel.AssignSensitivityLabelPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,7 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "assignmentMethod", n => { AssignmentMethod = n.GetEnumValue<SensitivityLabelAssignmentMethod>(); } },
+                { "assignmentMethod", n => { AssignmentMethod = n.GetEnumValue<ApiSdk.Models.SensitivityLabelAssignmentMethod>(); } },
                 { "justificationText", n => { JustificationText = n.GetStringValue(); } },
                 { "sensitivityLabelId", n => { SensitivityLabelId = n.GetStringValue(); } },
             };
@@ -68,7 +68,7 @@ namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<SensitivityLabelAssignmentMethod>("assignmentMethod", AssignmentMethod);
+            writer.WriteEnumValue<ApiSdk.Models.SensitivityLabelAssignmentMethod>("assignmentMethod", AssignmentMethod);
             writer.WriteStringValue("justificationText", JustificationText);
             writer.WriteStringValue("sensitivityLabelId", SensitivityLabelId);
             writer.WriteAdditionalData(AdditionalData);

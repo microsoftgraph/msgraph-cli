@@ -27,7 +27,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="LoginPageLayoutConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.LoginPageLayoutConfiguration"/> and sets the default values.
         /// </summary>
         public LoginPageLayoutConfiguration()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LoginPageLayoutConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.LoginPageLayoutConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static LoginPageLayoutConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.LoginPageLayoutConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LoginPageLayoutConfiguration();
+            return new ApiSdk.Models.LoginPageLayoutConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -53,7 +53,7 @@ namespace ApiSdk.Models
             {
                 { "isFooterShown", n => { IsFooterShown = n.GetBoolValue(); } },
                 { "isHeaderShown", n => { IsHeaderShown = n.GetBoolValue(); } },
-                { "layoutTemplateType", n => { LayoutTemplateType = n.GetEnumValue<LayoutTemplateType>(); } },
+                { "layoutTemplateType", n => { LayoutTemplateType = n.GetEnumValue<ApiSdk.Models.LayoutTemplateType>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("isFooterShown", IsFooterShown);
             writer.WriteBoolValue("isHeaderShown", IsHeaderShown);
-            writer.WriteEnumValue<LayoutTemplateType>("layoutTemplateType", LayoutTemplateType);
+            writer.WriteEnumValue<ApiSdk.Models.LayoutTemplateType>("layoutTemplateType", LayoutTemplateType);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -7,19 +7,19 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ItemAttachment : Attachment, IParsable
+    public class ItemAttachment : ApiSdk.Models.Attachment, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The attached message or event. Navigation property.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public OutlookItem? Item { get; set; }
+        public ApiSdk.Models.OutlookItem? Item { get; set; }
 #nullable restore
 #else
-        public OutlookItem Item { get; set; }
+        public ApiSdk.Models.OutlookItem Item { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ItemAttachment"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ItemAttachment"/> and sets the default values.
         /// </summary>
         public ItemAttachment() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ItemAttachment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ItemAttachment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ItemAttachment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ItemAttachment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ItemAttachment();
+            return new ApiSdk.Models.ItemAttachment();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -43,7 +43,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "item", n => { Item = n.GetObjectValue<OutlookItem>(OutlookItem.CreateFromDiscriminatorValue); } },
+                { "item", n => { Item = n.GetObjectValue<ApiSdk.Models.OutlookItem>(ApiSdk.Models.OutlookItem.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<OutlookItem>("item", Item);
+            writer.WriteObjectValue<ApiSdk.Models.OutlookItem>("item", Item);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties and inherited properties for Windows Mobile MSI Line Of Business apps.
     /// </summary>
-    public class WindowsMobileMSI : MobileLobApp, IParsable
+    public class WindowsMobileMSI : ApiSdk.Models.MobileLobApp, IParsable
     {
         /// <summary>The command line.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -38,7 +38,7 @@ namespace ApiSdk.Models
         public string ProductVersion { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WindowsMobileMSI"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WindowsMobileMSI"/> and sets the default values.
         /// </summary>
         public WindowsMobileMSI() : base()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsMobileMSI"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsMobileMSI"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WindowsMobileMSI CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WindowsMobileMSI CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsMobileMSI();
+            return new ApiSdk.Models.WindowsMobileMSI();
         }
         /// <summary>
         /// The deserialization information for the current model

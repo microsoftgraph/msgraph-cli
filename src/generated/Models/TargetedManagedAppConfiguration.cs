@@ -9,38 +9,38 @@ namespace ApiSdk.Models
     /// <summary>
     /// Configuration used to deliver a set of custom settings as-is to all users in the targeted security group
     /// </summary>
-    public class TargetedManagedAppConfiguration : ManagedAppConfiguration, IParsable
+    public class TargetedManagedAppConfiguration : ApiSdk.Models.ManagedAppConfiguration, IParsable
     {
         /// <summary>List of apps to which the policy is deployed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ManagedMobileApp>? Apps { get; set; }
+        public List<ApiSdk.Models.ManagedMobileApp>? Apps { get; set; }
 #nullable restore
 #else
-        public List<ManagedMobileApp> Apps { get; set; }
+        public List<ApiSdk.Models.ManagedMobileApp> Apps { get; set; }
 #endif
         /// <summary>Navigation property to list of inclusion and exclusion groups to which the policy is deployed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TargetedManagedAppPolicyAssignment>? Assignments { get; set; }
+        public List<ApiSdk.Models.TargetedManagedAppPolicyAssignment>? Assignments { get; set; }
 #nullable restore
 #else
-        public List<TargetedManagedAppPolicyAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.TargetedManagedAppPolicyAssignment> Assignments { get; set; }
 #endif
         /// <summary>Count of apps to which the current policy is deployed.</summary>
         public int? DeployedAppCount { get; set; }
         /// <summary>Navigation property to deployment summary of the configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ManagedAppPolicyDeploymentSummary? DeploymentSummary { get; set; }
+        public ApiSdk.Models.ManagedAppPolicyDeploymentSummary? DeploymentSummary { get; set; }
 #nullable restore
 #else
-        public ManagedAppPolicyDeploymentSummary DeploymentSummary { get; set; }
+        public ApiSdk.Models.ManagedAppPolicyDeploymentSummary DeploymentSummary { get; set; }
 #endif
         /// <summary>Indicates if the policy is deployed to any inclusion groups or not.</summary>
         public bool? IsAssigned { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TargetedManagedAppConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TargetedManagedAppConfiguration"/> and sets the default values.
         /// </summary>
         public TargetedManagedAppConfiguration() : base()
         {
@@ -49,12 +49,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TargetedManagedAppConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TargetedManagedAppConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TargetedManagedAppConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TargetedManagedAppConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TargetedManagedAppConfiguration();
+            return new ApiSdk.Models.TargetedManagedAppConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,10 +64,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "apps", n => { Apps = n.GetCollectionOfObjectValues<ManagedMobileApp>(ManagedMobileApp.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<TargetedManagedAppPolicyAssignment>(TargetedManagedAppPolicyAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "apps", n => { Apps = n.GetCollectionOfObjectValues<ApiSdk.Models.ManagedMobileApp>(ApiSdk.Models.ManagedMobileApp.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.TargetedManagedAppPolicyAssignment>(ApiSdk.Models.TargetedManagedAppPolicyAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "deployedAppCount", n => { DeployedAppCount = n.GetIntValue(); } },
-                { "deploymentSummary", n => { DeploymentSummary = n.GetObjectValue<ManagedAppPolicyDeploymentSummary>(ManagedAppPolicyDeploymentSummary.CreateFromDiscriminatorValue); } },
+                { "deploymentSummary", n => { DeploymentSummary = n.GetObjectValue<ApiSdk.Models.ManagedAppPolicyDeploymentSummary>(ApiSdk.Models.ManagedAppPolicyDeploymentSummary.CreateFromDiscriminatorValue); } },
                 { "isAssigned", n => { IsAssigned = n.GetBoolValue(); } },
             };
         }
@@ -79,10 +79,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ManagedMobileApp>("apps", Apps);
-            writer.WriteCollectionOfObjectValues<TargetedManagedAppPolicyAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ManagedMobileApp>("apps", Apps);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TargetedManagedAppPolicyAssignment>("assignments", Assignments);
             writer.WriteIntValue("deployedAppCount", DeployedAppCount);
-            writer.WriteObjectValue<ManagedAppPolicyDeploymentSummary>("deploymentSummary", DeploymentSummary);
+            writer.WriteObjectValue<ApiSdk.Models.ManagedAppPolicyDeploymentSummary>("deploymentSummary", DeploymentSummary);
             writer.WriteBoolValue("isAssigned", IsAssigned);
         }
     }

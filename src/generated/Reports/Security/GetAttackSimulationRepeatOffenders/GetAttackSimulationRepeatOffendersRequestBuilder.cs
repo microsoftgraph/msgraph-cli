@@ -97,14 +97,14 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetAttackSimulationRepeatOffendersRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders.GetAttackSimulationRepeatOffendersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetAttackSimulationRepeatOffendersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/security/getAttackSimulationRepeatOffenders(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetAttackSimulationRepeatOffendersRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders.GetAttackSimulationRepeatOffendersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetAttackSimulationRepeatOffendersRequestBuilder(string rawUrl) : base("{+baseurl}/reports/security/getAttackSimulationRepeatOffenders(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
@@ -117,11 +117,11 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAttackSimulationRepeatOffendersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders.GetAttackSimulationRepeatOffendersRequestBuilder.GetAttackSimulationRepeatOffendersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAttackSimulationRepeatOffendersRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders.GetAttackSimulationRepeatOffendersRequestBuilder.GetAttackSimulationRepeatOffendersRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

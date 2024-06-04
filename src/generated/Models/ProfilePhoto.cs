@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ProfilePhoto : Entity, IParsable
+    public class ProfilePhoto : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The height of the photo. Read-only.</summary>
@@ -17,12 +17,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ProfilePhoto"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ProfilePhoto"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ProfilePhoto CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ProfilePhoto CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ProfilePhoto();
+            return new ApiSdk.Models.ProfilePhoto();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -30,7 +30,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords
         public Tuple<List<Command>, List<Command>> BuildCommand()
         {
             var executables = new List<Command>();
-            var builder = new DomainDnsRecordItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Domains.Item.VerificationDnsRecords.Item.DomainDnsRecordItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());
@@ -44,7 +44,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Domains.Item.VerificationDnsRecords.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -84,7 +84,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<DomainDnsRecord>(DomainDnsRecord.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.DomainDnsRecord>(ApiSdk.Models.DomainDnsRecord.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -208,14 +208,14 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="VerificationDnsRecordsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Domains.Item.VerificationDnsRecords.VerificationDnsRecordsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public VerificationDnsRecordsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/verificationDnsRecords{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="VerificationDnsRecordsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Domains.Item.VerificationDnsRecords.VerificationDnsRecordsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public VerificationDnsRecordsRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/verificationDnsRecords{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -228,11 +228,11 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<VerificationDnsRecordsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Domains.Item.VerificationDnsRecords.VerificationDnsRecordsRequestBuilder.VerificationDnsRecordsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<VerificationDnsRecordsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Domains.Item.VerificationDnsRecords.VerificationDnsRecordsRequestBuilder.VerificationDnsRecordsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -248,11 +248,11 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(DomainDnsRecord body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DomainDnsRecord body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(DomainDnsRecord body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DomainDnsRecord body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

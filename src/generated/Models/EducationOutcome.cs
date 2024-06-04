@@ -7,35 +7,35 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationOutcome : Entity, IParsable
+    public class EducationOutcome : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The individual who updated the resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet LastModifiedBy { get; set; }
 #endif
         /// <summary>The moment in time when the resource was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2021 is 2021-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationOutcome"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationOutcome"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationOutcome CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationOutcome CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.educationFeedbackOutcome" => new EducationFeedbackOutcome(),
-                "#microsoft.graph.educationFeedbackResourceOutcome" => new EducationFeedbackResourceOutcome(),
-                "#microsoft.graph.educationPointsOutcome" => new EducationPointsOutcome(),
-                "#microsoft.graph.educationRubricOutcome" => new EducationRubricOutcome(),
-                _ => new EducationOutcome(),
+                "#microsoft.graph.educationFeedbackOutcome" => new ApiSdk.Models.EducationFeedbackOutcome(),
+                "#microsoft.graph.educationFeedbackResourceOutcome" => new ApiSdk.Models.EducationFeedbackResourceOutcome(),
+                "#microsoft.graph.educationPointsOutcome" => new ApiSdk.Models.EducationPointsOutcome(),
+                "#microsoft.graph.educationRubricOutcome" => new ApiSdk.Models.EducationRubricOutcome(),
+                _ => new ApiSdk.Models.EducationOutcome(),
             };
         }
         /// <summary>
@@ -46,7 +46,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -58,7 +58,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
         }
     }

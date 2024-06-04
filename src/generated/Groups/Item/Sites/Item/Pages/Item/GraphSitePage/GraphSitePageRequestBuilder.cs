@@ -33,7 +33,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage
         {
             var command = new Command("canvas-layout");
             command.Description = "Provides operations to manage the canvasLayout property of the microsoft.graph.sitePage entity.";
-            var builder = new CanvasLayoutRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.CanvasLayoutRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -59,7 +59,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage
         {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
-            var builder = new CreatedByUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.CreatedByUser.CreatedByUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -147,7 +147,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage
         {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
-            var builder = new LastModifiedByUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.LastModifiedByUser.LastModifiedByUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -171,7 +171,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage
         {
             var command = new Command("web-parts");
             command.Description = "Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.";
-            var builder = new WebPartsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.WebParts.WebPartsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -191,14 +191,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphSitePageRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.GraphSitePageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphSitePageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/pages/{baseSitePage%2Did}/graph.sitePage{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphSitePageRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.GraphSitePageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphSitePageRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/pages/{baseSitePage%2Did}/graph.sitePage{?%24expand,%24select}", rawUrl)
@@ -211,11 +211,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphSitePageRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.GraphSitePageRequestBuilder.GraphSitePageRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphSitePageRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.GraphSitePageRequestBuilder.GraphSitePageRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

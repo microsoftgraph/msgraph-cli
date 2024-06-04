@@ -17,10 +17,10 @@ namespace ApiSdk.Models
         /// <summary>Count of items per insight.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<KeyValuePair>? InsightCounts { get; set; }
+        public List<ApiSdk.Models.KeyValuePair>? InsightCounts { get; set; }
 #nullable restore
 #else
-        public List<KeyValuePair> InsightCounts { get; set; }
+        public List<ApiSdk.Models.KeyValuePair> InsightCounts { get; set; }
 #endif
         /// <summary>Count of items found.</summary>
         public long? ItemCount { get; set; }
@@ -37,17 +37,17 @@ namespace ApiSdk.Models
         /// <summary>Count of items per product, such as Exchange, SharePoint, OneDrive, and Teams.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<KeyValuePair>? ProductItemCounts { get; set; }
+        public List<ApiSdk.Models.KeyValuePair>? ProductItemCounts { get; set; }
 #nullable restore
 #else
-        public List<KeyValuePair> ProductItemCounts { get; set; }
+        public List<ApiSdk.Models.KeyValuePair> ProductItemCounts { get; set; }
 #endif
         /// <summary>Count of items signed off by the administrator.</summary>
         public long? SignedOffItemCount { get; set; }
         /// <summary>Total item size in bytes.</summary>
         public long? TotalItemSize { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SubjectRightsRequestDetail"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SubjectRightsRequestDetail"/> and sets the default values.
         /// </summary>
         public SubjectRightsRequestDetail()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SubjectRightsRequestDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SubjectRightsRequestDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SubjectRightsRequestDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SubjectRightsRequestDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SubjectRightsRequestDetail();
+            return new ApiSdk.Models.SubjectRightsRequestDetail();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,11 +72,11 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "excludedItemCount", n => { ExcludedItemCount = n.GetLongValue(); } },
-                { "insightCounts", n => { InsightCounts = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "insightCounts", n => { InsightCounts = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>(ApiSdk.Models.KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "itemCount", n => { ItemCount = n.GetLongValue(); } },
                 { "itemNeedReview", n => { ItemNeedReview = n.GetLongValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "productItemCounts", n => { ProductItemCounts = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "productItemCounts", n => { ProductItemCounts = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>(ApiSdk.Models.KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "signedOffItemCount", n => { SignedOffItemCount = n.GetLongValue(); } },
                 { "totalItemSize", n => { TotalItemSize = n.GetLongValue(); } },
             };
@@ -89,11 +89,11 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteLongValue("excludedItemCount", ExcludedItemCount);
-            writer.WriteCollectionOfObjectValues<KeyValuePair>("insightCounts", InsightCounts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>("insightCounts", InsightCounts);
             writer.WriteLongValue("itemCount", ItemCount);
             writer.WriteLongValue("itemNeedReview", ItemNeedReview);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<KeyValuePair>("productItemCounts", ProductItemCounts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>("productItemCounts", ProductItemCounts);
             writer.WriteLongValue("signedOffItemCount", SignedOffItemCount);
             writer.WriteLongValue("totalItemSize", TotalItemSize);
             writer.WriteAdditionalData(AdditionalData);

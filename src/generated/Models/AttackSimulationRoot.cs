@@ -7,82 +7,82 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AttackSimulationRoot : Entity, IParsable
+    public class AttackSimulationRoot : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents an end user&apos;s notification for an attack simulation training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EndUserNotification>? EndUserNotifications { get; set; }
+        public List<ApiSdk.Models.EndUserNotification>? EndUserNotifications { get; set; }
 #nullable restore
 #else
-        public List<EndUserNotification> EndUserNotifications { get; set; }
+        public List<ApiSdk.Models.EndUserNotification> EndUserNotifications { get; set; }
 #endif
         /// <summary>Represents an attack simulation training landing page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LandingPage>? LandingPages { get; set; }
+        public List<ApiSdk.Models.LandingPage>? LandingPages { get; set; }
 #nullable restore
 #else
-        public List<LandingPage> LandingPages { get; set; }
+        public List<ApiSdk.Models.LandingPage> LandingPages { get; set; }
 #endif
         /// <summary>Represents an attack simulation training login page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LoginPage>? LoginPages { get; set; }
+        public List<ApiSdk.Models.LoginPage>? LoginPages { get; set; }
 #nullable restore
 #else
-        public List<LoginPage> LoginPages { get; set; }
+        public List<ApiSdk.Models.LoginPage> LoginPages { get; set; }
 #endif
         /// <summary>Represents an attack simulation training operation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AttackSimulationOperation>? Operations { get; set; }
+        public List<ApiSdk.Models.AttackSimulationOperation>? Operations { get; set; }
 #nullable restore
 #else
-        public List<AttackSimulationOperation> Operations { get; set; }
+        public List<ApiSdk.Models.AttackSimulationOperation> Operations { get; set; }
 #endif
         /// <summary>Represents an attack simulation training campaign payload in a tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Payload>? Payloads { get; set; }
+        public List<ApiSdk.Models.Payload>? Payloads { get; set; }
 #nullable restore
 #else
-        public List<Payload> Payloads { get; set; }
+        public List<ApiSdk.Models.Payload> Payloads { get; set; }
 #endif
         /// <summary>Represents simulation automation created to run on a tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SimulationAutomation>? SimulationAutomations { get; set; }
+        public List<ApiSdk.Models.SimulationAutomation>? SimulationAutomations { get; set; }
 #nullable restore
 #else
-        public List<SimulationAutomation> SimulationAutomations { get; set; }
+        public List<ApiSdk.Models.SimulationAutomation> SimulationAutomations { get; set; }
 #endif
         /// <summary>Represents an attack simulation training campaign in a tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Simulation>? Simulations { get; set; }
+        public List<ApiSdk.Models.Simulation>? Simulations { get; set; }
 #nullable restore
 #else
-        public List<Simulation> Simulations { get; set; }
+        public List<ApiSdk.Models.Simulation> Simulations { get; set; }
 #endif
         /// <summary>Represents details about attack simulation trainings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Training>? Trainings { get; set; }
+        public List<ApiSdk.Models.Training>? Trainings { get; set; }
 #nullable restore
 #else
-        public List<Training> Trainings { get; set; }
+        public List<ApiSdk.Models.Training> Trainings { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AttackSimulationRoot"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AttackSimulationRoot"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AttackSimulationRoot CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AttackSimulationRoot CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AttackSimulationRoot();
+            return new ApiSdk.Models.AttackSimulationRoot();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -92,14 +92,14 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "endUserNotifications", n => { EndUserNotifications = n.GetCollectionOfObjectValues<EndUserNotification>(EndUserNotification.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "landingPages", n => { LandingPages = n.GetCollectionOfObjectValues<LandingPage>(LandingPage.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "loginPages", n => { LoginPages = n.GetCollectionOfObjectValues<LoginPage>(LoginPage.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "operations", n => { Operations = n.GetCollectionOfObjectValues<AttackSimulationOperation>(AttackSimulationOperation.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "payloads", n => { Payloads = n.GetCollectionOfObjectValues<Payload>(Payload.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "simulationAutomations", n => { SimulationAutomations = n.GetCollectionOfObjectValues<SimulationAutomation>(SimulationAutomation.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "simulations", n => { Simulations = n.GetCollectionOfObjectValues<Simulation>(Simulation.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "trainings", n => { Trainings = n.GetCollectionOfObjectValues<Training>(Training.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "endUserNotifications", n => { EndUserNotifications = n.GetCollectionOfObjectValues<ApiSdk.Models.EndUserNotification>(ApiSdk.Models.EndUserNotification.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "landingPages", n => { LandingPages = n.GetCollectionOfObjectValues<ApiSdk.Models.LandingPage>(ApiSdk.Models.LandingPage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "loginPages", n => { LoginPages = n.GetCollectionOfObjectValues<ApiSdk.Models.LoginPage>(ApiSdk.Models.LoginPage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "operations", n => { Operations = n.GetCollectionOfObjectValues<ApiSdk.Models.AttackSimulationOperation>(ApiSdk.Models.AttackSimulationOperation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "payloads", n => { Payloads = n.GetCollectionOfObjectValues<ApiSdk.Models.Payload>(ApiSdk.Models.Payload.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "simulationAutomations", n => { SimulationAutomations = n.GetCollectionOfObjectValues<ApiSdk.Models.SimulationAutomation>(ApiSdk.Models.SimulationAutomation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "simulations", n => { Simulations = n.GetCollectionOfObjectValues<ApiSdk.Models.Simulation>(ApiSdk.Models.Simulation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "trainings", n => { Trainings = n.GetCollectionOfObjectValues<ApiSdk.Models.Training>(ApiSdk.Models.Training.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -110,14 +110,14 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<EndUserNotification>("endUserNotifications", EndUserNotifications);
-            writer.WriteCollectionOfObjectValues<LandingPage>("landingPages", LandingPages);
-            writer.WriteCollectionOfObjectValues<LoginPage>("loginPages", LoginPages);
-            writer.WriteCollectionOfObjectValues<AttackSimulationOperation>("operations", Operations);
-            writer.WriteCollectionOfObjectValues<Payload>("payloads", Payloads);
-            writer.WriteCollectionOfObjectValues<SimulationAutomation>("simulationAutomations", SimulationAutomations);
-            writer.WriteCollectionOfObjectValues<Simulation>("simulations", Simulations);
-            writer.WriteCollectionOfObjectValues<Training>("trainings", Trainings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EndUserNotification>("endUserNotifications", EndUserNotifications);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.LandingPage>("landingPages", LandingPages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.LoginPage>("loginPages", LoginPages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AttackSimulationOperation>("operations", Operations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Payload>("payloads", Payloads);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SimulationAutomation>("simulationAutomations", SimulationAutomations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Simulation>("simulations", Simulations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Training>("trainings", Trainings);
         }
     }
 }

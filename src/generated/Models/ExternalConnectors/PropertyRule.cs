@@ -21,7 +21,7 @@ namespace ApiSdk.Models.ExternalConnectors
         public string OdataType { get; set; }
 #endif
         /// <summary>The operation property</summary>
-        public RuleOperation? Operation { get; set; }
+        public ApiSdk.Models.ExternalConnectors.RuleOperation? Operation { get; set; }
         /// <summary>The property from the externalItem schema. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,9 +39,9 @@ namespace ApiSdk.Models.ExternalConnectors
         public List<string> Values { get; set; }
 #endif
         /// <summary>The valuesJoinedBy property</summary>
-        public BinaryOperator? ValuesJoinedBy { get; set; }
+        public ApiSdk.Models.BinaryOperator? ValuesJoinedBy { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="PropertyRule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ExternalConnectors.PropertyRule"/> and sets the default values.
         /// </summary>
         public PropertyRule()
         {
@@ -50,12 +50,12 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PropertyRule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.PropertyRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PropertyRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ExternalConnectors.PropertyRule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PropertyRule();
+            return new ApiSdk.Models.ExternalConnectors.PropertyRule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,10 +66,10 @@ namespace ApiSdk.Models.ExternalConnectors
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "operation", n => { Operation = n.GetEnumValue<RuleOperation>(); } },
+                { "operation", n => { Operation = n.GetEnumValue<ApiSdk.Models.ExternalConnectors.RuleOperation>(); } },
                 { "property", n => { Property = n.GetStringValue(); } },
                 { "values", n => { Values = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "valuesJoinedBy", n => { ValuesJoinedBy = n.GetEnumValue<BinaryOperator>(); } },
+                { "valuesJoinedBy", n => { ValuesJoinedBy = n.GetEnumValue<ApiSdk.Models.BinaryOperator>(); } },
             };
         }
         /// <summary>
@@ -80,10 +80,10 @@ namespace ApiSdk.Models.ExternalConnectors
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<RuleOperation>("operation", Operation);
+            writer.WriteEnumValue<ApiSdk.Models.ExternalConnectors.RuleOperation>("operation", Operation);
             writer.WriteStringValue("property", Property);
             writer.WriteCollectionOfPrimitiveValues<string>("values", Values);
-            writer.WriteEnumValue<BinaryOperator>("valuesJoinedBy", ValuesJoinedBy);
+            writer.WriteEnumValue<ApiSdk.Models.BinaryOperator>("valuesJoinedBy", ValuesJoinedBy);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

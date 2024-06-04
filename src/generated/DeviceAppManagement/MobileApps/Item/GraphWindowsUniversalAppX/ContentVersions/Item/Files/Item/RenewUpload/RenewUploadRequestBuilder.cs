@@ -61,14 +61,14 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX.C
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RenewUploadRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX.ContentVersions.Item.Files.Item.RenewUpload.RenewUploadRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RenewUploadRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsUniversalAppX/contentVersions/{mobileAppContent%2Did}/files/{mobileAppContentFile%2Did}/renewUpload", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RenewUploadRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX.ContentVersions.Item.Files.Item.RenewUpload.RenewUploadRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RenewUploadRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsUniversalAppX/contentVersions/{mobileAppContent%2Did}/files/{mobileAppContentFile%2Did}/renewUpload", rawUrl)

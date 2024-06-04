@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>The date, time and time zone that the event ends.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? EventEndTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? EventEndTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone EventEndTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone EventEndTime { get; set; }
 #endif
         /// <summary>The unique ID of the event. Read only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,18 +39,18 @@ namespace ApiSdk.Models
         /// <summary>The location of the event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Location? EventLocation { get; set; }
+        public ApiSdk.Models.Location? EventLocation { get; set; }
 #nullable restore
 #else
-        public Location EventLocation { get; set; }
+        public ApiSdk.Models.Location EventLocation { get; set; }
 #endif
         /// <summary>The date, time, and time zone that the event starts.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? EventStartTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? EventStartTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone EventStartTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone EventStartTime { get; set; }
 #endif
         /// <summary>The text of the event&apos;s subject line.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -79,13 +79,13 @@ namespace ApiSdk.Models
         /// <summary>The date, time, and time zone that the reminder is set to occur.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? ReminderFireTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? ReminderFireTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone ReminderFireTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone ReminderFireTime { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Reminder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Reminder"/> and sets the default values.
         /// </summary>
         public Reminder()
         {
@@ -94,12 +94,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Reminder"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Reminder"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Reminder CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Reminder CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Reminder();
+            return new ApiSdk.Models.Reminder();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -110,14 +110,14 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "changeKey", n => { ChangeKey = n.GetStringValue(); } },
-                { "eventEndTime", n => { EventEndTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "eventEndTime", n => { EventEndTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 { "eventId", n => { EventId = n.GetStringValue(); } },
-                { "eventLocation", n => { EventLocation = n.GetObjectValue<Location>(Location.CreateFromDiscriminatorValue); } },
-                { "eventStartTime", n => { EventStartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "eventLocation", n => { EventLocation = n.GetObjectValue<ApiSdk.Models.Location>(ApiSdk.Models.Location.CreateFromDiscriminatorValue); } },
+                { "eventStartTime", n => { EventStartTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 { "eventSubject", n => { EventSubject = n.GetStringValue(); } },
                 { "eventWebLink", n => { EventWebLink = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "reminderFireTime", n => { ReminderFireTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "reminderFireTime", n => { ReminderFireTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -128,14 +128,14 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("changeKey", ChangeKey);
-            writer.WriteObjectValue<DateTimeTimeZone>("eventEndTime", EventEndTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("eventEndTime", EventEndTime);
             writer.WriteStringValue("eventId", EventId);
-            writer.WriteObjectValue<Location>("eventLocation", EventLocation);
-            writer.WriteObjectValue<DateTimeTimeZone>("eventStartTime", EventStartTime);
+            writer.WriteObjectValue<ApiSdk.Models.Location>("eventLocation", EventLocation);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("eventStartTime", EventStartTime);
             writer.WriteStringValue("eventSubject", EventSubject);
             writer.WriteStringValue("eventWebLink", EventWebLink);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<DateTimeTimeZone>("reminderFireTime", ReminderFireTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("reminderFireTime", ReminderFireTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

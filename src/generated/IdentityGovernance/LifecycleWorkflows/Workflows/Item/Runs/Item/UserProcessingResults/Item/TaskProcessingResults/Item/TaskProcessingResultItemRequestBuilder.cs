@@ -102,7 +102,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.
         {
             var command = new Command("microsoft-graph-identity-governance-resume");
             command.Description = "Provides operations to call the resume method.";
-            var builder = new MicrosoftGraphIdentityGovernanceResumeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.UserProcessingResults.Item.TaskProcessingResults.Item.MicrosoftGraphIdentityGovernanceResume.MicrosoftGraphIdentityGovernanceResumeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -119,7 +119,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.
         {
             var command = new Command("subject");
             command.Description = "Provides operations to manage the subject property of the microsoft.graph.identityGovernance.taskProcessingResult entity.";
-            var builder = new SubjectRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.UserProcessingResults.Item.TaskProcessingResults.Item.Subject.SubjectRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -143,7 +143,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.
         {
             var command = new Command("task");
             command.Description = "Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskProcessingResult entity.";
-            var builder = new TaskRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.UserProcessingResults.Item.TaskProcessingResults.Item.TaskNamespace.TaskRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -153,14 +153,14 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TaskProcessingResultItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.UserProcessingResults.Item.TaskProcessingResults.Item.TaskProcessingResultItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TaskProcessingResultItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/runs/{run%2Did}/userProcessingResults/{userProcessingResult%2Did}/taskProcessingResults/{taskProcessingResult%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TaskProcessingResultItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.UserProcessingResults.Item.TaskProcessingResults.Item.TaskProcessingResultItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TaskProcessingResultItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/runs/{run%2Did}/userProcessingResults/{userProcessingResult%2Did}/taskProcessingResults/{taskProcessingResult%2Did}{?%24expand,%24select}", rawUrl)
@@ -173,11 +173,11 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskProcessingResultItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.UserProcessingResults.Item.TaskProcessingResults.Item.TaskProcessingResultItemRequestBuilder.TaskProcessingResultItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskProcessingResultItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.UserProcessingResults.Item.TaskProcessingResults.Item.TaskProcessingResultItemRequestBuilder.TaskProcessingResultItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

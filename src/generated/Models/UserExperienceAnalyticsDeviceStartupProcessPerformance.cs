@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// The user experience analytics device startup process performance.
     /// </summary>
-    public class UserExperienceAnalyticsDeviceStartupProcessPerformance : Entity, IParsable
+    public class UserExperienceAnalyticsDeviceStartupProcessPerformance : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The count of devices which initiated this process on startup. Supports: $filter, $select, $OrderBy. Read-only.</summary>
         public long? DeviceCount { get; set; }
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsDeviceStartupProcessPerformance"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsDeviceStartupProcessPerformance"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsDeviceStartupProcessPerformance CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserExperienceAnalyticsDeviceStartupProcessPerformance CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsDeviceStartupProcessPerformance();
+            return new ApiSdk.Models.UserExperienceAnalyticsDeviceStartupProcessPerformance();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamworkTagMember : Entity, IParsable
+    public class TeamworkTagMember : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The member&apos;s display name.</summary>
@@ -37,12 +37,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamworkTagMember"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamworkTagMember"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamworkTagMember CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamworkTagMember CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamworkTagMember();
+            return new ApiSdk.Models.TeamworkTagMember();
         }
         /// <summary>
         /// The deserialization information for the current model

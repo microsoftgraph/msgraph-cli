@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>The classes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationClass>? Classes { get; set; }
+        public List<ApiSdk.Models.EducationClass>? Classes { get; set; }
 #nullable restore
 #else
-        public List<EducationClass> Classes { get; set; }
+        public List<ApiSdk.Models.EducationClass> Classes { get; set; }
 #endif
         /// <summary>The me property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EducationUser? Me { get; set; }
+        public ApiSdk.Models.EducationUser? Me { get; set; }
 #nullable restore
 #else
-        public EducationUser Me { get; set; }
+        public ApiSdk.Models.EducationUser Me { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,21 +39,21 @@ namespace ApiSdk.Models
         /// <summary>The schools property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationSchool>? Schools { get; set; }
+        public List<ApiSdk.Models.EducationSchool>? Schools { get; set; }
 #nullable restore
 #else
-        public List<EducationSchool> Schools { get; set; }
+        public List<ApiSdk.Models.EducationSchool> Schools { get; set; }
 #endif
         /// <summary>The users property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationUser>? Users { get; set; }
+        public List<ApiSdk.Models.EducationUser>? Users { get; set; }
 #nullable restore
 #else
-        public List<EducationUser> Users { get; set; }
+        public List<ApiSdk.Models.EducationUser> Users { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EducationRoot"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EducationRoot"/> and sets the default values.
         /// </summary>
         public EducationRoot()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationRoot"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationRoot"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static EducationRoot CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.EducationRoot CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationRoot();
+            return new ApiSdk.Models.EducationRoot();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -77,11 +77,11 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "classes", n => { Classes = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "me", n => { Me = n.GetObjectValue<EducationUser>(EducationUser.CreateFromDiscriminatorValue); } },
+                { "classes", n => { Classes = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationClass>(ApiSdk.Models.EducationClass.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "me", n => { Me = n.GetObjectValue<ApiSdk.Models.EducationUser>(ApiSdk.Models.EducationUser.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "schools", n => { Schools = n.GetCollectionOfObjectValues<EducationSchool>(EducationSchool.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "users", n => { Users = n.GetCollectionOfObjectValues<EducationUser>(EducationUser.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "schools", n => { Schools = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationSchool>(ApiSdk.Models.EducationSchool.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "users", n => { Users = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationUser>(ApiSdk.Models.EducationUser.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -91,11 +91,11 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<EducationClass>("classes", Classes);
-            writer.WriteObjectValue<EducationUser>("me", Me);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationClass>("classes", Classes);
+            writer.WriteObjectValue<ApiSdk.Models.EducationUser>("me", Me);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<EducationSchool>("schools", Schools);
-            writer.WriteCollectionOfObjectValues<EducationUser>("users", Users);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationSchool>("schools", Schools);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationUser>("users", Users);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

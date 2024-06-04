@@ -36,7 +36,7 @@ namespace ApiSdk.DirectoryRoles.Item
         {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryRoles.Item.CheckMemberGroups.CheckMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -53,7 +53,7 @@ namespace ApiSdk.DirectoryRoles.Item
         {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryRoles.Item.CheckMemberObjects.CheckMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -158,7 +158,7 @@ namespace ApiSdk.DirectoryRoles.Item
         {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryRoles.Item.GetMemberGroups.GetMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -175,7 +175,7 @@ namespace ApiSdk.DirectoryRoles.Item
         {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryRoles.Item.GetMemberObjects.GetMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -192,7 +192,7 @@ namespace ApiSdk.DirectoryRoles.Item
         {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.directoryRole entity.";
-            var builder = new MembersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryRoles.Item.Members.MembersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -248,7 +248,7 @@ namespace ApiSdk.DirectoryRoles.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<DirectoryRole>(DirectoryRole.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.DirectoryRole>(ApiSdk.Models.DirectoryRole.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -276,7 +276,7 @@ namespace ApiSdk.DirectoryRoles.Item
         {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryRoles.Item.Restore.RestoreRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -293,7 +293,7 @@ namespace ApiSdk.DirectoryRoles.Item
         {
             var command = new Command("scoped-members");
             command.Description = "Provides operations to manage the scopedMembers property of the microsoft.graph.directoryRole entity.";
-            var builder = new ScopedMembersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryRoles.Item.ScopedMembers.ScopedMembersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -313,14 +313,14 @@ namespace ApiSdk.DirectoryRoles.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryRoleItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryRoles.Item.DirectoryRoleItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryRoleItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryRoleItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryRoles.Item.DirectoryRoleItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryRoleItemRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}{?%24expand,%24select}", rawUrl)
@@ -352,11 +352,11 @@ namespace ApiSdk.DirectoryRoles.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryRoleItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DirectoryRoles.Item.DirectoryRoleItemRequestBuilder.DirectoryRoleItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryRoleItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DirectoryRoles.Item.DirectoryRoleItemRequestBuilder.DirectoryRoleItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -372,11 +372,11 @@ namespace ApiSdk.DirectoryRoles.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(DirectoryRole body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DirectoryRole body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(DirectoryRole body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DirectoryRole body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

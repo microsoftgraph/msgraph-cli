@@ -40,7 +40,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.Item.DirectoryObjectItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildCheckMemberGroupsNavCommand());
             commands.Add(builder.BuildCheckMemberObjectsNavCommand());
             executables.Add(builder.BuildDeleteCommand());
@@ -64,7 +64,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -81,7 +81,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
-            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -98,7 +98,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
-            var builder = new GetByIdsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.GetByIds.GetByIdsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -115,7 +115,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         {
             var command = new Command("graph-administrative-unit");
             command.Description = "Casts the previous resource to administrativeUnit.";
-            var builder = new GraphAdministrativeUnitRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.GraphAdministrativeUnit.GraphAdministrativeUnitRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -138,7 +138,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         {
             var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
-            var builder = new GraphApplicationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.GraphApplication.GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -161,7 +161,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         {
             var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
-            var builder = new GraphDeviceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.GraphDevice.GraphDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -184,7 +184,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         {
             var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
-            var builder = new GraphGroupRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.GraphGroup.GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -207,7 +207,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.GraphServicePrincipal.GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -230,7 +230,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
-            var builder = new GraphUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.GraphUser.GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -349,7 +349,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
-            var builder = new ValidatePropertiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.ValidateProperties.ValidatePropertiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -359,14 +359,14 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeletedItemsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryNamespace.DeletedItems.DeletedItemsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeletedItemsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/deletedItems{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeletedItemsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryNamespace.DeletedItems.DeletedItemsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeletedItemsRequestBuilder(string rawUrl) : base("{+baseurl}/directory/deletedItems{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -379,11 +379,11 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeletedItemsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DirectoryNamespace.DeletedItems.DeletedItemsRequestBuilder.DeletedItemsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeletedItemsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DirectoryNamespace.DeletedItems.DeletedItemsRequestBuilder.DeletedItemsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

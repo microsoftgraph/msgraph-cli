@@ -39,7 +39,7 @@ namespace ApiSdk.Devices.Item
         {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.CheckMemberGroups.CheckMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -56,7 +56,7 @@ namespace ApiSdk.Devices.Item
         {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.CheckMemberObjects.CheckMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -109,7 +109,7 @@ namespace ApiSdk.Devices.Item
         {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.device entity.";
-            var builder = new ExtensionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.Extensions.ExtensionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -189,7 +189,7 @@ namespace ApiSdk.Devices.Item
         {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.GetMemberGroups.GetMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -206,7 +206,7 @@ namespace ApiSdk.Devices.Item
         {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.GetMemberObjects.GetMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -223,7 +223,7 @@ namespace ApiSdk.Devices.Item
         {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.device entity.";
-            var builder = new MemberOfRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.MemberOf.MemberOfRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -303,7 +303,7 @@ namespace ApiSdk.Devices.Item
         {
             var command = new Command("registered-owners");
             command.Description = "Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.";
-            var builder = new RegisteredOwnersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.RegisteredOwners.RegisteredOwnersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -334,7 +334,7 @@ namespace ApiSdk.Devices.Item
         {
             var command = new Command("registered-users");
             command.Description = "Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.";
-            var builder = new RegisteredUsersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.RegisteredUsers.RegisteredUsersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -365,7 +365,7 @@ namespace ApiSdk.Devices.Item
         {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.Restore.RestoreRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -382,7 +382,7 @@ namespace ApiSdk.Devices.Item
         {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.device entity.";
-            var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.TransitiveMemberOf.TransitiveMemberOfRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -403,14 +403,14 @@ namespace ApiSdk.Devices.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Devices.Item.DeviceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Devices.Item.DeviceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeviceItemRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}{?%24expand,%24select}", rawUrl)
@@ -442,11 +442,11 @@ namespace ApiSdk.Devices.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Devices.Item.DeviceItemRequestBuilder.DeviceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Devices.Item.DeviceItemRequestBuilder.DeviceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

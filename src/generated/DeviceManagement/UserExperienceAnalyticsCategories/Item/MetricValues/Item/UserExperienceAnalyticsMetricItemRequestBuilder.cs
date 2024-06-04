@@ -156,7 +156,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<UserExperienceAnalyticsMetric>(UserExperienceAnalyticsMetric.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.UserExperienceAnalyticsMetric>(ApiSdk.Models.UserExperienceAnalyticsMetric.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -178,14 +178,14 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsMetricItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricValues.Item.UserExperienceAnalyticsMetricItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserExperienceAnalyticsMetricItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsCategories/{userExperienceAnalyticsCategory%2Did}/metricValues/{userExperienceAnalyticsMetric%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsMetricItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricValues.Item.UserExperienceAnalyticsMetricItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserExperienceAnalyticsMetricItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsCategories/{userExperienceAnalyticsCategory%2Did}/metricValues/{userExperienceAnalyticsMetric%2Did}{?%24expand,%24select}", rawUrl)
@@ -217,11 +217,11 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsMetricItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricValues.Item.UserExperienceAnalyticsMetricItemRequestBuilder.UserExperienceAnalyticsMetricItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsMetricItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricValues.Item.UserExperienceAnalyticsMetricItemRequestBuilder.UserExperienceAnalyticsMetricItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -237,11 +237,11 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsMetric body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UserExperienceAnalyticsMetric body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsMetric body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UserExperienceAnalyticsMetric body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

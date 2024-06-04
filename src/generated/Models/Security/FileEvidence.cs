@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class FileEvidence : AlertEvidence, IParsable
+    public class FileEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The status of the detection.The possible values are: detected, blocked, prevented, unknownFutureValue.</summary>
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Security
         public string MdeDeviceId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="FileEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.FileEvidence"/> and sets the default values.
         /// </summary>
         public FileEvidence() : base()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FileEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.FileEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FileEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.FileEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FileEvidence();
+            return new ApiSdk.Models.Security.FileEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -53,7 +53,7 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "detectionStatus", n => { DetectionStatus = n.GetEnumValue<DetectionStatus>(); } },
+                { "detectionStatus", n => { DetectionStatus = n.GetEnumValue<ApiSdk.Models.Security.DetectionStatus>(); } },
                 { "fileDetails", n => { FileDetails = n.GetObjectValue<ApiSdk.Models.Security.FileDetails>(ApiSdk.Models.Security.FileDetails.CreateFromDiscriminatorValue); } },
                 { "mdeDeviceId", n => { MdeDeviceId = n.GetStringValue(); } },
             };
@@ -66,7 +66,7 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<DetectionStatus>("detectionStatus", DetectionStatus);
+            writer.WriteEnumValue<ApiSdk.Models.Security.DetectionStatus>("detectionStatus", DetectionStatus);
             writer.WriteObjectValue<ApiSdk.Models.Security.FileDetails>("fileDetails", FileDetails);
             writer.WriteStringValue("mdeDeviceId", MdeDeviceId);
         }

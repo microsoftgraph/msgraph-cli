@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageAssignmentRequestCallbackData : CustomExtensionData, IParsable
+    public class AccessPackageAssignmentRequestCallbackData : ApiSdk.Models.CustomExtensionData, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Details for the callback.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models
         public string CustomExtensionStageInstanceId { get; set; }
 #endif
         /// <summary>Indicates the stage at which the custom callout extension is executed. The possible values are: assignmentRequestCreated, assignmentRequestApproved, assignmentRequestGranted, assignmentRequestRemoved, assignmentFourteenDaysBeforeExpiration, assignmentOneDayBeforeExpiration, unknownFutureValue.</summary>
-        public AccessPackageCustomExtensionStage? Stage { get; set; }
+        public ApiSdk.Models.AccessPackageCustomExtensionStage? Stage { get; set; }
         /// <summary>Allow the extension to be able to deny or cancel the request submitted by the requestor. The supported values are Denied and Canceled. This property can only be set for an assignmentRequestCreated stage.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string State { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessPackageAssignmentRequestCallbackData"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessPackageAssignmentRequestCallbackData"/> and sets the default values.
         /// </summary>
         public AccessPackageAssignmentRequestCallbackData() : base()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageAssignmentRequestCallbackData"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageAssignmentRequestCallbackData"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageAssignmentRequestCallbackData CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageAssignmentRequestCallbackData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageAssignmentRequestCallbackData();
+            return new ApiSdk.Models.AccessPackageAssignmentRequestCallbackData();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
             {
                 { "customExtensionStageInstanceDetail", n => { CustomExtensionStageInstanceDetail = n.GetStringValue(); } },
                 { "customExtensionStageInstanceId", n => { CustomExtensionStageInstanceId = n.GetStringValue(); } },
-                { "stage", n => { Stage = n.GetEnumValue<AccessPackageCustomExtensionStage>(); } },
+                { "stage", n => { Stage = n.GetEnumValue<ApiSdk.Models.AccessPackageCustomExtensionStage>(); } },
                 { "state", n => { State = n.GetStringValue(); } },
             };
         }
@@ -77,7 +77,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("customExtensionStageInstanceDetail", CustomExtensionStageInstanceDetail);
             writer.WriteStringValue("customExtensionStageInstanceId", CustomExtensionStageInstanceId);
-            writer.WriteEnumValue<AccessPackageCustomExtensionStage>("stage", Stage);
+            writer.WriteEnumValue<ApiSdk.Models.AccessPackageCustomExtensionStage>("stage", Stage);
             writer.WriteStringValue("state", State);
         }
     }

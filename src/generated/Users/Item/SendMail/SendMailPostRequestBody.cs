@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.SendMail
         /// <summary>The SaveToSentItems property</summary>
         public bool? SaveToSentItems { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SendMailPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.SendMail.SendMailPostRequestBody"/> and sets the default values.
         /// </summary>
         public SendMailPostRequestBody()
         {
@@ -33,12 +33,12 @@ namespace ApiSdk.Users.Item.SendMail
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SendMailPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.SendMail.SendMailPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SendMailPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.SendMail.SendMailPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SendMailPostRequestBody();
+            return new ApiSdk.Users.Item.SendMail.SendMailPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

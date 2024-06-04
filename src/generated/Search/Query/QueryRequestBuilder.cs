@@ -51,7 +51,7 @@ namespace ApiSdk.Search.Query
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<QueryPostRequestBody>(QueryPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Search.Query.QueryPostRequestBody>(ApiSdk.Search.Query.QueryPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -80,14 +80,14 @@ namespace ApiSdk.Search.Query
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="QueryRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Search.Query.QueryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public QueryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/search/query", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="QueryRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Search.Query.QueryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public QueryRequestBuilder(string rawUrl) : base("{+baseurl}/search/query", rawUrl)
@@ -101,11 +101,11 @@ namespace ApiSdk.Search.Query
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(QueryPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Search.Query.QueryPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(QueryPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Search.Query.QueryPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

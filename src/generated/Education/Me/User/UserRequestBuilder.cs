@@ -78,7 +78,7 @@ namespace ApiSdk.Education.Me.User
         {
             var command = new Command("mailbox-settings");
             command.Description = "The mailboxSettings property";
-            var builder = new MailboxSettingsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.User.MailboxSettings.MailboxSettingsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
@@ -96,7 +96,7 @@ namespace ApiSdk.Education.Me.User
         {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
-            var builder = new ServiceProvisioningErrorsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.User.ServiceProvisioningErrors.ServiceProvisioningErrorsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -112,14 +112,14 @@ namespace ApiSdk.Education.Me.User
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Me.User.UserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/user{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Me.User.UserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/user{?%24expand,%24select}", rawUrl)
@@ -132,11 +132,11 @@ namespace ApiSdk.Education.Me.User
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.Me.User.UserRequestBuilder.UserRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.Me.User.UserRequestBuilder.UserRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

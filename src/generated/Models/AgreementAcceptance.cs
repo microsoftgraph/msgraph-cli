@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AgreementAcceptance : Entity, IParsable
+    public class AgreementAcceptance : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The identifier of the agreement file accepted by the user.</summary>
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? RecordedDateTime { get; set; }
         /// <summary>The state of the agreement acceptance. Possible values are: accepted, declined. Supports $filter (eq).</summary>
-        public AgreementAcceptanceState? State { get; set; }
+        public ApiSdk.Models.AgreementAcceptanceState? State { get; set; }
         /// <summary>Display name of the user when the acceptance was recorded.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -99,12 +99,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AgreementAcceptance"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AgreementAcceptance"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AgreementAcceptance CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AgreementAcceptance CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AgreementAcceptance();
+            return new ApiSdk.Models.AgreementAcceptance();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -122,7 +122,7 @@ namespace ApiSdk.Models
                 { "deviceOSVersion", n => { DeviceOSVersion = n.GetStringValue(); } },
                 { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 { "recordedDateTime", n => { RecordedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "state", n => { State = n.GetEnumValue<AgreementAcceptanceState>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.AgreementAcceptanceState>(); } },
                 { "userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
                 { "userEmail", n => { UserEmail = n.GetStringValue(); } },
                 { "userId", n => { UserId = n.GetStringValue(); } },
@@ -145,7 +145,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("deviceOSVersion", DeviceOSVersion);
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteDateTimeOffsetValue("recordedDateTime", RecordedDateTime);
-            writer.WriteEnumValue<AgreementAcceptanceState>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.AgreementAcceptanceState>("state", State);
             writer.WriteStringValue("userDisplayName", UserDisplayName);
             writer.WriteStringValue("userEmail", UserEmail);
             writer.WriteStringValue("userId", UserId);

@@ -16,21 +16,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Left
         /// <summary>The numChars property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? NumChars { get; set; }
+        public ApiSdk.Models.Json? NumChars { get; set; }
 #nullable restore
 #else
-        public Json NumChars { get; set; }
+        public ApiSdk.Models.Json NumChars { get; set; }
 #endif
         /// <summary>The text property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Text { get; set; }
+        public ApiSdk.Models.Json? Text { get; set; }
 #nullable restore
 #else
-        public Json Text { get; set; }
+        public ApiSdk.Models.Json Text { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="LeftPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Left.LeftPostRequestBody"/> and sets the default values.
         /// </summary>
         public LeftPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Left
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LeftPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Left.LeftPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static LeftPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Left.LeftPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LeftPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Left.LeftPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Left
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "numChars", n => { NumChars = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "text", n => { Text = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "numChars", n => { NumChars = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "text", n => { Text = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Left
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("numChars", NumChars);
-            writer.WriteObjectValue<Json>("text", Text);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("numChars", NumChars);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("text", Text);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

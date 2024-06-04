@@ -35,7 +35,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item
         {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.managedDeviceMobileAppConfiguration entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.AssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -62,7 +62,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item
         {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
-            var builder = new AssignRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assign.AssignRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -115,7 +115,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item
         {
             var command = new Command("device-statuses");
             command.Description = "Provides operations to manage the deviceStatuses property of the microsoft.graph.managedDeviceMobileAppConfiguration entity.";
-            var builder = new DeviceStatusesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses.DeviceStatusesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -142,7 +142,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item
         {
             var command = new Command("device-status-summary");
             command.Description = "Provides operations to manage the deviceStatusSummary property of the microsoft.graph.managedDeviceMobileAppConfiguration entity.";
-            var builder = new DeviceStatusSummaryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSummary.DeviceStatusSummaryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -238,7 +238,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ManagedDeviceMobileAppConfiguration>(ManagedDeviceMobileAppConfiguration.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ManagedDeviceMobileAppConfiguration>(ApiSdk.Models.ManagedDeviceMobileAppConfiguration.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -266,7 +266,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item
         {
             var command = new Command("user-statuses");
             command.Description = "Provides operations to manage the userStatuses property of the microsoft.graph.managedDeviceMobileAppConfiguration entity.";
-            var builder = new UserStatusesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.UserStatusesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -293,7 +293,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item
         {
             var command = new Command("user-status-summary");
             command.Description = "Provides operations to manage the userStatusSummary property of the microsoft.graph.managedDeviceMobileAppConfiguration entity.";
-            var builder = new UserStatusSummaryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatusSummary.UserStatusSummaryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -305,14 +305,14 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedDeviceMobileAppConfigurationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.ManagedDeviceMobileAppConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ManagedDeviceMobileAppConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileAppConfigurations/{managedDeviceMobileAppConfiguration%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedDeviceMobileAppConfigurationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.ManagedDeviceMobileAppConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ManagedDeviceMobileAppConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileAppConfigurations/{managedDeviceMobileAppConfiguration%2Did}{?%24expand,%24select}", rawUrl)
@@ -344,11 +344,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceMobileAppConfigurationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.ManagedDeviceMobileAppConfigurationItemRequestBuilder.ManagedDeviceMobileAppConfigurationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceMobileAppConfigurationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.ManagedDeviceMobileAppConfigurationItemRequestBuilder.ManagedDeviceMobileAppConfigurationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -364,11 +364,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ManagedDeviceMobileAppConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ManagedDeviceMobileAppConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ManagedDeviceMobileAppConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ManagedDeviceMobileAppConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

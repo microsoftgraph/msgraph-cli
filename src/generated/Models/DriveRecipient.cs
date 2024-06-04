@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DriveRecipient"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DriveRecipient"/> and sets the default values.
         /// </summary>
         public DriveRecipient()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DriveRecipient"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DriveRecipient"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DriveRecipient CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.DriveRecipient CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DriveRecipient();
+            return new ApiSdk.Models.DriveRecipient();
         }
         /// <summary>
         /// The deserialization information for the current model

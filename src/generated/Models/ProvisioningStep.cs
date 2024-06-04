@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>Details of what occurred during the step.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DetailsInfo? Details { get; set; }
+        public ApiSdk.Models.DetailsInfo? Details { get; set; }
 #nullable restore
 #else
-        public DetailsInfo Details { get; set; }
+        public ApiSdk.Models.DetailsInfo Details { get; set; }
 #endif
         /// <summary>Name of the step.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,9 +47,9 @@ namespace ApiSdk.Models
         /// <summary>Type of step. Possible values are: import, scoping, matching, processing, referenceResolution, export, unknownFutureValue.</summary>
         public ApiSdk.Models.ProvisioningStepType? ProvisioningStepType { get; set; }
         /// <summary>Status of the step. Possible values are: success, warning,  failure, skipped, unknownFutureValue.</summary>
-        public ProvisioningResult? Status { get; set; }
+        public ApiSdk.Models.ProvisioningResult? Status { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ProvisioningStep"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ProvisioningStep"/> and sets the default values.
         /// </summary>
         public ProvisioningStep()
         {
@@ -58,12 +58,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ProvisioningStep"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ProvisioningStep"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ProvisioningStep CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ProvisioningStep CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ProvisioningStep();
+            return new ApiSdk.Models.ProvisioningStep();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -74,11 +74,11 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "details", n => { Details = n.GetObjectValue<DetailsInfo>(DetailsInfo.CreateFromDiscriminatorValue); } },
+                { "details", n => { Details = n.GetObjectValue<ApiSdk.Models.DetailsInfo>(ApiSdk.Models.DetailsInfo.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "provisioningStepType", n => { ProvisioningStepType = n.GetEnumValue<ProvisioningStepType>(); } },
-                { "status", n => { Status = n.GetEnumValue<ProvisioningResult>(); } },
+                { "provisioningStepType", n => { ProvisioningStepType = n.GetEnumValue<ApiSdk.Models.ProvisioningStepType>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.ProvisioningResult>(); } },
             };
         }
         /// <summary>
@@ -89,11 +89,11 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteObjectValue<DetailsInfo>("details", Details);
+            writer.WriteObjectValue<ApiSdk.Models.DetailsInfo>("details", Details);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<ProvisioningStepType>("provisioningStepType", ProvisioningStepType);
-            writer.WriteEnumValue<ProvisioningResult>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.ProvisioningStepType>("provisioningStepType", ProvisioningStepType);
+            writer.WriteEnumValue<ApiSdk.Models.ProvisioningResult>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class RequestorManager : SubjectSet, IParsable
+    public class RequestorManager : ApiSdk.Models.SubjectSet, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The hierarchical level of the manager with respect to the requestor. For example, the direct manager of a requestor would have a managerLevel of 1, while the manager of the requestor&apos;s manager would have a managerLevel of 2. Default value for managerLevel is 1. Possible values for this property range from 1 to 2.</summary>
         public int? ManagerLevel { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="RequestorManager"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RequestorManager"/> and sets the default values.
         /// </summary>
         public RequestorManager() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RequestorManager"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RequestorManager"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RequestorManager CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.RequestorManager CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RequestorManager();
+            return new ApiSdk.Models.RequestorManager();
         }
         /// <summary>
         /// The deserialization information for the current model

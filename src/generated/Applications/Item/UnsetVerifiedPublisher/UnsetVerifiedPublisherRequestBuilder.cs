@@ -50,14 +50,14 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnsetVerifiedPublisherRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.UnsetVerifiedPublisher.UnsetVerifiedPublisherRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnsetVerifiedPublisherRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/unsetVerifiedPublisher", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnsetVerifiedPublisherRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.UnsetVerifiedPublisher.UnsetVerifiedPublisherRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnsetVerifiedPublisherRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/unsetVerifiedPublisher", rawUrl)

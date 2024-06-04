@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PlannerAssignedToTaskBoardTaskFormat : Entity, IParsable
+    public class PlannerAssignedToTaskBoardTaskFormat : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Dictionary of hints used to order tasks on the AssignedTo view of the Task Board. The key of each entry is one of the users the task is assigned to and the value is the order hint. The format of each value is defined as outlined here.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PlannerOrderHintsByAssignee? OrderHintsByAssignee { get; set; }
+        public ApiSdk.Models.PlannerOrderHintsByAssignee? OrderHintsByAssignee { get; set; }
 #nullable restore
 #else
-        public PlannerOrderHintsByAssignee OrderHintsByAssignee { get; set; }
+        public ApiSdk.Models.PlannerOrderHintsByAssignee OrderHintsByAssignee { get; set; }
 #endif
         /// <summary>Hint value used to order the task on the AssignedTo view of the Task Board when the task isn&apos;t assigned to anyone, or if the orderHintsByAssignee dictionary doesn&apos;t provide an order hint for the user the task is assigned to. The format is defined as outlined here.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,12 +29,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PlannerAssignedToTaskBoardTaskFormat"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PlannerAssignedToTaskBoardTaskFormat"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PlannerAssignedToTaskBoardTaskFormat CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PlannerAssignedToTaskBoardTaskFormat CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PlannerAssignedToTaskBoardTaskFormat();
+            return new ApiSdk.Models.PlannerAssignedToTaskBoardTaskFormat();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -44,7 +44,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "orderHintsByAssignee", n => { OrderHintsByAssignee = n.GetObjectValue<PlannerOrderHintsByAssignee>(PlannerOrderHintsByAssignee.CreateFromDiscriminatorValue); } },
+                { "orderHintsByAssignee", n => { OrderHintsByAssignee = n.GetObjectValue<ApiSdk.Models.PlannerOrderHintsByAssignee>(ApiSdk.Models.PlannerOrderHintsByAssignee.CreateFromDiscriminatorValue); } },
                 { "unassignedOrderHint", n => { UnassignedOrderHint = n.GetStringValue(); } },
             };
         }
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<PlannerOrderHintsByAssignee>("orderHintsByAssignee", OrderHintsByAssignee);
+            writer.WriteObjectValue<ApiSdk.Models.PlannerOrderHintsByAssignee>("orderHintsByAssignee", OrderHintsByAssignee);
             writer.WriteStringValue("unassignedOrderHint", UnassignedOrderHint);
         }
     }

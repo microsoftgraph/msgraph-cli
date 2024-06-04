@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessReviewNotificationRecipientScope"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessReviewNotificationRecipientScope"/> and sets the default values.
         /// </summary>
         public AccessReviewNotificationRecipientScope()
         {
@@ -30,16 +30,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessReviewNotificationRecipientScope"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessReviewNotificationRecipientScope"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AccessReviewNotificationRecipientScope CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AccessReviewNotificationRecipientScope CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.accessReviewNotificationRecipientQueryScope" => new AccessReviewNotificationRecipientQueryScope(),
-                _ => new AccessReviewNotificationRecipientScope(),
+                "#microsoft.graph.accessReviewNotificationRecipientQueryScope" => new ApiSdk.Models.AccessReviewNotificationRecipientQueryScope(),
+                _ => new ApiSdk.Models.AccessReviewNotificationRecipientScope(),
             };
         }
         /// <summary>

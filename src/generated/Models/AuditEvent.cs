@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// A class containing the properties for Audit Event.
     /// </summary>
-    public class AuditEvent : Entity, IParsable
+    public class AuditEvent : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Friendly name of the activity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,10 +48,10 @@ namespace ApiSdk.Models
         /// <summary>AAD user and application that are associated with the audit event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AuditActor? Actor { get; set; }
+        public ApiSdk.Models.AuditActor? Actor { get; set; }
 #nullable restore
 #else
-        public AuditActor Actor { get; set; }
+        public ApiSdk.Models.AuditActor Actor { get; set; }
 #endif
         /// <summary>Audit category.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -82,20 +82,20 @@ namespace ApiSdk.Models
         /// <summary>Resources being modified.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuditResource>? Resources { get; set; }
+        public List<ApiSdk.Models.AuditResource>? Resources { get; set; }
 #nullable restore
 #else
-        public List<AuditResource> Resources { get; set; }
+        public List<ApiSdk.Models.AuditResource> Resources { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuditEvent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuditEvent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AuditEvent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AuditEvent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuditEvent();
+            return new ApiSdk.Models.AuditEvent();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -110,12 +110,12 @@ namespace ApiSdk.Models
                 { "activityOperationType", n => { ActivityOperationType = n.GetStringValue(); } },
                 { "activityResult", n => { ActivityResult = n.GetStringValue(); } },
                 { "activityType", n => { ActivityType = n.GetStringValue(); } },
-                { "actor", n => { Actor = n.GetObjectValue<AuditActor>(AuditActor.CreateFromDiscriminatorValue); } },
+                { "actor", n => { Actor = n.GetObjectValue<ApiSdk.Models.AuditActor>(ApiSdk.Models.AuditActor.CreateFromDiscriminatorValue); } },
                 { "category", n => { Category = n.GetStringValue(); } },
                 { "componentName", n => { ComponentName = n.GetStringValue(); } },
                 { "correlationId", n => { CorrelationId = n.GetGuidValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "resources", n => { Resources = n.GetCollectionOfObjectValues<AuditResource>(AuditResource.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "resources", n => { Resources = n.GetCollectionOfObjectValues<ApiSdk.Models.AuditResource>(ApiSdk.Models.AuditResource.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -131,12 +131,12 @@ namespace ApiSdk.Models
             writer.WriteStringValue("activityOperationType", ActivityOperationType);
             writer.WriteStringValue("activityResult", ActivityResult);
             writer.WriteStringValue("activityType", ActivityType);
-            writer.WriteObjectValue<AuditActor>("actor", Actor);
+            writer.WriteObjectValue<ApiSdk.Models.AuditActor>("actor", Actor);
             writer.WriteStringValue("category", Category);
             writer.WriteStringValue("componentName", ComponentName);
             writer.WriteGuidValue("correlationId", CorrelationId);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<AuditResource>("resources", Resources);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuditResource>("resources", Resources);
         }
     }
 }

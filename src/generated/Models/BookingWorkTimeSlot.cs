@@ -26,7 +26,7 @@ namespace ApiSdk.Models
         /// <summary>The time of the day when work starts. For example, 08:00:00.0000000.</summary>
         public Time? StartTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="BookingWorkTimeSlot"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.BookingWorkTimeSlot"/> and sets the default values.
         /// </summary>
         public BookingWorkTimeSlot()
         {
@@ -35,12 +35,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BookingWorkTimeSlot"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BookingWorkTimeSlot"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BookingWorkTimeSlot CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.BookingWorkTimeSlot CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BookingWorkTimeSlot();
+            return new ApiSdk.Models.BookingWorkTimeSlot();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -31,7 +31,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.It
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new RelationItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations.Item.RelationItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildFromTermNavCommand());
             executables.Add(builder.BuildGetCommand());
@@ -48,7 +48,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.It
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -108,7 +108,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.It
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Relation>(Relation.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.TermStore.Relation>(ApiSdk.Models.TermStore.Relation.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -259,14 +259,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.It
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RelationsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations.RelationsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RelationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStore/groups/{group%2Did1}/sets/{set%2Did}/terms/{term%2Did}/relations{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RelationsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations.RelationsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RelationsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStore/groups/{group%2Did1}/sets/{set%2Did}/terms/{term%2Did}/relations{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -279,11 +279,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.It
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RelationsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations.RelationsRequestBuilder.RelationsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RelationsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations.RelationsRequestBuilder.RelationsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -299,11 +299,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.It
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Relation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.TermStore.Relation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Relation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.TermStore.Relation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

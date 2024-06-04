@@ -39,7 +39,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         {
             var command = new Command("associate-with-hub-sites");
             command.Description = "Provides operations to call the associateWithHubSites method.";
-            var builder = new AssociateWithHubSitesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.ContentTypes.Item.AssociateWithHubSites.AssociateWithHubSitesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -56,7 +56,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         {
             var command = new Command("base");
             command.Description = "Provides operations to manage the base property of the microsoft.graph.contentType entity.";
-            var builder = new BaseRequestBuilderEscaped(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.ContentTypes.Item.Base.BaseRequestBuilderEscaped(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -73,7 +73,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         {
             var command = new Command("base-types");
             command.Description = "Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.";
-            var builder = new BaseTypesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.ContentTypes.Item.BaseTypes.BaseTypesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -99,7 +99,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         {
             var command = new Command("column-links");
             command.Description = "Provides operations to manage the columnLinks property of the microsoft.graph.contentType entity.";
-            var builder = new ColumnLinksRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnLinks.ColumnLinksRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -126,7 +126,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         {
             var command = new Command("column-positions");
             command.Description = "Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.";
-            var builder = new ColumnPositionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnPositions.ColumnPositionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -152,7 +152,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.contentType entity.";
-            var builder = new ColumnsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.ColumnsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -179,7 +179,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         {
             var command = new Command("copy-to-default-content-location");
             command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
-            var builder = new CopyToDefaultContentLocationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.ContentTypes.Item.CopyToDefaultContentLocation.CopyToDefaultContentLocationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -295,7 +295,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         {
             var command = new Command("is-published");
             command.Description = "Provides operations to call the isPublished method.";
-            var builder = new IsPublishedRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.ContentTypes.Item.IsPublished.IsPublishedRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -340,7 +340,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ContentType>(ContentType.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ContentType>(ApiSdk.Models.ContentType.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -369,7 +369,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         {
             var command = new Command("publish");
             command.Description = "Provides operations to call the publish method.";
-            var builder = new PublishRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.ContentTypes.Item.Publish.PublishRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -386,7 +386,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         {
             var command = new Command("unpublish");
             command.Description = "Provides operations to call the unpublish method.";
-            var builder = new UnpublishRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish.UnpublishRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -396,14 +396,14 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ContentTypeItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.List.ContentTypes.Item.ContentTypeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContentTypeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ContentTypeItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.List.ContentTypes.Item.ContentTypeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentTypeItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}{?%24expand,%24select}", rawUrl)
@@ -435,11 +435,11 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentTypeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.List.ContentTypes.Item.ContentTypeItemRequestBuilder.ContentTypeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentTypeItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.List.ContentTypes.Item.ContentTypeItemRequestBuilder.ContentTypeItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -455,11 +455,11 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ContentType body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ContentType body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ContentType body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ContentType body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

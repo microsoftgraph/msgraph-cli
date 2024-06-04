@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrintOperation : Entity, IParsable
+    public class PrintOperation : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The DateTimeOffset when the operation was created. Read-only.</summary>
@@ -15,24 +15,24 @@ namespace ApiSdk.Models
         /// <summary>The status property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PrintOperationStatus? Status { get; set; }
+        public ApiSdk.Models.PrintOperationStatus? Status { get; set; }
 #nullable restore
 #else
-        public PrintOperationStatus Status { get; set; }
+        public ApiSdk.Models.PrintOperationStatus Status { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrintOperation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrintOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrintOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrintOperation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.printerCreateOperation" => new PrinterCreateOperation(),
-                _ => new PrintOperation(),
+                "#microsoft.graph.printerCreateOperation" => new ApiSdk.Models.PrinterCreateOperation(),
+                _ => new ApiSdk.Models.PrintOperation(),
             };
         }
         /// <summary>
@@ -44,7 +44,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetObjectValue<PrintOperationStatus>(PrintOperationStatus.CreateFromDiscriminatorValue); } },
+                { "status", n => { Status = n.GetObjectValue<ApiSdk.Models.PrintOperationStatus>(ApiSdk.Models.PrintOperationStatus.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<PrintOperationStatus>("status", Status);
+            writer.WriteObjectValue<ApiSdk.Models.PrintOperationStatus>("status", Status);
         }
     }
 }

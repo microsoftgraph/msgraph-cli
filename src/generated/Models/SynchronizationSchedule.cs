@@ -25,9 +25,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The state property</summary>
-        public SynchronizationScheduleState? State { get; set; }
+        public ApiSdk.Models.SynchronizationScheduleState? State { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SynchronizationSchedule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SynchronizationSchedule"/> and sets the default values.
         /// </summary>
         public SynchronizationSchedule()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SynchronizationSchedule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SynchronizationSchedule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SynchronizationSchedule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SynchronizationSchedule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SynchronizationSchedule();
+            return new ApiSdk.Models.SynchronizationSchedule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
                 { "expiration", n => { Expiration = n.GetDateTimeOffsetValue(); } },
                 { "interval", n => { Interval = n.GetTimeSpanValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "state", n => { State = n.GetEnumValue<SynchronizationScheduleState>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.SynchronizationScheduleState>(); } },
             };
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("expiration", Expiration);
             writer.WriteTimeSpanValue("interval", Interval);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<SynchronizationScheduleState>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.SynchronizationScheduleState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

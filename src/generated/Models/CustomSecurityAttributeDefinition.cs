@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CustomSecurityAttributeDefinition : Entity, IParsable
+    public class CustomSecurityAttributeDefinition : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Values that are predefined for this custom security attribute. This navigation property is not returned by default and must be specified in an $expand query. For example, /directory/customSecurityAttributeDefinitions?$expand=allowedValues.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AllowedValue>? AllowedValues { get; set; }
+        public List<ApiSdk.Models.AllowedValue>? AllowedValues { get; set; }
 #nullable restore
 #else
-        public List<AllowedValue> AllowedValues { get; set; }
+        public List<ApiSdk.Models.AllowedValue> AllowedValues { get; set; }
 #endif
         /// <summary>Name of the attribute set. Case insensitive.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -67,12 +67,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CustomSecurityAttributeDefinition"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CustomSecurityAttributeDefinition"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CustomSecurityAttributeDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CustomSecurityAttributeDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CustomSecurityAttributeDefinition();
+            return new ApiSdk.Models.CustomSecurityAttributeDefinition();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,7 +82,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "allowedValues", n => { AllowedValues = n.GetCollectionOfObjectValues<AllowedValue>(AllowedValue.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "allowedValues", n => { AllowedValues = n.GetCollectionOfObjectValues<ApiSdk.Models.AllowedValue>(ApiSdk.Models.AllowedValue.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "attributeSet", n => { AttributeSet = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "isCollection", n => { IsCollection = n.GetBoolValue(); } },
@@ -101,7 +101,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AllowedValue>("allowedValues", AllowedValues);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AllowedValue>("allowedValues", AllowedValues);
             writer.WriteStringValue("attributeSet", AttributeSet);
             writer.WriteStringValue("description", Description);
             writer.WriteBoolValue("isCollection", IsCollection);

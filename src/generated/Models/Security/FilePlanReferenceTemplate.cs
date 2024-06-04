@@ -7,18 +7,18 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class FilePlanReferenceTemplate : FilePlanDescriptorTemplate, IParsable
+    public class FilePlanReferenceTemplate : ApiSdk.Models.Security.FilePlanDescriptorTemplate, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FilePlanReferenceTemplate"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.FilePlanReferenceTemplate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FilePlanReferenceTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.FilePlanReferenceTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FilePlanReferenceTemplate();
+            return new ApiSdk.Models.Security.FilePlanReferenceTemplate();
         }
         /// <summary>
         /// The deserialization information for the current model

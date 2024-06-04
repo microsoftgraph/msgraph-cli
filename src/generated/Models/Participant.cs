@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Participant : Entity, IParsable
+    public class Participant : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The info property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ParticipantInfo? Info { get; set; }
+        public ApiSdk.Models.ParticipantInfo? Info { get; set; }
 #nullable restore
 #else
-        public ParticipantInfo Info { get; set; }
+        public ApiSdk.Models.ParticipantInfo Info { get; set; }
 #endif
         /// <summary>true if the participant is in lobby.</summary>
         public bool? IsInLobby { get; set; }
@@ -25,10 +25,10 @@ namespace ApiSdk.Models
         /// <summary>The list of media streams.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MediaStream>? MediaStreams { get; set; }
+        public List<ApiSdk.Models.MediaStream>? MediaStreams { get; set; }
 #nullable restore
 #else
-        public List<MediaStream> MediaStreams { get; set; }
+        public List<ApiSdk.Models.MediaStream> MediaStreams { get; set; }
 #endif
         /// <summary>A blob of data provided by the participant in the roster.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,22 +57,22 @@ namespace ApiSdk.Models
         /// <summary>Indicates the reason or reasons media content from this participant is restricted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public OnlineMeetingRestricted? RestrictedExperience { get; set; }
+        public ApiSdk.Models.OnlineMeetingRestricted? RestrictedExperience { get; set; }
 #nullable restore
 #else
-        public OnlineMeetingRestricted RestrictedExperience { get; set; }
+        public ApiSdk.Models.OnlineMeetingRestricted RestrictedExperience { get; set; }
 #endif
         /// <summary>Indicates the roster sequence number in which the participant was last updated.</summary>
         public long? RosterSequenceNumber { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Participant"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Participant"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Participant CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Participant CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Participant();
+            return new ApiSdk.Models.Participant();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,14 +82,14 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "info", n => { Info = n.GetObjectValue<ParticipantInfo>(ParticipantInfo.CreateFromDiscriminatorValue); } },
+                { "info", n => { Info = n.GetObjectValue<ApiSdk.Models.ParticipantInfo>(ApiSdk.Models.ParticipantInfo.CreateFromDiscriminatorValue); } },
                 { "isInLobby", n => { IsInLobby = n.GetBoolValue(); } },
                 { "isMuted", n => { IsMuted = n.GetBoolValue(); } },
-                { "mediaStreams", n => { MediaStreams = n.GetCollectionOfObjectValues<MediaStream>(MediaStream.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "mediaStreams", n => { MediaStreams = n.GetCollectionOfObjectValues<ApiSdk.Models.MediaStream>(ApiSdk.Models.MediaStream.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "metadata", n => { Metadata = n.GetStringValue(); } },
                 { "recordingInfo", n => { RecordingInfo = n.GetObjectValue<ApiSdk.Models.RecordingInfo>(ApiSdk.Models.RecordingInfo.CreateFromDiscriminatorValue); } },
                 { "removedState", n => { RemovedState = n.GetObjectValue<ApiSdk.Models.RemovedState>(ApiSdk.Models.RemovedState.CreateFromDiscriminatorValue); } },
-                { "restrictedExperience", n => { RestrictedExperience = n.GetObjectValue<OnlineMeetingRestricted>(OnlineMeetingRestricted.CreateFromDiscriminatorValue); } },
+                { "restrictedExperience", n => { RestrictedExperience = n.GetObjectValue<ApiSdk.Models.OnlineMeetingRestricted>(ApiSdk.Models.OnlineMeetingRestricted.CreateFromDiscriminatorValue); } },
                 { "rosterSequenceNumber", n => { RosterSequenceNumber = n.GetLongValue(); } },
             };
         }
@@ -101,14 +101,14 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<ParticipantInfo>("info", Info);
+            writer.WriteObjectValue<ApiSdk.Models.ParticipantInfo>("info", Info);
             writer.WriteBoolValue("isInLobby", IsInLobby);
             writer.WriteBoolValue("isMuted", IsMuted);
-            writer.WriteCollectionOfObjectValues<MediaStream>("mediaStreams", MediaStreams);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MediaStream>("mediaStreams", MediaStreams);
             writer.WriteStringValue("metadata", Metadata);
             writer.WriteObjectValue<ApiSdk.Models.RecordingInfo>("recordingInfo", RecordingInfo);
             writer.WriteObjectValue<ApiSdk.Models.RemovedState>("removedState", RemovedState);
-            writer.WriteObjectValue<OnlineMeetingRestricted>("restrictedExperience", RestrictedExperience);
+            writer.WriteObjectValue<ApiSdk.Models.OnlineMeetingRestricted>("restrictedExperience", RestrictedExperience);
             writer.WriteLongValue("rosterSequenceNumber", RosterSequenceNumber);
         }
     }

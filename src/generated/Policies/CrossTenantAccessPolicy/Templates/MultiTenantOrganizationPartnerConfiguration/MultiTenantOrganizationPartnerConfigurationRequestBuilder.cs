@@ -124,7 +124,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Templates.MultiTenantOrganizat
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<MultiTenantOrganizationPartnerConfigurationTemplate>(MultiTenantOrganizationPartnerConfigurationTemplate.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.MultiTenantOrganizationPartnerConfigurationTemplate>(ApiSdk.Models.MultiTenantOrganizationPartnerConfigurationTemplate.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -144,14 +144,14 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Templates.MultiTenantOrganizat
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MultiTenantOrganizationPartnerConfigurationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.CrossTenantAccessPolicy.Templates.MultiTenantOrganizationPartnerConfiguration.MultiTenantOrganizationPartnerConfigurationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MultiTenantOrganizationPartnerConfigurationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/crossTenantAccessPolicy/templates/multiTenantOrganizationPartnerConfiguration{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MultiTenantOrganizationPartnerConfigurationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.CrossTenantAccessPolicy.Templates.MultiTenantOrganizationPartnerConfiguration.MultiTenantOrganizationPartnerConfigurationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MultiTenantOrganizationPartnerConfigurationRequestBuilder(string rawUrl) : base("{+baseurl}/policies/crossTenantAccessPolicy/templates/multiTenantOrganizationPartnerConfiguration{?%24expand,%24select}", rawUrl)
@@ -183,11 +183,11 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Templates.MultiTenantOrganizat
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MultiTenantOrganizationPartnerConfigurationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.CrossTenantAccessPolicy.Templates.MultiTenantOrganizationPartnerConfiguration.MultiTenantOrganizationPartnerConfigurationRequestBuilder.MultiTenantOrganizationPartnerConfigurationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MultiTenantOrganizationPartnerConfigurationRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.CrossTenantAccessPolicy.Templates.MultiTenantOrganizationPartnerConfiguration.MultiTenantOrganizationPartnerConfigurationRequestBuilder.MultiTenantOrganizationPartnerConfigurationRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -203,11 +203,11 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Templates.MultiTenantOrganizat
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(MultiTenantOrganizationPartnerConfigurationTemplate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.MultiTenantOrganizationPartnerConfigurationTemplate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(MultiTenantOrganizationPartnerConfigurationTemplate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.MultiTenantOrganizationPartnerConfigurationTemplate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

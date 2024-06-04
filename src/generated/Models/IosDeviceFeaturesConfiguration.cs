@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// iOS Device Features Configuration Profile.
     /// </summary>
-    public class IosDeviceFeaturesConfiguration : AppleDeviceFeaturesConfigurationBase, IParsable
+    public class IosDeviceFeaturesConfiguration : ApiSdk.Models.AppleDeviceFeaturesConfigurationBase, IParsable
     {
         /// <summary>Asset tag information for the device, displayed on the login window and lock screen.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,18 +22,18 @@ namespace ApiSdk.Models
         /// <summary>A list of app and folders to appear on the Home Screen Dock. This collection can contain a maximum of 500 elements.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<IosHomeScreenItem>? HomeScreenDockIcons { get; set; }
+        public List<ApiSdk.Models.IosHomeScreenItem>? HomeScreenDockIcons { get; set; }
 #nullable restore
 #else
-        public List<IosHomeScreenItem> HomeScreenDockIcons { get; set; }
+        public List<ApiSdk.Models.IosHomeScreenItem> HomeScreenDockIcons { get; set; }
 #endif
         /// <summary>A list of pages on the Home Screen. This collection can contain a maximum of 500 elements.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<IosHomeScreenPage>? HomeScreenPages { get; set; }
+        public List<ApiSdk.Models.IosHomeScreenPage>? HomeScreenPages { get; set; }
 #nullable restore
 #else
-        public List<IosHomeScreenPage> HomeScreenPages { get; set; }
+        public List<ApiSdk.Models.IosHomeScreenPage> HomeScreenPages { get; set; }
 #endif
         /// <summary>A footnote displayed on the login window and lock screen. Available in iOS 9.3.1 and later.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -46,13 +46,13 @@ namespace ApiSdk.Models
         /// <summary>Notification settings for each bundle id. Applicable to devices in supervised mode only (iOS 9.3 and later). This collection can contain a maximum of 500 elements.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<IosNotificationSettings>? NotificationSettings { get; set; }
+        public List<ApiSdk.Models.IosNotificationSettings>? NotificationSettings { get; set; }
 #nullable restore
 #else
-        public List<IosNotificationSettings> NotificationSettings { get; set; }
+        public List<ApiSdk.Models.IosNotificationSettings> NotificationSettings { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IosDeviceFeaturesConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IosDeviceFeaturesConfiguration"/> and sets the default values.
         /// </summary>
         public IosDeviceFeaturesConfiguration() : base()
         {
@@ -61,12 +61,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosDeviceFeaturesConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosDeviceFeaturesConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IosDeviceFeaturesConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IosDeviceFeaturesConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IosDeviceFeaturesConfiguration();
+            return new ApiSdk.Models.IosDeviceFeaturesConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -77,10 +77,10 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "assetTagTemplate", n => { AssetTagTemplate = n.GetStringValue(); } },
-                { "homeScreenDockIcons", n => { HomeScreenDockIcons = n.GetCollectionOfObjectValues<IosHomeScreenItem>(IosHomeScreenItem.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "homeScreenPages", n => { HomeScreenPages = n.GetCollectionOfObjectValues<IosHomeScreenPage>(IosHomeScreenPage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "homeScreenDockIcons", n => { HomeScreenDockIcons = n.GetCollectionOfObjectValues<ApiSdk.Models.IosHomeScreenItem>(ApiSdk.Models.IosHomeScreenItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "homeScreenPages", n => { HomeScreenPages = n.GetCollectionOfObjectValues<ApiSdk.Models.IosHomeScreenPage>(ApiSdk.Models.IosHomeScreenPage.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "lockScreenFootnote", n => { LockScreenFootnote = n.GetStringValue(); } },
-                { "notificationSettings", n => { NotificationSettings = n.GetCollectionOfObjectValues<IosNotificationSettings>(IosNotificationSettings.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "notificationSettings", n => { NotificationSettings = n.GetCollectionOfObjectValues<ApiSdk.Models.IosNotificationSettings>(ApiSdk.Models.IosNotificationSettings.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -92,10 +92,10 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("assetTagTemplate", AssetTagTemplate);
-            writer.WriteCollectionOfObjectValues<IosHomeScreenItem>("homeScreenDockIcons", HomeScreenDockIcons);
-            writer.WriteCollectionOfObjectValues<IosHomeScreenPage>("homeScreenPages", HomeScreenPages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IosHomeScreenItem>("homeScreenDockIcons", HomeScreenDockIcons);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IosHomeScreenPage>("homeScreenPages", HomeScreenPages);
             writer.WriteStringValue("lockScreenFootnote", LockScreenFootnote);
-            writer.WriteCollectionOfObjectValues<IosNotificationSettings>("notificationSettings", NotificationSettings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IosNotificationSettings>("notificationSettings", NotificationSettings);
         }
     }
 }

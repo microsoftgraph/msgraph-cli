@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessReviewHistoryDefinition : Entity, IParsable
+    public class AccessReviewHistoryDefinition : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The createdBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserIdentity? CreatedBy { get; set; }
+        public ApiSdk.Models.UserIdentity? CreatedBy { get; set; }
 #nullable restore
 #else
-        public UserIdentity CreatedBy { get; set; }
+        public ApiSdk.Models.UserIdentity CreatedBy { get; set; }
 #endif
         /// <summary>Timestamp when the access review definition was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Determines which review decisions will be included in the fetched review history data if specified. Optional on create. All decisions are included by default if no decisions are provided on create. Possible values are: approve, deny, dontKnow, notReviewed, and notNotified.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessReviewHistoryDecisionFilter?>? Decisions { get; set; }
+        public List<ApiSdk.Models.AccessReviewHistoryDecisionFilter?>? Decisions { get; set; }
 #nullable restore
 #else
-        public List<AccessReviewHistoryDecisionFilter?> Decisions { get; set; }
+        public List<ApiSdk.Models.AccessReviewHistoryDecisionFilter?> Decisions { get; set; }
 #endif
         /// <summary>Name for the access review history data collection. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,10 +39,10 @@ namespace ApiSdk.Models
         /// <summary>If the accessReviewHistoryDefinition is a recurring definition, instances represent each recurrence. A definition that doesn&apos;t recur will have exactly one instance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessReviewHistoryInstance>? Instances { get; set; }
+        public List<ApiSdk.Models.AccessReviewHistoryInstance>? Instances { get; set; }
 #nullable restore
 #else
-        public List<AccessReviewHistoryInstance> Instances { get; set; }
+        public List<ApiSdk.Models.AccessReviewHistoryInstance> Instances { get; set; }
 #endif
         /// <summary>A timestamp. Reviews ending on or before this date will be included in the fetched history data. Only required if scheduleSettings isn&apos;t defined.</summary>
         public DateTimeOffset? ReviewHistoryPeriodEndDateTime { get; set; }
@@ -51,30 +51,30 @@ namespace ApiSdk.Models
         /// <summary>The settings for a recurring access review history definition series. Only required if reviewHistoryPeriodStartDateTime or reviewHistoryPeriodEndDateTime aren&apos;t defined. Not supported yet.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessReviewHistoryScheduleSettings? ScheduleSettings { get; set; }
+        public ApiSdk.Models.AccessReviewHistoryScheduleSettings? ScheduleSettings { get; set; }
 #nullable restore
 #else
-        public AccessReviewHistoryScheduleSettings ScheduleSettings { get; set; }
+        public ApiSdk.Models.AccessReviewHistoryScheduleSettings ScheduleSettings { get; set; }
 #endif
         /// <summary>Used to scope what reviews are included in the fetched history data. Fetches reviews whose scope matches with this provided scope. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessReviewScope>? Scopes { get; set; }
+        public List<ApiSdk.Models.AccessReviewScope>? Scopes { get; set; }
 #nullable restore
 #else
-        public List<AccessReviewScope> Scopes { get; set; }
+        public List<ApiSdk.Models.AccessReviewScope> Scopes { get; set; }
 #endif
         /// <summary>Represents the status of the review history data collection. The possible values are: done, inProgress, error, requested, unknownFutureValue.</summary>
-        public AccessReviewHistoryStatus? Status { get; set; }
+        public ApiSdk.Models.AccessReviewHistoryStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessReviewHistoryDefinition"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessReviewHistoryDefinition"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessReviewHistoryDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessReviewHistoryDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessReviewHistoryDefinition();
+            return new ApiSdk.Models.AccessReviewHistoryDefinition();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,16 +84,16 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.UserIdentity>(ApiSdk.Models.UserIdentity.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "decisions", n => { Decisions = n.GetCollectionOfEnumValues<AccessReviewHistoryDecisionFilter>()?.ToList(); } },
+                { "decisions", n => { Decisions = n.GetCollectionOfEnumValues<ApiSdk.Models.AccessReviewHistoryDecisionFilter>()?.ToList(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "instances", n => { Instances = n.GetCollectionOfObjectValues<AccessReviewHistoryInstance>(AccessReviewHistoryInstance.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "instances", n => { Instances = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessReviewHistoryInstance>(ApiSdk.Models.AccessReviewHistoryInstance.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "reviewHistoryPeriodEndDateTime", n => { ReviewHistoryPeriodEndDateTime = n.GetDateTimeOffsetValue(); } },
                 { "reviewHistoryPeriodStartDateTime", n => { ReviewHistoryPeriodStartDateTime = n.GetDateTimeOffsetValue(); } },
-                { "scheduleSettings", n => { ScheduleSettings = n.GetObjectValue<AccessReviewHistoryScheduleSettings>(AccessReviewHistoryScheduleSettings.CreateFromDiscriminatorValue); } },
-                { "scopes", n => { Scopes = n.GetCollectionOfObjectValues<AccessReviewScope>(AccessReviewScope.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "status", n => { Status = n.GetEnumValue<AccessReviewHistoryStatus>(); } },
+                { "scheduleSettings", n => { ScheduleSettings = n.GetObjectValue<ApiSdk.Models.AccessReviewHistoryScheduleSettings>(ApiSdk.Models.AccessReviewHistoryScheduleSettings.CreateFromDiscriminatorValue); } },
+                { "scopes", n => { Scopes = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessReviewScope>(ApiSdk.Models.AccessReviewScope.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.AccessReviewHistoryStatus>(); } },
             };
         }
         /// <summary>
@@ -104,16 +104,16 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<UserIdentity>("createdBy", CreatedBy);
+            writer.WriteObjectValue<ApiSdk.Models.UserIdentity>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteCollectionOfEnumValues<AccessReviewHistoryDecisionFilter>("decisions", Decisions);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.AccessReviewHistoryDecisionFilter>("decisions", Decisions);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<AccessReviewHistoryInstance>("instances", Instances);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessReviewHistoryInstance>("instances", Instances);
             writer.WriteDateTimeOffsetValue("reviewHistoryPeriodEndDateTime", ReviewHistoryPeriodEndDateTime);
             writer.WriteDateTimeOffsetValue("reviewHistoryPeriodStartDateTime", ReviewHistoryPeriodStartDateTime);
-            writer.WriteObjectValue<AccessReviewHistoryScheduleSettings>("scheduleSettings", ScheduleSettings);
-            writer.WriteCollectionOfObjectValues<AccessReviewScope>("scopes", Scopes);
-            writer.WriteEnumValue<AccessReviewHistoryStatus>("status", Status);
+            writer.WriteObjectValue<ApiSdk.Models.AccessReviewHistoryScheduleSettings>("scheduleSettings", ScheduleSettings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessReviewScope>("scopes", Scopes);
+            writer.WriteEnumValue<ApiSdk.Models.AccessReviewHistoryStatus>("status", Status);
         }
     }
 }

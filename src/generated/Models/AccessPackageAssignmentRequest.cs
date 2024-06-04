@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageAssignmentRequest : Entity, IParsable
+    public class AccessPackageAssignmentRequest : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable.  Supports $expand.</summary>
@@ -21,18 +21,18 @@ namespace ApiSdk.Models
         /// <summary>Answers provided by the requestor to accessPackageQuestions asked of them at the time of request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessPackageAnswer>? Answers { get; set; }
+        public List<ApiSdk.Models.AccessPackageAnswer>? Answers { get; set; }
 #nullable restore
 #else
-        public List<AccessPackageAnswer> Answers { get; set; }
+        public List<ApiSdk.Models.AccessPackageAnswer> Answers { get; set; }
 #endif
         /// <summary>For a requestType of userAdd or adminAdd, this is an access package assignment requested to be created. For a requestType of userRemove, adminRemove or systemRemove, this has the id property of an existing assignment to be removed.   Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageAssignment? Assignment { get; set; }
+        public ApiSdk.Models.AccessPackageAssignment? Assignment { get; set; }
 #nullable restore
 #else
-        public AccessPackageAssignment Assignment { get; set; }
+        public ApiSdk.Models.AccessPackageAssignment Assignment { get; set; }
 #endif
         /// <summary>The date of the end of processing, either successful or failure, of a request. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? CompletedDateTime { get; set; }
@@ -41,31 +41,31 @@ namespace ApiSdk.Models
         /// <summary>Information about all the custom extension calls that were made during the access package assignment workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CustomExtensionCalloutInstance>? CustomExtensionCalloutInstances { get; set; }
+        public List<ApiSdk.Models.CustomExtensionCalloutInstance>? CustomExtensionCalloutInstances { get; set; }
 #nullable restore
 #else
-        public List<CustomExtensionCalloutInstance> CustomExtensionCalloutInstances { get; set; }
+        public List<ApiSdk.Models.CustomExtensionCalloutInstance> CustomExtensionCalloutInstances { get; set; }
 #endif
         /// <summary>The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageSubject? Requestor { get; set; }
+        public ApiSdk.Models.AccessPackageSubject? Requestor { get; set; }
 #nullable restore
 #else
-        public AccessPackageSubject Requestor { get; set; }
+        public ApiSdk.Models.AccessPackageSubject Requestor { get; set; }
 #endif
         /// <summary>The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. Requests from the user have a requestType of userAdd, userUpdate, or userRemove. This property can&apos;t be changed once set.</summary>
-        public AccessPackageRequestType? RequestType { get; set; }
+        public ApiSdk.Models.AccessPackageRequestType? RequestType { get; set; }
         /// <summary>The range of dates that access is to be assigned to the requestor. This property can&apos;t be changed once set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EntitlementManagementSchedule? Schedule { get; set; }
+        public ApiSdk.Models.EntitlementManagementSchedule? Schedule { get; set; }
 #nullable restore
 #else
-        public EntitlementManagementSchedule Schedule { get; set; }
+        public ApiSdk.Models.EntitlementManagementSchedule Schedule { get; set; }
 #endif
         /// <summary>The state of the request. The possible values are: submitted, pendingApproval, delivering, delivered, deliveryFailed, denied, scheduled, canceled, partiallyDelivered, unknownFutureValue. Read-only. Supports $filter (eq).</summary>
-        public AccessPackageRequestState? State { get; set; }
+        public ApiSdk.Models.AccessPackageRequestState? State { get; set; }
         /// <summary>More information on the request processing status. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -77,12 +77,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageAssignmentRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageAssignmentRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageAssignmentRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageAssignmentRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageAssignmentRequest();
+            return new ApiSdk.Models.AccessPackageAssignmentRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -93,15 +93,15 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "accessPackage", n => { AccessPackage = n.GetObjectValue<ApiSdk.Models.AccessPackage>(ApiSdk.Models.AccessPackage.CreateFromDiscriminatorValue); } },
-                { "answers", n => { Answers = n.GetCollectionOfObjectValues<AccessPackageAnswer>(AccessPackageAnswer.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "assignment", n => { Assignment = n.GetObjectValue<AccessPackageAssignment>(AccessPackageAssignment.CreateFromDiscriminatorValue); } },
+                { "answers", n => { Answers = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessPackageAnswer>(ApiSdk.Models.AccessPackageAnswer.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignment", n => { Assignment = n.GetObjectValue<ApiSdk.Models.AccessPackageAssignment>(ApiSdk.Models.AccessPackageAssignment.CreateFromDiscriminatorValue); } },
                 { "completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "customExtensionCalloutInstances", n => { CustomExtensionCalloutInstances = n.GetCollectionOfObjectValues<CustomExtensionCalloutInstance>(CustomExtensionCalloutInstance.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "requestType", n => { RequestType = n.GetEnumValue<AccessPackageRequestType>(); } },
-                { "requestor", n => { Requestor = n.GetObjectValue<AccessPackageSubject>(AccessPackageSubject.CreateFromDiscriminatorValue); } },
-                { "schedule", n => { Schedule = n.GetObjectValue<EntitlementManagementSchedule>(EntitlementManagementSchedule.CreateFromDiscriminatorValue); } },
-                { "state", n => { State = n.GetEnumValue<AccessPackageRequestState>(); } },
+                { "customExtensionCalloutInstances", n => { CustomExtensionCalloutInstances = n.GetCollectionOfObjectValues<ApiSdk.Models.CustomExtensionCalloutInstance>(ApiSdk.Models.CustomExtensionCalloutInstance.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "requestType", n => { RequestType = n.GetEnumValue<ApiSdk.Models.AccessPackageRequestType>(); } },
+                { "requestor", n => { Requestor = n.GetObjectValue<ApiSdk.Models.AccessPackageSubject>(ApiSdk.Models.AccessPackageSubject.CreateFromDiscriminatorValue); } },
+                { "schedule", n => { Schedule = n.GetObjectValue<ApiSdk.Models.EntitlementManagementSchedule>(ApiSdk.Models.EntitlementManagementSchedule.CreateFromDiscriminatorValue); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.AccessPackageRequestState>(); } },
                 { "status", n => { Status = n.GetStringValue(); } },
             };
         }
@@ -114,15 +114,15 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.AccessPackage>("accessPackage", AccessPackage);
-            writer.WriteCollectionOfObjectValues<AccessPackageAnswer>("answers", Answers);
-            writer.WriteObjectValue<AccessPackageAssignment>("assignment", Assignment);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessPackageAnswer>("answers", Answers);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageAssignment>("assignment", Assignment);
             writer.WriteDateTimeOffsetValue("completedDateTime", CompletedDateTime);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteCollectionOfObjectValues<CustomExtensionCalloutInstance>("customExtensionCalloutInstances", CustomExtensionCalloutInstances);
-            writer.WriteObjectValue<AccessPackageSubject>("requestor", Requestor);
-            writer.WriteEnumValue<AccessPackageRequestType>("requestType", RequestType);
-            writer.WriteObjectValue<EntitlementManagementSchedule>("schedule", Schedule);
-            writer.WriteEnumValue<AccessPackageRequestState>("state", State);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CustomExtensionCalloutInstance>("customExtensionCalloutInstances", CustomExtensionCalloutInstances);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageSubject>("requestor", Requestor);
+            writer.WriteEnumValue<ApiSdk.Models.AccessPackageRequestType>("requestType", RequestType);
+            writer.WriteObjectValue<ApiSdk.Models.EntitlementManagementSchedule>("schedule", Schedule);
+            writer.WriteEnumValue<ApiSdk.Models.AccessPackageRequestState>("state", State);
             writer.WriteStringValue("status", Status);
         }
     }

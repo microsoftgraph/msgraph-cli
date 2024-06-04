@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UserTeamwork : Entity, IParsable
+    public class UserTeamwork : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The list of associatedTeamInfo objects that a user is associated with.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AssociatedTeamInfo>? AssociatedTeams { get; set; }
+        public List<ApiSdk.Models.AssociatedTeamInfo>? AssociatedTeams { get; set; }
 #nullable restore
 #else
-        public List<AssociatedTeamInfo> AssociatedTeams { get; set; }
+        public List<ApiSdk.Models.AssociatedTeamInfo> AssociatedTeams { get; set; }
 #endif
         /// <summary>The apps installed in the personal scope of this user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserScopeTeamsAppInstallation>? InstalledApps { get; set; }
+        public List<ApiSdk.Models.UserScopeTeamsAppInstallation>? InstalledApps { get; set; }
 #nullable restore
 #else
-        public List<UserScopeTeamsAppInstallation> InstalledApps { get; set; }
+        public List<ApiSdk.Models.UserScopeTeamsAppInstallation> InstalledApps { get; set; }
 #endif
         /// <summary>The chosen locale of a user in Microsoft Teams.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,12 +45,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserTeamwork"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserTeamwork"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserTeamwork CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserTeamwork CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserTeamwork();
+            return new ApiSdk.Models.UserTeamwork();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,8 +60,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "associatedTeams", n => { AssociatedTeams = n.GetCollectionOfObjectValues<AssociatedTeamInfo>(AssociatedTeamInfo.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "installedApps", n => { InstalledApps = n.GetCollectionOfObjectValues<UserScopeTeamsAppInstallation>(UserScopeTeamsAppInstallation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "associatedTeams", n => { AssociatedTeams = n.GetCollectionOfObjectValues<ApiSdk.Models.AssociatedTeamInfo>(ApiSdk.Models.AssociatedTeamInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "installedApps", n => { InstalledApps = n.GetCollectionOfObjectValues<ApiSdk.Models.UserScopeTeamsAppInstallation>(ApiSdk.Models.UserScopeTeamsAppInstallation.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "locale", n => { Locale = n.GetStringValue(); } },
                 { "region", n => { Region = n.GetStringValue(); } },
             };
@@ -74,8 +74,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AssociatedTeamInfo>("associatedTeams", AssociatedTeams);
-            writer.WriteCollectionOfObjectValues<UserScopeTeamsAppInstallation>("installedApps", InstalledApps);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AssociatedTeamInfo>("associatedTeams", AssociatedTeams);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserScopeTeamsAppInstallation>("installedApps", InstalledApps);
             writer.WriteStringValue("locale", Locale);
             writer.WriteStringValue("region", Region);
         }

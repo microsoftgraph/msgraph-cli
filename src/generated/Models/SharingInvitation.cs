@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>Provides information about who sent the invitation that created this permission, if that information is available. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? InvitedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? InvitedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet InvitedBy { get; set; }
+        public ApiSdk.Models.IdentitySet InvitedBy { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         /// <summary>If true the recipient of the invitation needs to sign in in order to access the shared item. Read-only.</summary>
         public bool? SignInRequired { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SharingInvitation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SharingInvitation"/> and sets the default values.
         /// </summary>
         public SharingInvitation()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SharingInvitation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SharingInvitation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SharingInvitation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SharingInvitation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SharingInvitation();
+            return new ApiSdk.Models.SharingInvitation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "email", n => { Email = n.GetStringValue(); } },
-                { "invitedBy", n => { InvitedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "invitedBy", n => { InvitedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "redeemedBy", n => { RedeemedBy = n.GetStringValue(); } },
                 { "signInRequired", n => { SignInRequired = n.GetBoolValue(); } },
@@ -86,7 +86,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("email", Email);
-            writer.WriteObjectValue<IdentitySet>("invitedBy", InvitedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("invitedBy", InvitedBy);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("redeemedBy", RedeemedBy);
             writer.WriteBoolValue("signInRequired", SignInRequired);

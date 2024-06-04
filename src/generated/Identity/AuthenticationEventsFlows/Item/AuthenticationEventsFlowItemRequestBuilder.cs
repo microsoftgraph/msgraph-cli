@@ -31,7 +31,7 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item
         {
             var command = new Command("conditions");
             command.Description = "The conditions property";
-            var builder = new ConditionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions.ConditionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildApplicationsNavCommand());
@@ -143,7 +143,7 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item
         {
             var command = new Command("graph-external-users-self-service-sign-up-events-flow-by-id");
             command.Description = "Casts the previous resource to externalUsersSelfServiceSignUpEventsFlow.";
-            var builder = new GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfServiceSignUpEventsFlow.GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildConditionsNavCommand());
@@ -192,7 +192,7 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AuthenticationEventsFlow>(AuthenticationEventsFlow.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.AuthenticationEventsFlow>(ApiSdk.Models.AuthenticationEventsFlow.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -213,14 +213,14 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationEventsFlowItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.AuthenticationEventsFlows.Item.AuthenticationEventsFlowItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AuthenticationEventsFlowItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/authenticationEventsFlows/{authenticationEventsFlow%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationEventsFlowItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.AuthenticationEventsFlows.Item.AuthenticationEventsFlowItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AuthenticationEventsFlowItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/authenticationEventsFlows/{authenticationEventsFlow%2Did}{?%24expand,%24select}", rawUrl)
@@ -252,11 +252,11 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationEventsFlowItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.AuthenticationEventsFlows.Item.AuthenticationEventsFlowItemRequestBuilder.AuthenticationEventsFlowItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationEventsFlowItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.AuthenticationEventsFlows.Item.AuthenticationEventsFlowItemRequestBuilder.AuthenticationEventsFlowItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -272,11 +272,11 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AuthenticationEventsFlow body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AuthenticationEventsFlow body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AuthenticationEventsFlow body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AuthenticationEventsFlow body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

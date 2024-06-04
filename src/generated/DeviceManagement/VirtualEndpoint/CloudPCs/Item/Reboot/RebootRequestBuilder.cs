@@ -50,14 +50,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Reboot
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RebootRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Reboot.RebootRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RebootRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/virtualEndpoint/cloudPCs/{cloudPC%2Did}/reboot", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RebootRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Reboot.RebootRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RebootRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/virtualEndpoint/cloudPCs/{cloudPC%2Did}/reboot", rawUrl)

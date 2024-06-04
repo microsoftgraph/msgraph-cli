@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("bypass-activation-lock");
             command.Description = "Provides operations to call the bypassActivationLock method.";
-            var builder = new BypassActivationLockRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.BypassActivationLock.BypassActivationLockRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -70,7 +70,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("clean-windows-device");
             command.Description = "Provides operations to call the cleanWindowsDevice method.";
-            var builder = new CleanWindowsDeviceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice.CleanWindowsDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -123,7 +123,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("delete-user-from-shared-apple-device");
             command.Description = "Provides operations to call the deleteUserFromSharedAppleDevice method.";
-            var builder = new DeleteUserFromSharedAppleDeviceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.DeleteUserFromSharedAppleDevice.DeleteUserFromSharedAppleDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -140,7 +140,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("device-category");
             command.Description = "Provides operations to manage the deviceCategory property of the microsoft.graph.managedDevice entity.";
-            var builder = new DeviceCategoryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCategory.DeviceCategoryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -159,7 +159,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("device-compliance-policy-states");
             command.Description = "Provides operations to manage the deviceCompliancePolicyStates property of the microsoft.graph.managedDevice entity.";
-            var builder = new DeviceCompliancePolicyStatesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCompliancePolicyStates.DeviceCompliancePolicyStatesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -186,7 +186,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("device-configuration-states");
             command.Description = "Provides operations to manage the deviceConfigurationStates property of the microsoft.graph.managedDevice entity.";
-            var builder = new DeviceConfigurationStatesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceConfigurationStates.DeviceConfigurationStatesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -213,7 +213,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("disable-lost-mode");
             command.Description = "Provides operations to call the disableLostMode method.";
-            var builder = new DisableLostModeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.DisableLostMode.DisableLostModeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -282,7 +282,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("locate-device");
             command.Description = "Provides operations to call the locateDevice method.";
-            var builder = new LocateDeviceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.LocateDevice.LocateDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -299,7 +299,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("log-collection-requests");
             command.Description = "Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.";
-            var builder = new LogCollectionRequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.LogCollectionRequests.LogCollectionRequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -326,7 +326,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("logout-shared-apple-device-active-user");
             command.Description = "Provides operations to call the logoutSharedAppleDeviceActiveUser method.";
-            var builder = new LogoutSharedAppleDeviceActiveUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.LogoutSharedAppleDeviceActiveUser.LogoutSharedAppleDeviceActiveUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -366,7 +366,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ManagedDevice>(ManagedDevice.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ManagedDevice>(ApiSdk.Models.ManagedDevice.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -394,7 +394,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("reboot-now");
             command.Description = "Provides operations to call the rebootNow method.";
-            var builder = new RebootNowRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.RebootNow.RebootNowRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -411,7 +411,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("recover-passcode");
             command.Description = "Provides operations to call the recoverPasscode method.";
-            var builder = new RecoverPasscodeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.RecoverPasscode.RecoverPasscodeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -428,7 +428,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("remote-lock");
             command.Description = "Provides operations to call the remoteLock method.";
-            var builder = new RemoteLockRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.RemoteLock.RemoteLockRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -445,7 +445,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("request-remote-assistance");
             command.Description = "Provides operations to call the requestRemoteAssistance method.";
-            var builder = new RequestRemoteAssistanceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.RequestRemoteAssistance.RequestRemoteAssistanceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -462,7 +462,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("reset-passcode");
             command.Description = "Provides operations to call the resetPasscode method.";
-            var builder = new ResetPasscodeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.ResetPasscode.ResetPasscodeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -479,7 +479,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("retire");
             command.Description = "Provides operations to call the retire method.";
-            var builder = new RetireRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.Retire.RetireRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -496,7 +496,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("shut-down");
             command.Description = "Provides operations to call the shutDown method.";
-            var builder = new ShutDownRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.ShutDown.ShutDownRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -513,7 +513,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("sync-device");
             command.Description = "Provides operations to call the syncDevice method.";
-            var builder = new SyncDeviceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.SyncDevice.SyncDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -530,7 +530,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("update-windows-device-account");
             command.Description = "Provides operations to call the updateWindowsDeviceAccount method.";
-            var builder = new UpdateWindowsDeviceAccountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.UpdateWindowsDeviceAccount.UpdateWindowsDeviceAccountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -547,7 +547,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("users");
             command.Description = "Provides operations to manage the users property of the microsoft.graph.managedDevice entity.";
-            var builder = new UsersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.Users.UsersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -564,7 +564,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("windows-defender-scan");
             command.Description = "Provides operations to call the windowsDefenderScan method.";
-            var builder = new WindowsDefenderScanRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsDefenderScan.WindowsDefenderScanRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -581,7 +581,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("windows-defender-update-signatures");
             command.Description = "Provides operations to call the windowsDefenderUpdateSignatures method.";
-            var builder = new WindowsDefenderUpdateSignaturesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsDefenderUpdateSignatures.WindowsDefenderUpdateSignaturesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -598,7 +598,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("windows-protection-state");
             command.Description = "Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.";
-            var builder = new WindowsProtectionStateRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsProtectionState.WindowsProtectionStateRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -623,7 +623,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         {
             var command = new Command("wipe");
             command.Description = "Provides operations to call the wipe method.";
-            var builder = new WipeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.Wipe.WipeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -633,14 +633,14 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedDeviceItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.ManagedDeviceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ManagedDeviceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedDeviceItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.ManagedDeviceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ManagedDeviceItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}{?%24expand,%24select}", rawUrl)
@@ -672,11 +672,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.ManagedDevices.Item.ManagedDeviceItemRequestBuilder.ManagedDeviceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.ManagedDevices.Item.ManagedDeviceItemRequestBuilder.ManagedDeviceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -692,11 +692,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ManagedDevice body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ManagedDevice body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ManagedDevice body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ManagedDevice body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

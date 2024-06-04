@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrivilegedAccessScheduleInstance : Entity, IParsable
+    public class PrivilegedAccessScheduleInstance : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>When the schedule instance ends. Required.</summary>
@@ -17,17 +17,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrivilegedAccessScheduleInstance"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrivilegedAccessScheduleInstance"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrivilegedAccessScheduleInstance CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrivilegedAccessScheduleInstance CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance" => new PrivilegedAccessGroupAssignmentScheduleInstance(),
-                "#microsoft.graph.privilegedAccessGroupEligibilityScheduleInstance" => new PrivilegedAccessGroupEligibilityScheduleInstance(),
-                _ => new PrivilegedAccessScheduleInstance(),
+                "#microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance" => new ApiSdk.Models.PrivilegedAccessGroupAssignmentScheduleInstance(),
+                "#microsoft.graph.privilegedAccessGroupEligibilityScheduleInstance" => new ApiSdk.Models.PrivilegedAccessGroupEligibilityScheduleInstance(),
+                _ => new ApiSdk.Models.PrivilegedAccessScheduleInstance(),
             };
         }
         /// <summary>

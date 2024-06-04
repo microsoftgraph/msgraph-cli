@@ -42,7 +42,7 @@ namespace ApiSdk.Models
         /// <summary>Block the platform from enrolling</summary>
         public bool? PlatformBlocked { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceEnrollmentPlatformRestriction"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DeviceEnrollmentPlatformRestriction"/> and sets the default values.
         /// </summary>
         public DeviceEnrollmentPlatformRestriction()
         {
@@ -51,12 +51,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceEnrollmentPlatformRestriction"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceEnrollmentPlatformRestriction"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DeviceEnrollmentPlatformRestriction CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.DeviceEnrollmentPlatformRestriction CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceEnrollmentPlatformRestriction();
+            return new ApiSdk.Models.DeviceEnrollmentPlatformRestriction();
         }
         /// <summary>
         /// The deserialization information for the current model

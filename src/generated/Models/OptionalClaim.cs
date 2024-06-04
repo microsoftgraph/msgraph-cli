@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         public string Source { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OptionalClaim"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OptionalClaim"/> and sets the default values.
         /// </summary>
         public OptionalClaim()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OptionalClaim"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OptionalClaim"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static OptionalClaim CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.OptionalClaim CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OptionalClaim();
+            return new ApiSdk.Models.OptionalClaim();
         }
         /// <summary>
         /// The deserialization information for the current model

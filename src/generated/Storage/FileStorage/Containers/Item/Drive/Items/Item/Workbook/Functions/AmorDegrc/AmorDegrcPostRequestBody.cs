@@ -16,61 +16,61 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The basis property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Basis { get; set; }
+        public ApiSdk.Models.Json? Basis { get; set; }
 #nullable restore
 #else
-        public Json Basis { get; set; }
+        public ApiSdk.Models.Json Basis { get; set; }
 #endif
         /// <summary>The cost property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Cost { get; set; }
+        public ApiSdk.Models.Json? Cost { get; set; }
 #nullable restore
 #else
-        public Json Cost { get; set; }
+        public ApiSdk.Models.Json Cost { get; set; }
 #endif
         /// <summary>The datePurchased property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? DatePurchased { get; set; }
+        public ApiSdk.Models.Json? DatePurchased { get; set; }
 #nullable restore
 #else
-        public Json DatePurchased { get; set; }
+        public ApiSdk.Models.Json DatePurchased { get; set; }
 #endif
         /// <summary>The firstPeriod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? FirstPeriod { get; set; }
+        public ApiSdk.Models.Json? FirstPeriod { get; set; }
 #nullable restore
 #else
-        public Json FirstPeriod { get; set; }
+        public ApiSdk.Models.Json FirstPeriod { get; set; }
 #endif
         /// <summary>The period property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Period { get; set; }
+        public ApiSdk.Models.Json? Period { get; set; }
 #nullable restore
 #else
-        public Json Period { get; set; }
+        public ApiSdk.Models.Json Period { get; set; }
 #endif
         /// <summary>The rate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Rate { get; set; }
+        public ApiSdk.Models.Json? Rate { get; set; }
 #nullable restore
 #else
-        public Json Rate { get; set; }
+        public ApiSdk.Models.Json Rate { get; set; }
 #endif
         /// <summary>The salvage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Salvage { get; set; }
+        public ApiSdk.Models.Json? Salvage { get; set; }
 #nullable restore
 #else
-        public Json Salvage { get; set; }
+        public ApiSdk.Models.Json Salvage { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AmorDegrcPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.AmorDegrc.AmorDegrcPostRequestBody"/> and sets the default values.
         /// </summary>
         public AmorDegrcPostRequestBody()
         {
@@ -79,12 +79,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AmorDegrcPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.AmorDegrc.AmorDegrcPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AmorDegrcPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.AmorDegrc.AmorDegrcPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AmorDegrcPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.AmorDegrc.AmorDegrcPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -94,13 +94,13 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "basis", n => { Basis = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "cost", n => { Cost = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "datePurchased", n => { DatePurchased = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "firstPeriod", n => { FirstPeriod = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "period", n => { Period = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "rate", n => { Rate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "salvage", n => { Salvage = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "basis", n => { Basis = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "cost", n => { Cost = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "datePurchased", n => { DatePurchased = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "firstPeriod", n => { FirstPeriod = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "period", n => { Period = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "rate", n => { Rate = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "salvage", n => { Salvage = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -110,13 +110,13 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("basis", Basis);
-            writer.WriteObjectValue<Json>("cost", Cost);
-            writer.WriteObjectValue<Json>("datePurchased", DatePurchased);
-            writer.WriteObjectValue<Json>("firstPeriod", FirstPeriod);
-            writer.WriteObjectValue<Json>("period", Period);
-            writer.WriteObjectValue<Json>("rate", Rate);
-            writer.WriteObjectValue<Json>("salvage", Salvage);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("basis", Basis);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("cost", Cost);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("datePurchased", DatePurchased);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("firstPeriod", FirstPeriod);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("period", Period);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("rate", Rate);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("salvage", Salvage);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

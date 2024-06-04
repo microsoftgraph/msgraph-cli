@@ -11,7 +11,7 @@ namespace ApiSdk.Models.IdentityGovernance
     #pragma warning restore CS1591
     {
         /// <summary>The category property</summary>
-        public LifecycleWorkflowCategory? Category { get; set; }
+        public ApiSdk.Models.IdentityGovernance.LifecycleWorkflowCategory? Category { get; set; }
         /// <summary>The description of the workflowTemplate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,28 +31,28 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>Conditions describing when to execute the workflow and the criteria to identify in-scope subject set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkflowExecutionConditions? ExecutionConditions { get; set; }
+        public ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions? ExecutionConditions { get; set; }
 #nullable restore
 #else
-        public WorkflowExecutionConditions ExecutionConditions { get; set; }
+        public ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions ExecutionConditions { get; set; }
 #endif
         /// <summary>Represents the configured tasks to execute and their execution sequence within a workflow. This relationship is expanded by default.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TaskObject>? Tasks { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.TaskObject>? Tasks { get; set; }
 #nullable restore
 #else
-        public List<TaskObject> Tasks { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.TaskObject> Tasks { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkflowTemplate"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.WorkflowTemplate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkflowTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.WorkflowTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkflowTemplate();
+            return new ApiSdk.Models.IdentityGovernance.WorkflowTemplate();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,11 +62,11 @@ namespace ApiSdk.Models.IdentityGovernance
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "category", n => { Category = n.GetEnumValue<LifecycleWorkflowCategory>(); } },
+                { "category", n => { Category = n.GetEnumValue<ApiSdk.Models.IdentityGovernance.LifecycleWorkflowCategory>(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "executionConditions", n => { ExecutionConditions = n.GetObjectValue<WorkflowExecutionConditions>(WorkflowExecutionConditions.CreateFromDiscriminatorValue); } },
-                { "tasks", n => { Tasks = n.GetCollectionOfObjectValues<TaskObject>(TaskObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "executionConditions", n => { ExecutionConditions = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions>(ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions.CreateFromDiscriminatorValue); } },
+                { "tasks", n => { Tasks = n.GetCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.TaskObject>(ApiSdk.Models.IdentityGovernance.TaskObject.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -77,11 +77,11 @@ namespace ApiSdk.Models.IdentityGovernance
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<LifecycleWorkflowCategory>("category", Category);
+            writer.WriteEnumValue<ApiSdk.Models.IdentityGovernance.LifecycleWorkflowCategory>("category", Category);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<WorkflowExecutionConditions>("executionConditions", ExecutionConditions);
-            writer.WriteCollectionOfObjectValues<TaskObject>("tasks", Tasks);
+            writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions>("executionConditions", ExecutionConditions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.TaskObject>("tasks", Tasks);
         }
     }
 }

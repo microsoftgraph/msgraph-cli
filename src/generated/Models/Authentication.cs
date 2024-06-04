@@ -7,98 +7,98 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Authentication : Entity, IParsable
+    public class Authentication : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The email address registered to a user for authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EmailAuthenticationMethod>? EmailMethods { get; set; }
+        public List<ApiSdk.Models.EmailAuthenticationMethod>? EmailMethods { get; set; }
 #nullable restore
 #else
-        public List<EmailAuthenticationMethod> EmailMethods { get; set; }
+        public List<ApiSdk.Models.EmailAuthenticationMethod> EmailMethods { get; set; }
 #endif
         /// <summary>Represents the FIDO2 security keys registered to a user for authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Fido2AuthenticationMethod>? Fido2Methods { get; set; }
+        public List<ApiSdk.Models.Fido2AuthenticationMethod>? Fido2Methods { get; set; }
 #nullable restore
 #else
-        public List<Fido2AuthenticationMethod> Fido2Methods { get; set; }
+        public List<ApiSdk.Models.Fido2AuthenticationMethod> Fido2Methods { get; set; }
 #endif
         /// <summary>Represents all authentication methods registered to a user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationMethod>? Methods { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethod>? Methods { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationMethod> Methods { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethod> Methods { get; set; }
 #endif
         /// <summary>The details of the Microsoft Authenticator app registered to a user for authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MicrosoftAuthenticatorAuthenticationMethod>? MicrosoftAuthenticatorMethods { get; set; }
+        public List<ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethod>? MicrosoftAuthenticatorMethods { get; set; }
 #nullable restore
 #else
-        public List<MicrosoftAuthenticatorAuthenticationMethod> MicrosoftAuthenticatorMethods { get; set; }
+        public List<ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethod> MicrosoftAuthenticatorMethods { get; set; }
 #endif
         /// <summary>Represents the status of a long-running operation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LongRunningOperation>? Operations { get; set; }
+        public List<ApiSdk.Models.LongRunningOperation>? Operations { get; set; }
 #nullable restore
 #else
-        public List<LongRunningOperation> Operations { get; set; }
+        public List<ApiSdk.Models.LongRunningOperation> Operations { get; set; }
 #endif
         /// <summary>Represents the password registered to a user for authentication. For security, the password itself is never returned in the object, but action can be taken to reset a password.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PasswordAuthenticationMethod>? PasswordMethods { get; set; }
+        public List<ApiSdk.Models.PasswordAuthenticationMethod>? PasswordMethods { get; set; }
 #nullable restore
 #else
-        public List<PasswordAuthenticationMethod> PasswordMethods { get; set; }
+        public List<ApiSdk.Models.PasswordAuthenticationMethod> PasswordMethods { get; set; }
 #endif
         /// <summary>The phone numbers registered to a user for authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PhoneAuthenticationMethod>? PhoneMethods { get; set; }
+        public List<ApiSdk.Models.PhoneAuthenticationMethod>? PhoneMethods { get; set; }
 #nullable restore
 #else
-        public List<PhoneAuthenticationMethod> PhoneMethods { get; set; }
+        public List<ApiSdk.Models.PhoneAuthenticationMethod> PhoneMethods { get; set; }
 #endif
         /// <summary>The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SoftwareOathAuthenticationMethod>? SoftwareOathMethods { get; set; }
+        public List<ApiSdk.Models.SoftwareOathAuthenticationMethod>? SoftwareOathMethods { get; set; }
 #nullable restore
 #else
-        public List<SoftwareOathAuthenticationMethod> SoftwareOathMethods { get; set; }
+        public List<ApiSdk.Models.SoftwareOathAuthenticationMethod> SoftwareOathMethods { get; set; }
 #endif
         /// <summary>Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TemporaryAccessPassAuthenticationMethod>? TemporaryAccessPassMethods { get; set; }
+        public List<ApiSdk.Models.TemporaryAccessPassAuthenticationMethod>? TemporaryAccessPassMethods { get; set; }
 #nullable restore
 #else
-        public List<TemporaryAccessPassAuthenticationMethod> TemporaryAccessPassMethods { get; set; }
+        public List<ApiSdk.Models.TemporaryAccessPassAuthenticationMethod> TemporaryAccessPassMethods { get; set; }
 #endif
         /// <summary>Represents the Windows Hello for Business authentication method registered to a user for authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WindowsHelloForBusinessAuthenticationMethod>? WindowsHelloForBusinessMethods { get; set; }
+        public List<ApiSdk.Models.WindowsHelloForBusinessAuthenticationMethod>? WindowsHelloForBusinessMethods { get; set; }
 #nullable restore
 #else
-        public List<WindowsHelloForBusinessAuthenticationMethod> WindowsHelloForBusinessMethods { get; set; }
+        public List<ApiSdk.Models.WindowsHelloForBusinessAuthenticationMethod> WindowsHelloForBusinessMethods { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Authentication"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Authentication"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Authentication CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Authentication CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Authentication();
+            return new ApiSdk.Models.Authentication();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -108,16 +108,16 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "emailMethods", n => { EmailMethods = n.GetCollectionOfObjectValues<EmailAuthenticationMethod>(EmailAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "fido2Methods", n => { Fido2Methods = n.GetCollectionOfObjectValues<Fido2AuthenticationMethod>(Fido2AuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "methods", n => { Methods = n.GetCollectionOfObjectValues<AuthenticationMethod>(AuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "microsoftAuthenticatorMethods", n => { MicrosoftAuthenticatorMethods = n.GetCollectionOfObjectValues<MicrosoftAuthenticatorAuthenticationMethod>(MicrosoftAuthenticatorAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "operations", n => { Operations = n.GetCollectionOfObjectValues<LongRunningOperation>(LongRunningOperation.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "passwordMethods", n => { PasswordMethods = n.GetCollectionOfObjectValues<PasswordAuthenticationMethod>(PasswordAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "phoneMethods", n => { PhoneMethods = n.GetCollectionOfObjectValues<PhoneAuthenticationMethod>(PhoneAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "softwareOathMethods", n => { SoftwareOathMethods = n.GetCollectionOfObjectValues<SoftwareOathAuthenticationMethod>(SoftwareOathAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "temporaryAccessPassMethods", n => { TemporaryAccessPassMethods = n.GetCollectionOfObjectValues<TemporaryAccessPassAuthenticationMethod>(TemporaryAccessPassAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "windowsHelloForBusinessMethods", n => { WindowsHelloForBusinessMethods = n.GetCollectionOfObjectValues<WindowsHelloForBusinessAuthenticationMethod>(WindowsHelloForBusinessAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "emailMethods", n => { EmailMethods = n.GetCollectionOfObjectValues<ApiSdk.Models.EmailAuthenticationMethod>(ApiSdk.Models.EmailAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "fido2Methods", n => { Fido2Methods = n.GetCollectionOfObjectValues<ApiSdk.Models.Fido2AuthenticationMethod>(ApiSdk.Models.Fido2AuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "methods", n => { Methods = n.GetCollectionOfObjectValues<ApiSdk.Models.AuthenticationMethod>(ApiSdk.Models.AuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "microsoftAuthenticatorMethods", n => { MicrosoftAuthenticatorMethods = n.GetCollectionOfObjectValues<ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethod>(ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "operations", n => { Operations = n.GetCollectionOfObjectValues<ApiSdk.Models.LongRunningOperation>(ApiSdk.Models.LongRunningOperation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "passwordMethods", n => { PasswordMethods = n.GetCollectionOfObjectValues<ApiSdk.Models.PasswordAuthenticationMethod>(ApiSdk.Models.PasswordAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "phoneMethods", n => { PhoneMethods = n.GetCollectionOfObjectValues<ApiSdk.Models.PhoneAuthenticationMethod>(ApiSdk.Models.PhoneAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "softwareOathMethods", n => { SoftwareOathMethods = n.GetCollectionOfObjectValues<ApiSdk.Models.SoftwareOathAuthenticationMethod>(ApiSdk.Models.SoftwareOathAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "temporaryAccessPassMethods", n => { TemporaryAccessPassMethods = n.GetCollectionOfObjectValues<ApiSdk.Models.TemporaryAccessPassAuthenticationMethod>(ApiSdk.Models.TemporaryAccessPassAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "windowsHelloForBusinessMethods", n => { WindowsHelloForBusinessMethods = n.GetCollectionOfObjectValues<ApiSdk.Models.WindowsHelloForBusinessAuthenticationMethod>(ApiSdk.Models.WindowsHelloForBusinessAuthenticationMethod.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -128,16 +128,16 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<EmailAuthenticationMethod>("emailMethods", EmailMethods);
-            writer.WriteCollectionOfObjectValues<Fido2AuthenticationMethod>("fido2Methods", Fido2Methods);
-            writer.WriteCollectionOfObjectValues<AuthenticationMethod>("methods", Methods);
-            writer.WriteCollectionOfObjectValues<MicrosoftAuthenticatorAuthenticationMethod>("microsoftAuthenticatorMethods", MicrosoftAuthenticatorMethods);
-            writer.WriteCollectionOfObjectValues<LongRunningOperation>("operations", Operations);
-            writer.WriteCollectionOfObjectValues<PasswordAuthenticationMethod>("passwordMethods", PasswordMethods);
-            writer.WriteCollectionOfObjectValues<PhoneAuthenticationMethod>("phoneMethods", PhoneMethods);
-            writer.WriteCollectionOfObjectValues<SoftwareOathAuthenticationMethod>("softwareOathMethods", SoftwareOathMethods);
-            writer.WriteCollectionOfObjectValues<TemporaryAccessPassAuthenticationMethod>("temporaryAccessPassMethods", TemporaryAccessPassMethods);
-            writer.WriteCollectionOfObjectValues<WindowsHelloForBusinessAuthenticationMethod>("windowsHelloForBusinessMethods", WindowsHelloForBusinessMethods);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EmailAuthenticationMethod>("emailMethods", EmailMethods);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Fido2AuthenticationMethod>("fido2Methods", Fido2Methods);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuthenticationMethod>("methods", Methods);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethod>("microsoftAuthenticatorMethods", MicrosoftAuthenticatorMethods);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.LongRunningOperation>("operations", Operations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PasswordAuthenticationMethod>("passwordMethods", PasswordMethods);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PhoneAuthenticationMethod>("phoneMethods", PhoneMethods);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SoftwareOathAuthenticationMethod>("softwareOathMethods", SoftwareOathMethods);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TemporaryAccessPassAuthenticationMethod>("temporaryAccessPassMethods", TemporaryAccessPassMethods);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WindowsHelloForBusinessAuthenticationMethod>("windowsHelloForBusinessMethods", WindowsHelloForBusinessMethods);
         }
     }
 }

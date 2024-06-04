@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Information about how to set the attribute, currently a accessPackageUserDirectoryAttributeStore type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageResourceAttributeDestination? Destination { get; set; }
+        public ApiSdk.Models.AccessPackageResourceAttributeDestination? Destination { get; set; }
 #nullable restore
 #else
-        public AccessPackageResourceAttributeDestination Destination { get; set; }
+        public ApiSdk.Models.AccessPackageResourceAttributeDestination Destination { get; set; }
 #endif
         /// <summary>The isEditable property</summary>
         public bool? IsEditable { get; set; }
@@ -43,13 +43,13 @@ namespace ApiSdk.Models
         /// <summary>Information about how to populate the attribute value when an accessPackageAssignmentRequest is being fulfilled, currently a accessPackageResourceAttributeQuestion type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageResourceAttributeSource? Source { get; set; }
+        public ApiSdk.Models.AccessPackageResourceAttributeSource? Source { get; set; }
 #nullable restore
 #else
-        public AccessPackageResourceAttributeSource Source { get; set; }
+        public ApiSdk.Models.AccessPackageResourceAttributeSource Source { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessPackageResourceAttribute"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessPackageResourceAttribute"/> and sets the default values.
         /// </summary>
         public AccessPackageResourceAttribute()
         {
@@ -58,12 +58,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageResourceAttribute"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageResourceAttribute"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AccessPackageResourceAttribute CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AccessPackageResourceAttribute CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageResourceAttribute();
+            return new ApiSdk.Models.AccessPackageResourceAttribute();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -73,12 +73,12 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "destination", n => { Destination = n.GetObjectValue<AccessPackageResourceAttributeDestination>(AccessPackageResourceAttributeDestination.CreateFromDiscriminatorValue); } },
+                { "destination", n => { Destination = n.GetObjectValue<ApiSdk.Models.AccessPackageResourceAttributeDestination>(ApiSdk.Models.AccessPackageResourceAttributeDestination.CreateFromDiscriminatorValue); } },
                 { "isEditable", n => { IsEditable = n.GetBoolValue(); } },
                 { "isPersistedOnAssignmentRemoval", n => { IsPersistedOnAssignmentRemoval = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "source", n => { Source = n.GetObjectValue<AccessPackageResourceAttributeSource>(AccessPackageResourceAttributeSource.CreateFromDiscriminatorValue); } },
+                { "source", n => { Source = n.GetObjectValue<ApiSdk.Models.AccessPackageResourceAttributeSource>(ApiSdk.Models.AccessPackageResourceAttributeSource.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -88,12 +88,12 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<AccessPackageResourceAttributeDestination>("destination", Destination);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageResourceAttributeDestination>("destination", Destination);
             writer.WriteBoolValue("isEditable", IsEditable);
             writer.WriteBoolValue("isPersistedOnAssignmentRemoval", IsPersistedOnAssignmentRemoval);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<AccessPackageResourceAttributeSource>("source", Source);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageResourceAttributeSource>("source", Source);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EndUserNotificationDetail : Entity, IParsable
+    public class EndUserNotificationDetail : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Email HTML content.</summary>
@@ -39,10 +39,10 @@ namespace ApiSdk.Models
         /// <summary>The sentFrom property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EmailIdentity? SentFrom { get; set; }
+        public ApiSdk.Models.EmailIdentity? SentFrom { get; set; }
 #nullable restore
 #else
-        public EmailIdentity SentFrom { get; set; }
+        public ApiSdk.Models.EmailIdentity SentFrom { get; set; }
 #endif
         /// <summary>Mail subject.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,12 +55,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EndUserNotificationDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EndUserNotificationDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EndUserNotificationDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EndUserNotificationDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EndUserNotificationDetail();
+            return new ApiSdk.Models.EndUserNotificationDetail();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -74,7 +74,7 @@ namespace ApiSdk.Models
                 { "isDefaultLangauge", n => { IsDefaultLangauge = n.GetBoolValue(); } },
                 { "language", n => { Language = n.GetStringValue(); } },
                 { "locale", n => { Locale = n.GetStringValue(); } },
-                { "sentFrom", n => { SentFrom = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
+                { "sentFrom", n => { SentFrom = n.GetObjectValue<ApiSdk.Models.EmailIdentity>(ApiSdk.Models.EmailIdentity.CreateFromDiscriminatorValue); } },
                 { "subject", n => { Subject = n.GetStringValue(); } },
             };
         }
@@ -90,7 +90,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("isDefaultLangauge", IsDefaultLangauge);
             writer.WriteStringValue("language", Language);
             writer.WriteStringValue("locale", Locale);
-            writer.WriteObjectValue<EmailIdentity>("sentFrom", SentFrom);
+            writer.WriteObjectValue<ApiSdk.Models.EmailIdentity>("sentFrom", SentFrom);
             writer.WriteStringValue("subject", Subject);
         }
     }

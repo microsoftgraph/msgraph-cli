@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>If status isn&apos;t success/ skipped details for the error are contained in this.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ProvisioningErrorInfo? ErrorInformation { get; set; }
+        public ApiSdk.Models.ProvisioningErrorInfo? ErrorInformation { get; set; }
 #nullable restore
 #else
-        public ProvisioningErrorInfo ErrorInformation { get; set; }
+        public ApiSdk.Models.ProvisioningErrorInfo ErrorInformation { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,9 +29,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>Possible values are: success, warning, failure, skipped, unknownFutureValue.</summary>
-        public ProvisioningResult? Status { get; set; }
+        public ApiSdk.Models.ProvisioningResult? Status { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ProvisioningStatusInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ProvisioningStatusInfo"/> and sets the default values.
         /// </summary>
         public ProvisioningStatusInfo()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ProvisioningStatusInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ProvisioningStatusInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ProvisioningStatusInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ProvisioningStatusInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ProvisioningStatusInfo();
+            return new ApiSdk.Models.ProvisioningStatusInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,9 +55,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "errorInformation", n => { ErrorInformation = n.GetObjectValue<ProvisioningErrorInfo>(ProvisioningErrorInfo.CreateFromDiscriminatorValue); } },
+                { "errorInformation", n => { ErrorInformation = n.GetObjectValue<ApiSdk.Models.ProvisioningErrorInfo>(ApiSdk.Models.ProvisioningErrorInfo.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<ProvisioningResult>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.ProvisioningResult>(); } },
             };
         }
         /// <summary>
@@ -67,9 +67,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ProvisioningErrorInfo>("errorInformation", ErrorInformation);
+            writer.WriteObjectValue<ApiSdk.Models.ProvisioningErrorInfo>("errorInformation", ErrorInformation);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<ProvisioningResult>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.ProvisioningResult>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

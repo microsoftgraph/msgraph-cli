@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookNamedItem : Entity, IParsable
+    public class WorkbookNamedItem : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents the comment associated with this name.</summary>
@@ -45,30 +45,30 @@ namespace ApiSdk.Models
         /// <summary>Represents the formula that the name is defined to refer to. for example, =Sheet14!$B$2:$H$12, =4.75, etc. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Value { get; set; }
+        public ApiSdk.Models.Json? Value { get; set; }
 #nullable restore
 #else
-        public Json Value { get; set; }
+        public ApiSdk.Models.Json Value { get; set; }
 #endif
         /// <summary>Specifies whether the object is visible or not.</summary>
         public bool? Visible { get; set; }
         /// <summary>Returns the worksheet on which the named item is scoped to. Available only if the item is scoped to the worksheet. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookWorksheet? Worksheet { get; set; }
+        public ApiSdk.Models.WorkbookWorksheet? Worksheet { get; set; }
 #nullable restore
 #else
-        public WorkbookWorksheet Worksheet { get; set; }
+        public ApiSdk.Models.WorkbookWorksheet Worksheet { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookNamedItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookNamedItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookNamedItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookNamedItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookNamedItem();
+            return new ApiSdk.Models.WorkbookNamedItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,9 +82,9 @@ namespace ApiSdk.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "scope", n => { Scope = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
-                { "value", n => { Value = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "value", n => { Value = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
                 { "visible", n => { Visible = n.GetBoolValue(); } },
-                { "worksheet", n => { Worksheet = n.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue); } },
+                { "worksheet", n => { Worksheet = n.GetObjectValue<ApiSdk.Models.WorkbookWorksheet>(ApiSdk.Models.WorkbookWorksheet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -99,9 +99,9 @@ namespace ApiSdk.Models
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("scope", Scope);
             writer.WriteStringValue("type", Type);
-            writer.WriteObjectValue<Json>("value", Value);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("value", Value);
             writer.WriteBoolValue("visible", Visible);
-            writer.WriteObjectValue<WorkbookWorksheet>("worksheet", Worksheet);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookWorksheet>("worksheet", Worksheet);
         }
     }
 }

@@ -13,25 +13,25 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Artifact"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.Artifact"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Artifact CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.Artifact CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.host" => new Host(),
-                "#microsoft.graph.security.hostComponent" => new HostComponent(),
-                "#microsoft.graph.security.hostCookie" => new HostCookie(),
-                "#microsoft.graph.security.hostname" => new Hostname(),
-                "#microsoft.graph.security.hostSslCertificate" => new HostSslCertificate(),
-                "#microsoft.graph.security.hostTracker" => new HostTracker(),
-                "#microsoft.graph.security.ipAddress" => new IpAddress(),
-                "#microsoft.graph.security.passiveDnsRecord" => new PassiveDnsRecord(),
-                "#microsoft.graph.security.sslCertificate" => new SslCertificate(),
-                "#microsoft.graph.security.unclassifiedArtifact" => new UnclassifiedArtifact(),
-                _ => new Artifact(),
+                "#microsoft.graph.security.host" => new ApiSdk.Models.Security.Host(),
+                "#microsoft.graph.security.hostComponent" => new ApiSdk.Models.Security.HostComponent(),
+                "#microsoft.graph.security.hostCookie" => new ApiSdk.Models.Security.HostCookie(),
+                "#microsoft.graph.security.hostname" => new ApiSdk.Models.Security.Hostname(),
+                "#microsoft.graph.security.hostSslCertificate" => new ApiSdk.Models.Security.HostSslCertificate(),
+                "#microsoft.graph.security.hostTracker" => new ApiSdk.Models.Security.HostTracker(),
+                "#microsoft.graph.security.ipAddress" => new ApiSdk.Models.Security.IpAddress(),
+                "#microsoft.graph.security.passiveDnsRecord" => new ApiSdk.Models.Security.PassiveDnsRecord(),
+                "#microsoft.graph.security.sslCertificate" => new ApiSdk.Models.Security.SslCertificate(),
+                "#microsoft.graph.security.unclassifiedArtifact" => new ApiSdk.Models.Security.UnclassifiedArtifact(),
+                _ => new ApiSdk.Models.Security.Artifact(),
             };
         }
         /// <summary>

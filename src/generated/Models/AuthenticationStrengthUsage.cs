@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>The mfa property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ConditionalAccessPolicy>? Mfa { get; set; }
+        public List<ApiSdk.Models.ConditionalAccessPolicy>? Mfa { get; set; }
 #nullable restore
 #else
-        public List<ConditionalAccessPolicy> Mfa { get; set; }
+        public List<ApiSdk.Models.ConditionalAccessPolicy> Mfa { get; set; }
 #endif
         /// <summary>The none property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ConditionalAccessPolicy>? None { get; set; }
+        public List<ApiSdk.Models.ConditionalAccessPolicy>? None { get; set; }
 #nullable restore
 #else
-        public List<ConditionalAccessPolicy> None { get; set; }
+        public List<ApiSdk.Models.ConditionalAccessPolicy> None { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationStrengthUsage"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AuthenticationStrengthUsage"/> and sets the default values.
         /// </summary>
         public AuthenticationStrengthUsage()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationStrengthUsage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationStrengthUsage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AuthenticationStrengthUsage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AuthenticationStrengthUsage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthenticationStrengthUsage();
+            return new ApiSdk.Models.AuthenticationStrengthUsage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,8 +61,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "mfa", n => { Mfa = n.GetCollectionOfObjectValues<ConditionalAccessPolicy>(ConditionalAccessPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "none", n => { None = n.GetCollectionOfObjectValues<ConditionalAccessPolicy>(ConditionalAccessPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "mfa", n => { Mfa = n.GetCollectionOfObjectValues<ApiSdk.Models.ConditionalAccessPolicy>(ApiSdk.Models.ConditionalAccessPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "none", n => { None = n.GetCollectionOfObjectValues<ApiSdk.Models.ConditionalAccessPolicy>(ApiSdk.Models.ConditionalAccessPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -73,8 +73,8 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<ConditionalAccessPolicy>("mfa", Mfa);
-            writer.WriteCollectionOfObjectValues<ConditionalAccessPolicy>("none", None);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ConditionalAccessPolicy>("mfa", Mfa);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ConditionalAccessPolicy>("none", None);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

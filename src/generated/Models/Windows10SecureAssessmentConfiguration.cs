@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// This topic provides descriptions of the declared methods, properties and relationships exposed by the secureAssessment resource.
     /// </summary>
-    public class Windows10SecureAssessmentConfiguration : DeviceConfiguration, IParsable
+    public class Windows10SecureAssessmentConfiguration : ApiSdk.Models.DeviceConfiguration, IParsable
     {
         /// <summary>Indicates whether or not to allow the app from printing during the test.</summary>
         public bool? AllowPrinting { get; set; }
@@ -34,7 +34,7 @@ namespace ApiSdk.Models
         public string LaunchUri { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Windows10SecureAssessmentConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Windows10SecureAssessmentConfiguration"/> and sets the default values.
         /// </summary>
         public Windows10SecureAssessmentConfiguration() : base()
         {
@@ -43,12 +43,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Windows10SecureAssessmentConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Windows10SecureAssessmentConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Windows10SecureAssessmentConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Windows10SecureAssessmentConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Windows10SecureAssessmentConfiguration();
+            return new ApiSdk.Models.Windows10SecureAssessmentConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model

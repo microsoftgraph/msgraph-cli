@@ -29,7 +29,7 @@ namespace ApiSdk.Applications.Item.Owners.Item
         {
             var command = new Command("graph-app-role-assignment-by-id");
             command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.Owners.Item.GraphAppRoleAssignment.GraphAppRoleAssignmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -46,7 +46,7 @@ namespace ApiSdk.Applications.Item.Owners.Item
         {
             var command = new Command("graph-endpoint-by-id");
             command.Description = "Casts the previous resource to endpoint.";
-            var builder = new GraphEndpointRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.Owners.Item.GraphEndpoint.GraphEndpointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -63,7 +63,7 @@ namespace ApiSdk.Applications.Item.Owners.Item
         {
             var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.Owners.Item.GraphServicePrincipal.GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -80,7 +80,7 @@ namespace ApiSdk.Applications.Item.Owners.Item
         {
             var command = new Command("graph-user-by-id");
             command.Description = "Casts the previous resource to user.";
-            var builder = new GraphUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.Owners.Item.GraphUser.GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -97,7 +97,7 @@ namespace ApiSdk.Applications.Item.Owners.Item
         {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of application entities.";
-            var builder = new RefRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.Owners.Item.Ref.RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             foreach (var cmd in execCommands)
@@ -107,14 +107,14 @@ namespace ApiSdk.Applications.Item.Owners.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.Owners.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/owners/{directoryObject%2Did}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.Owners.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/owners/{directoryObject%2Did}", rawUrl)

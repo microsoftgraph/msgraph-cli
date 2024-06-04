@@ -33,7 +33,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new NotebookItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.NotebookItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildCopyNotebookNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
@@ -50,7 +50,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -95,7 +95,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Notebook>(Notebook.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Notebook>(ApiSdk.Models.Notebook.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -124,7 +124,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks
         {
             var command = new Command("get-notebook-from-web-url");
             command.Description = "Provides operations to call the getNotebookFromWebUrl method.";
-            var builder = new GetNotebookFromWebUrlRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl.GetNotebookFromWebUrlRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -141,7 +141,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks
         {
             var command = new Command("get-recent-notebooks-with-include-personal-notebooks");
             command.Description = "Provides operations to call the getRecentNotebooks method.";
-            var builder = new GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks.GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -259,14 +259,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="NotebooksRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.NotebooksRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public NotebooksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="NotebooksRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.NotebooksRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public NotebooksRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -279,11 +279,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotebooksRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.NotebooksRequestBuilder.NotebooksRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotebooksRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.NotebooksRequestBuilder.NotebooksRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -299,11 +299,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Notebook body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Notebook body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Notebook body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Notebook body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

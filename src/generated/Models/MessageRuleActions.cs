@@ -33,23 +33,23 @@ namespace ApiSdk.Models
         /// <summary>The email addresses of the recipients to which a message should be forwarded as an attachment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Recipient>? ForwardAsAttachmentTo { get; set; }
+        public List<ApiSdk.Models.Recipient>? ForwardAsAttachmentTo { get; set; }
 #nullable restore
 #else
-        public List<Recipient> ForwardAsAttachmentTo { get; set; }
+        public List<ApiSdk.Models.Recipient> ForwardAsAttachmentTo { get; set; }
 #endif
         /// <summary>The email addresses of the recipients to which a message should be forwarded.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Recipient>? ForwardTo { get; set; }
+        public List<ApiSdk.Models.Recipient>? ForwardTo { get; set; }
 #nullable restore
 #else
-        public List<Recipient> ForwardTo { get; set; }
+        public List<ApiSdk.Models.Recipient> ForwardTo { get; set; }
 #endif
         /// <summary>Indicates whether a message should be marked as read.</summary>
         public bool? MarkAsRead { get; set; }
         /// <summary>Sets the importance of the message, which can be: low, normal, high.</summary>
-        public Importance? MarkImportance { get; set; }
+        public ApiSdk.Models.Importance? MarkImportance { get; set; }
         /// <summary>The ID of the folder that a message will be moved to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,15 +71,15 @@ namespace ApiSdk.Models
         /// <summary>The email addresses to which a message should be redirected.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Recipient>? RedirectTo { get; set; }
+        public List<ApiSdk.Models.Recipient>? RedirectTo { get; set; }
 #nullable restore
 #else
-        public List<Recipient> RedirectTo { get; set; }
+        public List<ApiSdk.Models.Recipient> RedirectTo { get; set; }
 #endif
         /// <summary>Indicates whether subsequent rules should be evaluated.</summary>
         public bool? StopProcessingRules { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MessageRuleActions"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MessageRuleActions"/> and sets the default values.
         /// </summary>
         public MessageRuleActions()
         {
@@ -88,12 +88,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MessageRuleActions"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MessageRuleActions"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MessageRuleActions CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MessageRuleActions CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MessageRuleActions();
+            return new ApiSdk.Models.MessageRuleActions();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -106,14 +106,14 @@ namespace ApiSdk.Models
                 { "assignCategories", n => { AssignCategories = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "copyToFolder", n => { CopyToFolder = n.GetStringValue(); } },
                 { "delete", n => { Delete = n.GetBoolValue(); } },
-                { "forwardAsAttachmentTo", n => { ForwardAsAttachmentTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "forwardTo", n => { ForwardTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "forwardAsAttachmentTo", n => { ForwardAsAttachmentTo = n.GetCollectionOfObjectValues<ApiSdk.Models.Recipient>(ApiSdk.Models.Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "forwardTo", n => { ForwardTo = n.GetCollectionOfObjectValues<ApiSdk.Models.Recipient>(ApiSdk.Models.Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "markAsRead", n => { MarkAsRead = n.GetBoolValue(); } },
-                { "markImportance", n => { MarkImportance = n.GetEnumValue<Importance>(); } },
+                { "markImportance", n => { MarkImportance = n.GetEnumValue<ApiSdk.Models.Importance>(); } },
                 { "moveToFolder", n => { MoveToFolder = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "permanentDelete", n => { PermanentDelete = n.GetBoolValue(); } },
-                { "redirectTo", n => { RedirectTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "redirectTo", n => { RedirectTo = n.GetCollectionOfObjectValues<ApiSdk.Models.Recipient>(ApiSdk.Models.Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "stopProcessingRules", n => { StopProcessingRules = n.GetBoolValue(); } },
             };
         }
@@ -127,14 +127,14 @@ namespace ApiSdk.Models
             writer.WriteCollectionOfPrimitiveValues<string>("assignCategories", AssignCategories);
             writer.WriteStringValue("copyToFolder", CopyToFolder);
             writer.WriteBoolValue("delete", Delete);
-            writer.WriteCollectionOfObjectValues<Recipient>("forwardAsAttachmentTo", ForwardAsAttachmentTo);
-            writer.WriteCollectionOfObjectValues<Recipient>("forwardTo", ForwardTo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Recipient>("forwardAsAttachmentTo", ForwardAsAttachmentTo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Recipient>("forwardTo", ForwardTo);
             writer.WriteBoolValue("markAsRead", MarkAsRead);
-            writer.WriteEnumValue<Importance>("markImportance", MarkImportance);
+            writer.WriteEnumValue<ApiSdk.Models.Importance>("markImportance", MarkImportance);
             writer.WriteStringValue("moveToFolder", MoveToFolder);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("permanentDelete", PermanentDelete);
-            writer.WriteCollectionOfObjectValues<Recipient>("redirectTo", RedirectTo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Recipient>("redirectTo", RedirectTo);
             writer.WriteBoolValue("stopProcessingRules", StopProcessingRules);
             writer.WriteAdditionalData(AdditionalData);
         }

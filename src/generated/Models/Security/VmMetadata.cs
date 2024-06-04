@@ -13,7 +13,7 @@ namespace ApiSdk.Models.Security
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The cloudProvider property</summary>
-        public VmCloudProvider? CloudProvider { get; set; }
+        public ApiSdk.Models.Security.VmCloudProvider? CloudProvider { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security
         public string VmId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="VmMetadata"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.VmMetadata"/> and sets the default values.
         /// </summary>
         public VmMetadata()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="VmMetadata"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.VmMetadata"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static VmMetadata CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.VmMetadata CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new VmMetadata();
+            return new ApiSdk.Models.Security.VmMetadata();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,7 +71,7 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "cloudProvider", n => { CloudProvider = n.GetEnumValue<VmCloudProvider>(); } },
+                { "cloudProvider", n => { CloudProvider = n.GetEnumValue<ApiSdk.Models.Security.VmCloudProvider>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "resourceId", n => { ResourceId = n.GetStringValue(); } },
                 { "subscriptionId", n => { SubscriptionId = n.GetStringValue(); } },
@@ -85,7 +85,7 @@ namespace ApiSdk.Models.Security
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<VmCloudProvider>("cloudProvider", CloudProvider);
+            writer.WriteEnumValue<ApiSdk.Models.Security.VmCloudProvider>("cloudProvider", CloudProvider);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("resourceId", ResourceId);
             writer.WriteStringValue("subscriptionId", SubscriptionId);

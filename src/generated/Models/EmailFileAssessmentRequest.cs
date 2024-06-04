@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EmailFileAssessmentRequest : ThreatAssessmentRequest, IParsable
+    public class EmailFileAssessmentRequest : ApiSdk.Models.ThreatAssessmentRequest, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Base64 encoded .eml email file content. The file content can&apos;t fetch back because it isn&apos;t stored.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string ContentData { get; set; }
 #endif
         /// <summary>The reason for mail routed to its destination. Possible values are: none, mailFlowRule, safeSender, blockedSender, advancedSpamFiltering, domainAllowList, domainBlockList, notInAddressBook, firstTimeSender, autoPurgeToInbox, autoPurgeToJunk, autoPurgeToDeleted, outbound, notJunk, junk.</summary>
-        public MailDestinationRoutingReason? DestinationRoutingReason { get; set; }
+        public ApiSdk.Models.MailDestinationRoutingReason? DestinationRoutingReason { get; set; }
         /// <summary>The mail recipient whose policies are used to assess the mail.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -29,7 +29,7 @@ namespace ApiSdk.Models
         public string RecipientEmail { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EmailFileAssessmentRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EmailFileAssessmentRequest"/> and sets the default values.
         /// </summary>
         public EmailFileAssessmentRequest() : base()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EmailFileAssessmentRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EmailFileAssessmentRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EmailFileAssessmentRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EmailFileAssessmentRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EmailFileAssessmentRequest();
+            return new ApiSdk.Models.EmailFileAssessmentRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "contentData", n => { ContentData = n.GetStringValue(); } },
-                { "destinationRoutingReason", n => { DestinationRoutingReason = n.GetEnumValue<MailDestinationRoutingReason>(); } },
+                { "destinationRoutingReason", n => { DestinationRoutingReason = n.GetEnumValue<ApiSdk.Models.MailDestinationRoutingReason>(); } },
                 { "recipientEmail", n => { RecipientEmail = n.GetStringValue(); } },
             };
         }
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("contentData", ContentData);
-            writer.WriteEnumValue<MailDestinationRoutingReason>("destinationRoutingReason", DestinationRoutingReason);
+            writer.WriteEnumValue<ApiSdk.Models.MailDestinationRoutingReason>("destinationRoutingReason", DestinationRoutingReason);
             writer.WriteStringValue("recipientEmail", RecipientEmail);
         }
     }

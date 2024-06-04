@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class FileStorageContainer : Entity, IParsable
+    public class FileStorageContainer : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Container type ID of the fileStorageContainer. For details about container types, see Container Types. Each container must have only one container type. Read-only.</summary>
@@ -17,10 +17,10 @@ namespace ApiSdk.Models
         /// <summary>Custom property collection for the fileStorageContainer. Read-write.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FileStorageContainerCustomPropertyDictionary? CustomProperties { get; set; }
+        public ApiSdk.Models.FileStorageContainerCustomPropertyDictionary? CustomProperties { get; set; }
 #nullable restore
 #else
-        public FileStorageContainerCustomPropertyDictionary CustomProperties { get; set; }
+        public ApiSdk.Models.FileStorageContainerCustomPropertyDictionary CustomProperties { get; set; }
 #endif
         /// <summary>Provides a user-visible description of the fileStorageContainer. Read-write.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -49,30 +49,30 @@ namespace ApiSdk.Models
         /// <summary>The set of permissions for users in the fileStorageContainer. Permission for each user is set by the roles property. The possible values are &apos;reader&apos;, &apos;writer&apos;, &apos;manager&apos;, and &apos;owner&apos;. Read-write.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Permission>? Permissions { get; set; }
+        public List<ApiSdk.Models.Permission>? Permissions { get; set; }
 #nullable restore
 #else
-        public List<Permission> Permissions { get; set; }
+        public List<ApiSdk.Models.Permission> Permissions { get; set; }
 #endif
         /// <summary>Status of the fileStorageContainer. Containers are created as inactive and require activation. Inactive containers are subjected to automatic deletion in 24 hours. The possible values are: inactive,  active. Read-only.</summary>
-        public FileStorageContainerStatus? Status { get; set; }
+        public ApiSdk.Models.FileStorageContainerStatus? Status { get; set; }
         /// <summary>Data specific to the current user. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FileStorageContainerViewpoint? Viewpoint { get; set; }
+        public ApiSdk.Models.FileStorageContainerViewpoint? Viewpoint { get; set; }
 #nullable restore
 #else
-        public FileStorageContainerViewpoint Viewpoint { get; set; }
+        public ApiSdk.Models.FileStorageContainerViewpoint Viewpoint { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FileStorageContainer"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.FileStorageContainer"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FileStorageContainer CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.FileStorageContainer CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FileStorageContainer();
+            return new ApiSdk.Models.FileStorageContainer();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,13 +84,13 @@ namespace ApiSdk.Models
             {
                 { "containerTypeId", n => { ContainerTypeId = n.GetGuidValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "customProperties", n => { CustomProperties = n.GetObjectValue<FileStorageContainerCustomPropertyDictionary>(FileStorageContainerCustomPropertyDictionary.CreateFromDiscriminatorValue); } },
+                { "customProperties", n => { CustomProperties = n.GetObjectValue<ApiSdk.Models.FileStorageContainerCustomPropertyDictionary>(ApiSdk.Models.FileStorageContainerCustomPropertyDictionary.CreateFromDiscriminatorValue); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "drive", n => { Drive = n.GetObjectValue<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue); } },
-                { "permissions", n => { Permissions = n.GetCollectionOfObjectValues<Permission>(Permission.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "status", n => { Status = n.GetEnumValue<FileStorageContainerStatus>(); } },
-                { "viewpoint", n => { Viewpoint = n.GetObjectValue<FileStorageContainerViewpoint>(FileStorageContainerViewpoint.CreateFromDiscriminatorValue); } },
+                { "permissions", n => { Permissions = n.GetCollectionOfObjectValues<ApiSdk.Models.Permission>(ApiSdk.Models.Permission.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.FileStorageContainerStatus>(); } },
+                { "viewpoint", n => { Viewpoint = n.GetObjectValue<ApiSdk.Models.FileStorageContainerViewpoint>(ApiSdk.Models.FileStorageContainerViewpoint.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -103,13 +103,13 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteGuidValue("containerTypeId", ContainerTypeId);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<FileStorageContainerCustomPropertyDictionary>("customProperties", CustomProperties);
+            writer.WriteObjectValue<ApiSdk.Models.FileStorageContainerCustomPropertyDictionary>("customProperties", CustomProperties);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteObjectValue<ApiSdk.Models.Drive>("drive", Drive);
-            writer.WriteCollectionOfObjectValues<Permission>("permissions", Permissions);
-            writer.WriteEnumValue<FileStorageContainerStatus>("status", Status);
-            writer.WriteObjectValue<FileStorageContainerViewpoint>("viewpoint", Viewpoint);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Permission>("permissions", Permissions);
+            writer.WriteEnumValue<ApiSdk.Models.FileStorageContainerStatus>("status", Status);
+            writer.WriteObjectValue<ApiSdk.Models.FileStorageContainerViewpoint>("viewpoint", Viewpoint);
         }
     }
 }

@@ -163,14 +163,14 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item.Content
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item.Content.ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/recordings/{callRecording%2Did}/content", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item.Content.ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/recordings/{callRecording%2Did}/content", rawUrl)

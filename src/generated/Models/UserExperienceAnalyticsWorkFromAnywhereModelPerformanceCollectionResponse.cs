@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UserExperienceAnalyticsWorkFromAnywhereModelPerformanceCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class UserExperienceAnalyticsWorkFromAnywhereModelPerformanceCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserExperienceAnalyticsWorkFromAnywhereModelPerformance>? Value { get; set; }
+        public List<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformance>? Value { get; set; }
 #nullable restore
 #else
-        public List<UserExperienceAnalyticsWorkFromAnywhereModelPerformance> Value { get; set; }
+        public List<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformance> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsWorkFromAnywhereModelPerformanceCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformanceCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsWorkFromAnywhereModelPerformanceCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformanceCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsWorkFromAnywhereModelPerformanceCollectionResponse();
+            return new ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformanceCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<UserExperienceAnalyticsWorkFromAnywhereModelPerformance>(UserExperienceAnalyticsWorkFromAnywhereModelPerformance.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformance>(ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformance.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsWorkFromAnywhereModelPerformance>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformance>("value", Value);
         }
     }
 }

@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Determines the recipient of the notification email.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessReviewNotificationRecipientScope? NotificationRecipientScope { get; set; }
+        public ApiSdk.Models.AccessReviewNotificationRecipientScope? NotificationRecipientScope { get; set; }
 #nullable restore
 #else
-        public AccessReviewNotificationRecipientScope NotificationRecipientScope { get; set; }
+        public ApiSdk.Models.AccessReviewNotificationRecipientScope NotificationRecipientScope { get; set; }
 #endif
         /// <summary>Indicates the type of access review email to be sent. Supported template type is CompletedAdditionalRecipients, which sends review completion notifications to the recipients.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessReviewNotificationRecipientItem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessReviewNotificationRecipientItem"/> and sets the default values.
         /// </summary>
         public AccessReviewNotificationRecipientItem()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessReviewNotificationRecipientItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessReviewNotificationRecipientItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AccessReviewNotificationRecipientItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AccessReviewNotificationRecipientItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessReviewNotificationRecipientItem();
+            return new ApiSdk.Models.AccessReviewNotificationRecipientItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "notificationRecipientScope", n => { NotificationRecipientScope = n.GetObjectValue<AccessReviewNotificationRecipientScope>(AccessReviewNotificationRecipientScope.CreateFromDiscriminatorValue); } },
+                { "notificationRecipientScope", n => { NotificationRecipientScope = n.GetObjectValue<ApiSdk.Models.AccessReviewNotificationRecipientScope>(ApiSdk.Models.AccessReviewNotificationRecipientScope.CreateFromDiscriminatorValue); } },
                 { "notificationTemplateType", n => { NotificationTemplateType = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -73,7 +73,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<AccessReviewNotificationRecipientScope>("notificationRecipientScope", NotificationRecipientScope);
+            writer.WriteObjectValue<ApiSdk.Models.AccessReviewNotificationRecipientScope>("notificationRecipientScope", NotificationRecipientScope);
             writer.WriteStringValue("notificationTemplateType", NotificationTemplateType);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

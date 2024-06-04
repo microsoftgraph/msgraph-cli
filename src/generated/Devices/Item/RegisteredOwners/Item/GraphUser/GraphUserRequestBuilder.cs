@@ -87,14 +87,14 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Item.GraphUser
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphUserRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Devices.Item.RegisteredOwners.Item.GraphUser.GraphUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredOwners/{directoryObject%2Did}/graph.user{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphUserRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Devices.Item.RegisteredOwners.Item.GraphUser.GraphUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphUserRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredOwners/{directoryObject%2Did}/graph.user{?%24expand,%24select}", rawUrl)
@@ -107,11 +107,11 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Item.GraphUser
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphUserRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Devices.Item.RegisteredOwners.Item.GraphUser.GraphUserRequestBuilder.GraphUserRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphUserRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Devices.Item.RegisteredOwners.Item.GraphUser.GraphUserRequestBuilder.GraphUserRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

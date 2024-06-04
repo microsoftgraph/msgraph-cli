@@ -40,7 +40,7 @@ namespace ApiSdk.Contacts.Item
         {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.CheckMemberGroups.CheckMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -57,7 +57,7 @@ namespace ApiSdk.Contacts.Item
         {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.CheckMemberObjects.CheckMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -109,7 +109,7 @@ namespace ApiSdk.Contacts.Item
         {
             var command = new Command("direct-reports");
             command.Description = "Provides operations to manage the directReports property of the microsoft.graph.orgContact entity.";
-            var builder = new DirectReportsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.DirectReports.DirectReportsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -190,7 +190,7 @@ namespace ApiSdk.Contacts.Item
         {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.GetMemberGroups.GetMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -207,7 +207,7 @@ namespace ApiSdk.Contacts.Item
         {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.GetMemberObjects.GetMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -224,7 +224,7 @@ namespace ApiSdk.Contacts.Item
         {
             var command = new Command("manager");
             command.Description = "Provides operations to manage the manager property of the microsoft.graph.orgContact entity.";
-            var builder = new ManagerRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.Manager.ManagerRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -241,7 +241,7 @@ namespace ApiSdk.Contacts.Item
         {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.orgContact entity.";
-            var builder = new MemberOfRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.MemberOf.MemberOfRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -292,7 +292,7 @@ namespace ApiSdk.Contacts.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<OrgContact>(OrgContact.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.OrgContact>(ApiSdk.Models.OrgContact.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -320,7 +320,7 @@ namespace ApiSdk.Contacts.Item
         {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.Restore.RestoreRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -337,7 +337,7 @@ namespace ApiSdk.Contacts.Item
         {
             var command = new Command("retry-service-provisioning");
             command.Description = "Provides operations to call the retryServiceProvisioning method.";
-            var builder = new RetryServiceProvisioningRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.RetryServiceProvisioning.RetryServiceProvisioningRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -354,7 +354,7 @@ namespace ApiSdk.Contacts.Item
         {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
-            var builder = new ServiceProvisioningErrorsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.ServiceProvisioningErrors.ServiceProvisioningErrorsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -377,7 +377,7 @@ namespace ApiSdk.Contacts.Item
         {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.orgContact entity.";
-            var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.TransitiveMemberOf.TransitiveMemberOfRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -398,14 +398,14 @@ namespace ApiSdk.Contacts.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="OrgContactItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Contacts.Item.OrgContactItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OrgContactItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="OrgContactItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Contacts.Item.OrgContactItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OrgContactItemRequestBuilder(string rawUrl) : base("{+baseurl}/contacts/{orgContact%2Did}{?%24expand,%24select}", rawUrl)
@@ -437,11 +437,11 @@ namespace ApiSdk.Contacts.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OrgContactItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Contacts.Item.OrgContactItemRequestBuilder.OrgContactItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OrgContactItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Contacts.Item.OrgContactItemRequestBuilder.OrgContactItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -457,11 +457,11 @@ namespace ApiSdk.Contacts.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(OrgContact body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.OrgContact body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(OrgContact body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.OrgContact body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

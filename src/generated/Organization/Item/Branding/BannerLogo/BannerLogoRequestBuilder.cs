@@ -151,14 +151,14 @@ namespace ApiSdk.Organization.Item.Branding.BannerLogo
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="BannerLogoRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.BannerLogo.BannerLogoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BannerLogoRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/bannerLogo", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="BannerLogoRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.BannerLogo.BannerLogoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BannerLogoRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/bannerLogo", rawUrl)

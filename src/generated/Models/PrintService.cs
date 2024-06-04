@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrintService : Entity, IParsable
+    public class PrintService : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Endpoints that can be used to access the service. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PrintServiceEndpoint>? Endpoints { get; set; }
+        public List<ApiSdk.Models.PrintServiceEndpoint>? Endpoints { get; set; }
 #nullable restore
 #else
-        public List<PrintServiceEndpoint> Endpoints { get; set; }
+        public List<ApiSdk.Models.PrintServiceEndpoint> Endpoints { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrintService"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrintService"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrintService CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrintService CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrintService();
+            return new ApiSdk.Models.PrintService();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<PrintServiceEndpoint>(PrintServiceEndpoint.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<ApiSdk.Models.PrintServiceEndpoint>(ApiSdk.Models.PrintServiceEndpoint.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<PrintServiceEndpoint>("endpoints", Endpoints);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PrintServiceEndpoint>("endpoints", Endpoints);
         }
     }
 }

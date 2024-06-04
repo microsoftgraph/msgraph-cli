@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SamlOrWsFedProvider : IdentityProviderBase, IParsable
+    public class SamlOrWsFedProvider : ApiSdk.Models.IdentityProviderBase, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Issuer URI of the federation server.</summary>
@@ -35,7 +35,7 @@ namespace ApiSdk.Models
         public string PassiveSignInUri { get; set; }
 #endif
         /// <summary>Preferred authentication protocol. The possible values are: wsFed, saml, unknownFutureValue.</summary>
-        public AuthenticationProtocol? PreferredAuthenticationProtocol { get; set; }
+        public ApiSdk.Models.AuthenticationProtocol? PreferredAuthenticationProtocol { get; set; }
         /// <summary>Current certificate used to sign tokens passed to the Microsoft identity platform. The certificate is formatted as a Base64 encoded string of the public portion of the federated IdP&apos;s token signing certificate and must be compatible with the X509Certificate2 class.   This property is used in the following scenarios:  if a rollover is required outside of the autorollover update a new federation service is being set up  if the new token signing certificate isn&apos;t present in the federation properties after the federation service certificate has been updated.   Microsoft Entra ID updates certificates via an autorollover process in which it attempts to retrieve a new certificate from the federation service metadata, 30 days before expiry of the current certificate. If a new certificate isn&apos;t available, Microsoft Entra ID monitors the metadata daily and will update the federation settings for the domain when a new certificate is available.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string SigningCertificate { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SamlOrWsFedProvider"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SamlOrWsFedProvider"/> and sets the default values.
         /// </summary>
         public SamlOrWsFedProvider() : base()
         {
@@ -54,17 +54,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SamlOrWsFedProvider"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SamlOrWsFedProvider"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SamlOrWsFedProvider CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SamlOrWsFedProvider CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.internalDomainFederation" => new InternalDomainFederation(),
-                "#microsoft.graph.samlOrWsFedExternalDomainFederation" => new SamlOrWsFedExternalDomainFederation(),
-                _ => new SamlOrWsFedProvider(),
+                "#microsoft.graph.internalDomainFederation" => new ApiSdk.Models.InternalDomainFederation(),
+                "#microsoft.graph.samlOrWsFedExternalDomainFederation" => new ApiSdk.Models.SamlOrWsFedExternalDomainFederation(),
+                _ => new ApiSdk.Models.SamlOrWsFedProvider(),
             };
         }
         /// <summary>
@@ -78,7 +78,7 @@ namespace ApiSdk.Models
                 { "issuerUri", n => { IssuerUri = n.GetStringValue(); } },
                 { "metadataExchangeUri", n => { MetadataExchangeUri = n.GetStringValue(); } },
                 { "passiveSignInUri", n => { PassiveSignInUri = n.GetStringValue(); } },
-                { "preferredAuthenticationProtocol", n => { PreferredAuthenticationProtocol = n.GetEnumValue<AuthenticationProtocol>(); } },
+                { "preferredAuthenticationProtocol", n => { PreferredAuthenticationProtocol = n.GetEnumValue<ApiSdk.Models.AuthenticationProtocol>(); } },
                 { "signingCertificate", n => { SigningCertificate = n.GetStringValue(); } },
             };
         }
@@ -93,7 +93,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("issuerUri", IssuerUri);
             writer.WriteStringValue("metadataExchangeUri", MetadataExchangeUri);
             writer.WriteStringValue("passiveSignInUri", PassiveSignInUri);
-            writer.WriteEnumValue<AuthenticationProtocol>("preferredAuthenticationProtocol", PreferredAuthenticationProtocol);
+            writer.WriteEnumValue<ApiSdk.Models.AuthenticationProtocol>("preferredAuthenticationProtocol", PreferredAuthenticationProtocol);
             writer.WriteStringValue("signingCertificate", SigningCertificate);
         }
     }

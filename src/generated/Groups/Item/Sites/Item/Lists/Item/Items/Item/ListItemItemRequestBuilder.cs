@@ -39,7 +39,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
         {
             var command = new Command("analytics");
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.listItem entity.";
-            var builder = new AnalyticsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Analytics.AnalyticsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -56,7 +56,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
         {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
-            var builder = new CreatedByUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.CreatedByUser.CreatedByUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -80,7 +80,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
         {
             var command = new Command("create-link");
             command.Description = "Provides operations to call the createLink method.";
-            var builder = new CreateLinkRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.CreateLink.CreateLinkRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -150,7 +150,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
         {
             var command = new Command("document-set-versions");
             command.Description = "Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.";
-            var builder = new DocumentSetVersionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions.DocumentSetVersionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -177,7 +177,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
         {
             var command = new Command("drive-item");
             command.Description = "Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.";
-            var builder = new DriveItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DriveItem.DriveItemRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildContentNavCommand());
@@ -200,7 +200,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
         {
             var command = new Command("fields");
             command.Description = "Provides operations to manage the fields property of the microsoft.graph.listItem entity.";
-            var builder = new FieldsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Fields.FieldsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -219,7 +219,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
         {
             var command = new Command("get-activities-by-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
-            var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.GetActivitiesByInterval.GetActivitiesByIntervalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -236,7 +236,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
         {
             var command = new Command("get-activities-by-interval-with-start-date-time-with-end-date-time-with-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
-            var builder = new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -323,7 +323,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
         {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
-            var builder = new LastModifiedByUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.LastModifiedByUser.LastModifiedByUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -416,7 +416,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
         {
             var command = new Command("versions");
             command.Description = "Provides operations to manage the versions property of the microsoft.graph.listItem entity.";
-            var builder = new VersionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.VersionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -436,14 +436,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ListItemItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.ListItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ListItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ListItemItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.ListItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ListItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}{?%24expand,%24select}", rawUrl)
@@ -475,11 +475,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ListItemItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.ListItemItemRequestBuilder.ListItemItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ListItemItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.ListItemItemRequestBuilder.ListItemItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

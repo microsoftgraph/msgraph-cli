@@ -22,7 +22,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CustomExtensionData"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CustomExtensionData"/> and sets the default values.
         /// </summary>
         public CustomExtensionData()
         {
@@ -31,18 +31,18 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CustomExtensionData"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CustomExtensionData"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CustomExtensionData CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CustomExtensionData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.accessPackageAssignmentRequestCallbackData" => new AccessPackageAssignmentRequestCallbackData(),
-                "#microsoft.graph.identityGovernance.customTaskExtensionCallbackData" => new CustomTaskExtensionCallbackData(),
-                "#microsoft.graph.identityGovernance.customTaskExtensionCalloutData" => new CustomTaskExtensionCalloutData(),
-                _ => new CustomExtensionData(),
+                "#microsoft.graph.accessPackageAssignmentRequestCallbackData" => new ApiSdk.Models.AccessPackageAssignmentRequestCallbackData(),
+                "#microsoft.graph.identityGovernance.customTaskExtensionCallbackData" => new ApiSdk.Models.IdentityGovernance.CustomTaskExtensionCallbackData(),
+                "#microsoft.graph.identityGovernance.customTaskExtensionCalloutData" => new ApiSdk.Models.IdentityGovernance.CustomTaskExtensionCalloutData(),
+                _ => new ApiSdk.Models.CustomExtensionData(),
             };
         }
         /// <summary>

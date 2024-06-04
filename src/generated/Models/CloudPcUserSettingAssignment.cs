@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CloudPcUserSettingAssignment : Entity, IParsable
+    public class CloudPcUserSettingAssignment : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The date and time when this assignment was created. The timestamp type represents the date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
@@ -15,20 +15,20 @@ namespace ApiSdk.Models
         /// <summary>The assignment target for the user setting. Currently, the only target supported for this user setting is a user group. For details, see cloudPcManagementGroupAssignmentTarget.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CloudPcManagementAssignmentTarget? Target { get; set; }
+        public ApiSdk.Models.CloudPcManagementAssignmentTarget? Target { get; set; }
 #nullable restore
 #else
-        public CloudPcManagementAssignmentTarget Target { get; set; }
+        public ApiSdk.Models.CloudPcManagementAssignmentTarget Target { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudPcUserSettingAssignment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudPcUserSettingAssignment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CloudPcUserSettingAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CloudPcUserSettingAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudPcUserSettingAssignment();
+            return new ApiSdk.Models.CloudPcUserSettingAssignment();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -39,7 +39,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "target", n => { Target = n.GetObjectValue<CloudPcManagementAssignmentTarget>(CloudPcManagementAssignmentTarget.CreateFromDiscriminatorValue); } },
+                { "target", n => { Target = n.GetObjectValue<ApiSdk.Models.CloudPcManagementAssignmentTarget>(ApiSdk.Models.CloudPcManagementAssignmentTarget.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<CloudPcManagementAssignmentTarget>("target", Target);
+            writer.WriteObjectValue<ApiSdk.Models.CloudPcManagementAssignmentTarget>("target", Target);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The category property</summary>
-        public LifecycleWorkflowCategory? Category { get; set; }
+        public ApiSdk.Models.IdentityGovernance.LifecycleWorkflowCategory? Category { get; set; }
         /// <summary>The user who created the workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -43,10 +43,10 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>Defines when and for who the workflow will run.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkflowExecutionConditions? ExecutionConditions { get; set; }
+        public ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions? ExecutionConditions { get; set; }
 #nullable restore
 #else
-        public WorkflowExecutionConditions ExecutionConditions { get; set; }
+        public ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions ExecutionConditions { get; set; }
 #endif
         /// <summary>Whether the workflow is enabled or disabled. If this setting is true, the workflow can be run on demand or on schedule when isSchedulingEnabled is true.</summary>
         public bool? IsEnabled { get; set; }
@@ -73,13 +73,13 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>The tasks in the workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TaskObject>? Tasks { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.TaskObject>? Tasks { get; set; }
 #nullable restore
 #else
-        public List<TaskObject> Tasks { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.TaskObject> Tasks { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WorkflowBase"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityGovernance.WorkflowBase"/> and sets the default values.
         /// </summary>
         public WorkflowBase()
         {
@@ -88,17 +88,17 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkflowBase"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.WorkflowBase"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WorkflowBase CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IdentityGovernance.WorkflowBase CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.identityGovernance.workflow" => new Workflow(),
-                "#microsoft.graph.identityGovernance.workflowVersion" => new WorkflowVersion(),
-                _ => new WorkflowBase(),
+                "#microsoft.graph.identityGovernance.workflow" => new ApiSdk.Models.IdentityGovernance.Workflow(),
+                "#microsoft.graph.identityGovernance.workflowVersion" => new ApiSdk.Models.IdentityGovernance.WorkflowVersion(),
+                _ => new ApiSdk.Models.IdentityGovernance.WorkflowBase(),
             };
         }
         /// <summary>
@@ -109,18 +109,18 @@ namespace ApiSdk.Models.IdentityGovernance
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "category", n => { Category = n.GetEnumValue<LifecycleWorkflowCategory>(); } },
+                { "category", n => { Category = n.GetEnumValue<ApiSdk.Models.IdentityGovernance.LifecycleWorkflowCategory>(); } },
                 { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "executionConditions", n => { ExecutionConditions = n.GetObjectValue<WorkflowExecutionConditions>(WorkflowExecutionConditions.CreateFromDiscriminatorValue); } },
+                { "executionConditions", n => { ExecutionConditions = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions>(ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions.CreateFromDiscriminatorValue); } },
                 { "isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
                 { "isSchedulingEnabled", n => { IsSchedulingEnabled = n.GetBoolValue(); } },
                 { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "tasks", n => { Tasks = n.GetCollectionOfObjectValues<TaskObject>(TaskObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tasks", n => { Tasks = n.GetCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.TaskObject>(ApiSdk.Models.IdentityGovernance.TaskObject.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -130,18 +130,18 @@ namespace ApiSdk.Models.IdentityGovernance
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<LifecycleWorkflowCategory>("category", Category);
+            writer.WriteEnumValue<ApiSdk.Models.IdentityGovernance.LifecycleWorkflowCategory>("category", Category);
             writer.WriteObjectValue<ApiSdk.Models.User>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<WorkflowExecutionConditions>("executionConditions", ExecutionConditions);
+            writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions>("executionConditions", ExecutionConditions);
             writer.WriteBoolValue("isEnabled", IsEnabled);
             writer.WriteBoolValue("isSchedulingEnabled", IsSchedulingEnabled);
             writer.WriteObjectValue<ApiSdk.Models.User>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<TaskObject>("tasks", Tasks);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.TaskObject>("tasks", Tasks);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -12,7 +12,7 @@ namespace ApiSdk.Models
     public class SharedPCAccountManagerPolicy : IAdditionalDataHolder, IParsable
     {
         /// <summary>Possible values for when accounts are deleted on a shared PC.</summary>
-        public SharedPCAccountDeletionPolicyType? AccountDeletionPolicy { get; set; }
+        public ApiSdk.Models.SharedPCAccountDeletionPolicyType? AccountDeletionPolicy { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Sets the percentage of available disk space a PC should have before it stops deleting cached shared PC accounts. Only applies when AccountDeletionPolicy is DiskSpaceThreshold or DiskSpaceThresholdOrInactiveThreshold. Valid values 0 to 100</summary>
@@ -30,7 +30,7 @@ namespace ApiSdk.Models
         /// <summary>Sets the percentage of disk space remaining on a PC before cached accounts will be deleted to free disk space. Accounts that have been inactive the longest will be deleted first. Only applies when AccountDeletionPolicy is DiskSpaceThresholdOrInactiveThreshold. Valid values 0 to 100</summary>
         public int? RemoveAccountsBelowDiskFreePercentage { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SharedPCAccountManagerPolicy"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SharedPCAccountManagerPolicy"/> and sets the default values.
         /// </summary>
         public SharedPCAccountManagerPolicy()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SharedPCAccountManagerPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SharedPCAccountManagerPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SharedPCAccountManagerPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SharedPCAccountManagerPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SharedPCAccountManagerPolicy();
+            return new ApiSdk.Models.SharedPCAccountManagerPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "accountDeletionPolicy", n => { AccountDeletionPolicy = n.GetEnumValue<SharedPCAccountDeletionPolicyType>(); } },
+                { "accountDeletionPolicy", n => { AccountDeletionPolicy = n.GetEnumValue<ApiSdk.Models.SharedPCAccountDeletionPolicyType>(); } },
                 { "cacheAccountsAboveDiskFreePercentage", n => { CacheAccountsAboveDiskFreePercentage = n.GetIntValue(); } },
                 { "inactiveThresholdDays", n => { InactiveThresholdDays = n.GetIntValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
@@ -68,7 +68,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<SharedPCAccountDeletionPolicyType>("accountDeletionPolicy", AccountDeletionPolicy);
+            writer.WriteEnumValue<ApiSdk.Models.SharedPCAccountDeletionPolicyType>("accountDeletionPolicy", AccountDeletionPolicy);
             writer.WriteIntValue("cacheAccountsAboveDiskFreePercentage", CacheAccountsAboveDiskFreePercentage);
             writer.WriteIntValue("inactiveThresholdDays", InactiveThresholdDays);
             writer.WriteStringValue("@odata.type", OdataType);

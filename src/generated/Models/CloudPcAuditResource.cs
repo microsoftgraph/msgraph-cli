@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>The list of modified properties.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CloudPcAuditProperty>? ModifiedProperties { get; set; }
+        public List<ApiSdk.Models.CloudPcAuditProperty>? ModifiedProperties { get; set; }
 #nullable restore
 #else
-        public List<CloudPcAuditProperty> ModifiedProperties { get; set; }
+        public List<ApiSdk.Models.CloudPcAuditProperty> ModifiedProperties { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string ResourceId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CloudPcAuditResource"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CloudPcAuditResource"/> and sets the default values.
         /// </summary>
         public CloudPcAuditResource()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudPcAuditResource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudPcAuditResource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CloudPcAuditResource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CloudPcAuditResource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudPcAuditResource();
+            return new ApiSdk.Models.CloudPcAuditResource();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,7 +70,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "modifiedProperties", n => { ModifiedProperties = n.GetCollectionOfObjectValues<CloudPcAuditProperty>(CloudPcAuditProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "modifiedProperties", n => { ModifiedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.CloudPcAuditProperty>(ApiSdk.Models.CloudPcAuditProperty.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "resourceId", n => { ResourceId = n.GetStringValue(); } },
             };
@@ -83,7 +83,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<CloudPcAuditProperty>("modifiedProperties", ModifiedProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CloudPcAuditProperty>("modifiedProperties", ModifiedProperties);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("resourceId", ResourceId);
             writer.WriteAdditionalData(AdditionalData);

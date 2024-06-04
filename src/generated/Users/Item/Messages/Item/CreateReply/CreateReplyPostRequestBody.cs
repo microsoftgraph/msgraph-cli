@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.Messages.Item.CreateReply
         public ApiSdk.Models.Message Message { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CreateReplyPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Messages.Item.CreateReply.CreateReplyPostRequestBody"/> and sets the default values.
         /// </summary>
         public CreateReplyPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Users.Item.Messages.Item.CreateReply
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CreateReplyPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.Messages.Item.CreateReply.CreateReplyPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CreateReplyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.Messages.Item.CreateReply.CreateReplyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CreateReplyPostRequestBody();
+            return new ApiSdk.Users.Item.Messages.Item.CreateReply.CreateReplyPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

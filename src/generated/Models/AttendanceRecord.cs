@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AttendanceRecord : Entity, IParsable
+    public class AttendanceRecord : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>List of time periods between joining and leaving a meeting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AttendanceInterval>? AttendanceIntervals { get; set; }
+        public List<ApiSdk.Models.AttendanceInterval>? AttendanceIntervals { get; set; }
 #nullable restore
 #else
-        public List<AttendanceInterval> AttendanceIntervals { get; set; }
+        public List<ApiSdk.Models.AttendanceInterval> AttendanceIntervals { get; set; }
 #endif
         /// <summary>Email address of the user associated with this attendance record.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,12 +47,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AttendanceRecord"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AttendanceRecord"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AttendanceRecord CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AttendanceRecord CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AttendanceRecord();
+            return new ApiSdk.Models.AttendanceRecord();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,7 +62,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "attendanceIntervals", n => { AttendanceIntervals = n.GetCollectionOfObjectValues<AttendanceInterval>(AttendanceInterval.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "attendanceIntervals", n => { AttendanceIntervals = n.GetCollectionOfObjectValues<ApiSdk.Models.AttendanceInterval>(ApiSdk.Models.AttendanceInterval.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "emailAddress", n => { EmailAddress = n.GetStringValue(); } },
                 { "identity", n => { Identity = n.GetObjectValue<ApiSdk.Models.Identity>(ApiSdk.Models.Identity.CreateFromDiscriminatorValue); } },
                 { "role", n => { Role = n.GetStringValue(); } },
@@ -77,7 +77,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AttendanceInterval>("attendanceIntervals", AttendanceIntervals);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AttendanceInterval>("attendanceIntervals", AttendanceIntervals);
             writer.WriteStringValue("emailAddress", EmailAddress);
             writer.WriteObjectValue<ApiSdk.Models.Identity>("identity", Identity);
             writer.WriteStringValue("role", Role);

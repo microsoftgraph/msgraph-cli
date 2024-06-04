@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.ValidatePermission
         public string Password { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ValidatePermissionPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.ValidatePermission.ValidatePermissionPostRequestBody"/> and sets the default values.
         /// </summary>
         public ValidatePermissionPostRequestBody()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Drives.Item.Items.Item.ValidatePermission
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ValidatePermissionPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.ValidatePermission.ValidatePermissionPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ValidatePermissionPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.ValidatePermission.ValidatePermissionPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ValidatePermissionPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.ValidatePermission.ValidatePermissionPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

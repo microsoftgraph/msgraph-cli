@@ -23,7 +23,7 @@ namespace ApiSdk.Models.IdentityGovernance
         public string FailureReason { get; set; }
 #endif
         /// <summary>The processingStatus property</summary>
-        public LifecycleWorkflowProcessingStatus? ProcessingStatus { get; set; }
+        public ApiSdk.Models.IdentityGovernance.LifecycleWorkflowProcessingStatus? ProcessingStatus { get; set; }
         /// <summary>The date time when taskProcessingResult execution started. Value is null if task execution has not yet started.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.</summary>
         public DateTimeOffset? StartedDateTime { get; set; }
         /// <summary>The subject property</summary>
@@ -37,20 +37,20 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>The task property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TaskObject? Task { get; set; }
+        public ApiSdk.Models.IdentityGovernance.TaskObject? Task { get; set; }
 #nullable restore
 #else
-        public TaskObject Task { get; set; }
+        public ApiSdk.Models.IdentityGovernance.TaskObject Task { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TaskProcessingResult"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.TaskProcessingResult"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TaskProcessingResult CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.TaskProcessingResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TaskProcessingResult();
+            return new ApiSdk.Models.IdentityGovernance.TaskProcessingResult();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,10 +63,10 @@ namespace ApiSdk.Models.IdentityGovernance
                 { "completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "failureReason", n => { FailureReason = n.GetStringValue(); } },
-                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<LifecycleWorkflowProcessingStatus>(); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<ApiSdk.Models.IdentityGovernance.LifecycleWorkflowProcessingStatus>(); } },
                 { "startedDateTime", n => { StartedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "subject", n => { Subject = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
-                { "task", n => { Task = n.GetObjectValue<TaskObject>(TaskObject.CreateFromDiscriminatorValue); } },
+                { "task", n => { Task = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.TaskObject>(ApiSdk.Models.IdentityGovernance.TaskObject.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -80,10 +80,10 @@ namespace ApiSdk.Models.IdentityGovernance
             writer.WriteDateTimeOffsetValue("completedDateTime", CompletedDateTime);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("failureReason", FailureReason);
-            writer.WriteEnumValue<LifecycleWorkflowProcessingStatus>("processingStatus", ProcessingStatus);
+            writer.WriteEnumValue<ApiSdk.Models.IdentityGovernance.LifecycleWorkflowProcessingStatus>("processingStatus", ProcessingStatus);
             writer.WriteDateTimeOffsetValue("startedDateTime", StartedDateTime);
             writer.WriteObjectValue<ApiSdk.Models.User>("subject", Subject);
-            writer.WriteObjectValue<TaskObject>("task", Task);
+            writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.TaskObject>("task", Task);
         }
     }
 }

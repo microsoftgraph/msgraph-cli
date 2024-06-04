@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookChartLegend : Entity, IParsable
+    public class WorkbookChartLegend : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents the formatting of a chart legend, which includes fill and font formatting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartLegendFormat? Format { get; set; }
+        public ApiSdk.Models.WorkbookChartLegendFormat? Format { get; set; }
 #nullable restore
 #else
-        public WorkbookChartLegendFormat Format { get; set; }
+        public ApiSdk.Models.WorkbookChartLegendFormat Format { get; set; }
 #endif
         /// <summary>Boolean value for whether the chart legend should overlap with the main body of the chart.</summary>
         public bool? Overlay { get; set; }
@@ -33,12 +33,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookChartLegend"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookChartLegend"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookChartLegend CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookChartLegend CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookChartLegend();
+            return new ApiSdk.Models.WorkbookChartLegend();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "format", n => { Format = n.GetObjectValue<WorkbookChartLegendFormat>(WorkbookChartLegendFormat.CreateFromDiscriminatorValue); } },
+                { "format", n => { Format = n.GetObjectValue<ApiSdk.Models.WorkbookChartLegendFormat>(ApiSdk.Models.WorkbookChartLegendFormat.CreateFromDiscriminatorValue); } },
                 { "overlay", n => { Overlay = n.GetBoolValue(); } },
                 { "position", n => { Position = n.GetStringValue(); } },
                 { "visible", n => { Visible = n.GetBoolValue(); } },
@@ -62,7 +62,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartLegendFormat>("format", Format);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartLegendFormat>("format", Format);
             writer.WriteBoolValue("overlay", Overlay);
             writer.WriteStringValue("position", Position);
             writer.WriteBoolValue("visible", Visible);

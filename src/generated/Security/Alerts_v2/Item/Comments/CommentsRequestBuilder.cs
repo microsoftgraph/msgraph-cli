@@ -30,7 +30,7 @@ namespace ApiSdk.Security.Alerts_v2.Item.Comments
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Alerts_v2.Item.Comments.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -78,7 +78,7 @@ namespace ApiSdk.Security.Alerts_v2.Item.Comments
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetCollectionOfObjectValues<AlertComment>(AlertComment.CreateFromDiscriminatorValue)?.ToList();
+                var model = parseNode.GetCollectionOfObjectValues<ApiSdk.Models.Security.AlertComment>(ApiSdk.Models.Security.AlertComment.CreateFromDiscriminatorValue)?.ToList();
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -100,14 +100,14 @@ namespace ApiSdk.Security.Alerts_v2.Item.Comments
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CommentsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Alerts_v2.Item.Comments.CommentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CommentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/alerts_v2/{alert%2Did}/comments", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CommentsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Alerts_v2.Item.Comments.CommentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CommentsRequestBuilder(string rawUrl) : base("{+baseurl}/security/alerts_v2/{alert%2Did}/comments", rawUrl)
@@ -121,11 +121,11 @@ namespace ApiSdk.Security.Alerts_v2.Item.Comments
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(List<AlertComment> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(List<ApiSdk.Models.Security.AlertComment> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(List<AlertComment> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(List<ApiSdk.Models.Security.AlertComment> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

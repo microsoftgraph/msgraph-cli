@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp : OnInteractiveAuthFlowStartHandler, IParsable
+    public class OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp : ApiSdk.Models.OnInteractiveAuthFlowStartHandler, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Optional. Specifies whether the authentication flow includes an option to sign up (create account) and sign in. Default value is false meaning only sign in is enabled.</summary>
         public bool? IsSignUpAllowed { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp"/> and sets the default values.
         /// </summary>
         public OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp();
+            return new ApiSdk.Models.OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -9,20 +9,20 @@ namespace ApiSdk.Models
     /// <summary>
     /// Policy used to configure detailed management settings targeted to specific security groups
     /// </summary>
-    public class TargetedManagedAppProtection : ManagedAppProtection, IParsable
+    public class TargetedManagedAppProtection : ApiSdk.Models.ManagedAppProtection, IParsable
     {
         /// <summary>Navigation property to list of inclusion and exclusion groups to which the policy is deployed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TargetedManagedAppPolicyAssignment>? Assignments { get; set; }
+        public List<ApiSdk.Models.TargetedManagedAppPolicyAssignment>? Assignments { get; set; }
 #nullable restore
 #else
-        public List<TargetedManagedAppPolicyAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.TargetedManagedAppPolicyAssignment> Assignments { get; set; }
 #endif
         /// <summary>Indicates if the policy is deployed to any inclusion groups or not.</summary>
         public bool? IsAssigned { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TargetedManagedAppProtection"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TargetedManagedAppProtection"/> and sets the default values.
         /// </summary>
         public TargetedManagedAppProtection() : base()
         {
@@ -31,17 +31,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TargetedManagedAppProtection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TargetedManagedAppProtection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TargetedManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TargetedManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.androidManagedAppProtection" => new AndroidManagedAppProtection(),
-                "#microsoft.graph.iosManagedAppProtection" => new IosManagedAppProtection(),
-                _ => new TargetedManagedAppProtection(),
+                "#microsoft.graph.androidManagedAppProtection" => new ApiSdk.Models.AndroidManagedAppProtection(),
+                "#microsoft.graph.iosManagedAppProtection" => new ApiSdk.Models.IosManagedAppProtection(),
+                _ => new ApiSdk.Models.TargetedManagedAppProtection(),
             };
         }
         /// <summary>
@@ -52,7 +52,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<TargetedManagedAppPolicyAssignment>(TargetedManagedAppPolicyAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.TargetedManagedAppPolicyAssignment>(ApiSdk.Models.TargetedManagedAppPolicyAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isAssigned", n => { IsAssigned = n.GetBoolValue(); } },
             };
         }
@@ -64,7 +64,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<TargetedManagedAppPolicyAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TargetedManagedAppPolicyAssignment>("assignments", Assignments);
             writer.WriteBoolValue("isAssigned", IsAssigned);
         }
     }

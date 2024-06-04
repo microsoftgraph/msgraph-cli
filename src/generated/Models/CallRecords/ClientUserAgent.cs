@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.CallRecords
 {
     #pragma warning disable CS1591
-    public class ClientUserAgent : UserAgent, IParsable
+    public class ClientUserAgent : ApiSdk.Models.CallRecords.UserAgent, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The unique identifier of the Microsoft Entra application used by this endpoint.</summary>
@@ -27,11 +27,11 @@ namespace ApiSdk.Models.CallRecords
         public string CommunicationServiceId { get; set; }
 #endif
         /// <summary>The platform property</summary>
-        public ClientPlatform? Platform { get; set; }
+        public ApiSdk.Models.CallRecords.ClientPlatform? Platform { get; set; }
         /// <summary>The productFamily property</summary>
         public ApiSdk.Models.CallRecords.ProductFamily? ProductFamily { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ClientUserAgent"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CallRecords.ClientUserAgent"/> and sets the default values.
         /// </summary>
         public ClientUserAgent() : base()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ClientUserAgent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallRecords.ClientUserAgent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ClientUserAgent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CallRecords.ClientUserAgent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ClientUserAgent();
+            return new ApiSdk.Models.CallRecords.ClientUserAgent();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,8 +57,8 @@ namespace ApiSdk.Models.CallRecords
             {
                 { "azureADAppId", n => { AzureADAppId = n.GetStringValue(); } },
                 { "communicationServiceId", n => { CommunicationServiceId = n.GetStringValue(); } },
-                { "platform", n => { Platform = n.GetEnumValue<ClientPlatform>(); } },
-                { "productFamily", n => { ProductFamily = n.GetEnumValue<ProductFamily>(); } },
+                { "platform", n => { Platform = n.GetEnumValue<ApiSdk.Models.CallRecords.ClientPlatform>(); } },
+                { "productFamily", n => { ProductFamily = n.GetEnumValue<ApiSdk.Models.CallRecords.ProductFamily>(); } },
             };
         }
         /// <summary>
@@ -71,8 +71,8 @@ namespace ApiSdk.Models.CallRecords
             base.Serialize(writer);
             writer.WriteStringValue("azureADAppId", AzureADAppId);
             writer.WriteStringValue("communicationServiceId", CommunicationServiceId);
-            writer.WriteEnumValue<ClientPlatform>("platform", Platform);
-            writer.WriteEnumValue<ProductFamily>("productFamily", ProductFamily);
+            writer.WriteEnumValue<ApiSdk.Models.CallRecords.ClientPlatform>("platform", Platform);
+            writer.WriteEnumValue<ApiSdk.Models.CallRecords.ProductFamily>("productFamily", ProductFamily);
         }
     }
 }

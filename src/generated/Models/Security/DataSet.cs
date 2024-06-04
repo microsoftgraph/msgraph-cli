@@ -31,16 +31,16 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DataSet"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.DataSet"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DataSet CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.DataSet CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.ediscoveryReviewSet" => new EdiscoveryReviewSet(),
-                _ => new DataSet(),
+                "#microsoft.graph.security.ediscoveryReviewSet" => new ApiSdk.Models.Security.EdiscoveryReviewSet(),
+                _ => new ApiSdk.Models.Security.DataSet(),
             };
         }
         /// <summary>

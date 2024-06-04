@@ -56,14 +56,14 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGr
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftGraphSecurityRemoveHoldRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityRemoveHold.MicrosoftGraphSecurityRemoveHoldRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphSecurityRemoveHoldRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/{ediscoveryCustodian%2Did}/microsoft.graph.security.removeHold", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftGraphSecurityRemoveHoldRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGraphSecurityRemoveHold.MicrosoftGraphSecurityRemoveHoldRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphSecurityRemoveHoldRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/{ediscoveryCustodian%2Did}/microsoft.graph.security.removeHold", rawUrl)

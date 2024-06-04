@@ -160,14 +160,14 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOSVersionPerfo
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOSVersionPerformance.Item.UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOSVersionPerformance/{userExperienceAnalyticsAppHealthOSVersionPerformance%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOSVersionPerformance.Item.UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOSVersionPerformance/{userExperienceAnalyticsAppHealthOSVersionPerformance%2Did}{?%24expand,%24select}", rawUrl)
@@ -199,11 +199,11 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOSVersionPerfo
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOSVersionPerformance.Item.UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilder.UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOSVersionPerformance.Item.UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilder.UserExperienceAnalyticsAppHealthOSVersionPerformanceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

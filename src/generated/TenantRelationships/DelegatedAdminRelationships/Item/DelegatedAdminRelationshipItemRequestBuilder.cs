@@ -32,7 +32,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item
         {
             var command = new Command("access-assignments");
             command.Description = "Provides operations to manage the accessAssignments property of the microsoft.graph.delegatedAdminRelationship entity.";
-            var builder = new AccessAssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssignments.AccessAssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -148,7 +148,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item
         {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.delegatedAdminRelationship entity.";
-            var builder = new OperationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations.OperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -199,7 +199,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<DelegatedAdminRelationship>(DelegatedAdminRelationship.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.DelegatedAdminRelationship>(ApiSdk.Models.DelegatedAdminRelationship.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -227,7 +227,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item
         {
             var command = new Command("requests");
             command.Description = "Provides operations to manage the requests property of the microsoft.graph.delegatedAdminRelationship entity.";
-            var builder = new RequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.RequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -247,14 +247,14 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DelegatedAdminRelationshipItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.DelegatedAdminRelationshipItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DelegatedAdminRelationshipItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships/{delegatedAdminRelationship%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DelegatedAdminRelationshipItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.DelegatedAdminRelationshipItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DelegatedAdminRelationshipItemRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships/{delegatedAdminRelationship%2Did}{?%24expand,%24select}", rawUrl)
@@ -286,11 +286,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DelegatedAdminRelationshipItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.DelegatedAdminRelationshipItemRequestBuilder.DelegatedAdminRelationshipItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DelegatedAdminRelationshipItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.DelegatedAdminRelationshipItemRequestBuilder.DelegatedAdminRelationshipItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -306,11 +306,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(DelegatedAdminRelationship body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DelegatedAdminRelationship body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(DelegatedAdminRelationship body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DelegatedAdminRelationship body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

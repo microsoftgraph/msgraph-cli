@@ -7,96 +7,96 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookRangeView : Entity, IParsable
+    public class WorkbookRangeView : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents the cell addresses</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? CellAddresses { get; set; }
+        public ApiSdk.Models.Json? CellAddresses { get; set; }
 #nullable restore
 #else
-        public Json CellAddresses { get; set; }
+        public ApiSdk.Models.Json CellAddresses { get; set; }
 #endif
         /// <summary>Returns the number of visible columns. Read-only.</summary>
         public int? ColumnCount { get; set; }
         /// <summary>Represents the formula in A1-style notation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Formulas { get; set; }
+        public ApiSdk.Models.Json? Formulas { get; set; }
 #nullable restore
 #else
-        public Json Formulas { get; set; }
+        public ApiSdk.Models.Json Formulas { get; set; }
 #endif
         /// <summary>Represents the formula in A1-style notation, in the user&apos;s language and number-formatting locale. For example, the English &apos;=SUM(A1, 1.5)&apos; formula would become &apos;=SUMME(A1; 1,5)&apos; in German.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? FormulasLocal { get; set; }
+        public ApiSdk.Models.Json? FormulasLocal { get; set; }
 #nullable restore
 #else
-        public Json FormulasLocal { get; set; }
+        public ApiSdk.Models.Json FormulasLocal { get; set; }
 #endif
         /// <summary>Represents the formula in R1C1-style notation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? FormulasR1C1 { get; set; }
+        public ApiSdk.Models.Json? FormulasR1C1 { get; set; }
 #nullable restore
 #else
-        public Json FormulasR1C1 { get; set; }
+        public ApiSdk.Models.Json FormulasR1C1 { get; set; }
 #endif
         /// <summary>Index of the range.</summary>
         public int? Index { get; set; }
         /// <summary>Represents Excel&apos;s number format code for the given cell. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? NumberFormat { get; set; }
+        public ApiSdk.Models.Json? NumberFormat { get; set; }
 #nullable restore
 #else
-        public Json NumberFormat { get; set; }
+        public ApiSdk.Models.Json NumberFormat { get; set; }
 #endif
         /// <summary>Returns the number of visible rows. Read-only.</summary>
         public int? RowCount { get; set; }
         /// <summary>Represents a collection of range views associated with the range. Read-only. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookRangeView>? Rows { get; set; }
+        public List<ApiSdk.Models.WorkbookRangeView>? Rows { get; set; }
 #nullable restore
 #else
-        public List<WorkbookRangeView> Rows { get; set; }
+        public List<ApiSdk.Models.WorkbookRangeView> Rows { get; set; }
 #endif
         /// <summary>Text values of the specified range. The Text value won&apos;t depend on the cell width. The # sign substitution that happens in Excel UI won&apos;t affect the text value returned by the API. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Text { get; set; }
+        public ApiSdk.Models.Json? Text { get; set; }
 #nullable restore
 #else
-        public Json Text { get; set; }
+        public ApiSdk.Models.Json Text { get; set; }
 #endif
         /// <summary>Represents the raw values of the specified range view. The data returned could be of type string, number, or a boolean. Cell that contains an error returns the error string.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Values { get; set; }
+        public ApiSdk.Models.Json? Values { get; set; }
 #nullable restore
 #else
-        public Json Values { get; set; }
+        public ApiSdk.Models.Json Values { get; set; }
 #endif
         /// <summary>Represents the type of data of each cell. Read-only. The possible values are: Unknown, Empty, String, Integer, Double, Boolean, Error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? ValueTypes { get; set; }
+        public ApiSdk.Models.Json? ValueTypes { get; set; }
 #nullable restore
 #else
-        public Json ValueTypes { get; set; }
+        public ApiSdk.Models.Json ValueTypes { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookRangeView"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookRangeView"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookRangeView CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookRangeView CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookRangeView();
+            return new ApiSdk.Models.WorkbookRangeView();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -106,18 +106,18 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "cellAddresses", n => { CellAddresses = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "cellAddresses", n => { CellAddresses = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
                 { "columnCount", n => { ColumnCount = n.GetIntValue(); } },
-                { "formulas", n => { Formulas = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "formulasLocal", n => { FormulasLocal = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "formulasR1C1", n => { FormulasR1C1 = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "formulas", n => { Formulas = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "formulasLocal", n => { FormulasLocal = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "formulasR1C1", n => { FormulasR1C1 = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
                 { "index", n => { Index = n.GetIntValue(); } },
-                { "numberFormat", n => { NumberFormat = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "numberFormat", n => { NumberFormat = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
                 { "rowCount", n => { RowCount = n.GetIntValue(); } },
-                { "rows", n => { Rows = n.GetCollectionOfObjectValues<WorkbookRangeView>(WorkbookRangeView.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "text", n => { Text = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "valueTypes", n => { ValueTypes = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "values", n => { Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "rows", n => { Rows = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookRangeView>(ApiSdk.Models.WorkbookRangeView.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "text", n => { Text = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "valueTypes", n => { ValueTypes = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "values", n => { Values = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -128,18 +128,18 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<Json>("cellAddresses", CellAddresses);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("cellAddresses", CellAddresses);
             writer.WriteIntValue("columnCount", ColumnCount);
-            writer.WriteObjectValue<Json>("formulas", Formulas);
-            writer.WriteObjectValue<Json>("formulasLocal", FormulasLocal);
-            writer.WriteObjectValue<Json>("formulasR1C1", FormulasR1C1);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("formulas", Formulas);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("formulasLocal", FormulasLocal);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("formulasR1C1", FormulasR1C1);
             writer.WriteIntValue("index", Index);
-            writer.WriteObjectValue<Json>("numberFormat", NumberFormat);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("numberFormat", NumberFormat);
             writer.WriteIntValue("rowCount", RowCount);
-            writer.WriteCollectionOfObjectValues<WorkbookRangeView>("rows", Rows);
-            writer.WriteObjectValue<Json>("text", Text);
-            writer.WriteObjectValue<Json>("values", Values);
-            writer.WriteObjectValue<Json>("valueTypes", ValueTypes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookRangeView>("rows", Rows);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("text", Text);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("values", Values);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("valueTypes", ValueTypes);
         }
     }
 }

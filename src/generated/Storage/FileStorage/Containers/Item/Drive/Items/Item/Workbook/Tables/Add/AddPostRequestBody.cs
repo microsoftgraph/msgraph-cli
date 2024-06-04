@@ -23,7 +23,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         /// <summary>The hasHeaders property</summary>
         public bool? HasHeaders { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AddPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Add.AddPostRequestBody"/> and sets the default values.
         /// </summary>
         public AddPostRequestBody()
         {
@@ -32,12 +32,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Add.AddPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AddPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Add.AddPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Add.AddPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

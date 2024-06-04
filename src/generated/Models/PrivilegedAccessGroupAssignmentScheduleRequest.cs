@@ -7,18 +7,18 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrivilegedAccessGroupAssignmentScheduleRequest : PrivilegedAccessScheduleRequest, IParsable
+    public class PrivilegedAccessGroupAssignmentScheduleRequest : ApiSdk.Models.PrivilegedAccessScheduleRequest, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The identifier of a membership or ownership assignment relationship to the group. Required. The possible values are: owner, member, unknownFutureValue.</summary>
-        public PrivilegedAccessGroupRelationships? AccessId { get; set; }
+        public ApiSdk.Models.PrivilegedAccessGroupRelationships? AccessId { get; set; }
         /// <summary>When the request activates a membership or ownership assignment in PIM for groups, this object represents the eligibility policy for the group. Otherwise, it is null. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PrivilegedAccessGroupEligibilitySchedule? ActivatedUsing { get; set; }
+        public ApiSdk.Models.PrivilegedAccessGroupEligibilitySchedule? ActivatedUsing { get; set; }
 #nullable restore
 #else
-        public PrivilegedAccessGroupEligibilitySchedule ActivatedUsing { get; set; }
+        public ApiSdk.Models.PrivilegedAccessGroupEligibilitySchedule ActivatedUsing { get; set; }
 #endif
         /// <summary>References the group that is the scope of the membership or ownership assignment request through PIM for groups. Supports $expand and $select nested in $expand for select properties like id, displayName, and mail.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,10 +39,10 @@ namespace ApiSdk.Models
         /// <summary>References the principal that&apos;s in the scope of this membership or ownership assignment request through the group that&apos;s governed by PIM. Supports $expand and $select nested in $expand for id only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DirectoryObject? Principal { get; set; }
+        public ApiSdk.Models.DirectoryObject? Principal { get; set; }
 #nullable restore
 #else
-        public DirectoryObject Principal { get; set; }
+        public ApiSdk.Models.DirectoryObject Principal { get; set; }
 #endif
         /// <summary>The identifier of the principal whose membership or ownership assignment to the group is managed through PIM for groups. Supports $filter (eq, ne).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,10 +55,10 @@ namespace ApiSdk.Models
         /// <summary>Schedule created by this request. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PrivilegedAccessGroupEligibilitySchedule? TargetSchedule { get; set; }
+        public ApiSdk.Models.PrivilegedAccessGroupEligibilitySchedule? TargetSchedule { get; set; }
 #nullable restore
 #else
-        public PrivilegedAccessGroupEligibilitySchedule TargetSchedule { get; set; }
+        public ApiSdk.Models.PrivilegedAccessGroupEligibilitySchedule TargetSchedule { get; set; }
 #endif
         /// <summary>The identifier of the schedule that&apos;s created from the membership or ownership assignment request. Supports $filter (eq, ne).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
         public string TargetScheduleId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PrivilegedAccessGroupAssignmentScheduleRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PrivilegedAccessGroupAssignmentScheduleRequest"/> and sets the default values.
         /// </summary>
         public PrivilegedAccessGroupAssignmentScheduleRequest() : base()
         {
@@ -78,12 +78,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrivilegedAccessGroupAssignmentScheduleRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrivilegedAccessGroupAssignmentScheduleRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrivilegedAccessGroupAssignmentScheduleRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrivilegedAccessGroupAssignmentScheduleRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrivilegedAccessGroupAssignmentScheduleRequest();
+            return new ApiSdk.Models.PrivilegedAccessGroupAssignmentScheduleRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -93,13 +93,13 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "accessId", n => { AccessId = n.GetEnumValue<PrivilegedAccessGroupRelationships>(); } },
-                { "activatedUsing", n => { ActivatedUsing = n.GetObjectValue<PrivilegedAccessGroupEligibilitySchedule>(PrivilegedAccessGroupEligibilitySchedule.CreateFromDiscriminatorValue); } },
+                { "accessId", n => { AccessId = n.GetEnumValue<ApiSdk.Models.PrivilegedAccessGroupRelationships>(); } },
+                { "activatedUsing", n => { ActivatedUsing = n.GetObjectValue<ApiSdk.Models.PrivilegedAccessGroupEligibilitySchedule>(ApiSdk.Models.PrivilegedAccessGroupEligibilitySchedule.CreateFromDiscriminatorValue); } },
                 { "group", n => { Group = n.GetObjectValue<ApiSdk.Models.Group>(ApiSdk.Models.Group.CreateFromDiscriminatorValue); } },
                 { "groupId", n => { GroupId = n.GetStringValue(); } },
-                { "principal", n => { Principal = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
+                { "principal", n => { Principal = n.GetObjectValue<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue); } },
                 { "principalId", n => { PrincipalId = n.GetStringValue(); } },
-                { "targetSchedule", n => { TargetSchedule = n.GetObjectValue<PrivilegedAccessGroupEligibilitySchedule>(PrivilegedAccessGroupEligibilitySchedule.CreateFromDiscriminatorValue); } },
+                { "targetSchedule", n => { TargetSchedule = n.GetObjectValue<ApiSdk.Models.PrivilegedAccessGroupEligibilitySchedule>(ApiSdk.Models.PrivilegedAccessGroupEligibilitySchedule.CreateFromDiscriminatorValue); } },
                 { "targetScheduleId", n => { TargetScheduleId = n.GetStringValue(); } },
             };
         }
@@ -111,13 +111,13 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<PrivilegedAccessGroupRelationships>("accessId", AccessId);
-            writer.WriteObjectValue<PrivilegedAccessGroupEligibilitySchedule>("activatedUsing", ActivatedUsing);
+            writer.WriteEnumValue<ApiSdk.Models.PrivilegedAccessGroupRelationships>("accessId", AccessId);
+            writer.WriteObjectValue<ApiSdk.Models.PrivilegedAccessGroupEligibilitySchedule>("activatedUsing", ActivatedUsing);
             writer.WriteObjectValue<ApiSdk.Models.Group>("group", Group);
             writer.WriteStringValue("groupId", GroupId);
-            writer.WriteObjectValue<DirectoryObject>("principal", Principal);
+            writer.WriteObjectValue<ApiSdk.Models.DirectoryObject>("principal", Principal);
             writer.WriteStringValue("principalId", PrincipalId);
-            writer.WriteObjectValue<PrivilegedAccessGroupEligibilitySchedule>("targetSchedule", TargetSchedule);
+            writer.WriteObjectValue<ApiSdk.Models.PrivilegedAccessGroupEligibilitySchedule>("targetSchedule", TargetSchedule);
             writer.WriteStringValue("targetScheduleId", TargetScheduleId);
         }
     }

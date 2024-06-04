@@ -8,7 +8,7 @@ using System;
 namespace ApiSdk.ServicePrincipals.Item.GetMemberGroups
 {
     #pragma warning disable CS1591
-    public class GetMemberGroupsPostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetMemberGroupsPostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
@@ -22,12 +22,12 @@ namespace ApiSdk.ServicePrincipals.Item.GetMemberGroups
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetMemberGroupsPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.ServicePrincipals.Item.GetMemberGroups.GetMemberGroupsPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetMemberGroupsPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.ServicePrincipals.Item.GetMemberGroups.GetMemberGroupsPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetMemberGroupsPostResponse();
+            return new ApiSdk.ServicePrincipals.Item.GetMemberGroups.GetMemberGroupsPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

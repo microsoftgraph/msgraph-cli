@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Application : DirectoryObject, IParsable
+    public class Application : ApiSdk.Models.DirectoryObject, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Defines custom behavior that a consuming service can use to call an app in specific contexts. For example, applications that can render file streams can set the addIns property for its &apos;FileHandler&apos; functionality. This lets services like Microsoft 365 call the application in the context of a document the user is working on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AddIn>? AddIns { get; set; }
+        public List<ApiSdk.Models.AddIn>? AddIns { get; set; }
 #nullable restore
 #else
-        public List<AddIn> AddIns { get; set; }
+        public List<ApiSdk.Models.AddIn> AddIns { get; set; }
 #endif
         /// <summary>Specifies settings for an application that implements a web API.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ApiApplication? Api { get; set; }
+        public ApiSdk.Models.ApiApplication? Api { get; set; }
 #nullable restore
 #else
-        public ApiApplication Api { get; set; }
+        public ApiSdk.Models.ApiApplication Api { get; set; }
 #endif
         /// <summary>The unique identifier for the application that is assigned to an application by Microsoft Entra ID. Not nullable. Read-only. Alternate key. Supports $filter (eq).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,18 +45,18 @@ namespace ApiSdk.Models
         /// <summary>The appManagementPolicy applied to this application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppManagementPolicy>? AppManagementPolicies { get; set; }
+        public List<ApiSdk.Models.AppManagementPolicy>? AppManagementPolicies { get; set; }
 #nullable restore
 #else
-        public List<AppManagementPolicy> AppManagementPolicies { get; set; }
+        public List<ApiSdk.Models.AppManagementPolicy> AppManagementPolicies { get; set; }
 #endif
         /// <summary>The collection of roles defined for the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppRole>? AppRoles { get; set; }
+        public List<ApiSdk.Models.AppRole>? AppRoles { get; set; }
 #nullable restore
 #else
-        public List<AppRole> AppRoles { get; set; }
+        public List<ApiSdk.Models.AppRole> AppRoles { get; set; }
 #endif
         /// <summary>Specifies the certification status of the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,10 +71,10 @@ namespace ApiSdk.Models
         /// <summary>Supports $filter (/$count eq 0, /$count ne 0). Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DirectoryObject? CreatedOnBehalfOf { get; set; }
+        public ApiSdk.Models.DirectoryObject? CreatedOnBehalfOf { get; set; }
 #nullable restore
 #else
-        public DirectoryObject CreatedOnBehalfOf { get; set; }
+        public ApiSdk.Models.DirectoryObject CreatedOnBehalfOf { get; set; }
 #endif
         /// <summary>The defaultRedirectUri property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -111,18 +111,18 @@ namespace ApiSdk.Models
         /// <summary>Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ExtensionProperty>? ExtensionProperties { get; set; }
+        public List<ApiSdk.Models.ExtensionProperty>? ExtensionProperties { get; set; }
 #nullable restore
 #else
-        public List<ExtensionProperty> ExtensionProperties { get; set; }
+        public List<ApiSdk.Models.ExtensionProperty> ExtensionProperties { get; set; }
 #endif
         /// <summary>Federated identities for applications. Supports $expand and $filter (startsWith, /$count eq 0, /$count ne 0).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<FederatedIdentityCredential>? FederatedIdentityCredentials { get; set; }
+        public List<ApiSdk.Models.FederatedIdentityCredential>? FederatedIdentityCredentials { get; set; }
 #nullable restore
 #else
-        public List<FederatedIdentityCredential> FederatedIdentityCredentials { get; set; }
+        public List<ApiSdk.Models.FederatedIdentityCredential> FederatedIdentityCredentials { get; set; }
 #endif
         /// <summary>Configures the groups claim issued in a user or OAuth 2.0 access token that the application expects. To set this attribute, use one of the following valid string values: None, SecurityGroup (for security groups and Microsoft Entra roles), All (this gets all of the security groups, distribution groups, and Microsoft Entra directory roles that the signed-in user is a member of).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -135,10 +135,10 @@ namespace ApiSdk.Models
         /// <summary>The homeRealmDiscoveryPolicies property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HomeRealmDiscoveryPolicy>? HomeRealmDiscoveryPolicies { get; set; }
+        public List<ApiSdk.Models.HomeRealmDiscoveryPolicy>? HomeRealmDiscoveryPolicies { get; set; }
 #nullable restore
 #else
-        public List<HomeRealmDiscoveryPolicy> HomeRealmDiscoveryPolicies { get; set; }
+        public List<ApiSdk.Models.HomeRealmDiscoveryPolicy> HomeRealmDiscoveryPolicies { get; set; }
 #endif
         /// <summary>Also known as App ID URI, this value is set when an application is used as a resource app. The identifierUris acts as the prefix for the scopes you reference in your API&apos;s code, and it must be globally unique. You can use the default value provided, which is in the form api://&lt;appId&gt;, or specify a more readable URI like https://contoso.com/api. For more information on valid identifierUris patterns and best practices, see Microsoft Entra application registration security best practices. Not nullable. Supports $filter (eq, ne, ge, le, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -151,10 +151,10 @@ namespace ApiSdk.Models
         /// <summary>Basic profile information of the application such as  app&apos;s marketing, support, terms of service and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience. For more info, see How to: Add Terms of service and privacy statement for registered Microsoft Entra apps. Supports $filter (eq, ne, not, ge, le, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public InformationalUrl? Info { get; set; }
+        public ApiSdk.Models.InformationalUrl? Info { get; set; }
 #nullable restore
 #else
-        public InformationalUrl Info { get; set; }
+        public ApiSdk.Models.InformationalUrl Info { get; set; }
 #endif
         /// <summary>Specifies whether this application supports device authentication without a user. The default is false.</summary>
         public bool? IsDeviceOnlyAuthSupported { get; set; }
@@ -163,10 +163,10 @@ namespace ApiSdk.Models
         /// <summary>The collection of key credentials associated with the application. Not nullable. Supports $filter (eq, not, ge, le).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<KeyCredential>? KeyCredentials { get; set; }
+        public List<ApiSdk.Models.KeyCredential>? KeyCredentials { get; set; }
 #nullable restore
 #else
-        public List<KeyCredential> KeyCredentials { get; set; }
+        public List<ApiSdk.Models.KeyCredential> KeyCredentials { get; set; }
 #endif
         /// <summary>The main logo for the application. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -197,10 +197,10 @@ namespace ApiSdk.Models
         /// <summary>Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? Owners { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? Owners { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> Owners { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> Owners { get; set; }
 #endif
         /// <summary>Specifies parental control settings for an application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -213,18 +213,18 @@ namespace ApiSdk.Models
         /// <summary>The collection of password credentials associated with the application. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PasswordCredential>? PasswordCredentials { get; set; }
+        public List<ApiSdk.Models.PasswordCredential>? PasswordCredentials { get; set; }
 #nullable restore
 #else
-        public List<PasswordCredential> PasswordCredentials { get; set; }
+        public List<ApiSdk.Models.PasswordCredential> PasswordCredentials { get; set; }
 #endif
         /// <summary>Specifies settings for installed clients such as desktop or mobile devices.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PublicClientApplication? PublicClient { get; set; }
+        public ApiSdk.Models.PublicClientApplication? PublicClient { get; set; }
 #nullable restore
 #else
-        public PublicClientApplication PublicClient { get; set; }
+        public ApiSdk.Models.PublicClientApplication PublicClient { get; set; }
 #endif
         /// <summary>The verified publisher domain for the application. Read-only. For more information, see How to: Configure an application&apos;s publisher domain. Supports $filter (eq, ne, ge, le, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -285,10 +285,10 @@ namespace ApiSdk.Models
         /// <summary>Specifies settings for a single-page application, including sign out URLs and redirect URIs for authorization codes and access tokens.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SpaApplication? Spa { get; set; }
+        public ApiSdk.Models.SpaApplication? Spa { get; set; }
 #nullable restore
 #else
-        public SpaApplication Spa { get; set; }
+        public ApiSdk.Models.SpaApplication Spa { get; set; }
 #endif
         /// <summary>Represents the capability for Microsoft Entra identity synchronization through the Microsoft Graph API.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -311,18 +311,18 @@ namespace ApiSdk.Models
         /// <summary>The tokenIssuancePolicies property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TokenIssuancePolicy>? TokenIssuancePolicies { get; set; }
+        public List<ApiSdk.Models.TokenIssuancePolicy>? TokenIssuancePolicies { get; set; }
 #nullable restore
 #else
-        public List<TokenIssuancePolicy> TokenIssuancePolicies { get; set; }
+        public List<ApiSdk.Models.TokenIssuancePolicy> TokenIssuancePolicies { get; set; }
 #endif
         /// <summary>The tokenLifetimePolicies property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TokenLifetimePolicy>? TokenLifetimePolicies { get; set; }
+        public List<ApiSdk.Models.TokenLifetimePolicy>? TokenLifetimePolicies { get; set; }
 #nullable restore
 #else
-        public List<TokenLifetimePolicy> TokenLifetimePolicies { get; set; }
+        public List<ApiSdk.Models.TokenLifetimePolicy> TokenLifetimePolicies { get; set; }
 #endif
         /// <summary>The unique identifier that can be assigned to an application and used as an alternate key. Immutable. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -343,13 +343,13 @@ namespace ApiSdk.Models
         /// <summary>Specifies settings for a web application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WebApplication? Web { get; set; }
+        public ApiSdk.Models.WebApplication? Web { get; set; }
 #nullable restore
 #else
-        public WebApplication Web { get; set; }
+        public ApiSdk.Models.WebApplication Web { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Application"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Application"/> and sets the default values.
         /// </summary>
         public Application() : base()
         {
@@ -358,12 +358,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Application"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Application"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Application CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Application CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Application();
+            return new ApiSdk.Models.Application();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -373,36 +373,36 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "addIns", n => { AddIns = n.GetCollectionOfObjectValues<AddIn>(AddIn.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "api", n => { Api = n.GetObjectValue<ApiApplication>(ApiApplication.CreateFromDiscriminatorValue); } },
+                { "addIns", n => { AddIns = n.GetCollectionOfObjectValues<ApiSdk.Models.AddIn>(ApiSdk.Models.AddIn.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "api", n => { Api = n.GetObjectValue<ApiSdk.Models.ApiApplication>(ApiSdk.Models.ApiApplication.CreateFromDiscriminatorValue); } },
                 { "appId", n => { AppId = n.GetStringValue(); } },
-                { "appManagementPolicies", n => { AppManagementPolicies = n.GetCollectionOfObjectValues<AppManagementPolicy>(AppManagementPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "appRoles", n => { AppRoles = n.GetCollectionOfObjectValues<AppRole>(AppRole.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appManagementPolicies", n => { AppManagementPolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.AppManagementPolicy>(ApiSdk.Models.AppManagementPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appRoles", n => { AppRoles = n.GetCollectionOfObjectValues<ApiSdk.Models.AppRole>(ApiSdk.Models.AppRole.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "applicationTemplateId", n => { ApplicationTemplateId = n.GetStringValue(); } },
                 { "certification", n => { Certification = n.GetObjectValue<ApiSdk.Models.Certification>(ApiSdk.Models.Certification.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "createdOnBehalfOf", n => { CreatedOnBehalfOf = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
+                { "createdOnBehalfOf", n => { CreatedOnBehalfOf = n.GetObjectValue<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue); } },
                 { "defaultRedirectUri", n => { DefaultRedirectUri = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "disabledByMicrosoftStatus", n => { DisabledByMicrosoftStatus = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "extensionProperties", n => { ExtensionProperties = n.GetCollectionOfObjectValues<ExtensionProperty>(ExtensionProperty.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "federatedIdentityCredentials", n => { FederatedIdentityCredentials = n.GetCollectionOfObjectValues<FederatedIdentityCredential>(FederatedIdentityCredential.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "extensionProperties", n => { ExtensionProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.ExtensionProperty>(ApiSdk.Models.ExtensionProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "federatedIdentityCredentials", n => { FederatedIdentityCredentials = n.GetCollectionOfObjectValues<ApiSdk.Models.FederatedIdentityCredential>(ApiSdk.Models.FederatedIdentityCredential.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "groupMembershipClaims", n => { GroupMembershipClaims = n.GetStringValue(); } },
-                { "homeRealmDiscoveryPolicies", n => { HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<HomeRealmDiscoveryPolicy>(HomeRealmDiscoveryPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "homeRealmDiscoveryPolicies", n => { HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.HomeRealmDiscoveryPolicy>(ApiSdk.Models.HomeRealmDiscoveryPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "identifierUris", n => { IdentifierUris = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "info", n => { Info = n.GetObjectValue<InformationalUrl>(InformationalUrl.CreateFromDiscriminatorValue); } },
+                { "info", n => { Info = n.GetObjectValue<ApiSdk.Models.InformationalUrl>(ApiSdk.Models.InformationalUrl.CreateFromDiscriminatorValue); } },
                 { "isDeviceOnlyAuthSupported", n => { IsDeviceOnlyAuthSupported = n.GetBoolValue(); } },
                 { "isFallbackPublicClient", n => { IsFallbackPublicClient = n.GetBoolValue(); } },
-                { "keyCredentials", n => { KeyCredentials = n.GetCollectionOfObjectValues<KeyCredential>(KeyCredential.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "keyCredentials", n => { KeyCredentials = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyCredential>(ApiSdk.Models.KeyCredential.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "logo", n => { Logo = n.GetByteArrayValue(); } },
                 { "notes", n => { Notes = n.GetStringValue(); } },
                 { "oauth2RequirePostResponse", n => { Oauth2RequirePostResponse = n.GetBoolValue(); } },
                 { "optionalClaims", n => { OptionalClaims = n.GetObjectValue<ApiSdk.Models.OptionalClaims>(ApiSdk.Models.OptionalClaims.CreateFromDiscriminatorValue); } },
-                { "owners", n => { Owners = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "owners", n => { Owners = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "parentalControlSettings", n => { ParentalControlSettings = n.GetObjectValue<ApiSdk.Models.ParentalControlSettings>(ApiSdk.Models.ParentalControlSettings.CreateFromDiscriminatorValue); } },
-                { "passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<PasswordCredential>(PasswordCredential.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "publicClient", n => { PublicClient = n.GetObjectValue<PublicClientApplication>(PublicClientApplication.CreateFromDiscriminatorValue); } },
+                { "passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<ApiSdk.Models.PasswordCredential>(ApiSdk.Models.PasswordCredential.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "publicClient", n => { PublicClient = n.GetObjectValue<ApiSdk.Models.PublicClientApplication>(ApiSdk.Models.PublicClientApplication.CreateFromDiscriminatorValue); } },
                 { "publisherDomain", n => { PublisherDomain = n.GetStringValue(); } },
                 { "requestSignatureVerification", n => { RequestSignatureVerification = n.GetObjectValue<ApiSdk.Models.RequestSignatureVerification>(ApiSdk.Models.RequestSignatureVerification.CreateFromDiscriminatorValue); } },
                 { "requiredResourceAccess", n => { RequiredResourceAccess = n.GetCollectionOfObjectValues<ApiSdk.Models.RequiredResourceAccess>(ApiSdk.Models.RequiredResourceAccess.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -410,15 +410,15 @@ namespace ApiSdk.Models
                 { "serviceManagementReference", n => { ServiceManagementReference = n.GetStringValue(); } },
                 { "servicePrincipalLockConfiguration", n => { ServicePrincipalLockConfiguration = n.GetObjectValue<ApiSdk.Models.ServicePrincipalLockConfiguration>(ApiSdk.Models.ServicePrincipalLockConfiguration.CreateFromDiscriminatorValue); } },
                 { "signInAudience", n => { SignInAudience = n.GetStringValue(); } },
-                { "spa", n => { Spa = n.GetObjectValue<SpaApplication>(SpaApplication.CreateFromDiscriminatorValue); } },
+                { "spa", n => { Spa = n.GetObjectValue<ApiSdk.Models.SpaApplication>(ApiSdk.Models.SpaApplication.CreateFromDiscriminatorValue); } },
                 { "synchronization", n => { Synchronization = n.GetObjectValue<ApiSdk.Models.Synchronization>(ApiSdk.Models.Synchronization.CreateFromDiscriminatorValue); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "tokenEncryptionKeyId", n => { TokenEncryptionKeyId = n.GetGuidValue(); } },
-                { "tokenIssuancePolicies", n => { TokenIssuancePolicies = n.GetCollectionOfObjectValues<TokenIssuancePolicy>(TokenIssuancePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "tokenLifetimePolicies", n => { TokenLifetimePolicies = n.GetCollectionOfObjectValues<TokenLifetimePolicy>(TokenLifetimePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tokenIssuancePolicies", n => { TokenIssuancePolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.TokenIssuancePolicy>(ApiSdk.Models.TokenIssuancePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tokenLifetimePolicies", n => { TokenLifetimePolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.TokenLifetimePolicy>(ApiSdk.Models.TokenLifetimePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "uniqueName", n => { UniqueName = n.GetStringValue(); } },
                 { "verifiedPublisher", n => { VerifiedPublisher = n.GetObjectValue<ApiSdk.Models.VerifiedPublisher>(ApiSdk.Models.VerifiedPublisher.CreateFromDiscriminatorValue); } },
-                { "web", n => { Web = n.GetObjectValue<WebApplication>(WebApplication.CreateFromDiscriminatorValue); } },
+                { "web", n => { Web = n.GetObjectValue<ApiSdk.Models.WebApplication>(ApiSdk.Models.WebApplication.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -429,36 +429,36 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AddIn>("addIns", AddIns);
-            writer.WriteObjectValue<ApiApplication>("api", Api);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AddIn>("addIns", AddIns);
+            writer.WriteObjectValue<ApiSdk.Models.ApiApplication>("api", Api);
             writer.WriteStringValue("appId", AppId);
             writer.WriteStringValue("applicationTemplateId", ApplicationTemplateId);
-            writer.WriteCollectionOfObjectValues<AppManagementPolicy>("appManagementPolicies", AppManagementPolicies);
-            writer.WriteCollectionOfObjectValues<AppRole>("appRoles", AppRoles);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppManagementPolicy>("appManagementPolicies", AppManagementPolicies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppRole>("appRoles", AppRoles);
             writer.WriteObjectValue<ApiSdk.Models.Certification>("certification", Certification);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<DirectoryObject>("createdOnBehalfOf", CreatedOnBehalfOf);
+            writer.WriteObjectValue<ApiSdk.Models.DirectoryObject>("createdOnBehalfOf", CreatedOnBehalfOf);
             writer.WriteStringValue("defaultRedirectUri", DefaultRedirectUri);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("disabledByMicrosoftStatus", DisabledByMicrosoftStatus);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<ExtensionProperty>("extensionProperties", ExtensionProperties);
-            writer.WriteCollectionOfObjectValues<FederatedIdentityCredential>("federatedIdentityCredentials", FederatedIdentityCredentials);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExtensionProperty>("extensionProperties", ExtensionProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.FederatedIdentityCredential>("federatedIdentityCredentials", FederatedIdentityCredentials);
             writer.WriteStringValue("groupMembershipClaims", GroupMembershipClaims);
-            writer.WriteCollectionOfObjectValues<HomeRealmDiscoveryPolicy>("homeRealmDiscoveryPolicies", HomeRealmDiscoveryPolicies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.HomeRealmDiscoveryPolicy>("homeRealmDiscoveryPolicies", HomeRealmDiscoveryPolicies);
             writer.WriteCollectionOfPrimitiveValues<string>("identifierUris", IdentifierUris);
-            writer.WriteObjectValue<InformationalUrl>("info", Info);
+            writer.WriteObjectValue<ApiSdk.Models.InformationalUrl>("info", Info);
             writer.WriteBoolValue("isDeviceOnlyAuthSupported", IsDeviceOnlyAuthSupported);
             writer.WriteBoolValue("isFallbackPublicClient", IsFallbackPublicClient);
-            writer.WriteCollectionOfObjectValues<KeyCredential>("keyCredentials", KeyCredentials);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyCredential>("keyCredentials", KeyCredentials);
             writer.WriteByteArrayValue("logo", Logo);
             writer.WriteStringValue("notes", Notes);
             writer.WriteBoolValue("oauth2RequirePostResponse", Oauth2RequirePostResponse);
             writer.WriteObjectValue<ApiSdk.Models.OptionalClaims>("optionalClaims", OptionalClaims);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("owners", Owners);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("owners", Owners);
             writer.WriteObjectValue<ApiSdk.Models.ParentalControlSettings>("parentalControlSettings", ParentalControlSettings);
-            writer.WriteCollectionOfObjectValues<PasswordCredential>("passwordCredentials", PasswordCredentials);
-            writer.WriteObjectValue<PublicClientApplication>("publicClient", PublicClient);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PasswordCredential>("passwordCredentials", PasswordCredentials);
+            writer.WriteObjectValue<ApiSdk.Models.PublicClientApplication>("publicClient", PublicClient);
             writer.WriteStringValue("publisherDomain", PublisherDomain);
             writer.WriteObjectValue<ApiSdk.Models.RequestSignatureVerification>("requestSignatureVerification", RequestSignatureVerification);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.RequiredResourceAccess>("requiredResourceAccess", RequiredResourceAccess);
@@ -466,15 +466,15 @@ namespace ApiSdk.Models
             writer.WriteStringValue("serviceManagementReference", ServiceManagementReference);
             writer.WriteObjectValue<ApiSdk.Models.ServicePrincipalLockConfiguration>("servicePrincipalLockConfiguration", ServicePrincipalLockConfiguration);
             writer.WriteStringValue("signInAudience", SignInAudience);
-            writer.WriteObjectValue<SpaApplication>("spa", Spa);
+            writer.WriteObjectValue<ApiSdk.Models.SpaApplication>("spa", Spa);
             writer.WriteObjectValue<ApiSdk.Models.Synchronization>("synchronization", Synchronization);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
             writer.WriteGuidValue("tokenEncryptionKeyId", TokenEncryptionKeyId);
-            writer.WriteCollectionOfObjectValues<TokenIssuancePolicy>("tokenIssuancePolicies", TokenIssuancePolicies);
-            writer.WriteCollectionOfObjectValues<TokenLifetimePolicy>("tokenLifetimePolicies", TokenLifetimePolicies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TokenIssuancePolicy>("tokenIssuancePolicies", TokenIssuancePolicies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TokenLifetimePolicy>("tokenLifetimePolicies", TokenLifetimePolicies);
             writer.WriteStringValue("uniqueName", UniqueName);
             writer.WriteObjectValue<ApiSdk.Models.VerifiedPublisher>("verifiedPublisher", VerifiedPublisher);
-            writer.WriteObjectValue<WebApplication>("web", Web);
+            writer.WriteObjectValue<ApiSdk.Models.WebApplication>("web", Web);
         }
     }
 }

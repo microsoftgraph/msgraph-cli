@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.GroupSettingTemplates.GetAvailableExtensionProperties
 {
     #pragma warning disable CS1591
-    public class GetAvailableExtensionPropertiesPostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetAvailableExtensionPropertiesPostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ExtensionProperty>? Value { get; set; }
+        public List<ApiSdk.Models.ExtensionProperty>? Value { get; set; }
 #nullable restore
 #else
-        public List<ExtensionProperty> Value { get; set; }
+        public List<ApiSdk.Models.ExtensionProperty> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetAvailableExtensionPropertiesPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.GroupSettingTemplates.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetAvailableExtensionPropertiesPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.GroupSettingTemplates.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetAvailableExtensionPropertiesPostResponse();
+            return new ApiSdk.GroupSettingTemplates.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.GroupSettingTemplates.GetAvailableExtensionProperties
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<ExtensionProperty>(ExtensionProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.ExtensionProperty>(ApiSdk.Models.ExtensionProperty.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.GroupSettingTemplates.GetAvailableExtensionProperties
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ExtensionProperty>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExtensionProperty>("value", Value);
         }
     }
 }

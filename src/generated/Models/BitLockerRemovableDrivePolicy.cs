@@ -16,7 +16,7 @@ namespace ApiSdk.Models
         /// <summary>This policy setting determines whether BitLocker protection is required for removable data drives to be writable on a computer.</summary>
         public bool? BlockCrossOrganizationWriteAccess { get; set; }
         /// <summary>Select the encryption method for removable  drives. Possible values are: aesCbc128, aesCbc256, xtsAes128, xtsAes256.</summary>
-        public BitLockerEncryptionMethod? EncryptionMethod { get; set; }
+        public ApiSdk.Models.BitLockerEncryptionMethod? EncryptionMethod { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -28,7 +28,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether to block write access to devices configured in another organization.  If requireEncryptionForWriteAccess is false, this value does not affect.</summary>
         public bool? RequireEncryptionForWriteAccess { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="BitLockerRemovableDrivePolicy"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.BitLockerRemovableDrivePolicy"/> and sets the default values.
         /// </summary>
         public BitLockerRemovableDrivePolicy()
         {
@@ -37,12 +37,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BitLockerRemovableDrivePolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BitLockerRemovableDrivePolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BitLockerRemovableDrivePolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.BitLockerRemovableDrivePolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BitLockerRemovableDrivePolicy();
+            return new ApiSdk.Models.BitLockerRemovableDrivePolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -53,7 +53,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "blockCrossOrganizationWriteAccess", n => { BlockCrossOrganizationWriteAccess = n.GetBoolValue(); } },
-                { "encryptionMethod", n => { EncryptionMethod = n.GetEnumValue<BitLockerEncryptionMethod>(); } },
+                { "encryptionMethod", n => { EncryptionMethod = n.GetEnumValue<ApiSdk.Models.BitLockerEncryptionMethod>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "requireEncryptionForWriteAccess", n => { RequireEncryptionForWriteAccess = n.GetBoolValue(); } },
             };
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("blockCrossOrganizationWriteAccess", BlockCrossOrganizationWriteAccess);
-            writer.WriteEnumValue<BitLockerEncryptionMethod>("encryptionMethod", EncryptionMethod);
+            writer.WriteEnumValue<ApiSdk.Models.BitLockerEncryptionMethod>("encryptionMethod", EncryptionMethod);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("requireEncryptionForWriteAccess", RequireEncryptionForWriteAccess);
             writer.WriteAdditionalData(AdditionalData);

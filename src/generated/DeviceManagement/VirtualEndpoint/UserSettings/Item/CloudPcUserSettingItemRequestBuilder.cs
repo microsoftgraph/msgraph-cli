@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item
         {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.cloudPcUserSetting entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assignments.AssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -58,7 +58,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item
         {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
-            var builder = new AssignRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assign.AssignRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -188,7 +188,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CloudPcUserSetting>(CloudPcUserSetting.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.CloudPcUserSetting>(ApiSdk.Models.CloudPcUserSetting.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -209,14 +209,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CloudPcUserSettingItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.CloudPcUserSettingItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CloudPcUserSettingItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/virtualEndpoint/userSettings/{cloudPcUserSetting%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CloudPcUserSettingItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.CloudPcUserSettingItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CloudPcUserSettingItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/virtualEndpoint/userSettings/{cloudPcUserSetting%2Did}{?%24expand,%24select}", rawUrl)
@@ -248,11 +248,11 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CloudPcUserSettingItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.CloudPcUserSettingItemRequestBuilder.CloudPcUserSettingItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CloudPcUserSettingItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.CloudPcUserSettingItemRequestBuilder.CloudPcUserSettingItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -268,11 +268,11 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(CloudPcUserSetting body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CloudPcUserSetting body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(CloudPcUserSetting body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CloudPcUserSetting body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

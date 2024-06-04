@@ -23,7 +23,7 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>The priority which defines the sequence in which the urlToItemResolverBase instances are evaluated.</summary>
         public int? Priority { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="UrlToItemResolverBase"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ExternalConnectors.UrlToItemResolverBase"/> and sets the default values.
         /// </summary>
         public UrlToItemResolverBase()
         {
@@ -32,16 +32,16 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UrlToItemResolverBase"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.UrlToItemResolverBase"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UrlToItemResolverBase CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ExternalConnectors.UrlToItemResolverBase CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.externalConnectors.itemIdResolver" => new ItemIdResolver(),
-                _ => new UrlToItemResolverBase(),
+                "#microsoft.graph.externalConnectors.itemIdResolver" => new ApiSdk.Models.ExternalConnectors.ItemIdResolver(),
+                _ => new ApiSdk.Models.ExternalConnectors.UrlToItemResolverBase(),
             };
         }
         /// <summary>

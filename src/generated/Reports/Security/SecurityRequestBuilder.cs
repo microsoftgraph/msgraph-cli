@@ -61,7 +61,7 @@ namespace ApiSdk.Reports.Security
         {
             var command = new Command("get-attack-simulation-repeat-offenders");
             command.Description = "Provides operations to call the getAttackSimulationRepeatOffenders method.";
-            var builder = new GetAttackSimulationRepeatOffendersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders.GetAttackSimulationRepeatOffendersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -78,7 +78,7 @@ namespace ApiSdk.Reports.Security
         {
             var command = new Command("get-attack-simulation-simulation-user-coverage");
             command.Description = "Provides operations to call the getAttackSimulationSimulationUserCoverage method.";
-            var builder = new GetAttackSimulationSimulationUserCoverageRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage.GetAttackSimulationSimulationUserCoverageRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -95,7 +95,7 @@ namespace ApiSdk.Reports.Security
         {
             var command = new Command("get-attack-simulation-training-user-coverage");
             command.Description = "Provides operations to call the getAttackSimulationTrainingUserCoverage method.";
-            var builder = new GetAttackSimulationTrainingUserCoverageRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage.GetAttackSimulationTrainingUserCoverageRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -176,7 +176,7 @@ namespace ApiSdk.Reports.Security
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SecurityReportsRoot>(SecurityReportsRoot.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.SecurityReportsRoot>(ApiSdk.Models.SecurityReportsRoot.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -196,14 +196,14 @@ namespace ApiSdk.Reports.Security
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SecurityRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.Security.SecurityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SecurityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/security{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SecurityRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.Security.SecurityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SecurityRequestBuilder(string rawUrl) : base("{+baseurl}/reports/security{?%24expand,%24select}", rawUrl)
@@ -235,11 +235,11 @@ namespace ApiSdk.Reports.Security
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SecurityRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Reports.Security.SecurityRequestBuilder.SecurityRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SecurityRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Reports.Security.SecurityRequestBuilder.SecurityRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -255,11 +255,11 @@ namespace ApiSdk.Reports.Security
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(SecurityReportsRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SecurityReportsRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(SecurityReportsRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SecurityReportsRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

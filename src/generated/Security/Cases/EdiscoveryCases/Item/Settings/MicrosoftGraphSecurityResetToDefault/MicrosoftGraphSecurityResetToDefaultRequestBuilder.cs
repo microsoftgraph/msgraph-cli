@@ -50,14 +50,14 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.MicrosoftGraphSecu
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftGraphSecurityResetToDefaultRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.MicrosoftGraphSecurityResetToDefault.MicrosoftGraphSecurityResetToDefaultRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphSecurityResetToDefaultRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/settings/microsoft.graph.security.resetToDefault", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftGraphSecurityResetToDefaultRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.MicrosoftGraphSecurityResetToDefault.MicrosoftGraphSecurityResetToDefaultRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphSecurityResetToDefaultRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/settings/microsoft.graph.security.resetToDefault", rawUrl)

@@ -7,32 +7,32 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ListItem : BaseItem, IParsable
+    public class ListItem : ApiSdk.Models.BaseItem, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Analytics about the view activities that took place on this item.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemAnalytics? Analytics { get; set; }
+        public ApiSdk.Models.ItemAnalytics? Analytics { get; set; }
 #nullable restore
 #else
-        public ItemAnalytics Analytics { get; set; }
+        public ApiSdk.Models.ItemAnalytics Analytics { get; set; }
 #endif
         /// <summary>The content type of this list item</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ContentTypeInfo? ContentType { get; set; }
+        public ApiSdk.Models.ContentTypeInfo? ContentType { get; set; }
 #nullable restore
 #else
-        public ContentTypeInfo ContentType { get; set; }
+        public ApiSdk.Models.ContentTypeInfo ContentType { get; set; }
 #endif
         /// <summary>Version information for a document set version created by a user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DocumentSetVersion>? DocumentSetVersions { get; set; }
+        public List<ApiSdk.Models.DocumentSetVersion>? DocumentSetVersions { get; set; }
 #nullable restore
 #else
-        public List<DocumentSetVersion> DocumentSetVersions { get; set; }
+        public List<ApiSdk.Models.DocumentSetVersion> DocumentSetVersions { get; set; }
 #endif
         /// <summary>For document libraries, the driveItem relationship exposes the listItem as a driveItem</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,10 +45,10 @@ namespace ApiSdk.Models
         /// <summary>The values of the columns set on this list item.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FieldValueSet? Fields { get; set; }
+        public ApiSdk.Models.FieldValueSet? Fields { get; set; }
 #nullable restore
 #else
-        public FieldValueSet Fields { get; set; }
+        public ApiSdk.Models.FieldValueSet Fields { get; set; }
 #endif
         /// <summary>Returns identifiers useful for SharePoint REST compatibility. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -61,13 +61,13 @@ namespace ApiSdk.Models
         /// <summary>The list of previous versions of the list item.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ListItemVersion>? Versions { get; set; }
+        public List<ApiSdk.Models.ListItemVersion>? Versions { get; set; }
 #nullable restore
 #else
-        public List<ListItemVersion> Versions { get; set; }
+        public List<ApiSdk.Models.ListItemVersion> Versions { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ListItem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ListItem"/> and sets the default values.
         /// </summary>
         public ListItem() : base()
         {
@@ -76,12 +76,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ListItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ListItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ListItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ListItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ListItem();
+            return new ApiSdk.Models.ListItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -91,13 +91,13 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "analytics", n => { Analytics = n.GetObjectValue<ItemAnalytics>(ItemAnalytics.CreateFromDiscriminatorValue); } },
-                { "contentType", n => { ContentType = n.GetObjectValue<ContentTypeInfo>(ContentTypeInfo.CreateFromDiscriminatorValue); } },
-                { "documentSetVersions", n => { DocumentSetVersions = n.GetCollectionOfObjectValues<DocumentSetVersion>(DocumentSetVersion.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "analytics", n => { Analytics = n.GetObjectValue<ApiSdk.Models.ItemAnalytics>(ApiSdk.Models.ItemAnalytics.CreateFromDiscriminatorValue); } },
+                { "contentType", n => { ContentType = n.GetObjectValue<ApiSdk.Models.ContentTypeInfo>(ApiSdk.Models.ContentTypeInfo.CreateFromDiscriminatorValue); } },
+                { "documentSetVersions", n => { DocumentSetVersions = n.GetCollectionOfObjectValues<ApiSdk.Models.DocumentSetVersion>(ApiSdk.Models.DocumentSetVersion.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "driveItem", n => { DriveItem = n.GetObjectValue<ApiSdk.Models.DriveItem>(ApiSdk.Models.DriveItem.CreateFromDiscriminatorValue); } },
-                { "fields", n => { Fields = n.GetObjectValue<FieldValueSet>(FieldValueSet.CreateFromDiscriminatorValue); } },
+                { "fields", n => { Fields = n.GetObjectValue<ApiSdk.Models.FieldValueSet>(ApiSdk.Models.FieldValueSet.CreateFromDiscriminatorValue); } },
                 { "sharepointIds", n => { SharepointIds = n.GetObjectValue<ApiSdk.Models.SharepointIds>(ApiSdk.Models.SharepointIds.CreateFromDiscriminatorValue); } },
-                { "versions", n => { Versions = n.GetCollectionOfObjectValues<ListItemVersion>(ListItemVersion.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "versions", n => { Versions = n.GetCollectionOfObjectValues<ApiSdk.Models.ListItemVersion>(ApiSdk.Models.ListItemVersion.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -108,13 +108,13 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<ItemAnalytics>("analytics", Analytics);
-            writer.WriteObjectValue<ContentTypeInfo>("contentType", ContentType);
-            writer.WriteCollectionOfObjectValues<DocumentSetVersion>("documentSetVersions", DocumentSetVersions);
+            writer.WriteObjectValue<ApiSdk.Models.ItemAnalytics>("analytics", Analytics);
+            writer.WriteObjectValue<ApiSdk.Models.ContentTypeInfo>("contentType", ContentType);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DocumentSetVersion>("documentSetVersions", DocumentSetVersions);
             writer.WriteObjectValue<ApiSdk.Models.DriveItem>("driveItem", DriveItem);
-            writer.WriteObjectValue<FieldValueSet>("fields", Fields);
+            writer.WriteObjectValue<ApiSdk.Models.FieldValueSet>("fields", Fields);
             writer.WriteObjectValue<ApiSdk.Models.SharepointIds>("sharepointIds", SharepointIds);
-            writer.WriteCollectionOfObjectValues<ListItemVersion>("versions", Versions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ListItemVersion>("versions", Versions);
         }
     }
 }

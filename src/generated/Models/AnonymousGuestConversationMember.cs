@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AnonymousGuestConversationMember : ConversationMember, IParsable
+    public class AnonymousGuestConversationMember : ApiSdk.Models.ConversationMember, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Unique ID that represents the user. Note: This ID can change if the user leaves and rejoins the meeting, or joins from a different device.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string AnonymousGuestId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AnonymousGuestConversationMember"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AnonymousGuestConversationMember"/> and sets the default values.
         /// </summary>
         public AnonymousGuestConversationMember() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AnonymousGuestConversationMember"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AnonymousGuestConversationMember"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AnonymousGuestConversationMember CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AnonymousGuestConversationMember CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AnonymousGuestConversationMember();
+            return new ApiSdk.Models.AnonymousGuestConversationMember();
         }
         /// <summary>
         /// The deserialization information for the current model

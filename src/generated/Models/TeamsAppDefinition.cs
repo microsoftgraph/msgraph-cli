@@ -7,32 +7,32 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamsAppDefinition : Entity, IParsable
+    public class TeamsAppDefinition : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Authorization requirements specified in the Teams app manifest.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamsAppAuthorization? Authorization { get; set; }
+        public ApiSdk.Models.TeamsAppAuthorization? Authorization { get; set; }
 #nullable restore
 #else
-        public TeamsAppAuthorization Authorization { get; set; }
+        public ApiSdk.Models.TeamsAppAuthorization Authorization { get; set; }
 #endif
         /// <summary>The details of the bot specified in the Teams app manifest.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamworkBot? Bot { get; set; }
+        public ApiSdk.Models.TeamworkBot? Bot { get; set; }
 #nullable restore
 #else
-        public TeamworkBot Bot { get; set; }
+        public ApiSdk.Models.TeamworkBot Bot { get; set; }
 #endif
         /// <summary>The createdBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? CreatedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet CreatedBy { get; set; }
 #endif
         /// <summary>Verbose description of the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -53,7 +53,7 @@ namespace ApiSdk.Models
         /// <summary>The lastModifiedDateTime property</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>The published status of a specific version of a Teams app. Possible values are:submitted—The specific version of the Teams app has been submitted and is under review. published—The request to publish the specific version of the Teams app has been approved by the admin and the app is published.  rejected—The admin rejected the request to publish the specific version of the Teams app.</summary>
-        public TeamsAppPublishingState? PublishingState { get; set; }
+        public ApiSdk.Models.TeamsAppPublishingState? PublishingState { get; set; }
         /// <summary>Short description of the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -81,12 +81,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamsAppDefinition"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamsAppDefinition"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamsAppDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamsAppDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamsAppDefinition();
+            return new ApiSdk.Models.TeamsAppDefinition();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -96,13 +96,13 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "authorization", n => { Authorization = n.GetObjectValue<TeamsAppAuthorization>(TeamsAppAuthorization.CreateFromDiscriminatorValue); } },
-                { "bot", n => { Bot = n.GetObjectValue<TeamworkBot>(TeamworkBot.CreateFromDiscriminatorValue); } },
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "authorization", n => { Authorization = n.GetObjectValue<ApiSdk.Models.TeamsAppAuthorization>(ApiSdk.Models.TeamsAppAuthorization.CreateFromDiscriminatorValue); } },
+                { "bot", n => { Bot = n.GetObjectValue<ApiSdk.Models.TeamworkBot>(ApiSdk.Models.TeamworkBot.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "publishingState", n => { PublishingState = n.GetEnumValue<TeamsAppPublishingState>(); } },
+                { "publishingState", n => { PublishingState = n.GetEnumValue<ApiSdk.Models.TeamsAppPublishingState>(); } },
                 { "shortDescription", n => { ShortDescription = n.GetStringValue(); } },
                 { "teamsAppId", n => { TeamsAppId = n.GetStringValue(); } },
                 { "version", n => { Version = n.GetStringValue(); } },
@@ -116,13 +116,13 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<TeamsAppAuthorization>("authorization", Authorization);
-            writer.WriteObjectValue<TeamworkBot>("bot", Bot);
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
+            writer.WriteObjectValue<ApiSdk.Models.TeamsAppAuthorization>("authorization", Authorization);
+            writer.WriteObjectValue<ApiSdk.Models.TeamworkBot>("bot", Bot);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("createdBy", CreatedBy);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteEnumValue<TeamsAppPublishingState>("publishingState", PublishingState);
+            writer.WriteEnumValue<ApiSdk.Models.TeamsAppPublishingState>("publishingState", PublishingState);
             writer.WriteStringValue("shortDescription", ShortDescription);
             writer.WriteStringValue("teamsAppId", TeamsAppId);
             writer.WriteStringValue("version", Version);

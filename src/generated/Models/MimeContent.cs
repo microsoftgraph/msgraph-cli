@@ -38,7 +38,7 @@ namespace ApiSdk.Models
         public byte[] Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MimeContent"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MimeContent"/> and sets the default values.
         /// </summary>
         public MimeContent()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MimeContent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MimeContent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MimeContent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MimeContent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MimeContent();
+            return new ApiSdk.Models.MimeContent();
         }
         /// <summary>
         /// The deserialization information for the current model

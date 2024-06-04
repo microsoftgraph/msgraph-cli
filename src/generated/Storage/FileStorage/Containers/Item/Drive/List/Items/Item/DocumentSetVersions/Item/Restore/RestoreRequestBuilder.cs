@@ -62,14 +62,14 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.List.Items.Item.Docum
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RestoreRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.List.Items.Item.DocumentSetVersions.Item.Restore.RestoreRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RestoreRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/storage/fileStorage/containers/{fileStorageContainer%2Did}/drive/list/items/{listItem%2Did}/documentSetVersions/{documentSetVersion%2Did}/restore", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RestoreRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.List.Items.Item.DocumentSetVersions.Item.Restore.RestoreRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RestoreRequestBuilder(string rawUrl) : base("{+baseurl}/storage/fileStorage/containers/{fileStorageContainer%2Did}/drive/list/items/{listItem%2Did}/documentSetVersions/{documentSetVersion%2Did}/restore", rawUrl)

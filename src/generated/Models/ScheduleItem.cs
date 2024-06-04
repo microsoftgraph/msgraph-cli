@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The date, time, and time zone that the corresponding event ends.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? End { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? End { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone End { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone End { get; set; }
 #endif
         /// <summary>The sensitivity of the corresponding event. True if the event is marked private, false otherwise. Optional.</summary>
         public bool? IsPrivate { get; set; }
@@ -41,13 +41,13 @@ namespace ApiSdk.Models
         /// <summary>The date, time, and time zone that the corresponding event starts.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? Start { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? Start { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone Start { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone Start { get; set; }
 #endif
         /// <summary>The availability status of the user or resource during the corresponding event. The possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
-        public FreeBusyStatus? Status { get; set; }
+        public ApiSdk.Models.FreeBusyStatus? Status { get; set; }
         /// <summary>The corresponding event&apos;s subject line. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
         public string Subject { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ScheduleItem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ScheduleItem"/> and sets the default values.
         /// </summary>
         public ScheduleItem()
         {
@@ -66,12 +66,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ScheduleItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ScheduleItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ScheduleItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ScheduleItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ScheduleItem();
+            return new ApiSdk.Models.ScheduleItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -81,12 +81,12 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "end", n => { End = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "end", n => { End = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 { "isPrivate", n => { IsPrivate = n.GetBoolValue(); } },
                 { "location", n => { Location = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "start", n => { Start = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetEnumValue<FreeBusyStatus>(); } },
+                { "start", n => { Start = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.FreeBusyStatus>(); } },
                 { "subject", n => { Subject = n.GetStringValue(); } },
             };
         }
@@ -97,12 +97,12 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<DateTimeTimeZone>("end", End);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("end", End);
             writer.WriteBoolValue("isPrivate", IsPrivate);
             writer.WriteStringValue("location", Location);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<DateTimeTimeZone>("start", Start);
-            writer.WriteEnumValue<FreeBusyStatus>("status", Status);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("start", Start);
+            writer.WriteEnumValue<ApiSdk.Models.FreeBusyStatus>("status", Status);
             writer.WriteStringValue("subject", Subject);
             writer.WriteAdditionalData(AdditionalData);
         }

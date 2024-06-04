@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item
         {
             var command = new Command("acceptance-statuses");
             command.Description = "Provides operations to manage the acceptanceStatuses property of the microsoft.graph.termsAndConditions entity.";
-            var builder = new AcceptanceStatusesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.AcceptanceStatusesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -58,7 +58,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item
         {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.termsAndConditions entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.AssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -219,14 +219,14 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TermsAndConditionsItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.TermsAndConditions.Item.TermsAndConditionsItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TermsAndConditionsItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/termsAndConditions/{termsAndConditions%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TermsAndConditionsItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.TermsAndConditions.Item.TermsAndConditionsItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TermsAndConditionsItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/termsAndConditions/{termsAndConditions%2Did}{?%24expand,%24select}", rawUrl)
@@ -258,11 +258,11 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TermsAndConditionsItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.TermsAndConditions.Item.TermsAndConditionsItemRequestBuilder.TermsAndConditionsItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TermsAndConditionsItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.TermsAndConditions.Item.TermsAndConditionsItemRequestBuilder.TermsAndConditionsItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

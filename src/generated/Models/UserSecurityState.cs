@@ -93,7 +93,7 @@ namespace ApiSdk.Models
         public string RiskScore { get; set; }
 #endif
         /// <summary>User account type (group membership), per Windows definition. Possible values are: unknown, standard, power, administrator.</summary>
-        public UserAccountSecurityType? UserAccountType { get; set; }
+        public ApiSdk.Models.UserAccountSecurityType? UserAccountType { get; set; }
         /// <summary>User sign-in name - internet format: (user account name)@(user account DNS domain name).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -103,7 +103,7 @@ namespace ApiSdk.Models
         public string UserPrincipalName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UserSecurityState"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UserSecurityState"/> and sets the default values.
         /// </summary>
         public UserSecurityState()
         {
@@ -112,12 +112,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserSecurityState"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserSecurityState"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UserSecurityState CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UserSecurityState CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserSecurityState();
+            return new ApiSdk.Models.UserSecurityState();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -130,17 +130,17 @@ namespace ApiSdk.Models
                 { "aadUserId", n => { AadUserId = n.GetStringValue(); } },
                 { "accountName", n => { AccountName = n.GetStringValue(); } },
                 { "domainName", n => { DomainName = n.GetStringValue(); } },
-                { "emailRole", n => { EmailRole = n.GetEnumValue<EmailRole>(); } },
+                { "emailRole", n => { EmailRole = n.GetEnumValue<ApiSdk.Models.EmailRole>(); } },
                 { "isVpn", n => { IsVpn = n.GetBoolValue(); } },
                 { "logonDateTime", n => { LogonDateTime = n.GetDateTimeOffsetValue(); } },
                 { "logonId", n => { LogonId = n.GetStringValue(); } },
                 { "logonIp", n => { LogonIp = n.GetStringValue(); } },
                 { "logonLocation", n => { LogonLocation = n.GetStringValue(); } },
-                { "logonType", n => { LogonType = n.GetEnumValue<LogonType>(); } },
+                { "logonType", n => { LogonType = n.GetEnumValue<ApiSdk.Models.LogonType>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
                 { "riskScore", n => { RiskScore = n.GetStringValue(); } },
-                { "userAccountType", n => { UserAccountType = n.GetEnumValue<UserAccountSecurityType>(); } },
+                { "userAccountType", n => { UserAccountType = n.GetEnumValue<ApiSdk.Models.UserAccountSecurityType>(); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
         }
@@ -154,17 +154,17 @@ namespace ApiSdk.Models
             writer.WriteStringValue("aadUserId", AadUserId);
             writer.WriteStringValue("accountName", AccountName);
             writer.WriteStringValue("domainName", DomainName);
-            writer.WriteEnumValue<EmailRole>("emailRole", EmailRole);
+            writer.WriteEnumValue<ApiSdk.Models.EmailRole>("emailRole", EmailRole);
             writer.WriteBoolValue("isVpn", IsVpn);
             writer.WriteDateTimeOffsetValue("logonDateTime", LogonDateTime);
             writer.WriteStringValue("logonId", LogonId);
             writer.WriteStringValue("logonIp", LogonIp);
             writer.WriteStringValue("logonLocation", LogonLocation);
-            writer.WriteEnumValue<LogonType>("logonType", LogonType);
+            writer.WriteEnumValue<ApiSdk.Models.LogonType>("logonType", LogonType);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("onPremisesSecurityIdentifier", OnPremisesSecurityIdentifier);
             writer.WriteStringValue("riskScore", RiskScore);
-            writer.WriteEnumValue<UserAccountSecurityType>("userAccountType", UserAccountType);
+            writer.WriteEnumValue<ApiSdk.Models.UserAccountSecurityType>("userAccountType", UserAccountType);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);
             writer.WriteAdditionalData(AdditionalData);
         }

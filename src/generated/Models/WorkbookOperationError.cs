@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>The innerError property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookOperationError? InnerError { get; set; }
+        public ApiSdk.Models.WorkbookOperationError? InnerError { get; set; }
 #nullable restore
 #else
-        public WorkbookOperationError InnerError { get; set; }
+        public ApiSdk.Models.WorkbookOperationError InnerError { get; set; }
 #endif
         /// <summary>The error message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WorkbookOperationError"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WorkbookOperationError"/> and sets the default values.
         /// </summary>
         public WorkbookOperationError()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookOperationError"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookOperationError"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WorkbookOperationError CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WorkbookOperationError CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookOperationError();
+            return new ApiSdk.Models.WorkbookOperationError();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,7 +70,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "code", n => { Code = n.GetStringValue(); } },
-                { "innerError", n => { InnerError = n.GetObjectValue<WorkbookOperationError>(WorkbookOperationError.CreateFromDiscriminatorValue); } },
+                { "innerError", n => { InnerError = n.GetObjectValue<ApiSdk.Models.WorkbookOperationError>(ApiSdk.Models.WorkbookOperationError.CreateFromDiscriminatorValue); } },
                 { "message", n => { Message = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -83,7 +83,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
-            writer.WriteObjectValue<WorkbookOperationError>("innerError", InnerError);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookOperationError>("innerError", InnerError);
             writer.WriteStringValue("message", Message);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

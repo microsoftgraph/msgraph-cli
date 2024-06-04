@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Security
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AlertComment"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.AlertComment"/> and sets the default values.
         /// </summary>
         public AlertComment()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AlertComment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.AlertComment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AlertComment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.AlertComment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AlertComment();
+            return new ApiSdk.Models.Security.AlertComment();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -60,14 +60,14 @@ namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetMobileDeviceManagementAuthorityRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority.SetMobileDeviceManagementAuthorityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SetMobileDeviceManagementAuthorityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/setMobileDeviceManagementAuthority", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetMobileDeviceManagementAuthorityRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority.SetMobileDeviceManagementAuthorityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SetMobileDeviceManagementAuthorityRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/setMobileDeviceManagementAuthority", rawUrl)

@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YearFrac
         /// <summary>The basis property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Basis { get; set; }
+        public ApiSdk.Models.Json? Basis { get; set; }
 #nullable restore
 #else
-        public Json Basis { get; set; }
+        public ApiSdk.Models.Json Basis { get; set; }
 #endif
         /// <summary>The endDate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? EndDate { get; set; }
+        public ApiSdk.Models.Json? EndDate { get; set; }
 #nullable restore
 #else
-        public Json EndDate { get; set; }
+        public ApiSdk.Models.Json EndDate { get; set; }
 #endif
         /// <summary>The startDate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? StartDate { get; set; }
+        public ApiSdk.Models.Json? StartDate { get; set; }
 #nullable restore
 #else
-        public Json StartDate { get; set; }
+        public ApiSdk.Models.Json StartDate { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="YearFracPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YearFrac.YearFracPostRequestBody"/> and sets the default values.
         /// </summary>
         public YearFracPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YearFrac
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="YearFracPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YearFrac.YearFracPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static YearFracPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YearFrac.YearFracPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new YearFracPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YearFrac.YearFracPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YearFrac
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "basis", n => { Basis = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "endDate", n => { EndDate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "startDate", n => { StartDate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "basis", n => { Basis = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "endDate", n => { EndDate = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "startDate", n => { StartDate = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YearFrac
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("basis", Basis);
-            writer.WriteObjectValue<Json>("endDate", EndDate);
-            writer.WriteObjectValue<Json>("startDate", StartDate);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("basis", Basis);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("endDate", EndDate);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("startDate", StartDate);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

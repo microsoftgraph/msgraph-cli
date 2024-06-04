@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamsAppRemovedEventMessageDetail : EventMessageDetail, IParsable
+    public class TeamsAppRemovedEventMessageDetail : ApiSdk.Models.EventMessageDetail, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Initiator of the event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet? Initiator { get; set; }
 #nullable restore
 #else
-        public IdentitySet Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet Initiator { get; set; }
 #endif
         /// <summary>Display name of the teamsApp.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -35,7 +35,7 @@ namespace ApiSdk.Models
         public string TeamsAppId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TeamsAppRemovedEventMessageDetail"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TeamsAppRemovedEventMessageDetail"/> and sets the default values.
         /// </summary>
         public TeamsAppRemovedEventMessageDetail() : base()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamsAppRemovedEventMessageDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamsAppRemovedEventMessageDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamsAppRemovedEventMessageDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamsAppRemovedEventMessageDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamsAppRemovedEventMessageDetail();
+            return new ApiSdk.Models.TeamsAppRemovedEventMessageDetail();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,7 +59,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "initiator", n => { Initiator = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "teamsAppDisplayName", n => { TeamsAppDisplayName = n.GetStringValue(); } },
                 { "teamsAppId", n => { TeamsAppId = n.GetStringValue(); } },
             };
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<IdentitySet>("initiator", Initiator);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("initiator", Initiator);
             writer.WriteStringValue("teamsAppDisplayName", TeamsAppDisplayName);
             writer.WriteStringValue("teamsAppId", TeamsAppId);
         }

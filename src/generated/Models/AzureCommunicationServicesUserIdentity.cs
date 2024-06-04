@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AzureCommunicationServicesUserIdentity : Identity, IParsable
+    public class AzureCommunicationServicesUserIdentity : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The Azure Communication Services resource ID associated with the user.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string AzureCommunicationServicesResourceId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AzureCommunicationServicesUserIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AzureCommunicationServicesUserIdentity"/> and sets the default values.
         /// </summary>
         public AzureCommunicationServicesUserIdentity() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AzureCommunicationServicesUserIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AzureCommunicationServicesUserIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AzureCommunicationServicesUserIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AzureCommunicationServicesUserIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AzureCommunicationServicesUserIdentity();
+            return new ApiSdk.Models.AzureCommunicationServicesUserIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model

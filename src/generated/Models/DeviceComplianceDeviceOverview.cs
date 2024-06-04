@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DeviceComplianceDeviceOverview : Entity, IParsable
+    public class DeviceComplianceDeviceOverview : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Version of the policy for that overview</summary>
@@ -27,12 +27,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceComplianceDeviceOverview"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceComplianceDeviceOverview"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceComplianceDeviceOverview CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceComplianceDeviceOverview CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceComplianceDeviceOverview();
+            return new ApiSdk.Models.DeviceComplianceDeviceOverview();
         }
         /// <summary>
         /// The deserialization information for the current model

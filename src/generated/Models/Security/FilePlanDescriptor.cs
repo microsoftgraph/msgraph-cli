@@ -13,10 +13,10 @@ namespace ApiSdk.Models.Security
         /// <summary>Represents the file plan descriptor of type authority applied to a particular retention label.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FilePlanAuthority? Authority { get; set; }
+        public ApiSdk.Models.Security.FilePlanAuthority? Authority { get; set; }
 #nullable restore
 #else
-        public FilePlanAuthority Authority { get; set; }
+        public ApiSdk.Models.Security.FilePlanAuthority Authority { get; set; }
 #endif
         /// <summary>Specifies the underlying authority that describes the type of content to be retained and its retention schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,10 +29,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The category property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FilePlanAppliedCategory? Category { get; set; }
+        public ApiSdk.Models.Security.FilePlanAppliedCategory? Category { get; set; }
 #nullable restore
 #else
-        public FilePlanAppliedCategory Category { get; set; }
+        public ApiSdk.Models.Security.FilePlanAppliedCategory Category { get; set; }
 #endif
         /// <summary>Specifies a group of similar types of content in a particular department.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,10 +45,10 @@ namespace ApiSdk.Models.Security
         /// <summary>Represents the file plan descriptor of type citation applied to a particular retention label.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FilePlanCitation? Citation { get; set; }
+        public ApiSdk.Models.Security.FilePlanCitation? Citation { get; set; }
 #nullable restore
 #else
-        public FilePlanCitation Citation { get; set; }
+        public ApiSdk.Models.Security.FilePlanCitation Citation { get; set; }
 #endif
         /// <summary>The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -61,10 +61,10 @@ namespace ApiSdk.Models.Security
         /// <summary>Represents the file plan descriptor of type department applied to a particular retention label.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FilePlanDepartment? Department { get; set; }
+        public ApiSdk.Models.Security.FilePlanDepartment? Department { get; set; }
 #nullable restore
 #else
-        public FilePlanDepartment Department { get; set; }
+        public ApiSdk.Models.Security.FilePlanDepartment Department { get; set; }
 #endif
         /// <summary>Specifies the  department or business unit of an organization to which a label belongs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -93,12 +93,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FilePlanDescriptor"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.FilePlanDescriptor"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FilePlanDescriptor CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.FilePlanDescriptor CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FilePlanDescriptor();
+            return new ApiSdk.Models.Security.FilePlanDescriptor();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -108,13 +108,13 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "authority", n => { Authority = n.GetObjectValue<FilePlanAuthority>(FilePlanAuthority.CreateFromDiscriminatorValue); } },
+                { "authority", n => { Authority = n.GetObjectValue<ApiSdk.Models.Security.FilePlanAuthority>(ApiSdk.Models.Security.FilePlanAuthority.CreateFromDiscriminatorValue); } },
                 { "authorityTemplate", n => { AuthorityTemplate = n.GetObjectValue<ApiSdk.Models.Security.AuthorityTemplate>(ApiSdk.Models.Security.AuthorityTemplate.CreateFromDiscriminatorValue); } },
-                { "category", n => { Category = n.GetObjectValue<FilePlanAppliedCategory>(FilePlanAppliedCategory.CreateFromDiscriminatorValue); } },
+                { "category", n => { Category = n.GetObjectValue<ApiSdk.Models.Security.FilePlanAppliedCategory>(ApiSdk.Models.Security.FilePlanAppliedCategory.CreateFromDiscriminatorValue); } },
                 { "categoryTemplate", n => { CategoryTemplate = n.GetObjectValue<ApiSdk.Models.Security.CategoryTemplate>(ApiSdk.Models.Security.CategoryTemplate.CreateFromDiscriminatorValue); } },
-                { "citation", n => { Citation = n.GetObjectValue<FilePlanCitation>(FilePlanCitation.CreateFromDiscriminatorValue); } },
+                { "citation", n => { Citation = n.GetObjectValue<ApiSdk.Models.Security.FilePlanCitation>(ApiSdk.Models.Security.FilePlanCitation.CreateFromDiscriminatorValue); } },
                 { "citationTemplate", n => { CitationTemplate = n.GetObjectValue<ApiSdk.Models.Security.CitationTemplate>(ApiSdk.Models.Security.CitationTemplate.CreateFromDiscriminatorValue); } },
-                { "department", n => { Department = n.GetObjectValue<FilePlanDepartment>(FilePlanDepartment.CreateFromDiscriminatorValue); } },
+                { "department", n => { Department = n.GetObjectValue<ApiSdk.Models.Security.FilePlanDepartment>(ApiSdk.Models.Security.FilePlanDepartment.CreateFromDiscriminatorValue); } },
                 { "departmentTemplate", n => { DepartmentTemplate = n.GetObjectValue<ApiSdk.Models.Security.DepartmentTemplate>(ApiSdk.Models.Security.DepartmentTemplate.CreateFromDiscriminatorValue); } },
                 { "filePlanReference", n => { FilePlanReference = n.GetObjectValue<ApiSdk.Models.Security.FilePlanReference>(ApiSdk.Models.Security.FilePlanReference.CreateFromDiscriminatorValue); } },
                 { "filePlanReferenceTemplate", n => { FilePlanReferenceTemplate = n.GetObjectValue<ApiSdk.Models.Security.FilePlanReferenceTemplate>(ApiSdk.Models.Security.FilePlanReferenceTemplate.CreateFromDiscriminatorValue); } },
@@ -128,13 +128,13 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<FilePlanAuthority>("authority", Authority);
+            writer.WriteObjectValue<ApiSdk.Models.Security.FilePlanAuthority>("authority", Authority);
             writer.WriteObjectValue<ApiSdk.Models.Security.AuthorityTemplate>("authorityTemplate", AuthorityTemplate);
-            writer.WriteObjectValue<FilePlanAppliedCategory>("category", Category);
+            writer.WriteObjectValue<ApiSdk.Models.Security.FilePlanAppliedCategory>("category", Category);
             writer.WriteObjectValue<ApiSdk.Models.Security.CategoryTemplate>("categoryTemplate", CategoryTemplate);
-            writer.WriteObjectValue<FilePlanCitation>("citation", Citation);
+            writer.WriteObjectValue<ApiSdk.Models.Security.FilePlanCitation>("citation", Citation);
             writer.WriteObjectValue<ApiSdk.Models.Security.CitationTemplate>("citationTemplate", CitationTemplate);
-            writer.WriteObjectValue<FilePlanDepartment>("department", Department);
+            writer.WriteObjectValue<ApiSdk.Models.Security.FilePlanDepartment>("department", Department);
             writer.WriteObjectValue<ApiSdk.Models.Security.DepartmentTemplate>("departmentTemplate", DepartmentTemplate);
             writer.WriteObjectValue<ApiSdk.Models.Security.FilePlanReference>("filePlanReference", FilePlanReference);
             writer.WriteObjectValue<ApiSdk.Models.Security.FilePlanReferenceTemplate>("filePlanReferenceTemplate", FilePlanReferenceTemplate);

@@ -41,7 +41,7 @@ namespace ApiSdk.Models
         /// <summary>The length of the attachment in bytes. Required.</summary>
         public long? Size { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AttachmentInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AttachmentInfo"/> and sets the default values.
         /// </summary>
         public AttachmentInfo()
         {
@@ -50,12 +50,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AttachmentInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AttachmentInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AttachmentInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AttachmentInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AttachmentInfo();
+            return new ApiSdk.Models.AttachmentInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attachmentType", n => { AttachmentType = n.GetEnumValue<AttachmentType>(); } },
+                { "attachmentType", n => { AttachmentType = n.GetEnumValue<ApiSdk.Models.AttachmentType>(); } },
                 { "contentType", n => { ContentType = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
@@ -79,7 +79,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<AttachmentType>("attachmentType", AttachmentType);
+            writer.WriteEnumValue<ApiSdk.Models.AttachmentType>("attachmentType", AttachmentType);
             writer.WriteStringValue("contentType", ContentType);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);

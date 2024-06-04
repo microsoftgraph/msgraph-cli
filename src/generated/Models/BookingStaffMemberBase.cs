@@ -9,21 +9,21 @@ namespace ApiSdk.Models
     /// <summary>
     /// Booking entities that provide a display name.
     /// </summary>
-    public class BookingStaffMemberBase : Entity, IParsable
+    public class BookingStaffMemberBase : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BookingStaffMemberBase"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BookingStaffMemberBase"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new BookingStaffMemberBase CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.BookingStaffMemberBase CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.bookingStaffMember" => new BookingStaffMember(),
-                _ => new BookingStaffMemberBase(),
+                "#microsoft.graph.bookingStaffMember" => new ApiSdk.Models.BookingStaffMember(),
+                _ => new ApiSdk.Models.BookingStaffMemberBase(),
             };
         }
         /// <summary>

@@ -7,28 +7,28 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DeltaParticipants : Entity, IParsable
+    public class DeltaParticipants : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The collection of participants that were updated since the last roster update.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Participant>? Participants { get; set; }
+        public List<ApiSdk.Models.Participant>? Participants { get; set; }
 #nullable restore
 #else
-        public List<Participant> Participants { get; set; }
+        public List<ApiSdk.Models.Participant> Participants { get; set; }
 #endif
         /// <summary>The sequence number for the roster update that is used to identify the notification order.</summary>
         public long? SequenceNumber { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeltaParticipants"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeltaParticipants"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeltaParticipants CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeltaParticipants CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeltaParticipants();
+            return new ApiSdk.Models.DeltaParticipants();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -38,7 +38,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "participants", n => { Participants = n.GetCollectionOfObjectValues<Participant>(Participant.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "participants", n => { Participants = n.GetCollectionOfObjectValues<ApiSdk.Models.Participant>(ApiSdk.Models.Participant.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "sequenceNumber", n => { SequenceNumber = n.GetLongValue(); } },
             };
         }
@@ -50,7 +50,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Participant>("participants", Participants);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Participant>("participants", Participants);
             writer.WriteLongValue("sequenceNumber", SequenceNumber);
         }
     }

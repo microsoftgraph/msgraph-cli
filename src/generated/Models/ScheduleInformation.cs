@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>Error information from attempting to get the availability of the user, distribution list, or resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FreeBusyError? Error { get; set; }
+        public ApiSdk.Models.FreeBusyError? Error { get; set; }
 #nullable restore
 #else
-        public FreeBusyError Error { get; set; }
+        public ApiSdk.Models.FreeBusyError Error { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,10 +47,10 @@ namespace ApiSdk.Models
         /// <summary>Contains the items that describe the availability of the user or resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ScheduleItem>? ScheduleItems { get; set; }
+        public List<ApiSdk.Models.ScheduleItem>? ScheduleItems { get; set; }
 #nullable restore
 #else
-        public List<ScheduleItem> ScheduleItems { get; set; }
+        public List<ApiSdk.Models.ScheduleItem> ScheduleItems { get; set; }
 #endif
         /// <summary>The days of the week and hours in a specific time zone that the user works. These are set as part of the user&apos;s mailboxSettings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.WorkingHours WorkingHours { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ScheduleInformation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ScheduleInformation"/> and sets the default values.
         /// </summary>
         public ScheduleInformation()
         {
@@ -70,12 +70,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ScheduleInformation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ScheduleInformation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ScheduleInformation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ScheduleInformation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ScheduleInformation();
+            return new ApiSdk.Models.ScheduleInformation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -86,10 +86,10 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "availabilityView", n => { AvailabilityView = n.GetStringValue(); } },
-                { "error", n => { Error = n.GetObjectValue<FreeBusyError>(FreeBusyError.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<ApiSdk.Models.FreeBusyError>(ApiSdk.Models.FreeBusyError.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "scheduleId", n => { ScheduleId = n.GetStringValue(); } },
-                { "scheduleItems", n => { ScheduleItems = n.GetCollectionOfObjectValues<ScheduleItem>(ScheduleItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "scheduleItems", n => { ScheduleItems = n.GetCollectionOfObjectValues<ApiSdk.Models.ScheduleItem>(ApiSdk.Models.ScheduleItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "workingHours", n => { WorkingHours = n.GetObjectValue<ApiSdk.Models.WorkingHours>(ApiSdk.Models.WorkingHours.CreateFromDiscriminatorValue); } },
             };
         }
@@ -101,10 +101,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("availabilityView", AvailabilityView);
-            writer.WriteObjectValue<FreeBusyError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.FreeBusyError>("error", Error);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("scheduleId", ScheduleId);
-            writer.WriteCollectionOfObjectValues<ScheduleItem>("scheduleItems", ScheduleItems);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ScheduleItem>("scheduleItems", ScheduleItems);
             writer.WriteObjectValue<ApiSdk.Models.WorkingHours>("workingHours", WorkingHours);
             writer.WriteAdditionalData(AdditionalData);
         }

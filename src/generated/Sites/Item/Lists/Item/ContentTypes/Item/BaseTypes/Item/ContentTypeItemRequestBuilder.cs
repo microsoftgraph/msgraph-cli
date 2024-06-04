@@ -92,14 +92,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ContentTypeItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes.Item.ContentTypeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContentTypeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/baseTypes/{contentType%2Did1}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ContentTypeItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes.Item.ContentTypeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentTypeItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/baseTypes/{contentType%2Did1}{?%24expand,%24select}", rawUrl)
@@ -112,11 +112,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentTypeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes.Item.ContentTypeItemRequestBuilder.ContentTypeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentTypeItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes.Item.ContentTypeItemRequestBuilder.ContentTypeItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

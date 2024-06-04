@@ -32,7 +32,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp
         {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.Assignments.AssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -59,7 +59,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp
         {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.";
-            var builder = new CategoriesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.Categories.CategoriesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -85,7 +85,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp
         {
             var command = new Command("content-versions");
             command.Description = "Provides operations to manage the contentVersions property of the microsoft.graph.managedMobileLobApp entity.";
-            var builder = new ContentVersionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.ContentVersions.ContentVersionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -157,14 +157,14 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphManagedAndroidLobAppRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.GraphManagedAndroidLobAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphManagedAndroidLobAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedAndroidLobApp{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphManagedAndroidLobAppRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.GraphManagedAndroidLobAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphManagedAndroidLobAppRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedAndroidLobApp{?%24expand,%24select}", rawUrl)
@@ -177,11 +177,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphManagedAndroidLobAppRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.GraphManagedAndroidLobAppRequestBuilder.GraphManagedAndroidLobAppRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphManagedAndroidLobAppRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.GraphManagedAndroidLobAppRequestBuilder.GraphManagedAndroidLobAppRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

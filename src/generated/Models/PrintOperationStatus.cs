@@ -29,9 +29,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The state property</summary>
-        public PrintOperationProcessingState? State { get; set; }
+        public ApiSdk.Models.PrintOperationProcessingState? State { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="PrintOperationStatus"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PrintOperationStatus"/> and sets the default values.
         /// </summary>
         public PrintOperationStatus()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrintOperationStatus"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrintOperationStatus"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PrintOperationStatus CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PrintOperationStatus CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrintOperationStatus();
+            return new ApiSdk.Models.PrintOperationStatus();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "state", n => { State = n.GetEnumValue<PrintOperationProcessingState>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.PrintOperationProcessingState>(); } },
             };
         }
         /// <summary>
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<PrintOperationProcessingState>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.PrintOperationProcessingState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

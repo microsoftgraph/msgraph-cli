@@ -15,7 +15,7 @@ namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomain
         /// <summary>The value property</summary>
         public bool? Value { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameGetResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomainName.VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameGetResponse"/> and sets the default values.
         /// </summary>
         public VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameGetResponse()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomain
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomainName.VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomainName.VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameGetResponse();
+            return new ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomainName.VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

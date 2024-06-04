@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ReferenceCreate"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ReferenceCreate"/> and sets the default values.
         /// </summary>
         public ReferenceCreate()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ReferenceCreate"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ReferenceCreate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ReferenceCreate CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ReferenceCreate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ReferenceCreate();
+            return new ApiSdk.Models.ReferenceCreate();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ServiceUpdateMessage : ServiceAnnouncementBase, IParsable
+    public class ServiceUpdateMessage : ApiSdk.Models.ServiceAnnouncementBase, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The expected deadline of the action for the message.</summary>
@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>A collection of serviceAnnouncementAttachments.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ServiceAnnouncementAttachment>? Attachments { get; set; }
+        public List<ApiSdk.Models.ServiceAnnouncementAttachment>? Attachments { get; set; }
 #nullable restore
 #else
-        public List<ServiceAnnouncementAttachment> Attachments { get; set; }
+        public List<ApiSdk.Models.ServiceAnnouncementAttachment> Attachments { get; set; }
 #endif
         /// <summary>The zip file that contains all attachments for a message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,13 +31,13 @@ namespace ApiSdk.Models
         /// <summary>The body property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemBody? Body { get; set; }
+        public ApiSdk.Models.ItemBody? Body { get; set; }
 #nullable restore
 #else
-        public ItemBody Body { get; set; }
+        public ApiSdk.Models.ItemBody Body { get; set; }
 #endif
         /// <summary>The category property</summary>
-        public ServiceUpdateCategory? Category { get; set; }
+        public ApiSdk.Models.ServiceUpdateCategory? Category { get; set; }
         /// <summary>Indicates whether the message has any attachment.</summary>
         public bool? HasAttachments { get; set; }
         /// <summary>Indicates whether the message describes a major update for the service.</summary>
@@ -51,7 +51,7 @@ namespace ApiSdk.Models
         public List<string> Services { get; set; }
 #endif
         /// <summary>The severity property</summary>
-        public ServiceUpdateSeverity? Severity { get; set; }
+        public ApiSdk.Models.ServiceUpdateSeverity? Severity { get; set; }
         /// <summary>A collection of tags for the service message. Tags are provided by the service team/support team who post the message to tell whether this message contains privacy data, or whether this message is for a service new feature update, and so on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -63,13 +63,13 @@ namespace ApiSdk.Models
         /// <summary>Represents user viewpoints data of the service message. This data includes message status such as whether the user has archived, read, or marked the message as favorite. This property is null when accessed with application permissions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ServiceUpdateMessageViewpoint? ViewPoint { get; set; }
+        public ApiSdk.Models.ServiceUpdateMessageViewpoint? ViewPoint { get; set; }
 #nullable restore
 #else
-        public ServiceUpdateMessageViewpoint ViewPoint { get; set; }
+        public ApiSdk.Models.ServiceUpdateMessageViewpoint ViewPoint { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ServiceUpdateMessage"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ServiceUpdateMessage"/> and sets the default values.
         /// </summary>
         public ServiceUpdateMessage() : base()
         {
@@ -78,12 +78,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ServiceUpdateMessage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ServiceUpdateMessage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ServiceUpdateMessage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ServiceUpdateMessage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ServiceUpdateMessage();
+            return new ApiSdk.Models.ServiceUpdateMessage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -94,16 +94,16 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "actionRequiredByDateTime", n => { ActionRequiredByDateTime = n.GetDateTimeOffsetValue(); } },
-                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<ServiceAnnouncementAttachment>(ServiceAnnouncementAttachment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<ApiSdk.Models.ServiceAnnouncementAttachment>(ApiSdk.Models.ServiceAnnouncementAttachment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "attachmentsArchive", n => { AttachmentsArchive = n.GetByteArrayValue(); } },
-                { "body", n => { Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
-                { "category", n => { Category = n.GetEnumValue<ServiceUpdateCategory>(); } },
+                { "body", n => { Body = n.GetObjectValue<ApiSdk.Models.ItemBody>(ApiSdk.Models.ItemBody.CreateFromDiscriminatorValue); } },
+                { "category", n => { Category = n.GetEnumValue<ApiSdk.Models.ServiceUpdateCategory>(); } },
                 { "hasAttachments", n => { HasAttachments = n.GetBoolValue(); } },
                 { "isMajorChange", n => { IsMajorChange = n.GetBoolValue(); } },
                 { "services", n => { Services = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "severity", n => { Severity = n.GetEnumValue<ServiceUpdateSeverity>(); } },
+                { "severity", n => { Severity = n.GetEnumValue<ApiSdk.Models.ServiceUpdateSeverity>(); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "viewPoint", n => { ViewPoint = n.GetObjectValue<ServiceUpdateMessageViewpoint>(ServiceUpdateMessageViewpoint.CreateFromDiscriminatorValue); } },
+                { "viewPoint", n => { ViewPoint = n.GetObjectValue<ApiSdk.Models.ServiceUpdateMessageViewpoint>(ApiSdk.Models.ServiceUpdateMessageViewpoint.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -115,16 +115,16 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("actionRequiredByDateTime", ActionRequiredByDateTime);
-            writer.WriteCollectionOfObjectValues<ServiceAnnouncementAttachment>("attachments", Attachments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ServiceAnnouncementAttachment>("attachments", Attachments);
             writer.WriteByteArrayValue("attachmentsArchive", AttachmentsArchive);
-            writer.WriteObjectValue<ItemBody>("body", Body);
-            writer.WriteEnumValue<ServiceUpdateCategory>("category", Category);
+            writer.WriteObjectValue<ApiSdk.Models.ItemBody>("body", Body);
+            writer.WriteEnumValue<ApiSdk.Models.ServiceUpdateCategory>("category", Category);
             writer.WriteBoolValue("hasAttachments", HasAttachments);
             writer.WriteBoolValue("isMajorChange", IsMajorChange);
             writer.WriteCollectionOfPrimitiveValues<string>("services", Services);
-            writer.WriteEnumValue<ServiceUpdateSeverity>("severity", Severity);
+            writer.WriteEnumValue<ApiSdk.Models.ServiceUpdateSeverity>("severity", Severity);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
-            writer.WriteObjectValue<ServiceUpdateMessageViewpoint>("viewPoint", ViewPoint);
+            writer.WriteObjectValue<ApiSdk.Models.ServiceUpdateMessageViewpoint>("viewPoint", ViewPoint);
         }
     }
 }

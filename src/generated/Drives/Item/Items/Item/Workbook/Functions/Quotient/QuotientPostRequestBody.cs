@@ -16,21 +16,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quotient
         /// <summary>The denominator property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Denominator { get; set; }
+        public ApiSdk.Models.Json? Denominator { get; set; }
 #nullable restore
 #else
-        public Json Denominator { get; set; }
+        public ApiSdk.Models.Json Denominator { get; set; }
 #endif
         /// <summary>The numerator property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Numerator { get; set; }
+        public ApiSdk.Models.Json? Numerator { get; set; }
 #nullable restore
 #else
-        public Json Numerator { get; set; }
+        public ApiSdk.Models.Json Numerator { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="QuotientPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quotient.QuotientPostRequestBody"/> and sets the default values.
         /// </summary>
         public QuotientPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quotient
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="QuotientPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quotient.QuotientPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static QuotientPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quotient.QuotientPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new QuotientPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quotient.QuotientPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quotient
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "denominator", n => { Denominator = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "numerator", n => { Numerator = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "denominator", n => { Denominator = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "numerator", n => { Numerator = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quotient
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("denominator", Denominator);
-            writer.WriteObjectValue<Json>("numerator", Numerator);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("denominator", Denominator);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("numerator", Numerator);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

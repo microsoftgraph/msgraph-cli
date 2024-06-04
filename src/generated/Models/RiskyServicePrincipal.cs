@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class RiskyServicePrincipal : Entity, IParsable
+    public class RiskyServicePrincipal : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The globally unique identifier for the associated application (its appId property), if any.</summary>
@@ -29,10 +29,10 @@ namespace ApiSdk.Models
         /// <summary>Represents the risk history of Microsoft Entra service principals.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RiskyServicePrincipalHistoryItem>? History { get; set; }
+        public List<ApiSdk.Models.RiskyServicePrincipalHistoryItem>? History { get; set; }
 #nullable restore
 #else
-        public List<RiskyServicePrincipalHistoryItem> History { get; set; }
+        public List<ApiSdk.Models.RiskyServicePrincipalHistoryItem> History { get; set; }
 #endif
         /// <summary>true if the service principal account is enabled; otherwise, false.</summary>
         public bool? IsEnabled { get; set; }
@@ -57,16 +57,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RiskyServicePrincipal"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RiskyServicePrincipal"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RiskyServicePrincipal CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.RiskyServicePrincipal CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.riskyServicePrincipalHistoryItem" => new RiskyServicePrincipalHistoryItem(),
-                _ => new RiskyServicePrincipal(),
+                "#microsoft.graph.riskyServicePrincipalHistoryItem" => new ApiSdk.Models.RiskyServicePrincipalHistoryItem(),
+                _ => new ApiSdk.Models.RiskyServicePrincipal(),
             };
         }
         /// <summary>
@@ -79,13 +79,13 @@ namespace ApiSdk.Models
             {
                 { "appId", n => { AppId = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "history", n => { History = n.GetCollectionOfObjectValues<RiskyServicePrincipalHistoryItem>(RiskyServicePrincipalHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "history", n => { History = n.GetCollectionOfObjectValues<ApiSdk.Models.RiskyServicePrincipalHistoryItem>(ApiSdk.Models.RiskyServicePrincipalHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
                 { "isProcessing", n => { IsProcessing = n.GetBoolValue(); } },
-                { "riskDetail", n => { RiskDetail = n.GetEnumValue<RiskDetail>(); } },
+                { "riskDetail", n => { RiskDetail = n.GetEnumValue<ApiSdk.Models.RiskDetail>(); } },
                 { "riskLastUpdatedDateTime", n => { RiskLastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "riskLevel", n => { RiskLevel = n.GetEnumValue<RiskLevel>(); } },
-                { "riskState", n => { RiskState = n.GetEnumValue<RiskState>(); } },
+                { "riskLevel", n => { RiskLevel = n.GetEnumValue<ApiSdk.Models.RiskLevel>(); } },
+                { "riskState", n => { RiskState = n.GetEnumValue<ApiSdk.Models.RiskState>(); } },
                 { "servicePrincipalType", n => { ServicePrincipalType = n.GetStringValue(); } },
             };
         }
@@ -99,13 +99,13 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("appId", AppId);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<RiskyServicePrincipalHistoryItem>("history", History);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RiskyServicePrincipalHistoryItem>("history", History);
             writer.WriteBoolValue("isEnabled", IsEnabled);
             writer.WriteBoolValue("isProcessing", IsProcessing);
-            writer.WriteEnumValue<RiskDetail>("riskDetail", RiskDetail);
+            writer.WriteEnumValue<ApiSdk.Models.RiskDetail>("riskDetail", RiskDetail);
             writer.WriteDateTimeOffsetValue("riskLastUpdatedDateTime", RiskLastUpdatedDateTime);
-            writer.WriteEnumValue<RiskLevel>("riskLevel", RiskLevel);
-            writer.WriteEnumValue<RiskState>("riskState", RiskState);
+            writer.WriteEnumValue<ApiSdk.Models.RiskLevel>("riskLevel", RiskLevel);
+            writer.WriteEnumValue<ApiSdk.Models.RiskState>("riskState", RiskState);
             writer.WriteStringValue("servicePrincipalType", ServicePrincipalType);
         }
     }

@@ -38,7 +38,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MacOSIncludedApp"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MacOSIncludedApp"/> and sets the default values.
         /// </summary>
         public MacOSIncludedApp()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MacOSIncludedApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MacOSIncludedApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MacOSIncludedApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MacOSIncludedApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MacOSIncludedApp();
+            return new ApiSdk.Models.MacOSIncludedApp();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CloudPC : Entity, IParsable
+    public class CloudPC : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The Microsoft Entra device ID for the Cloud PC, also known as the Azure Active Directory (Azure AD) device ID, that consists of 32 characters in a GUID format. Generated on a VM joined to Microsoft Entra ID. Read-only.</summary>
@@ -79,7 +79,7 @@ namespace ApiSdk.Models
         public string ProvisioningPolicyName { get; set; }
 #endif
         /// <summary>The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. The default value is dedicated.</summary>
-        public CloudPcProvisioningType? ProvisioningType { get; set; }
+        public ApiSdk.Models.CloudPcProvisioningType? ProvisioningType { get; set; }
         /// <summary>The service plan ID for the Cloud PC that consists of 32 characters in a GUID format. For more information about service plans, see Product names and service plan identifiers for licensing. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -107,12 +107,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudPC"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudPC"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CloudPC CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CloudPC CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudPC();
+            return new ApiSdk.Models.CloudPC();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -132,7 +132,7 @@ namespace ApiSdk.Models
                 { "onPremisesConnectionName", n => { OnPremisesConnectionName = n.GetStringValue(); } },
                 { "provisioningPolicyId", n => { ProvisioningPolicyId = n.GetStringValue(); } },
                 { "provisioningPolicyName", n => { ProvisioningPolicyName = n.GetStringValue(); } },
-                { "provisioningType", n => { ProvisioningType = n.GetEnumValue<CloudPcProvisioningType>(); } },
+                { "provisioningType", n => { ProvisioningType = n.GetEnumValue<ApiSdk.Models.CloudPcProvisioningType>(); } },
                 { "servicePlanId", n => { ServicePlanId = n.GetStringValue(); } },
                 { "servicePlanName", n => { ServicePlanName = n.GetStringValue(); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
@@ -156,7 +156,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("onPremisesConnectionName", OnPremisesConnectionName);
             writer.WriteStringValue("provisioningPolicyId", ProvisioningPolicyId);
             writer.WriteStringValue("provisioningPolicyName", ProvisioningPolicyName);
-            writer.WriteEnumValue<CloudPcProvisioningType>("provisioningType", ProvisioningType);
+            writer.WriteEnumValue<ApiSdk.Models.CloudPcProvisioningType>("provisioningType", ProvisioningType);
             writer.WriteStringValue("servicePlanId", ServicePlanId);
             writer.WriteStringValue("servicePlanName", ServicePlanName);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);

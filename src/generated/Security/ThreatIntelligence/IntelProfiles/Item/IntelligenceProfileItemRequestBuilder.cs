@@ -118,7 +118,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item
         {
             var command = new Command("indicators");
             command.Description = "Provides operations to manage the indicators property of the microsoft.graph.security.intelligenceProfile entity.";
-            var builder = new IndicatorsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item.Indicators.IndicatorsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -167,7 +167,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<IntelligenceProfile>(IntelligenceProfile.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Security.IntelligenceProfile>(ApiSdk.Models.Security.IntelligenceProfile.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -188,14 +188,14 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="IntelligenceProfileItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item.IntelligenceProfileItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IntelligenceProfileItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/intelProfiles/{intelligenceProfile%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="IntelligenceProfileItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item.IntelligenceProfileItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IntelligenceProfileItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/intelProfiles/{intelligenceProfile%2Did}{?%24expand,%24select}", rawUrl)
@@ -227,11 +227,11 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IntelligenceProfileItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item.IntelligenceProfileItemRequestBuilder.IntelligenceProfileItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IntelligenceProfileItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item.IntelligenceProfileItemRequestBuilder.IntelligenceProfileItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -247,11 +247,11 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(IntelligenceProfile body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.IntelligenceProfile body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(IntelligenceProfile body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.IntelligenceProfile body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ConditionalAccessAllExternalTenants : ConditionalAccessExternalTenants, IParsable
+    public class ConditionalAccessAllExternalTenants : ApiSdk.Models.ConditionalAccessExternalTenants, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>
-        /// Instantiates a new <see cref="ConditionalAccessAllExternalTenants"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ConditionalAccessAllExternalTenants"/> and sets the default values.
         /// </summary>
         public ConditionalAccessAllExternalTenants() : base()
         {
@@ -20,12 +20,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConditionalAccessAllExternalTenants"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConditionalAccessAllExternalTenants"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ConditionalAccessAllExternalTenants CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ConditionalAccessAllExternalTenants CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConditionalAccessAllExternalTenants();
+            return new ApiSdk.Models.ConditionalAccessAllExternalTenants();
         }
         /// <summary>
         /// The deserialization information for the current model

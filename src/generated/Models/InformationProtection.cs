@@ -31,13 +31,13 @@ namespace ApiSdk.Models
         /// <summary>The threatAssessmentRequests property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ThreatAssessmentRequest>? ThreatAssessmentRequests { get; set; }
+        public List<ApiSdk.Models.ThreatAssessmentRequest>? ThreatAssessmentRequests { get; set; }
 #nullable restore
 #else
-        public List<ThreatAssessmentRequest> ThreatAssessmentRequests { get; set; }
+        public List<ApiSdk.Models.ThreatAssessmentRequest> ThreatAssessmentRequests { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="InformationProtection"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.InformationProtection"/> and sets the default values.
         /// </summary>
         public InformationProtection()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="InformationProtection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.InformationProtection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static InformationProtection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.InformationProtection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new InformationProtection();
+            return new ApiSdk.Models.InformationProtection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
             {
                 { "bitlocker", n => { Bitlocker = n.GetObjectValue<ApiSdk.Models.Bitlocker>(ApiSdk.Models.Bitlocker.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "threatAssessmentRequests", n => { ThreatAssessmentRequests = n.GetCollectionOfObjectValues<ThreatAssessmentRequest>(ThreatAssessmentRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "threatAssessmentRequests", n => { ThreatAssessmentRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.ThreatAssessmentRequest>(ApiSdk.Models.ThreatAssessmentRequest.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -75,7 +75,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<ApiSdk.Models.Bitlocker>("bitlocker", Bitlocker);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<ThreatAssessmentRequest>("threatAssessmentRequests", ThreatAssessmentRequests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ThreatAssessmentRequest>("threatAssessmentRequests", ThreatAssessmentRequests);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

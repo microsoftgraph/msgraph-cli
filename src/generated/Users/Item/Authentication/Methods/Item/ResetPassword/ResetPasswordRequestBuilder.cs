@@ -58,7 +58,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ResetPasswordPostRequestBody>(ResetPasswordPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword.ResetPasswordPostRequestBody>(ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword.ResetPasswordPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -80,14 +80,14 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ResetPasswordRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword.ResetPasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ResetPasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/methods/{authenticationMethod%2Did}/resetPassword", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ResetPasswordRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword.ResetPasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ResetPasswordRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/methods/{authenticationMethod%2Did}/resetPassword", rawUrl)
@@ -101,11 +101,11 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ResetPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword.ResetPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ResetPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword.ResetPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

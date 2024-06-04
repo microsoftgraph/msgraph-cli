@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class VirtualEventCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class VirtualEventCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<VirtualEvent>? Value { get; set; }
+        public List<ApiSdk.Models.VirtualEvent>? Value { get; set; }
 #nullable restore
 #else
-        public List<VirtualEvent> Value { get; set; }
+        public List<ApiSdk.Models.VirtualEvent> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="VirtualEventCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.VirtualEventCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new VirtualEventCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.VirtualEventCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new VirtualEventCollectionResponse();
+            return new ApiSdk.Models.VirtualEventCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<VirtualEvent>(VirtualEvent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.VirtualEvent>(ApiSdk.Models.VirtualEvent.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<VirtualEvent>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.VirtualEvent>("value", Value);
         }
     }
 }

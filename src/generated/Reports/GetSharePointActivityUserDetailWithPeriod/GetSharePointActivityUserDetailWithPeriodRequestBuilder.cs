@@ -61,14 +61,14 @@ namespace ApiSdk.Reports.GetSharePointActivityUserDetailWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSharePointActivityUserDetailWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSharePointActivityUserDetailWithPeriod.GetSharePointActivityUserDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetSharePointActivityUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSharePointActivityUserDetail(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSharePointActivityUserDetailWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSharePointActivityUserDetailWithPeriod.GetSharePointActivityUserDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetSharePointActivityUserDetailWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSharePointActivityUserDetail(period='{period}')", rawUrl)

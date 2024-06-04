@@ -67,14 +67,14 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Pin
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PinRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Classes.Item.Modules.Item.Pin.PinRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PinRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/pin", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PinRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Classes.Item.Modules.Item.Pin.PinRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PinRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/pin", rawUrl)

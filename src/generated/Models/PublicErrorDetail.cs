@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string Target { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PublicErrorDetail"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PublicErrorDetail"/> and sets the default values.
         /// </summary>
         public PublicErrorDetail()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PublicErrorDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PublicErrorDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PublicErrorDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PublicErrorDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PublicErrorDetail();
+            return new ApiSdk.Models.PublicErrorDetail();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -30,7 +30,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item
         {
             var command = new Command("bot");
             command.Description = "Provides operations to manage the bot property of the microsoft.graph.teamsAppDefinition entity.";
-            var builder = new BotRequestBuilder(PathParameters);
+            var builder = new ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot.BotRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -199,14 +199,14 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TeamsAppDefinitionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.TeamsAppDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TeamsAppDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}/appDefinitions/{teamsAppDefinition%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TeamsAppDefinitionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.TeamsAppDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TeamsAppDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}/appDefinitions/{teamsAppDefinition%2Did}{?%24expand,%24select}", rawUrl)
@@ -238,11 +238,11 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppDefinitionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.TeamsAppDefinitionItemRequestBuilder.TeamsAppDefinitionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppDefinitionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.TeamsAppDefinitionItemRequestBuilder.TeamsAppDefinitionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

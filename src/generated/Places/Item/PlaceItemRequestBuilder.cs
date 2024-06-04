@@ -66,7 +66,7 @@ namespace ApiSdk.Places.Item
         {
             var command = new Command("graph-room-by-id");
             command.Description = "Casts the previous resource to room.";
-            var builder = new GraphRoomRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Places.Item.GraphRoom.GraphRoomRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -83,7 +83,7 @@ namespace ApiSdk.Places.Item
         {
             var command = new Command("graph-room-list-by-id");
             command.Description = "Casts the previous resource to roomList.";
-            var builder = new GraphRoomListRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Places.Item.GraphRoomList.GraphRoomListRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -130,7 +130,7 @@ namespace ApiSdk.Places.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Place>(Place.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Place>(ApiSdk.Models.Place.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -151,14 +151,14 @@ namespace ApiSdk.Places.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PlaceItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Places.Item.PlaceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PlaceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places/{place%2Did}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PlaceItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Places.Item.PlaceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PlaceItemRequestBuilder(string rawUrl) : base("{+baseurl}/places/{place%2Did}", rawUrl)
@@ -191,11 +191,11 @@ namespace ApiSdk.Places.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Place body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Place body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Place body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Place body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

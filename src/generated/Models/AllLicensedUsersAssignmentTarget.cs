@@ -9,10 +9,10 @@ namespace ApiSdk.Models
     /// <summary>
     /// Represents an assignment to all licensed users in the tenant.
     /// </summary>
-    public class AllLicensedUsersAssignmentTarget : DeviceAndAppManagementAssignmentTarget, IParsable
+    public class AllLicensedUsersAssignmentTarget : ApiSdk.Models.DeviceAndAppManagementAssignmentTarget, IParsable
     {
         /// <summary>
-        /// Instantiates a new <see cref="AllLicensedUsersAssignmentTarget"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AllLicensedUsersAssignmentTarget"/> and sets the default values.
         /// </summary>
         public AllLicensedUsersAssignmentTarget() : base()
         {
@@ -21,12 +21,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AllLicensedUsersAssignmentTarget"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AllLicensedUsersAssignmentTarget"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AllLicensedUsersAssignmentTarget CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AllLicensedUsersAssignmentTarget CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AllLicensedUsersAssignmentTarget();
+            return new ApiSdk.Models.AllLicensedUsersAssignmentTarget();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -135,7 +135,7 @@ namespace ApiSdk.Models.CallRecords
         public string UserPrincipalName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DirectRoutingLogRow"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CallRecords.DirectRoutingLogRow"/> and sets the default values.
         /// </summary>
         public DirectRoutingLogRow()
         {
@@ -144,12 +144,12 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DirectRoutingLogRow"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallRecords.DirectRoutingLogRow"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DirectRoutingLogRow CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CallRecords.DirectRoutingLogRow CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DirectRoutingLogRow();
+            return new ApiSdk.Models.CallRecords.DirectRoutingLogRow();
         }
         /// <summary>
         /// The deserialization information for the current model

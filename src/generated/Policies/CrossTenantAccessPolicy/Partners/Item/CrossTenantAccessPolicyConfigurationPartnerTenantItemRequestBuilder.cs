@@ -119,7 +119,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item
         {
             var command = new Command("identity-synchronization");
             command.Description = "Provides operations to manage the identitySynchronization property of the microsoft.graph.crossTenantAccessPolicyConfigurationPartner entity.";
-            var builder = new IdentitySynchronizationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.IdentitySynchronization.IdentitySynchronizationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -162,7 +162,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CrossTenantAccessPolicyConfigurationPartner>(CrossTenantAccessPolicyConfigurationPartner.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner>(ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -183,14 +183,14 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/crossTenantAccessPolicy/partners/{crossTenantAccessPolicyConfigurationPartner%2DtenantId}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/crossTenantAccessPolicy/partners/{crossTenantAccessPolicyConfigurationPartner%2DtenantId}{?%24expand,%24select}", rawUrl)
@@ -222,11 +222,11 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder.CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder.CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -242,11 +242,11 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(CrossTenantAccessPolicyConfigurationPartner body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(CrossTenantAccessPolicyConfigurationPartner body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

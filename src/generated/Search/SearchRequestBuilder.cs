@@ -33,7 +33,7 @@ namespace ApiSdk.Search
         {
             var command = new Command("acronyms");
             command.Description = "Provides operations to manage the acronyms property of the microsoft.graph.searchEntity entity.";
-            var builder = new AcronymsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Search.Acronyms.AcronymsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -60,7 +60,7 @@ namespace ApiSdk.Search
         {
             var command = new Command("bookmarks");
             command.Description = "Provides operations to manage the bookmarks property of the microsoft.graph.searchEntity entity.";
-            var builder = new BookmarksRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Search.Bookmarks.BookmarksRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -151,7 +151,7 @@ namespace ApiSdk.Search
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SearchEntity>(SearchEntity.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.SearchEntity>(ApiSdk.Models.SearchEntity.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -178,7 +178,7 @@ namespace ApiSdk.Search
         {
             var command = new Command("qnas");
             command.Description = "Provides operations to manage the qnas property of the microsoft.graph.searchEntity entity.";
-            var builder = new QnasRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Search.Qnas.QnasRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -205,7 +205,7 @@ namespace ApiSdk.Search
         {
             var command = new Command("query");
             command.Description = "Provides operations to call the query method.";
-            var builder = new QueryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Search.Query.QueryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -215,14 +215,14 @@ namespace ApiSdk.Search
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SearchRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Search.SearchRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SearchRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/search{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SearchRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Search.SearchRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SearchRequestBuilder(string rawUrl) : base("{+baseurl}/search{?%24expand,%24select}", rawUrl)
@@ -235,11 +235,11 @@ namespace ApiSdk.Search
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SearchRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Search.SearchRequestBuilder.SearchRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SearchRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Search.SearchRequestBuilder.SearchRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -255,11 +255,11 @@ namespace ApiSdk.Search
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(SearchEntity body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SearchEntity body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(SearchEntity body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SearchEntity body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

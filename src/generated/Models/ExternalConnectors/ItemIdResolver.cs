@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.ExternalConnectors
 {
     #pragma warning disable CS1591
-    public class ItemIdResolver : UrlToItemResolverBase, IParsable
+    public class ItemIdResolver : ApiSdk.Models.ExternalConnectors.UrlToItemResolverBase, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Pattern that specifies how to form the ID of the external item that the URL represents. The named groups from the regular expression in urlPattern within the urlMatchInfo can be referenced by inserting the group name inside curly brackets.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.ExternalConnectors
         public ApiSdk.Models.ExternalConnectors.UrlMatchInfo UrlMatchInfo { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ItemIdResolver"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ExternalConnectors.ItemIdResolver"/> and sets the default values.
         /// </summary>
         public ItemIdResolver() : base()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ItemIdResolver"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.ItemIdResolver"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ItemIdResolver CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ExternalConnectors.ItemIdResolver CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ItemIdResolver();
+            return new ApiSdk.Models.ExternalConnectors.ItemIdResolver();
         }
         /// <summary>
         /// The deserialization information for the current model

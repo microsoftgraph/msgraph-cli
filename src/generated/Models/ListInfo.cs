@@ -33,7 +33,7 @@ namespace ApiSdk.Models
         public string Template { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ListInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ListInfo"/> and sets the default values.
         /// </summary>
         public ListInfo()
         {
@@ -42,12 +42,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ListInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ListInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ListInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ListInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ListInfo();
+            return new ApiSdk.Models.ListInfo();
         }
         /// <summary>
         /// The deserialization information for the current model

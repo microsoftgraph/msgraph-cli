@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// A termsAndConditionsAcceptanceStatus entity represents the acceptance status of a given Terms and Conditions (T&amp;C) policy by a given user. Users must accept the most up-to-date version of the terms in order to retain access to the Company Portal.
     /// </summary>
-    public class TermsAndConditionsAcceptanceStatus : Entity, IParsable
+    public class TermsAndConditionsAcceptanceStatus : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>DateTime when the terms were last accepted by the user.</summary>
         public DateTimeOffset? AcceptedDateTime { get; set; }
@@ -42,12 +42,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TermsAndConditionsAcceptanceStatus"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermsAndConditionsAcceptanceStatus"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TermsAndConditionsAcceptanceStatus CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TermsAndConditionsAcceptanceStatus CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TermsAndConditionsAcceptanceStatus();
+            return new ApiSdk.Models.TermsAndConditionsAcceptanceStatus();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -16,21 +16,21 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The array property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Array { get; set; }
+        public ApiSdk.Models.Json? Array { get; set; }
 #nullable restore
 #else
-        public Json Array { get; set; }
+        public ApiSdk.Models.Json Array { get; set; }
 #endif
         /// <summary>The quart property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Quart { get; set; }
+        public ApiSdk.Models.Json? Quart { get; set; }
 #nullable restore
 #else
-        public Json Quart { get; set; }
+        public ApiSdk.Models.Json Quart { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Quartile_IncPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Quartile_Inc.Quartile_IncPostRequestBody"/> and sets the default values.
         /// </summary>
         public Quartile_IncPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Quartile_IncPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Quartile_Inc.Quartile_IncPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Quartile_IncPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Quartile_Inc.Quartile_IncPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Quartile_IncPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Quartile_Inc.Quartile_IncPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "array", n => { Array = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "quart", n => { Quart = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "array", n => { Array = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "quart", n => { Quart = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("array", Array);
-            writer.WriteObjectValue<Json>("quart", Quart);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("array", Array);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("quart", Quart);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

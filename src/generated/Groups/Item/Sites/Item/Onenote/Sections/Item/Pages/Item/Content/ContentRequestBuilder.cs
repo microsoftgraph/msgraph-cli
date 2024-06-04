@@ -199,14 +199,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item.Pages.Item.Content
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item.Pages.Item.Content.ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}/content", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item.Pages.Item.Content.ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}/content", rawUrl)

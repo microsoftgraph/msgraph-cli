@@ -33,7 +33,7 @@ namespace ApiSdk.Education
         {
             var command = new Command("classes");
             command.Description = "Provides operations to manage the classes property of the microsoft.graph.educationRoot entity.";
-            var builder = new ClassesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Classes.ClassesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -107,7 +107,7 @@ namespace ApiSdk.Education
         {
             var command = new Command("me");
             command.Description = "Provides operations to manage the me property of the microsoft.graph.educationRoot entity.";
-            var builder = new MeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.MeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
@@ -155,7 +155,7 @@ namespace ApiSdk.Education
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<EducationRoot>(EducationRoot.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.EducationRoot>(ApiSdk.Models.EducationRoot.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -182,7 +182,7 @@ namespace ApiSdk.Education
         {
             var command = new Command("schools");
             command.Description = "Provides operations to manage the schools property of the microsoft.graph.educationRoot entity.";
-            var builder = new SchoolsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Schools.SchoolsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -210,7 +210,7 @@ namespace ApiSdk.Education
         {
             var command = new Command("users");
             command.Description = "Provides operations to manage the users property of the microsoft.graph.educationRoot entity.";
-            var builder = new UsersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Users.UsersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -231,14 +231,14 @@ namespace ApiSdk.Education
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="EducationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.EducationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public EducationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="EducationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.EducationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public EducationRequestBuilder(string rawUrl) : base("{+baseurl}/education{?%24expand,%24select}", rawUrl)
@@ -251,11 +251,11 @@ namespace ApiSdk.Education
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.EducationRequestBuilder.EducationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.EducationRequestBuilder.EducationRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -271,11 +271,11 @@ namespace ApiSdk.Education
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EducationRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.EducationRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(EducationRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.EducationRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

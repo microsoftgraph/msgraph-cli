@@ -39,7 +39,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.FileHash FileHash { get; set; }
 #endif
         /// <summary>The integrity level of the process. Possible values are: unknown, untrusted, low, medium, high, system.</summary>
-        public ProcessIntegrityLevel? IntegrityLevel { get; set; }
+        public ApiSdk.Models.ProcessIntegrityLevel? IntegrityLevel { get; set; }
         /// <summary>True if the process is elevated.</summary>
         public bool? IsElevated { get; set; }
         /// <summary>The name of the process&apos; Image file.</summary>
@@ -81,7 +81,7 @@ namespace ApiSdk.Models
         /// <summary>The Process ID (PID) of the process.</summary>
         public int? ProcessId { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Process"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Process"/> and sets the default values.
         /// </summary>
         public Process()
         {
@@ -90,12 +90,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Process"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Process"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Process CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Process CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Process();
+            return new ApiSdk.Models.Process();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -109,7 +109,7 @@ namespace ApiSdk.Models
                 { "commandLine", n => { CommandLine = n.GetStringValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "fileHash", n => { FileHash = n.GetObjectValue<ApiSdk.Models.FileHash>(ApiSdk.Models.FileHash.CreateFromDiscriminatorValue); } },
-                { "integrityLevel", n => { IntegrityLevel = n.GetEnumValue<ProcessIntegrityLevel>(); } },
+                { "integrityLevel", n => { IntegrityLevel = n.GetEnumValue<ApiSdk.Models.ProcessIntegrityLevel>(); } },
                 { "isElevated", n => { IsElevated = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
@@ -131,7 +131,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("commandLine", CommandLine);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<ApiSdk.Models.FileHash>("fileHash", FileHash);
-            writer.WriteEnumValue<ProcessIntegrityLevel>("integrityLevel", IntegrityLevel);
+            writer.WriteEnumValue<ApiSdk.Models.ProcessIntegrityLevel>("integrityLevel", IntegrityLevel);
             writer.WriteBoolValue("isElevated", IsElevated);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);

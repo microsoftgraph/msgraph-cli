@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string Set { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WorkbookIcon"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WorkbookIcon"/> and sets the default values.
         /// </summary>
         public WorkbookIcon()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookIcon"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookIcon"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WorkbookIcon CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WorkbookIcon CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookIcon();
+            return new ApiSdk.Models.WorkbookIcon();
         }
         /// <summary>
         /// The deserialization information for the current model

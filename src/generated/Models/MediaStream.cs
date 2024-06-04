@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The direction property</summary>
-        public MediaDirection? Direction { get; set; }
+        public ApiSdk.Models.MediaDirection? Direction { get; set; }
         /// <summary>The media stream label.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -23,7 +23,7 @@ namespace ApiSdk.Models
         public string Label { get; set; }
 #endif
         /// <summary>The mediaType property</summary>
-        public Modality? MediaType { get; set; }
+        public ApiSdk.Models.Modality? MediaType { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -43,7 +43,7 @@ namespace ApiSdk.Models
         public string SourceId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MediaStream"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MediaStream"/> and sets the default values.
         /// </summary>
         public MediaStream()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MediaStream"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MediaStream"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MediaStream CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MediaStream CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MediaStream();
+            return new ApiSdk.Models.MediaStream();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -67,9 +67,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "direction", n => { Direction = n.GetEnumValue<MediaDirection>(); } },
+                { "direction", n => { Direction = n.GetEnumValue<ApiSdk.Models.MediaDirection>(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
-                { "mediaType", n => { MediaType = n.GetEnumValue<Modality>(); } },
+                { "mediaType", n => { MediaType = n.GetEnumValue<ApiSdk.Models.Modality>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "serverMuted", n => { ServerMuted = n.GetBoolValue(); } },
                 { "sourceId", n => { SourceId = n.GetStringValue(); } },
@@ -82,9 +82,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<MediaDirection>("direction", Direction);
+            writer.WriteEnumValue<ApiSdk.Models.MediaDirection>("direction", Direction);
             writer.WriteStringValue("label", Label);
-            writer.WriteEnumValue<Modality>("mediaType", MediaType);
+            writer.WriteEnumValue<ApiSdk.Models.Modality>("mediaType", MediaType);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("serverMuted", ServerMuted);
             writer.WriteStringValue("sourceId", SourceId);

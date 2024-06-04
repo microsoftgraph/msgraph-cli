@@ -25,9 +25,9 @@ namespace ApiSdk.Models
         /// <summary>Timestamp when the policy is enforced for all apps created on or after the specified date. For existing applications, the enforcement date would be back dated. To apply to all applications regardless of their creation date, this property would be null. Nullable.</summary>
         public DateTimeOffset? RestrictForAppsCreatedAfterDateTime { get; set; }
         /// <summary>The type of restriction being applied. Possible values are asymmetricKeyLifetime, unknownFutureValue. Each value of restrictionType can be used only once per policy.</summary>
-        public AppKeyCredentialRestrictionType? RestrictionType { get; set; }
+        public ApiSdk.Models.AppKeyCredentialRestrictionType? RestrictionType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="KeyCredentialConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.KeyCredentialConfiguration"/> and sets the default values.
         /// </summary>
         public KeyCredentialConfiguration()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="KeyCredentialConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.KeyCredentialConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static KeyCredentialConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.KeyCredentialConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new KeyCredentialConfiguration();
+            return new ApiSdk.Models.KeyCredentialConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
                 { "maxLifetime", n => { MaxLifetime = n.GetTimeSpanValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "restrictForAppsCreatedAfterDateTime", n => { RestrictForAppsCreatedAfterDateTime = n.GetDateTimeOffsetValue(); } },
-                { "restrictionType", n => { RestrictionType = n.GetEnumValue<AppKeyCredentialRestrictionType>(); } },
+                { "restrictionType", n => { RestrictionType = n.GetEnumValue<ApiSdk.Models.AppKeyCredentialRestrictionType>(); } },
             };
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
             writer.WriteTimeSpanValue("maxLifetime", MaxLifetime);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDateTimeOffsetValue("restrictForAppsCreatedAfterDateTime", RestrictForAppsCreatedAfterDateTime);
-            writer.WriteEnumValue<AppKeyCredentialRestrictionType>("restrictionType", RestrictionType);
+            writer.WriteEnumValue<ApiSdk.Models.AppKeyCredentialRestrictionType>("restrictionType", RestrictionType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

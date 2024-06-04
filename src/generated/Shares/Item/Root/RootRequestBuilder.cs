@@ -30,7 +30,7 @@ namespace ApiSdk.Shares.Item.Root
         {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the sharedDriveItem entity.";
-            var builder = new ContentRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.Root.Content.ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -94,14 +94,14 @@ namespace ApiSdk.Shares.Item.Root
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RootRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Shares.Item.Root.RootRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RootRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/root{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RootRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Shares.Item.Root.RootRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RootRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/root{?%24expand,%24select}", rawUrl)
@@ -114,11 +114,11 @@ namespace ApiSdk.Shares.Item.Root
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RootRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Shares.Item.Root.RootRequestBuilder.RootRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RootRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Shares.Item.Root.RootRequestBuilder.RootRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

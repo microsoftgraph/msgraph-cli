@@ -34,7 +34,7 @@ namespace ApiSdk.PermissionGrants.Item
         {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.PermissionGrants.Item.CheckMemberGroups.CheckMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -51,7 +51,7 @@ namespace ApiSdk.PermissionGrants.Item
         {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.PermissionGrants.Item.CheckMemberObjects.CheckMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -155,7 +155,7 @@ namespace ApiSdk.PermissionGrants.Item
         {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.PermissionGrants.Item.GetMemberGroups.GetMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -172,7 +172,7 @@ namespace ApiSdk.PermissionGrants.Item
         {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.PermissionGrants.Item.GetMemberObjects.GetMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -212,7 +212,7 @@ namespace ApiSdk.PermissionGrants.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ResourceSpecificPermissionGrant>(ResourceSpecificPermissionGrant.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ResourceSpecificPermissionGrant>(ApiSdk.Models.ResourceSpecificPermissionGrant.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -240,7 +240,7 @@ namespace ApiSdk.PermissionGrants.Item
         {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters);
+            var builder = new ApiSdk.PermissionGrants.Item.Restore.RestoreRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -250,14 +250,14 @@ namespace ApiSdk.PermissionGrants.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ResourceSpecificPermissionGrantItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.PermissionGrants.Item.ResourceSpecificPermissionGrantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ResourceSpecificPermissionGrantItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/permissionGrants/{resourceSpecificPermissionGrant%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ResourceSpecificPermissionGrantItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.PermissionGrants.Item.ResourceSpecificPermissionGrantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ResourceSpecificPermissionGrantItemRequestBuilder(string rawUrl) : base("{+baseurl}/permissionGrants/{resourceSpecificPermissionGrant%2Did}{?%24expand,%24select}", rawUrl)
@@ -289,11 +289,11 @@ namespace ApiSdk.PermissionGrants.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.PermissionGrants.Item.ResourceSpecificPermissionGrantItemRequestBuilder.ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.PermissionGrants.Item.ResourceSpecificPermissionGrantItemRequestBuilder.ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -309,11 +309,11 @@ namespace ApiSdk.PermissionGrants.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

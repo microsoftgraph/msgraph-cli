@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class IPv6CidrRange : IpRange, IParsable
+    public class IPv6CidrRange : ApiSdk.Models.IpRange, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>IPv6 address in CIDR notation. Not nullable.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string CidrAddress { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IPv6CidrRange"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IPv6CidrRange"/> and sets the default values.
         /// </summary>
         public IPv6CidrRange() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IPv6CidrRange"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IPv6CidrRange"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IPv6CidrRange CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IPv6CidrRange CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IPv6CidrRange();
+            return new ApiSdk.Models.IPv6CidrRange();
         }
         /// <summary>
         /// The deserialization information for the current model

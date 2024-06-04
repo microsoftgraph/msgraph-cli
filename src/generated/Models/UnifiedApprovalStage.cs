@@ -17,10 +17,10 @@ namespace ApiSdk.Models
         /// <summary>The escalation approvers for this stage when the primary approvers don&apos;t respond.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectSet>? EscalationApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet>? EscalationApprovers { get; set; }
 #nullable restore
 #else
-        public List<SubjectSet> EscalationApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet> EscalationApprovers { get; set; }
 #endif
         /// <summary>The time a request can be pending a response from a primary approver before it can be escalated to the escalation approvers.</summary>
         public int? EscalationTimeInMinutes { get; set; }
@@ -39,13 +39,13 @@ namespace ApiSdk.Models
         /// <summary>The primary approvers of this stage.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectSet>? PrimaryApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet>? PrimaryApprovers { get; set; }
 #nullable restore
 #else
-        public List<SubjectSet> PrimaryApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet> PrimaryApprovers { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UnifiedApprovalStage"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UnifiedApprovalStage"/> and sets the default values.
         /// </summary>
         public UnifiedApprovalStage()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedApprovalStage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UnifiedApprovalStage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UnifiedApprovalStage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UnifiedApprovalStage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedApprovalStage();
+            return new ApiSdk.Models.UnifiedApprovalStage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,12 +70,12 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "approvalStageTimeOutInDays", n => { ApprovalStageTimeOutInDays = n.GetIntValue(); } },
-                { "escalationApprovers", n => { EscalationApprovers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "escalationApprovers", n => { EscalationApprovers = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectSet>(ApiSdk.Models.SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "escalationTimeInMinutes", n => { EscalationTimeInMinutes = n.GetIntValue(); } },
                 { "isApproverJustificationRequired", n => { IsApproverJustificationRequired = n.GetBoolValue(); } },
                 { "isEscalationEnabled", n => { IsEscalationEnabled = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "primaryApprovers", n => { PrimaryApprovers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "primaryApprovers", n => { PrimaryApprovers = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectSet>(ApiSdk.Models.SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -86,12 +86,12 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("approvalStageTimeOutInDays", ApprovalStageTimeOutInDays);
-            writer.WriteCollectionOfObjectValues<SubjectSet>("escalationApprovers", EscalationApprovers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectSet>("escalationApprovers", EscalationApprovers);
             writer.WriteIntValue("escalationTimeInMinutes", EscalationTimeInMinutes);
             writer.WriteBoolValue("isApproverJustificationRequired", IsApproverJustificationRequired);
             writer.WriteBoolValue("isEscalationEnabled", IsEscalationEnabled);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<SubjectSet>("primaryApprovers", PrimaryApprovers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectSet>("primaryApprovers", PrimaryApprovers);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

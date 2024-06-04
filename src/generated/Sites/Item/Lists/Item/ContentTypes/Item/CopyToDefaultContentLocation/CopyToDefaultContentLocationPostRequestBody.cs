@@ -24,13 +24,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
         /// <summary>The sourceFile property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemReference? SourceFile { get; set; }
+        public ApiSdk.Models.ItemReference? SourceFile { get; set; }
 #nullable restore
 #else
-        public ItemReference SourceFile { get; set; }
+        public ApiSdk.Models.ItemReference SourceFile { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CopyToDefaultContentLocationPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocation.CopyToDefaultContentLocationPostRequestBody"/> and sets the default values.
         /// </summary>
         public CopyToDefaultContentLocationPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CopyToDefaultContentLocationPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocation.CopyToDefaultContentLocationPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CopyToDefaultContentLocationPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocation.CopyToDefaultContentLocationPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CopyToDefaultContentLocationPostRequestBody();
+            return new ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocation.CopyToDefaultContentLocationPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "destinationFileName", n => { DestinationFileName = n.GetStringValue(); } },
-                { "sourceFile", n => { SourceFile = n.GetObjectValue<ItemReference>(ItemReference.CreateFromDiscriminatorValue); } },
+                { "sourceFile", n => { SourceFile = n.GetObjectValue<ApiSdk.Models.ItemReference>(ApiSdk.Models.ItemReference.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("destinationFileName", DestinationFileName);
-            writer.WriteObjectValue<ItemReference>("sourceFile", SourceFile);
+            writer.WriteObjectValue<ApiSdk.Models.ItemReference>("sourceFile", SourceFile);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

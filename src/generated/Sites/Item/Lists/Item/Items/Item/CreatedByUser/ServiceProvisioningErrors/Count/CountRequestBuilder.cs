@@ -75,14 +75,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.CreatedByUser.ServiceProvision
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.Items.Item.CreatedByUser.ServiceProvisioningErrors.Count.CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/createdByUser/serviceProvisioningErrors/$count{?%24filter,%24search}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.Items.Item.CreatedByUser.ServiceProvisioningErrors.Count.CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CountRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/createdByUser/serviceProvisioningErrors/$count{?%24filter,%24search}", rawUrl)
@@ -95,11 +95,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.CreatedByUser.ServiceProvision
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CountRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Lists.Item.Items.Item.CreatedByUser.ServiceProvisioningErrors.Count.CountRequestBuilder.CountRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CountRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Lists.Item.Items.Item.CreatedByUser.ServiceProvisioningErrors.Count.CountRequestBuilder.CountRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

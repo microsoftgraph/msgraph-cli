@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationWordResource : EducationResource, IParsable
+    public class EducationWordResource : ApiSdk.Models.EducationResource, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Location of the file on disk.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string FileUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EducationWordResource"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EducationWordResource"/> and sets the default values.
         /// </summary>
         public EducationWordResource() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationWordResource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationWordResource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationWordResource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationWordResource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationWordResource();
+            return new ApiSdk.Models.EducationWordResource();
         }
         /// <summary>
         /// The deserialization information for the current model

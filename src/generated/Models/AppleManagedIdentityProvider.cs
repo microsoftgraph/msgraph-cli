@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AppleManagedIdentityProvider : IdentityProviderBase, IParsable
+    public class AppleManagedIdentityProvider : ApiSdk.Models.IdentityProviderBase, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The certificate data, which is a long string of text from the certificate. Can be null.</summary>
@@ -43,7 +43,7 @@ namespace ApiSdk.Models
         public string ServiceId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AppleManagedIdentityProvider"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AppleManagedIdentityProvider"/> and sets the default values.
         /// </summary>
         public AppleManagedIdentityProvider() : base()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AppleManagedIdentityProvider"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AppleManagedIdentityProvider"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AppleManagedIdentityProvider CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AppleManagedIdentityProvider CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AppleManagedIdentityProvider();
+            return new ApiSdk.Models.AppleManagedIdentityProvider();
         }
         /// <summary>
         /// The deserialization information for the current model

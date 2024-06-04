@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The answeredQuestion property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageQuestion? AnsweredQuestion { get; set; }
+        public ApiSdk.Models.AccessPackageQuestion? AnsweredQuestion { get; set; }
 #nullable restore
 #else
-        public AccessPackageQuestion AnsweredQuestion { get; set; }
+        public ApiSdk.Models.AccessPackageQuestion AnsweredQuestion { get; set; }
 #endif
         /// <summary>The localized display value shown to the requestor and approvers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessPackageAnswer"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessPackageAnswer"/> and sets the default values.
         /// </summary>
         public AccessPackageAnswer()
         {
@@ -46,16 +46,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageAnswer"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageAnswer"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AccessPackageAnswer CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AccessPackageAnswer CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.accessPackageAnswerString" => new AccessPackageAnswerString(),
-                _ => new AccessPackageAnswer(),
+                "#microsoft.graph.accessPackageAnswerString" => new ApiSdk.Models.AccessPackageAnswerString(),
+                _ => new ApiSdk.Models.AccessPackageAnswer(),
             };
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "answeredQuestion", n => { AnsweredQuestion = n.GetObjectValue<AccessPackageQuestion>(AccessPackageQuestion.CreateFromDiscriminatorValue); } },
+                { "answeredQuestion", n => { AnsweredQuestion = n.GetObjectValue<ApiSdk.Models.AccessPackageQuestion>(ApiSdk.Models.AccessPackageQuestion.CreateFromDiscriminatorValue); } },
                 { "displayValue", n => { DisplayValue = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -78,7 +78,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<AccessPackageQuestion>("answeredQuestion", AnsweredQuestion);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageQuestion>("answeredQuestion", AnsweredQuestion);
             writer.WriteStringValue("displayValue", DisplayValue);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

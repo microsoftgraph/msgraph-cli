@@ -23,13 +23,13 @@ namespace ApiSdk.Models
         /// <summary>A collection of resource-specific permissions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TeamsAppResourceSpecificPermission>? ResourceSpecificPermissions { get; set; }
+        public List<ApiSdk.Models.TeamsAppResourceSpecificPermission>? ResourceSpecificPermissions { get; set; }
 #nullable restore
 #else
-        public List<TeamsAppResourceSpecificPermission> ResourceSpecificPermissions { get; set; }
+        public List<ApiSdk.Models.TeamsAppResourceSpecificPermission> ResourceSpecificPermissions { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TeamsAppPermissionSet"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TeamsAppPermissionSet"/> and sets the default values.
         /// </summary>
         public TeamsAppPermissionSet()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamsAppPermissionSet"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamsAppPermissionSet"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TeamsAppPermissionSet CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TeamsAppPermissionSet CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamsAppPermissionSet();
+            return new ApiSdk.Models.TeamsAppPermissionSet();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "resourceSpecificPermissions", n => { ResourceSpecificPermissions = n.GetCollectionOfObjectValues<TeamsAppResourceSpecificPermission>(TeamsAppResourceSpecificPermission.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "resourceSpecificPermissions", n => { ResourceSpecificPermissions = n.GetCollectionOfObjectValues<ApiSdk.Models.TeamsAppResourceSpecificPermission>(ApiSdk.Models.TeamsAppResourceSpecificPermission.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<TeamsAppResourceSpecificPermission>("resourceSpecificPermissions", ResourceSpecificPermissions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TeamsAppResourceSpecificPermission>("resourceSpecificPermissions", ResourceSpecificPermissions);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

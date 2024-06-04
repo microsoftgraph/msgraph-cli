@@ -9,10 +9,10 @@ namespace ApiSdk.Models
     /// <summary>
     /// Represents an assignment to all managed devices in the tenant.
     /// </summary>
-    public class AllDevicesAssignmentTarget : DeviceAndAppManagementAssignmentTarget, IParsable
+    public class AllDevicesAssignmentTarget : ApiSdk.Models.DeviceAndAppManagementAssignmentTarget, IParsable
     {
         /// <summary>
-        /// Instantiates a new <see cref="AllDevicesAssignmentTarget"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AllDevicesAssignmentTarget"/> and sets the default values.
         /// </summary>
         public AllDevicesAssignmentTarget() : base()
         {
@@ -21,12 +21,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AllDevicesAssignmentTarget"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AllDevicesAssignmentTarget"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AllDevicesAssignmentTarget CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AllDevicesAssignmentTarget CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AllDevicesAssignmentTarget();
+            return new ApiSdk.Models.AllDevicesAssignmentTarget();
         }
         /// <summary>
         /// The deserialization information for the current model

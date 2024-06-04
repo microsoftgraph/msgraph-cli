@@ -21,7 +21,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite
         public List<string> MessageIds { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="FavoritePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite.FavoritePostRequestBody"/> and sets the default values.
         /// </summary>
         public FavoritePostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FavoritePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite.FavoritePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static FavoritePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite.FavoritePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FavoritePostRequestBody();
+            return new ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite.FavoritePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

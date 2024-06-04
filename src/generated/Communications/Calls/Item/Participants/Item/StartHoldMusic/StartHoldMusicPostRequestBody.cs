@@ -24,13 +24,13 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic
         /// <summary>The customPrompt property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Prompt? CustomPrompt { get; set; }
+        public ApiSdk.Models.Prompt? CustomPrompt { get; set; }
 #nullable restore
 #else
-        public Prompt CustomPrompt { get; set; }
+        public ApiSdk.Models.Prompt CustomPrompt { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="StartHoldMusicPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic.StartHoldMusicPostRequestBody"/> and sets the default values.
         /// </summary>
         public StartHoldMusicPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="StartHoldMusicPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic.StartHoldMusicPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static StartHoldMusicPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic.StartHoldMusicPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new StartHoldMusicPostRequestBody();
+            return new ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic.StartHoldMusicPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "clientContext", n => { ClientContext = n.GetStringValue(); } },
-                { "customPrompt", n => { CustomPrompt = n.GetObjectValue<Prompt>(Prompt.CreateFromDiscriminatorValue); } },
+                { "customPrompt", n => { CustomPrompt = n.GetObjectValue<ApiSdk.Models.Prompt>(ApiSdk.Models.Prompt.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("clientContext", ClientContext);
-            writer.WriteObjectValue<Prompt>("customPrompt", CustomPrompt);
+            writer.WriteObjectValue<ApiSdk.Models.Prompt>("customPrompt", CustomPrompt);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

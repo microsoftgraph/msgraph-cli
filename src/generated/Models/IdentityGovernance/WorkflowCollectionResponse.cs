@@ -13,20 +13,20 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Workflow>? Value { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.Workflow>? Value { get; set; }
 #nullable restore
 #else
-        public List<Workflow> Value { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.Workflow> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkflowCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.WorkflowCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkflowCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.WorkflowCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkflowCollectionResponse();
+            return new ApiSdk.Models.IdentityGovernance.WorkflowCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.IdentityGovernance
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<Workflow>(Workflow.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.Workflow>(ApiSdk.Models.IdentityGovernance.Workflow.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.IdentityGovernance
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Workflow>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.Workflow>("value", Value);
         }
     }
 }

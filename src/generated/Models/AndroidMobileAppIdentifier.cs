@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// The identifier for an Android app.
     /// </summary>
-    public class AndroidMobileAppIdentifier : MobileAppIdentifier, IParsable
+    public class AndroidMobileAppIdentifier : ApiSdk.Models.MobileAppIdentifier, IParsable
     {
         /// <summary>The identifier for an app, as specified in the play store.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -20,7 +20,7 @@ namespace ApiSdk.Models
         public string PackageId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AndroidMobileAppIdentifier"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AndroidMobileAppIdentifier"/> and sets the default values.
         /// </summary>
         public AndroidMobileAppIdentifier() : base()
         {
@@ -29,12 +29,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AndroidMobileAppIdentifier"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AndroidMobileAppIdentifier"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AndroidMobileAppIdentifier CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AndroidMobileAppIdentifier CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AndroidMobileAppIdentifier();
+            return new ApiSdk.Models.AndroidMobileAppIdentifier();
         }
         /// <summary>
         /// The deserialization information for the current model

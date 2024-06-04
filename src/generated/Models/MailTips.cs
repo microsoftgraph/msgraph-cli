@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Mail tips for automatic reply if it has been set up by the recipient.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AutomaticRepliesMailTips? AutomaticReplies { get; set; }
+        public ApiSdk.Models.AutomaticRepliesMailTips? AutomaticReplies { get; set; }
 #nullable restore
 #else
-        public AutomaticRepliesMailTips AutomaticReplies { get; set; }
+        public ApiSdk.Models.AutomaticRepliesMailTips AutomaticReplies { get; set; }
 #endif
         /// <summary>A custom mail tip that can be set on the recipient&apos;s mailbox.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,10 +41,10 @@ namespace ApiSdk.Models
         /// <summary>Errors that occur during the getMailTips action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MailTipsError? Error { get; set; }
+        public ApiSdk.Models.MailTipsError? Error { get; set; }
 #nullable restore
 #else
-        public MailTipsError Error { get; set; }
+        public ApiSdk.Models.MailTipsError Error { get; set; }
 #endif
         /// <summary>The number of external members if the recipient is a distribution list.</summary>
         public int? ExternalMemberCount { get; set; }
@@ -63,19 +63,19 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The scope of the recipient. Possible values are: none, internal, external, externalPartner, externalNonParther. For example, an administrator can set another organization to be its &apos;partner&apos;. The scope is useful if an administrator wants certain mailtips to be accessible to certain scopes. It&apos;s also useful to senders to inform them that their message may leave the organization, helping them make the correct decisions about wording, tone and content.</summary>
-        public RecipientScopeType? RecipientScope { get; set; }
+        public ApiSdk.Models.RecipientScopeType? RecipientScope { get; set; }
         /// <summary>Recipients suggested based on previous contexts where they appear in the same message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Recipient>? RecipientSuggestions { get; set; }
+        public List<ApiSdk.Models.Recipient>? RecipientSuggestions { get; set; }
 #nullable restore
 #else
-        public List<Recipient> RecipientSuggestions { get; set; }
+        public List<ApiSdk.Models.Recipient> RecipientSuggestions { get; set; }
 #endif
         /// <summary>The number of members if the recipient is a distribution list.</summary>
         public int? TotalMemberCount { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MailTips"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MailTips"/> and sets the default values.
         /// </summary>
         public MailTips()
         {
@@ -84,12 +84,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MailTips"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MailTips"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MailTips CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MailTips CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MailTips();
+            return new ApiSdk.Models.MailTips();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -99,18 +99,18 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "automaticReplies", n => { AutomaticReplies = n.GetObjectValue<AutomaticRepliesMailTips>(AutomaticRepliesMailTips.CreateFromDiscriminatorValue); } },
+                { "automaticReplies", n => { AutomaticReplies = n.GetObjectValue<ApiSdk.Models.AutomaticRepliesMailTips>(ApiSdk.Models.AutomaticRepliesMailTips.CreateFromDiscriminatorValue); } },
                 { "customMailTip", n => { CustomMailTip = n.GetStringValue(); } },
                 { "deliveryRestricted", n => { DeliveryRestricted = n.GetBoolValue(); } },
                 { "emailAddress", n => { EmailAddress = n.GetObjectValue<ApiSdk.Models.EmailAddress>(ApiSdk.Models.EmailAddress.CreateFromDiscriminatorValue); } },
-                { "error", n => { Error = n.GetObjectValue<MailTipsError>(MailTipsError.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<ApiSdk.Models.MailTipsError>(ApiSdk.Models.MailTipsError.CreateFromDiscriminatorValue); } },
                 { "externalMemberCount", n => { ExternalMemberCount = n.GetIntValue(); } },
                 { "isModerated", n => { IsModerated = n.GetBoolValue(); } },
                 { "mailboxFull", n => { MailboxFull = n.GetBoolValue(); } },
                 { "maxMessageSize", n => { MaxMessageSize = n.GetIntValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "recipientScope", n => { RecipientScope = n.GetEnumValue<RecipientScopeType>(); } },
-                { "recipientSuggestions", n => { RecipientSuggestions = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "recipientScope", n => { RecipientScope = n.GetEnumValue<ApiSdk.Models.RecipientScopeType>(); } },
+                { "recipientSuggestions", n => { RecipientSuggestions = n.GetCollectionOfObjectValues<ApiSdk.Models.Recipient>(ApiSdk.Models.Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "totalMemberCount", n => { TotalMemberCount = n.GetIntValue(); } },
             };
         }
@@ -121,18 +121,18 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<AutomaticRepliesMailTips>("automaticReplies", AutomaticReplies);
+            writer.WriteObjectValue<ApiSdk.Models.AutomaticRepliesMailTips>("automaticReplies", AutomaticReplies);
             writer.WriteStringValue("customMailTip", CustomMailTip);
             writer.WriteBoolValue("deliveryRestricted", DeliveryRestricted);
             writer.WriteObjectValue<ApiSdk.Models.EmailAddress>("emailAddress", EmailAddress);
-            writer.WriteObjectValue<MailTipsError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.MailTipsError>("error", Error);
             writer.WriteIntValue("externalMemberCount", ExternalMemberCount);
             writer.WriteBoolValue("isModerated", IsModerated);
             writer.WriteBoolValue("mailboxFull", MailboxFull);
             writer.WriteIntValue("maxMessageSize", MaxMessageSize);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<RecipientScopeType>("recipientScope", RecipientScope);
-            writer.WriteCollectionOfObjectValues<Recipient>("recipientSuggestions", RecipientSuggestions);
+            writer.WriteEnumValue<ApiSdk.Models.RecipientScopeType>("recipientScope", RecipientScope);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Recipient>("recipientSuggestions", RecipientSuggestions);
             writer.WriteIntValue("totalMemberCount", TotalMemberCount);
             writer.WriteAdditionalData(AdditionalData);
         }

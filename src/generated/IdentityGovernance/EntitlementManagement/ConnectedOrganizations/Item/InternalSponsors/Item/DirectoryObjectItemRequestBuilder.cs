@@ -25,7 +25,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of identityGovernance entities.";
-            var builder = new RefRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.InternalSponsors.Item.Ref.RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             foreach (var cmd in execCommands)
@@ -35,14 +35,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.InternalSponsors.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/connectedOrganizations/{connectedOrganization%2Did}/internalSponsors/{directoryObject%2Did}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.InternalSponsors.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/connectedOrganizations/{connectedOrganization%2Did}/internalSponsors/{directoryObject%2Did}", rawUrl)

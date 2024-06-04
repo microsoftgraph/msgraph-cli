@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>List of recommended actions for a tenant to improve its security posture based on the attack simulation and training campaign attack type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RecommendedAction>? RecommendedActions { get; set; }
+        public List<ApiSdk.Models.RecommendedAction>? RecommendedActions { get; set; }
 #nullable restore
 #else
-        public List<RecommendedAction> RecommendedActions { get; set; }
+        public List<ApiSdk.Models.RecommendedAction> RecommendedActions { get; set; }
 #endif
         /// <summary>Number of valid users in the attack simulation and training campaign.</summary>
         public int? ResolvedTargetsCount { get; set; }
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.TrainingEventsContent TrainingEventsContent { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SimulationReportOverview"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SimulationReportOverview"/> and sets the default values.
         /// </summary>
         public SimulationReportOverview()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SimulationReportOverview"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SimulationReportOverview"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SimulationReportOverview CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SimulationReportOverview CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SimulationReportOverview();
+            return new ApiSdk.Models.SimulationReportOverview();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "recommendedActions", n => { RecommendedActions = n.GetCollectionOfObjectValues<RecommendedAction>(RecommendedAction.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "recommendedActions", n => { RecommendedActions = n.GetCollectionOfObjectValues<ApiSdk.Models.RecommendedAction>(ApiSdk.Models.RecommendedAction.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "resolvedTargetsCount", n => { ResolvedTargetsCount = n.GetIntValue(); } },
                 { "simulationEventsContent", n => { SimulationEventsContent = n.GetObjectValue<ApiSdk.Models.SimulationEventsContent>(ApiSdk.Models.SimulationEventsContent.CreateFromDiscriminatorValue); } },
                 { "trainingEventsContent", n => { TrainingEventsContent = n.GetObjectValue<ApiSdk.Models.TrainingEventsContent>(ApiSdk.Models.TrainingEventsContent.CreateFromDiscriminatorValue); } },
@@ -86,7 +86,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<RecommendedAction>("recommendedActions", RecommendedActions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RecommendedAction>("recommendedActions", RecommendedActions);
             writer.WriteIntValue("resolvedTargetsCount", ResolvedTargetsCount);
             writer.WriteObjectValue<ApiSdk.Models.SimulationEventsContent>("simulationEventsContent", SimulationEventsContent);
             writer.WriteObjectValue<ApiSdk.Models.TrainingEventsContent>("trainingEventsContent", TrainingEventsContent);

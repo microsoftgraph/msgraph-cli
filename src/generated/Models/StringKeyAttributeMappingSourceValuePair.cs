@@ -31,13 +31,13 @@ namespace ApiSdk.Models
         /// <summary>The value of the parameter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AttributeMappingSource? Value { get; set; }
+        public ApiSdk.Models.AttributeMappingSource? Value { get; set; }
 #nullable restore
 #else
-        public AttributeMappingSource Value { get; set; }
+        public ApiSdk.Models.AttributeMappingSource Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="StringKeyAttributeMappingSourceValuePair"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.StringKeyAttributeMappingSourceValuePair"/> and sets the default values.
         /// </summary>
         public StringKeyAttributeMappingSourceValuePair()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="StringKeyAttributeMappingSourceValuePair"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.StringKeyAttributeMappingSourceValuePair"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static StringKeyAttributeMappingSourceValuePair CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.StringKeyAttributeMappingSourceValuePair CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new StringKeyAttributeMappingSourceValuePair();
+            return new ApiSdk.Models.StringKeyAttributeMappingSourceValuePair();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
             {
                 { "key", n => { Key = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "value", n => { Value = n.GetObjectValue<AttributeMappingSource>(AttributeMappingSource.CreateFromDiscriminatorValue); } },
+                { "value", n => { Value = n.GetObjectValue<ApiSdk.Models.AttributeMappingSource>(ApiSdk.Models.AttributeMappingSource.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -75,7 +75,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("key", Key);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<AttributeMappingSource>("value", Value);
+            writer.WriteObjectValue<ApiSdk.Models.AttributeMappingSource>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

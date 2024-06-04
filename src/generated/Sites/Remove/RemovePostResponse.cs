@@ -8,7 +8,7 @@ using System;
 namespace ApiSdk.Sites.Remove
 {
     #pragma warning disable CS1591
-    public class RemovePostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class RemovePostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
@@ -22,12 +22,12 @@ namespace ApiSdk.Sites.Remove
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RemovePostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Sites.Remove.RemovePostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RemovePostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Sites.Remove.RemovePostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RemovePostResponse();
+            return new ApiSdk.Sites.Remove.RemovePostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

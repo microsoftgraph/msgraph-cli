@@ -16,10 +16,10 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CustomExtensionData? Data { get; set; }
+        public ApiSdk.Models.CustomExtensionData? Data { get; set; }
 #nullable restore
 #else
-        public CustomExtensionData Data { get; set; }
+        public ApiSdk.Models.CustomExtensionData Data { get; set; }
 #endif
         /// <summary>The source property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -38,7 +38,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         public string Type { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ResumePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Resume.ResumePostRequestBody"/> and sets the default values.
         /// </summary>
         public ResumePostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ResumePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Resume.ResumePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ResumePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Resume.ResumePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ResumePostRequestBody();
+            return new ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Resume.ResumePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,7 +62,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetObjectValue<CustomExtensionData>(CustomExtensionData.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<ApiSdk.Models.CustomExtensionData>(ApiSdk.Models.CustomExtensionData.CreateFromDiscriminatorValue); } },
                 { "source", n => { Source = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
@@ -74,7 +74,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<CustomExtensionData>("data", Data);
+            writer.WriteObjectValue<ApiSdk.Models.CustomExtensionData>("data", Data);
             writer.WriteStringValue("source", Source);
             writer.WriteStringValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);

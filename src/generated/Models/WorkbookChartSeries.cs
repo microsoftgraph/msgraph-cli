@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookChartSeries : Entity, IParsable
+    public class WorkbookChartSeries : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents the formatting of a chart series, which includes fill and line formatting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartSeriesFormat? Format { get; set; }
+        public ApiSdk.Models.WorkbookChartSeriesFormat? Format { get; set; }
 #nullable restore
 #else
-        public WorkbookChartSeriesFormat Format { get; set; }
+        public ApiSdk.Models.WorkbookChartSeriesFormat Format { get; set; }
 #endif
         /// <summary>Represents the name of a series in a chart.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,20 +29,20 @@ namespace ApiSdk.Models
         /// <summary>Represents a collection of all points in the series. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookChartPoint>? Points { get; set; }
+        public List<ApiSdk.Models.WorkbookChartPoint>? Points { get; set; }
 #nullable restore
 #else
-        public List<WorkbookChartPoint> Points { get; set; }
+        public List<ApiSdk.Models.WorkbookChartPoint> Points { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookChartSeries"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookChartSeries"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookChartSeries CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookChartSeries CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookChartSeries();
+            return new ApiSdk.Models.WorkbookChartSeries();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -52,9 +52,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "format", n => { Format = n.GetObjectValue<WorkbookChartSeriesFormat>(WorkbookChartSeriesFormat.CreateFromDiscriminatorValue); } },
+                { "format", n => { Format = n.GetObjectValue<ApiSdk.Models.WorkbookChartSeriesFormat>(ApiSdk.Models.WorkbookChartSeriesFormat.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "points", n => { Points = n.GetCollectionOfObjectValues<WorkbookChartPoint>(WorkbookChartPoint.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "points", n => { Points = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookChartPoint>(ApiSdk.Models.WorkbookChartPoint.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -65,9 +65,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartSeriesFormat>("format", Format);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartSeriesFormat>("format", Format);
             writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfObjectValues<WorkbookChartPoint>("points", Points);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookChartPoint>("points", Points);
         }
     }
 }

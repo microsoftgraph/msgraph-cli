@@ -30,7 +30,7 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSect
         {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.horizontalSection entity.";
-            var builder = new ColumnsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.Columns.ColumnsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -201,7 +201,7 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSect
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<HorizontalSection>(HorizontalSection.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.HorizontalSection>(ApiSdk.Models.HorizontalSection.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -224,14 +224,14 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSect
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="HorizontalSectionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.HorizontalSectionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public HorizontalSectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/pages/{baseSitePage%2Did}/graph.sitePage/canvasLayout/horizontalSections/{horizontalSection%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="HorizontalSectionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.HorizontalSectionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public HorizontalSectionItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/pages/{baseSitePage%2Did}/graph.sitePage/canvasLayout/horizontalSections/{horizontalSection%2Did}{?%24expand,%24select}", rawUrl)
@@ -263,11 +263,11 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSect
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HorizontalSectionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.HorizontalSectionItemRequestBuilder.HorizontalSectionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HorizontalSectionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.HorizontalSectionItemRequestBuilder.HorizontalSectionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -283,11 +283,11 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSect
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(HorizontalSection body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.HorizontalSection body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(HorizontalSection body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.HorizontalSection body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

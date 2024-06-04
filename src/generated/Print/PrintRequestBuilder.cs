@@ -35,7 +35,7 @@ namespace ApiSdk.Print
         {
             var command = new Command("connectors");
             command.Description = "Provides operations to manage the connectors property of the microsoft.graph.print entity.";
-            var builder = new ConnectorsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.Connectors.ConnectorsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -108,7 +108,7 @@ namespace ApiSdk.Print
         {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.print entity.";
-            var builder = new OperationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.Operations.OperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -180,7 +180,7 @@ namespace ApiSdk.Print
         {
             var command = new Command("printers");
             command.Description = "Provides operations to manage the printers property of the microsoft.graph.print entity.";
-            var builder = new PrintersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.Printers.PrintersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -207,7 +207,7 @@ namespace ApiSdk.Print
         {
             var command = new Command("services");
             command.Description = "Provides operations to manage the services property of the microsoft.graph.print entity.";
-            var builder = new ServicesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.Services.ServicesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -234,7 +234,7 @@ namespace ApiSdk.Print
         {
             var command = new Command("shares");
             command.Description = "Provides operations to manage the shares property of the microsoft.graph.print entity.";
-            var builder = new SharesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.Shares.SharesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -261,7 +261,7 @@ namespace ApiSdk.Print
         {
             var command = new Command("task-definitions");
             command.Description = "Provides operations to manage the taskDefinitions property of the microsoft.graph.print entity.";
-            var builder = new TaskDefinitionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.TaskDefinitions.TaskDefinitionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -281,14 +281,14 @@ namespace ApiSdk.Print
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PrintRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.PrintRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PrintRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PrintRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.PrintRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PrintRequestBuilder(string rawUrl) : base("{+baseurl}/print{?%24expand,%24select}", rawUrl)
@@ -301,11 +301,11 @@ namespace ApiSdk.Print
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Print.PrintRequestBuilder.PrintRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Print.PrintRequestBuilder.PrintRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

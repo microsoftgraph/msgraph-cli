@@ -124,14 +124,14 @@ namespace ApiSdk.Chats.GetAllMessages
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetAllMessagesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Chats.GetAllMessages.GetAllMessagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetAllMessagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/getAllMessages(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top,model*}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetAllMessagesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Chats.GetAllMessages.GetAllMessagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetAllMessagesRequestBuilder(string rawUrl) : base("{+baseurl}/chats/getAllMessages(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top,model*}", rawUrl)
@@ -144,11 +144,11 @@ namespace ApiSdk.Chats.GetAllMessages
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAllMessagesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Chats.GetAllMessages.GetAllMessagesRequestBuilder.GetAllMessagesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAllMessagesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Chats.GetAllMessages.GetAllMessagesRequestBuilder.GetAllMessagesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

@@ -21,7 +21,7 @@ namespace ApiSdk.Communications.Calls.Item.Mute
         public string ClientContext { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MutePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.Mute.MutePostRequestBody"/> and sets the default values.
         /// </summary>
         public MutePostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Communications.Calls.Item.Mute
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MutePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.Calls.Item.Mute.MutePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MutePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.Calls.Item.Mute.MutePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MutePostRequestBody();
+            return new ApiSdk.Communications.Calls.Item.Mute.MutePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

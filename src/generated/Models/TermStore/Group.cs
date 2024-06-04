@@ -37,24 +37,24 @@ namespace ApiSdk.Models.TermStore
         public string ParentSiteId { get; set; }
 #endif
         /// <summary>Returns the type of the group. Possible values are: global, system, and siteCollection.</summary>
-        public TermGroupScope? Scope { get; set; }
+        public ApiSdk.Models.TermStore.TermGroupScope? Scope { get; set; }
         /// <summary>All sets under the group in a term [store].</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Set>? Sets { get; set; }
+        public List<ApiSdk.Models.TermStore.Set>? Sets { get; set; }
 #nullable restore
 #else
-        public List<Set> Sets { get; set; }
+        public List<ApiSdk.Models.TermStore.Set> Sets { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Group"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermStore.Group"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Group CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TermStore.Group CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Group();
+            return new ApiSdk.Models.TermStore.Group();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,8 +68,8 @@ namespace ApiSdk.Models.TermStore
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "parentSiteId", n => { ParentSiteId = n.GetStringValue(); } },
-                { "scope", n => { Scope = n.GetEnumValue<TermGroupScope>(); } },
-                { "sets", n => { Sets = n.GetCollectionOfObjectValues<Set>(Set.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "scope", n => { Scope = n.GetEnumValue<ApiSdk.Models.TermStore.TermGroupScope>(); } },
+                { "sets", n => { Sets = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.Set>(ApiSdk.Models.TermStore.Set.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -84,8 +84,8 @@ namespace ApiSdk.Models.TermStore
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("parentSiteId", ParentSiteId);
-            writer.WriteEnumValue<TermGroupScope>("scope", Scope);
-            writer.WriteCollectionOfObjectValues<Set>("sets", Sets);
+            writer.WriteEnumValue<ApiSdk.Models.TermStore.TermGroupScope>("scope", Scope);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.Set>("sets", Sets);
         }
     }
 }

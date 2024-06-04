@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Definition of the test object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ObjectDefinition? Definition { get; set; }
+        public ApiSdk.Models.ObjectDefinition? Definition { get; set; }
 #nullable restore
 #else
-        public ObjectDefinition Definition { get; set; }
+        public ApiSdk.Models.ObjectDefinition Definition { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,13 +31,13 @@ namespace ApiSdk.Models
         /// <summary>Property values of the test object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<StringKeyObjectValuePair>? Properties { get; set; }
+        public List<ApiSdk.Models.StringKeyObjectValuePair>? Properties { get; set; }
 #nullable restore
 #else
-        public List<StringKeyObjectValuePair> Properties { get; set; }
+        public List<ApiSdk.Models.StringKeyObjectValuePair> Properties { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ExpressionInputObject"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ExpressionInputObject"/> and sets the default values.
         /// </summary>
         public ExpressionInputObject()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ExpressionInputObject"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExpressionInputObject"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ExpressionInputObject CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ExpressionInputObject CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ExpressionInputObject();
+            return new ApiSdk.Models.ExpressionInputObject();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,9 +61,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "definition", n => { Definition = n.GetObjectValue<ObjectDefinition>(ObjectDefinition.CreateFromDiscriminatorValue); } },
+                { "definition", n => { Definition = n.GetObjectValue<ApiSdk.Models.ObjectDefinition>(ApiSdk.Models.ObjectDefinition.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "properties", n => { Properties = n.GetCollectionOfObjectValues<StringKeyObjectValuePair>(StringKeyObjectValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "properties", n => { Properties = n.GetCollectionOfObjectValues<ApiSdk.Models.StringKeyObjectValuePair>(ApiSdk.Models.StringKeyObjectValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -73,9 +73,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ObjectDefinition>("definition", Definition);
+            writer.WriteObjectValue<ApiSdk.Models.ObjectDefinition>("definition", Definition);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<StringKeyObjectValuePair>("properties", Properties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.StringKeyObjectValuePair>("properties", Properties);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

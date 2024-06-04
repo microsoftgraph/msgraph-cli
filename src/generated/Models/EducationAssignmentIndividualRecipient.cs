@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationAssignmentIndividualRecipient : EducationAssignmentRecipient, IParsable
+    public class EducationAssignmentIndividualRecipient : ApiSdk.Models.EducationAssignmentRecipient, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A collection of IDs of the recipients.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public List<string> Recipients { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EducationAssignmentIndividualRecipient"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EducationAssignmentIndividualRecipient"/> and sets the default values.
         /// </summary>
         public EducationAssignmentIndividualRecipient() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationAssignmentIndividualRecipient"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationAssignmentIndividualRecipient"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationAssignmentIndividualRecipient CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationAssignmentIndividualRecipient CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationAssignmentIndividualRecipient();
+            return new ApiSdk.Models.EducationAssignmentIndividualRecipient();
         }
         /// <summary>
         /// The deserialization information for the current model

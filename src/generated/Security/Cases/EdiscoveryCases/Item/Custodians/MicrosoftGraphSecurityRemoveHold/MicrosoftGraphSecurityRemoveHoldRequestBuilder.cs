@@ -43,7 +43,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSe
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<RemoveHoldPostRequestBody>(RemoveHoldPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold.RemoveHoldPostRequestBody>(ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold.RemoveHoldPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -62,14 +62,14 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSe
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftGraphSecurityRemoveHoldRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold.MicrosoftGraphSecurityRemoveHoldRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphSecurityRemoveHoldRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/microsoft.graph.security.removeHold", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftGraphSecurityRemoveHoldRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold.MicrosoftGraphSecurityRemoveHoldRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphSecurityRemoveHoldRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/microsoft.graph.security.removeHold", rawUrl)
@@ -83,11 +83,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSe
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(RemoveHoldPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold.RemoveHoldPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(RemoveHoldPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold.RemoveHoldPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

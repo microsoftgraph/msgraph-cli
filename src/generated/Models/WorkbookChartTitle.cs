@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookChartTitle : Entity, IParsable
+    public class WorkbookChartTitle : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents the formatting of a chart title, which includes fill and font formatting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartTitleFormat? Format { get; set; }
+        public ApiSdk.Models.WorkbookChartTitleFormat? Format { get; set; }
 #nullable restore
 #else
-        public WorkbookChartTitleFormat Format { get; set; }
+        public ApiSdk.Models.WorkbookChartTitleFormat Format { get; set; }
 #endif
         /// <summary>Boolean value representing if the chart title will overlay the chart or not.</summary>
         public bool? Overlay { get; set; }
@@ -33,12 +33,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookChartTitle"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookChartTitle"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookChartTitle CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookChartTitle CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookChartTitle();
+            return new ApiSdk.Models.WorkbookChartTitle();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "format", n => { Format = n.GetObjectValue<WorkbookChartTitleFormat>(WorkbookChartTitleFormat.CreateFromDiscriminatorValue); } },
+                { "format", n => { Format = n.GetObjectValue<ApiSdk.Models.WorkbookChartTitleFormat>(ApiSdk.Models.WorkbookChartTitleFormat.CreateFromDiscriminatorValue); } },
                 { "overlay", n => { Overlay = n.GetBoolValue(); } },
                 { "text", n => { Text = n.GetStringValue(); } },
                 { "visible", n => { Visible = n.GetBoolValue(); } },
@@ -62,7 +62,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartTitleFormat>("format", Format);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartTitleFormat>("format", Format);
             writer.WriteBoolValue("overlay", Overlay);
             writer.WriteStringValue("text", Text);
             writer.WriteBoolValue("visible", Visible);

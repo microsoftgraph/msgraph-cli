@@ -53,7 +53,7 @@ namespace ApiSdk.Applications.Item.AddPassword
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AddPasswordPostRequestBody>(AddPasswordPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Applications.Item.AddPassword.AddPasswordPostRequestBody>(ApiSdk.Applications.Item.AddPassword.AddPasswordPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -74,14 +74,14 @@ namespace ApiSdk.Applications.Item.AddPassword
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AddPasswordRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.AddPassword.AddPasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AddPasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/addPassword", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AddPasswordRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.AddPassword.AddPasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AddPasswordRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/addPassword", rawUrl)
@@ -95,11 +95,11 @@ namespace ApiSdk.Applications.Item.AddPassword
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AddPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Applications.Item.AddPassword.AddPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(AddPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Applications.Item.AddPassword.AddPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

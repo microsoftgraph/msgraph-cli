@@ -30,7 +30,7 @@ namespace ApiSdk.Security.Labels.FilePlanReferences
         public Tuple<List<Command>, List<Command>> BuildCommand()
         {
             var executables = new List<Command>();
-            var builder = new FilePlanReferenceTemplateItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Labels.FilePlanReferences.Item.FilePlanReferenceTemplateItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());
@@ -44,7 +44,7 @@ namespace ApiSdk.Security.Labels.FilePlanReferences
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Labels.FilePlanReferences.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -197,14 +197,14 @@ namespace ApiSdk.Security.Labels.FilePlanReferences
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="FilePlanReferencesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Labels.FilePlanReferences.FilePlanReferencesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FilePlanReferencesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/labels/filePlanReferences{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="FilePlanReferencesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Labels.FilePlanReferences.FilePlanReferencesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FilePlanReferencesRequestBuilder(string rawUrl) : base("{+baseurl}/security/labels/filePlanReferences{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -217,11 +217,11 @@ namespace ApiSdk.Security.Labels.FilePlanReferences
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FilePlanReferencesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.Labels.FilePlanReferences.FilePlanReferencesRequestBuilder.FilePlanReferencesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FilePlanReferencesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.Labels.FilePlanReferences.FilePlanReferencesRequestBuilder.FilePlanReferencesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

@@ -16,53 +16,53 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc
         /// <summary>The endPeriod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? EndPeriod { get; set; }
+        public ApiSdk.Models.Json? EndPeriod { get; set; }
 #nullable restore
 #else
-        public Json EndPeriod { get; set; }
+        public ApiSdk.Models.Json EndPeriod { get; set; }
 #endif
         /// <summary>The nper property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Nper { get; set; }
+        public ApiSdk.Models.Json? Nper { get; set; }
 #nullable restore
 #else
-        public Json Nper { get; set; }
+        public ApiSdk.Models.Json Nper { get; set; }
 #endif
         /// <summary>The pv property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Pv { get; set; }
+        public ApiSdk.Models.Json? Pv { get; set; }
 #nullable restore
 #else
-        public Json Pv { get; set; }
+        public ApiSdk.Models.Json Pv { get; set; }
 #endif
         /// <summary>The rate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Rate { get; set; }
+        public ApiSdk.Models.Json? Rate { get; set; }
 #nullable restore
 #else
-        public Json Rate { get; set; }
+        public ApiSdk.Models.Json Rate { get; set; }
 #endif
         /// <summary>The startPeriod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? StartPeriod { get; set; }
+        public ApiSdk.Models.Json? StartPeriod { get; set; }
 #nullable restore
 #else
-        public Json StartPeriod { get; set; }
+        public ApiSdk.Models.Json StartPeriod { get; set; }
 #endif
         /// <summary>The type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Type { get; set; }
+        public ApiSdk.Models.Json? Type { get; set; }
 #nullable restore
 #else
-        public Json Type { get; set; }
+        public ApiSdk.Models.Json Type { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CumPrincPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc.CumPrincPostRequestBody"/> and sets the default values.
         /// </summary>
         public CumPrincPostRequestBody()
         {
@@ -71,12 +71,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CumPrincPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc.CumPrincPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CumPrincPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc.CumPrincPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CumPrincPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc.CumPrincPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -86,12 +86,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "endPeriod", n => { EndPeriod = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "nper", n => { Nper = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "pv", n => { Pv = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "rate", n => { Rate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "startPeriod", n => { StartPeriod = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "endPeriod", n => { EndPeriod = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "nper", n => { Nper = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "pv", n => { Pv = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "rate", n => { Rate = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "startPeriod", n => { StartPeriod = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -101,12 +101,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("endPeriod", EndPeriod);
-            writer.WriteObjectValue<Json>("nper", Nper);
-            writer.WriteObjectValue<Json>("pv", Pv);
-            writer.WriteObjectValue<Json>("rate", Rate);
-            writer.WriteObjectValue<Json>("startPeriod", StartPeriod);
-            writer.WriteObjectValue<Json>("type", Type);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("endPeriod", EndPeriod);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("nper", Nper);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("pv", Pv);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("rate", Rate);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("startPeriod", StartPeriod);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

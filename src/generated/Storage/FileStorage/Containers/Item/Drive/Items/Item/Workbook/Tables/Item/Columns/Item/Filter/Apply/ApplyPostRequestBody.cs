@@ -16,13 +16,13 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         /// <summary>The criteria property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookFilterCriteria? Criteria { get; set; }
+        public ApiSdk.Models.WorkbookFilterCriteria? Criteria { get; set; }
 #nullable restore
 #else
-        public WorkbookFilterCriteria Criteria { get; set; }
+        public ApiSdk.Models.WorkbookFilterCriteria Criteria { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ApplyPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.Apply.ApplyPostRequestBody"/> and sets the default values.
         /// </summary>
         public ApplyPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ApplyPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.Apply.ApplyPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ApplyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.Apply.ApplyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ApplyPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.Apply.ApplyPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "criteria", n => { Criteria = n.GetObjectValue<WorkbookFilterCriteria>(WorkbookFilterCriteria.CreateFromDiscriminatorValue); } },
+                { "criteria", n => { Criteria = n.GetObjectValue<ApiSdk.Models.WorkbookFilterCriteria>(ApiSdk.Models.WorkbookFilterCriteria.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<WorkbookFilterCriteria>("criteria", Criteria);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookFilterCriteria>("criteria", Criteria);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

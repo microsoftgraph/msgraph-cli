@@ -21,7 +21,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Abort
         public string Reason { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AbortPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.Printers.Item.Jobs.Item.Abort.AbortPostRequestBody"/> and sets the default values.
         /// </summary>
         public AbortPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Abort
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AbortPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Print.Printers.Item.Jobs.Item.Abort.AbortPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AbortPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Print.Printers.Item.Jobs.Item.Abort.AbortPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AbortPostRequestBody();
+            return new ApiSdk.Print.Printers.Item.Jobs.Item.Abort.AbortPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

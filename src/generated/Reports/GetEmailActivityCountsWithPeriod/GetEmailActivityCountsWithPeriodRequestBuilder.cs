@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetEmailActivityCountsWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetEmailActivityCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetEmailActivityCountsWithPeriod.GetEmailActivityCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetEmailActivityCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getEmailActivityCounts(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetEmailActivityCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetEmailActivityCountsWithPeriod.GetEmailActivityCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetEmailActivityCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getEmailActivityCounts(period='{period}')", rawUrl)

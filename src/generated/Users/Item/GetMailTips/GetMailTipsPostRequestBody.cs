@@ -22,9 +22,9 @@ namespace ApiSdk.Users.Item.GetMailTips
         public List<string> EmailAddresses { get; set; }
 #endif
         /// <summary>The MailTipsOptions property</summary>
-        public MailTipsType? MailTipsOptions { get; set; }
+        public ApiSdk.Models.MailTipsType? MailTipsOptions { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="GetMailTipsPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.GetMailTips.GetMailTipsPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetMailTipsPostRequestBody()
         {
@@ -33,12 +33,12 @@ namespace ApiSdk.Users.Item.GetMailTips
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetMailTipsPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.GetMailTips.GetMailTipsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetMailTipsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.GetMailTips.GetMailTipsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetMailTipsPostRequestBody();
+            return new ApiSdk.Users.Item.GetMailTips.GetMailTipsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,7 +49,7 @@ namespace ApiSdk.Users.Item.GetMailTips
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "EmailAddresses", n => { EmailAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "MailTipsOptions", n => { MailTipsOptions = n.GetEnumValue<MailTipsType>(); } },
+                { "MailTipsOptions", n => { MailTipsOptions = n.GetEnumValue<ApiSdk.Models.MailTipsType>(); } },
             };
         }
         /// <summary>
@@ -60,7 +60,7 @@ namespace ApiSdk.Users.Item.GetMailTips
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("EmailAddresses", EmailAddresses);
-            writer.WriteEnumValue<MailTipsType>("MailTipsOptions", MailTipsOptions);
+            writer.WriteEnumValue<ApiSdk.Models.MailTipsType>("MailTipsOptions", MailTipsOptions);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

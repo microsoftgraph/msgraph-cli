@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationSubmissionResource : Entity, IParsable
+    public class EducationSubmissionResource : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Pointer to the assignment from which the resource was copied, and if null, the student uploaded the resource.</summary>
@@ -21,20 +21,20 @@ namespace ApiSdk.Models
         /// <summary>Resource object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EducationResource? Resource { get; set; }
+        public ApiSdk.Models.EducationResource? Resource { get; set; }
 #nullable restore
 #else
-        public EducationResource Resource { get; set; }
+        public ApiSdk.Models.EducationResource Resource { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationSubmissionResource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationSubmissionResource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationSubmissionResource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationSubmissionResource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationSubmissionResource();
+            return new ApiSdk.Models.EducationSubmissionResource();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "assignmentResourceUrl", n => { AssignmentResourceUrl = n.GetStringValue(); } },
-                { "resource", n => { Resource = n.GetObjectValue<EducationResource>(EducationResource.CreateFromDiscriminatorValue); } },
+                { "resource", n => { Resource = n.GetObjectValue<ApiSdk.Models.EducationResource>(ApiSdk.Models.EducationResource.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("assignmentResourceUrl", AssignmentResourceUrl);
-            writer.WriteObjectValue<EducationResource>("resource", Resource);
+            writer.WriteObjectValue<ApiSdk.Models.EducationResource>("resource", Resource);
         }
     }
 }

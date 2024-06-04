@@ -21,7 +21,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.AddCopy
         public string ContentType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AddCopyPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.ContentTypes.AddCopy.AddCopyPostRequestBody"/> and sets the default values.
         /// </summary>
         public AddCopyPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Sites.Item.ContentTypes.AddCopy
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddCopyPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Sites.Item.ContentTypes.AddCopy.AddCopyPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AddCopyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Sites.Item.ContentTypes.AddCopy.AddCopyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddCopyPostRequestBody();
+            return new ApiSdk.Sites.Item.ContentTypes.AddCopy.AddCopyPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

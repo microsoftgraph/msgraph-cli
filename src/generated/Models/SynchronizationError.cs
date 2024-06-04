@@ -39,7 +39,7 @@ namespace ApiSdk.Models
         /// <summary>The action to take to resolve the error. For example, false.</summary>
         public bool? TenantActionable { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SynchronizationError"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SynchronizationError"/> and sets the default values.
         /// </summary>
         public SynchronizationError()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SynchronizationError"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SynchronizationError"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SynchronizationError CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SynchronizationError CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SynchronizationError();
+            return new ApiSdk.Models.SynchronizationError();
         }
         /// <summary>
         /// The deserialization information for the current model

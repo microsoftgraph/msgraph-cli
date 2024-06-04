@@ -23,13 +23,13 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>Enables the developer to define the appearance of the content and configure conditions that dictate when the template should be displayed. Maximum of 2 search result templates per connection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DisplayTemplate>? SearchResultTemplates { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.DisplayTemplate>? SearchResultTemplates { get; set; }
 #nullable restore
 #else
-        public List<DisplayTemplate> SearchResultTemplates { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.DisplayTemplate> SearchResultTemplates { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SearchSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ExternalConnectors.SearchSettings"/> and sets the default values.
         /// </summary>
         public SearchSettings()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SearchSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.SearchSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SearchSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ExternalConnectors.SearchSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SearchSettings();
+            return new ApiSdk.Models.ExternalConnectors.SearchSettings();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.ExternalConnectors
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "searchResultTemplates", n => { SearchResultTemplates = n.GetCollectionOfObjectValues<DisplayTemplate>(DisplayTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "searchResultTemplates", n => { SearchResultTemplates = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.DisplayTemplate>(ApiSdk.Models.ExternalConnectors.DisplayTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Models.ExternalConnectors
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<DisplayTemplate>("searchResultTemplates", SearchResultTemplates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.DisplayTemplate>("searchResultTemplates", SearchResultTemplates);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

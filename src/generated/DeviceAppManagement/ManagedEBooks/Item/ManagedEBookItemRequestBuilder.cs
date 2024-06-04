@@ -34,7 +34,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item
         {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.managedEBook entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.AssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -61,7 +61,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item
         {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
-            var builder = new AssignRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assign.AssignRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -114,7 +114,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item
         {
             var command = new Command("device-states");
             command.Description = "Provides operations to manage the deviceStates property of the microsoft.graph.managedEBook entity.";
-            var builder = new DeviceStatesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.DeviceStatesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -194,7 +194,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item
         {
             var command = new Command("install-summary");
             command.Description = "Provides operations to manage the installSummary property of the microsoft.graph.managedEBook entity.";
-            var builder = new InstallSummaryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary.InstallSummaryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -237,7 +237,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ManagedEBook>(ManagedEBook.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ManagedEBook>(ApiSdk.Models.ManagedEBook.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -265,7 +265,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item
         {
             var command = new Command("user-state-summary");
             command.Description = "Provides operations to manage the userStateSummary property of the microsoft.graph.managedEBook entity.";
-            var builder = new UserStateSummaryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.UserStateSummaryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -285,14 +285,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedEBookItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.ManagedEBooks.Item.ManagedEBookItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ManagedEBookItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedEBookItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.ManagedEBooks.Item.ManagedEBookItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ManagedEBookItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}{?%24expand,%24select}", rawUrl)
@@ -324,11 +324,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedEBookItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.ManagedEBooks.Item.ManagedEBookItemRequestBuilder.ManagedEBookItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedEBookItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.ManagedEBooks.Item.ManagedEBookItemRequestBuilder.ManagedEBookItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -344,11 +344,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ManagedEBook body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ManagedEBook body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ManagedEBook body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ManagedEBook body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

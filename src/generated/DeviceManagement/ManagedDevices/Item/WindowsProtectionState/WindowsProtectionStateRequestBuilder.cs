@@ -65,7 +65,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsProtectionState
         {
             var command = new Command("detected-malware-state");
             command.Description = "Provides operations to manage the detectedMalwareState property of the microsoft.graph.windowsProtectionState entity.";
-            var builder = new DetectedMalwareStateRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsProtectionState.DetectedMalwareState.DetectedMalwareStateRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -188,14 +188,14 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsProtectionState
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="WindowsProtectionStateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsProtectionState.WindowsProtectionStateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WindowsProtectionStateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/windowsProtectionState{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="WindowsProtectionStateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsProtectionState.WindowsProtectionStateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public WindowsProtectionStateRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/windowsProtectionState{?%24expand,%24select}", rawUrl)
@@ -227,11 +227,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsProtectionState
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsProtectionStateRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsProtectionState.WindowsProtectionStateRequestBuilder.WindowsProtectionStateRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsProtectionStateRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsProtectionState.WindowsProtectionStateRequestBuilder.WindowsProtectionStateRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

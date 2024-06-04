@@ -43,7 +43,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WorkbookWorksheetProtectionOptions"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WorkbookWorksheetProtectionOptions"/> and sets the default values.
         /// </summary>
         public WorkbookWorksheetProtectionOptions()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookWorksheetProtectionOptions"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookWorksheetProtectionOptions"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WorkbookWorksheetProtectionOptions CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WorkbookWorksheetProtectionOptions CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookWorksheetProtectionOptions();
+            return new ApiSdk.Models.WorkbookWorksheetProtectionOptions();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The applicationFilter property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ConditionalAccessFilter? ApplicationFilter { get; set; }
+        public ApiSdk.Models.ConditionalAccessFilter? ApplicationFilter { get; set; }
 #nullable restore
 #else
-        public ConditionalAccessFilter ApplicationFilter { get; set; }
+        public ApiSdk.Models.ConditionalAccessFilter ApplicationFilter { get; set; }
 #endif
         /// <summary>Can be one of the following:  The list of client IDs (appId) explicitly excluded from the policy. Office365 - For the list of apps included in Office365, see Apps included in Conditional Access Office 365 app suite  MicrosoftAdminPortals - For more information, see Conditional Access Target resources: Microsoft Admin Portals</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ConditionalAccessApplications"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ConditionalAccessApplications"/> and sets the default values.
         /// </summary>
         public ConditionalAccessApplications()
         {
@@ -70,12 +70,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConditionalAccessApplications"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConditionalAccessApplications"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ConditionalAccessApplications CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ConditionalAccessApplications CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConditionalAccessApplications();
+            return new ApiSdk.Models.ConditionalAccessApplications();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -85,7 +85,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "applicationFilter", n => { ApplicationFilter = n.GetObjectValue<ConditionalAccessFilter>(ConditionalAccessFilter.CreateFromDiscriminatorValue); } },
+                { "applicationFilter", n => { ApplicationFilter = n.GetObjectValue<ApiSdk.Models.ConditionalAccessFilter>(ApiSdk.Models.ConditionalAccessFilter.CreateFromDiscriminatorValue); } },
                 { "excludeApplications", n => { ExcludeApplications = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "includeApplications", n => { IncludeApplications = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "includeAuthenticationContextClassReferences", n => { IncludeAuthenticationContextClassReferences = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
@@ -100,7 +100,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ConditionalAccessFilter>("applicationFilter", ApplicationFilter);
+            writer.WriteObjectValue<ApiSdk.Models.ConditionalAccessFilter>("applicationFilter", ApplicationFilter);
             writer.WriteCollectionOfPrimitiveValues<string>("excludeApplications", ExcludeApplications);
             writer.WriteCollectionOfPrimitiveValues<string>("includeApplications", IncludeApplications);
             writer.WriteCollectionOfPrimitiveValues<string>("includeAuthenticationContextClassReferences", IncludeAuthenticationContextClassReferences);

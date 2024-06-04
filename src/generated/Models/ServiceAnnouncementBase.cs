@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ServiceAnnouncementBase : Entity, IParsable
+    public class ServiceAnnouncementBase : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>More details about service event. This property doesn&apos;t support filters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<KeyValuePair>? Details { get; set; }
+        public List<ApiSdk.Models.KeyValuePair>? Details { get; set; }
 #nullable restore
 #else
-        public List<KeyValuePair> Details { get; set; }
+        public List<ApiSdk.Models.KeyValuePair> Details { get; set; }
 #endif
         /// <summary>The end time of the service event.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
@@ -35,17 +35,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ServiceAnnouncementBase"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ServiceAnnouncementBase"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ServiceAnnouncementBase CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ServiceAnnouncementBase CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.serviceHealthIssue" => new ServiceHealthIssue(),
-                "#microsoft.graph.serviceUpdateMessage" => new ServiceUpdateMessage(),
-                _ => new ServiceAnnouncementBase(),
+                "#microsoft.graph.serviceHealthIssue" => new ApiSdk.Models.ServiceHealthIssue(),
+                "#microsoft.graph.serviceUpdateMessage" => new ApiSdk.Models.ServiceUpdateMessage(),
+                _ => new ApiSdk.Models.ServiceAnnouncementBase(),
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "details", n => { Details = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "details", n => { Details = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>(ApiSdk.Models.KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
@@ -71,7 +71,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<KeyValuePair>("details", Details);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>("details", Details);
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);

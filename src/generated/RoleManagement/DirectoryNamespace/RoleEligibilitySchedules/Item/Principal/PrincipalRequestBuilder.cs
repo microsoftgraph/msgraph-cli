@@ -74,14 +74,14 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PrincipalRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules.Item.Principal.PrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PrincipalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleEligibilitySchedules/{unifiedRoleEligibilitySchedule%2Did}/principal{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PrincipalRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules.Item.Principal.PrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/roleEligibilitySchedules/{unifiedRoleEligibilitySchedule%2Did}/principal{?%24expand,%24select}", rawUrl)
@@ -94,11 +94,11 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrincipalRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules.Item.Principal.PrincipalRequestBuilder.PrincipalRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrincipalRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules.Item.Principal.PrincipalRequestBuilder.PrincipalRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

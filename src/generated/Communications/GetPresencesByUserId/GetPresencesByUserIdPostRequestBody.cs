@@ -21,7 +21,7 @@ namespace ApiSdk.Communications.GetPresencesByUserId
         public List<string> Ids { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="GetPresencesByUserIdPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.GetPresencesByUserId.GetPresencesByUserIdPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetPresencesByUserIdPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Communications.GetPresencesByUserId
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetPresencesByUserIdPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.GetPresencesByUserId.GetPresencesByUserIdPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetPresencesByUserIdPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.GetPresencesByUserId.GetPresencesByUserIdPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetPresencesByUserIdPostRequestBody();
+            return new ApiSdk.Communications.GetPresencesByUserId.GetPresencesByUserIdPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

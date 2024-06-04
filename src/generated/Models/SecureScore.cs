@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SecureScore : Entity, IParsable
+    public class SecureScore : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Active user count of the given tenant.</summary>
@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Average score by different scopes (for example, average by industry, average by seating) and control category (Identity, Data, Device, Apps, Infrastructure) within the scope.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AverageComparativeScore>? AverageComparativeScores { get; set; }
+        public List<ApiSdk.Models.AverageComparativeScore>? AverageComparativeScores { get; set; }
 #nullable restore
 #else
-        public List<AverageComparativeScore> AverageComparativeScores { get; set; }
+        public List<ApiSdk.Models.AverageComparativeScore> AverageComparativeScores { get; set; }
 #endif
         /// <summary>GUID string for tenant ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,10 +31,10 @@ namespace ApiSdk.Models
         /// <summary>Contains tenant scores for a set of controls.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ControlScore>? ControlScores { get; set; }
+        public List<ApiSdk.Models.ControlScore>? ControlScores { get; set; }
 #nullable restore
 #else
-        public List<ControlScore> ControlScores { get; set; }
+        public List<ApiSdk.Models.ControlScore> ControlScores { get; set; }
 #endif
         /// <summary>The date when the entity is created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -55,20 +55,20 @@ namespace ApiSdk.Models
         /// <summary>Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SecurityVendorInformation? VendorInformation { get; set; }
+        public ApiSdk.Models.SecurityVendorInformation? VendorInformation { get; set; }
 #nullable restore
 #else
-        public SecurityVendorInformation VendorInformation { get; set; }
+        public ApiSdk.Models.SecurityVendorInformation VendorInformation { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SecureScore"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SecureScore"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SecureScore CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SecureScore CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SecureScore();
+            return new ApiSdk.Models.SecureScore();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,15 +79,15 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "activeUserCount", n => { ActiveUserCount = n.GetIntValue(); } },
-                { "averageComparativeScores", n => { AverageComparativeScores = n.GetCollectionOfObjectValues<AverageComparativeScore>(AverageComparativeScore.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "averageComparativeScores", n => { AverageComparativeScores = n.GetCollectionOfObjectValues<ApiSdk.Models.AverageComparativeScore>(ApiSdk.Models.AverageComparativeScore.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "azureTenantId", n => { AzureTenantId = n.GetStringValue(); } },
-                { "controlScores", n => { ControlScores = n.GetCollectionOfObjectValues<ControlScore>(ControlScore.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "controlScores", n => { ControlScores = n.GetCollectionOfObjectValues<ApiSdk.Models.ControlScore>(ApiSdk.Models.ControlScore.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "currentScore", n => { CurrentScore = n.GetDoubleValue(); } },
                 { "enabledServices", n => { EnabledServices = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "licensedUserCount", n => { LicensedUserCount = n.GetIntValue(); } },
                 { "maxScore", n => { MaxScore = n.GetDoubleValue(); } },
-                { "vendorInformation", n => { VendorInformation = n.GetObjectValue<SecurityVendorInformation>(SecurityVendorInformation.CreateFromDiscriminatorValue); } },
+                { "vendorInformation", n => { VendorInformation = n.GetObjectValue<ApiSdk.Models.SecurityVendorInformation>(ApiSdk.Models.SecurityVendorInformation.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -99,15 +99,15 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteIntValue("activeUserCount", ActiveUserCount);
-            writer.WriteCollectionOfObjectValues<AverageComparativeScore>("averageComparativeScores", AverageComparativeScores);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AverageComparativeScore>("averageComparativeScores", AverageComparativeScores);
             writer.WriteStringValue("azureTenantId", AzureTenantId);
-            writer.WriteCollectionOfObjectValues<ControlScore>("controlScores", ControlScores);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ControlScore>("controlScores", ControlScores);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDoubleValue("currentScore", CurrentScore);
             writer.WriteCollectionOfPrimitiveValues<string>("enabledServices", EnabledServices);
             writer.WriteIntValue("licensedUserCount", LicensedUserCount);
             writer.WriteDoubleValue("maxScore", MaxScore);
-            writer.WriteObjectValue<SecurityVendorInformation>("vendorInformation", VendorInformation);
+            writer.WriteObjectValue<ApiSdk.Models.SecurityVendorInformation>("vendorInformation", VendorInformation);
         }
     }
 }

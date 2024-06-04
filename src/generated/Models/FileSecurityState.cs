@@ -53,7 +53,7 @@ namespace ApiSdk.Models
         public string RiskScore { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="FileSecurityState"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.FileSecurityState"/> and sets the default values.
         /// </summary>
         public FileSecurityState()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FileSecurityState"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.FileSecurityState"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static FileSecurityState CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.FileSecurityState CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FileSecurityState();
+            return new ApiSdk.Models.FileSecurityState();
         }
         /// <summary>
         /// The deserialization information for the current model

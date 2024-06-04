@@ -73,14 +73,14 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Submit
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SubmitRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Submit.SubmitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SubmitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/submit", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SubmitRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Submit.SubmitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SubmitRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/submit", rawUrl)

@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Functions
 {
     #pragma warning disable CS1591
-    public class FunctionsGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class FunctionsGetResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AttributeMappingFunctionSchema>? Value { get; set; }
+        public List<ApiSdk.Models.AttributeMappingFunctionSchema>? Value { get; set; }
 #nullable restore
 #else
-        public List<AttributeMappingFunctionSchema> Value { get; set; }
+        public List<ApiSdk.Models.AttributeMappingFunctionSchema> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FunctionsGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Functions.FunctionsGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FunctionsGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Functions.FunctionsGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FunctionsGetResponse();
+            return new ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Functions.FunctionsGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Fu
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<AttributeMappingFunctionSchema>(AttributeMappingFunctionSchema.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.AttributeMappingFunctionSchema>(ApiSdk.Models.AttributeMappingFunctionSchema.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Fu
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AttributeMappingFunctionSchema>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AttributeMappingFunctionSchema>("value", Value);
         }
     }
 }

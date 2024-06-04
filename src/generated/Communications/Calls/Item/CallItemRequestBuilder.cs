@@ -48,7 +48,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("add-large-gallery-view");
             command.Description = "Provides operations to call the addLargeGalleryView method.";
-            var builder = new AddLargeGalleryViewRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.AddLargeGalleryView.AddLargeGalleryViewRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -65,7 +65,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("answer");
             command.Description = "Provides operations to call the answer method.";
-            var builder = new AnswerRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.Answer.AnswerRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -82,7 +82,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("audio-routing-groups");
             command.Description = "Provides operations to manage the audioRoutingGroups property of the microsoft.graph.call entity.";
-            var builder = new AudioRoutingGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.AudioRoutingGroups.AudioRoutingGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -109,7 +109,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("cancel-media-processing");
             command.Description = "Provides operations to call the cancelMediaProcessing method.";
-            var builder = new CancelMediaProcessingRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.CancelMediaProcessing.CancelMediaProcessingRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -126,7 +126,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("change-screen-sharing-role");
             command.Description = "Provides operations to call the changeScreenSharingRole method.";
-            var builder = new ChangeScreenSharingRoleRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole.ChangeScreenSharingRoleRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -143,7 +143,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("content-sharing-sessions");
             command.Description = "Provides operations to manage the contentSharingSessions property of the microsoft.graph.call entity.";
-            var builder = new ContentSharingSessionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.ContentSharingSessions.ContentSharingSessionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -259,7 +259,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("keep-alive");
             command.Description = "Provides operations to call the keepAlive method.";
-            var builder = new KeepAliveRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.KeepAlive.KeepAliveRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -276,7 +276,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("mute");
             command.Description = "Provides operations to call the mute method.";
-            var builder = new MuteRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.Mute.MuteRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -293,7 +293,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.call entity.";
-            var builder = new OperationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.Operations.OperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -320,7 +320,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("participants");
             command.Description = "Provides operations to manage the participants property of the microsoft.graph.call entity.";
-            var builder = new ParticipantsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.Participants.ParticipantsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -371,7 +371,7 @@ namespace ApiSdk.Communications.Calls.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Call>(Call.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Call>(ApiSdk.Models.Call.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -399,7 +399,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("play-prompt");
             command.Description = "Provides operations to call the playPrompt method.";
-            var builder = new PlayPromptRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.PlayPrompt.PlayPromptRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -416,7 +416,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("record-response");
             command.Description = "Provides operations to call the recordResponse method.";
-            var builder = new RecordResponseRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.RecordResponse.RecordResponseRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -433,7 +433,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("redirect");
             command.Description = "Provides operations to call the redirect method.";
-            var builder = new RedirectRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.Redirect.RedirectRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -450,7 +450,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("reject");
             command.Description = "Provides operations to call the reject method.";
-            var builder = new RejectRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.Reject.RejectRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -467,7 +467,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("send-dtmf-tones");
             command.Description = "Provides operations to call the sendDtmfTones method.";
-            var builder = new SendDtmfTonesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.SendDtmfTones.SendDtmfTonesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -484,7 +484,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("subscribe-to-tone");
             command.Description = "Provides operations to call the subscribeToTone method.";
-            var builder = new SubscribeToToneRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.SubscribeToTone.SubscribeToToneRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -501,7 +501,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("transfer");
             command.Description = "Provides operations to call the transfer method.";
-            var builder = new TransferRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.Transfer.TransferRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -518,7 +518,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("unmute");
             command.Description = "Provides operations to call the unmute method.";
-            var builder = new UnmuteRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.Unmute.UnmuteRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -535,7 +535,7 @@ namespace ApiSdk.Communications.Calls.Item
         {
             var command = new Command("update-recording-status");
             command.Description = "Provides operations to call the updateRecordingStatus method.";
-            var builder = new UpdateRecordingStatusRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.UpdateRecordingStatus.UpdateRecordingStatusRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -545,14 +545,14 @@ namespace ApiSdk.Communications.Calls.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CallItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.CallItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CallItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CallItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.CallItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CallItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}{?%24expand,%24select}", rawUrl)
@@ -584,11 +584,11 @@ namespace ApiSdk.Communications.Calls.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CallItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.Calls.Item.CallItemRequestBuilder.CallItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CallItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.Calls.Item.CallItemRequestBuilder.CallItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -604,11 +604,11 @@ namespace ApiSdk.Communications.Calls.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Call body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Call body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Call body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Call body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

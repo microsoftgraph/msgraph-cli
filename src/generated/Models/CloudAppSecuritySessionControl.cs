@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CloudAppSecuritySessionControl : ConditionalAccessSessionControl, IParsable
+    public class CloudAppSecuritySessionControl : ApiSdk.Models.ConditionalAccessSessionControl, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Possible values are: mcasConfigured, monitorOnly, blockDownloads, unknownFutureValue. For more information, see Deploy Conditional Access App Control for featured apps.</summary>
-        public CloudAppSecuritySessionControlType? CloudAppSecurityType { get; set; }
+        public ApiSdk.Models.CloudAppSecuritySessionControlType? CloudAppSecurityType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CloudAppSecuritySessionControl"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CloudAppSecuritySessionControl"/> and sets the default values.
         /// </summary>
         public CloudAppSecuritySessionControl() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudAppSecuritySessionControl"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudAppSecuritySessionControl"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CloudAppSecuritySessionControl CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CloudAppSecuritySessionControl CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudAppSecuritySessionControl();
+            return new ApiSdk.Models.CloudAppSecuritySessionControl();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "cloudAppSecurityType", n => { CloudAppSecurityType = n.GetEnumValue<CloudAppSecuritySessionControlType>(); } },
+                { "cloudAppSecurityType", n => { CloudAppSecurityType = n.GetEnumValue<ApiSdk.Models.CloudAppSecuritySessionControlType>(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<CloudAppSecuritySessionControlType>("cloudAppSecurityType", CloudAppSecurityType);
+            writer.WriteEnumValue<ApiSdk.Models.CloudAppSecuritySessionControlType>("cloudAppSecurityType", CloudAppSecurityType);
         }
     }
 }

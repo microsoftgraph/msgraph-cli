@@ -7,19 +7,19 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SoftwareOathAuthenticationMethodConfiguration : AuthenticationMethodConfiguration, IParsable
+    public class SoftwareOathAuthenticationMethodConfiguration : ApiSdk.Models.AuthenticationMethodConfiguration, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A collection of groups that are enabled to use the authentication method. Expanded by default.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationMethodTarget>? IncludeTargets { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodTarget>? IncludeTargets { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationMethodTarget> IncludeTargets { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodTarget> IncludeTargets { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SoftwareOathAuthenticationMethodConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SoftwareOathAuthenticationMethodConfiguration"/> and sets the default values.
         /// </summary>
         public SoftwareOathAuthenticationMethodConfiguration() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SoftwareOathAuthenticationMethodConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SoftwareOathAuthenticationMethodConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SoftwareOathAuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SoftwareOathAuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SoftwareOathAuthenticationMethodConfiguration();
+            return new ApiSdk.Models.SoftwareOathAuthenticationMethodConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -43,7 +43,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<AuthenticationMethodTarget>(AuthenticationMethodTarget.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<ApiSdk.Models.AuthenticationMethodTarget>(ApiSdk.Models.AuthenticationMethodTarget.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AuthenticationMethodTarget>("includeTargets", IncludeTargets);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuthenticationMethodTarget>("includeTargets", IncludeTargets);
         }
     }
 }

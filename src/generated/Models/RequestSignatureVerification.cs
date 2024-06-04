@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Specifies which weak algorithms are allowed.  The possible values are: rsaSha1, unknownFutureValue.</summary>
-        public WeakAlgorithms? AllowedWeakAlgorithms { get; set; }
+        public ApiSdk.Models.WeakAlgorithms? AllowedWeakAlgorithms { get; set; }
         /// <summary>Specifies whether signed authentication requests for this application should be required.</summary>
         public bool? IsSignedRequestRequired { get; set; }
         /// <summary>The OdataType property</summary>
@@ -25,7 +25,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RequestSignatureVerification"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RequestSignatureVerification"/> and sets the default values.
         /// </summary>
         public RequestSignatureVerification()
         {
@@ -34,12 +34,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RequestSignatureVerification"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RequestSignatureVerification"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RequestSignatureVerification CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.RequestSignatureVerification CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RequestSignatureVerification();
+            return new ApiSdk.Models.RequestSignatureVerification();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,7 +49,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "allowedWeakAlgorithms", n => { AllowedWeakAlgorithms = n.GetEnumValue<WeakAlgorithms>(); } },
+                { "allowedWeakAlgorithms", n => { AllowedWeakAlgorithms = n.GetEnumValue<ApiSdk.Models.WeakAlgorithms>(); } },
                 { "isSignedRequestRequired", n => { IsSignedRequestRequired = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<WeakAlgorithms>("allowedWeakAlgorithms", AllowedWeakAlgorithms);
+            writer.WriteEnumValue<ApiSdk.Models.WeakAlgorithms>("allowedWeakAlgorithms", AllowedWeakAlgorithms);
             writer.WriteBoolValue("isSignedRequestRequired", IsSignedRequestRequired);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

@@ -16,29 +16,29 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The iNum property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? INum { get; set; }
+        public ApiSdk.Models.Json? INum { get; set; }
 #nullable restore
 #else
-        public Json INum { get; set; }
+        public ApiSdk.Models.Json INum { get; set; }
 #endif
         /// <summary>The realNum property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? RealNum { get; set; }
+        public ApiSdk.Models.Json? RealNum { get; set; }
 #nullable restore
 #else
-        public Json RealNum { get; set; }
+        public ApiSdk.Models.Json RealNum { get; set; }
 #endif
         /// <summary>The suffix property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Suffix { get; set; }
+        public ApiSdk.Models.Json? Suffix { get; set; }
 #nullable restore
 #else
-        public Json Suffix { get; set; }
+        public ApiSdk.Models.Json Suffix { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ComplexPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Complex.ComplexPostRequestBody"/> and sets the default values.
         /// </summary>
         public ComplexPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ComplexPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Complex.ComplexPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ComplexPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Complex.ComplexPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ComplexPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Complex.ComplexPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "iNum", n => { INum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "realNum", n => { RealNum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "suffix", n => { Suffix = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "iNum", n => { INum = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "realNum", n => { RealNum = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "suffix", n => { Suffix = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("iNum", INum);
-            writer.WriteObjectValue<Json>("realNum", RealNum);
-            writer.WriteObjectValue<Json>("suffix", Suffix);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("iNum", INum);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("realNum", RealNum);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("suffix", Suffix);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

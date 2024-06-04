@@ -10,14 +10,14 @@ namespace ApiSdk.Models
     /// <summary>
     /// This topic provides descriptions of the declared methods, properties and relationships exposed by the windows10GeneralConfiguration resource.
     /// </summary>
-    public class Windows10GeneralConfiguration : DeviceConfiguration, IParsable
+    public class Windows10GeneralConfiguration : ApiSdk.Models.DeviceConfiguration, IParsable
     {
         /// <summary>Indicates whether or not to Block the user from adding email accounts to the device that are not associated with a Microsoft account.</summary>
         public bool? AccountsBlockAddingNonMicrosoftAccountEmail { get; set; }
         /// <summary>Indicates whether or not to block the user from selecting an AntiTheft mode preference (Windows 10 Mobile only).</summary>
         public bool? AntiTheftModeBlocked { get; set; }
         /// <summary>State Management Setting.</summary>
-        public StateManagementSetting? AppsAllowTrustedAppsSideloading { get; set; }
+        public ApiSdk.Models.StateManagementSetting? AppsAllowTrustedAppsSideloading { get; set; }
         /// <summary>Indicates whether or not to disable the launch of all apps from Windows Store that came pre-installed or were downloaded.</summary>
         public bool? AppsBlockWindowsStoreOriginatedApps { get; set; }
         /// <summary>Specify a list of allowed Bluetooth services and profiles in hex formatted strings.</summary>
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
         /// <summary>Whether or not to block end user access to Defender.</summary>
         public bool? DefenderBlockEndUserAccess { get; set; }
         /// <summary>Possible values of Cloud Block Level</summary>
-        public DefenderCloudBlockLevelType? DefenderCloudBlockLevel { get; set; }
+        public ApiSdk.Models.DefenderCloudBlockLevelType? DefenderCloudBlockLevel { get; set; }
         /// <summary>Number of days before deleting quarantined malware. Valid values 0 to 90</summary>
         public int? DefenderDaysBeforeDeletingQuarantinedMalware { get; set; }
         /// <summary>Gets or sets Defender’s actions to take on detected Malware per threat level.</summary>
@@ -127,15 +127,15 @@ namespace ApiSdk.Models
         /// <summary>The signature update interval in hours. Specify 0 not to check. Valid values 0 to 24</summary>
         public int? DefenderSignatureUpdateIntervalInHours { get; set; }
         /// <summary>Possible values for a weekly schedule.</summary>
-        public WeeklySchedule? DefenderSystemScanSchedule { get; set; }
+        public ApiSdk.Models.WeeklySchedule? DefenderSystemScanSchedule { get; set; }
         /// <summary>State Management Setting.</summary>
-        public StateManagementSetting? DeveloperUnlockSetting { get; set; }
+        public ApiSdk.Models.StateManagementSetting? DeveloperUnlockSetting { get; set; }
         /// <summary>Indicates whether or not to Block the user from resetting their phone.</summary>
         public bool? DeviceManagementBlockFactoryResetOnMobile { get; set; }
         /// <summary>Indicates whether or not to Block the user from doing manual un-enrollment from device management.</summary>
         public bool? DeviceManagementBlockManualUnenroll { get; set; }
         /// <summary>Allow the device to send diagnostic and usage telemetry data, such as Watson.</summary>
-        public DiagnosticDataSubmissionMode? DiagnosticsDataSubmissionMode { get; set; }
+        public ApiSdk.Models.DiagnosticDataSubmissionMode? DiagnosticsDataSubmissionMode { get; set; }
         /// <summary>Allow users to change Start pages on Edge. Use the EdgeHomepageUrls to specify the Start pages that the user would see by default when they open Edge.</summary>
         public bool? EdgeAllowStartPagesModification { get; set; }
         /// <summary>Indicates whether or not to prevent access to about flags on Edge browser.</summary>
@@ -203,10 +203,10 @@ namespace ApiSdk.Models
         /// <summary>Allows IT admins to set a default search engine for MDM-Controlled devices. Users can override this and change their default search engine provided the AllowSearchEngineCustomization policy is not set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EdgeSearchEngineBase? EdgeSearchEngine { get; set; }
+        public ApiSdk.Models.EdgeSearchEngineBase? EdgeSearchEngine { get; set; }
 #nullable restore
 #else
-        public EdgeSearchEngineBase EdgeSearchEngine { get; set; }
+        public ApiSdk.Models.EdgeSearchEngineBase EdgeSearchEngine { get; set; }
 #endif
         /// <summary>Indicates whether or not to switch the intranet traffic from Edge to Internet Explorer.</summary>
         public bool? EdgeSendIntranetTrafficToInternetExplorer { get; set; }
@@ -297,10 +297,10 @@ namespace ApiSdk.Models
         /// <summary>Specifies manual proxy server settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Windows10NetworkProxyServer? NetworkProxyServer { get; set; }
+        public ApiSdk.Models.Windows10NetworkProxyServer? NetworkProxyServer { get; set; }
 #nullable restore
 #else
-        public Windows10NetworkProxyServer NetworkProxyServer { get; set; }
+        public ApiSdk.Models.Windows10NetworkProxyServer NetworkProxyServer { get; set; }
 #endif
         /// <summary>Indicates whether or not to Block the user from using near field communication.</summary>
         public bool? NfcBlocked { get; set; }
@@ -321,7 +321,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether or not to require the user to have a password.</summary>
         public bool? PasswordRequired { get; set; }
         /// <summary>Possible values of required passwords.</summary>
-        public RequiredPasswordType? PasswordRequiredType { get; set; }
+        public ApiSdk.Models.RequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Indicates whether or not to require a password upon resuming from an idle state.</summary>
         public bool? PasswordRequireWhenResumeFromIdleState { get; set; }
         /// <summary>The number of sign in failures before factory reset. Valid values 0 to 999</summary>
@@ -343,7 +343,7 @@ namespace ApiSdk.Models
         public string PersonalizationLockScreenImageUrl { get; set; }
 #endif
         /// <summary>State Management Setting.</summary>
-        public StateManagementSetting? PrivacyAdvertisingId { get; set; }
+        public ApiSdk.Models.StateManagementSetting? PrivacyAdvertisingId { get; set; }
         /// <summary>Indicates whether or not to allow the automatic acceptance of the pairing and privacy user consent dialog when launching apps.</summary>
         public bool? PrivacyAutoAcceptPairingAndConsentPrompts { get; set; }
         /// <summary>Indicates whether or not to block the usage of cloud based speech services for Cortana, Dictation, or Store applications.</summary>
@@ -351,7 +351,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether or not to Block the user from reset protection mode.</summary>
         public bool? ResetProtectionModeBlocked { get; set; }
         /// <summary>Specifies what level of safe search (filtering adult content) is required</summary>
-        public SafeSearchFilterType? SafeSearchFilter { get; set; }
+        public ApiSdk.Models.SafeSearchFilterType? SafeSearchFilter { get; set; }
         /// <summary>Indicates whether or not to Block the user from taking Screenshots.</summary>
         public bool? ScreenCaptureBlocked { get; set; }
         /// <summary>Specifies if search can use diacritics.</summary>
@@ -417,7 +417,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether or not to block the user from unpinning apps from taskbar.</summary>
         public bool? StartBlockUnpinningAppsFromTaskbar { get; set; }
         /// <summary>Type of start menu app list visibility.</summary>
-        public WindowsStartMenuAppListVisibilityType? StartMenuAppListVisibility { get; set; }
+        public ApiSdk.Models.WindowsStartMenuAppListVisibilityType? StartMenuAppListVisibility { get; set; }
         /// <summary>Enabling this policy hides the change account setting from appearing in the user tile in the start menu.</summary>
         public bool? StartMenuHideChangeAccountSettings { get; set; }
         /// <summary>Enabling this policy hides the most used apps from appearing on the start menu and disables the corresponding toggle in the Settings app.</summary>
@@ -461,27 +461,27 @@ namespace ApiSdk.Models
         public byte[] StartMenuLayoutXml { get; set; }
 #endif
         /// <summary>Type of display modes for the start menu.</summary>
-        public WindowsStartMenuModeType? StartMenuMode { get; set; }
+        public ApiSdk.Models.WindowsStartMenuModeType? StartMenuMode { get; set; }
         /// <summary>Generic visibility state.</summary>
-        public VisibilitySetting? StartMenuPinnedFolderDocuments { get; set; }
+        public ApiSdk.Models.VisibilitySetting? StartMenuPinnedFolderDocuments { get; set; }
         /// <summary>Generic visibility state.</summary>
-        public VisibilitySetting? StartMenuPinnedFolderDownloads { get; set; }
+        public ApiSdk.Models.VisibilitySetting? StartMenuPinnedFolderDownloads { get; set; }
         /// <summary>Generic visibility state.</summary>
-        public VisibilitySetting? StartMenuPinnedFolderFileExplorer { get; set; }
+        public ApiSdk.Models.VisibilitySetting? StartMenuPinnedFolderFileExplorer { get; set; }
         /// <summary>Generic visibility state.</summary>
-        public VisibilitySetting? StartMenuPinnedFolderHomeGroup { get; set; }
+        public ApiSdk.Models.VisibilitySetting? StartMenuPinnedFolderHomeGroup { get; set; }
         /// <summary>Generic visibility state.</summary>
-        public VisibilitySetting? StartMenuPinnedFolderMusic { get; set; }
+        public ApiSdk.Models.VisibilitySetting? StartMenuPinnedFolderMusic { get; set; }
         /// <summary>Generic visibility state.</summary>
-        public VisibilitySetting? StartMenuPinnedFolderNetwork { get; set; }
+        public ApiSdk.Models.VisibilitySetting? StartMenuPinnedFolderNetwork { get; set; }
         /// <summary>Generic visibility state.</summary>
-        public VisibilitySetting? StartMenuPinnedFolderPersonalFolder { get; set; }
+        public ApiSdk.Models.VisibilitySetting? StartMenuPinnedFolderPersonalFolder { get; set; }
         /// <summary>Generic visibility state.</summary>
-        public VisibilitySetting? StartMenuPinnedFolderPictures { get; set; }
+        public ApiSdk.Models.VisibilitySetting? StartMenuPinnedFolderPictures { get; set; }
         /// <summary>Generic visibility state.</summary>
-        public VisibilitySetting? StartMenuPinnedFolderSettings { get; set; }
+        public ApiSdk.Models.VisibilitySetting? StartMenuPinnedFolderSettings { get; set; }
         /// <summary>Generic visibility state.</summary>
-        public VisibilitySetting? StartMenuPinnedFolderVideos { get; set; }
+        public ApiSdk.Models.VisibilitySetting? StartMenuPinnedFolderVideos { get; set; }
         /// <summary>Indicates whether or not to Block the user from using removable storage.</summary>
         public bool? StorageBlockRemovableStorage { get; set; }
         /// <summary>Indicating whether or not to require encryption on a mobile device.</summary>
@@ -521,7 +521,7 @@ namespace ApiSdk.Models
         /// <summary>Allows IT admins to turn off the popup of Windows Tips.</summary>
         public bool? WindowsSpotlightBlockWindowsTips { get; set; }
         /// <summary>Allows IT admind to set a predefined default search engine for MDM-Controlled devices</summary>
-        public WindowsSpotlightEnablementSettings? WindowsSpotlightConfigureOnLockScreen { get; set; }
+        public ApiSdk.Models.WindowsSpotlightEnablementSettings? WindowsSpotlightConfigureOnLockScreen { get; set; }
         /// <summary>Indicates whether or not to block automatic update of apps from Windows Store.</summary>
         public bool? WindowsStoreBlockAutoUpdate { get; set; }
         /// <summary>Indicates whether or not to Block the user from using the Windows store.</summary>
@@ -535,7 +535,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether or not to require a PIN for new devices to initiate pairing.</summary>
         public bool? WirelessDisplayRequirePinForPairing { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Windows10GeneralConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Windows10GeneralConfiguration"/> and sets the default values.
         /// </summary>
         public Windows10GeneralConfiguration() : base()
         {
@@ -544,12 +544,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Windows10GeneralConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Windows10GeneralConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Windows10GeneralConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Windows10GeneralConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Windows10GeneralConfiguration();
+            return new ApiSdk.Models.Windows10GeneralConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -561,7 +561,7 @@ namespace ApiSdk.Models
             {
                 { "accountsBlockAddingNonMicrosoftAccountEmail", n => { AccountsBlockAddingNonMicrosoftAccountEmail = n.GetBoolValue(); } },
                 { "antiTheftModeBlocked", n => { AntiTheftModeBlocked = n.GetBoolValue(); } },
-                { "appsAllowTrustedAppsSideloading", n => { AppsAllowTrustedAppsSideloading = n.GetEnumValue<StateManagementSetting>(); } },
+                { "appsAllowTrustedAppsSideloading", n => { AppsAllowTrustedAppsSideloading = n.GetEnumValue<ApiSdk.Models.StateManagementSetting>(); } },
                 { "appsBlockWindowsStoreOriginatedApps", n => { AppsBlockWindowsStoreOriginatedApps = n.GetBoolValue(); } },
                 { "bluetoothAllowedServices", n => { BluetoothAllowedServices = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "bluetoothBlockAdvertising", n => { BluetoothBlockAdvertising = n.GetBoolValue(); } },
@@ -577,14 +577,14 @@ namespace ApiSdk.Models
                 { "copyPasteBlocked", n => { CopyPasteBlocked = n.GetBoolValue(); } },
                 { "cortanaBlocked", n => { CortanaBlocked = n.GetBoolValue(); } },
                 { "defenderBlockEndUserAccess", n => { DefenderBlockEndUserAccess = n.GetBoolValue(); } },
-                { "defenderCloudBlockLevel", n => { DefenderCloudBlockLevel = n.GetEnumValue<DefenderCloudBlockLevelType>(); } },
+                { "defenderCloudBlockLevel", n => { DefenderCloudBlockLevel = n.GetEnumValue<ApiSdk.Models.DefenderCloudBlockLevelType>(); } },
                 { "defenderDaysBeforeDeletingQuarantinedMalware", n => { DefenderDaysBeforeDeletingQuarantinedMalware = n.GetIntValue(); } },
                 { "defenderDetectedMalwareActions", n => { DefenderDetectedMalwareActions = n.GetObjectValue<ApiSdk.Models.DefenderDetectedMalwareActions>(ApiSdk.Models.DefenderDetectedMalwareActions.CreateFromDiscriminatorValue); } },
                 { "defenderFileExtensionsToExclude", n => { DefenderFileExtensionsToExclude = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "defenderFilesAndFoldersToExclude", n => { DefenderFilesAndFoldersToExclude = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "defenderMonitorFileActivity", n => { DefenderMonitorFileActivity = n.GetEnumValue<DefenderMonitorFileActivity>(); } },
+                { "defenderMonitorFileActivity", n => { DefenderMonitorFileActivity = n.GetEnumValue<ApiSdk.Models.DefenderMonitorFileActivity>(); } },
                 { "defenderProcessesToExclude", n => { DefenderProcessesToExclude = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "defenderPromptForSampleSubmission", n => { DefenderPromptForSampleSubmission = n.GetEnumValue<DefenderPromptForSampleSubmission>(); } },
+                { "defenderPromptForSampleSubmission", n => { DefenderPromptForSampleSubmission = n.GetEnumValue<ApiSdk.Models.DefenderPromptForSampleSubmission>(); } },
                 { "defenderRequireBehaviorMonitoring", n => { DefenderRequireBehaviorMonitoring = n.GetBoolValue(); } },
                 { "defenderRequireCloudProtection", n => { DefenderRequireCloudProtection = n.GetBoolValue(); } },
                 { "defenderRequireNetworkInspectionSystem", n => { DefenderRequireNetworkInspectionSystem = n.GetBoolValue(); } },
@@ -597,15 +597,15 @@ namespace ApiSdk.Models
                 { "defenderScanNetworkFiles", n => { DefenderScanNetworkFiles = n.GetBoolValue(); } },
                 { "defenderScanRemovableDrivesDuringFullScan", n => { DefenderScanRemovableDrivesDuringFullScan = n.GetBoolValue(); } },
                 { "defenderScanScriptsLoadedInInternetExplorer", n => { DefenderScanScriptsLoadedInInternetExplorer = n.GetBoolValue(); } },
-                { "defenderScanType", n => { DefenderScanType = n.GetEnumValue<DefenderScanType>(); } },
+                { "defenderScanType", n => { DefenderScanType = n.GetEnumValue<ApiSdk.Models.DefenderScanType>(); } },
                 { "defenderScheduledQuickScanTime", n => { DefenderScheduledQuickScanTime = n.GetTimeValue(); } },
                 { "defenderScheduledScanTime", n => { DefenderScheduledScanTime = n.GetTimeValue(); } },
                 { "defenderSignatureUpdateIntervalInHours", n => { DefenderSignatureUpdateIntervalInHours = n.GetIntValue(); } },
-                { "defenderSystemScanSchedule", n => { DefenderSystemScanSchedule = n.GetEnumValue<WeeklySchedule>(); } },
-                { "developerUnlockSetting", n => { DeveloperUnlockSetting = n.GetEnumValue<StateManagementSetting>(); } },
+                { "defenderSystemScanSchedule", n => { DefenderSystemScanSchedule = n.GetEnumValue<ApiSdk.Models.WeeklySchedule>(); } },
+                { "developerUnlockSetting", n => { DeveloperUnlockSetting = n.GetEnumValue<ApiSdk.Models.StateManagementSetting>(); } },
                 { "deviceManagementBlockFactoryResetOnMobile", n => { DeviceManagementBlockFactoryResetOnMobile = n.GetBoolValue(); } },
                 { "deviceManagementBlockManualUnenroll", n => { DeviceManagementBlockManualUnenroll = n.GetBoolValue(); } },
-                { "diagnosticsDataSubmissionMode", n => { DiagnosticsDataSubmissionMode = n.GetEnumValue<DiagnosticDataSubmissionMode>(); } },
+                { "diagnosticsDataSubmissionMode", n => { DiagnosticsDataSubmissionMode = n.GetEnumValue<ApiSdk.Models.DiagnosticDataSubmissionMode>(); } },
                 { "edgeAllowStartPagesModification", n => { EdgeAllowStartPagesModification = n.GetBoolValue(); } },
                 { "edgeBlockAccessToAboutFlags", n => { EdgeBlockAccessToAboutFlags = n.GetBoolValue(); } },
                 { "edgeBlockAddressBarDropdown", n => { EdgeBlockAddressBarDropdown = n.GetBoolValue(); } },
@@ -623,13 +623,13 @@ namespace ApiSdk.Models
                 { "edgeBlockSendingIntranetTrafficToInternetExplorer", n => { EdgeBlockSendingIntranetTrafficToInternetExplorer = n.GetBoolValue(); } },
                 { "edgeBlocked", n => { EdgeBlocked = n.GetBoolValue(); } },
                 { "edgeClearBrowsingDataOnExit", n => { EdgeClearBrowsingDataOnExit = n.GetBoolValue(); } },
-                { "edgeCookiePolicy", n => { EdgeCookiePolicy = n.GetEnumValue<EdgeCookiePolicy>(); } },
+                { "edgeCookiePolicy", n => { EdgeCookiePolicy = n.GetEnumValue<ApiSdk.Models.EdgeCookiePolicy>(); } },
                 { "edgeDisableFirstRunPage", n => { EdgeDisableFirstRunPage = n.GetBoolValue(); } },
                 { "edgeEnterpriseModeSiteListLocation", n => { EdgeEnterpriseModeSiteListLocation = n.GetStringValue(); } },
                 { "edgeFirstRunUrl", n => { EdgeFirstRunUrl = n.GetStringValue(); } },
                 { "edgeHomepageUrls", n => { EdgeHomepageUrls = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "edgeRequireSmartScreen", n => { EdgeRequireSmartScreen = n.GetBoolValue(); } },
-                { "edgeSearchEngine", n => { EdgeSearchEngine = n.GetObjectValue<EdgeSearchEngineBase>(EdgeSearchEngineBase.CreateFromDiscriminatorValue); } },
+                { "edgeSearchEngine", n => { EdgeSearchEngine = n.GetObjectValue<ApiSdk.Models.EdgeSearchEngineBase>(ApiSdk.Models.EdgeSearchEngineBase.CreateFromDiscriminatorValue); } },
                 { "edgeSendIntranetTrafficToInternetExplorer", n => { EdgeSendIntranetTrafficToInternetExplorer = n.GetBoolValue(); } },
                 { "edgeSyncFavoritesWithInternetExplorer", n => { EdgeSyncFavoritesWithInternetExplorer = n.GetBoolValue(); } },
                 { "enterpriseCloudPrintDiscoveryEndPoint", n => { EnterpriseCloudPrintDiscoveryEndPoint = n.GetStringValue(); } },
@@ -655,7 +655,7 @@ namespace ApiSdk.Models
                 { "networkProxyApplySettingsDeviceWide", n => { NetworkProxyApplySettingsDeviceWide = n.GetBoolValue(); } },
                 { "networkProxyAutomaticConfigurationUrl", n => { NetworkProxyAutomaticConfigurationUrl = n.GetStringValue(); } },
                 { "networkProxyDisableAutoDetect", n => { NetworkProxyDisableAutoDetect = n.GetBoolValue(); } },
-                { "networkProxyServer", n => { NetworkProxyServer = n.GetObjectValue<Windows10NetworkProxyServer>(Windows10NetworkProxyServer.CreateFromDiscriminatorValue); } },
+                { "networkProxyServer", n => { NetworkProxyServer = n.GetObjectValue<ApiSdk.Models.Windows10NetworkProxyServer>(ApiSdk.Models.Windows10NetworkProxyServer.CreateFromDiscriminatorValue); } },
                 { "nfcBlocked", n => { NfcBlocked = n.GetBoolValue(); } },
                 { "oneDriveDisableFileSync", n => { OneDriveDisableFileSync = n.GetBoolValue(); } },
                 { "passwordBlockSimple", n => { PasswordBlockSimple = n.GetBoolValue(); } },
@@ -666,15 +666,15 @@ namespace ApiSdk.Models
                 { "passwordPreviousPasswordBlockCount", n => { PasswordPreviousPasswordBlockCount = n.GetIntValue(); } },
                 { "passwordRequireWhenResumeFromIdleState", n => { PasswordRequireWhenResumeFromIdleState = n.GetBoolValue(); } },
                 { "passwordRequired", n => { PasswordRequired = n.GetBoolValue(); } },
-                { "passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<RequiredPasswordType>(); } },
+                { "passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<ApiSdk.Models.RequiredPasswordType>(); } },
                 { "passwordSignInFailureCountBeforeFactoryReset", n => { PasswordSignInFailureCountBeforeFactoryReset = n.GetIntValue(); } },
                 { "personalizationDesktopImageUrl", n => { PersonalizationDesktopImageUrl = n.GetStringValue(); } },
                 { "personalizationLockScreenImageUrl", n => { PersonalizationLockScreenImageUrl = n.GetStringValue(); } },
-                { "privacyAdvertisingId", n => { PrivacyAdvertisingId = n.GetEnumValue<StateManagementSetting>(); } },
+                { "privacyAdvertisingId", n => { PrivacyAdvertisingId = n.GetEnumValue<ApiSdk.Models.StateManagementSetting>(); } },
                 { "privacyAutoAcceptPairingAndConsentPrompts", n => { PrivacyAutoAcceptPairingAndConsentPrompts = n.GetBoolValue(); } },
                 { "privacyBlockInputPersonalization", n => { PrivacyBlockInputPersonalization = n.GetBoolValue(); } },
                 { "resetProtectionModeBlocked", n => { ResetProtectionModeBlocked = n.GetBoolValue(); } },
-                { "safeSearchFilter", n => { SafeSearchFilter = n.GetEnumValue<SafeSearchFilterType>(); } },
+                { "safeSearchFilter", n => { SafeSearchFilter = n.GetEnumValue<ApiSdk.Models.SafeSearchFilterType>(); } },
                 { "screenCaptureBlocked", n => { ScreenCaptureBlocked = n.GetBoolValue(); } },
                 { "searchBlockDiacritics", n => { SearchBlockDiacritics = n.GetBoolValue(); } },
                 { "searchDisableAutoLanguageDetection", n => { SearchDisableAutoLanguageDetection = n.GetBoolValue(); } },
@@ -707,7 +707,7 @@ namespace ApiSdk.Models
                 { "smartScreenBlockPromptOverrideForFiles", n => { SmartScreenBlockPromptOverrideForFiles = n.GetBoolValue(); } },
                 { "smartScreenEnableAppInstallControl", n => { SmartScreenEnableAppInstallControl = n.GetBoolValue(); } },
                 { "startBlockUnpinningAppsFromTaskbar", n => { StartBlockUnpinningAppsFromTaskbar = n.GetBoolValue(); } },
-                { "startMenuAppListVisibility", n => { StartMenuAppListVisibility = n.GetEnumValue<WindowsStartMenuAppListVisibilityType>(); } },
+                { "startMenuAppListVisibility", n => { StartMenuAppListVisibility = n.GetEnumValue<ApiSdk.Models.WindowsStartMenuAppListVisibilityType>(); } },
                 { "startMenuHideChangeAccountSettings", n => { StartMenuHideChangeAccountSettings = n.GetBoolValue(); } },
                 { "startMenuHideFrequentlyUsedApps", n => { StartMenuHideFrequentlyUsedApps = n.GetBoolValue(); } },
                 { "startMenuHideHibernate", n => { StartMenuHideHibernate = n.GetBoolValue(); } },
@@ -723,17 +723,17 @@ namespace ApiSdk.Models
                 { "startMenuHideUserTile", n => { StartMenuHideUserTile = n.GetBoolValue(); } },
                 { "startMenuLayoutEdgeAssetsXml", n => { StartMenuLayoutEdgeAssetsXml = n.GetByteArrayValue(); } },
                 { "startMenuLayoutXml", n => { StartMenuLayoutXml = n.GetByteArrayValue(); } },
-                { "startMenuMode", n => { StartMenuMode = n.GetEnumValue<WindowsStartMenuModeType>(); } },
-                { "startMenuPinnedFolderDocuments", n => { StartMenuPinnedFolderDocuments = n.GetEnumValue<VisibilitySetting>(); } },
-                { "startMenuPinnedFolderDownloads", n => { StartMenuPinnedFolderDownloads = n.GetEnumValue<VisibilitySetting>(); } },
-                { "startMenuPinnedFolderFileExplorer", n => { StartMenuPinnedFolderFileExplorer = n.GetEnumValue<VisibilitySetting>(); } },
-                { "startMenuPinnedFolderHomeGroup", n => { StartMenuPinnedFolderHomeGroup = n.GetEnumValue<VisibilitySetting>(); } },
-                { "startMenuPinnedFolderMusic", n => { StartMenuPinnedFolderMusic = n.GetEnumValue<VisibilitySetting>(); } },
-                { "startMenuPinnedFolderNetwork", n => { StartMenuPinnedFolderNetwork = n.GetEnumValue<VisibilitySetting>(); } },
-                { "startMenuPinnedFolderPersonalFolder", n => { StartMenuPinnedFolderPersonalFolder = n.GetEnumValue<VisibilitySetting>(); } },
-                { "startMenuPinnedFolderPictures", n => { StartMenuPinnedFolderPictures = n.GetEnumValue<VisibilitySetting>(); } },
-                { "startMenuPinnedFolderSettings", n => { StartMenuPinnedFolderSettings = n.GetEnumValue<VisibilitySetting>(); } },
-                { "startMenuPinnedFolderVideos", n => { StartMenuPinnedFolderVideos = n.GetEnumValue<VisibilitySetting>(); } },
+                { "startMenuMode", n => { StartMenuMode = n.GetEnumValue<ApiSdk.Models.WindowsStartMenuModeType>(); } },
+                { "startMenuPinnedFolderDocuments", n => { StartMenuPinnedFolderDocuments = n.GetEnumValue<ApiSdk.Models.VisibilitySetting>(); } },
+                { "startMenuPinnedFolderDownloads", n => { StartMenuPinnedFolderDownloads = n.GetEnumValue<ApiSdk.Models.VisibilitySetting>(); } },
+                { "startMenuPinnedFolderFileExplorer", n => { StartMenuPinnedFolderFileExplorer = n.GetEnumValue<ApiSdk.Models.VisibilitySetting>(); } },
+                { "startMenuPinnedFolderHomeGroup", n => { StartMenuPinnedFolderHomeGroup = n.GetEnumValue<ApiSdk.Models.VisibilitySetting>(); } },
+                { "startMenuPinnedFolderMusic", n => { StartMenuPinnedFolderMusic = n.GetEnumValue<ApiSdk.Models.VisibilitySetting>(); } },
+                { "startMenuPinnedFolderNetwork", n => { StartMenuPinnedFolderNetwork = n.GetEnumValue<ApiSdk.Models.VisibilitySetting>(); } },
+                { "startMenuPinnedFolderPersonalFolder", n => { StartMenuPinnedFolderPersonalFolder = n.GetEnumValue<ApiSdk.Models.VisibilitySetting>(); } },
+                { "startMenuPinnedFolderPictures", n => { StartMenuPinnedFolderPictures = n.GetEnumValue<ApiSdk.Models.VisibilitySetting>(); } },
+                { "startMenuPinnedFolderSettings", n => { StartMenuPinnedFolderSettings = n.GetEnumValue<ApiSdk.Models.VisibilitySetting>(); } },
+                { "startMenuPinnedFolderVideos", n => { StartMenuPinnedFolderVideos = n.GetEnumValue<ApiSdk.Models.VisibilitySetting>(); } },
                 { "storageBlockRemovableStorage", n => { StorageBlockRemovableStorage = n.GetBoolValue(); } },
                 { "storageRequireMobileDeviceEncryption", n => { StorageRequireMobileDeviceEncryption = n.GetBoolValue(); } },
                 { "storageRestrictAppDataToSystemVolume", n => { StorageRestrictAppDataToSystemVolume = n.GetBoolValue(); } },
@@ -753,7 +753,7 @@ namespace ApiSdk.Models
                 { "windowsSpotlightBlockWelcomeExperience", n => { WindowsSpotlightBlockWelcomeExperience = n.GetBoolValue(); } },
                 { "windowsSpotlightBlockWindowsTips", n => { WindowsSpotlightBlockWindowsTips = n.GetBoolValue(); } },
                 { "windowsSpotlightBlocked", n => { WindowsSpotlightBlocked = n.GetBoolValue(); } },
-                { "windowsSpotlightConfigureOnLockScreen", n => { WindowsSpotlightConfigureOnLockScreen = n.GetEnumValue<WindowsSpotlightEnablementSettings>(); } },
+                { "windowsSpotlightConfigureOnLockScreen", n => { WindowsSpotlightConfigureOnLockScreen = n.GetEnumValue<ApiSdk.Models.WindowsSpotlightEnablementSettings>(); } },
                 { "windowsStoreBlockAutoUpdate", n => { WindowsStoreBlockAutoUpdate = n.GetBoolValue(); } },
                 { "windowsStoreBlocked", n => { WindowsStoreBlocked = n.GetBoolValue(); } },
                 { "windowsStoreEnablePrivateStoreOnly", n => { WindowsStoreEnablePrivateStoreOnly = n.GetBoolValue(); } },
@@ -772,7 +772,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteBoolValue("accountsBlockAddingNonMicrosoftAccountEmail", AccountsBlockAddingNonMicrosoftAccountEmail);
             writer.WriteBoolValue("antiTheftModeBlocked", AntiTheftModeBlocked);
-            writer.WriteEnumValue<StateManagementSetting>("appsAllowTrustedAppsSideloading", AppsAllowTrustedAppsSideloading);
+            writer.WriteEnumValue<ApiSdk.Models.StateManagementSetting>("appsAllowTrustedAppsSideloading", AppsAllowTrustedAppsSideloading);
             writer.WriteBoolValue("appsBlockWindowsStoreOriginatedApps", AppsBlockWindowsStoreOriginatedApps);
             writer.WriteCollectionOfPrimitiveValues<string>("bluetoothAllowedServices", BluetoothAllowedServices);
             writer.WriteBoolValue("bluetoothBlockAdvertising", BluetoothBlockAdvertising);
@@ -788,14 +788,14 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("copyPasteBlocked", CopyPasteBlocked);
             writer.WriteBoolValue("cortanaBlocked", CortanaBlocked);
             writer.WriteBoolValue("defenderBlockEndUserAccess", DefenderBlockEndUserAccess);
-            writer.WriteEnumValue<DefenderCloudBlockLevelType>("defenderCloudBlockLevel", DefenderCloudBlockLevel);
+            writer.WriteEnumValue<ApiSdk.Models.DefenderCloudBlockLevelType>("defenderCloudBlockLevel", DefenderCloudBlockLevel);
             writer.WriteIntValue("defenderDaysBeforeDeletingQuarantinedMalware", DefenderDaysBeforeDeletingQuarantinedMalware);
             writer.WriteObjectValue<ApiSdk.Models.DefenderDetectedMalwareActions>("defenderDetectedMalwareActions", DefenderDetectedMalwareActions);
             writer.WriteCollectionOfPrimitiveValues<string>("defenderFileExtensionsToExclude", DefenderFileExtensionsToExclude);
             writer.WriteCollectionOfPrimitiveValues<string>("defenderFilesAndFoldersToExclude", DefenderFilesAndFoldersToExclude);
-            writer.WriteEnumValue<DefenderMonitorFileActivity>("defenderMonitorFileActivity", DefenderMonitorFileActivity);
+            writer.WriteEnumValue<ApiSdk.Models.DefenderMonitorFileActivity>("defenderMonitorFileActivity", DefenderMonitorFileActivity);
             writer.WriteCollectionOfPrimitiveValues<string>("defenderProcessesToExclude", DefenderProcessesToExclude);
-            writer.WriteEnumValue<DefenderPromptForSampleSubmission>("defenderPromptForSampleSubmission", DefenderPromptForSampleSubmission);
+            writer.WriteEnumValue<ApiSdk.Models.DefenderPromptForSampleSubmission>("defenderPromptForSampleSubmission", DefenderPromptForSampleSubmission);
             writer.WriteBoolValue("defenderRequireBehaviorMonitoring", DefenderRequireBehaviorMonitoring);
             writer.WriteBoolValue("defenderRequireCloudProtection", DefenderRequireCloudProtection);
             writer.WriteBoolValue("defenderRequireNetworkInspectionSystem", DefenderRequireNetworkInspectionSystem);
@@ -808,15 +808,15 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("defenderScanNetworkFiles", DefenderScanNetworkFiles);
             writer.WriteBoolValue("defenderScanRemovableDrivesDuringFullScan", DefenderScanRemovableDrivesDuringFullScan);
             writer.WriteBoolValue("defenderScanScriptsLoadedInInternetExplorer", DefenderScanScriptsLoadedInInternetExplorer);
-            writer.WriteEnumValue<DefenderScanType>("defenderScanType", DefenderScanType);
+            writer.WriteEnumValue<ApiSdk.Models.DefenderScanType>("defenderScanType", DefenderScanType);
             writer.WriteTimeValue("defenderScheduledQuickScanTime", DefenderScheduledQuickScanTime);
             writer.WriteTimeValue("defenderScheduledScanTime", DefenderScheduledScanTime);
             writer.WriteIntValue("defenderSignatureUpdateIntervalInHours", DefenderSignatureUpdateIntervalInHours);
-            writer.WriteEnumValue<WeeklySchedule>("defenderSystemScanSchedule", DefenderSystemScanSchedule);
-            writer.WriteEnumValue<StateManagementSetting>("developerUnlockSetting", DeveloperUnlockSetting);
+            writer.WriteEnumValue<ApiSdk.Models.WeeklySchedule>("defenderSystemScanSchedule", DefenderSystemScanSchedule);
+            writer.WriteEnumValue<ApiSdk.Models.StateManagementSetting>("developerUnlockSetting", DeveloperUnlockSetting);
             writer.WriteBoolValue("deviceManagementBlockFactoryResetOnMobile", DeviceManagementBlockFactoryResetOnMobile);
             writer.WriteBoolValue("deviceManagementBlockManualUnenroll", DeviceManagementBlockManualUnenroll);
-            writer.WriteEnumValue<DiagnosticDataSubmissionMode>("diagnosticsDataSubmissionMode", DiagnosticsDataSubmissionMode);
+            writer.WriteEnumValue<ApiSdk.Models.DiagnosticDataSubmissionMode>("diagnosticsDataSubmissionMode", DiagnosticsDataSubmissionMode);
             writer.WriteBoolValue("edgeAllowStartPagesModification", EdgeAllowStartPagesModification);
             writer.WriteBoolValue("edgeBlockAccessToAboutFlags", EdgeBlockAccessToAboutFlags);
             writer.WriteBoolValue("edgeBlockAddressBarDropdown", EdgeBlockAddressBarDropdown);
@@ -834,13 +834,13 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("edgeBlockSendingDoNotTrackHeader", EdgeBlockSendingDoNotTrackHeader);
             writer.WriteBoolValue("edgeBlockSendingIntranetTrafficToInternetExplorer", EdgeBlockSendingIntranetTrafficToInternetExplorer);
             writer.WriteBoolValue("edgeClearBrowsingDataOnExit", EdgeClearBrowsingDataOnExit);
-            writer.WriteEnumValue<EdgeCookiePolicy>("edgeCookiePolicy", EdgeCookiePolicy);
+            writer.WriteEnumValue<ApiSdk.Models.EdgeCookiePolicy>("edgeCookiePolicy", EdgeCookiePolicy);
             writer.WriteBoolValue("edgeDisableFirstRunPage", EdgeDisableFirstRunPage);
             writer.WriteStringValue("edgeEnterpriseModeSiteListLocation", EdgeEnterpriseModeSiteListLocation);
             writer.WriteStringValue("edgeFirstRunUrl", EdgeFirstRunUrl);
             writer.WriteCollectionOfPrimitiveValues<string>("edgeHomepageUrls", EdgeHomepageUrls);
             writer.WriteBoolValue("edgeRequireSmartScreen", EdgeRequireSmartScreen);
-            writer.WriteObjectValue<EdgeSearchEngineBase>("edgeSearchEngine", EdgeSearchEngine);
+            writer.WriteObjectValue<ApiSdk.Models.EdgeSearchEngineBase>("edgeSearchEngine", EdgeSearchEngine);
             writer.WriteBoolValue("edgeSendIntranetTrafficToInternetExplorer", EdgeSendIntranetTrafficToInternetExplorer);
             writer.WriteBoolValue("edgeSyncFavoritesWithInternetExplorer", EdgeSyncFavoritesWithInternetExplorer);
             writer.WriteStringValue("enterpriseCloudPrintDiscoveryEndPoint", EnterpriseCloudPrintDiscoveryEndPoint);
@@ -866,7 +866,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("networkProxyApplySettingsDeviceWide", NetworkProxyApplySettingsDeviceWide);
             writer.WriteStringValue("networkProxyAutomaticConfigurationUrl", NetworkProxyAutomaticConfigurationUrl);
             writer.WriteBoolValue("networkProxyDisableAutoDetect", NetworkProxyDisableAutoDetect);
-            writer.WriteObjectValue<Windows10NetworkProxyServer>("networkProxyServer", NetworkProxyServer);
+            writer.WriteObjectValue<ApiSdk.Models.Windows10NetworkProxyServer>("networkProxyServer", NetworkProxyServer);
             writer.WriteBoolValue("nfcBlocked", NfcBlocked);
             writer.WriteBoolValue("oneDriveDisableFileSync", OneDriveDisableFileSync);
             writer.WriteBoolValue("passwordBlockSimple", PasswordBlockSimple);
@@ -876,16 +876,16 @@ namespace ApiSdk.Models
             writer.WriteIntValue("passwordMinutesOfInactivityBeforeScreenTimeout", PasswordMinutesOfInactivityBeforeScreenTimeout);
             writer.WriteIntValue("passwordPreviousPasswordBlockCount", PasswordPreviousPasswordBlockCount);
             writer.WriteBoolValue("passwordRequired", PasswordRequired);
-            writer.WriteEnumValue<RequiredPasswordType>("passwordRequiredType", PasswordRequiredType);
+            writer.WriteEnumValue<ApiSdk.Models.RequiredPasswordType>("passwordRequiredType", PasswordRequiredType);
             writer.WriteBoolValue("passwordRequireWhenResumeFromIdleState", PasswordRequireWhenResumeFromIdleState);
             writer.WriteIntValue("passwordSignInFailureCountBeforeFactoryReset", PasswordSignInFailureCountBeforeFactoryReset);
             writer.WriteStringValue("personalizationDesktopImageUrl", PersonalizationDesktopImageUrl);
             writer.WriteStringValue("personalizationLockScreenImageUrl", PersonalizationLockScreenImageUrl);
-            writer.WriteEnumValue<StateManagementSetting>("privacyAdvertisingId", PrivacyAdvertisingId);
+            writer.WriteEnumValue<ApiSdk.Models.StateManagementSetting>("privacyAdvertisingId", PrivacyAdvertisingId);
             writer.WriteBoolValue("privacyAutoAcceptPairingAndConsentPrompts", PrivacyAutoAcceptPairingAndConsentPrompts);
             writer.WriteBoolValue("privacyBlockInputPersonalization", PrivacyBlockInputPersonalization);
             writer.WriteBoolValue("resetProtectionModeBlocked", ResetProtectionModeBlocked);
-            writer.WriteEnumValue<SafeSearchFilterType>("safeSearchFilter", SafeSearchFilter);
+            writer.WriteEnumValue<ApiSdk.Models.SafeSearchFilterType>("safeSearchFilter", SafeSearchFilter);
             writer.WriteBoolValue("screenCaptureBlocked", ScreenCaptureBlocked);
             writer.WriteBoolValue("searchBlockDiacritics", SearchBlockDiacritics);
             writer.WriteBoolValue("searchDisableAutoLanguageDetection", SearchDisableAutoLanguageDetection);
@@ -918,7 +918,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("smartScreenBlockPromptOverrideForFiles", SmartScreenBlockPromptOverrideForFiles);
             writer.WriteBoolValue("smartScreenEnableAppInstallControl", SmartScreenEnableAppInstallControl);
             writer.WriteBoolValue("startBlockUnpinningAppsFromTaskbar", StartBlockUnpinningAppsFromTaskbar);
-            writer.WriteEnumValue<WindowsStartMenuAppListVisibilityType>("startMenuAppListVisibility", StartMenuAppListVisibility);
+            writer.WriteEnumValue<ApiSdk.Models.WindowsStartMenuAppListVisibilityType>("startMenuAppListVisibility", StartMenuAppListVisibility);
             writer.WriteBoolValue("startMenuHideChangeAccountSettings", StartMenuHideChangeAccountSettings);
             writer.WriteBoolValue("startMenuHideFrequentlyUsedApps", StartMenuHideFrequentlyUsedApps);
             writer.WriteBoolValue("startMenuHideHibernate", StartMenuHideHibernate);
@@ -934,17 +934,17 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("startMenuHideUserTile", StartMenuHideUserTile);
             writer.WriteByteArrayValue("startMenuLayoutEdgeAssetsXml", StartMenuLayoutEdgeAssetsXml);
             writer.WriteByteArrayValue("startMenuLayoutXml", StartMenuLayoutXml);
-            writer.WriteEnumValue<WindowsStartMenuModeType>("startMenuMode", StartMenuMode);
-            writer.WriteEnumValue<VisibilitySetting>("startMenuPinnedFolderDocuments", StartMenuPinnedFolderDocuments);
-            writer.WriteEnumValue<VisibilitySetting>("startMenuPinnedFolderDownloads", StartMenuPinnedFolderDownloads);
-            writer.WriteEnumValue<VisibilitySetting>("startMenuPinnedFolderFileExplorer", StartMenuPinnedFolderFileExplorer);
-            writer.WriteEnumValue<VisibilitySetting>("startMenuPinnedFolderHomeGroup", StartMenuPinnedFolderHomeGroup);
-            writer.WriteEnumValue<VisibilitySetting>("startMenuPinnedFolderMusic", StartMenuPinnedFolderMusic);
-            writer.WriteEnumValue<VisibilitySetting>("startMenuPinnedFolderNetwork", StartMenuPinnedFolderNetwork);
-            writer.WriteEnumValue<VisibilitySetting>("startMenuPinnedFolderPersonalFolder", StartMenuPinnedFolderPersonalFolder);
-            writer.WriteEnumValue<VisibilitySetting>("startMenuPinnedFolderPictures", StartMenuPinnedFolderPictures);
-            writer.WriteEnumValue<VisibilitySetting>("startMenuPinnedFolderSettings", StartMenuPinnedFolderSettings);
-            writer.WriteEnumValue<VisibilitySetting>("startMenuPinnedFolderVideos", StartMenuPinnedFolderVideos);
+            writer.WriteEnumValue<ApiSdk.Models.WindowsStartMenuModeType>("startMenuMode", StartMenuMode);
+            writer.WriteEnumValue<ApiSdk.Models.VisibilitySetting>("startMenuPinnedFolderDocuments", StartMenuPinnedFolderDocuments);
+            writer.WriteEnumValue<ApiSdk.Models.VisibilitySetting>("startMenuPinnedFolderDownloads", StartMenuPinnedFolderDownloads);
+            writer.WriteEnumValue<ApiSdk.Models.VisibilitySetting>("startMenuPinnedFolderFileExplorer", StartMenuPinnedFolderFileExplorer);
+            writer.WriteEnumValue<ApiSdk.Models.VisibilitySetting>("startMenuPinnedFolderHomeGroup", StartMenuPinnedFolderHomeGroup);
+            writer.WriteEnumValue<ApiSdk.Models.VisibilitySetting>("startMenuPinnedFolderMusic", StartMenuPinnedFolderMusic);
+            writer.WriteEnumValue<ApiSdk.Models.VisibilitySetting>("startMenuPinnedFolderNetwork", StartMenuPinnedFolderNetwork);
+            writer.WriteEnumValue<ApiSdk.Models.VisibilitySetting>("startMenuPinnedFolderPersonalFolder", StartMenuPinnedFolderPersonalFolder);
+            writer.WriteEnumValue<ApiSdk.Models.VisibilitySetting>("startMenuPinnedFolderPictures", StartMenuPinnedFolderPictures);
+            writer.WriteEnumValue<ApiSdk.Models.VisibilitySetting>("startMenuPinnedFolderSettings", StartMenuPinnedFolderSettings);
+            writer.WriteEnumValue<ApiSdk.Models.VisibilitySetting>("startMenuPinnedFolderVideos", StartMenuPinnedFolderVideos);
             writer.WriteBoolValue("storageBlockRemovableStorage", StorageBlockRemovableStorage);
             writer.WriteBoolValue("storageRequireMobileDeviceEncryption", StorageRequireMobileDeviceEncryption);
             writer.WriteBoolValue("storageRestrictAppDataToSystemVolume", StorageRestrictAppDataToSystemVolume);
@@ -964,7 +964,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("windowsSpotlightBlockThirdPartyNotifications", WindowsSpotlightBlockThirdPartyNotifications);
             writer.WriteBoolValue("windowsSpotlightBlockWelcomeExperience", WindowsSpotlightBlockWelcomeExperience);
             writer.WriteBoolValue("windowsSpotlightBlockWindowsTips", WindowsSpotlightBlockWindowsTips);
-            writer.WriteEnumValue<WindowsSpotlightEnablementSettings>("windowsSpotlightConfigureOnLockScreen", WindowsSpotlightConfigureOnLockScreen);
+            writer.WriteEnumValue<ApiSdk.Models.WindowsSpotlightEnablementSettings>("windowsSpotlightConfigureOnLockScreen", WindowsSpotlightConfigureOnLockScreen);
             writer.WriteBoolValue("windowsStoreBlockAutoUpdate", WindowsStoreBlockAutoUpdate);
             writer.WriteBoolValue("windowsStoreBlocked", WindowsStoreBlocked);
             writer.WriteBoolValue("windowsStoreEnablePrivateStoreOnly", WindowsStoreEnablePrivateStoreOnly);

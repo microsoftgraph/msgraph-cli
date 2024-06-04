@@ -67,14 +67,14 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.SetUpFeedbackResourcesFol
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetUpFeedbackResourcesFolderRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Users.Item.Assignments.Item.SetUpFeedbackResourcesFolder.SetUpFeedbackResourcesFolderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SetUpFeedbackResourcesFolderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/setUpFeedbackResourcesFolder", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetUpFeedbackResourcesFolderRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Users.Item.Assignments.Item.SetUpFeedbackResourcesFolder.SetUpFeedbackResourcesFolderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SetUpFeedbackResourcesFolderRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/setUpFeedbackResourcesFolder", rawUrl)

@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties and inherited properties for web apps.
     /// </summary>
-    public class WebApp : MobileApp, IParsable
+    public class WebApp : ApiSdk.Models.MobileApp, IParsable
     {
         /// <summary>The web app URL. This property cannot be PATCHed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,7 +22,7 @@ namespace ApiSdk.Models
         /// <summary>Whether or not to use managed browser. This property is only applicable for Android and IOS.</summary>
         public bool? UseManagedBrowser { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="WebApp"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WebApp"/> and sets the default values.
         /// </summary>
         public WebApp() : base()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WebApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WebApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WebApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WebApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WebApp();
+            return new ApiSdk.Models.WebApp();
         }
         /// <summary>
         /// The deserialization information for the current model

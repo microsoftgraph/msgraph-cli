@@ -65,14 +65,14 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.LogCollectionRequests.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CreateDownloadUrlRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.LogCollectionRequests.Item.CreateDownloadUrl.CreateDownloadUrlRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CreateDownloadUrlRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/logCollectionRequests/{deviceLogCollectionResponse%2Did}/createDownloadUrl", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CreateDownloadUrlRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.LogCollectionRequests.Item.CreateDownloadUrl.CreateDownloadUrlRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CreateDownloadUrlRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/logCollectionRequests/{deviceLogCollectionResponse%2Did}/createDownloadUrl", rawUrl)

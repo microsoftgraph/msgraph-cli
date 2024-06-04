@@ -9,12 +9,12 @@ namespace ApiSdk.Models
     /// <summary>
     /// The value in an user experience analytics insight.
     /// </summary>
-    public class InsightValueDouble : UserExperienceAnalyticsInsightValue, IParsable
+    public class InsightValueDouble : ApiSdk.Models.UserExperienceAnalyticsInsightValue, IParsable
     {
         /// <summary>The double value of the user experience analytics insight.</summary>
         public double? Value { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="InsightValueDouble"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.InsightValueDouble"/> and sets the default values.
         /// </summary>
         public InsightValueDouble() : base()
         {
@@ -23,12 +23,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="InsightValueDouble"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.InsightValueDouble"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new InsightValueDouble CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.InsightValueDouble CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new InsightValueDouble();
+            return new ApiSdk.Models.InsightValueDouble();
         }
         /// <summary>
         /// The deserialization information for the current model

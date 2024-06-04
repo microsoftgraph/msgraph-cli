@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UserRegistrationDetails : Entity, IParsable
+    public class UserRegistrationDetails : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates whether the user has an admin role in the tenant. This value can be used to check the authentication methods that privileged accounts are registered for and capable of.</summary>
@@ -53,7 +53,7 @@ namespace ApiSdk.Models
         public string UserDisplayName { get; set; }
 #endif
         /// <summary>The method the user selected as the default second-factor for performing multifactor authentication. Possible values are: push, oath, voiceMobile, voiceAlternateMobile, voiceOffice, sms, none, unknownFutureValue. This property is used as preferred MFA method when isSystemPreferredAuthenticationMethodEnabled is false. Supports $filter (any with eq).</summary>
-        public UserDefaultAuthenticationMethod? UserPreferredMethodForSecondaryAuthentication { get; set; }
+        public ApiSdk.Models.UserDefaultAuthenticationMethod? UserPreferredMethodForSecondaryAuthentication { get; set; }
         /// <summary>The user principal name, such as AdeleV@contoso.com. Supports $filter (eq, startsWith) and $orderby.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -63,16 +63,16 @@ namespace ApiSdk.Models
         public string UserPrincipalName { get; set; }
 #endif
         /// <summary>Identifies whether the user is a member or guest in the tenant. The possible values are: member, guest, unknownFutureValue.</summary>
-        public SignInUserType? UserType { get; set; }
+        public ApiSdk.Models.SignInUserType? UserType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserRegistrationDetails"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserRegistrationDetails"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserRegistrationDetails CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserRegistrationDetails CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserRegistrationDetails();
+            return new ApiSdk.Models.UserRegistrationDetails();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -94,9 +94,9 @@ namespace ApiSdk.Models
                 { "methodsRegistered", n => { MethodsRegistered = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "systemPreferredAuthenticationMethods", n => { SystemPreferredAuthenticationMethods = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
-                { "userPreferredMethodForSecondaryAuthentication", n => { UserPreferredMethodForSecondaryAuthentication = n.GetEnumValue<UserDefaultAuthenticationMethod>(); } },
+                { "userPreferredMethodForSecondaryAuthentication", n => { UserPreferredMethodForSecondaryAuthentication = n.GetEnumValue<ApiSdk.Models.UserDefaultAuthenticationMethod>(); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
-                { "userType", n => { UserType = n.GetEnumValue<SignInUserType>(); } },
+                { "userType", n => { UserType = n.GetEnumValue<ApiSdk.Models.SignInUserType>(); } },
             };
         }
         /// <summary>
@@ -119,9 +119,9 @@ namespace ApiSdk.Models
             writer.WriteCollectionOfPrimitiveValues<string>("methodsRegistered", MethodsRegistered);
             writer.WriteCollectionOfPrimitiveValues<string>("systemPreferredAuthenticationMethods", SystemPreferredAuthenticationMethods);
             writer.WriteStringValue("userDisplayName", UserDisplayName);
-            writer.WriteEnumValue<UserDefaultAuthenticationMethod>("userPreferredMethodForSecondaryAuthentication", UserPreferredMethodForSecondaryAuthentication);
+            writer.WriteEnumValue<ApiSdk.Models.UserDefaultAuthenticationMethod>("userPreferredMethodForSecondaryAuthentication", UserPreferredMethodForSecondaryAuthentication);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);
-            writer.WriteEnumValue<SignInUserType>("userType", UserType);
+            writer.WriteEnumValue<ApiSdk.Models.SignInUserType>("userType", UserType);
         }
     }
 }

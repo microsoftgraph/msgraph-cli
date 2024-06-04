@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Identity information of the participant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Identity { get; set; }
+        public ApiSdk.Models.IdentitySet? Identity { get; set; }
 #nullable restore
 #else
-        public IdentitySet Identity { get; set; }
+        public ApiSdk.Models.IdentitySet Identity { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,7 +29,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>Specifies the participant&apos;s role in the meeting.</summary>
-        public OnlineMeetingRole? Role { get; set; }
+        public ApiSdk.Models.OnlineMeetingRole? Role { get; set; }
         /// <summary>User principal name of the participant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,7 +39,7 @@ namespace ApiSdk.Models
         public string Upn { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MeetingParticipantInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MeetingParticipantInfo"/> and sets the default values.
         /// </summary>
         public MeetingParticipantInfo()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MeetingParticipantInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MeetingParticipantInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MeetingParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MeetingParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MeetingParticipantInfo();
+            return new ApiSdk.Models.MeetingParticipantInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,9 +63,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "identity", n => { Identity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "identity", n => { Identity = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "role", n => { Role = n.GetEnumValue<OnlineMeetingRole>(); } },
+                { "role", n => { Role = n.GetEnumValue<ApiSdk.Models.OnlineMeetingRole>(); } },
                 { "upn", n => { Upn = n.GetStringValue(); } },
             };
         }
@@ -76,9 +76,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<IdentitySet>("identity", Identity);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("identity", Identity);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<OnlineMeetingRole>("role", Role);
+            writer.WriteEnumValue<ApiSdk.Models.OnlineMeetingRole>("role", Role);
             writer.WriteStringValue("upn", Upn);
             writer.WriteAdditionalData(AdditionalData);
         }

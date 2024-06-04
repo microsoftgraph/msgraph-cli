@@ -22,7 +22,7 @@ namespace ApiSdk.ServicePrincipals.Item.AddPassword
         public ApiSdk.Models.PasswordCredential PasswordCredential { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AddPasswordPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.AddPassword.AddPasswordPostRequestBody"/> and sets the default values.
         /// </summary>
         public AddPasswordPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.ServicePrincipals.Item.AddPassword
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddPasswordPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.ServicePrincipals.Item.AddPassword.AddPasswordPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AddPasswordPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.ServicePrincipals.Item.AddPassword.AddPasswordPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddPasswordPostRequestBody();
+            return new ApiSdk.ServicePrincipals.Item.AddPassword.AddPasswordPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

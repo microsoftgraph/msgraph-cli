@@ -16,10 +16,10 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Redirect
         /// <summary>The configuration property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PrintJobConfiguration? Configuration { get; set; }
+        public ApiSdk.Models.PrintJobConfiguration? Configuration { get; set; }
 #nullable restore
 #else
-        public PrintJobConfiguration Configuration { get; set; }
+        public ApiSdk.Models.PrintJobConfiguration Configuration { get; set; }
 #endif
         /// <summary>The destinationPrinterId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -30,7 +30,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Redirect
         public string DestinationPrinterId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RedirectPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.Shares.Item.Jobs.Item.Redirect.RedirectPostRequestBody"/> and sets the default values.
         /// </summary>
         public RedirectPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Redirect
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RedirectPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Print.Shares.Item.Jobs.Item.Redirect.RedirectPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RedirectPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Print.Shares.Item.Jobs.Item.Redirect.RedirectPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RedirectPostRequestBody();
+            return new ApiSdk.Print.Shares.Item.Jobs.Item.Redirect.RedirectPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Redirect
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "configuration", n => { Configuration = n.GetObjectValue<PrintJobConfiguration>(PrintJobConfiguration.CreateFromDiscriminatorValue); } },
+                { "configuration", n => { Configuration = n.GetObjectValue<ApiSdk.Models.PrintJobConfiguration>(ApiSdk.Models.PrintJobConfiguration.CreateFromDiscriminatorValue); } },
                 { "destinationPrinterId", n => { DestinationPrinterId = n.GetStringValue(); } },
             };
         }
@@ -65,7 +65,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Redirect
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<PrintJobConfiguration>("configuration", Configuration);
+            writer.WriteObjectValue<ApiSdk.Models.PrintJobConfiguration>("configuration", Configuration);
             writer.WriteStringValue("destinationPrinterId", DestinationPrinterId);
             writer.WriteAdditionalData(AdditionalData);
         }

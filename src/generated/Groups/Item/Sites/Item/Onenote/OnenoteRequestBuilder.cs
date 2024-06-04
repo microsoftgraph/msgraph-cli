@@ -134,7 +134,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote
         {
             var command = new Command("notebooks");
             command.Description = "Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.";
-            var builder = new NotebooksRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.NotebooksRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -163,7 +163,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote
         {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.onenote entity.";
-            var builder = new OperationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Onenote.Operations.OperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -190,7 +190,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote
         {
             var command = new Command("pages");
             command.Description = "Provides operations to manage the pages property of the microsoft.graph.onenote entity.";
-            var builder = new PagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.PagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -274,7 +274,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote
         {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.onenote entity.";
-            var builder = new ResourcesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Onenote.Resources.ResourcesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -301,7 +301,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote
         {
             var command = new Command("section-groups");
             command.Description = "Provides operations to manage the sectionGroups property of the microsoft.graph.onenote entity.";
-            var builder = new SectionGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.SectionGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -328,7 +328,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote
         {
             var command = new Command("sections");
             command.Description = "Provides operations to manage the sections property of the microsoft.graph.onenote entity.";
-            var builder = new SectionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.SectionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -348,14 +348,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="OnenoteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Onenote.OnenoteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OnenoteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="OnenoteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Onenote.OnenoteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OnenoteRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote{?%24expand,%24select}", rawUrl)
@@ -387,11 +387,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OnenoteRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.Onenote.OnenoteRequestBuilder.OnenoteRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OnenoteRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.Onenote.OnenoteRequestBuilder.OnenoteRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

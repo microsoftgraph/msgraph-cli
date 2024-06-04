@@ -45,18 +45,18 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>The groups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ExternalGroup>? Groups { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ExternalGroup>? Groups { get; set; }
 #nullable restore
 #else
-        public List<ExternalGroup> Groups { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ExternalGroup> Groups { get; set; }
 #endif
         /// <summary>The items property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ExternalItem>? Items { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ExternalItem>? Items { get; set; }
 #nullable restore
 #else
-        public List<ExternalItem> Items { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ExternalItem> Items { get; set; }
 #endif
         /// <summary>The display name of the connection to be displayed in the Microsoft 365 admin center. Maximum length of 128 characters. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -69,10 +69,10 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>The operations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ConnectionOperation>? Operations { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ConnectionOperation>? Operations { get; set; }
 #nullable restore
 #else
-        public List<ConnectionOperation> Operations { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ConnectionOperation> Operations { get; set; }
 #endif
         /// <summary>The schema property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -91,16 +91,16 @@ namespace ApiSdk.Models.ExternalConnectors
         public ApiSdk.Models.ExternalConnectors.SearchSettings SearchSettings { get; set; }
 #endif
         /// <summary>Indicates the current state of the connection. Possible values are: draft, ready, obsolete, limitExceeded, unknownFutureValue.</summary>
-        public ConnectionState? State { get; private set; }
+        public ApiSdk.Models.ExternalConnectors.ConnectionState? State { get; private set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ExternalConnection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.ExternalConnection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ExternalConnection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ExternalConnectors.ExternalConnection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ExternalConnection();
+            return new ApiSdk.Models.ExternalConnectors.ExternalConnection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -114,13 +114,13 @@ namespace ApiSdk.Models.ExternalConnectors
                 { "configuration", n => { Configuration = n.GetObjectValue<ApiSdk.Models.ExternalConnectors.Configuration>(ApiSdk.Models.ExternalConnectors.Configuration.CreateFromDiscriminatorValue); } },
                 { "connectorId", n => { ConnectorId = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "groups", n => { Groups = n.GetCollectionOfObjectValues<ExternalGroup>(ExternalGroup.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "items", n => { Items = n.GetCollectionOfObjectValues<ExternalItem>(ExternalItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "groups", n => { Groups = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ExternalGroup>(ApiSdk.Models.ExternalConnectors.ExternalGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "items", n => { Items = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ExternalItem>(ApiSdk.Models.ExternalConnectors.ExternalItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "operations", n => { Operations = n.GetCollectionOfObjectValues<ConnectionOperation>(ConnectionOperation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "operations", n => { Operations = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ConnectionOperation>(ApiSdk.Models.ExternalConnectors.ConnectionOperation.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "schema", n => { Schema = n.GetObjectValue<ApiSdk.Models.ExternalConnectors.Schema>(ApiSdk.Models.ExternalConnectors.Schema.CreateFromDiscriminatorValue); } },
                 { "searchSettings", n => { SearchSettings = n.GetObjectValue<ApiSdk.Models.ExternalConnectors.SearchSettings>(ApiSdk.Models.ExternalConnectors.SearchSettings.CreateFromDiscriminatorValue); } },
-                { "state", n => { State = n.GetEnumValue<ConnectionState>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.ExternalConnectors.ConnectionState>(); } },
             };
         }
         /// <summary>
@@ -135,10 +135,10 @@ namespace ApiSdk.Models.ExternalConnectors
             writer.WriteObjectValue<ApiSdk.Models.ExternalConnectors.Configuration>("configuration", Configuration);
             writer.WriteStringValue("connectorId", ConnectorId);
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfObjectValues<ExternalGroup>("groups", Groups);
-            writer.WriteCollectionOfObjectValues<ExternalItem>("items", Items);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ExternalGroup>("groups", Groups);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ExternalItem>("items", Items);
             writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfObjectValues<ConnectionOperation>("operations", Operations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ConnectionOperation>("operations", Operations);
             writer.WriteObjectValue<ApiSdk.Models.ExternalConnectors.Schema>("schema", Schema);
             writer.WriteObjectValue<ApiSdk.Models.ExternalConnectors.SearchSettings>("searchSettings", SearchSettings);
         }

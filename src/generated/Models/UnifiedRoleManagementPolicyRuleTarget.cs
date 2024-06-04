@@ -55,21 +55,21 @@ namespace ApiSdk.Models
         /// <summary>The role management operations that are the target of the policy rule. Allowed values are: All, Activate, Deactivate, Assign, Update, Remove, Extend, Renew.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UnifiedRoleManagementPolicyRuleTargetOperations?>? Operations { get; set; }
+        public List<ApiSdk.Models.UnifiedRoleManagementPolicyRuleTargetOperations?>? Operations { get; set; }
 #nullable restore
 #else
-        public List<UnifiedRoleManagementPolicyRuleTargetOperations?> Operations { get; set; }
+        public List<ApiSdk.Models.UnifiedRoleManagementPolicyRuleTargetOperations?> Operations { get; set; }
 #endif
         /// <summary>The targetObjects property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? TargetObjects { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? TargetObjects { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> TargetObjects { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> TargetObjects { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UnifiedRoleManagementPolicyRuleTarget"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UnifiedRoleManagementPolicyRuleTarget"/> and sets the default values.
         /// </summary>
         public UnifiedRoleManagementPolicyRuleTarget()
         {
@@ -78,12 +78,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedRoleManagementPolicyRuleTarget"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UnifiedRoleManagementPolicyRuleTarget"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UnifiedRoleManagementPolicyRuleTarget CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UnifiedRoleManagementPolicyRuleTarget CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedRoleManagementPolicyRuleTarget();
+            return new ApiSdk.Models.UnifiedRoleManagementPolicyRuleTarget();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -98,8 +98,8 @@ namespace ApiSdk.Models
                 { "inheritableSettings", n => { InheritableSettings = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "level", n => { Level = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "operations", n => { Operations = n.GetCollectionOfEnumValues<UnifiedRoleManagementPolicyRuleTargetOperations>()?.ToList(); } },
-                { "targetObjects", n => { TargetObjects = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "operations", n => { Operations = n.GetCollectionOfEnumValues<ApiSdk.Models.UnifiedRoleManagementPolicyRuleTargetOperations>()?.ToList(); } },
+                { "targetObjects", n => { TargetObjects = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -114,8 +114,8 @@ namespace ApiSdk.Models
             writer.WriteCollectionOfPrimitiveValues<string>("inheritableSettings", InheritableSettings);
             writer.WriteStringValue("level", Level);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfEnumValues<UnifiedRoleManagementPolicyRuleTargetOperations>("operations", Operations);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("targetObjects", TargetObjects);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.UnifiedRoleManagementPolicyRuleTargetOperations>("operations", Operations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("targetObjects", TargetObjects);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

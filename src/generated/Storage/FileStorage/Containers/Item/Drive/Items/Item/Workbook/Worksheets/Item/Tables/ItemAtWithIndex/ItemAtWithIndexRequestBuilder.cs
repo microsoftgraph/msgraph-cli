@@ -40,7 +40,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("clear-filters");
             command.Description = "Provides operations to call the clearFilters method.";
-            var builder = new ClearFiltersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.ClearFilters.ClearFiltersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -57,7 +57,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.workbookTable entity.";
-            var builder = new ColumnsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.Columns.ColumnsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
@@ -75,7 +75,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("convert-to-range");
             command.Description = "Provides operations to call the convertToRange method.";
-            var builder = new ConvertToRangeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.ConvertToRange.ConvertToRangeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -92,7 +92,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("data-body-range");
             command.Description = "Provides operations to call the dataBodyRange method.";
-            var builder = new DataBodyRangeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.DataBodyRange.DataBodyRangeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -165,7 +165,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("header-row-range");
             command.Description = "Provides operations to call the headerRowRange method.";
-            var builder = new HeaderRowRangeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.HeaderRowRange.HeaderRowRangeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -182,7 +182,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("range");
             command.Description = "Provides operations to call the range method.";
-            var builder = new RangeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.RangeNamespace.RangeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -199,7 +199,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("reapply-filters");
             command.Description = "Provides operations to call the reapplyFilters method.";
-            var builder = new ReapplyFiltersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.ReapplyFilters.ReapplyFiltersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -216,7 +216,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("rows");
             command.Description = "Provides operations to manage the rows property of the microsoft.graph.workbookTable entity.";
-            var builder = new RowsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.Rows.RowsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
@@ -234,7 +234,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("sort");
             command.Description = "Provides operations to manage the sort property of the microsoft.graph.workbookTable entity.";
-            var builder = new SortRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.Sort.SortRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -253,7 +253,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("total-row-range");
             command.Description = "Provides operations to call the totalRowRange method.";
-            var builder = new TotalRowRangeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.TotalRowRange.TotalRowRangeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -270,7 +270,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
         {
             var command = new Command("worksheet");
             command.Description = "Provides operations to manage the worksheet property of the microsoft.graph.workbookTable entity.";
-            var builder = new WorksheetRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.Worksheet.WorksheetRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -280,14 +280,14 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.W
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ItemAtWithIndexRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.ItemAtWithIndexRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ItemAtWithIndexRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/storage/fileStorage/containers/{fileStorageContainer%2Did}/drive/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/itemAt(index={index})", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ItemAtWithIndexRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.ItemAtWithIndexRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ItemAtWithIndexRequestBuilder(string rawUrl) : base("{+baseurl}/storage/fileStorage/containers/{fileStorageContainer%2Did}/drive/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/itemAt(index={index})", rawUrl)

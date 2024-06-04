@@ -66,7 +66,7 @@ namespace ApiSdk.Security.AttackSimulation
         {
             var command = new Command("end-user-notifications");
             command.Description = "Provides operations to manage the endUserNotifications property of the microsoft.graph.attackSimulationRoot entity.";
-            var builder = new EndUserNotificationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.EndUserNotifications.EndUserNotificationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -139,7 +139,7 @@ namespace ApiSdk.Security.AttackSimulation
         {
             var command = new Command("landing-pages");
             command.Description = "Provides operations to manage the landingPages property of the microsoft.graph.attackSimulationRoot entity.";
-            var builder = new LandingPagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.LandingPages.LandingPagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -166,7 +166,7 @@ namespace ApiSdk.Security.AttackSimulation
         {
             var command = new Command("login-pages");
             command.Description = "Provides operations to manage the loginPages property of the microsoft.graph.attackSimulationRoot entity.";
-            var builder = new LoginPagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.LoginPages.LoginPagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -193,7 +193,7 @@ namespace ApiSdk.Security.AttackSimulation
         {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.attackSimulationRoot entity.";
-            var builder = new OperationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.Operations.OperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -238,7 +238,7 @@ namespace ApiSdk.Security.AttackSimulation
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AttackSimulationRoot>(AttackSimulationRoot.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.AttackSimulationRoot>(ApiSdk.Models.AttackSimulationRoot.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -265,7 +265,7 @@ namespace ApiSdk.Security.AttackSimulation
         {
             var command = new Command("payloads");
             command.Description = "Provides operations to manage the payloads property of the microsoft.graph.attackSimulationRoot entity.";
-            var builder = new PayloadsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.Payloads.PayloadsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -292,7 +292,7 @@ namespace ApiSdk.Security.AttackSimulation
         {
             var command = new Command("simulation-automations");
             command.Description = "Provides operations to manage the simulationAutomations property of the microsoft.graph.attackSimulationRoot entity.";
-            var builder = new SimulationAutomationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.SimulationAutomations.SimulationAutomationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -319,7 +319,7 @@ namespace ApiSdk.Security.AttackSimulation
         {
             var command = new Command("simulations");
             command.Description = "Provides operations to manage the simulations property of the microsoft.graph.attackSimulationRoot entity.";
-            var builder = new SimulationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.Simulations.SimulationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -346,7 +346,7 @@ namespace ApiSdk.Security.AttackSimulation
         {
             var command = new Command("trainings");
             command.Description = "Provides operations to manage the trainings property of the microsoft.graph.attackSimulationRoot entity.";
-            var builder = new TrainingsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.Trainings.TrainingsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -366,14 +366,14 @@ namespace ApiSdk.Security.AttackSimulation
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttackSimulationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.AttackSimulation.AttackSimulationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AttackSimulationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttackSimulationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.AttackSimulation.AttackSimulationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AttackSimulationRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation{?%24expand,%24select}", rawUrl)
@@ -405,11 +405,11 @@ namespace ApiSdk.Security.AttackSimulation
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttackSimulationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.AttackSimulation.AttackSimulationRequestBuilder.AttackSimulationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttackSimulationRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.AttackSimulation.AttackSimulationRequestBuilder.AttackSimulationRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -425,11 +425,11 @@ namespace ApiSdk.Security.AttackSimulation
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AttackSimulationRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AttackSimulationRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AttackSimulationRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AttackSimulationRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

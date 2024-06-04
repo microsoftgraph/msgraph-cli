@@ -23,7 +23,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ResultTemplateOption"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ResultTemplateOption"/> and sets the default values.
         /// </summary>
         public ResultTemplateOption()
         {
@@ -32,12 +32,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ResultTemplateOption"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ResultTemplateOption"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ResultTemplateOption CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ResultTemplateOption CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ResultTemplateOption();
+            return new ApiSdk.Models.ResultTemplateOption();
         }
         /// <summary>
         /// The deserialization information for the current model

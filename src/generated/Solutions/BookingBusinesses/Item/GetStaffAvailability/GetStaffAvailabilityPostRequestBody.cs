@@ -16,10 +16,10 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability
         /// <summary>The endDateTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? EndDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? EndDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone EndDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone EndDateTime { get; set; }
 #endif
         /// <summary>The staffIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -32,13 +32,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability
         /// <summary>The startDateTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? StartDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? StartDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone StartDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone StartDateTime { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="GetStaffAvailabilityPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability.GetStaffAvailabilityPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetStaffAvailabilityPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetStaffAvailabilityPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability.GetStaffAvailabilityPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetStaffAvailabilityPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability.GetStaffAvailabilityPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetStaffAvailabilityPostRequestBody();
+            return new ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability.GetStaffAvailabilityPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "endDateTime", n => { EndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "endDateTime", n => { EndDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 { "staffIds", n => { StaffIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "startDateTime", n => { StartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "startDateTime", n => { StartDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<DateTimeTimeZone>("endDateTime", EndDateTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("endDateTime", EndDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("staffIds", StaffIds);
-            writer.WriteObjectValue<DateTimeTimeZone>("startDateTime", StartDateTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("startDateTime", StartDateTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

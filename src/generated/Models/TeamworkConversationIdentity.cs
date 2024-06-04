@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamworkConversationIdentity : Identity, IParsable
+    public class TeamworkConversationIdentity : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Type of conversation. Possible values are: team, channel, chat, and unknownFutureValue.</summary>
-        public TeamworkConversationIdentityType? ConversationIdentityType { get; set; }
+        public ApiSdk.Models.TeamworkConversationIdentityType? ConversationIdentityType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TeamworkConversationIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TeamworkConversationIdentity"/> and sets the default values.
         /// </summary>
         public TeamworkConversationIdentity() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamworkConversationIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamworkConversationIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamworkConversationIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamworkConversationIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamworkConversationIdentity();
+            return new ApiSdk.Models.TeamworkConversationIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "conversationIdentityType", n => { ConversationIdentityType = n.GetEnumValue<TeamworkConversationIdentityType>(); } },
+                { "conversationIdentityType", n => { ConversationIdentityType = n.GetEnumValue<ApiSdk.Models.TeamworkConversationIdentityType>(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<TeamworkConversationIdentityType>("conversationIdentityType", ConversationIdentityType);
+            writer.WriteEnumValue<ApiSdk.Models.TeamworkConversationIdentityType>("conversationIdentityType", ConversationIdentityType);
         }
     }
 }

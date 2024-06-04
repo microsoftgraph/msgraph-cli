@@ -16,13 +16,13 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
         /// <summary>The commands property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OnenotePatchContentCommand>? Commands { get; set; }
+        public List<ApiSdk.Models.OnenotePatchContentCommand>? Commands { get; set; }
 #nullable restore
 #else
-        public List<OnenotePatchContentCommand> Commands { get; set; }
+        public List<ApiSdk.Models.OnenotePatchContentCommand> Commands { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OnenotePatchContentPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.OnenotePatchContent.OnenotePatchContentPostRequestBody"/> and sets the default values.
         /// </summary>
         public OnenotePatchContentPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnenotePatchContentPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.OnenotePatchContent.OnenotePatchContentPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static OnenotePatchContentPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.OnenotePatchContent.OnenotePatchContentPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnenotePatchContentPostRequestBody();
+            return new ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.OnenotePatchContent.OnenotePatchContentPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "commands", n => { Commands = n.GetCollectionOfObjectValues<OnenotePatchContentCommand>(OnenotePatchContentCommand.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "commands", n => { Commands = n.GetCollectionOfObjectValues<ApiSdk.Models.OnenotePatchContentCommand>(ApiSdk.Models.OnenotePatchContentCommand.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<OnenotePatchContentCommand>("commands", Commands);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OnenotePatchContentCommand>("commands", Commands);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

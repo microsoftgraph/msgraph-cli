@@ -32,7 +32,7 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfS
         {
             var command = new Command("conditions");
             command.Description = "The conditions property";
-            var builder = new ConditionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfServiceSignUpEventsFlow.Conditions.ConditionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildApplicationsNavCommand());
@@ -107,7 +107,7 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfS
         {
             var command = new Command("on-attribute-collection");
             command.Description = "The onAttributeCollection property";
-            var builder = new OnAttributeCollectionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfServiceSignUpEventsFlow.OnAttributeCollection.OnAttributeCollectionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -130,7 +130,7 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfS
         {
             var command = new Command("on-authentication-method-load-start");
             command.Description = "The onAuthenticationMethodLoadStart property";
-            var builder = new OnAuthenticationMethodLoadStartRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfServiceSignUpEventsFlow.OnAuthenticationMethodLoadStart.OnAuthenticationMethodLoadStartRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -146,14 +146,14 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfS
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfServiceSignUpEventsFlow.GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/authenticationEventsFlows/{authenticationEventsFlow%2Did}/graph.externalUsersSelfServiceSignUpEventsFlow{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfServiceSignUpEventsFlow.GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder(string rawUrl) : base("{+baseurl}/identity/authenticationEventsFlows/{authenticationEventsFlow%2Did}/graph.externalUsersSelfServiceSignUpEventsFlow{?%24expand,%24select}", rawUrl)
@@ -166,11 +166,11 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfS
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfServiceSignUpEventsFlow.GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder.GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.AuthenticationEventsFlows.Item.GraphExternalUsersSelfServiceSignUpEventsFlow.GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilder.GraphExternalUsersSelfServiceSignUpEventsFlowRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

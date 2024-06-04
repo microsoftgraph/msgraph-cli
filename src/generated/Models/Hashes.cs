@@ -53,7 +53,7 @@ namespace ApiSdk.Models
         public string Sha256Hash { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Hashes"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Hashes"/> and sets the default values.
         /// </summary>
         public Hashes()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Hashes"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Hashes"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Hashes CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Hashes CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Hashes();
+            return new ApiSdk.Models.Hashes();
         }
         /// <summary>
         /// The deserialization information for the current model

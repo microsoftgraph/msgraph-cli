@@ -62,14 +62,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item.Ref
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item.Ref.RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders/{identityProviderBase%2Did}/$ref", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item.Ref.RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders/{identityProviderBase%2Did}/$ref", rawUrl)

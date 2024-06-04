@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class DeviceEvidence : AlertEvidence, IParsable
+    public class DeviceEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A unique identifier assigned to a device by Microsoft Entra ID when device is Microsoft Entra joined.</summary>
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Security
         /// <summary>The date and time when the device was first seen.</summary>
         public DateTimeOffset? FirstSeenDateTime { get; set; }
         /// <summary>The health state of the device. The possible values are: active, inactive, impairedCommunication, noSensorData, noSensorDataImpairedCommunication, unknown, unknownFutureValue.</summary>
-        public DeviceHealthStatus? HealthStatus { get; set; }
+        public ApiSdk.Models.Security.DeviceHealthStatus? HealthStatus { get; set; }
         /// <summary>Ip interfaces of the device during the time of the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -59,10 +59,10 @@ namespace ApiSdk.Models.Security
         /// <summary>Users that were logged on the machine during the time of the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LoggedOnUser>? LoggedOnUsers { get; set; }
+        public List<ApiSdk.Models.Security.LoggedOnUser>? LoggedOnUsers { get; set; }
 #nullable restore
 #else
-        public List<LoggedOnUser> LoggedOnUsers { get; set; }
+        public List<ApiSdk.Models.Security.LoggedOnUser> LoggedOnUsers { get; set; }
 #endif
         /// <summary>A unique identifier assigned to a device by Microsoft Defender for Endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -95,7 +95,7 @@ namespace ApiSdk.Models.Security
         public string RbacGroupName { get; set; }
 #endif
         /// <summary>Risk score as evaluated by Microsoft Defender for Endpoint. The possible values are: none, informational, low, medium, high, unknownFutureValue.</summary>
-        public DeviceRiskScore? RiskScore { get; set; }
+        public ApiSdk.Models.Security.DeviceRiskScore? RiskScore { get; set; }
         /// <summary>The version of the operating system platform.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -113,7 +113,7 @@ namespace ApiSdk.Models.Security
         public ApiSdk.Models.Security.VmMetadata VmMetadata { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DeviceEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.DeviceEvidence"/> and sets the default values.
         /// </summary>
         public DeviceEvidence() : base()
         {
@@ -122,12 +122,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.DeviceEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.DeviceEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceEvidence();
+            return new ApiSdk.Models.Security.DeviceEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -138,21 +138,21 @@ namespace ApiSdk.Models.Security
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "azureAdDeviceId", n => { AzureAdDeviceId = n.GetStringValue(); } },
-                { "defenderAvStatus", n => { DefenderAvStatus = n.GetEnumValue<DefenderAvStatus>(); } },
+                { "defenderAvStatus", n => { DefenderAvStatus = n.GetEnumValue<ApiSdk.Models.Security.DefenderAvStatus>(); } },
                 { "deviceDnsName", n => { DeviceDnsName = n.GetStringValue(); } },
                 { "firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
-                { "healthStatus", n => { HealthStatus = n.GetEnumValue<DeviceHealthStatus>(); } },
+                { "healthStatus", n => { HealthStatus = n.GetEnumValue<ApiSdk.Models.Security.DeviceHealthStatus>(); } },
                 { "ipInterfaces", n => { IpInterfaces = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "lastExternalIpAddress", n => { LastExternalIpAddress = n.GetStringValue(); } },
                 { "lastIpAddress", n => { LastIpAddress = n.GetStringValue(); } },
-                { "loggedOnUsers", n => { LoggedOnUsers = n.GetCollectionOfObjectValues<LoggedOnUser>(LoggedOnUser.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "loggedOnUsers", n => { LoggedOnUsers = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.LoggedOnUser>(ApiSdk.Models.Security.LoggedOnUser.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "mdeDeviceId", n => { MdeDeviceId = n.GetStringValue(); } },
-                { "onboardingStatus", n => { OnboardingStatus = n.GetEnumValue<OnboardingStatus>(); } },
+                { "onboardingStatus", n => { OnboardingStatus = n.GetEnumValue<ApiSdk.Models.Security.OnboardingStatus>(); } },
                 { "osBuild", n => { OsBuild = n.GetLongValue(); } },
                 { "osPlatform", n => { OsPlatform = n.GetStringValue(); } },
                 { "rbacGroupId", n => { RbacGroupId = n.GetIntValue(); } },
                 { "rbacGroupName", n => { RbacGroupName = n.GetStringValue(); } },
-                { "riskScore", n => { RiskScore = n.GetEnumValue<DeviceRiskScore>(); } },
+                { "riskScore", n => { RiskScore = n.GetEnumValue<ApiSdk.Models.Security.DeviceRiskScore>(); } },
                 { "version", n => { Version = n.GetStringValue(); } },
                 { "vmMetadata", n => { VmMetadata = n.GetObjectValue<ApiSdk.Models.Security.VmMetadata>(ApiSdk.Models.Security.VmMetadata.CreateFromDiscriminatorValue); } },
             };
@@ -166,21 +166,21 @@ namespace ApiSdk.Models.Security
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("azureAdDeviceId", AzureAdDeviceId);
-            writer.WriteEnumValue<DefenderAvStatus>("defenderAvStatus", DefenderAvStatus);
+            writer.WriteEnumValue<ApiSdk.Models.Security.DefenderAvStatus>("defenderAvStatus", DefenderAvStatus);
             writer.WriteStringValue("deviceDnsName", DeviceDnsName);
             writer.WriteDateTimeOffsetValue("firstSeenDateTime", FirstSeenDateTime);
-            writer.WriteEnumValue<DeviceHealthStatus>("healthStatus", HealthStatus);
+            writer.WriteEnumValue<ApiSdk.Models.Security.DeviceHealthStatus>("healthStatus", HealthStatus);
             writer.WriteCollectionOfPrimitiveValues<string>("ipInterfaces", IpInterfaces);
             writer.WriteStringValue("lastExternalIpAddress", LastExternalIpAddress);
             writer.WriteStringValue("lastIpAddress", LastIpAddress);
-            writer.WriteCollectionOfObjectValues<LoggedOnUser>("loggedOnUsers", LoggedOnUsers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.LoggedOnUser>("loggedOnUsers", LoggedOnUsers);
             writer.WriteStringValue("mdeDeviceId", MdeDeviceId);
-            writer.WriteEnumValue<OnboardingStatus>("onboardingStatus", OnboardingStatus);
+            writer.WriteEnumValue<ApiSdk.Models.Security.OnboardingStatus>("onboardingStatus", OnboardingStatus);
             writer.WriteLongValue("osBuild", OsBuild);
             writer.WriteStringValue("osPlatform", OsPlatform);
             writer.WriteIntValue("rbacGroupId", RbacGroupId);
             writer.WriteStringValue("rbacGroupName", RbacGroupName);
-            writer.WriteEnumValue<DeviceRiskScore>("riskScore", RiskScore);
+            writer.WriteEnumValue<ApiSdk.Models.Security.DeviceRiskScore>("riskScore", RiskScore);
             writer.WriteStringValue("version", Version);
             writer.WriteObjectValue<ApiSdk.Models.Security.VmMetadata>("vmMetadata", VmMetadata);
         }

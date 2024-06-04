@@ -63,7 +63,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionG
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CopyToSectionGroupPostRequestBody>(CopyToSectionGroupPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGroup.CopyToSectionGroupPostRequestBody>(ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGroup.CopyToSectionGroupPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -86,14 +86,14 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionG
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CopyToSectionGroupRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGroup.CopyToSectionGroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CopyToSectionGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/onenote/notebooks/{notebook%2Did}/sections/{onenoteSection%2Did}/copyToSectionGroup", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CopyToSectionGroupRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGroup.CopyToSectionGroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CopyToSectionGroupRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/onenote/notebooks/{notebook%2Did}/sections/{onenoteSection%2Did}/copyToSectionGroup", rawUrl)
@@ -107,11 +107,11 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionG
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(CopyToSectionGroupPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGroup.CopyToSectionGroupPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(CopyToSectionGroupPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGroup.CopyToSectionGroupPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

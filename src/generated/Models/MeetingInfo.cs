@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MeetingInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MeetingInfo"/> and sets the default values.
         /// </summary>
         public MeetingInfo()
         {
@@ -30,18 +30,18 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MeetingInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MeetingInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MeetingInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MeetingInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.joinMeetingIdMeetingInfo" => new JoinMeetingIdMeetingInfo(),
-                "#microsoft.graph.organizerMeetingInfo" => new OrganizerMeetingInfo(),
-                "#microsoft.graph.tokenMeetingInfo" => new TokenMeetingInfo(),
-                _ => new MeetingInfo(),
+                "#microsoft.graph.joinMeetingIdMeetingInfo" => new ApiSdk.Models.JoinMeetingIdMeetingInfo(),
+                "#microsoft.graph.organizerMeetingInfo" => new ApiSdk.Models.OrganizerMeetingInfo(),
+                "#microsoft.graph.tokenMeetingInfo" => new ApiSdk.Models.TokenMeetingInfo(),
+                _ => new ApiSdk.Models.MeetingInfo(),
             };
         }
         /// <summary>

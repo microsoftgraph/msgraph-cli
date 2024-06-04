@@ -31,13 +31,13 @@ namespace ApiSdk.Models
         /// <summary>The identifiers of one or more objects to which a synchronizationJob is to be applied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SynchronizationJobSubject>? Subjects { get; set; }
+        public List<ApiSdk.Models.SynchronizationJobSubject>? Subjects { get; set; }
 #nullable restore
 #else
-        public List<SynchronizationJobSubject> Subjects { get; set; }
+        public List<ApiSdk.Models.SynchronizationJobSubject> Subjects { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SynchronizationJobApplicationParameters"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SynchronizationJobApplicationParameters"/> and sets the default values.
         /// </summary>
         public SynchronizationJobApplicationParameters()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SynchronizationJobApplicationParameters"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SynchronizationJobApplicationParameters"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SynchronizationJobApplicationParameters CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SynchronizationJobApplicationParameters CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SynchronizationJobApplicationParameters();
+            return new ApiSdk.Models.SynchronizationJobApplicationParameters();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "ruleId", n => { RuleId = n.GetStringValue(); } },
-                { "subjects", n => { Subjects = n.GetCollectionOfObjectValues<SynchronizationJobSubject>(SynchronizationJobSubject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "subjects", n => { Subjects = n.GetCollectionOfObjectValues<ApiSdk.Models.SynchronizationJobSubject>(ApiSdk.Models.SynchronizationJobSubject.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -75,7 +75,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("ruleId", RuleId);
-            writer.WriteCollectionOfObjectValues<SynchronizationJobSubject>("subjects", Subjects);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SynchronizationJobSubject>("subjects", Subjects);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

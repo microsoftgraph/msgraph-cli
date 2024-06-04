@@ -7,32 +7,32 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SharedInsight : Entity, IParsable
+    public class SharedInsight : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Details about the shared item. Read only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SharingDetail? LastShared { get; set; }
+        public ApiSdk.Models.SharingDetail? LastShared { get; set; }
 #nullable restore
 #else
-        public SharingDetail LastShared { get; set; }
+        public ApiSdk.Models.SharingDetail LastShared { get; set; }
 #endif
         /// <summary>The lastSharedMethod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Entity? LastSharedMethod { get; set; }
+        public ApiSdk.Models.Entity? LastSharedMethod { get; set; }
 #nullable restore
 #else
-        public Entity LastSharedMethod { get; set; }
+        public ApiSdk.Models.Entity LastSharedMethod { get; set; }
 #endif
         /// <summary>Used for navigating to the item that was shared. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Entity? Resource { get; set; }
+        public ApiSdk.Models.Entity? Resource { get; set; }
 #nullable restore
 #else
-        public Entity Resource { get; set; }
+        public ApiSdk.Models.Entity Resource { get; set; }
 #endif
         /// <summary>Reference properties of the shared document, such as the url and type of the document. Read-only</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -53,20 +53,20 @@ namespace ApiSdk.Models
         /// <summary>The sharingHistory property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SharingDetail>? SharingHistory { get; set; }
+        public List<ApiSdk.Models.SharingDetail>? SharingHistory { get; set; }
 #nullable restore
 #else
-        public List<SharingDetail> SharingHistory { get; set; }
+        public List<ApiSdk.Models.SharingDetail> SharingHistory { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SharedInsight"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SharedInsight"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SharedInsight CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SharedInsight CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SharedInsight();
+            return new ApiSdk.Models.SharedInsight();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,12 +76,12 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "lastShared", n => { LastShared = n.GetObjectValue<SharingDetail>(SharingDetail.CreateFromDiscriminatorValue); } },
-                { "lastSharedMethod", n => { LastSharedMethod = n.GetObjectValue<Entity>(Entity.CreateFromDiscriminatorValue); } },
-                { "resource", n => { Resource = n.GetObjectValue<Entity>(Entity.CreateFromDiscriminatorValue); } },
+                { "lastShared", n => { LastShared = n.GetObjectValue<ApiSdk.Models.SharingDetail>(ApiSdk.Models.SharingDetail.CreateFromDiscriminatorValue); } },
+                { "lastSharedMethod", n => { LastSharedMethod = n.GetObjectValue<ApiSdk.Models.Entity>(ApiSdk.Models.Entity.CreateFromDiscriminatorValue); } },
+                { "resource", n => { Resource = n.GetObjectValue<ApiSdk.Models.Entity>(ApiSdk.Models.Entity.CreateFromDiscriminatorValue); } },
                 { "resourceReference", n => { ResourceReference = n.GetObjectValue<ApiSdk.Models.ResourceReference>(ApiSdk.Models.ResourceReference.CreateFromDiscriminatorValue); } },
                 { "resourceVisualization", n => { ResourceVisualization = n.GetObjectValue<ApiSdk.Models.ResourceVisualization>(ApiSdk.Models.ResourceVisualization.CreateFromDiscriminatorValue); } },
-                { "sharingHistory", n => { SharingHistory = n.GetCollectionOfObjectValues<SharingDetail>(SharingDetail.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sharingHistory", n => { SharingHistory = n.GetCollectionOfObjectValues<ApiSdk.Models.SharingDetail>(ApiSdk.Models.SharingDetail.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -92,10 +92,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<SharingDetail>("lastShared", LastShared);
-            writer.WriteObjectValue<Entity>("lastSharedMethod", LastSharedMethod);
-            writer.WriteObjectValue<Entity>("resource", Resource);
-            writer.WriteCollectionOfObjectValues<SharingDetail>("sharingHistory", SharingHistory);
+            writer.WriteObjectValue<ApiSdk.Models.SharingDetail>("lastShared", LastShared);
+            writer.WriteObjectValue<ApiSdk.Models.Entity>("lastSharedMethod", LastSharedMethod);
+            writer.WriteObjectValue<ApiSdk.Models.Entity>("resource", Resource);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SharingDetail>("sharingHistory", SharingHistory);
         }
     }
 }

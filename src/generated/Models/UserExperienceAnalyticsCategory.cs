@@ -9,33 +9,33 @@ namespace ApiSdk.Models
     /// <summary>
     /// The user experience analytics category entity contains the scores and insights for the various metrics of a category.
     /// </summary>
-    public class UserExperienceAnalyticsCategory : Entity, IParsable
+    public class UserExperienceAnalyticsCategory : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The insights for the category. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserExperienceAnalyticsInsight>? Insights { get; set; }
+        public List<ApiSdk.Models.UserExperienceAnalyticsInsight>? Insights { get; set; }
 #nullable restore
 #else
-        public List<UserExperienceAnalyticsInsight> Insights { get; set; }
+        public List<ApiSdk.Models.UserExperienceAnalyticsInsight> Insights { get; set; }
 #endif
         /// <summary>The metric values for the user experience analytics category. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserExperienceAnalyticsMetric>? MetricValues { get; set; }
+        public List<ApiSdk.Models.UserExperienceAnalyticsMetric>? MetricValues { get; set; }
 #nullable restore
 #else
-        public List<UserExperienceAnalyticsMetric> MetricValues { get; set; }
+        public List<ApiSdk.Models.UserExperienceAnalyticsMetric> MetricValues { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsCategory"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsCategory"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsCategory CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserExperienceAnalyticsCategory CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsCategory();
+            return new ApiSdk.Models.UserExperienceAnalyticsCategory();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -45,8 +45,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "insights", n => { Insights = n.GetCollectionOfObjectValues<UserExperienceAnalyticsInsight>(UserExperienceAnalyticsInsight.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "metricValues", n => { MetricValues = n.GetCollectionOfObjectValues<UserExperienceAnalyticsMetric>(UserExperienceAnalyticsMetric.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "insights", n => { Insights = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsInsight>(ApiSdk.Models.UserExperienceAnalyticsInsight.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "metricValues", n => { MetricValues = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsMetric>(ApiSdk.Models.UserExperienceAnalyticsMetric.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -57,8 +57,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsInsight>("insights", Insights);
-            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsMetric>("metricValues", MetricValues);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsInsight>("insights", Insights);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsMetric>("metricValues", MetricValues);
         }
     }
 }

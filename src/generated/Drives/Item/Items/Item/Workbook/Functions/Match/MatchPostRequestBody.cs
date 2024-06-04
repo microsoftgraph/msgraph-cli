@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Match
         /// <summary>The lookupArray property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? LookupArray { get; set; }
+        public ApiSdk.Models.Json? LookupArray { get; set; }
 #nullable restore
 #else
-        public Json LookupArray { get; set; }
+        public ApiSdk.Models.Json LookupArray { get; set; }
 #endif
         /// <summary>The lookupValue property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? LookupValue { get; set; }
+        public ApiSdk.Models.Json? LookupValue { get; set; }
 #nullable restore
 #else
-        public Json LookupValue { get; set; }
+        public ApiSdk.Models.Json LookupValue { get; set; }
 #endif
         /// <summary>The matchType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? MatchType { get; set; }
+        public ApiSdk.Models.Json? MatchType { get; set; }
 #nullable restore
 #else
-        public Json MatchType { get; set; }
+        public ApiSdk.Models.Json MatchType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MatchPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Match.MatchPostRequestBody"/> and sets the default values.
         /// </summary>
         public MatchPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Match
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MatchPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Match.MatchPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MatchPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Match.MatchPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MatchPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Match.MatchPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Match
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "lookupArray", n => { LookupArray = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "lookupValue", n => { LookupValue = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "matchType", n => { MatchType = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "lookupArray", n => { LookupArray = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "lookupValue", n => { LookupValue = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "matchType", n => { MatchType = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Match
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("lookupArray", LookupArray);
-            writer.WriteObjectValue<Json>("lookupValue", LookupValue);
-            writer.WriteObjectValue<Json>("matchType", MatchType);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("lookupArray", LookupArray);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("lookupValue", LookupValue);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("matchType", MatchType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.Sites.Item.GetActivitiesByInterval
 {
     #pragma warning disable CS1591
-    public class GetActivitiesByIntervalGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetActivitiesByIntervalGetResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ItemActivityStat>? Value { get; set; }
+        public List<ApiSdk.Models.ItemActivityStat>? Value { get; set; }
 #nullable restore
 #else
-        public List<ItemActivityStat> Value { get; set; }
+        public List<ApiSdk.Models.ItemActivityStat> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetActivitiesByIntervalGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Sites.Item.GetActivitiesByInterval.GetActivitiesByIntervalGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetActivitiesByIntervalGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Sites.Item.GetActivitiesByInterval.GetActivitiesByIntervalGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetActivitiesByIntervalGetResponse();
+            return new ApiSdk.Sites.Item.GetActivitiesByInterval.GetActivitiesByIntervalGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Sites.Item.GetActivitiesByInterval
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<ItemActivityStat>(ItemActivityStat.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.ItemActivityStat>(ApiSdk.Models.ItemActivityStat.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Sites.Item.GetActivitiesByInterval
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ItemActivityStat>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ItemActivityStat>("value", Value);
         }
     }
 }

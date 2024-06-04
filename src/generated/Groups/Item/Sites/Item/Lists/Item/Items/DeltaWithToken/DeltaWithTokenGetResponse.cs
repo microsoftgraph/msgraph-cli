@@ -8,7 +8,7 @@ using System;
 namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.DeltaWithToken
 {
     #pragma warning disable CS1591
-    public class DeltaWithTokenGetResponse : BaseDeltaFunctionResponse, IParsable
+    public class DeltaWithTokenGetResponse : ApiSdk.Models.BaseDeltaFunctionResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
@@ -22,12 +22,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.DeltaWithToken
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeltaWithTokenGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.DeltaWithToken.DeltaWithTokenGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeltaWithTokenGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.DeltaWithToken.DeltaWithTokenGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeltaWithTokenGetResponse();
+            return new ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.DeltaWithToken.DeltaWithTokenGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -63,7 +63,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DriveItemUploadableProperties"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DriveItemUploadableProperties"/> and sets the default values.
         /// </summary>
         public DriveItemUploadableProperties()
         {
@@ -72,12 +72,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DriveItemUploadableProperties"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DriveItemUploadableProperties"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DriveItemUploadableProperties CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.DriveItemUploadableProperties CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DriveItemUploadableProperties();
+            return new ApiSdk.Models.DriveItemUploadableProperties();
         }
         /// <summary>
         /// The deserialization information for the current model

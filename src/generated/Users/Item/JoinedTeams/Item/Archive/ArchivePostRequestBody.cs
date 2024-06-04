@@ -15,7 +15,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Archive
         /// <summary>The shouldSetSpoSiteReadOnlyForMembers property</summary>
         public bool? ShouldSetSpoSiteReadOnlyForMembers { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ArchivePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.JoinedTeams.Item.Archive.ArchivePostRequestBody"/> and sets the default values.
         /// </summary>
         public ArchivePostRequestBody()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Archive
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ArchivePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.JoinedTeams.Item.Archive.ArchivePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ArchivePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.JoinedTeams.Item.Archive.ArchivePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ArchivePostRequestBody();
+            return new ApiSdk.Users.Item.JoinedTeams.Item.Archive.ArchivePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

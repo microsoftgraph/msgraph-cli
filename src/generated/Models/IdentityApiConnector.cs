@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class IdentityApiConnector : Entity, IParsable
+    public class IdentityApiConnector : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The object which describes the authentication configuration details for calling the API. Basic and PKCS 12 client certificate are supported.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ApiAuthenticationConfigurationBase? AuthenticationConfiguration { get; set; }
+        public ApiSdk.Models.ApiAuthenticationConfigurationBase? AuthenticationConfiguration { get; set; }
 #nullable restore
 #else
-        public ApiAuthenticationConfigurationBase AuthenticationConfiguration { get; set; }
+        public ApiSdk.Models.ApiAuthenticationConfigurationBase AuthenticationConfiguration { get; set; }
 #endif
         /// <summary>The name of the API connector.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,12 +37,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IdentityApiConnector"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityApiConnector"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IdentityApiConnector CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityApiConnector CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IdentityApiConnector();
+            return new ApiSdk.Models.IdentityApiConnector();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -52,7 +52,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "authenticationConfiguration", n => { AuthenticationConfiguration = n.GetObjectValue<ApiAuthenticationConfigurationBase>(ApiAuthenticationConfigurationBase.CreateFromDiscriminatorValue); } },
+                { "authenticationConfiguration", n => { AuthenticationConfiguration = n.GetObjectValue<ApiSdk.Models.ApiAuthenticationConfigurationBase>(ApiSdk.Models.ApiAuthenticationConfigurationBase.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "targetUrl", n => { TargetUrl = n.GetStringValue(); } },
             };
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<ApiAuthenticationConfigurationBase>("authenticationConfiguration", AuthenticationConfiguration);
+            writer.WriteObjectValue<ApiSdk.Models.ApiAuthenticationConfigurationBase>("authenticationConfiguration", AuthenticationConfiguration);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("targetUrl", TargetUrl);
         }

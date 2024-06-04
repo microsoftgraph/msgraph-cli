@@ -16,15 +16,15 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentReminderSm
         /// <summary>The attendees property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AttendeeNotificationInfo>? Attendees { get; set; }
+        public List<ApiSdk.Models.AttendeeNotificationInfo>? Attendees { get; set; }
 #nullable restore
 #else
-        public List<AttendeeNotificationInfo> Attendees { get; set; }
+        public List<ApiSdk.Models.AttendeeNotificationInfo> Attendees { get; set; }
 #endif
         /// <summary>The remindBeforeTimeInMinutesType property</summary>
         public ApiSdk.Models.RemindBeforeTimeInMinutesType? RemindBeforeTimeInMinutesType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SendVirtualAppointmentReminderSmsPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentReminderSms.SendVirtualAppointmentReminderSmsPostRequestBody"/> and sets the default values.
         /// </summary>
         public SendVirtualAppointmentReminderSmsPostRequestBody()
         {
@@ -33,12 +33,12 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentReminderSm
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SendVirtualAppointmentReminderSmsPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentReminderSms.SendVirtualAppointmentReminderSmsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SendVirtualAppointmentReminderSmsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentReminderSms.SendVirtualAppointmentReminderSmsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SendVirtualAppointmentReminderSmsPostRequestBody();
+            return new ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentReminderSms.SendVirtualAppointmentReminderSmsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,8 +48,8 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentReminderSm
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attendees", n => { Attendees = n.GetCollectionOfObjectValues<AttendeeNotificationInfo>(AttendeeNotificationInfo.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "remindBeforeTimeInMinutesType", n => { RemindBeforeTimeInMinutesType = n.GetEnumValue<RemindBeforeTimeInMinutesType>(); } },
+                { "attendees", n => { Attendees = n.GetCollectionOfObjectValues<ApiSdk.Models.AttendeeNotificationInfo>(ApiSdk.Models.AttendeeNotificationInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "remindBeforeTimeInMinutesType", n => { RemindBeforeTimeInMinutesType = n.GetEnumValue<ApiSdk.Models.RemindBeforeTimeInMinutesType>(); } },
             };
         }
         /// <summary>
@@ -59,8 +59,8 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentReminderSm
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<AttendeeNotificationInfo>("attendees", Attendees);
-            writer.WriteEnumValue<RemindBeforeTimeInMinutesType>("remindBeforeTimeInMinutesType", RemindBeforeTimeInMinutesType);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AttendeeNotificationInfo>("attendees", Attendees);
+            writer.WriteEnumValue<ApiSdk.Models.RemindBeforeTimeInMinutesType>("remindBeforeTimeInMinutesType", RemindBeforeTimeInMinutesType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

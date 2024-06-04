@@ -13,20 +13,20 @@ namespace ApiSdk.Models
         /// <summary>The optional claims returned in the JWT access token.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OptionalClaim>? AccessToken { get; set; }
+        public List<ApiSdk.Models.OptionalClaim>? AccessToken { get; set; }
 #nullable restore
 #else
-        public List<OptionalClaim> AccessToken { get; set; }
+        public List<ApiSdk.Models.OptionalClaim> AccessToken { get; set; }
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The optional claims returned in the JWT ID token.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OptionalClaim>? IdToken { get; set; }
+        public List<ApiSdk.Models.OptionalClaim>? IdToken { get; set; }
 #nullable restore
 #else
-        public List<OptionalClaim> IdToken { get; set; }
+        public List<ApiSdk.Models.OptionalClaim> IdToken { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,13 +39,13 @@ namespace ApiSdk.Models
         /// <summary>The optional claims returned in the SAML token.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OptionalClaim>? Saml2Token { get; set; }
+        public List<ApiSdk.Models.OptionalClaim>? Saml2Token { get; set; }
 #nullable restore
 #else
-        public List<OptionalClaim> Saml2Token { get; set; }
+        public List<ApiSdk.Models.OptionalClaim> Saml2Token { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OptionalClaims"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OptionalClaims"/> and sets the default values.
         /// </summary>
         public OptionalClaims()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OptionalClaims"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OptionalClaims"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static OptionalClaims CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.OptionalClaims CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OptionalClaims();
+            return new ApiSdk.Models.OptionalClaims();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,10 +69,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "accessToken", n => { AccessToken = n.GetCollectionOfObjectValues<OptionalClaim>(OptionalClaim.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "idToken", n => { IdToken = n.GetCollectionOfObjectValues<OptionalClaim>(OptionalClaim.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "accessToken", n => { AccessToken = n.GetCollectionOfObjectValues<ApiSdk.Models.OptionalClaim>(ApiSdk.Models.OptionalClaim.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "idToken", n => { IdToken = n.GetCollectionOfObjectValues<ApiSdk.Models.OptionalClaim>(ApiSdk.Models.OptionalClaim.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "saml2Token", n => { Saml2Token = n.GetCollectionOfObjectValues<OptionalClaim>(OptionalClaim.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "saml2Token", n => { Saml2Token = n.GetCollectionOfObjectValues<ApiSdk.Models.OptionalClaim>(ApiSdk.Models.OptionalClaim.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -82,10 +82,10 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<OptionalClaim>("accessToken", AccessToken);
-            writer.WriteCollectionOfObjectValues<OptionalClaim>("idToken", IdToken);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OptionalClaim>("accessToken", AccessToken);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OptionalClaim>("idToken", IdToken);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<OptionalClaim>("saml2Token", Saml2Token);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OptionalClaim>("saml2Token", Saml2Token);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

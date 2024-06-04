@@ -73,7 +73,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSum
         /// <summary>The top property</summary>
         public int? Top { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSummaryReport.GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody()
         {
@@ -82,12 +82,12 @@ namespace ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSum
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSummaryReport.GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSummaryReport.GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody();
+            return new ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSummaryReport.GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

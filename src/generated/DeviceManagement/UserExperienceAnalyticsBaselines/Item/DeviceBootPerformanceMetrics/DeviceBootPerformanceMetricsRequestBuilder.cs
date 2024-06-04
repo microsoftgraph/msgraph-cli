@@ -74,14 +74,14 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.DeviceBo
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceBootPerformanceMetricsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.DeviceBootPerformanceMetrics.DeviceBootPerformanceMetricsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceBootPerformanceMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/deviceBootPerformanceMetrics{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceBootPerformanceMetricsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.DeviceBootPerformanceMetrics.DeviceBootPerformanceMetricsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeviceBootPerformanceMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/deviceBootPerformanceMetrics{?%24expand,%24select}", rawUrl)
@@ -94,11 +94,11 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.DeviceBo
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceBootPerformanceMetricsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.DeviceBootPerformanceMetrics.DeviceBootPerformanceMetricsRequestBuilder.DeviceBootPerformanceMetricsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceBootPerformanceMetricsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.DeviceBootPerformanceMetrics.DeviceBootPerformanceMetricsRequestBuilder.DeviceBootPerformanceMetricsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

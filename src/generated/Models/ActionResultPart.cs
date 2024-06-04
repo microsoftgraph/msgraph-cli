@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The error that occurred, if any, during the course of the bulk operation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PublicError? Error { get; set; }
+        public ApiSdk.Models.PublicError? Error { get; set; }
 #nullable restore
 #else
-        public PublicError Error { get; set; }
+        public ApiSdk.Models.PublicError Error { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,7 +29,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ActionResultPart"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ActionResultPart"/> and sets the default values.
         /// </summary>
         public ActionResultPart()
         {
@@ -38,16 +38,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ActionResultPart"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ActionResultPart"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ActionResultPart CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ActionResultPart CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.aadUserConversationMemberResult" => new AadUserConversationMemberResult(),
-                _ => new ActionResultPart(),
+                "#microsoft.graph.aadUserConversationMemberResult" => new ApiSdk.Models.AadUserConversationMemberResult(),
+                _ => new ApiSdk.Models.ActionResultPart(),
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "error", n => { Error = n.GetObjectValue<PublicError>(PublicError.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<ApiSdk.Models.PublicError>(ApiSdk.Models.PublicError.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<PublicError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.PublicError>("error", Error);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

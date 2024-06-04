@@ -9,10 +9,10 @@ namespace ApiSdk.Models
     /// <summary>
     /// Abstract class that contains properties and inherited properties for apps that you can manage with an Intune app protection policy.
     /// </summary>
-    public class ManagedApp : MobileApp, IParsable
+    public class ManagedApp : ApiSdk.Models.MobileApp, IParsable
     {
         /// <summary>A managed (MAM) application&apos;s availability.</summary>
-        public ManagedAppAvailability? AppAvailability { get; set; }
+        public ApiSdk.Models.ManagedAppAvailability? AppAvailability { get; set; }
         /// <summary>The Application&apos;s version.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -22,7 +22,7 @@ namespace ApiSdk.Models
         public string Version { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ManagedApp"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ManagedApp"/> and sets the default values.
         /// </summary>
         public ManagedApp() : base()
         {
@@ -31,20 +31,20 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ManagedApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ManagedApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ManagedApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ManagedApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.managedAndroidLobApp" => new ManagedAndroidLobApp(),
-                "#microsoft.graph.managedAndroidStoreApp" => new ManagedAndroidStoreApp(),
-                "#microsoft.graph.managedIOSLobApp" => new ManagedIOSLobApp(),
-                "#microsoft.graph.managedIOSStoreApp" => new ManagedIOSStoreApp(),
-                "#microsoft.graph.managedMobileLobApp" => new ManagedMobileLobApp(),
-                _ => new ManagedApp(),
+                "#microsoft.graph.managedAndroidLobApp" => new ApiSdk.Models.ManagedAndroidLobApp(),
+                "#microsoft.graph.managedAndroidStoreApp" => new ApiSdk.Models.ManagedAndroidStoreApp(),
+                "#microsoft.graph.managedIOSLobApp" => new ApiSdk.Models.ManagedIOSLobApp(),
+                "#microsoft.graph.managedIOSStoreApp" => new ApiSdk.Models.ManagedIOSStoreApp(),
+                "#microsoft.graph.managedMobileLobApp" => new ApiSdk.Models.ManagedMobileLobApp(),
+                _ => new ApiSdk.Models.ManagedApp(),
             };
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "appAvailability", n => { AppAvailability = n.GetEnumValue<ManagedAppAvailability>(); } },
+                { "appAvailability", n => { AppAvailability = n.GetEnumValue<ApiSdk.Models.ManagedAppAvailability>(); } },
                 { "version", n => { Version = n.GetStringValue(); } },
             };
         }
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<ManagedAppAvailability>("appAvailability", AppAvailability);
+            writer.WriteEnumValue<ApiSdk.Models.ManagedAppAvailability>("appAvailability", AppAvailability);
             writer.WriteStringValue("version", Version);
         }
     }

@@ -7,18 +7,18 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class BaseSitePage : BaseItem, IParsable
+    public class BaseSitePage : ApiSdk.Models.BaseItem, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The name of the page layout of the page. The possible values are: microsoftReserved, article, home, unknownFutureValue.</summary>
-        public PageLayoutType? PageLayout { get; set; }
+        public ApiSdk.Models.PageLayoutType? PageLayout { get; set; }
         /// <summary>The publishing status and the MM.mm version of the page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PublicationFacet? PublishingState { get; set; }
+        public ApiSdk.Models.PublicationFacet? PublishingState { get; set; }
 #nullable restore
 #else
-        public PublicationFacet PublishingState { get; set; }
+        public ApiSdk.Models.PublicationFacet PublishingState { get; set; }
 #endif
         /// <summary>Title of the sitePage.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,7 +29,7 @@ namespace ApiSdk.Models
         public string Title { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="BaseSitePage"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.BaseSitePage"/> and sets the default values.
         /// </summary>
         public BaseSitePage() : base()
         {
@@ -38,16 +38,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BaseSitePage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BaseSitePage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new BaseSitePage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.BaseSitePage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.sitePage" => new SitePage(),
-                _ => new BaseSitePage(),
+                "#microsoft.graph.sitePage" => new ApiSdk.Models.SitePage(),
+                _ => new ApiSdk.Models.BaseSitePage(),
             };
         }
         /// <summary>
@@ -58,8 +58,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "pageLayout", n => { PageLayout = n.GetEnumValue<PageLayoutType>(); } },
-                { "publishingState", n => { PublishingState = n.GetObjectValue<PublicationFacet>(PublicationFacet.CreateFromDiscriminatorValue); } },
+                { "pageLayout", n => { PageLayout = n.GetEnumValue<ApiSdk.Models.PageLayoutType>(); } },
+                { "publishingState", n => { PublishingState = n.GetObjectValue<ApiSdk.Models.PublicationFacet>(ApiSdk.Models.PublicationFacet.CreateFromDiscriminatorValue); } },
                 { "title", n => { Title = n.GetStringValue(); } },
             };
         }
@@ -71,8 +71,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<PageLayoutType>("pageLayout", PageLayout);
-            writer.WriteObjectValue<PublicationFacet>("publishingState", PublishingState);
+            writer.WriteEnumValue<ApiSdk.Models.PageLayoutType>("pageLayout", PageLayout);
+            writer.WriteObjectValue<ApiSdk.Models.PublicationFacet>("publishingState", PublishingState);
             writer.WriteStringValue("title", Title);
         }
     }

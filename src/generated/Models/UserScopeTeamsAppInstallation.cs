@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UserScopeTeamsAppInstallation : TeamsAppInstallation, IParsable
+    public class UserScopeTeamsAppInstallation : ApiSdk.Models.TeamsAppInstallation, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The chat between the user and Teams app.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.Chat Chat { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UserScopeTeamsAppInstallation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UserScopeTeamsAppInstallation"/> and sets the default values.
         /// </summary>
         public UserScopeTeamsAppInstallation() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserScopeTeamsAppInstallation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserScopeTeamsAppInstallation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserScopeTeamsAppInstallation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserScopeTeamsAppInstallation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserScopeTeamsAppInstallation();
+            return new ApiSdk.Models.UserScopeTeamsAppInstallation();
         }
         /// <summary>
         /// The deserialization information for the current model

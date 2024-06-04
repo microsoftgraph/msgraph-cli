@@ -13,26 +13,26 @@ namespace ApiSdk.Models.Security
         /// <summary>The contact information for the abuse contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WhoisContact? Abuse { get; set; }
+        public ApiSdk.Models.Security.WhoisContact? Abuse { get; set; }
 #nullable restore
 #else
-        public WhoisContact Abuse { get; set; }
+        public ApiSdk.Models.Security.WhoisContact Abuse { get; set; }
 #endif
         /// <summary>The contact information for the admin contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WhoisContact? Admin { get; set; }
+        public ApiSdk.Models.Security.WhoisContact? Admin { get; set; }
 #nullable restore
 #else
-        public WhoisContact Admin { get; set; }
+        public ApiSdk.Models.Security.WhoisContact Admin { get; set; }
 #endif
         /// <summary>The contact information for the billing contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WhoisContact? Billing { get; set; }
+        public ApiSdk.Models.Security.WhoisContact? Billing { get; set; }
 #nullable restore
 #else
-        public WhoisContact Billing { get; set; }
+        public ApiSdk.Models.Security.WhoisContact Billing { get; set; }
 #endif
         /// <summary>The domain status for this WHOIS object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -61,18 +61,18 @@ namespace ApiSdk.Models.Security
         /// <summary>The nameservers for this WHOIS object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WhoisNameserver>? Nameservers { get; set; }
+        public List<ApiSdk.Models.Security.WhoisNameserver>? Nameservers { get; set; }
 #nullable restore
 #else
-        public List<WhoisNameserver> Nameservers { get; set; }
+        public List<ApiSdk.Models.Security.WhoisNameserver> Nameservers { get; set; }
 #endif
         /// <summary>The contact information for the noc contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WhoisContact? Noc { get; set; }
+        public ApiSdk.Models.Security.WhoisContact? Noc { get; set; }
 #nullable restore
 #else
-        public WhoisContact Noc { get; set; }
+        public ApiSdk.Models.Security.WhoisContact Noc { get; set; }
 #endif
         /// <summary>The raw WHOIS details for this WHOIS object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -85,28 +85,28 @@ namespace ApiSdk.Models.Security
         /// <summary>The contact information for the registrant contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WhoisContact? Registrant { get; set; }
+        public ApiSdk.Models.Security.WhoisContact? Registrant { get; set; }
 #nullable restore
 #else
-        public WhoisContact Registrant { get; set; }
+        public ApiSdk.Models.Security.WhoisContact Registrant { get; set; }
 #endif
         /// <summary>The contact information for the registrar contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WhoisContact? Registrar { get; set; }
+        public ApiSdk.Models.Security.WhoisContact? Registrar { get; set; }
 #nullable restore
 #else
-        public WhoisContact Registrar { get; set; }
+        public ApiSdk.Models.Security.WhoisContact Registrar { get; set; }
 #endif
         /// <summary>The date and time when this WHOIS record was registered with a registrar. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? RegistrationDateTime { get; set; }
         /// <summary>The contact information for the technical contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WhoisContact? Technical { get; set; }
+        public ApiSdk.Models.Security.WhoisContact? Technical { get; set; }
 #nullable restore
 #else
-        public WhoisContact Technical { get; set; }
+        public ApiSdk.Models.Security.WhoisContact Technical { get; set; }
 #endif
         /// <summary>The WHOIS server that provides the details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -119,25 +119,25 @@ namespace ApiSdk.Models.Security
         /// <summary>The contact information for the zone contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WhoisContact? Zone { get; set; }
+        public ApiSdk.Models.Security.WhoisContact? Zone { get; set; }
 #nullable restore
 #else
-        public WhoisContact Zone { get; set; }
+        public ApiSdk.Models.Security.WhoisContact Zone { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WhoisBaseRecord"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.WhoisBaseRecord"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WhoisBaseRecord CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.WhoisBaseRecord CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.whoisHistoryRecord" => new WhoisHistoryRecord(),
-                "#microsoft.graph.security.whoisRecord" => new WhoisRecord(),
-                _ => new WhoisBaseRecord(),
+                "#microsoft.graph.security.whoisHistoryRecord" => new ApiSdk.Models.Security.WhoisHistoryRecord(),
+                "#microsoft.graph.security.whoisRecord" => new ApiSdk.Models.Security.WhoisRecord(),
+                _ => new ApiSdk.Models.Security.WhoisBaseRecord(),
             };
         }
         /// <summary>
@@ -148,24 +148,24 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "abuse", n => { Abuse = n.GetObjectValue<WhoisContact>(WhoisContact.CreateFromDiscriminatorValue); } },
-                { "admin", n => { Admin = n.GetObjectValue<WhoisContact>(WhoisContact.CreateFromDiscriminatorValue); } },
-                { "billing", n => { Billing = n.GetObjectValue<WhoisContact>(WhoisContact.CreateFromDiscriminatorValue); } },
+                { "abuse", n => { Abuse = n.GetObjectValue<ApiSdk.Models.Security.WhoisContact>(ApiSdk.Models.Security.WhoisContact.CreateFromDiscriminatorValue); } },
+                { "admin", n => { Admin = n.GetObjectValue<ApiSdk.Models.Security.WhoisContact>(ApiSdk.Models.Security.WhoisContact.CreateFromDiscriminatorValue); } },
+                { "billing", n => { Billing = n.GetObjectValue<ApiSdk.Models.Security.WhoisContact>(ApiSdk.Models.Security.WhoisContact.CreateFromDiscriminatorValue); } },
                 { "domainStatus", n => { DomainStatus = n.GetStringValue(); } },
                 { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 { "firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
                 { "host", n => { Host = n.GetObjectValue<ApiSdk.Models.Security.Host>(ApiSdk.Models.Security.Host.CreateFromDiscriminatorValue); } },
                 { "lastSeenDateTime", n => { LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastUpdateDateTime", n => { LastUpdateDateTime = n.GetDateTimeOffsetValue(); } },
-                { "nameservers", n => { Nameservers = n.GetCollectionOfObjectValues<WhoisNameserver>(WhoisNameserver.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "noc", n => { Noc = n.GetObjectValue<WhoisContact>(WhoisContact.CreateFromDiscriminatorValue); } },
+                { "nameservers", n => { Nameservers = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.WhoisNameserver>(ApiSdk.Models.Security.WhoisNameserver.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "noc", n => { Noc = n.GetObjectValue<ApiSdk.Models.Security.WhoisContact>(ApiSdk.Models.Security.WhoisContact.CreateFromDiscriminatorValue); } },
                 { "rawWhoisText", n => { RawWhoisText = n.GetStringValue(); } },
-                { "registrant", n => { Registrant = n.GetObjectValue<WhoisContact>(WhoisContact.CreateFromDiscriminatorValue); } },
-                { "registrar", n => { Registrar = n.GetObjectValue<WhoisContact>(WhoisContact.CreateFromDiscriminatorValue); } },
+                { "registrant", n => { Registrant = n.GetObjectValue<ApiSdk.Models.Security.WhoisContact>(ApiSdk.Models.Security.WhoisContact.CreateFromDiscriminatorValue); } },
+                { "registrar", n => { Registrar = n.GetObjectValue<ApiSdk.Models.Security.WhoisContact>(ApiSdk.Models.Security.WhoisContact.CreateFromDiscriminatorValue); } },
                 { "registrationDateTime", n => { RegistrationDateTime = n.GetDateTimeOffsetValue(); } },
-                { "technical", n => { Technical = n.GetObjectValue<WhoisContact>(WhoisContact.CreateFromDiscriminatorValue); } },
+                { "technical", n => { Technical = n.GetObjectValue<ApiSdk.Models.Security.WhoisContact>(ApiSdk.Models.Security.WhoisContact.CreateFromDiscriminatorValue); } },
                 { "whoisServer", n => { WhoisServer = n.GetStringValue(); } },
-                { "zone", n => { Zone = n.GetObjectValue<WhoisContact>(WhoisContact.CreateFromDiscriminatorValue); } },
+                { "zone", n => { Zone = n.GetObjectValue<ApiSdk.Models.Security.WhoisContact>(ApiSdk.Models.Security.WhoisContact.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -176,24 +176,24 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WhoisContact>("abuse", Abuse);
-            writer.WriteObjectValue<WhoisContact>("admin", Admin);
-            writer.WriteObjectValue<WhoisContact>("billing", Billing);
+            writer.WriteObjectValue<ApiSdk.Models.Security.WhoisContact>("abuse", Abuse);
+            writer.WriteObjectValue<ApiSdk.Models.Security.WhoisContact>("admin", Admin);
+            writer.WriteObjectValue<ApiSdk.Models.Security.WhoisContact>("billing", Billing);
             writer.WriteStringValue("domainStatus", DomainStatus);
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteDateTimeOffsetValue("firstSeenDateTime", FirstSeenDateTime);
             writer.WriteObjectValue<ApiSdk.Models.Security.Host>("host", Host);
             writer.WriteDateTimeOffsetValue("lastSeenDateTime", LastSeenDateTime);
             writer.WriteDateTimeOffsetValue("lastUpdateDateTime", LastUpdateDateTime);
-            writer.WriteCollectionOfObjectValues<WhoisNameserver>("nameservers", Nameservers);
-            writer.WriteObjectValue<WhoisContact>("noc", Noc);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.WhoisNameserver>("nameservers", Nameservers);
+            writer.WriteObjectValue<ApiSdk.Models.Security.WhoisContact>("noc", Noc);
             writer.WriteStringValue("rawWhoisText", RawWhoisText);
-            writer.WriteObjectValue<WhoisContact>("registrant", Registrant);
-            writer.WriteObjectValue<WhoisContact>("registrar", Registrar);
+            writer.WriteObjectValue<ApiSdk.Models.Security.WhoisContact>("registrant", Registrant);
+            writer.WriteObjectValue<ApiSdk.Models.Security.WhoisContact>("registrar", Registrar);
             writer.WriteDateTimeOffsetValue("registrationDateTime", RegistrationDateTime);
-            writer.WriteObjectValue<WhoisContact>("technical", Technical);
+            writer.WriteObjectValue<ApiSdk.Models.Security.WhoisContact>("technical", Technical);
             writer.WriteStringValue("whoisServer", WhoisServer);
-            writer.WriteObjectValue<WhoisContact>("zone", Zone);
+            writer.WriteObjectValue<ApiSdk.Models.Security.WhoisContact>("zone", Zone);
         }
     }
 }

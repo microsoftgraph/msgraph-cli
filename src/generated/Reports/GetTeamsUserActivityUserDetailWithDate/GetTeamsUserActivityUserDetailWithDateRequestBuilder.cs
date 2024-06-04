@@ -61,14 +61,14 @@ namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetTeamsUserActivityUserDetailWithDateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate.GetTeamsUserActivityUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetTeamsUserActivityUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getTeamsUserActivityUserDetail(date={date})", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetTeamsUserActivityUserDetailWithDateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate.GetTeamsUserActivityUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetTeamsUserActivityUserDetailWithDateRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getTeamsUserActivityUserDetail(date={date})", rawUrl)

@@ -130,7 +130,7 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout
         {
             var command = new Command("horizontal-sections");
             command.Description = "Provides operations to manage the horizontalSections property of the microsoft.graph.canvasLayout entity.";
-            var builder = new HorizontalSectionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.HorizontalSectionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -214,7 +214,7 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout
         {
             var command = new Command("vertical-section");
             command.Description = "Provides operations to manage the verticalSection property of the microsoft.graph.canvasLayout entity.";
-            var builder = new VerticalSectionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.VerticalSection.VerticalSectionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -232,14 +232,14 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CanvasLayoutRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.CanvasLayoutRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CanvasLayoutRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/pages/{baseSitePage%2Did}/graph.sitePage/canvasLayout{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CanvasLayoutRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.CanvasLayoutRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CanvasLayoutRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/pages/{baseSitePage%2Did}/graph.sitePage/canvasLayout{?%24expand,%24select}", rawUrl)
@@ -271,11 +271,11 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CanvasLayoutRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.CanvasLayoutRequestBuilder.CanvasLayoutRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CanvasLayoutRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.CanvasLayoutRequestBuilder.CanvasLayoutRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

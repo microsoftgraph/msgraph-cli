@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrivilegedAccessGroupEligibilityScheduleRequestCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class PrivilegedAccessGroupEligibilityScheduleRequestCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PrivilegedAccessGroupEligibilityScheduleRequest>? Value { get; set; }
+        public List<ApiSdk.Models.PrivilegedAccessGroupEligibilityScheduleRequest>? Value { get; set; }
 #nullable restore
 #else
-        public List<PrivilegedAccessGroupEligibilityScheduleRequest> Value { get; set; }
+        public List<ApiSdk.Models.PrivilegedAccessGroupEligibilityScheduleRequest> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrivilegedAccessGroupEligibilityScheduleRequestCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrivilegedAccessGroupEligibilityScheduleRequestCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrivilegedAccessGroupEligibilityScheduleRequestCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrivilegedAccessGroupEligibilityScheduleRequestCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrivilegedAccessGroupEligibilityScheduleRequestCollectionResponse();
+            return new ApiSdk.Models.PrivilegedAccessGroupEligibilityScheduleRequestCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<PrivilegedAccessGroupEligibilityScheduleRequest>(PrivilegedAccessGroupEligibilityScheduleRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.PrivilegedAccessGroupEligibilityScheduleRequest>(ApiSdk.Models.PrivilegedAccessGroupEligibilityScheduleRequest.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<PrivilegedAccessGroupEligibilityScheduleRequest>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PrivilegedAccessGroupEligibilityScheduleRequest>("value", Value);
         }
     }
 }

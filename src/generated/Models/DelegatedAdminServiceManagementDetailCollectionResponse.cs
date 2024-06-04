@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DelegatedAdminServiceManagementDetailCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class DelegatedAdminServiceManagementDetailCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DelegatedAdminServiceManagementDetail>? Value { get; set; }
+        public List<ApiSdk.Models.DelegatedAdminServiceManagementDetail>? Value { get; set; }
 #nullable restore
 #else
-        public List<DelegatedAdminServiceManagementDetail> Value { get; set; }
+        public List<ApiSdk.Models.DelegatedAdminServiceManagementDetail> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DelegatedAdminServiceManagementDetailCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DelegatedAdminServiceManagementDetailCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DelegatedAdminServiceManagementDetailCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DelegatedAdminServiceManagementDetailCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DelegatedAdminServiceManagementDetailCollectionResponse();
+            return new ApiSdk.Models.DelegatedAdminServiceManagementDetailCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<DelegatedAdminServiceManagementDetail>(DelegatedAdminServiceManagementDetail.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.DelegatedAdminServiceManagementDetail>(ApiSdk.Models.DelegatedAdminServiceManagementDetail.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<DelegatedAdminServiceManagementDetail>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DelegatedAdminServiceManagementDetail>("value", Value);
         }
     }
 }

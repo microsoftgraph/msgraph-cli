@@ -21,7 +21,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSe
         public List<string> Ids { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RemoveHoldPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold.RemoveHoldPostRequestBody"/> and sets the default values.
         /// </summary>
         public RemoveHoldPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSe
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RemoveHoldPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold.RemoveHoldPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RemoveHoldPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold.RemoveHoldPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RemoveHoldPostRequestBody();
+            return new ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold.RemoveHoldPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.GetApplicablePolicyRequirements
 {
     #pragma warning disable CS1591
-    public class GetApplicablePolicyRequirementsPostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetApplicablePolicyRequirementsPostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessPackageAssignmentRequestRequirements>? Value { get; set; }
+        public List<ApiSdk.Models.AccessPackageAssignmentRequestRequirements>? Value { get; set; }
 #nullable restore
 #else
-        public List<AccessPackageAssignmentRequestRequirements> Value { get; set; }
+        public List<ApiSdk.Models.AccessPackageAssignmentRequestRequirements> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetApplicablePolicyRequirementsPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.GetApplicablePolicyRequirements.GetApplicablePolicyRequirementsPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetApplicablePolicyRequirementsPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.GetApplicablePolicyRequirements.GetApplicablePolicyRequirementsPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetApplicablePolicyRequirementsPostResponse();
+            return new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.GetApplicablePolicyRequirements.GetApplicablePolicyRequirementsPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ge
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<AccessPackageAssignmentRequestRequirements>(AccessPackageAssignmentRequestRequirements.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessPackageAssignmentRequestRequirements>(ApiSdk.Models.AccessPackageAssignmentRequestRequirements.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ge
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AccessPackageAssignmentRequestRequirements>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessPackageAssignmentRequestRequirements>("value", Value);
         }
     }
 }

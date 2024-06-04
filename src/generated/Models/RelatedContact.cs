@@ -47,9 +47,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The relationship property</summary>
-        public ContactRelationship? Relationship { get; set; }
+        public ApiSdk.Models.ContactRelationship? Relationship { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="RelatedContact"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RelatedContact"/> and sets the default values.
         /// </summary>
         public RelatedContact()
         {
@@ -58,12 +58,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RelatedContact"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RelatedContact"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RelatedContact CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.RelatedContact CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RelatedContact();
+            return new ApiSdk.Models.RelatedContact();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,7 +78,7 @@ namespace ApiSdk.Models
                 { "emailAddress", n => { EmailAddress = n.GetStringValue(); } },
                 { "mobilePhone", n => { MobilePhone = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "relationship", n => { Relationship = n.GetEnumValue<ContactRelationship>(); } },
+                { "relationship", n => { Relationship = n.GetEnumValue<ApiSdk.Models.ContactRelationship>(); } },
             };
         }
         /// <summary>
@@ -93,7 +93,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("emailAddress", EmailAddress);
             writer.WriteStringValue("mobilePhone", MobilePhone);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<ContactRelationship>("relationship", Relationship);
+            writer.WriteEnumValue<ApiSdk.Models.ContactRelationship>("relationship", Relationship);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

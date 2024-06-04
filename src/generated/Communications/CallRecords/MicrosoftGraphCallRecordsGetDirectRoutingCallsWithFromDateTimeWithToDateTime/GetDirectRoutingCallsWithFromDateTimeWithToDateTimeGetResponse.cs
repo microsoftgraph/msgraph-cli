@@ -9,26 +9,26 @@ using System;
 namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTime
 {
     #pragma warning disable CS1591
-    public class GetDirectRoutingCallsWithFromDateTimeWithToDateTimeGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetDirectRoutingCallsWithFromDateTimeWithToDateTimeGetResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectRoutingLogRow>? Value { get; set; }
+        public List<ApiSdk.Models.CallRecords.DirectRoutingLogRow>? Value { get; set; }
 #nullable restore
 #else
-        public List<DirectRoutingLogRow> Value { get; set; }
+        public List<ApiSdk.Models.CallRecords.DirectRoutingLogRow> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetDirectRoutingCallsWithFromDateTimeWithToDateTimeGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTime.GetDirectRoutingCallsWithFromDateTimeWithToDateTimeGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetDirectRoutingCallsWithFromDateTimeWithToDateTimeGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTime.GetDirectRoutingCallsWithFromDateTimeWithToDateTimeGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetDirectRoutingCallsWithFromDateTimeWithToDateTimeGetResponse();
+            return new ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTime.GetDirectRoutingCallsWithFromDateTimeWithToDateTimeGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -38,7 +38,7 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRo
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<DirectRoutingLogRow>(DirectRoutingLogRow.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.CallRecords.DirectRoutingLogRow>(ApiSdk.Models.CallRecords.DirectRoutingLogRow.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRo
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<DirectRoutingLogRow>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CallRecords.DirectRoutingLogRow>("value", Value);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace ApiSdk.Communications.Presences
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new PresenceItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Presences.Item.PresenceItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildClearPresenceNavCommand());
             commands.Add(builder.BuildClearUserPreferredPresenceNavCommand());
             executables.Add(builder.BuildDeleteCommand());
@@ -50,7 +50,7 @@ namespace ApiSdk.Communications.Presences
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Presences.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -201,14 +201,14 @@ namespace ApiSdk.Communications.Presences
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PresencesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Presences.PresencesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PresencesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PresencesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Presences.PresencesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PresencesRequestBuilder(string rawUrl) : base("{+baseurl}/communications/presences{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -221,11 +221,11 @@ namespace ApiSdk.Communications.Presences
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PresencesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.Presences.PresencesRequestBuilder.PresencesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PresencesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.Presences.PresencesRequestBuilder.PresencesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

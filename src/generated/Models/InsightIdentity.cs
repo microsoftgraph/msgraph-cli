@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="InsightIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.InsightIdentity"/> and sets the default values.
         /// </summary>
         public InsightIdentity()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="InsightIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.InsightIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static InsightIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.InsightIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new InsightIdentity();
+            return new ApiSdk.Models.InsightIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model

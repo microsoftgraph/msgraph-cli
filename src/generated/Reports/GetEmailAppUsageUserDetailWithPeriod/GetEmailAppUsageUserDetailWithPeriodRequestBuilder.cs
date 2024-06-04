@@ -61,14 +61,14 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetEmailAppUsageUserDetailWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetEmailAppUsageUserDetailWithPeriod.GetEmailAppUsageUserDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetEmailAppUsageUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getEmailAppUsageUserDetail(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetEmailAppUsageUserDetailWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetEmailAppUsageUserDetailWithPeriod.GetEmailAppUsageUserDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetEmailAppUsageUserDetailWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getEmailAppUsageUserDetail(period='{period}')", rawUrl)

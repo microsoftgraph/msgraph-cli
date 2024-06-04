@@ -169,14 +169,14 @@ namespace ApiSdk.Shares.Item.Items.Item.Content
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Shares.Item.Items.Item.Content.ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/items/{driveItem%2Did}/content{?%24format*}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Shares.Item.Items.Item.Content.ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/items/{driveItem%2Did}/content{?%24format*}", rawUrl)
@@ -208,11 +208,11 @@ namespace ApiSdk.Shares.Item.Items.Item.Content
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Shares.Item.Items.Item.Content.ContentRequestBuilder.ContentRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Shares.Item.Items.Item.Content.ContentRequestBuilder.ContentRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

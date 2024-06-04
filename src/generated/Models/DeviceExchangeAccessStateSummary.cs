@@ -32,7 +32,7 @@ namespace ApiSdk.Models
         /// <summary>Total count of devices with Exchange Access State: Unknown.</summary>
         public int? UnknownDeviceCount { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceExchangeAccessStateSummary"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DeviceExchangeAccessStateSummary"/> and sets the default values.
         /// </summary>
         public DeviceExchangeAccessStateSummary()
         {
@@ -41,12 +41,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceExchangeAccessStateSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceExchangeAccessStateSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DeviceExchangeAccessStateSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.DeviceExchangeAccessStateSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceExchangeAccessStateSummary();
+            return new ApiSdk.Models.DeviceExchangeAccessStateSummary();
         }
         /// <summary>
         /// The deserialization information for the current model

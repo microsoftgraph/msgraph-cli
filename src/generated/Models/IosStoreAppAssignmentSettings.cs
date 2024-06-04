@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties used to assign an iOS Store mobile app to a group.
     /// </summary>
-    public class IosStoreAppAssignmentSettings : MobileAppAssignmentSettings, IParsable
+    public class IosStoreAppAssignmentSettings : ApiSdk.Models.MobileAppAssignmentSettings, IParsable
     {
         /// <summary>When TRUE, indicates that the app can be uninstalled by the user. When FALSE, indicates that the app cannot be uninstalled by the user. By default, this property is set to null which internally is treated as TRUE.</summary>
         public bool? IsRemovable { get; set; }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models
         public string VpnConfigurationId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IosStoreAppAssignmentSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IosStoreAppAssignmentSettings"/> and sets the default values.
         /// </summary>
         public IosStoreAppAssignmentSettings() : base()
         {
@@ -33,12 +33,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosStoreAppAssignmentSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosStoreAppAssignmentSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IosStoreAppAssignmentSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IosStoreAppAssignmentSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IosStoreAppAssignmentSettings();
+            return new ApiSdk.Models.IosStoreAppAssignmentSettings();
         }
         /// <summary>
         /// The deserialization information for the current model

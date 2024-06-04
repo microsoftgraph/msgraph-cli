@@ -42,7 +42,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetSettingNonComplianceReport
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<GetSettingNonComplianceReportPostRequestBody>(GetSettingNonComplianceReportPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.Reports.GetSettingNonComplianceReport.GetSettingNonComplianceReportPostRequestBody>(ApiSdk.DeviceManagement.Reports.GetSettingNonComplianceReport.GetSettingNonComplianceReportPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -69,14 +69,14 @@ namespace ApiSdk.DeviceManagement.Reports.GetSettingNonComplianceReport
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSettingNonComplianceReportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.Reports.GetSettingNonComplianceReport.GetSettingNonComplianceReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetSettingNonComplianceReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/reports/getSettingNonComplianceReport", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSettingNonComplianceReportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.Reports.GetSettingNonComplianceReport.GetSettingNonComplianceReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetSettingNonComplianceReportRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/reports/getSettingNonComplianceReport", rawUrl)
@@ -90,11 +90,11 @@ namespace ApiSdk.DeviceManagement.Reports.GetSettingNonComplianceReport
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(GetSettingNonComplianceReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DeviceManagement.Reports.GetSettingNonComplianceReport.GetSettingNonComplianceReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(GetSettingNonComplianceReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DeviceManagement.Reports.GetSettingNonComplianceReport.GetSettingNonComplianceReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

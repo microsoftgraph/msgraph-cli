@@ -9,25 +9,25 @@ namespace ApiSdk.Models
     /// <summary>
     /// The type for deployment of groups or apps.
     /// </summary>
-    public class TargetedManagedAppPolicyAssignment : Entity, IParsable
+    public class TargetedManagedAppPolicyAssignment : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Identifier for deployment to a group or app</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DeviceAndAppManagementAssignmentTarget? Target { get; set; }
+        public ApiSdk.Models.DeviceAndAppManagementAssignmentTarget? Target { get; set; }
 #nullable restore
 #else
-        public DeviceAndAppManagementAssignmentTarget Target { get; set; }
+        public ApiSdk.Models.DeviceAndAppManagementAssignmentTarget Target { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TargetedManagedAppPolicyAssignment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TargetedManagedAppPolicyAssignment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TargetedManagedAppPolicyAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TargetedManagedAppPolicyAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TargetedManagedAppPolicyAssignment();
+            return new ApiSdk.Models.TargetedManagedAppPolicyAssignment();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "target", n => { Target = n.GetObjectValue<DeviceAndAppManagementAssignmentTarget>(DeviceAndAppManagementAssignmentTarget.CreateFromDiscriminatorValue); } },
+                { "target", n => { Target = n.GetObjectValue<ApiSdk.Models.DeviceAndAppManagementAssignmentTarget>(ApiSdk.Models.DeviceAndAppManagementAssignmentTarget.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<DeviceAndAppManagementAssignmentTarget>("target", Target);
+            writer.WriteObjectValue<ApiSdk.Models.DeviceAndAppManagementAssignmentTarget>("target", Target);
         }
     }
 }

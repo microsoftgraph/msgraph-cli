@@ -8,42 +8,42 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SearchEntity : Entity, IParsable
+    public class SearchEntity : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Administrative answer in Microsoft Search results to define common acronyms in an organization.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Acronym>? Acronyms { get; set; }
+        public List<ApiSdk.Models.Search.Acronym>? Acronyms { get; set; }
 #nullable restore
 #else
-        public List<Acronym> Acronyms { get; set; }
+        public List<ApiSdk.Models.Search.Acronym> Acronyms { get; set; }
 #endif
         /// <summary>Administrative answer in Microsoft Search results for common search queries in an organization.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Bookmark>? Bookmarks { get; set; }
+        public List<ApiSdk.Models.Search.Bookmark>? Bookmarks { get; set; }
 #nullable restore
 #else
-        public List<Bookmark> Bookmarks { get; set; }
+        public List<ApiSdk.Models.Search.Bookmark> Bookmarks { get; set; }
 #endif
         /// <summary>Administrative answer in Microsoft Search results that provide answers for specific search keywords in an organization.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Qna>? Qnas { get; set; }
+        public List<ApiSdk.Models.Search.Qna>? Qnas { get; set; }
 #nullable restore
 #else
-        public List<Qna> Qnas { get; set; }
+        public List<ApiSdk.Models.Search.Qna> Qnas { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SearchEntity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SearchEntity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SearchEntity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SearchEntity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SearchEntity();
+            return new ApiSdk.Models.SearchEntity();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -53,9 +53,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "acronyms", n => { Acronyms = n.GetCollectionOfObjectValues<Acronym>(Acronym.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "bookmarks", n => { Bookmarks = n.GetCollectionOfObjectValues<Bookmark>(Bookmark.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "qnas", n => { Qnas = n.GetCollectionOfObjectValues<Qna>(Qna.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "acronyms", n => { Acronyms = n.GetCollectionOfObjectValues<ApiSdk.Models.Search.Acronym>(ApiSdk.Models.Search.Acronym.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "bookmarks", n => { Bookmarks = n.GetCollectionOfObjectValues<ApiSdk.Models.Search.Bookmark>(ApiSdk.Models.Search.Bookmark.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "qnas", n => { Qnas = n.GetCollectionOfObjectValues<ApiSdk.Models.Search.Qna>(ApiSdk.Models.Search.Qna.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -66,9 +66,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Acronym>("acronyms", Acronyms);
-            writer.WriteCollectionOfObjectValues<Bookmark>("bookmarks", Bookmarks);
-            writer.WriteCollectionOfObjectValues<Qna>("qnas", Qnas);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Search.Acronym>("acronyms", Acronyms);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Search.Bookmark>("bookmarks", Bookmarks);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Search.Qna>("qnas", Qnas);
         }
     }
 }

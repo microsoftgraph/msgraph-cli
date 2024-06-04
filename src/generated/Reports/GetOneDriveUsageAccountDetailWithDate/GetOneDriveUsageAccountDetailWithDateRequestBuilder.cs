@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetOneDriveUsageAccountDetailWithDate
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOneDriveUsageAccountDetailWithDateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOneDriveUsageAccountDetailWithDate.GetOneDriveUsageAccountDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOneDriveUsageAccountDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOneDriveUsageAccountDetail(date={date})", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOneDriveUsageAccountDetailWithDateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOneDriveUsageAccountDetailWithDate.GetOneDriveUsageAccountDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOneDriveUsageAccountDetailWithDateRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOneDriveUsageAccountDetail(date={date})", rawUrl)

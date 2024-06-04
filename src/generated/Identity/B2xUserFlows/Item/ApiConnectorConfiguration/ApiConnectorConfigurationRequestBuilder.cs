@@ -84,7 +84,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration
         {
             var command = new Command("post-attribute-collection");
             command.Description = "Provides operations to manage the postAttributeCollection property of the microsoft.graph.userFlowApiConnectorConfiguration entity.";
-            var builder = new PostAttributeCollectionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttributeCollection.PostAttributeCollectionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -110,7 +110,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration
         {
             var command = new Command("post-federation-signup");
             command.Description = "Provides operations to manage the postFederationSignup property of the microsoft.graph.userFlowApiConnectorConfiguration entity.";
-            var builder = new PostFederationSignupRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFederationSignup.PostFederationSignupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -129,14 +129,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ApiConnectorConfigurationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.ApiConnectorConfigurationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ApiConnectorConfigurationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/apiConnectorConfiguration{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ApiConnectorConfigurationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.ApiConnectorConfigurationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ApiConnectorConfigurationRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/apiConnectorConfiguration{?%24expand,%24select}", rawUrl)
@@ -149,11 +149,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiConnectorConfigurationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.ApiConnectorConfigurationRequestBuilder.ApiConnectorConfigurationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiConnectorConfigurationRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.ApiConnectorConfigurationRequestBuilder.ApiConnectorConfigurationRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

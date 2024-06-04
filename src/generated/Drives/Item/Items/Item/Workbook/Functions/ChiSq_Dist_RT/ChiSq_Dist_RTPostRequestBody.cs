@@ -16,21 +16,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist_RT
         /// <summary>The degFreedom property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? DegFreedom { get; set; }
+        public ApiSdk.Models.Json? DegFreedom { get; set; }
 #nullable restore
 #else
-        public Json DegFreedom { get; set; }
+        public ApiSdk.Models.Json DegFreedom { get; set; }
 #endif
         /// <summary>The x property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? X { get; set; }
+        public ApiSdk.Models.Json? X { get; set; }
 #nullable restore
 #else
-        public Json X { get; set; }
+        public ApiSdk.Models.Json X { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ChiSq_Dist_RTPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist_RT.ChiSq_Dist_RTPostRequestBody"/> and sets the default values.
         /// </summary>
         public ChiSq_Dist_RTPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist_RT
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChiSq_Dist_RTPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist_RT.ChiSq_Dist_RTPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ChiSq_Dist_RTPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist_RT.ChiSq_Dist_RTPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChiSq_Dist_RTPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist_RT.ChiSq_Dist_RTPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist_RT
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "degFreedom", n => { DegFreedom = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "x", n => { X = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "degFreedom", n => { DegFreedom = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "x", n => { X = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist_RT
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("degFreedom", DegFreedom);
-            writer.WriteObjectValue<Json>("x", X);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("degFreedom", DegFreedom);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("x", X);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

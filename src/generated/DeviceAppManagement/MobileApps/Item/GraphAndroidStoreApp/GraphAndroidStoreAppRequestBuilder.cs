@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphAndroidStoreApp
         {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileApps.Item.GraphAndroidStoreApp.Assignments.AssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -58,7 +58,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphAndroidStoreApp
         {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.";
-            var builder = new CategoriesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileApps.Item.GraphAndroidStoreApp.Categories.CategoriesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -129,14 +129,14 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphAndroidStoreApp
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphAndroidStoreAppRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileApps.Item.GraphAndroidStoreApp.GraphAndroidStoreAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphAndroidStoreAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.androidStoreApp{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphAndroidStoreAppRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileApps.Item.GraphAndroidStoreApp.GraphAndroidStoreAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphAndroidStoreAppRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.androidStoreApp{?%24expand,%24select}", rawUrl)
@@ -149,11 +149,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphAndroidStoreApp
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAndroidStoreAppRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MobileApps.Item.GraphAndroidStoreApp.GraphAndroidStoreAppRequestBuilder.GraphAndroidStoreAppRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAndroidStoreAppRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MobileApps.Item.GraphAndroidStoreApp.GraphAndroidStoreAppRequestBuilder.GraphAndroidStoreAppRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

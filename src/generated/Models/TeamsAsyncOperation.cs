@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamsAsyncOperation : Entity, IParsable
+    public class TeamsAsyncOperation : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Number of times the operation was attempted before being marked successful or failed.</summary>
@@ -17,17 +17,17 @@ namespace ApiSdk.Models
         /// <summary>Any error that causes the async operation to fail.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public OperationError? Error { get; set; }
+        public ApiSdk.Models.OperationError? Error { get; set; }
 #nullable restore
 #else
-        public OperationError Error { get; set; }
+        public ApiSdk.Models.OperationError Error { get; set; }
 #endif
         /// <summary>Time when the async operation was last updated.</summary>
         public DateTimeOffset? LastActionDateTime { get; set; }
         /// <summary>The operationType property</summary>
-        public TeamsAsyncOperationType? OperationType { get; set; }
+        public ApiSdk.Models.TeamsAsyncOperationType? OperationType { get; set; }
         /// <summary>The status property</summary>
-        public TeamsAsyncOperationStatus? Status { get; set; }
+        public ApiSdk.Models.TeamsAsyncOperationStatus? Status { get; set; }
         /// <summary>The ID of the object that&apos;s created or modified as result of this async operation, typically a team.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,12 +47,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamsAsyncOperation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamsAsyncOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamsAsyncOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamsAsyncOperation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamsAsyncOperation();
+            return new ApiSdk.Models.TeamsAsyncOperation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,10 +64,10 @@ namespace ApiSdk.Models
             {
                 { "attemptsCount", n => { AttemptsCount = n.GetIntValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "error", n => { Error = n.GetObjectValue<OperationError>(OperationError.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<ApiSdk.Models.OperationError>(ApiSdk.Models.OperationError.CreateFromDiscriminatorValue); } },
                 { "lastActionDateTime", n => { LastActionDateTime = n.GetDateTimeOffsetValue(); } },
-                { "operationType", n => { OperationType = n.GetEnumValue<TeamsAsyncOperationType>(); } },
-                { "status", n => { Status = n.GetEnumValue<TeamsAsyncOperationStatus>(); } },
+                { "operationType", n => { OperationType = n.GetEnumValue<ApiSdk.Models.TeamsAsyncOperationType>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.TeamsAsyncOperationStatus>(); } },
                 { "targetResourceId", n => { TargetResourceId = n.GetStringValue(); } },
                 { "targetResourceLocation", n => { TargetResourceLocation = n.GetStringValue(); } },
             };
@@ -82,10 +82,10 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteIntValue("attemptsCount", AttemptsCount);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<OperationError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.OperationError>("error", Error);
             writer.WriteDateTimeOffsetValue("lastActionDateTime", LastActionDateTime);
-            writer.WriteEnumValue<TeamsAsyncOperationType>("operationType", OperationType);
-            writer.WriteEnumValue<TeamsAsyncOperationStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.TeamsAsyncOperationType>("operationType", OperationType);
+            writer.WriteEnumValue<ApiSdk.Models.TeamsAsyncOperationStatus>("status", Status);
             writer.WriteStringValue("targetResourceId", TargetResourceId);
             writer.WriteStringValue("targetResourceLocation", TargetResourceLocation);
         }

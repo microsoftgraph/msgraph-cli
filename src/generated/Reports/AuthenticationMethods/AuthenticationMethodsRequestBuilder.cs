@@ -127,7 +127,7 @@ namespace ApiSdk.Reports.AuthenticationMethods
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AuthenticationMethodsRoot>(AuthenticationMethodsRoot.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.AuthenticationMethodsRoot>(ApiSdk.Models.AuthenticationMethodsRoot.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -154,7 +154,7 @@ namespace ApiSdk.Reports.AuthenticationMethods
         {
             var command = new Command("user-registration-details");
             command.Description = "Provides operations to manage the userRegistrationDetails property of the microsoft.graph.authenticationMethodsRoot entity.";
-            var builder = new UserRegistrationDetailsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails.UserRegistrationDetailsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -181,7 +181,7 @@ namespace ApiSdk.Reports.AuthenticationMethods
         {
             var command = new Command("users-registered-by-feature");
             command.Description = "Provides operations to call the usersRegisteredByFeature method.";
-            var builder = new UsersRegisteredByFeatureRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByFeature.UsersRegisteredByFeatureRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -198,7 +198,7 @@ namespace ApiSdk.Reports.AuthenticationMethods
         {
             var command = new Command("users-registered-by-feature-with-included-user-types-with-included-user-roles");
             command.Description = "Provides operations to call the usersRegisteredByFeature method.";
-            var builder = new UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRoles.UsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -215,7 +215,7 @@ namespace ApiSdk.Reports.AuthenticationMethods
         {
             var command = new Command("users-registered-by-method");
             command.Description = "Provides operations to call the usersRegisteredByMethod method.";
-            var builder = new UsersRegisteredByMethodRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethod.UsersRegisteredByMethodRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -232,7 +232,7 @@ namespace ApiSdk.Reports.AuthenticationMethods
         {
             var command = new Command("users-registered-by-method-with-included-user-types-with-included-user-roles");
             command.Description = "Provides operations to call the usersRegisteredByMethod method.";
-            var builder = new UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRoles.UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -242,14 +242,14 @@ namespace ApiSdk.Reports.AuthenticationMethods
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationMethodsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.AuthenticationMethods.AuthenticationMethodsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AuthenticationMethodsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/authenticationMethods{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationMethodsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.AuthenticationMethods.AuthenticationMethodsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AuthenticationMethodsRequestBuilder(string rawUrl) : base("{+baseurl}/reports/authenticationMethods{?%24expand,%24select}", rawUrl)
@@ -281,11 +281,11 @@ namespace ApiSdk.Reports.AuthenticationMethods
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationMethodsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Reports.AuthenticationMethods.AuthenticationMethodsRequestBuilder.AuthenticationMethodsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationMethodsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Reports.AuthenticationMethods.AuthenticationMethodsRequestBuilder.AuthenticationMethodsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -301,11 +301,11 @@ namespace ApiSdk.Reports.AuthenticationMethods
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AuthenticationMethodsRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AuthenticationMethodsRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AuthenticationMethodsRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AuthenticationMethodsRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

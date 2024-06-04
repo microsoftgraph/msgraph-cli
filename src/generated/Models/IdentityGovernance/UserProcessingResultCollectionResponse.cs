@@ -13,20 +13,20 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserProcessingResult>? Value { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.UserProcessingResult>? Value { get; set; }
 #nullable restore
 #else
-        public List<UserProcessingResult> Value { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.UserProcessingResult> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserProcessingResultCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.UserProcessingResultCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserProcessingResultCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.UserProcessingResultCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserProcessingResultCollectionResponse();
+            return new ApiSdk.Models.IdentityGovernance.UserProcessingResultCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.IdentityGovernance
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<UserProcessingResult>(UserProcessingResult.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.UserProcessingResult>(ApiSdk.Models.IdentityGovernance.UserProcessingResult.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.IdentityGovernance
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<UserProcessingResult>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.UserProcessingResult>("value", Value);
         }
     }
 }

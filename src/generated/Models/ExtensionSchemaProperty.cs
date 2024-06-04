@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string Type { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ExtensionSchemaProperty"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ExtensionSchemaProperty"/> and sets the default values.
         /// </summary>
         public ExtensionSchemaProperty()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ExtensionSchemaProperty"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExtensionSchemaProperty"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ExtensionSchemaProperty CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ExtensionSchemaProperty CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ExtensionSchemaProperty();
+            return new ApiSdk.Models.ExtensionSchemaProperty();
         }
         /// <summary>
         /// The deserialization information for the current model

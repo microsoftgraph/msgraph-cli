@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AppRoleAssignment : DirectoryObject, IParsable
+    public class AppRoleAssignment : ApiSdk.Models.DirectoryObject, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The identifier (id) for the app role which is assigned to the principal. This app role must be exposed in the appRoles property on the resource application&apos;s service principal (resourceId). If the resource application has not declared any app roles, a default app role ID of 00000000-0000-0000-0000-000000000000 can be specified to signal that the principal is assigned to the resource app without any specific app roles. Required on create.</summary>
@@ -43,7 +43,7 @@ namespace ApiSdk.Models
         /// <summary>The unique identifier (id) for the resource service principal for which the assignment is made. Required on create. Supports $filter (eq only).</summary>
         public Guid? ResourceId { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AppRoleAssignment"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AppRoleAssignment"/> and sets the default values.
         /// </summary>
         public AppRoleAssignment() : base()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AppRoleAssignment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AppRoleAssignment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AppRoleAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AppRoleAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AppRoleAssignment();
+            return new ApiSdk.Models.AppRoleAssignment();
         }
         /// <summary>
         /// The deserialization information for the current model

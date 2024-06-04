@@ -50,14 +50,14 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.ShutDown
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ShutDownRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.ShutDown.ShutDownRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ShutDownRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/shutDown", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ShutDownRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.ShutDown.ShutDownRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ShutDownRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/shutDown", rawUrl)

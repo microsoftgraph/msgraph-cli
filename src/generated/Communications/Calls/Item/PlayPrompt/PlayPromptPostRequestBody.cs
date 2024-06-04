@@ -24,13 +24,13 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt
         /// <summary>The prompts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Prompt>? Prompts { get; set; }
+        public List<ApiSdk.Models.Prompt>? Prompts { get; set; }
 #nullable restore
 #else
-        public List<Prompt> Prompts { get; set; }
+        public List<ApiSdk.Models.Prompt> Prompts { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PlayPromptPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.PlayPrompt.PlayPromptPostRequestBody"/> and sets the default values.
         /// </summary>
         public PlayPromptPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PlayPromptPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.Calls.Item.PlayPrompt.PlayPromptPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PlayPromptPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.Calls.Item.PlayPrompt.PlayPromptPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PlayPromptPostRequestBody();
+            return new ApiSdk.Communications.Calls.Item.PlayPrompt.PlayPromptPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "clientContext", n => { ClientContext = n.GetStringValue(); } },
-                { "prompts", n => { Prompts = n.GetCollectionOfObjectValues<Prompt>(Prompt.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "prompts", n => { Prompts = n.GetCollectionOfObjectValues<ApiSdk.Models.Prompt>(ApiSdk.Models.Prompt.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("clientContext", ClientContext);
-            writer.WriteCollectionOfObjectValues<Prompt>("prompts", Prompts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Prompt>("prompts", Prompts);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

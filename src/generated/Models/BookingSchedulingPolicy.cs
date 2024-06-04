@@ -32,7 +32,7 @@ namespace ApiSdk.Models
         /// <summary>Duration of each time slot, denoted in ISO 8601 format.</summary>
         public TimeSpan? TimeSlotInterval { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="BookingSchedulingPolicy"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.BookingSchedulingPolicy"/> and sets the default values.
         /// </summary>
         public BookingSchedulingPolicy()
         {
@@ -41,12 +41,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BookingSchedulingPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BookingSchedulingPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BookingSchedulingPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.BookingSchedulingPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BookingSchedulingPolicy();
+            return new ApiSdk.Models.BookingSchedulingPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model

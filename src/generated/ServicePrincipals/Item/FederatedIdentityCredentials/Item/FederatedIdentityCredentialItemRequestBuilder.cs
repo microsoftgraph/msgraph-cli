@@ -156,7 +156,7 @@ namespace ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<FederatedIdentityCredential>(FederatedIdentityCredential.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.FederatedIdentityCredential>(ApiSdk.Models.FederatedIdentityCredential.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -178,14 +178,14 @@ namespace ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="FederatedIdentityCredentialItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item.FederatedIdentityCredentialItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FederatedIdentityCredentialItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/federatedIdentityCredentials/{federatedIdentityCredential%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="FederatedIdentityCredentialItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item.FederatedIdentityCredentialItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FederatedIdentityCredentialItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/federatedIdentityCredentials/{federatedIdentityCredential%2Did}{?%24expand,%24select}", rawUrl)
@@ -217,11 +217,11 @@ namespace ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FederatedIdentityCredentialItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item.FederatedIdentityCredentialItemRequestBuilder.FederatedIdentityCredentialItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FederatedIdentityCredentialItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item.FederatedIdentityCredentialItemRequestBuilder.FederatedIdentityCredentialItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -237,11 +237,11 @@ namespace ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(FederatedIdentityCredential body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.FederatedIdentityCredential body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(FederatedIdentityCredential body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.FederatedIdentityCredential body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

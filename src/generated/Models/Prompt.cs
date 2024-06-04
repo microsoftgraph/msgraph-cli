@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Prompt"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Prompt"/> and sets the default values.
         /// </summary>
         public Prompt()
         {
@@ -30,16 +30,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Prompt"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Prompt"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Prompt CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Prompt CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.mediaPrompt" => new MediaPrompt(),
-                _ => new Prompt(),
+                "#microsoft.graph.mediaPrompt" => new ApiSdk.Models.MediaPrompt(),
+                _ => new ApiSdk.Models.Prompt(),
             };
         }
         /// <summary>

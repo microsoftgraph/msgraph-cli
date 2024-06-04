@@ -16,18 +16,18 @@ namespace ApiSdk.Models
         /// <summary>The callRecords property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CallRecord>? CallRecords { get; set; }
+        public List<ApiSdk.Models.CallRecords.CallRecord>? CallRecords { get; set; }
 #nullable restore
 #else
-        public List<CallRecord> CallRecords { get; set; }
+        public List<ApiSdk.Models.CallRecords.CallRecord> CallRecords { get; set; }
 #endif
         /// <summary>The calls property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Call>? Calls { get; set; }
+        public List<ApiSdk.Models.Call>? Calls { get; set; }
 #nullable restore
 #else
-        public List<Call> Calls { get; set; }
+        public List<ApiSdk.Models.Call> Calls { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,21 +40,21 @@ namespace ApiSdk.Models
         /// <summary>The onlineMeetings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OnlineMeeting>? OnlineMeetings { get; set; }
+        public List<ApiSdk.Models.OnlineMeeting>? OnlineMeetings { get; set; }
 #nullable restore
 #else
-        public List<OnlineMeeting> OnlineMeetings { get; set; }
+        public List<ApiSdk.Models.OnlineMeeting> OnlineMeetings { get; set; }
 #endif
         /// <summary>The presences property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Presence>? Presences { get; set; }
+        public List<ApiSdk.Models.Presence>? Presences { get; set; }
 #nullable restore
 #else
-        public List<Presence> Presences { get; set; }
+        public List<ApiSdk.Models.Presence> Presences { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CloudCommunications"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CloudCommunications"/> and sets the default values.
         /// </summary>
         public CloudCommunications()
         {
@@ -63,12 +63,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudCommunications"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudCommunications"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CloudCommunications CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CloudCommunications CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudCommunications();
+            return new ApiSdk.Models.CloudCommunications();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,11 +78,11 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "callRecords", n => { CallRecords = n.GetCollectionOfObjectValues<CallRecord>(CallRecord.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "calls", n => { Calls = n.GetCollectionOfObjectValues<Call>(Call.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "callRecords", n => { CallRecords = n.GetCollectionOfObjectValues<ApiSdk.Models.CallRecords.CallRecord>(ApiSdk.Models.CallRecords.CallRecord.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "calls", n => { Calls = n.GetCollectionOfObjectValues<ApiSdk.Models.Call>(ApiSdk.Models.Call.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "onlineMeetings", n => { OnlineMeetings = n.GetCollectionOfObjectValues<OnlineMeeting>(OnlineMeeting.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "presences", n => { Presences = n.GetCollectionOfObjectValues<Presence>(Presence.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "onlineMeetings", n => { OnlineMeetings = n.GetCollectionOfObjectValues<ApiSdk.Models.OnlineMeeting>(ApiSdk.Models.OnlineMeeting.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "presences", n => { Presences = n.GetCollectionOfObjectValues<ApiSdk.Models.Presence>(ApiSdk.Models.Presence.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -92,11 +92,11 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<CallRecord>("callRecords", CallRecords);
-            writer.WriteCollectionOfObjectValues<Call>("calls", Calls);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CallRecords.CallRecord>("callRecords", CallRecords);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Call>("calls", Calls);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<OnlineMeeting>("onlineMeetings", OnlineMeetings);
-            writer.WriteCollectionOfObjectValues<Presence>("presences", Presences);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OnlineMeeting>("onlineMeetings", OnlineMeetings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Presence>("presences", Presences);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

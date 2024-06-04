@@ -49,7 +49,7 @@ namespace ApiSdk.Models.Security
         public string State { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="GeoLocation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.GeoLocation"/> and sets the default values.
         /// </summary>
         public GeoLocation()
         {
@@ -58,12 +58,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GeoLocation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.GeoLocation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GeoLocation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.GeoLocation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GeoLocation();
+            return new ApiSdk.Models.Security.GeoLocation();
         }
         /// <summary>
         /// The deserialization information for the current model

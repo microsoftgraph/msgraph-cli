@@ -53,7 +53,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<UploadClientCertificatePostRequestBody>(UploadClientCertificatePostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate.UploadClientCertificatePostRequestBody>(ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate.UploadClientCertificatePostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -74,14 +74,14 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UploadClientCertificateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate.UploadClientCertificateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UploadClientCertificateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/apiConnectors/{identityApiConnector%2Did}/uploadClientCertificate", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UploadClientCertificateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate.UploadClientCertificateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UploadClientCertificateRequestBuilder(string rawUrl) : base("{+baseurl}/identity/apiConnectors/{identityApiConnector%2Did}/uploadClientCertificate", rawUrl)
@@ -95,11 +95,11 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(UploadClientCertificatePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate.UploadClientCertificatePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(UploadClientCertificatePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate.UploadClientCertificatePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

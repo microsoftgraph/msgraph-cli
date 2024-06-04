@@ -104,7 +104,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("activities");
             command.Description = "Provides operations to manage the activities property of the microsoft.graph.user entity.";
-            var builder = new ActivitiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Activities.ActivitiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -132,7 +132,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("agreement-acceptances");
             command.Description = "Provides operations to manage the agreementAcceptances property of the microsoft.graph.user entity.";
-            var builder = new AgreementAcceptancesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.AgreementAcceptances.AgreementAcceptancesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -158,7 +158,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("app-role-assignments");
             command.Description = "Provides operations to manage the appRoleAssignments property of the microsoft.graph.user entity.";
-            var builder = new AppRoleAssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.AppRoleAssignments.AppRoleAssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -185,7 +185,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("assign-license");
             command.Description = "Provides operations to call the assignLicense method.";
-            var builder = new AssignLicenseRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.AssignLicense.AssignLicenseRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -202,7 +202,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("authentication");
             command.Description = "Provides operations to manage the authentication property of the microsoft.graph.user entity.";
-            var builder = new AuthenticationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Authentication.AuthenticationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -236,7 +236,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("calendar-groups");
             command.Description = "Provides operations to manage the calendarGroups property of the microsoft.graph.user entity.";
-            var builder = new CalendarGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.CalendarGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -263,7 +263,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("calendar");
             command.Description = "Provides operations to manage the calendar property of the microsoft.graph.user entity.";
-            var builder = new CalendarRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Calendar.CalendarRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAllowedCalendarSharingRolesWithUserRbCommand());
@@ -291,7 +291,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("calendars");
             command.Description = "Provides operations to manage the calendars property of the microsoft.graph.user entity.";
-            var builder = new CalendarsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Calendars.CalendarsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -318,7 +318,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("calendar-view");
             command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.user entity.";
-            var builder = new CalendarViewRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarView.CalendarViewRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -345,7 +345,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("change-password");
             command.Description = "Provides operations to call the changePassword method.";
-            var builder = new ChangePasswordRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.ChangePassword.ChangePasswordRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -362,7 +362,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("chats");
             command.Description = "Provides operations to manage the chats property of the microsoft.graph.user entity.";
-            var builder = new ChatsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Chats.ChatsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -390,7 +390,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CheckMemberGroups.CheckMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -407,7 +407,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CheckMemberObjects.CheckMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -424,7 +424,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("cloud-clipboard");
             command.Description = "Provides operations to manage the cloudClipboard property of the microsoft.graph.user entity.";
-            var builder = new CloudClipboardRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CloudClipboard.CloudClipboardRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -449,7 +449,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("contact-folders");
             command.Description = "Provides operations to manage the contactFolders property of the microsoft.graph.user entity.";
-            var builder = new ContactFoldersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.ContactFolders.ContactFoldersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -477,7 +477,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("contacts");
             command.Description = "Provides operations to manage the contacts property of the microsoft.graph.user entity.";
-            var builder = new ContactsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Contacts.ContactsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -505,7 +505,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("created-objects");
             command.Description = "Provides operations to manage the createdObjects property of the microsoft.graph.user entity.";
-            var builder = new CreatedObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CreatedObjects.CreatedObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -568,7 +568,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("device-management-troubleshooting-events");
             command.Description = "Provides operations to manage the deviceManagementTroubleshootingEvents property of the microsoft.graph.user entity.";
-            var builder = new DeviceManagementTroubleshootingEventsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.DeviceManagementTroubleshootingEvents.DeviceManagementTroubleshootingEventsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -595,7 +595,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("direct-reports");
             command.Description = "Provides operations to manage the directReports property of the microsoft.graph.user entity.";
-            var builder = new DirectReportsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.DirectReports.DirectReportsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -623,7 +623,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.user entity.";
-            var builder = new DriveRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Drive.DriveRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -640,7 +640,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the drives property of the microsoft.graph.user entity.";
-            var builder = new DrivesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Drives.DrivesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -666,7 +666,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("employee-experience");
             command.Description = "Provides operations to manage the employeeExperience property of the microsoft.graph.user entity.";
-            var builder = new EmployeeExperienceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.EmployeeExperience.EmployeeExperienceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -692,7 +692,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("events");
             command.Description = "Provides operations to manage the events property of the microsoft.graph.user entity.";
-            var builder = new EventsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Events.EventsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -720,7 +720,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("export-device-and-app-management-data");
             command.Description = "Provides operations to call the exportDeviceAndAppManagementData method.";
-            var builder = new ExportDeviceAndAppManagementDataRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.ExportDeviceAndAppManagementData.ExportDeviceAndAppManagementDataRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -737,7 +737,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("export-device-and-app-management-data-with-skip-with-top");
             command.Description = "Provides operations to call the exportDeviceAndAppManagementData method.";
-            var builder = new ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.ExportDeviceAndAppManagementDataWithSkipWithTop.ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -754,7 +754,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("export-personal-data");
             command.Description = "Provides operations to call the exportPersonalData method.";
-            var builder = new ExportPersonalDataRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.ExportPersonalData.ExportPersonalDataRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -771,7 +771,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.user entity.";
-            var builder = new ExtensionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Extensions.ExtensionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -798,7 +798,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("find-meeting-times");
             command.Description = "Provides operations to call the findMeetingTimes method.";
-            var builder = new FindMeetingTimesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.FindMeetingTimes.FindMeetingTimesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -815,7 +815,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("followed-sites");
             command.Description = "Provides operations to manage the followedSites property of the microsoft.graph.user entity.";
-            var builder = new FollowedSitesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.FollowedSites.FollowedSitesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddNavCommand());
@@ -896,7 +896,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("get-mail-tips");
             command.Description = "Provides operations to call the getMailTips method.";
-            var builder = new GetMailTipsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.GetMailTips.GetMailTipsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -913,7 +913,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("get-managed-app-diagnostic-statuses");
             command.Description = "Provides operations to call the getManagedAppDiagnosticStatuses method.";
-            var builder = new GetManagedAppDiagnosticStatusesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.GetManagedAppDiagnosticStatuses.GetManagedAppDiagnosticStatusesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -930,7 +930,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("get-managed-app-policies");
             command.Description = "Provides operations to call the getManagedAppPolicies method.";
-            var builder = new GetManagedAppPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.GetManagedAppPolicies.GetManagedAppPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -947,7 +947,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("get-managed-devices-with-app-failures");
             command.Description = "Provides operations to call the getManagedDevicesWithAppFailures method.";
-            var builder = new GetManagedDevicesWithAppFailuresRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.GetManagedDevicesWithAppFailures.GetManagedDevicesWithAppFailuresRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -964,7 +964,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.GetMemberGroups.GetMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -981,7 +981,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.GetMemberObjects.GetMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -998,7 +998,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("inference-classification");
             command.Description = "Provides operations to manage the inferenceClassification property of the microsoft.graph.user entity.";
-            var builder = new InferenceClassificationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.InferenceClassification.InferenceClassificationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -1022,7 +1022,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("insights");
             command.Description = "Provides operations to manage the insights property of the microsoft.graph.user entity.";
-            var builder = new InsightsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Insights.InsightsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -1049,7 +1049,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("joined-teams");
             command.Description = "Provides operations to manage the joinedTeams property of the microsoft.graph.user entity.";
-            var builder = new JoinedTeamsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.JoinedTeams.JoinedTeamsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1077,7 +1077,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("license-details");
             command.Description = "Provides operations to manage the licenseDetails property of the microsoft.graph.user entity.";
-            var builder = new LicenseDetailsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.LicenseDetails.LicenseDetailsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1105,7 +1105,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("mailbox-settings");
             command.Description = "The mailboxSettings property";
-            var builder = new MailboxSettingsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MailboxSettings.MailboxSettingsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
@@ -1123,7 +1123,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("mail-folders");
             command.Description = "Provides operations to manage the mailFolders property of the microsoft.graph.user entity.";
-            var builder = new MailFoldersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MailFolders.MailFoldersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1151,7 +1151,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("managed-app-registrations");
             command.Description = "Provides operations to manage the managedAppRegistrations property of the microsoft.graph.user entity.";
-            var builder = new ManagedAppRegistrationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.ManagedAppRegistrations.ManagedAppRegistrationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1177,7 +1177,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("managed-devices");
             command.Description = "Provides operations to manage the managedDevices property of the microsoft.graph.user entity.";
-            var builder = new ManagedDevicesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.ManagedDevices.ManagedDevicesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1204,7 +1204,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("manager");
             command.Description = "Provides operations to manage the manager property of the microsoft.graph.user entity.";
-            var builder = new ManagerRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Manager.ManagerRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -1227,7 +1227,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.user entity.";
-            var builder = new MemberOfRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MemberOf.MemberOfRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1256,7 +1256,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.user entity.";
-            var builder = new MessagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Messages.MessagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1284,7 +1284,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("oauth2-permission-grants");
             command.Description = "Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.user entity.";
-            var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Oauth2PermissionGrants.Oauth2PermissionGrantsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1310,7 +1310,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("onenote");
             command.Description = "Provides operations to manage the onenote property of the microsoft.graph.user entity.";
-            var builder = new OnenoteRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Onenote.OnenoteRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -1340,7 +1340,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("online-meetings");
             command.Description = "Provides operations to manage the onlineMeetings property of the microsoft.graph.user entity.";
-            var builder = new OnlineMeetingsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.OnlineMeetings.OnlineMeetingsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1368,7 +1368,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("outlook");
             command.Description = "Provides operations to manage the outlook property of the microsoft.graph.user entity.";
-            var builder = new OutlookRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Outlook.OutlookRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -1394,7 +1394,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("owned-devices");
             command.Description = "Provides operations to manage the ownedDevices property of the microsoft.graph.user entity.";
-            var builder = new OwnedDevicesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.OwnedDevices.OwnedDevicesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1423,7 +1423,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("owned-objects");
             command.Description = "Provides operations to manage the ownedObjects property of the microsoft.graph.user entity.";
-            var builder = new OwnedObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.OwnedObjects.OwnedObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1504,7 +1504,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("people");
             command.Description = "Provides operations to manage the people property of the microsoft.graph.user entity.";
-            var builder = new PeopleRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.People.PeopleRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1530,7 +1530,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("permission-grants");
             command.Description = "Provides operations to manage the permissionGrants property of the microsoft.graph.user entity.";
-            var builder = new PermissionGrantsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.PermissionGrants.PermissionGrantsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1557,7 +1557,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.user entity.";
-            var builder = new PhotoRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Photo.PhotoRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildContentNavCommand());
@@ -1582,7 +1582,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("photos");
             command.Description = "Provides operations to manage the photos property of the microsoft.graph.user entity.";
-            var builder = new PhotosRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Photos.PhotosRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildListCommand());
@@ -1607,7 +1607,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("planner");
             command.Description = "Provides operations to manage the planner property of the microsoft.graph.user entity.";
-            var builder = new PlannerRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Planner.PlannerRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -1633,7 +1633,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("presence");
             command.Description = "Provides operations to manage the presence property of the microsoft.graph.user entity.";
-            var builder = new PresenceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Presence.PresenceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildClearPresenceNavCommand());
@@ -1662,7 +1662,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("registered-devices");
             command.Description = "Provides operations to manage the registeredDevices property of the microsoft.graph.user entity.";
-            var builder = new RegisteredDevicesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.RegisteredDevices.RegisteredDevicesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1691,7 +1691,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("reminder-view-with-start-date-time-with-end-date-time");
             command.Description = "Provides operations to call the reminderView method.";
-            var builder = new ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.ReminderViewWithStartDateTimeWithEndDateTime.ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -1708,7 +1708,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("remove-all-devices-from-management");
             command.Description = "Provides operations to call the removeAllDevicesFromManagement method.";
-            var builder = new RemoveAllDevicesFromManagementRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.RemoveAllDevicesFromManagement.RemoveAllDevicesFromManagementRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -1725,7 +1725,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("reprocess-license-assignment");
             command.Description = "Provides operations to call the reprocessLicenseAssignment method.";
-            var builder = new ReprocessLicenseAssignmentRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.ReprocessLicenseAssignment.ReprocessLicenseAssignmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -1742,7 +1742,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Restore.RestoreRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -1759,7 +1759,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("retry-service-provisioning");
             command.Description = "Provides operations to call the retryServiceProvisioning method.";
-            var builder = new RetryServiceProvisioningRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.RetryServiceProvisioning.RetryServiceProvisioningRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -1776,7 +1776,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("revoke-sign-in-sessions");
             command.Description = "Provides operations to call the revokeSignInSessions method.";
-            var builder = new RevokeSignInSessionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.RevokeSignInSessions.RevokeSignInSessionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -1793,7 +1793,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("scoped-role-member-of");
             command.Description = "Provides operations to manage the scopedRoleMemberOf property of the microsoft.graph.user entity.";
-            var builder = new ScopedRoleMemberOfRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.ScopedRoleMemberOf.ScopedRoleMemberOfRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1820,7 +1820,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("send-mail");
             command.Description = "Provides operations to call the sendMail method.";
-            var builder = new SendMailRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.SendMail.SendMailRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -1837,7 +1837,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
-            var builder = new ServiceProvisioningErrorsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.ServiceProvisioningErrors.ServiceProvisioningErrorsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1860,7 +1860,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.user entity.";
-            var builder = new SettingsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Settings.SettingsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -1886,7 +1886,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("sponsors");
             command.Description = "Provides operations to manage the sponsors property of the microsoft.graph.user entity.";
-            var builder = new SponsorsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Sponsors.SponsorsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1912,7 +1912,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("teamwork");
             command.Description = "Provides operations to manage the teamwork property of the microsoft.graph.user entity.";
-            var builder = new TeamworkRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Teamwork.TeamworkRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAssociatedTeamsNavCommand());
@@ -1939,7 +1939,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("todo");
             command.Description = "Provides operations to manage the todo property of the microsoft.graph.user entity.";
-            var builder = new TodoRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Todo.TodoRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -1964,7 +1964,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.user entity.";
-            var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.TransitiveMemberOf.TransitiveMemberOfRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1993,7 +1993,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("translate-exchange-ids");
             command.Description = "Provides operations to call the translateExchangeIds method.";
-            var builder = new TranslateExchangeIdsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.TranslateExchangeIds.TranslateExchangeIdsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -2010,7 +2010,7 @@ namespace ApiSdk.Users.Item
         {
             var command = new Command("wipe-managed-app-registrations-by-device-tag");
             command.Description = "Provides operations to call the wipeManagedAppRegistrationsByDeviceTag method.";
-            var builder = new WipeManagedAppRegistrationsByDeviceTagRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag.WipeManagedAppRegistrationsByDeviceTagRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -2020,14 +2020,14 @@ namespace ApiSdk.Users.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.UserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.UserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}{?%24expand,%24select}", rawUrl)
@@ -2059,11 +2059,11 @@ namespace ApiSdk.Users.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.UserItemRequestBuilder.UserItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.UserItemRequestBuilder.UserItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

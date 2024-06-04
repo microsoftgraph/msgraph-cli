@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// A complex type to store the product code and version rule data for a Win32 LOB app. This rule is not supported as a requirement rule.
     /// </summary>
-    public class Win32LobAppProductCodeRule : Win32LobAppRule, IParsable
+    public class Win32LobAppProductCodeRule : ApiSdk.Models.Win32LobAppRule, IParsable
     {
         /// <summary>The product code of the app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -28,9 +28,9 @@ namespace ApiSdk.Models
         public string ProductVersion { get; set; }
 #endif
         /// <summary>Contains properties for detection operator.</summary>
-        public Win32LobAppRuleOperator? ProductVersionOperator { get; set; }
+        public ApiSdk.Models.Win32LobAppRuleOperator? ProductVersionOperator { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Win32LobAppProductCodeRule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Win32LobAppProductCodeRule"/> and sets the default values.
         /// </summary>
         public Win32LobAppProductCodeRule() : base()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Win32LobAppProductCodeRule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Win32LobAppProductCodeRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Win32LobAppProductCodeRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Win32LobAppProductCodeRule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Win32LobAppProductCodeRule();
+            return new ApiSdk.Models.Win32LobAppProductCodeRule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
             {
                 { "productCode", n => { ProductCode = n.GetStringValue(); } },
                 { "productVersion", n => { ProductVersion = n.GetStringValue(); } },
-                { "productVersionOperator", n => { ProductVersionOperator = n.GetEnumValue<Win32LobAppRuleOperator>(); } },
+                { "productVersionOperator", n => { ProductVersionOperator = n.GetEnumValue<ApiSdk.Models.Win32LobAppRuleOperator>(); } },
             };
         }
         /// <summary>
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("productCode", ProductCode);
             writer.WriteStringValue("productVersion", ProductVersion);
-            writer.WriteEnumValue<Win32LobAppRuleOperator>("productVersionOperator", ProductVersionOperator);
+            writer.WriteEnumValue<ApiSdk.Models.Win32LobAppRuleOperator>("productVersionOperator", ProductVersionOperator);
         }
     }
 }

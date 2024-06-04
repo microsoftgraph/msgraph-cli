@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Device Compilance Policy Setting State summary across the account.
     /// </summary>
-    public class DeviceCompliancePolicySettingStateSummary : Entity, IParsable
+    public class DeviceCompliancePolicySettingStateSummary : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Number of compliant devices</summary>
         public int? CompliantDeviceCount { get; set; }
@@ -18,10 +18,10 @@ namespace ApiSdk.Models
         /// <summary>Not yet documented</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DeviceComplianceSettingState>? DeviceComplianceSettingStates { get; set; }
+        public List<ApiSdk.Models.DeviceComplianceSettingState>? DeviceComplianceSettingStates { get; set; }
 #nullable restore
 #else
-        public List<DeviceComplianceSettingState> DeviceComplianceSettingStates { get; set; }
+        public List<ApiSdk.Models.DeviceComplianceSettingState> DeviceComplianceSettingStates { get; set; }
 #endif
         /// <summary>Number of error devices</summary>
         public int? ErrorDeviceCount { get; set; }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models
         /// <summary>Number of not applicable devices</summary>
         public int? NotApplicableDeviceCount { get; set; }
         /// <summary>Supported platform types for policies.</summary>
-        public PolicyPlatformType? PlatformType { get; set; }
+        public ApiSdk.Models.PolicyPlatformType? PlatformType { get; set; }
         /// <summary>Number of remediated devices</summary>
         public int? RemediatedDeviceCount { get; set; }
         /// <summary>The setting class name and property name.</summary>
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceCompliancePolicySettingStateSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceCompliancePolicySettingStateSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceCompliancePolicySettingStateSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceCompliancePolicySettingStateSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceCompliancePolicySettingStateSummary();
+            return new ApiSdk.Models.DeviceCompliancePolicySettingStateSummary();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,11 +71,11 @@ namespace ApiSdk.Models
             {
                 { "compliantDeviceCount", n => { CompliantDeviceCount = n.GetIntValue(); } },
                 { "conflictDeviceCount", n => { ConflictDeviceCount = n.GetIntValue(); } },
-                { "deviceComplianceSettingStates", n => { DeviceComplianceSettingStates = n.GetCollectionOfObjectValues<DeviceComplianceSettingState>(DeviceComplianceSettingState.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "deviceComplianceSettingStates", n => { DeviceComplianceSettingStates = n.GetCollectionOfObjectValues<ApiSdk.Models.DeviceComplianceSettingState>(ApiSdk.Models.DeviceComplianceSettingState.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "errorDeviceCount", n => { ErrorDeviceCount = n.GetIntValue(); } },
                 { "nonCompliantDeviceCount", n => { NonCompliantDeviceCount = n.GetIntValue(); } },
                 { "notApplicableDeviceCount", n => { NotApplicableDeviceCount = n.GetIntValue(); } },
-                { "platformType", n => { PlatformType = n.GetEnumValue<PolicyPlatformType>(); } },
+                { "platformType", n => { PlatformType = n.GetEnumValue<ApiSdk.Models.PolicyPlatformType>(); } },
                 { "remediatedDeviceCount", n => { RemediatedDeviceCount = n.GetIntValue(); } },
                 { "setting", n => { Setting = n.GetStringValue(); } },
                 { "settingName", n => { SettingName = n.GetStringValue(); } },
@@ -92,11 +92,11 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteIntValue("compliantDeviceCount", CompliantDeviceCount);
             writer.WriteIntValue("conflictDeviceCount", ConflictDeviceCount);
-            writer.WriteCollectionOfObjectValues<DeviceComplianceSettingState>("deviceComplianceSettingStates", DeviceComplianceSettingStates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DeviceComplianceSettingState>("deviceComplianceSettingStates", DeviceComplianceSettingStates);
             writer.WriteIntValue("errorDeviceCount", ErrorDeviceCount);
             writer.WriteIntValue("nonCompliantDeviceCount", NonCompliantDeviceCount);
             writer.WriteIntValue("notApplicableDeviceCount", NotApplicableDeviceCount);
-            writer.WriteEnumValue<PolicyPlatformType>("platformType", PlatformType);
+            writer.WriteEnumValue<ApiSdk.Models.PolicyPlatformType>("platformType", PlatformType);
             writer.WriteIntValue("remediatedDeviceCount", RemediatedDeviceCount);
             writer.WriteStringValue("setting", Setting);
             writer.WriteStringValue("settingName", SettingName);

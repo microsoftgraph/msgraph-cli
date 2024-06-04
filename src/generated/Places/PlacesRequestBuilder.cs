@@ -28,7 +28,7 @@ namespace ApiSdk.Places
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new PlaceItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Places.Item.PlaceItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildGraphRoomByIdNavCommand());
             commands.Add(builder.BuildGraphRoomListByIdNavCommand());
@@ -43,7 +43,7 @@ namespace ApiSdk.Places
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Places.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -60,7 +60,7 @@ namespace ApiSdk.Places
         {
             var command = new Command("graph-room-list");
             command.Description = "Casts the previous resource to roomList.";
-            var builder = new GraphRoomListRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Places.GraphRoomList.GraphRoomListRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -83,7 +83,7 @@ namespace ApiSdk.Places
         {
             var command = new Command("graph-room");
             command.Description = "Casts the previous resource to room.";
-            var builder = new GraphRoomRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Places.GraphRoom.GraphRoomRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -99,14 +99,14 @@ namespace ApiSdk.Places
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PlacesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Places.PlacesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PlacesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PlacesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Places.PlacesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PlacesRequestBuilder(string rawUrl) : base("{+baseurl}/places", rawUrl)

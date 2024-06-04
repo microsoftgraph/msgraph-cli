@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Security
         /// <summary>The CVSS score about this vulnerability.</summary>
         public double? Score { get; set; }
         /// <summary>The CVSS severity rating for this vulnerability. The possible values are: none, low, medium, high, critical, unknownFutureValue.</summary>
-        public VulnerabilitySeverity? Severity { get; set; }
+        public ApiSdk.Models.Security.VulnerabilitySeverity? Severity { get; set; }
         /// <summary>The CVSS vector string for this vulnerability.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.Security
         public string VectorString { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CvssSummary"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.CvssSummary"/> and sets the default values.
         /// </summary>
         public CvssSummary()
         {
@@ -42,12 +42,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CvssSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.CvssSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CvssSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.CvssSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CvssSummary();
+            return new ApiSdk.Models.Security.CvssSummary();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,7 +59,7 @@ namespace ApiSdk.Models.Security
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "score", n => { Score = n.GetDoubleValue(); } },
-                { "severity", n => { Severity = n.GetEnumValue<VulnerabilitySeverity>(); } },
+                { "severity", n => { Severity = n.GetEnumValue<ApiSdk.Models.Security.VulnerabilitySeverity>(); } },
                 { "vectorString", n => { VectorString = n.GetStringValue(); } },
             };
         }
@@ -72,7 +72,7 @@ namespace ApiSdk.Models.Security
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDoubleValue("score", Score);
-            writer.WriteEnumValue<VulnerabilitySeverity>("severity", Severity);
+            writer.WriteEnumValue<ApiSdk.Models.Security.VulnerabilitySeverity>("severity", Severity);
             writer.WriteStringValue("vectorString", VectorString);
             writer.WriteAdditionalData(AdditionalData);
         }

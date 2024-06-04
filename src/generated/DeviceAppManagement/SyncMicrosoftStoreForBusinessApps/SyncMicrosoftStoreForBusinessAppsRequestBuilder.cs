@@ -44,14 +44,14 @@ namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SyncMicrosoftStoreForBusinessAppsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps.SyncMicrosoftStoreForBusinessAppsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SyncMicrosoftStoreForBusinessAppsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/syncMicrosoftStoreForBusinessApps", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SyncMicrosoftStoreForBusinessAppsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps.SyncMicrosoftStoreForBusinessAppsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SyncMicrosoftStoreForBusinessAppsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/syncMicrosoftStoreForBusinessApps", rawUrl)

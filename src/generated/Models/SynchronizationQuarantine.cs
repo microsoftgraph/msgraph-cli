@@ -17,10 +17,10 @@ namespace ApiSdk.Models
         /// <summary>Describes the error(s) that occurred when putting the synchronization job into quarantine.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SynchronizationError? Error { get; set; }
+        public ApiSdk.Models.SynchronizationError? Error { get; set; }
 #nullable restore
 #else
-        public SynchronizationError Error { get; set; }
+        public ApiSdk.Models.SynchronizationError Error { get; set; }
 #endif
         /// <summary>Date and time when the next attempt to re-evaluate the quarantine will be made. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? NextAttempt { get; set; }
@@ -33,13 +33,13 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The reason property</summary>
-        public QuarantineReason? Reason { get; set; }
+        public ApiSdk.Models.QuarantineReason? Reason { get; set; }
         /// <summary>Date and time when the quarantine was first imposed in this series (a series starts when a quarantine is first imposed, and is reset as soon as the quarantine is lifted). The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? SeriesBegan { get; set; }
         /// <summary>Number of times in this series the quarantine was re-evaluated and left in effect (a series starts when quarantine is first imposed, and is reset as soon as quarantine is lifted).</summary>
         public long? SeriesCount { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SynchronizationQuarantine"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SynchronizationQuarantine"/> and sets the default values.
         /// </summary>
         public SynchronizationQuarantine()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SynchronizationQuarantine"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SynchronizationQuarantine"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SynchronizationQuarantine CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SynchronizationQuarantine CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SynchronizationQuarantine();
+            return new ApiSdk.Models.SynchronizationQuarantine();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,10 +64,10 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "currentBegan", n => { CurrentBegan = n.GetDateTimeOffsetValue(); } },
-                { "error", n => { Error = n.GetObjectValue<SynchronizationError>(SynchronizationError.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<ApiSdk.Models.SynchronizationError>(ApiSdk.Models.SynchronizationError.CreateFromDiscriminatorValue); } },
                 { "nextAttempt", n => { NextAttempt = n.GetDateTimeOffsetValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "reason", n => { Reason = n.GetEnumValue<QuarantineReason>(); } },
+                { "reason", n => { Reason = n.GetEnumValue<ApiSdk.Models.QuarantineReason>(); } },
                 { "seriesBegan", n => { SeriesBegan = n.GetDateTimeOffsetValue(); } },
                 { "seriesCount", n => { SeriesCount = n.GetLongValue(); } },
             };
@@ -80,10 +80,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("currentBegan", CurrentBegan);
-            writer.WriteObjectValue<SynchronizationError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.SynchronizationError>("error", Error);
             writer.WriteDateTimeOffsetValue("nextAttempt", NextAttempt);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<QuarantineReason>("reason", Reason);
+            writer.WriteEnumValue<ApiSdk.Models.QuarantineReason>("reason", Reason);
             writer.WriteDateTimeOffsetValue("seriesBegan", SeriesBegan);
             writer.WriteLongValue("seriesCount", SeriesCount);
             writer.WriteAdditionalData(AdditionalData);

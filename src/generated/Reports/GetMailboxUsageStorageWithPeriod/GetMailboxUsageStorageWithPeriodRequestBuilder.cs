@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetMailboxUsageStorageWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetMailboxUsageStorageWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetMailboxUsageStorageWithPeriod.GetMailboxUsageStorageWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetMailboxUsageStorageWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getMailboxUsageStorage(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetMailboxUsageStorageWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetMailboxUsageStorageWithPeriod.GetMailboxUsageStorageWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetMailboxUsageStorageWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getMailboxUsageStorage(period='{period}')", rawUrl)

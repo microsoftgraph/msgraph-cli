@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties used to assign an iOS VPP mobile app to a group.
     /// </summary>
-    public class IosVppAppAssignmentSettings : MobileAppAssignmentSettings, IParsable
+    public class IosVppAppAssignmentSettings : ApiSdk.Models.MobileAppAssignmentSettings, IParsable
     {
         /// <summary>Whether or not to use device licensing.</summary>
         public bool? UseDeviceLicensing { get; set; }
@@ -22,7 +22,7 @@ namespace ApiSdk.Models
         public string VpnConfigurationId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IosVppAppAssignmentSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IosVppAppAssignmentSettings"/> and sets the default values.
         /// </summary>
         public IosVppAppAssignmentSettings() : base()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosVppAppAssignmentSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosVppAppAssignmentSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IosVppAppAssignmentSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IosVppAppAssignmentSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IosVppAppAssignmentSettings();
+            return new ApiSdk.Models.IosVppAppAssignmentSettings();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -40,7 +40,7 @@ namespace ApiSdk.Models
         /// <summary>Specifies whether the proxy server should be used for local (intranet) addresses.</summary>
         public bool? UseForLocalAddresses { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Windows10NetworkProxyServer"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Windows10NetworkProxyServer"/> and sets the default values.
         /// </summary>
         public Windows10NetworkProxyServer()
         {
@@ -49,12 +49,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Windows10NetworkProxyServer"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Windows10NetworkProxyServer"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Windows10NetworkProxyServer CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Windows10NetworkProxyServer CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Windows10NetworkProxyServer();
+            return new ApiSdk.Models.Windows10NetworkProxyServer();
         }
         /// <summary>
         /// The deserialization information for the current model

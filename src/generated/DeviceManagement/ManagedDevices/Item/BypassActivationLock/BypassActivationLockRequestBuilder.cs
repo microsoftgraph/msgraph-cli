@@ -50,14 +50,14 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.BypassActivationLock
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="BypassActivationLockRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.BypassActivationLock.BypassActivationLockRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BypassActivationLockRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/bypassActivationLock", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="BypassActivationLockRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.BypassActivationLock.BypassActivationLockRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BypassActivationLockRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/bypassActivationLock", rawUrl)

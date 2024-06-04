@@ -140,7 +140,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Ite
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AccessPackageResourceScope>(AccessPackageResourceScope.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.AccessPackageResourceScope>(ApiSdk.Models.AccessPackageResourceScope.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -168,7 +168,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Ite
         {
             var command = new Command("resource");
             command.Description = "Provides operations to manage the resource property of the microsoft.graph.accessPackageResourceScope entity.";
-            var builder = new ResourceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Item.Scope.Resource.ResourceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -188,14 +188,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Ite
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ScopeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Item.Scope.ScopeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ScopeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRoleScopes/{accessPackageResourceRoleScope%2Did}/scope{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ScopeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Item.Scope.ScopeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ScopeRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRoleScopes/{accessPackageResourceRoleScope%2Did}/scope{?%24expand,%24select}", rawUrl)
@@ -227,11 +227,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Ite
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ScopeRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Item.Scope.ScopeRequestBuilder.ScopeRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ScopeRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Item.Scope.ScopeRequestBuilder.ScopeRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -247,11 +247,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Ite
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AccessPackageResourceScope body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AccessPackageResourceScope body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AccessPackageResourceScope body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AccessPackageResourceScope body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

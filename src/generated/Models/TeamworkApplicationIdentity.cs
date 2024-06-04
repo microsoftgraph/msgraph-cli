@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamworkApplicationIdentity : Identity, IParsable
+    public class TeamworkApplicationIdentity : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Type of application that is referenced. Possible values are: aadApplication, bot, tenantBot, office365Connector, outgoingWebhook, and unknownFutureValue.</summary>
-        public TeamworkApplicationIdentityType? ApplicationIdentityType { get; set; }
+        public ApiSdk.Models.TeamworkApplicationIdentityType? ApplicationIdentityType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TeamworkApplicationIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TeamworkApplicationIdentity"/> and sets the default values.
         /// </summary>
         public TeamworkApplicationIdentity() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamworkApplicationIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamworkApplicationIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamworkApplicationIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamworkApplicationIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamworkApplicationIdentity();
+            return new ApiSdk.Models.TeamworkApplicationIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "applicationIdentityType", n => { ApplicationIdentityType = n.GetEnumValue<TeamworkApplicationIdentityType>(); } },
+                { "applicationIdentityType", n => { ApplicationIdentityType = n.GetEnumValue<ApiSdk.Models.TeamworkApplicationIdentityType>(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<TeamworkApplicationIdentityType>("applicationIdentityType", ApplicationIdentityType);
+            writer.WriteEnumValue<ApiSdk.Models.TeamworkApplicationIdentityType>("applicationIdentityType", ApplicationIdentityType);
         }
     }
 }

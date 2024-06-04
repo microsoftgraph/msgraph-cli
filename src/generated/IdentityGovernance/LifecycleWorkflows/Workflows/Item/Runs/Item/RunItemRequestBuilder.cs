@@ -90,7 +90,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item
         {
             var command = new Command("task-processing-results");
             command.Description = "Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.run entity.";
-            var builder = new TaskProcessingResultsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.TaskProcessingResults.TaskProcessingResultsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -116,7 +116,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item
         {
             var command = new Command("user-processing-results");
             command.Description = "Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.run entity.";
-            var builder = new UserProcessingResultsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.UserProcessingResults.UserProcessingResultsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -136,14 +136,14 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RunItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.RunItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RunItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/runs/{run%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RunItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.RunItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RunItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/runs/{run%2Did}{?%24expand,%24select}", rawUrl)
@@ -156,11 +156,11 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RunItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.RunItemRequestBuilder.RunItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RunItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.RunItemRequestBuilder.RunItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

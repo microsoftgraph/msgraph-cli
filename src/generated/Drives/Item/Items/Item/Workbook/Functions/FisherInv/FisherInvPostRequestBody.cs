@@ -16,13 +16,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FisherInv
         /// <summary>The y property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Y { get; set; }
+        public ApiSdk.Models.Json? Y { get; set; }
 #nullable restore
 #else
-        public Json Y { get; set; }
+        public ApiSdk.Models.Json Y { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="FisherInvPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FisherInv.FisherInvPostRequestBody"/> and sets the default values.
         /// </summary>
         public FisherInvPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FisherInv
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FisherInvPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FisherInv.FisherInvPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static FisherInvPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FisherInv.FisherInvPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FisherInvPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FisherInv.FisherInvPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FisherInv
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "y", n => { Y = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "y", n => { Y = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FisherInv
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("y", Y);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("y", Y);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

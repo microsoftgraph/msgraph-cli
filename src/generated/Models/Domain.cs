@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Domain : Entity, IParsable
+    public class Domain : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates the configured authentication type for the domain. The value is either Managed or Federated. Managed indicates a cloud managed domain where Microsoft Entra ID performs user authentication. Federated indicates authentication is federated with an identity provider such as the tenant&apos;s on-premises Active Directory via Active Directory Federation Services. Not nullable.  To update this property in delegated scenarios, the calling app must be assigned the Directory.AccessAsUser.All delegated permission.</summary>
@@ -29,18 +29,18 @@ namespace ApiSdk.Models
         /// <summary>The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example, /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? DomainNameReferences { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? DomainNameReferences { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> DomainNameReferences { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> DomainNameReferences { get; set; }
 #endif
         /// <summary>Domain settings configured by a customer when federated with Microsoft Entra ID. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<InternalDomainFederation>? FederationConfiguration { get; set; }
+        public List<ApiSdk.Models.InternalDomainFederation>? FederationConfiguration { get; set; }
 #nullable restore
 #else
-        public List<InternalDomainFederation> FederationConfiguration { get; set; }
+        public List<ApiSdk.Models.InternalDomainFederation> FederationConfiguration { get; set; }
 #endif
         /// <summary>The value of the property is false if the DNS record management of the domain is delegated to Microsoft 365. Otherwise, the value is true. Not nullable</summary>
         public bool? IsAdminManaged { get; set; }
@@ -75,18 +75,18 @@ namespace ApiSdk.Models
         /// <summary>DNS records the customer adds to the DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DomainDnsRecord>? ServiceConfigurationRecords { get; set; }
+        public List<ApiSdk.Models.DomainDnsRecord>? ServiceConfigurationRecords { get; set; }
 #nullable restore
 #else
-        public List<DomainDnsRecord> ServiceConfigurationRecords { get; set; }
+        public List<ApiSdk.Models.DomainDnsRecord> ServiceConfigurationRecords { get; set; }
 #endif
         /// <summary>Status of asynchronous operations scheduled for the domain.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DomainState? State { get; set; }
+        public ApiSdk.Models.DomainState? State { get; set; }
 #nullable restore
 #else
-        public DomainState State { get; set; }
+        public ApiSdk.Models.DomainState State { get; set; }
 #endif
         /// <summary>The capabilities assigned to the domain. Can include 0, 1 or more of following values: Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune. The values that you can add or remove using the API include: Email, OfficeCommunicationsOnline, Yammer. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -99,20 +99,20 @@ namespace ApiSdk.Models
         /// <summary>DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Microsoft Entra ID. Read-only, Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DomainDnsRecord>? VerificationDnsRecords { get; set; }
+        public List<ApiSdk.Models.DomainDnsRecord>? VerificationDnsRecords { get; set; }
 #nullable restore
 #else
-        public List<DomainDnsRecord> VerificationDnsRecords { get; set; }
+        public List<ApiSdk.Models.DomainDnsRecord> VerificationDnsRecords { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Domain"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Domain"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Domain CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Domain CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Domain();
+            return new ApiSdk.Models.Domain();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -124,8 +124,8 @@ namespace ApiSdk.Models
             {
                 { "authenticationType", n => { AuthenticationType = n.GetStringValue(); } },
                 { "availabilityStatus", n => { AvailabilityStatus = n.GetStringValue(); } },
-                { "domainNameReferences", n => { DomainNameReferences = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "federationConfiguration", n => { FederationConfiguration = n.GetCollectionOfObjectValues<InternalDomainFederation>(InternalDomainFederation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "domainNameReferences", n => { DomainNameReferences = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "federationConfiguration", n => { FederationConfiguration = n.GetCollectionOfObjectValues<ApiSdk.Models.InternalDomainFederation>(ApiSdk.Models.InternalDomainFederation.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isAdminManaged", n => { IsAdminManaged = n.GetBoolValue(); } },
                 { "isDefault", n => { IsDefault = n.GetBoolValue(); } },
                 { "isInitial", n => { IsInitial = n.GetBoolValue(); } },
@@ -135,10 +135,10 @@ namespace ApiSdk.Models
                 { "model", n => { Model = n.GetStringValue(); } },
                 { "passwordNotificationWindowInDays", n => { PasswordNotificationWindowInDays = n.GetIntValue(); } },
                 { "passwordValidityPeriodInDays", n => { PasswordValidityPeriodInDays = n.GetIntValue(); } },
-                { "serviceConfigurationRecords", n => { ServiceConfigurationRecords = n.GetCollectionOfObjectValues<DomainDnsRecord>(DomainDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "state", n => { State = n.GetObjectValue<DomainState>(DomainState.CreateFromDiscriminatorValue); } },
+                { "serviceConfigurationRecords", n => { ServiceConfigurationRecords = n.GetCollectionOfObjectValues<ApiSdk.Models.DomainDnsRecord>(ApiSdk.Models.DomainDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "state", n => { State = n.GetObjectValue<ApiSdk.Models.DomainState>(ApiSdk.Models.DomainState.CreateFromDiscriminatorValue); } },
                 { "supportedServices", n => { SupportedServices = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "verificationDnsRecords", n => { VerificationDnsRecords = n.GetCollectionOfObjectValues<DomainDnsRecord>(DomainDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "verificationDnsRecords", n => { VerificationDnsRecords = n.GetCollectionOfObjectValues<ApiSdk.Models.DomainDnsRecord>(ApiSdk.Models.DomainDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -151,8 +151,8 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("authenticationType", AuthenticationType);
             writer.WriteStringValue("availabilityStatus", AvailabilityStatus);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("domainNameReferences", DomainNameReferences);
-            writer.WriteCollectionOfObjectValues<InternalDomainFederation>("federationConfiguration", FederationConfiguration);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("domainNameReferences", DomainNameReferences);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.InternalDomainFederation>("federationConfiguration", FederationConfiguration);
             writer.WriteBoolValue("isAdminManaged", IsAdminManaged);
             writer.WriteBoolValue("isDefault", IsDefault);
             writer.WriteBoolValue("isInitial", IsInitial);
@@ -162,10 +162,10 @@ namespace ApiSdk.Models
             writer.WriteStringValue("model", Model);
             writer.WriteIntValue("passwordNotificationWindowInDays", PasswordNotificationWindowInDays);
             writer.WriteIntValue("passwordValidityPeriodInDays", PasswordValidityPeriodInDays);
-            writer.WriteCollectionOfObjectValues<DomainDnsRecord>("serviceConfigurationRecords", ServiceConfigurationRecords);
-            writer.WriteObjectValue<DomainState>("state", State);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DomainDnsRecord>("serviceConfigurationRecords", ServiceConfigurationRecords);
+            writer.WriteObjectValue<ApiSdk.Models.DomainState>("state", State);
             writer.WriteCollectionOfPrimitiveValues<string>("supportedServices", SupportedServices);
-            writer.WriteCollectionOfObjectValues<DomainDnsRecord>("verificationDnsRecords", VerificationDnsRecords);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DomainDnsRecord>("verificationDnsRecords", VerificationDnsRecords);
         }
     }
 }

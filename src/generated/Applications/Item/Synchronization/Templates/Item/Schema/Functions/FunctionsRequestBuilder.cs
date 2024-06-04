@@ -130,14 +130,14 @@ namespace ApiSdk.Applications.Item.Synchronization.Templates.Item.Schema.Functio
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="FunctionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.Synchronization.Templates.Item.Schema.Functions.FunctionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FunctionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization/templates/{synchronizationTemplate%2Did}/schema/functions(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="FunctionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.Synchronization.Templates.Item.Schema.Functions.FunctionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FunctionsRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization/templates/{synchronizationTemplate%2Did}/schema/functions(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -150,11 +150,11 @@ namespace ApiSdk.Applications.Item.Synchronization.Templates.Item.Schema.Functio
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FunctionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Applications.Item.Synchronization.Templates.Item.Schema.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FunctionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Applications.Item.Synchronization.Templates.Item.Schema.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

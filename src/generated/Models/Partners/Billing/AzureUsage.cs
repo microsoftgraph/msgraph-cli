@@ -13,28 +13,28 @@ namespace ApiSdk.Models.Partners.Billing
         /// <summary>The billed property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public BilledUsage? Billed { get; set; }
+        public ApiSdk.Models.Partners.Billing.BilledUsage? Billed { get; set; }
 #nullable restore
 #else
-        public BilledUsage Billed { get; set; }
+        public ApiSdk.Models.Partners.Billing.BilledUsage Billed { get; set; }
 #endif
         /// <summary>The unbilled property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UnbilledUsage? Unbilled { get; set; }
+        public ApiSdk.Models.Partners.Billing.UnbilledUsage? Unbilled { get; set; }
 #nullable restore
 #else
-        public UnbilledUsage Unbilled { get; set; }
+        public ApiSdk.Models.Partners.Billing.UnbilledUsage Unbilled { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AzureUsage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Partners.Billing.AzureUsage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AzureUsage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Partners.Billing.AzureUsage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AzureUsage();
+            return new ApiSdk.Models.Partners.Billing.AzureUsage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -44,8 +44,8 @@ namespace ApiSdk.Models.Partners.Billing
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "billed", n => { Billed = n.GetObjectValue<BilledUsage>(BilledUsage.CreateFromDiscriminatorValue); } },
-                { "unbilled", n => { Unbilled = n.GetObjectValue<UnbilledUsage>(UnbilledUsage.CreateFromDiscriminatorValue); } },
+                { "billed", n => { Billed = n.GetObjectValue<ApiSdk.Models.Partners.Billing.BilledUsage>(ApiSdk.Models.Partners.Billing.BilledUsage.CreateFromDiscriminatorValue); } },
+                { "unbilled", n => { Unbilled = n.GetObjectValue<ApiSdk.Models.Partners.Billing.UnbilledUsage>(ApiSdk.Models.Partners.Billing.UnbilledUsage.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,8 +56,8 @@ namespace ApiSdk.Models.Partners.Billing
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<BilledUsage>("billed", Billed);
-            writer.WriteObjectValue<UnbilledUsage>("unbilled", Unbilled);
+            writer.WriteObjectValue<ApiSdk.Models.Partners.Billing.BilledUsage>("billed", Billed);
+            writer.WriteObjectValue<ApiSdk.Models.Partners.Billing.UnbilledUsage>("unbilled", Unbilled);
         }
     }
 }

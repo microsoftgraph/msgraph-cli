@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetYammerActivityUserCountsWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetYammerActivityUserCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetYammerActivityUserCountsWithPeriod.GetYammerActivityUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetYammerActivityUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getYammerActivityUserCounts(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetYammerActivityUserCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetYammerActivityUserCountsWithPeriod.GetYammerActivityUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetYammerActivityUserCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getYammerActivityUserCounts(period='{period}')", rawUrl)

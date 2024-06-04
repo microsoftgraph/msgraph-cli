@@ -15,34 +15,34 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>Device information associated with the callee endpoint of this media.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DeviceInfo? CalleeDevice { get; set; }
+        public ApiSdk.Models.CallRecords.DeviceInfo? CalleeDevice { get; set; }
 #nullable restore
 #else
-        public DeviceInfo CalleeDevice { get; set; }
+        public ApiSdk.Models.CallRecords.DeviceInfo CalleeDevice { get; set; }
 #endif
         /// <summary>Network information associated with the callee endpoint of this media.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public NetworkInfo? CalleeNetwork { get; set; }
+        public ApiSdk.Models.CallRecords.NetworkInfo? CalleeNetwork { get; set; }
 #nullable restore
 #else
-        public NetworkInfo CalleeNetwork { get; set; }
+        public ApiSdk.Models.CallRecords.NetworkInfo CalleeNetwork { get; set; }
 #endif
         /// <summary>Device information associated with the caller endpoint of this media.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DeviceInfo? CallerDevice { get; set; }
+        public ApiSdk.Models.CallRecords.DeviceInfo? CallerDevice { get; set; }
 #nullable restore
 #else
-        public DeviceInfo CallerDevice { get; set; }
+        public ApiSdk.Models.CallRecords.DeviceInfo CallerDevice { get; set; }
 #endif
         /// <summary>Network information associated with the caller endpoint of this media.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public NetworkInfo? CallerNetwork { get; set; }
+        public ApiSdk.Models.CallRecords.NetworkInfo? CallerNetwork { get; set; }
 #nullable restore
 #else
-        public NetworkInfo CallerNetwork { get; set; }
+        public ApiSdk.Models.CallRecords.NetworkInfo CallerNetwork { get; set; }
 #endif
         /// <summary>How the media was identified during media negotiation stage.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -63,13 +63,13 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>Network streams associated with this media.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MediaStream>? Streams { get; set; }
+        public List<ApiSdk.Models.CallRecords.MediaStream>? Streams { get; set; }
 #nullable restore
 #else
-        public List<MediaStream> Streams { get; set; }
+        public List<ApiSdk.Models.CallRecords.MediaStream> Streams { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Media"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CallRecords.Media"/> and sets the default values.
         /// </summary>
         public Media()
         {
@@ -78,12 +78,12 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Media"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallRecords.Media"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Media CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CallRecords.Media CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Media();
+            return new ApiSdk.Models.CallRecords.Media();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -93,13 +93,13 @@ namespace ApiSdk.Models.CallRecords
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "calleeDevice", n => { CalleeDevice = n.GetObjectValue<DeviceInfo>(DeviceInfo.CreateFromDiscriminatorValue); } },
-                { "calleeNetwork", n => { CalleeNetwork = n.GetObjectValue<NetworkInfo>(NetworkInfo.CreateFromDiscriminatorValue); } },
-                { "callerDevice", n => { CallerDevice = n.GetObjectValue<DeviceInfo>(DeviceInfo.CreateFromDiscriminatorValue); } },
-                { "callerNetwork", n => { CallerNetwork = n.GetObjectValue<NetworkInfo>(NetworkInfo.CreateFromDiscriminatorValue); } },
+                { "calleeDevice", n => { CalleeDevice = n.GetObjectValue<ApiSdk.Models.CallRecords.DeviceInfo>(ApiSdk.Models.CallRecords.DeviceInfo.CreateFromDiscriminatorValue); } },
+                { "calleeNetwork", n => { CalleeNetwork = n.GetObjectValue<ApiSdk.Models.CallRecords.NetworkInfo>(ApiSdk.Models.CallRecords.NetworkInfo.CreateFromDiscriminatorValue); } },
+                { "callerDevice", n => { CallerDevice = n.GetObjectValue<ApiSdk.Models.CallRecords.DeviceInfo>(ApiSdk.Models.CallRecords.DeviceInfo.CreateFromDiscriminatorValue); } },
+                { "callerNetwork", n => { CallerNetwork = n.GetObjectValue<ApiSdk.Models.CallRecords.NetworkInfo>(ApiSdk.Models.CallRecords.NetworkInfo.CreateFromDiscriminatorValue); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "streams", n => { Streams = n.GetCollectionOfObjectValues<MediaStream>(MediaStream.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "streams", n => { Streams = n.GetCollectionOfObjectValues<ApiSdk.Models.CallRecords.MediaStream>(ApiSdk.Models.CallRecords.MediaStream.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -109,13 +109,13 @@ namespace ApiSdk.Models.CallRecords
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<DeviceInfo>("calleeDevice", CalleeDevice);
-            writer.WriteObjectValue<NetworkInfo>("calleeNetwork", CalleeNetwork);
-            writer.WriteObjectValue<DeviceInfo>("callerDevice", CallerDevice);
-            writer.WriteObjectValue<NetworkInfo>("callerNetwork", CallerNetwork);
+            writer.WriteObjectValue<ApiSdk.Models.CallRecords.DeviceInfo>("calleeDevice", CalleeDevice);
+            writer.WriteObjectValue<ApiSdk.Models.CallRecords.NetworkInfo>("calleeNetwork", CalleeNetwork);
+            writer.WriteObjectValue<ApiSdk.Models.CallRecords.DeviceInfo>("callerDevice", CallerDevice);
+            writer.WriteObjectValue<ApiSdk.Models.CallRecords.NetworkInfo>("callerNetwork", CallerNetwork);
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<MediaStream>("streams", Streams);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CallRecords.MediaStream>("streams", Streams);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The action taken by the DLP provider on the message with sensitive content. Supported values are: NoneNotifySender -- Inform the sender of the violation but allow readers to read the message.BlockAccess -- Block readers from reading the message.BlockAccessExternal -- Block users outside the organization from reading the message, while allowing users within the organization to read the message.</summary>
-        public ChatMessagePolicyViolationDlpActionTypes? DlpAction { get; set; }
+        public ApiSdk.Models.ChatMessagePolicyViolationDlpActionTypes? DlpAction { get; set; }
         /// <summary>Justification text provided by the sender of the message when overriding a policy violation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -33,17 +33,17 @@ namespace ApiSdk.Models
         /// <summary>Information to display to the message sender about why the message was flagged as a violation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ChatMessagePolicyViolationPolicyTip? PolicyTip { get; set; }
+        public ApiSdk.Models.ChatMessagePolicyViolationPolicyTip? PolicyTip { get; set; }
 #nullable restore
 #else
-        public ChatMessagePolicyViolationPolicyTip PolicyTip { get; set; }
+        public ApiSdk.Models.ChatMessagePolicyViolationPolicyTip PolicyTip { get; set; }
 #endif
         /// <summary>Indicates the action taken by the user on a message blocked by the DLP provider. Supported values are: NoneOverrideReportFalsePositiveWhen the DLP provider is updating the message for blocking sensitive content, userAction isn&apos;t required.</summary>
-        public ChatMessagePolicyViolationUserActionTypes? UserAction { get; set; }
+        public ApiSdk.Models.ChatMessagePolicyViolationUserActionTypes? UserAction { get; set; }
         /// <summary>Indicates what actions the sender may take in response to the policy violation. Supported values are: NoneAllowFalsePositiveOverride -- Allows the sender to declare the policyViolation to be an error in the DLP app and its rules, and allow readers to see the message again if the dlpAction hides it.AllowOverrideWithoutJustification -- Allows the sender to override the DLP violation and allow readers to see the message again if the dlpAction hides it, without needing to provide an explanation for doing so. AllowOverrideWithJustification -- Allows the sender to override the DLP violation and allow readers to see the message again if the dlpAction hides it, after providing an explanation for doing so.AllowOverrideWithoutJustification and AllowOverrideWithJustification are mutually exclusive.</summary>
-        public ChatMessagePolicyViolationVerdictDetailsTypes? VerdictDetails { get; set; }
+        public ApiSdk.Models.ChatMessagePolicyViolationVerdictDetailsTypes? VerdictDetails { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ChatMessagePolicyViolation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ChatMessagePolicyViolation"/> and sets the default values.
         /// </summary>
         public ChatMessagePolicyViolation()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChatMessagePolicyViolation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ChatMessagePolicyViolation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ChatMessagePolicyViolation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ChatMessagePolicyViolation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChatMessagePolicyViolation();
+            return new ApiSdk.Models.ChatMessagePolicyViolation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -67,12 +67,12 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "dlpAction", n => { DlpAction = n.GetEnumValue<ChatMessagePolicyViolationDlpActionTypes>(); } },
+                { "dlpAction", n => { DlpAction = n.GetEnumValue<ApiSdk.Models.ChatMessagePolicyViolationDlpActionTypes>(); } },
                 { "justificationText", n => { JustificationText = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "policyTip", n => { PolicyTip = n.GetObjectValue<ChatMessagePolicyViolationPolicyTip>(ChatMessagePolicyViolationPolicyTip.CreateFromDiscriminatorValue); } },
-                { "userAction", n => { UserAction = n.GetEnumValue<ChatMessagePolicyViolationUserActionTypes>(); } },
-                { "verdictDetails", n => { VerdictDetails = n.GetEnumValue<ChatMessagePolicyViolationVerdictDetailsTypes>(); } },
+                { "policyTip", n => { PolicyTip = n.GetObjectValue<ApiSdk.Models.ChatMessagePolicyViolationPolicyTip>(ApiSdk.Models.ChatMessagePolicyViolationPolicyTip.CreateFromDiscriminatorValue); } },
+                { "userAction", n => { UserAction = n.GetEnumValue<ApiSdk.Models.ChatMessagePolicyViolationUserActionTypes>(); } },
+                { "verdictDetails", n => { VerdictDetails = n.GetEnumValue<ApiSdk.Models.ChatMessagePolicyViolationVerdictDetailsTypes>(); } },
             };
         }
         /// <summary>
@@ -82,12 +82,12 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<ChatMessagePolicyViolationDlpActionTypes>("dlpAction", DlpAction);
+            writer.WriteEnumValue<ApiSdk.Models.ChatMessagePolicyViolationDlpActionTypes>("dlpAction", DlpAction);
             writer.WriteStringValue("justificationText", JustificationText);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<ChatMessagePolicyViolationPolicyTip>("policyTip", PolicyTip);
-            writer.WriteEnumValue<ChatMessagePolicyViolationUserActionTypes>("userAction", UserAction);
-            writer.WriteEnumValue<ChatMessagePolicyViolationVerdictDetailsTypes>("verdictDetails", VerdictDetails);
+            writer.WriteObjectValue<ApiSdk.Models.ChatMessagePolicyViolationPolicyTip>("policyTip", PolicyTip);
+            writer.WriteEnumValue<ApiSdk.Models.ChatMessagePolicyViolationUserActionTypes>("userAction", UserAction);
+            writer.WriteEnumValue<ApiSdk.Models.ChatMessagePolicyViolationVerdictDetailsTypes>("verdictDetails", VerdictDetails);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ResellerDelegatedAdminRelationship : DelegatedAdminRelationship, IParsable
+    public class ResellerDelegatedAdminRelationship : ApiSdk.Models.DelegatedAdminRelationship, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The tenant ID of the indirect provider partner who created the relationship for the indirect reseller partner.</summary>
@@ -23,12 +23,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ResellerDelegatedAdminRelationship"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ResellerDelegatedAdminRelationship"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ResellerDelegatedAdminRelationship CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ResellerDelegatedAdminRelationship CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ResellerDelegatedAdminRelationship();
+            return new ApiSdk.Models.ResellerDelegatedAdminRelationship();
         }
         /// <summary>
         /// The deserialization information for the current model

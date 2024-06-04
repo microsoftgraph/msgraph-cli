@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The archivalDetails property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SiteArchivalDetails? ArchivalDetails { get; set; }
+        public ApiSdk.Models.SiteArchivalDetails? ArchivalDetails { get; set; }
 #nullable restore
 #else
-        public SiteArchivalDetails ArchivalDetails { get; set; }
+        public ApiSdk.Models.SiteArchivalDetails ArchivalDetails { get; set; }
 #endif
         /// <summary>The geographic region code for where this site collection resides. Only present for multi-geo tenants. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -53,7 +53,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.Root Root { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SiteCollection"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SiteCollection"/> and sets the default values.
         /// </summary>
         public SiteCollection()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SiteCollection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SiteCollection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SiteCollection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SiteCollection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SiteCollection();
+            return new ApiSdk.Models.SiteCollection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -77,7 +77,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "archivalDetails", n => { ArchivalDetails = n.GetObjectValue<SiteArchivalDetails>(SiteArchivalDetails.CreateFromDiscriminatorValue); } },
+                { "archivalDetails", n => { ArchivalDetails = n.GetObjectValue<ApiSdk.Models.SiteArchivalDetails>(ApiSdk.Models.SiteArchivalDetails.CreateFromDiscriminatorValue); } },
                 { "dataLocationCode", n => { DataLocationCode = n.GetStringValue(); } },
                 { "hostname", n => { Hostname = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
@@ -91,7 +91,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<SiteArchivalDetails>("archivalDetails", ArchivalDetails);
+            writer.WriteObjectValue<ApiSdk.Models.SiteArchivalDetails>("archivalDetails", ArchivalDetails);
             writer.WriteStringValue("dataLocationCode", DataLocationCode);
             writer.WriteStringValue("hostname", Hostname);
             writer.WriteStringValue("@odata.type", OdataType);

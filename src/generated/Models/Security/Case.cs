@@ -39,20 +39,20 @@ namespace ApiSdk.Models.Security
         /// <summary>The lastModifiedDateTime property</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>The status property</summary>
-        public CaseStatus? Status { get; set; }
+        public ApiSdk.Models.Security.CaseStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Case"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.Case"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Case CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.Case CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.ediscoveryCase" => new EdiscoveryCase(),
-                _ => new Case(),
+                "#microsoft.graph.security.ediscoveryCase" => new ApiSdk.Models.Security.EdiscoveryCase(),
+                _ => new ApiSdk.Models.Security.Case(),
             };
         }
         /// <summary>
@@ -68,7 +68,7 @@ namespace ApiSdk.Models.Security
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<CaseStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.Security.CaseStatus>(); } },
             };
         }
         /// <summary>
@@ -84,7 +84,7 @@ namespace ApiSdk.Models.Security
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteEnumValue<CaseStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.Security.CaseStatus>("status", Status);
         }
     }
 }

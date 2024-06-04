@@ -49,7 +49,7 @@ namespace ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<MarkChatUnreadForUserPostRequestBody>(MarkChatUnreadForUserPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser.MarkChatUnreadForUserPostRequestBody>(ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser.MarkChatUnreadForUserPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -69,14 +69,14 @@ namespace ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MarkChatUnreadForUserRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser.MarkChatUnreadForUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MarkChatUnreadForUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/markChatUnreadForUser", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MarkChatUnreadForUserRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser.MarkChatUnreadForUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MarkChatUnreadForUserRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/markChatUnreadForUser", rawUrl)
@@ -90,11 +90,11 @@ namespace ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(MarkChatUnreadForUserPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser.MarkChatUnreadForUserPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(MarkChatUnreadForUserPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser.MarkChatUnreadForUserPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

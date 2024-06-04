@@ -21,18 +21,18 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>Returns a list of activities performed on the item. Write-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ExternalActivity>? Activities { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ExternalActivity>? Activities { get; set; }
 #nullable restore
 #else
-        public List<ExternalActivity> Activities { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ExternalActivity> Activities { get; set; }
 #endif
         /// <summary>A plain-text  representation of the contents of the item. The text in this property is full-text indexed. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ExternalItemContent? Content { get; set; }
+        public ApiSdk.Models.ExternalConnectors.ExternalItemContent? Content { get; set; }
 #nullable restore
 #else
-        public ExternalItemContent Content { get; set; }
+        public ApiSdk.Models.ExternalConnectors.ExternalItemContent Content { get; set; }
 #endif
         /// <summary>A property bag with the properties of the item. The properties MUST conform to the schema defined for the externalConnection. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,12 +45,12 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ExternalItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.ExternalItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ExternalItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ExternalConnectors.ExternalItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ExternalItem();
+            return new ApiSdk.Models.ExternalConnectors.ExternalItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,8 +61,8 @@ namespace ApiSdk.Models.ExternalConnectors
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "acl", n => { Acl = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.Acl>(ApiSdk.Models.ExternalConnectors.Acl.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "activities", n => { Activities = n.GetCollectionOfObjectValues<ExternalActivity>(ExternalActivity.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "content", n => { Content = n.GetObjectValue<ExternalItemContent>(ExternalItemContent.CreateFromDiscriminatorValue); } },
+                { "activities", n => { Activities = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ExternalActivity>(ApiSdk.Models.ExternalConnectors.ExternalActivity.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "content", n => { Content = n.GetObjectValue<ApiSdk.Models.ExternalConnectors.ExternalItemContent>(ApiSdk.Models.ExternalConnectors.ExternalItemContent.CreateFromDiscriminatorValue); } },
                 { "properties", n => { Properties = n.GetObjectValue<ApiSdk.Models.ExternalConnectors.Properties>(ApiSdk.Models.ExternalConnectors.Properties.CreateFromDiscriminatorValue); } },
             };
         }
@@ -75,8 +75,8 @@ namespace ApiSdk.Models.ExternalConnectors
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.Acl>("acl", Acl);
-            writer.WriteCollectionOfObjectValues<ExternalActivity>("activities", Activities);
-            writer.WriteObjectValue<ExternalItemContent>("content", Content);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ExternalActivity>("activities", Activities);
+            writer.WriteObjectValue<ApiSdk.Models.ExternalConnectors.ExternalItemContent>("content", Content);
             writer.WriteObjectValue<ApiSdk.Models.ExternalConnectors.Properties>("properties", Properties);
         }
     }

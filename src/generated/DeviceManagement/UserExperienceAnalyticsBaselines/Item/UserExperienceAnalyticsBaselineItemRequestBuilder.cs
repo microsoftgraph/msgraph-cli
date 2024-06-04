@@ -36,7 +36,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item
         {
             var command = new Command("app-health-metrics");
             command.Description = "Provides operations to manage the appHealthMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.";
-            var builder = new AppHealthMetricsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.AppHealthMetrics.AppHealthMetricsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item
         {
             var command = new Command("battery-health-metrics");
             command.Description = "Provides operations to manage the batteryHealthMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.";
-            var builder = new BatteryHealthMetricsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.BatteryHealthMetrics.BatteryHealthMetricsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -70,7 +70,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item
         {
             var command = new Command("best-practices-metrics");
             command.Description = "Provides operations to manage the bestPracticesMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.";
-            var builder = new BestPracticesMetricsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.BestPracticesMetrics.BestPracticesMetricsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -122,7 +122,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item
         {
             var command = new Command("device-boot-performance-metrics");
             command.Description = "Provides operations to manage the deviceBootPerformanceMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.";
-            var builder = new DeviceBootPerformanceMetricsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.DeviceBootPerformanceMetrics.DeviceBootPerformanceMetricsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -214,7 +214,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<UserExperienceAnalyticsBaseline>(UserExperienceAnalyticsBaseline.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.UserExperienceAnalyticsBaseline>(ApiSdk.Models.UserExperienceAnalyticsBaseline.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -242,7 +242,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item
         {
             var command = new Command("reboot-analytics-metrics");
             command.Description = "Provides operations to manage the rebootAnalyticsMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.";
-            var builder = new RebootAnalyticsMetricsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.RebootAnalyticsMetrics.RebootAnalyticsMetricsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -259,7 +259,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item
         {
             var command = new Command("resource-performance-metrics");
             command.Description = "Provides operations to manage the resourcePerformanceMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.";
-            var builder = new ResourcePerformanceMetricsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.ResourcePerformanceMetrics.ResourcePerformanceMetricsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -276,7 +276,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item
         {
             var command = new Command("work-from-anywhere-metrics");
             command.Description = "Provides operations to manage the workFromAnywhereMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.";
-            var builder = new WorkFromAnywhereMetricsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.WorkFromAnywhereMetrics.WorkFromAnywhereMetricsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -286,14 +286,14 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsBaselineItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.UserExperienceAnalyticsBaselineItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserExperienceAnalyticsBaselineItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsBaselineItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.UserExperienceAnalyticsBaselineItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserExperienceAnalyticsBaselineItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}{?%24expand,%24select}", rawUrl)
@@ -325,11 +325,11 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsBaselineItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.UserExperienceAnalyticsBaselineItemRequestBuilder.UserExperienceAnalyticsBaselineItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsBaselineItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.UserExperienceAnalyticsBaselineItemRequestBuilder.UserExperienceAnalyticsBaselineItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -345,11 +345,11 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsBaseline body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UserExperienceAnalyticsBaseline body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsBaseline body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UserExperienceAnalyticsBaseline body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

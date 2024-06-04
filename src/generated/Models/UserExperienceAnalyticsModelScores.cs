@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// The user experience analytics model scores entity consolidates the various Endpoint Analytics scores.
     /// </summary>
-    public class UserExperienceAnalyticsModelScores : Entity, IParsable
+    public class UserExperienceAnalyticsModelScores : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Indicates a score calculated from application health data to indicate when a device is having problems running one or more applications. Valid values range from 0-100. Value -1 means associated score is unavailable. A higher score indicates a healthier device. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308</summary>
         public double? AppReliabilityScore { get; set; }
@@ -18,7 +18,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates a weighted average of the various scores. Valid values range from 0-100. Value -1 means associated score is unavailable. A higher score indicates a healthier device. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308</summary>
         public double? EndpointAnalyticsScore { get; set; }
         /// <summary>The healthStatus property</summary>
-        public UserExperienceAnalyticsHealthState? HealthStatus { get; set; }
+        public ApiSdk.Models.UserExperienceAnalyticsHealthState? HealthStatus { get; set; }
         /// <summary>The manufacturer name of the device. Examples: Microsoft Corporation, HP, Lenovo. Supports: $select, $OrderBy. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsModelScores"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsModelScores"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsModelScores CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserExperienceAnalyticsModelScores CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsModelScores();
+            return new ApiSdk.Models.UserExperienceAnalyticsModelScores();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,7 +62,7 @@ namespace ApiSdk.Models
                 { "appReliabilityScore", n => { AppReliabilityScore = n.GetDoubleValue(); } },
                 { "batteryHealthScore", n => { BatteryHealthScore = n.GetDoubleValue(); } },
                 { "endpointAnalyticsScore", n => { EndpointAnalyticsScore = n.GetDoubleValue(); } },
-                { "healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
+                { "healthStatus", n => { HealthStatus = n.GetEnumValue<ApiSdk.Models.UserExperienceAnalyticsHealthState>(); } },
                 { "manufacturer", n => { Manufacturer = n.GetStringValue(); } },
                 { "model", n => { Model = n.GetStringValue(); } },
                 { "modelDeviceCount", n => { ModelDeviceCount = n.GetLongValue(); } },
@@ -81,7 +81,7 @@ namespace ApiSdk.Models
             writer.WriteDoubleValue("appReliabilityScore", AppReliabilityScore);
             writer.WriteDoubleValue("batteryHealthScore", BatteryHealthScore);
             writer.WriteDoubleValue("endpointAnalyticsScore", EndpointAnalyticsScore);
-            writer.WriteEnumValue<UserExperienceAnalyticsHealthState>("healthStatus", HealthStatus);
+            writer.WriteEnumValue<ApiSdk.Models.UserExperienceAnalyticsHealthState>("healthStatus", HealthStatus);
             writer.WriteStringValue("manufacturer", Manufacturer);
             writer.WriteStringValue("model", Model);
             writer.WriteLongValue("modelDeviceCount", ModelDeviceCount);

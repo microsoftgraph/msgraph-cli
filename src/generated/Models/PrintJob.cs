@@ -7,34 +7,34 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrintJob : Entity, IParsable
+    public class PrintJob : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The configuration property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PrintJobConfiguration? Configuration { get; set; }
+        public ApiSdk.Models.PrintJobConfiguration? Configuration { get; set; }
 #nullable restore
 #else
-        public PrintJobConfiguration Configuration { get; set; }
+        public ApiSdk.Models.PrintJobConfiguration Configuration { get; set; }
 #endif
         /// <summary>The createdBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserIdentity? CreatedBy { get; set; }
+        public ApiSdk.Models.UserIdentity? CreatedBy { get; set; }
 #nullable restore
 #else
-        public UserIdentity CreatedBy { get; set; }
+        public ApiSdk.Models.UserIdentity CreatedBy { get; set; }
 #endif
         /// <summary>The DateTimeOffset when the job was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The documents property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PrintDocument>? Documents { get; set; }
+        public List<ApiSdk.Models.PrintDocument>? Documents { get; set; }
 #nullable restore
 #else
-        public List<PrintDocument> Documents { get; set; }
+        public List<ApiSdk.Models.PrintDocument> Documents { get; set; }
 #endif
         /// <summary>If true, document can be fetched by printer.</summary>
         public bool? IsFetchable { get; set; }
@@ -57,28 +57,28 @@ namespace ApiSdk.Models
         /// <summary>The status property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PrintJobStatus? Status { get; set; }
+        public ApiSdk.Models.PrintJobStatus? Status { get; set; }
 #nullable restore
 #else
-        public PrintJobStatus Status { get; set; }
+        public ApiSdk.Models.PrintJobStatus Status { get; set; }
 #endif
         /// <summary>A list of printTasks that were triggered by this print job.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PrintTask>? Tasks { get; set; }
+        public List<ApiSdk.Models.PrintTask>? Tasks { get; set; }
 #nullable restore
 #else
-        public List<PrintTask> Tasks { get; set; }
+        public List<ApiSdk.Models.PrintTask> Tasks { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrintJob"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrintJob"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrintJob CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrintJob CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrintJob();
+            return new ApiSdk.Models.PrintJob();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,15 +88,15 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "configuration", n => { Configuration = n.GetObjectValue<PrintJobConfiguration>(PrintJobConfiguration.CreateFromDiscriminatorValue); } },
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
+                { "configuration", n => { Configuration = n.GetObjectValue<ApiSdk.Models.PrintJobConfiguration>(ApiSdk.Models.PrintJobConfiguration.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.UserIdentity>(ApiSdk.Models.UserIdentity.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "documents", n => { Documents = n.GetCollectionOfObjectValues<PrintDocument>(PrintDocument.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "documents", n => { Documents = n.GetCollectionOfObjectValues<ApiSdk.Models.PrintDocument>(ApiSdk.Models.PrintDocument.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isFetchable", n => { IsFetchable = n.GetBoolValue(); } },
                 { "redirectedFrom", n => { RedirectedFrom = n.GetStringValue(); } },
                 { "redirectedTo", n => { RedirectedTo = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetObjectValue<PrintJobStatus>(PrintJobStatus.CreateFromDiscriminatorValue); } },
-                { "tasks", n => { Tasks = n.GetCollectionOfObjectValues<PrintTask>(PrintTask.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "status", n => { Status = n.GetObjectValue<ApiSdk.Models.PrintJobStatus>(ApiSdk.Models.PrintJobStatus.CreateFromDiscriminatorValue); } },
+                { "tasks", n => { Tasks = n.GetCollectionOfObjectValues<ApiSdk.Models.PrintTask>(ApiSdk.Models.PrintTask.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -107,15 +107,15 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<PrintJobConfiguration>("configuration", Configuration);
-            writer.WriteObjectValue<UserIdentity>("createdBy", CreatedBy);
+            writer.WriteObjectValue<ApiSdk.Models.PrintJobConfiguration>("configuration", Configuration);
+            writer.WriteObjectValue<ApiSdk.Models.UserIdentity>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteCollectionOfObjectValues<PrintDocument>("documents", Documents);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PrintDocument>("documents", Documents);
             writer.WriteBoolValue("isFetchable", IsFetchable);
             writer.WriteStringValue("redirectedFrom", RedirectedFrom);
             writer.WriteStringValue("redirectedTo", RedirectedTo);
-            writer.WriteObjectValue<PrintJobStatus>("status", Status);
-            writer.WriteCollectionOfObjectValues<PrintTask>("tasks", Tasks);
+            writer.WriteObjectValue<ApiSdk.Models.PrintJobStatus>("status", Status);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PrintTask>("tasks", Tasks);
         }
     }
 }

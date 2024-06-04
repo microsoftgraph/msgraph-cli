@@ -28,7 +28,7 @@ namespace ApiSdk.Models
         /// <summary>Windows version 8.1 or later.</summary>
         public bool? V81 { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="WindowsMinimumOperatingSystem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WindowsMinimumOperatingSystem"/> and sets the default values.
         /// </summary>
         public WindowsMinimumOperatingSystem()
         {
@@ -37,12 +37,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsMinimumOperatingSystem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsMinimumOperatingSystem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WindowsMinimumOperatingSystem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WindowsMinimumOperatingSystem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsMinimumOperatingSystem();
+            return new ApiSdk.Models.WindowsMinimumOperatingSystem();
         }
         /// <summary>
         /// The deserialization information for the current model

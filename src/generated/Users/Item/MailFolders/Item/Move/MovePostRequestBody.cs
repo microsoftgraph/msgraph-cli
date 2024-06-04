@@ -21,7 +21,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Move
         public string DestinationId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MovePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.MailFolders.Item.Move.MovePostRequestBody"/> and sets the default values.
         /// </summary>
         public MovePostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Move
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MovePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.MailFolders.Item.Move.MovePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MovePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.MailFolders.Item.Move.MovePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MovePostRequestBody();
+            return new ApiSdk.Users.Item.MailFolders.Item.Move.MovePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

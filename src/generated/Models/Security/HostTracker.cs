@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class HostTracker : Artifact, IParsable
+    public class HostTracker : ApiSdk.Models.Security.Artifact, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The first date and time when this hostTracker was observed by Microsoft Defender Threat Intelligence. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z.</summary>
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Security
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="HostTracker"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.HostTracker"/> and sets the default values.
         /// </summary>
         public HostTracker() : base()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HostTracker"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.HostTracker"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new HostTracker CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.HostTracker CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HostTracker();
+            return new ApiSdk.Models.Security.HostTracker();
         }
         /// <summary>
         /// The deserialization information for the current model

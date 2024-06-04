@@ -67,14 +67,14 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.Inci
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="IncidentReportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.IncidentReport.IncidentReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IncidentReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/healthOverviews/{serviceHealth%2Did}/issues/{serviceHealthIssue%2Did}/incidentReport()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="IncidentReportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.IncidentReport.IncidentReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IncidentReportRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement/healthOverviews/{serviceHealth%2Did}/issues/{serviceHealthIssue%2Did}/incidentReport()", rawUrl)

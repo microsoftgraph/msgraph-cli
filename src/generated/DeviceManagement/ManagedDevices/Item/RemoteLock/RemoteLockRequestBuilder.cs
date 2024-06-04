@@ -50,14 +50,14 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.RemoteLock
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RemoteLockRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.RemoteLock.RemoteLockRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RemoteLockRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/remoteLock", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RemoteLockRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.RemoteLock.RemoteLockRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RemoteLockRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/remoteLock", rawUrl)

@@ -33,7 +33,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item
         {
             var command = new Command("copy");
             command.Description = "Provides operations to call the copy method.";
-            var builder = new CopyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Copy.CopyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -167,7 +167,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item
         {
             var command = new Command("message-rules");
             command.Description = "Provides operations to manage the messageRules property of the microsoft.graph.mailFolder entity.";
-            var builder = new MessageRulesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MessageRules.MessageRulesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -194,7 +194,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item
         {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.";
-            var builder = new MessagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.MessagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -222,7 +222,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item
         {
             var command = new Command("move");
             command.Description = "Provides operations to call the move method.";
-            var builder = new MoveRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Move.MoveRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -272,7 +272,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<MailFolder>(MailFolder.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.MailFolder>(ApiSdk.Models.MailFolder.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -295,14 +295,14 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MailFolderItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MailFolderItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MailFolderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}{?%24expand,%24select,includeHiddenFolders*}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MailFolderItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MailFolderItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MailFolderItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}{?%24expand,%24select,includeHiddenFolders*}", rawUrl)
@@ -334,11 +334,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MailFolderItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MailFolderItemRequestBuilder.MailFolderItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MailFolderItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MailFolderItemRequestBuilder.MailFolderItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -354,11 +354,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(MailFolder body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.MailFolder body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(MailFolder body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.MailFolder body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

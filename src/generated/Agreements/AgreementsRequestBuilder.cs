@@ -30,7 +30,7 @@ namespace ApiSdk.Agreements
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new AgreementItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Agreements.Item.AgreementItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildAcceptancesNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildFileNavCommand());
@@ -65,7 +65,7 @@ namespace ApiSdk.Agreements
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Agreement>(Agreement.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Agreement>(ApiSdk.Models.Agreement.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -167,14 +167,14 @@ namespace ApiSdk.Agreements
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AgreementsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Agreements.AgreementsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AgreementsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/agreements{?%24count,%24filter,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AgreementsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Agreements.AgreementsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AgreementsRequestBuilder(string rawUrl) : base("{+baseurl}/agreements{?%24count,%24filter,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -187,11 +187,11 @@ namespace ApiSdk.Agreements
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AgreementsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Agreements.AgreementsRequestBuilder.AgreementsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AgreementsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Agreements.AgreementsRequestBuilder.AgreementsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -207,11 +207,11 @@ namespace ApiSdk.Agreements
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Agreement body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Agreement body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Agreement body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Agreement body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

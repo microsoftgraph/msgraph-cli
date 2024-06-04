@@ -13,20 +13,20 @@ namespace ApiSdk.Models.Security
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EdiscoverySearch>? Value { get; set; }
+        public List<ApiSdk.Models.Security.EdiscoverySearch>? Value { get; set; }
 #nullable restore
 #else
-        public List<EdiscoverySearch> Value { get; set; }
+        public List<ApiSdk.Models.Security.EdiscoverySearch> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EdiscoverySearchCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.EdiscoverySearchCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EdiscoverySearchCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.EdiscoverySearchCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EdiscoverySearchCollectionResponse();
+            return new ApiSdk.Models.Security.EdiscoverySearchCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<EdiscoverySearch>(EdiscoverySearch.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.EdiscoverySearch>(ApiSdk.Models.Security.EdiscoverySearch.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<EdiscoverySearch>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.EdiscoverySearch>("value", Value);
         }
     }
 }

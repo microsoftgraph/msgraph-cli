@@ -21,38 +21,38 @@ namespace ApiSdk.Models.Security
         /// <summary>The country/region of origin for the given actor or threat associated with this intelligenceProfile.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<IntelligenceProfileCountryOrRegionOfOrigin>? CountriesOrRegionsOfOrigin { get; set; }
+        public List<ApiSdk.Models.Security.IntelligenceProfileCountryOrRegionOfOrigin>? CountriesOrRegionsOfOrigin { get; set; }
 #nullable restore
 #else
-        public List<IntelligenceProfileCountryOrRegionOfOrigin> CountriesOrRegionsOfOrigin { get; set; }
+        public List<ApiSdk.Models.Security.IntelligenceProfileCountryOrRegionOfOrigin> CountriesOrRegionsOfOrigin { get; set; }
 #endif
         /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FormattedContent? Description { get; set; }
+        public ApiSdk.Models.Security.FormattedContent? Description { get; set; }
 #nullable restore
 #else
-        public FormattedContent Description { get; set; }
+        public ApiSdk.Models.Security.FormattedContent Description { get; set; }
 #endif
         /// <summary>The date and time when this intelligenceProfile was first active. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? FirstActiveDateTime { get; set; }
         /// <summary>Includes an assemblage of high-fidelity network indicators of compromise.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<IntelligenceProfileIndicator>? Indicators { get; set; }
+        public List<ApiSdk.Models.Security.IntelligenceProfileIndicator>? Indicators { get; set; }
 #nullable restore
 #else
-        public List<IntelligenceProfileIndicator> Indicators { get; set; }
+        public List<ApiSdk.Models.Security.IntelligenceProfileIndicator> Indicators { get; set; }
 #endif
         /// <summary>The kind property</summary>
-        public IntelligenceProfileKind? Kind { get; set; }
+        public ApiSdk.Models.Security.IntelligenceProfileKind? Kind { get; set; }
         /// <summary>The summary property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FormattedContent? Summary { get; set; }
+        public ApiSdk.Models.Security.FormattedContent? Summary { get; set; }
 #nullable restore
 #else
-        public FormattedContent Summary { get; set; }
+        public ApiSdk.Models.Security.FormattedContent Summary { get; set; }
 #endif
         /// <summary>Known targets related to this intelligenceProfile.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -73,20 +73,20 @@ namespace ApiSdk.Models.Security
         /// <summary>Formatted information featuring a description of the distinctive tactics, techniques, and procedures (TTP) of the group, followed by a list of all known custom, commodity, and publicly available implants used by the group.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FormattedContent? Tradecraft { get; set; }
+        public ApiSdk.Models.Security.FormattedContent? Tradecraft { get; set; }
 #nullable restore
 #else
-        public FormattedContent Tradecraft { get; set; }
+        public ApiSdk.Models.Security.FormattedContent Tradecraft { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IntelligenceProfile"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.IntelligenceProfile"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IntelligenceProfile CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.IntelligenceProfile CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IntelligenceProfile();
+            return new ApiSdk.Models.Security.IntelligenceProfile();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -97,15 +97,15 @@ namespace ApiSdk.Models.Security
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "aliases", n => { Aliases = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "countriesOrRegionsOfOrigin", n => { CountriesOrRegionsOfOrigin = n.GetCollectionOfObjectValues<IntelligenceProfileCountryOrRegionOfOrigin>(IntelligenceProfileCountryOrRegionOfOrigin.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "description", n => { Description = n.GetObjectValue<FormattedContent>(FormattedContent.CreateFromDiscriminatorValue); } },
+                { "countriesOrRegionsOfOrigin", n => { CountriesOrRegionsOfOrigin = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.IntelligenceProfileCountryOrRegionOfOrigin>(ApiSdk.Models.Security.IntelligenceProfileCountryOrRegionOfOrigin.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "description", n => { Description = n.GetObjectValue<ApiSdk.Models.Security.FormattedContent>(ApiSdk.Models.Security.FormattedContent.CreateFromDiscriminatorValue); } },
                 { "firstActiveDateTime", n => { FirstActiveDateTime = n.GetDateTimeOffsetValue(); } },
-                { "indicators", n => { Indicators = n.GetCollectionOfObjectValues<IntelligenceProfileIndicator>(IntelligenceProfileIndicator.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "kind", n => { Kind = n.GetEnumValue<IntelligenceProfileKind>(); } },
-                { "summary", n => { Summary = n.GetObjectValue<FormattedContent>(FormattedContent.CreateFromDiscriminatorValue); } },
+                { "indicators", n => { Indicators = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.IntelligenceProfileIndicator>(ApiSdk.Models.Security.IntelligenceProfileIndicator.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "kind", n => { Kind = n.GetEnumValue<ApiSdk.Models.Security.IntelligenceProfileKind>(); } },
+                { "summary", n => { Summary = n.GetObjectValue<ApiSdk.Models.Security.FormattedContent>(ApiSdk.Models.Security.FormattedContent.CreateFromDiscriminatorValue); } },
                 { "targets", n => { Targets = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
-                { "tradecraft", n => { Tradecraft = n.GetObjectValue<FormattedContent>(FormattedContent.CreateFromDiscriminatorValue); } },
+                { "tradecraft", n => { Tradecraft = n.GetObjectValue<ApiSdk.Models.Security.FormattedContent>(ApiSdk.Models.Security.FormattedContent.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -117,15 +117,15 @@ namespace ApiSdk.Models.Security
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfPrimitiveValues<string>("aliases", Aliases);
-            writer.WriteCollectionOfObjectValues<IntelligenceProfileCountryOrRegionOfOrigin>("countriesOrRegionsOfOrigin", CountriesOrRegionsOfOrigin);
-            writer.WriteObjectValue<FormattedContent>("description", Description);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.IntelligenceProfileCountryOrRegionOfOrigin>("countriesOrRegionsOfOrigin", CountriesOrRegionsOfOrigin);
+            writer.WriteObjectValue<ApiSdk.Models.Security.FormattedContent>("description", Description);
             writer.WriteDateTimeOffsetValue("firstActiveDateTime", FirstActiveDateTime);
-            writer.WriteCollectionOfObjectValues<IntelligenceProfileIndicator>("indicators", Indicators);
-            writer.WriteEnumValue<IntelligenceProfileKind>("kind", Kind);
-            writer.WriteObjectValue<FormattedContent>("summary", Summary);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.IntelligenceProfileIndicator>("indicators", Indicators);
+            writer.WriteEnumValue<ApiSdk.Models.Security.IntelligenceProfileKind>("kind", Kind);
+            writer.WriteObjectValue<ApiSdk.Models.Security.FormattedContent>("summary", Summary);
             writer.WriteCollectionOfPrimitiveValues<string>("targets", Targets);
             writer.WriteStringValue("title", Title);
-            writer.WriteObjectValue<FormattedContent>("tradecraft", Tradecraft);
+            writer.WriteObjectValue<ApiSdk.Models.Security.FormattedContent>("tradecraft", Tradecraft);
         }
     }
 }

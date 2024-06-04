@@ -143,7 +143,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<IdentityApiConnector>(IdentityApiConnector.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.IdentityApiConnector>(ApiSdk.Models.IdentityApiConnector.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -171,7 +171,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item
         {
             var command = new Command("upload-client-certificate");
             command.Description = "Provides operations to call the uploadClientCertificate method.";
-            var builder = new UploadClientCertificateRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate.UploadClientCertificateRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -181,14 +181,14 @@ namespace ApiSdk.Identity.ApiConnectors.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="IdentityApiConnectorItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.ApiConnectors.Item.IdentityApiConnectorItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IdentityApiConnectorItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/apiConnectors/{identityApiConnector%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="IdentityApiConnectorItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.ApiConnectors.Item.IdentityApiConnectorItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IdentityApiConnectorItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/apiConnectors/{identityApiConnector%2Did}{?%24expand,%24select}", rawUrl)
@@ -220,11 +220,11 @@ namespace ApiSdk.Identity.ApiConnectors.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityApiConnectorItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.ApiConnectors.Item.IdentityApiConnectorItemRequestBuilder.IdentityApiConnectorItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityApiConnectorItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.ApiConnectors.Item.IdentityApiConnectorItemRequestBuilder.IdentityApiConnectorItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -240,11 +240,11 @@ namespace ApiSdk.Identity.ApiConnectors.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(IdentityApiConnector body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityApiConnector body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(IdentityApiConnector body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityApiConnector body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

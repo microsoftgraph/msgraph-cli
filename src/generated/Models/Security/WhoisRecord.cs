@@ -7,19 +7,19 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class WhoisRecord : WhoisBaseRecord, IParsable
+    public class WhoisRecord : ApiSdk.Models.Security.WhoisBaseRecord, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The collection of historical records associated to this WHOIS object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WhoisHistoryRecord>? History { get; set; }
+        public List<ApiSdk.Models.Security.WhoisHistoryRecord>? History { get; set; }
 #nullable restore
 #else
-        public List<WhoisHistoryRecord> History { get; set; }
+        public List<ApiSdk.Models.Security.WhoisHistoryRecord> History { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WhoisRecord"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.WhoisRecord"/> and sets the default values.
         /// </summary>
         public WhoisRecord() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WhoisRecord"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.WhoisRecord"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WhoisRecord CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.WhoisRecord CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WhoisRecord();
+            return new ApiSdk.Models.Security.WhoisRecord();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "history", n => { History = n.GetCollectionOfObjectValues<WhoisHistoryRecord>(WhoisHistoryRecord.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "history", n => { History = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.WhoisHistoryRecord>(ApiSdk.Models.Security.WhoisHistoryRecord.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<WhoisHistoryRecord>("history", History);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.WhoisHistoryRecord>("history", History);
         }
     }
 }

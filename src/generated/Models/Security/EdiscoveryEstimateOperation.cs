@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class EdiscoveryEstimateOperation : CaseOperation, IParsable
+    public class EdiscoveryEstimateOperation : ApiSdk.Models.Security.CaseOperation, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The estimated count of items for the search that matched the content query.</summary>
@@ -19,10 +19,10 @@ namespace ApiSdk.Models.Security
         /// <summary>eDiscovery search.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EdiscoverySearch? Search { get; set; }
+        public ApiSdk.Models.Security.EdiscoverySearch? Search { get; set; }
 #nullable restore
 #else
-        public EdiscoverySearch Search { get; set; }
+        public ApiSdk.Models.Security.EdiscoverySearch Search { get; set; }
 #endif
         /// <summary>The number of mailboxes that had search hits.</summary>
         public int? SiteCount { get; set; }
@@ -33,12 +33,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EdiscoveryEstimateOperation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.EdiscoveryEstimateOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EdiscoveryEstimateOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.EdiscoveryEstimateOperation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EdiscoveryEstimateOperation();
+            return new ApiSdk.Models.Security.EdiscoveryEstimateOperation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -51,7 +51,7 @@ namespace ApiSdk.Models.Security
                 { "indexedItemCount", n => { IndexedItemCount = n.GetLongValue(); } },
                 { "indexedItemsSize", n => { IndexedItemsSize = n.GetLongValue(); } },
                 { "mailboxCount", n => { MailboxCount = n.GetIntValue(); } },
-                { "search", n => { Search = n.GetObjectValue<EdiscoverySearch>(EdiscoverySearch.CreateFromDiscriminatorValue); } },
+                { "search", n => { Search = n.GetObjectValue<ApiSdk.Models.Security.EdiscoverySearch>(ApiSdk.Models.Security.EdiscoverySearch.CreateFromDiscriminatorValue); } },
                 { "siteCount", n => { SiteCount = n.GetIntValue(); } },
                 { "unindexedItemCount", n => { UnindexedItemCount = n.GetLongValue(); } },
                 { "unindexedItemsSize", n => { UnindexedItemsSize = n.GetLongValue(); } },
@@ -68,7 +68,7 @@ namespace ApiSdk.Models.Security
             writer.WriteLongValue("indexedItemCount", IndexedItemCount);
             writer.WriteLongValue("indexedItemsSize", IndexedItemsSize);
             writer.WriteIntValue("mailboxCount", MailboxCount);
-            writer.WriteObjectValue<EdiscoverySearch>("search", Search);
+            writer.WriteObjectValue<ApiSdk.Models.Security.EdiscoverySearch>("search", Search);
             writer.WriteIntValue("siteCount", SiteCount);
             writer.WriteLongValue("unindexedItemCount", UnindexedItemCount);
             writer.WriteLongValue("unindexedItemsSize", UnindexedItemsSize);

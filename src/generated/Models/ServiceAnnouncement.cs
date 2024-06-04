@@ -7,42 +7,42 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ServiceAnnouncement : Entity, IParsable
+    public class ServiceAnnouncement : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ServiceHealth>? HealthOverviews { get; set; }
+        public List<ApiSdk.Models.ServiceHealth>? HealthOverviews { get; set; }
 #nullable restore
 #else
-        public List<ServiceHealth> HealthOverviews { get; set; }
+        public List<ApiSdk.Models.ServiceHealth> HealthOverviews { get; set; }
 #endif
         /// <summary>A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ServiceHealthIssue>? Issues { get; set; }
+        public List<ApiSdk.Models.ServiceHealthIssue>? Issues { get; set; }
 #nullable restore
 #else
-        public List<ServiceHealthIssue> Issues { get; set; }
+        public List<ApiSdk.Models.ServiceHealthIssue> Issues { get; set; }
 #endif
         /// <summary>A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ServiceUpdateMessage>? Messages { get; set; }
+        public List<ApiSdk.Models.ServiceUpdateMessage>? Messages { get; set; }
 #nullable restore
 #else
-        public List<ServiceUpdateMessage> Messages { get; set; }
+        public List<ApiSdk.Models.ServiceUpdateMessage> Messages { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ServiceAnnouncement"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ServiceAnnouncement"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ServiceAnnouncement CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ServiceAnnouncement CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ServiceAnnouncement();
+            return new ApiSdk.Models.ServiceAnnouncement();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -52,9 +52,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "healthOverviews", n => { HealthOverviews = n.GetCollectionOfObjectValues<ServiceHealth>(ServiceHealth.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "issues", n => { Issues = n.GetCollectionOfObjectValues<ServiceHealthIssue>(ServiceHealthIssue.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "messages", n => { Messages = n.GetCollectionOfObjectValues<ServiceUpdateMessage>(ServiceUpdateMessage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "healthOverviews", n => { HealthOverviews = n.GetCollectionOfObjectValues<ApiSdk.Models.ServiceHealth>(ApiSdk.Models.ServiceHealth.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "issues", n => { Issues = n.GetCollectionOfObjectValues<ApiSdk.Models.ServiceHealthIssue>(ApiSdk.Models.ServiceHealthIssue.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "messages", n => { Messages = n.GetCollectionOfObjectValues<ApiSdk.Models.ServiceUpdateMessage>(ApiSdk.Models.ServiceUpdateMessage.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -65,9 +65,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ServiceHealth>("healthOverviews", HealthOverviews);
-            writer.WriteCollectionOfObjectValues<ServiceHealthIssue>("issues", Issues);
-            writer.WriteCollectionOfObjectValues<ServiceUpdateMessage>("messages", Messages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ServiceHealth>("healthOverviews", HealthOverviews);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ServiceHealthIssue>("issues", Issues);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ServiceUpdateMessage>("messages", Messages);
         }
     }
 }

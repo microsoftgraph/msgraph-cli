@@ -16,13 +16,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsoWeekNum
         /// <summary>The date property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Date { get; set; }
+        public ApiSdk.Models.Json? Date { get; set; }
 #nullable restore
 #else
-        public Json Date { get; set; }
+        public ApiSdk.Models.Json Date { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IsoWeekNumPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsoWeekNum.IsoWeekNumPostRequestBody"/> and sets the default values.
         /// </summary>
         public IsoWeekNumPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsoWeekNum
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IsoWeekNumPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsoWeekNum.IsoWeekNumPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IsoWeekNumPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsoWeekNum.IsoWeekNumPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IsoWeekNumPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsoWeekNum.IsoWeekNumPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsoWeekNum
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "date", n => { Date = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "date", n => { Date = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsoWeekNum
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("date", Date);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("date", Date);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

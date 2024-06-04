@@ -103,14 +103,14 @@ namespace ApiSdk.Users.Item.GetManagedAppDiagnosticStatuses
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetManagedAppDiagnosticStatusesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.GetManagedAppDiagnosticStatuses.GetManagedAppDiagnosticStatusesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetManagedAppDiagnosticStatusesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/getManagedAppDiagnosticStatuses(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetManagedAppDiagnosticStatusesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.GetManagedAppDiagnosticStatuses.GetManagedAppDiagnosticStatusesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetManagedAppDiagnosticStatusesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/getManagedAppDiagnosticStatuses(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
@@ -123,11 +123,11 @@ namespace ApiSdk.Users.Item.GetManagedAppDiagnosticStatuses
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetManagedAppDiagnosticStatusesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.GetManagedAppDiagnosticStatuses.GetManagedAppDiagnosticStatusesRequestBuilder.GetManagedAppDiagnosticStatusesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetManagedAppDiagnosticStatusesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.GetManagedAppDiagnosticStatuses.GetManagedAppDiagnosticStatusesRequestBuilder.GetManagedAppDiagnosticStatusesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

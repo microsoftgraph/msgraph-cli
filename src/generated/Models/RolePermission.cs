@@ -24,13 +24,13 @@ namespace ApiSdk.Models
         /// <summary>Resource Actions each containing a set of allowed and not allowed permissions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ResourceAction>? ResourceActions { get; set; }
+        public List<ApiSdk.Models.ResourceAction>? ResourceActions { get; set; }
 #nullable restore
 #else
-        public List<ResourceAction> ResourceActions { get; set; }
+        public List<ApiSdk.Models.ResourceAction> ResourceActions { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RolePermission"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RolePermission"/> and sets the default values.
         /// </summary>
         public RolePermission()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RolePermission"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RolePermission"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RolePermission CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.RolePermission CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RolePermission();
+            return new ApiSdk.Models.RolePermission();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "resourceActions", n => { ResourceActions = n.GetCollectionOfObjectValues<ResourceAction>(ResourceAction.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "resourceActions", n => { ResourceActions = n.GetCollectionOfObjectValues<ApiSdk.Models.ResourceAction>(ApiSdk.Models.ResourceAction.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<ResourceAction>("resourceActions", ResourceActions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ResourceAction>("resourceActions", ResourceActions);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

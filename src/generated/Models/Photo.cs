@@ -51,7 +51,7 @@ namespace ApiSdk.Models
         /// <summary>Represents the date and time the photo was taken. Read-only.</summary>
         public DateTimeOffset? TakenDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Photo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Photo"/> and sets the default values.
         /// </summary>
         public Photo()
         {
@@ -60,12 +60,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Photo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Photo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Photo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Photo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Photo();
+            return new ApiSdk.Models.Photo();
         }
         /// <summary>
         /// The deserialization information for the current model

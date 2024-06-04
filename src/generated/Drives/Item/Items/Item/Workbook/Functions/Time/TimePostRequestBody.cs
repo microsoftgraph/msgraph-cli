@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Time
         /// <summary>The hour property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Hour { get; set; }
+        public ApiSdk.Models.Json? Hour { get; set; }
 #nullable restore
 #else
-        public Json Hour { get; set; }
+        public ApiSdk.Models.Json Hour { get; set; }
 #endif
         /// <summary>The minute property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Minute { get; set; }
+        public ApiSdk.Models.Json? Minute { get; set; }
 #nullable restore
 #else
-        public Json Minute { get; set; }
+        public ApiSdk.Models.Json Minute { get; set; }
 #endif
         /// <summary>The second property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Second { get; set; }
+        public ApiSdk.Models.Json? Second { get; set; }
 #nullable restore
 #else
-        public Json Second { get; set; }
+        public ApiSdk.Models.Json Second { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TimePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Time.TimePostRequestBody"/> and sets the default values.
         /// </summary>
         public TimePostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Time
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TimePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Time.TimePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TimePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Time.TimePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TimePostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Time.TimePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Time
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "hour", n => { Hour = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "minute", n => { Minute = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "second", n => { Second = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "hour", n => { Hour = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "minute", n => { Minute = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "second", n => { Second = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Time
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("hour", Hour);
-            writer.WriteObjectValue<Json>("minute", Minute);
-            writer.WriteObjectValue<Json>("second", Second);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("hour", Hour);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("minute", Minute);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("second", Second);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

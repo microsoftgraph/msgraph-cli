@@ -34,10 +34,10 @@ namespace ApiSdk.Drives.Item.List.Items.Item.CreateLink
         /// <summary>The recipients property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DriveRecipient>? Recipients { get; set; }
+        public List<ApiSdk.Models.DriveRecipient>? Recipients { get; set; }
 #nullable restore
 #else
-        public List<DriveRecipient> Recipients { get; set; }
+        public List<ApiSdk.Models.DriveRecipient> Recipients { get; set; }
 #endif
         /// <summary>The retainInheritedPermissions property</summary>
         public bool? RetainInheritedPermissions { get; set; }
@@ -60,7 +60,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.CreateLink
         public string Type { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CreateLinkPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.List.Items.Item.CreateLink.CreateLinkPostRequestBody"/> and sets the default values.
         /// </summary>
         public CreateLinkPostRequestBody()
         {
@@ -69,12 +69,12 @@ namespace ApiSdk.Drives.Item.List.Items.Item.CreateLink
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CreateLinkPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.List.Items.Item.CreateLink.CreateLinkPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CreateLinkPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.List.Items.Item.CreateLink.CreateLinkPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CreateLinkPostRequestBody();
+            return new ApiSdk.Drives.Item.List.Items.Item.CreateLink.CreateLinkPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -87,7 +87,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.CreateLink
                 { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 { "message", n => { Message = n.GetStringValue(); } },
                 { "password", n => { Password = n.GetStringValue(); } },
-                { "recipients", n => { Recipients = n.GetCollectionOfObjectValues<DriveRecipient>(DriveRecipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "recipients", n => { Recipients = n.GetCollectionOfObjectValues<ApiSdk.Models.DriveRecipient>(ApiSdk.Models.DriveRecipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "retainInheritedPermissions", n => { RetainInheritedPermissions = n.GetBoolValue(); } },
                 { "scope", n => { Scope = n.GetStringValue(); } },
                 { "sendNotification", n => { SendNotification = n.GetBoolValue(); } },
@@ -104,7 +104,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.CreateLink
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteStringValue("message", Message);
             writer.WriteStringValue("password", Password);
-            writer.WriteCollectionOfObjectValues<DriveRecipient>("recipients", Recipients);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DriveRecipient>("recipients", Recipients);
             writer.WriteBoolValue("retainInheritedPermissions", RetainInheritedPermissions);
             writer.WriteStringValue("scope", Scope);
             writer.WriteBoolValue("sendNotification", SendNotification);

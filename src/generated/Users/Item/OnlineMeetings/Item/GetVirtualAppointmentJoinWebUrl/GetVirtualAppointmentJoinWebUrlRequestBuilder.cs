@@ -66,14 +66,14 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetVirtualAppointmentJoinWebUrlRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl.GetVirtualAppointmentJoinWebUrlRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetVirtualAppointmentJoinWebUrlRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/getVirtualAppointmentJoinWebUrl()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetVirtualAppointmentJoinWebUrlRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl.GetVirtualAppointmentJoinWebUrlRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetVirtualAppointmentJoinWebUrlRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/getVirtualAppointmentJoinWebUrl()", rawUrl)

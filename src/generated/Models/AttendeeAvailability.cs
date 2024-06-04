@@ -15,13 +15,13 @@ namespace ApiSdk.Models
         /// <summary>The email address and type of attendee - whether it&apos;s a person or a resource, and whether required or optional if it&apos;s a person.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AttendeeBase? Attendee { get; set; }
+        public ApiSdk.Models.AttendeeBase? Attendee { get; set; }
 #nullable restore
 #else
-        public AttendeeBase Attendee { get; set; }
+        public ApiSdk.Models.AttendeeBase Attendee { get; set; }
 #endif
         /// <summary>The availability status of the attendee. The possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
-        public FreeBusyStatus? Availability { get; set; }
+        public ApiSdk.Models.FreeBusyStatus? Availability { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AttendeeAvailability"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AttendeeAvailability"/> and sets the default values.
         /// </summary>
         public AttendeeAvailability()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AttendeeAvailability"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AttendeeAvailability"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AttendeeAvailability CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AttendeeAvailability CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AttendeeAvailability();
+            return new ApiSdk.Models.AttendeeAvailability();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,8 +55,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attendee", n => { Attendee = n.GetObjectValue<AttendeeBase>(AttendeeBase.CreateFromDiscriminatorValue); } },
-                { "availability", n => { Availability = n.GetEnumValue<FreeBusyStatus>(); } },
+                { "attendee", n => { Attendee = n.GetObjectValue<ApiSdk.Models.AttendeeBase>(ApiSdk.Models.AttendeeBase.CreateFromDiscriminatorValue); } },
+                { "availability", n => { Availability = n.GetEnumValue<ApiSdk.Models.FreeBusyStatus>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -67,8 +67,8 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<AttendeeBase>("attendee", Attendee);
-            writer.WriteEnumValue<FreeBusyStatus>("availability", Availability);
+            writer.WriteObjectValue<ApiSdk.Models.AttendeeBase>("attendee", Attendee);
+            writer.WriteEnumValue<ApiSdk.Models.FreeBusyStatus>("availability", Availability);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

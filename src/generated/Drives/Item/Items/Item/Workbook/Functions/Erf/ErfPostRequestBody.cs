@@ -16,21 +16,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf
         /// <summary>The lowerLimit property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? LowerLimit { get; set; }
+        public ApiSdk.Models.Json? LowerLimit { get; set; }
 #nullable restore
 #else
-        public Json LowerLimit { get; set; }
+        public ApiSdk.Models.Json LowerLimit { get; set; }
 #endif
         /// <summary>The upperLimit property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? UpperLimit { get; set; }
+        public ApiSdk.Models.Json? UpperLimit { get; set; }
 #nullable restore
 #else
-        public Json UpperLimit { get; set; }
+        public ApiSdk.Models.Json UpperLimit { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ErfPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf.ErfPostRequestBody"/> and sets the default values.
         /// </summary>
         public ErfPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ErfPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf.ErfPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ErfPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf.ErfPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ErfPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf.ErfPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "lowerLimit", n => { LowerLimit = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "upperLimit", n => { UpperLimit = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "lowerLimit", n => { LowerLimit = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "upperLimit", n => { UpperLimit = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("lowerLimit", LowerLimit);
-            writer.WriteObjectValue<Json>("upperLimit", UpperLimit);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("lowerLimit", LowerLimit);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("upperLimit", UpperLimit);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

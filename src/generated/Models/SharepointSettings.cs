@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SharepointSettings : Entity, IParsable
+    public class SharepointSettings : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Collection of trusted domain GUIDs for the OneDrive sync app.</summary>
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.IdleSessionSignOut IdleSessionSignOut { get; set; }
 #endif
         /// <summary>Specifies the image tagging option for the tenant. Possible values are: disabled, basic, enhanced.</summary>
-        public ImageTaggingChoice? ImageTaggingOption { get; set; }
+        public ApiSdk.Models.ImageTaggingChoice? ImageTaggingOption { get; set; }
         /// <summary>Indicates whether comments are allowed on modern site pages in SharePoint.</summary>
         public bool? IsCommentingOnSitePagesEnabled { get; set; }
         /// <summary>Indicates whether push notifications are enabled for OneDrive events.</summary>
@@ -95,7 +95,7 @@ namespace ApiSdk.Models
         public List<string> SharingBlockedDomainList { get; set; }
 #endif
         /// <summary>Sharing capability for the tenant. Possible values are: disabled, externalUserSharingOnly, externalUserAndGuestSharing, existingExternalUserSharingOnly.</summary>
-        public SharingCapabilities? SharingCapability { get; set; }
+        public ApiSdk.Models.SharingCapabilities? SharingCapability { get; set; }
         /// <summary>Specifies the external sharing mode for domains. Possible values are: none, allowList, blockList.</summary>
         public ApiSdk.Models.SharingDomainRestrictionMode? SharingDomainRestrictionMode { get; set; }
         /// <summary>The value of the team site managed path. This is the path under which new team sites will be created.</summary>
@@ -119,12 +119,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SharepointSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SharepointSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SharepointSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SharepointSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SharepointSettings();
+            return new ApiSdk.Models.SharepointSettings();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -139,7 +139,7 @@ namespace ApiSdk.Models
                 { "deletedUserPersonalSiteRetentionPeriodInDays", n => { DeletedUserPersonalSiteRetentionPeriodInDays = n.GetIntValue(); } },
                 { "excludedFileExtensionsForSyncApp", n => { ExcludedFileExtensionsForSyncApp = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "idleSessionSignOut", n => { IdleSessionSignOut = n.GetObjectValue<ApiSdk.Models.IdleSessionSignOut>(ApiSdk.Models.IdleSessionSignOut.CreateFromDiscriminatorValue); } },
-                { "imageTaggingOption", n => { ImageTaggingOption = n.GetEnumValue<ImageTaggingChoice>(); } },
+                { "imageTaggingOption", n => { ImageTaggingOption = n.GetEnumValue<ApiSdk.Models.ImageTaggingChoice>(); } },
                 { "isCommentingOnSitePagesEnabled", n => { IsCommentingOnSitePagesEnabled = n.GetBoolValue(); } },
                 { "isFileActivityNotificationEnabled", n => { IsFileActivityNotificationEnabled = n.GetBoolValue(); } },
                 { "isLegacyAuthProtocolsEnabled", n => { IsLegacyAuthProtocolsEnabled = n.GetBoolValue(); } },
@@ -158,8 +158,8 @@ namespace ApiSdk.Models
                 { "personalSiteDefaultStorageLimitInMB", n => { PersonalSiteDefaultStorageLimitInMB = n.GetLongValue(); } },
                 { "sharingAllowedDomainList", n => { SharingAllowedDomainList = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "sharingBlockedDomainList", n => { SharingBlockedDomainList = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "sharingCapability", n => { SharingCapability = n.GetEnumValue<SharingCapabilities>(); } },
-                { "sharingDomainRestrictionMode", n => { SharingDomainRestrictionMode = n.GetEnumValue<SharingDomainRestrictionMode>(); } },
+                { "sharingCapability", n => { SharingCapability = n.GetEnumValue<ApiSdk.Models.SharingCapabilities>(); } },
+                { "sharingDomainRestrictionMode", n => { SharingDomainRestrictionMode = n.GetEnumValue<ApiSdk.Models.SharingDomainRestrictionMode>(); } },
                 { "siteCreationDefaultManagedPath", n => { SiteCreationDefaultManagedPath = n.GetStringValue(); } },
                 { "siteCreationDefaultStorageLimitInMB", n => { SiteCreationDefaultStorageLimitInMB = n.GetIntValue(); } },
                 { "tenantDefaultTimezone", n => { TenantDefaultTimezone = n.GetStringValue(); } },
@@ -178,7 +178,7 @@ namespace ApiSdk.Models
             writer.WriteIntValue("deletedUserPersonalSiteRetentionPeriodInDays", DeletedUserPersonalSiteRetentionPeriodInDays);
             writer.WriteCollectionOfPrimitiveValues<string>("excludedFileExtensionsForSyncApp", ExcludedFileExtensionsForSyncApp);
             writer.WriteObjectValue<ApiSdk.Models.IdleSessionSignOut>("idleSessionSignOut", IdleSessionSignOut);
-            writer.WriteEnumValue<ImageTaggingChoice>("imageTaggingOption", ImageTaggingOption);
+            writer.WriteEnumValue<ApiSdk.Models.ImageTaggingChoice>("imageTaggingOption", ImageTaggingOption);
             writer.WriteBoolValue("isCommentingOnSitePagesEnabled", IsCommentingOnSitePagesEnabled);
             writer.WriteBoolValue("isFileActivityNotificationEnabled", IsFileActivityNotificationEnabled);
             writer.WriteBoolValue("isLegacyAuthProtocolsEnabled", IsLegacyAuthProtocolsEnabled);
@@ -197,8 +197,8 @@ namespace ApiSdk.Models
             writer.WriteLongValue("personalSiteDefaultStorageLimitInMB", PersonalSiteDefaultStorageLimitInMB);
             writer.WriteCollectionOfPrimitiveValues<string>("sharingAllowedDomainList", SharingAllowedDomainList);
             writer.WriteCollectionOfPrimitiveValues<string>("sharingBlockedDomainList", SharingBlockedDomainList);
-            writer.WriteEnumValue<SharingCapabilities>("sharingCapability", SharingCapability);
-            writer.WriteEnumValue<SharingDomainRestrictionMode>("sharingDomainRestrictionMode", SharingDomainRestrictionMode);
+            writer.WriteEnumValue<ApiSdk.Models.SharingCapabilities>("sharingCapability", SharingCapability);
+            writer.WriteEnumValue<ApiSdk.Models.SharingDomainRestrictionMode>("sharingDomainRestrictionMode", SharingDomainRestrictionMode);
             writer.WriteStringValue("siteCreationDefaultManagedPath", SiteCreationDefaultManagedPath);
             writer.WriteIntValue("siteCreationDefaultStorageLimitInMB", SiteCreationDefaultStorageLimitInMB);
             writer.WriteStringValue("tenantDefaultTimezone", TenantDefaultTimezone);

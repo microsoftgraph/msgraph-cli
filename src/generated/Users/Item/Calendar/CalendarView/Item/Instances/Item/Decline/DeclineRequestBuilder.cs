@@ -54,7 +54,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Decline
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<DeclinePostRequestBody>(DeclinePostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Decline.DeclinePostRequestBody>(ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Decline.DeclinePostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -75,14 +75,14 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Decline
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeclineRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Decline.DeclineRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeclineRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar/calendarView/{event%2Did}/instances/{event%2Did1}/decline", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeclineRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Decline.DeclineRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeclineRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendar/calendarView/{event%2Did}/instances/{event%2Did1}/decline", rawUrl)
@@ -96,11 +96,11 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Decline
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(DeclinePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Decline.DeclinePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(DeclinePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Decline.DeclinePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

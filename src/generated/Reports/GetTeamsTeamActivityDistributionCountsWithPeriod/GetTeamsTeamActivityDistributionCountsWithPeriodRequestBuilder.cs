@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetTeamsTeamActivityDistributionCountsWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetTeamsTeamActivityDistributionCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetTeamsTeamActivityDistributionCountsWithPeriod.GetTeamsTeamActivityDistributionCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetTeamsTeamActivityDistributionCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getTeamsTeamActivityDistributionCounts(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetTeamsTeamActivityDistributionCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetTeamsTeamActivityDistributionCountsWithPeriod.GetTeamsTeamActivityDistributionCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetTeamsTeamActivityDistributionCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getTeamsTeamActivityDistributionCounts(period='{period}')", rawUrl)

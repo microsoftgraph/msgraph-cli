@@ -23,7 +23,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Preview
         /// <summary>The zoom property</summary>
         public double? Zoom { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="PreviewPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Preview.PreviewPostRequestBody"/> and sets the default values.
         /// </summary>
         public PreviewPostRequestBody()
         {
@@ -32,12 +32,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Preview
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PreviewPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Preview.PreviewPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PreviewPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Preview.PreviewPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PreviewPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Preview.PreviewPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

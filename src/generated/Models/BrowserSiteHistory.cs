@@ -24,17 +24,17 @@ namespace ApiSdk.Models
         public string Comment { get; set; }
 #endif
         /// <summary>Controls what compatibility setting is used for specific sites or domains. The possible values are: default, internetExplorer8Enterprise, internetExplorer7Enterprise, internetExplorer11, internetExplorer10, internetExplorer9, internetExplorer8, internetExplorer7, internetExplorer5, unknownFutureValue.</summary>
-        public BrowserSiteCompatibilityMode? CompatibilityMode { get; set; }
+        public ApiSdk.Models.BrowserSiteCompatibilityMode? CompatibilityMode { get; set; }
         /// <summary>The user who last modified the site.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet LastModifiedBy { get; set; }
 #endif
         /// <summary>The merge type of the site. The possible values are: noMerge, default, unknownFutureValue.</summary>
-        public BrowserSiteMergeType? MergeType { get; set; }
+        public ApiSdk.Models.BrowserSiteMergeType? MergeType { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -46,9 +46,9 @@ namespace ApiSdk.Models
         /// <summary>The date and time when the site was last published.</summary>
         public DateTimeOffset? PublishedDateTime { get; set; }
         /// <summary>The target environment that the site should open in. The possible values are: internetExplorerMode, internetExplorer11, microsoftEdge, configurable, none, unknownFutureValue.Prior to June 15, 2022, the internetExplorer11 option would allow opening a site in the Internet Explorer 11 (IE11) desktop application. Following the retirement of IE11 on June 15, 2022, the internetExplorer11 option will no longer open an IE11 window and will instead behave the same as the internetExplorerMode option.</summary>
-        public BrowserSiteTargetEnvironment? TargetEnvironment { get; set; }
+        public ApiSdk.Models.BrowserSiteTargetEnvironment? TargetEnvironment { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="BrowserSiteHistory"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.BrowserSiteHistory"/> and sets the default values.
         /// </summary>
         public BrowserSiteHistory()
         {
@@ -57,12 +57,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BrowserSiteHistory"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BrowserSiteHistory"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BrowserSiteHistory CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.BrowserSiteHistory CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BrowserSiteHistory();
+            return new ApiSdk.Models.BrowserSiteHistory();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -74,12 +74,12 @@ namespace ApiSdk.Models
             {
                 { "allowRedirect", n => { AllowRedirect = n.GetBoolValue(); } },
                 { "comment", n => { Comment = n.GetStringValue(); } },
-                { "compatibilityMode", n => { CompatibilityMode = n.GetEnumValue<BrowserSiteCompatibilityMode>(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                { "mergeType", n => { MergeType = n.GetEnumValue<BrowserSiteMergeType>(); } },
+                { "compatibilityMode", n => { CompatibilityMode = n.GetEnumValue<ApiSdk.Models.BrowserSiteCompatibilityMode>(); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
+                { "mergeType", n => { MergeType = n.GetEnumValue<ApiSdk.Models.BrowserSiteMergeType>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "publishedDateTime", n => { PublishedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "targetEnvironment", n => { TargetEnvironment = n.GetEnumValue<BrowserSiteTargetEnvironment>(); } },
+                { "targetEnvironment", n => { TargetEnvironment = n.GetEnumValue<ApiSdk.Models.BrowserSiteTargetEnvironment>(); } },
             };
         }
         /// <summary>
@@ -91,12 +91,12 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("allowRedirect", AllowRedirect);
             writer.WriteStringValue("comment", Comment);
-            writer.WriteEnumValue<BrowserSiteCompatibilityMode>("compatibilityMode", CompatibilityMode);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
-            writer.WriteEnumValue<BrowserSiteMergeType>("mergeType", MergeType);
+            writer.WriteEnumValue<ApiSdk.Models.BrowserSiteCompatibilityMode>("compatibilityMode", CompatibilityMode);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
+            writer.WriteEnumValue<ApiSdk.Models.BrowserSiteMergeType>("mergeType", MergeType);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDateTimeOffsetValue("publishedDateTime", PublishedDateTime);
-            writer.WriteEnumValue<BrowserSiteTargetEnvironment>("targetEnvironment", TargetEnvironment);
+            writer.WriteEnumValue<ApiSdk.Models.BrowserSiteTargetEnvironment>("targetEnvironment", TargetEnvironment);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

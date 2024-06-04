@@ -8,7 +8,7 @@ using System;
 namespace ApiSdk.Shares.Item.Permission.Grant
 {
     #pragma warning disable CS1591
-    public class GrantPostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GrantPostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
@@ -22,12 +22,12 @@ namespace ApiSdk.Shares.Item.Permission.Grant
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GrantPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Shares.Item.Permission.Grant.GrantPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GrantPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Shares.Item.Permission.Grant.GrantPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GrantPostResponse();
+            return new ApiSdk.Shares.Item.Permission.Grant.GrantPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

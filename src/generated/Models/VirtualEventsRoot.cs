@@ -7,34 +7,34 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class VirtualEventsRoot : Entity, IParsable
+    public class VirtualEventsRoot : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The events property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<VirtualEvent>? Events { get; set; }
+        public List<ApiSdk.Models.VirtualEvent>? Events { get; set; }
 #nullable restore
 #else
-        public List<VirtualEvent> Events { get; set; }
+        public List<ApiSdk.Models.VirtualEvent> Events { get; set; }
 #endif
         /// <summary>The webinars property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<VirtualEventWebinar>? Webinars { get; set; }
+        public List<ApiSdk.Models.VirtualEventWebinar>? Webinars { get; set; }
 #nullable restore
 #else
-        public List<VirtualEventWebinar> Webinars { get; set; }
+        public List<ApiSdk.Models.VirtualEventWebinar> Webinars { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="VirtualEventsRoot"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.VirtualEventsRoot"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new VirtualEventsRoot CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.VirtualEventsRoot CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new VirtualEventsRoot();
+            return new ApiSdk.Models.VirtualEventsRoot();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -44,8 +44,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "events", n => { Events = n.GetCollectionOfObjectValues<VirtualEvent>(VirtualEvent.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "webinars", n => { Webinars = n.GetCollectionOfObjectValues<VirtualEventWebinar>(VirtualEventWebinar.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "events", n => { Events = n.GetCollectionOfObjectValues<ApiSdk.Models.VirtualEvent>(ApiSdk.Models.VirtualEvent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "webinars", n => { Webinars = n.GetCollectionOfObjectValues<ApiSdk.Models.VirtualEventWebinar>(ApiSdk.Models.VirtualEventWebinar.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -56,8 +56,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<VirtualEvent>("events", Events);
-            writer.WriteCollectionOfObjectValues<VirtualEventWebinar>("webinars", Webinars);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.VirtualEvent>("events", Events);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.VirtualEventWebinar>("webinars", Webinars);
         }
     }
 }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Fido2CombinationConfiguration : AuthenticationCombinationConfiguration, IParsable
+    public class Fido2CombinationConfiguration : ApiSdk.Models.AuthenticationCombinationConfiguration, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A list of AAGUIDs allowed to be used as part of the specified authentication method combinations.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public List<string> AllowedAAGUIDs { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Fido2CombinationConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Fido2CombinationConfiguration"/> and sets the default values.
         /// </summary>
         public Fido2CombinationConfiguration() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Fido2CombinationConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Fido2CombinationConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Fido2CombinationConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Fido2CombinationConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Fido2CombinationConfiguration();
+            return new ApiSdk.Models.Fido2CombinationConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model

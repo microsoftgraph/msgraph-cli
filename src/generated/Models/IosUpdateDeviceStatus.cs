@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class IosUpdateDeviceStatus : Entity, IParsable
+    public class IosUpdateDeviceStatus : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The DateTime when device compliance grace period expires</summary>
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string DeviceModel { get; set; }
 #endif
         /// <summary>The installStatus property</summary>
-        public IosUpdatesInstallStatus? InstallStatus { get; set; }
+        public ApiSdk.Models.IosUpdatesInstallStatus? InstallStatus { get; set; }
         /// <summary>Last modified date time of the policy report.</summary>
         public DateTimeOffset? LastReportedDateTime { get; set; }
         /// <summary>The device version that is being reported.</summary>
@@ -49,7 +49,7 @@ namespace ApiSdk.Models
         public string OsVersion { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public ComplianceStatus? Status { get; set; }
+        public ApiSdk.Models.ComplianceStatus? Status { get; set; }
         /// <summary>The User id that is being reported.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -77,12 +77,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosUpdateDeviceStatus"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosUpdateDeviceStatus"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IosUpdateDeviceStatus CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IosUpdateDeviceStatus CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IosUpdateDeviceStatus();
+            return new ApiSdk.Models.IosUpdateDeviceStatus();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -96,10 +96,10 @@ namespace ApiSdk.Models
                 { "deviceDisplayName", n => { DeviceDisplayName = n.GetStringValue(); } },
                 { "deviceId", n => { DeviceId = n.GetStringValue(); } },
                 { "deviceModel", n => { DeviceModel = n.GetStringValue(); } },
-                { "installStatus", n => { InstallStatus = n.GetEnumValue<IosUpdatesInstallStatus>(); } },
+                { "installStatus", n => { InstallStatus = n.GetEnumValue<ApiSdk.Models.IosUpdatesInstallStatus>(); } },
                 { "lastReportedDateTime", n => { LastReportedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "osVersion", n => { OsVersion = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<ComplianceStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.ComplianceStatus>(); } },
                 { "userId", n => { UserId = n.GetStringValue(); } },
                 { "userName", n => { UserName = n.GetStringValue(); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
@@ -117,10 +117,10 @@ namespace ApiSdk.Models
             writer.WriteStringValue("deviceDisplayName", DeviceDisplayName);
             writer.WriteStringValue("deviceId", DeviceId);
             writer.WriteStringValue("deviceModel", DeviceModel);
-            writer.WriteEnumValue<IosUpdatesInstallStatus>("installStatus", InstallStatus);
+            writer.WriteEnumValue<ApiSdk.Models.IosUpdatesInstallStatus>("installStatus", InstallStatus);
             writer.WriteDateTimeOffsetValue("lastReportedDateTime", LastReportedDateTime);
             writer.WriteStringValue("osVersion", OsVersion);
-            writer.WriteEnumValue<ComplianceStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.ComplianceStatus>("status", Status);
             writer.WriteStringValue("userId", UserId);
             writer.WriteStringValue("userName", UserName);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);

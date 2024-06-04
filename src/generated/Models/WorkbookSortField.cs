@@ -33,10 +33,10 @@ namespace ApiSdk.Models
         /// <summary>Represents the icon that is the target of the condition if the sorting is on the cell&apos;s icon.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookIcon? Icon { get; set; }
+        public ApiSdk.Models.WorkbookIcon? Icon { get; set; }
 #nullable restore
 #else
-        public WorkbookIcon Icon { get; set; }
+        public ApiSdk.Models.WorkbookIcon Icon { get; set; }
 #endif
         /// <summary>Represents the column (or row, depending on the sort orientation) that the condition is on. Represented as an offset from the first column (or row).</summary>
         public int? Key { get; set; }
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
         public string SortOn { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WorkbookSortField"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WorkbookSortField"/> and sets the default values.
         /// </summary>
         public WorkbookSortField()
         {
@@ -66,12 +66,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookSortField"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookSortField"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WorkbookSortField CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WorkbookSortField CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookSortField();
+            return new ApiSdk.Models.WorkbookSortField();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,7 +84,7 @@ namespace ApiSdk.Models
                 { "ascending", n => { Ascending = n.GetBoolValue(); } },
                 { "color", n => { Color = n.GetStringValue(); } },
                 { "dataOption", n => { DataOption = n.GetStringValue(); } },
-                { "icon", n => { Icon = n.GetObjectValue<WorkbookIcon>(WorkbookIcon.CreateFromDiscriminatorValue); } },
+                { "icon", n => { Icon = n.GetObjectValue<ApiSdk.Models.WorkbookIcon>(ApiSdk.Models.WorkbookIcon.CreateFromDiscriminatorValue); } },
                 { "key", n => { Key = n.GetIntValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "sortOn", n => { SortOn = n.GetStringValue(); } },
@@ -100,7 +100,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("ascending", Ascending);
             writer.WriteStringValue("color", Color);
             writer.WriteStringValue("dataOption", DataOption);
-            writer.WriteObjectValue<WorkbookIcon>("icon", Icon);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookIcon>("icon", Icon);
             writer.WriteIntValue("key", Key);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("sortOn", SortOn);

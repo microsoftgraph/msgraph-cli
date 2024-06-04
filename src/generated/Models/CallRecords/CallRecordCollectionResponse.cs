@@ -13,20 +13,20 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CallRecord>? Value { get; set; }
+        public List<ApiSdk.Models.CallRecords.CallRecord>? Value { get; set; }
 #nullable restore
 #else
-        public List<CallRecord> Value { get; set; }
+        public List<ApiSdk.Models.CallRecords.CallRecord> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CallRecordCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallRecords.CallRecordCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CallRecordCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CallRecords.CallRecordCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CallRecordCollectionResponse();
+            return new ApiSdk.Models.CallRecords.CallRecordCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.CallRecords
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<CallRecord>(CallRecord.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.CallRecords.CallRecord>(ApiSdk.Models.CallRecords.CallRecord.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.CallRecords
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<CallRecord>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CallRecords.CallRecord>("value", Value);
         }
     }
 }

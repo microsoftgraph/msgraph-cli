@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageTextInputQuestion : AccessPackageQuestion, IParsable
+    public class AccessPackageTextInputQuestion : ApiSdk.Models.AccessPackageQuestion, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates whether the answer is in single or multiple line format.</summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string RegexPattern { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessPackageTextInputQuestion"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessPackageTextInputQuestion"/> and sets the default values.
         /// </summary>
         public AccessPackageTextInputQuestion() : base()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageTextInputQuestion"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageTextInputQuestion"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageTextInputQuestion CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageTextInputQuestion CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageTextInputQuestion();
+            return new ApiSdk.Models.AccessPackageTextInputQuestion();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -47,11 +47,11 @@ namespace ApiSdk.Models
         /// <summary>The type of strong authentication mode. The possible values are: x509CertificateSingleFactor, x509CertificateMultiFactor, unknownFutureValue. Required.</summary>
         public ApiSdk.Models.X509CertificateAuthenticationMode? X509CertificateAuthenticationMode { get; set; }
         /// <summary>The x509CertificateRequiredAffinityLevel property</summary>
-        public X509CertificateAffinityLevel? X509CertificateRequiredAffinityLevel { get; set; }
+        public ApiSdk.Models.X509CertificateAffinityLevel? X509CertificateRequiredAffinityLevel { get; set; }
         /// <summary>The type of the X.509 certificate mode configuration rule. The possible values are: issuerSubject, policyOID, unknownFutureValue. Required.</summary>
         public ApiSdk.Models.X509CertificateRuleType? X509CertificateRuleType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="X509CertificateRule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.X509CertificateRule"/> and sets the default values.
         /// </summary>
         public X509CertificateRule()
         {
@@ -60,12 +60,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="X509CertificateRule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.X509CertificateRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static X509CertificateRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.X509CertificateRule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new X509CertificateRule();
+            return new ApiSdk.Models.X509CertificateRule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,9 +79,9 @@ namespace ApiSdk.Models
                 { "issuerSubjectIdentifier", n => { IssuerSubjectIdentifier = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "policyOidIdentifier", n => { PolicyOidIdentifier = n.GetStringValue(); } },
-                { "x509CertificateAuthenticationMode", n => { X509CertificateAuthenticationMode = n.GetEnumValue<X509CertificateAuthenticationMode>(); } },
-                { "x509CertificateRequiredAffinityLevel", n => { X509CertificateRequiredAffinityLevel = n.GetEnumValue<X509CertificateAffinityLevel>(); } },
-                { "x509CertificateRuleType", n => { X509CertificateRuleType = n.GetEnumValue<X509CertificateRuleType>(); } },
+                { "x509CertificateAuthenticationMode", n => { X509CertificateAuthenticationMode = n.GetEnumValue<ApiSdk.Models.X509CertificateAuthenticationMode>(); } },
+                { "x509CertificateRequiredAffinityLevel", n => { X509CertificateRequiredAffinityLevel = n.GetEnumValue<ApiSdk.Models.X509CertificateAffinityLevel>(); } },
+                { "x509CertificateRuleType", n => { X509CertificateRuleType = n.GetEnumValue<ApiSdk.Models.X509CertificateRuleType>(); } },
             };
         }
         /// <summary>
@@ -95,9 +95,9 @@ namespace ApiSdk.Models
             writer.WriteStringValue("issuerSubjectIdentifier", IssuerSubjectIdentifier);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("policyOidIdentifier", PolicyOidIdentifier);
-            writer.WriteEnumValue<X509CertificateAuthenticationMode>("x509CertificateAuthenticationMode", X509CertificateAuthenticationMode);
-            writer.WriteEnumValue<X509CertificateAffinityLevel>("x509CertificateRequiredAffinityLevel", X509CertificateRequiredAffinityLevel);
-            writer.WriteEnumValue<X509CertificateRuleType>("x509CertificateRuleType", X509CertificateRuleType);
+            writer.WriteEnumValue<ApiSdk.Models.X509CertificateAuthenticationMode>("x509CertificateAuthenticationMode", X509CertificateAuthenticationMode);
+            writer.WriteEnumValue<ApiSdk.Models.X509CertificateAffinityLevel>("x509CertificateRequiredAffinityLevel", X509CertificateRequiredAffinityLevel);
+            writer.WriteEnumValue<ApiSdk.Models.X509CertificateRuleType>("x509CertificateRuleType", X509CertificateRuleType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PlannerTaskDetails : Entity, IParsable
+    public class PlannerTaskDetails : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The collection of checklist items on the task.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PlannerChecklistItems? Checklist { get; set; }
+        public ApiSdk.Models.PlannerChecklistItems? Checklist { get; set; }
 #nullable restore
 #else
-        public PlannerChecklistItems Checklist { get; set; }
+        public ApiSdk.Models.PlannerChecklistItems Checklist { get; set; }
 #endif
         /// <summary>Description of the task.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -27,24 +27,24 @@ namespace ApiSdk.Models
         public string Description { get; set; }
 #endif
         /// <summary>This sets the type of preview that shows up on the task. The possible values are: automatic, noPreview, checklist, description, reference. When set to automatic the displayed preview is chosen by the app viewing the task.</summary>
-        public PlannerPreviewType? PreviewType { get; set; }
+        public ApiSdk.Models.PlannerPreviewType? PreviewType { get; set; }
         /// <summary>The collection of references on the task.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PlannerExternalReferences? References { get; set; }
+        public ApiSdk.Models.PlannerExternalReferences? References { get; set; }
 #nullable restore
 #else
-        public PlannerExternalReferences References { get; set; }
+        public ApiSdk.Models.PlannerExternalReferences References { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PlannerTaskDetails"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PlannerTaskDetails"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PlannerTaskDetails CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PlannerTaskDetails CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PlannerTaskDetails();
+            return new ApiSdk.Models.PlannerTaskDetails();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,10 +54,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "checklist", n => { Checklist = n.GetObjectValue<PlannerChecklistItems>(PlannerChecklistItems.CreateFromDiscriminatorValue); } },
+                { "checklist", n => { Checklist = n.GetObjectValue<ApiSdk.Models.PlannerChecklistItems>(ApiSdk.Models.PlannerChecklistItems.CreateFromDiscriminatorValue); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "previewType", n => { PreviewType = n.GetEnumValue<PlannerPreviewType>(); } },
-                { "references", n => { References = n.GetObjectValue<PlannerExternalReferences>(PlannerExternalReferences.CreateFromDiscriminatorValue); } },
+                { "previewType", n => { PreviewType = n.GetEnumValue<ApiSdk.Models.PlannerPreviewType>(); } },
+                { "references", n => { References = n.GetObjectValue<ApiSdk.Models.PlannerExternalReferences>(ApiSdk.Models.PlannerExternalReferences.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -68,10 +68,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<PlannerChecklistItems>("checklist", Checklist);
+            writer.WriteObjectValue<ApiSdk.Models.PlannerChecklistItems>("checklist", Checklist);
             writer.WriteStringValue("description", Description);
-            writer.WriteEnumValue<PlannerPreviewType>("previewType", PreviewType);
-            writer.WriteObjectValue<PlannerExternalReferences>("references", References);
+            writer.WriteEnumValue<ApiSdk.Models.PlannerPreviewType>("previewType", PreviewType);
+            writer.WriteObjectValue<ApiSdk.Models.PlannerExternalReferences>("references", References);
         }
     }
 }

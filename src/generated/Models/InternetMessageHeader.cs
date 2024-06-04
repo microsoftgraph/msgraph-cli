@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="InternetMessageHeader"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.InternetMessageHeader"/> and sets the default values.
         /// </summary>
         public InternetMessageHeader()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="InternetMessageHeader"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.InternetMessageHeader"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static InternetMessageHeader CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.InternetMessageHeader CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new InternetMessageHeader();
+            return new ApiSdk.Models.InternetMessageHeader();
         }
         /// <summary>
         /// The deserialization information for the current model

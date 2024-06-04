@@ -124,7 +124,7 @@ namespace ApiSdk.DeviceManagement.ConditionalAccessSettings
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<OnPremisesConditionalAccessSettings>(OnPremisesConditionalAccessSettings.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.OnPremisesConditionalAccessSettings>(ApiSdk.Models.OnPremisesConditionalAccessSettings.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -144,14 +144,14 @@ namespace ApiSdk.DeviceManagement.ConditionalAccessSettings
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ConditionalAccessSettingsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ConditionalAccessSettings.ConditionalAccessSettingsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ConditionalAccessSettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/conditionalAccessSettings{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ConditionalAccessSettingsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ConditionalAccessSettings.ConditionalAccessSettingsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ConditionalAccessSettingsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/conditionalAccessSettings{?%24expand,%24select}", rawUrl)
@@ -183,11 +183,11 @@ namespace ApiSdk.DeviceManagement.ConditionalAccessSettings
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ConditionalAccessSettingsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.ConditionalAccessSettings.ConditionalAccessSettingsRequestBuilder.ConditionalAccessSettingsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ConditionalAccessSettingsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.ConditionalAccessSettings.ConditionalAccessSettingsRequestBuilder.ConditionalAccessSettingsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -203,11 +203,11 @@ namespace ApiSdk.DeviceManagement.ConditionalAccessSettings
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(OnPremisesConditionalAccessSettings body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.OnPremisesConditionalAccessSettings body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(OnPremisesConditionalAccessSettings body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.OnPremisesConditionalAccessSettings body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

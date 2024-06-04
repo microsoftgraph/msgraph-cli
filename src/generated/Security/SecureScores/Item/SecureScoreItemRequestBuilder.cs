@@ -140,7 +140,7 @@ namespace ApiSdk.Security.SecureScores.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SecureScore>(SecureScore.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.SecureScore>(ApiSdk.Models.SecureScore.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -161,14 +161,14 @@ namespace ApiSdk.Security.SecureScores.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SecureScoreItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.SecureScores.Item.SecureScoreItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SecureScoreItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/secureScores/{secureScore%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SecureScoreItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.SecureScores.Item.SecureScoreItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SecureScoreItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/secureScores/{secureScore%2Did}{?%24expand,%24select}", rawUrl)
@@ -200,11 +200,11 @@ namespace ApiSdk.Security.SecureScores.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SecureScoreItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.SecureScores.Item.SecureScoreItemRequestBuilder.SecureScoreItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SecureScoreItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.SecureScores.Item.SecureScoreItemRequestBuilder.SecureScoreItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -220,11 +220,11 @@ namespace ApiSdk.Security.SecureScores.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(SecureScore body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SecureScore body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(SecureScore body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SecureScore body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

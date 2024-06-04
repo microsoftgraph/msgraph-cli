@@ -92,7 +92,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item
         {
             var command = new Command("graph-application-by-id");
             command.Description = "Casts the previous resource to application.";
-            var builder = new GraphApplicationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphApplication.GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -109,7 +109,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item
         {
             var command = new Command("graph-app-role-assignment-by-id");
             command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphAppRoleAssignment.GraphAppRoleAssignmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -126,7 +126,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item
         {
             var command = new Command("graph-endpoint-by-id");
             command.Description = "Casts the previous resource to endpoint.";
-            var builder = new GraphEndpointRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphEndpoint.GraphEndpointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -143,7 +143,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item
         {
             var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
-            var builder = new GraphGroupRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphGroup.GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -160,7 +160,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item
         {
             var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphServicePrincipal.GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -170,14 +170,14 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/ownedObjects/{directoryObject%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/ownedObjects/{directoryObject%2Did}{?%24expand,%24select}", rawUrl)
@@ -190,11 +190,11 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.DirectoryObjectItemRequestBuilder.DirectoryObjectItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.DirectoryObjectItemRequestBuilder.DirectoryObjectItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

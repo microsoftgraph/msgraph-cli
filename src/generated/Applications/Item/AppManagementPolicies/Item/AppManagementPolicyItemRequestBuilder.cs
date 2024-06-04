@@ -25,7 +25,7 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies.Item
         {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of application entities.";
-            var builder = new RefRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.AppManagementPolicies.Item.Ref.RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             foreach (var cmd in execCommands)
@@ -35,14 +35,14 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AppManagementPolicyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.AppManagementPolicies.Item.AppManagementPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AppManagementPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/appManagementPolicies/{appManagementPolicy%2Did}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AppManagementPolicyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.AppManagementPolicies.Item.AppManagementPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AppManagementPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/appManagementPolicies/{appManagementPolicy%2Did}", rawUrl)

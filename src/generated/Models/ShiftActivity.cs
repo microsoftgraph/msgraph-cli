@@ -43,9 +43,9 @@ namespace ApiSdk.Models
         /// <summary>The start date and time for the shiftActivity. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Required.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>The theme property</summary>
-        public ScheduleEntityTheme? Theme { get; set; }
+        public ApiSdk.Models.ScheduleEntityTheme? Theme { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ShiftActivity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ShiftActivity"/> and sets the default values.
         /// </summary>
         public ShiftActivity()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ShiftActivity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ShiftActivity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ShiftActivity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ShiftActivity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ShiftActivity();
+            return new ApiSdk.Models.ShiftActivity();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -75,7 +75,7 @@ namespace ApiSdk.Models
                 { "isPaid", n => { IsPaid = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
-                { "theme", n => { Theme = n.GetEnumValue<ScheduleEntityTheme>(); } },
+                { "theme", n => { Theme = n.GetEnumValue<ApiSdk.Models.ScheduleEntityTheme>(); } },
             };
         }
         /// <summary>
@@ -91,7 +91,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("isPaid", IsPaid);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
-            writer.WriteEnumValue<ScheduleEntityTheme>("theme", Theme);
+            writer.WriteEnumValue<ApiSdk.Models.ScheduleEntityTheme>("theme", Theme);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

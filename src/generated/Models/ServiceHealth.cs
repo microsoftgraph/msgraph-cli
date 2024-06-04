@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ServiceHealth : Entity, IParsable
+    public class ServiceHealth : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A collection of issues that happened on the service, with detailed information for each issue.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ServiceHealthIssue>? Issues { get; set; }
+        public List<ApiSdk.Models.ServiceHealthIssue>? Issues { get; set; }
 #nullable restore
 #else
-        public List<ServiceHealthIssue> Issues { get; set; }
+        public List<ApiSdk.Models.ServiceHealthIssue> Issues { get; set; }
 #endif
         /// <summary>The service name. Use the list healthOverviews operation to get exact string names for services subscribed by the tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -27,16 +27,16 @@ namespace ApiSdk.Models
         public string Service { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public ServiceHealthStatus? Status { get; set; }
+        public ApiSdk.Models.ServiceHealthStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ServiceHealth"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ServiceHealth"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ServiceHealth CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ServiceHealth CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ServiceHealth();
+            return new ApiSdk.Models.ServiceHealth();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,9 +46,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "issues", n => { Issues = n.GetCollectionOfObjectValues<ServiceHealthIssue>(ServiceHealthIssue.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "issues", n => { Issues = n.GetCollectionOfObjectValues<ApiSdk.Models.ServiceHealthIssue>(ApiSdk.Models.ServiceHealthIssue.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "service", n => { Service = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<ServiceHealthStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.ServiceHealthStatus>(); } },
             };
         }
         /// <summary>
@@ -59,9 +59,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ServiceHealthIssue>("issues", Issues);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ServiceHealthIssue>("issues", Issues);
             writer.WriteStringValue("service", Service);
-            writer.WriteEnumValue<ServiceHealthStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.ServiceHealthStatus>("status", Status);
         }
     }
 }

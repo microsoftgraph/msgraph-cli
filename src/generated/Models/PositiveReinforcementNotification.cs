@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PositiveReinforcementNotification : BaseEndUserNotification, IParsable
+    public class PositiveReinforcementNotification : ApiSdk.Models.BaseEndUserNotification, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Delivery preference. Possible values are: unknown, deliverImmedietly, deliverAfterCampaignEnd, unknownFutureValue.</summary>
-        public NotificationDeliveryPreference? DeliveryPreference { get; set; }
+        public ApiSdk.Models.NotificationDeliveryPreference? DeliveryPreference { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="PositiveReinforcementNotification"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PositiveReinforcementNotification"/> and sets the default values.
         /// </summary>
         public PositiveReinforcementNotification() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PositiveReinforcementNotification"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PositiveReinforcementNotification"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PositiveReinforcementNotification CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PositiveReinforcementNotification CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PositiveReinforcementNotification();
+            return new ApiSdk.Models.PositiveReinforcementNotification();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "deliveryPreference", n => { DeliveryPreference = n.GetEnumValue<NotificationDeliveryPreference>(); } },
+                { "deliveryPreference", n => { DeliveryPreference = n.GetEnumValue<ApiSdk.Models.NotificationDeliveryPreference>(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<NotificationDeliveryPreference>("deliveryPreference", DeliveryPreference);
+            writer.WriteEnumValue<ApiSdk.Models.NotificationDeliveryPreference>("deliveryPreference", DeliveryPreference);
         }
     }
 }

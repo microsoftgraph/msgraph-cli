@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// The text content of a Notification Message Template for the specified locale.
     /// </summary>
-    public class LocalizedNotificationMessage : Entity, IParsable
+    public class LocalizedNotificationMessage : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Flag to indicate whether or not this is the default locale for language fallback. This flag can only be set. To unset, set this property to true on another Localized Notification Message.</summary>
         public bool? IsDefault { get; set; }
@@ -42,12 +42,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LocalizedNotificationMessage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.LocalizedNotificationMessage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new LocalizedNotificationMessage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.LocalizedNotificationMessage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LocalizedNotificationMessage();
+            return new ApiSdk.Models.LocalizedNotificationMessage();
         }
         /// <summary>
         /// The deserialization information for the current model

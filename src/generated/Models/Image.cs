@@ -25,7 +25,7 @@ namespace ApiSdk.Models
         /// <summary>Optional. Width of the image, in pixels. Read-only.</summary>
         public int? Width { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Image"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Image"/> and sets the default values.
         /// </summary>
         public Image()
         {
@@ -34,12 +34,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Image"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Image"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Image CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Image CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Image();
+            return new ApiSdk.Models.Image();
         }
         /// <summary>
         /// The deserialization information for the current model

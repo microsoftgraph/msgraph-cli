@@ -25,7 +25,7 @@ namespace ApiSdk.Models
         /// <summary>The DateTime when the agreement is set to expire for all users. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TermsExpiration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TermsExpiration"/> and sets the default values.
         /// </summary>
         public TermsExpiration()
         {
@@ -34,12 +34,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TermsExpiration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermsExpiration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TermsExpiration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TermsExpiration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TermsExpiration();
+            return new ApiSdk.Models.TermsExpiration();
         }
         /// <summary>
         /// The deserialization information for the current model

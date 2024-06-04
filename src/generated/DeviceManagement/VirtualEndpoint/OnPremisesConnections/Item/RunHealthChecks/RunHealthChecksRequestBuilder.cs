@@ -50,14 +50,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item.Run
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RunHealthChecksRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item.RunHealthChecks.RunHealthChecksRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RunHealthChecksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/virtualEndpoint/onPremisesConnections/{cloudPcOnPremisesConnection%2Did}/runHealthChecks", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RunHealthChecksRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item.RunHealthChecks.RunHealthChecksRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RunHealthChecksRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/virtualEndpoint/onPremisesConnections/{cloudPcOnPremisesConnection%2Did}/runHealthChecks", rawUrl)

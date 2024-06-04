@@ -48,10 +48,10 @@ namespace ApiSdk.Models
         /// <summary>Logo image displayed in Company Portal apps which have a dark background behind the logo.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MimeContent? DarkBackgroundLogo { get; set; }
+        public ApiSdk.Models.MimeContent? DarkBackgroundLogo { get; set; }
 #nullable restore
 #else
-        public MimeContent DarkBackgroundLogo { get; set; }
+        public ApiSdk.Models.MimeContent DarkBackgroundLogo { get; set; }
 #endif
         /// <summary>Company/organization name that is displayed to end users.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -64,10 +64,10 @@ namespace ApiSdk.Models
         /// <summary>Logo image displayed in Company Portal apps which have a light background behind the logo.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MimeContent? LightBackgroundLogo { get; set; }
+        public ApiSdk.Models.MimeContent? LightBackgroundLogo { get; set; }
 #nullable restore
 #else
-        public MimeContent LightBackgroundLogo { get; set; }
+        public ApiSdk.Models.MimeContent LightBackgroundLogo { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -110,13 +110,13 @@ namespace ApiSdk.Models
         /// <summary>Primary theme color used in the Company Portal applications and web portal.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RgbColor? ThemeColor { get; set; }
+        public ApiSdk.Models.RgbColor? ThemeColor { get; set; }
 #nullable restore
 #else
-        public RgbColor ThemeColor { get; set; }
+        public ApiSdk.Models.RgbColor ThemeColor { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IntuneBrand"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IntuneBrand"/> and sets the default values.
         /// </summary>
         public IntuneBrand()
         {
@@ -125,12 +125,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IntuneBrand"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IntuneBrand"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IntuneBrand CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IntuneBrand CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IntuneBrand();
+            return new ApiSdk.Models.IntuneBrand();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -144,9 +144,9 @@ namespace ApiSdk.Models
                 { "contactITName", n => { ContactITName = n.GetStringValue(); } },
                 { "contactITNotes", n => { ContactITNotes = n.GetStringValue(); } },
                 { "contactITPhoneNumber", n => { ContactITPhoneNumber = n.GetStringValue(); } },
-                { "darkBackgroundLogo", n => { DarkBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
+                { "darkBackgroundLogo", n => { DarkBackgroundLogo = n.GetObjectValue<ApiSdk.Models.MimeContent>(ApiSdk.Models.MimeContent.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "lightBackgroundLogo", n => { LightBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
+                { "lightBackgroundLogo", n => { LightBackgroundLogo = n.GetObjectValue<ApiSdk.Models.MimeContent>(ApiSdk.Models.MimeContent.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "onlineSupportSiteName", n => { OnlineSupportSiteName = n.GetStringValue(); } },
                 { "onlineSupportSiteUrl", n => { OnlineSupportSiteUrl = n.GetStringValue(); } },
@@ -154,7 +154,7 @@ namespace ApiSdk.Models
                 { "showDisplayNameNextToLogo", n => { ShowDisplayNameNextToLogo = n.GetBoolValue(); } },
                 { "showLogo", n => { ShowLogo = n.GetBoolValue(); } },
                 { "showNameNextToLogo", n => { ShowNameNextToLogo = n.GetBoolValue(); } },
-                { "themeColor", n => { ThemeColor = n.GetObjectValue<RgbColor>(RgbColor.CreateFromDiscriminatorValue); } },
+                { "themeColor", n => { ThemeColor = n.GetObjectValue<ApiSdk.Models.RgbColor>(ApiSdk.Models.RgbColor.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -168,9 +168,9 @@ namespace ApiSdk.Models
             writer.WriteStringValue("contactITName", ContactITName);
             writer.WriteStringValue("contactITNotes", ContactITNotes);
             writer.WriteStringValue("contactITPhoneNumber", ContactITPhoneNumber);
-            writer.WriteObjectValue<MimeContent>("darkBackgroundLogo", DarkBackgroundLogo);
+            writer.WriteObjectValue<ApiSdk.Models.MimeContent>("darkBackgroundLogo", DarkBackgroundLogo);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<MimeContent>("lightBackgroundLogo", LightBackgroundLogo);
+            writer.WriteObjectValue<ApiSdk.Models.MimeContent>("lightBackgroundLogo", LightBackgroundLogo);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("onlineSupportSiteName", OnlineSupportSiteName);
             writer.WriteStringValue("onlineSupportSiteUrl", OnlineSupportSiteUrl);
@@ -178,7 +178,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("showDisplayNameNextToLogo", ShowDisplayNameNextToLogo);
             writer.WriteBoolValue("showLogo", ShowLogo);
             writer.WriteBoolValue("showNameNextToLogo", ShowNameNextToLogo);
-            writer.WriteObjectValue<RgbColor>("themeColor", ThemeColor);
+            writer.WriteObjectValue<ApiSdk.Models.RgbColor>("themeColor", ThemeColor);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

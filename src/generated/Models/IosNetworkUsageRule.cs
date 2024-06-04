@@ -20,10 +20,10 @@ namespace ApiSdk.Models
         /// <summary>Information about the managed apps that this rule is going to apply to. This collection can contain a maximum of 500 elements.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppListItem>? ManagedApps { get; set; }
+        public List<ApiSdk.Models.AppListItem>? ManagedApps { get; set; }
 #nullable restore
 #else
-        public List<AppListItem> ManagedApps { get; set; }
+        public List<ApiSdk.Models.AppListItem> ManagedApps { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +34,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IosNetworkUsageRule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IosNetworkUsageRule"/> and sets the default values.
         /// </summary>
         public IosNetworkUsageRule()
         {
@@ -43,12 +43,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosNetworkUsageRule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosNetworkUsageRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IosNetworkUsageRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IosNetworkUsageRule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IosNetworkUsageRule();
+            return new ApiSdk.Models.IosNetworkUsageRule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,7 +60,7 @@ namespace ApiSdk.Models
             {
                 { "cellularDataBlockWhenRoaming", n => { CellularDataBlockWhenRoaming = n.GetBoolValue(); } },
                 { "cellularDataBlocked", n => { CellularDataBlocked = n.GetBoolValue(); } },
-                { "managedApps", n => { ManagedApps = n.GetCollectionOfObjectValues<AppListItem>(AppListItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "managedApps", n => { ManagedApps = n.GetCollectionOfObjectValues<ApiSdk.Models.AppListItem>(ApiSdk.Models.AppListItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -73,7 +73,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("cellularDataBlocked", CellularDataBlocked);
             writer.WriteBoolValue("cellularDataBlockWhenRoaming", CellularDataBlockWhenRoaming);
-            writer.WriteCollectionOfObjectValues<AppListItem>("managedApps", ManagedApps);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppListItem>("managedApps", ManagedApps);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class BlobEvidence : AlertEvidence, IParsable
+    public class BlobEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The container which the blob belongs to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public BlobContainerEvidence? BlobContainer { get; set; }
+        public ApiSdk.Models.Security.BlobContainerEvidence? BlobContainer { get; set; }
 #nullable restore
 #else
-        public BlobContainerEvidence BlobContainer { get; set; }
+        public ApiSdk.Models.Security.BlobContainerEvidence BlobContainer { get; set; }
 #endif
         /// <summary>The Etag associated with this blob.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,10 +29,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The file hashes associated with this blob.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<FileHash>? FileHashes { get; set; }
+        public List<ApiSdk.Models.Security.FileHash>? FileHashes { get; set; }
 #nullable restore
 #else
-        public List<FileHash> FileHashes { get; set; }
+        public List<ApiSdk.Models.Security.FileHash> FileHashes { get; set; }
 #endif
         /// <summary>The name of the blob.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -51,7 +51,7 @@ namespace ApiSdk.Models.Security
         public string Url { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="BlobEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.BlobEvidence"/> and sets the default values.
         /// </summary>
         public BlobEvidence() : base()
         {
@@ -60,12 +60,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BlobEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.BlobEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new BlobEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.BlobEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BlobEvidence();
+            return new ApiSdk.Models.Security.BlobEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -75,9 +75,9 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "blobContainer", n => { BlobContainer = n.GetObjectValue<BlobContainerEvidence>(BlobContainerEvidence.CreateFromDiscriminatorValue); } },
+                { "blobContainer", n => { BlobContainer = n.GetObjectValue<ApiSdk.Models.Security.BlobContainerEvidence>(ApiSdk.Models.Security.BlobContainerEvidence.CreateFromDiscriminatorValue); } },
                 { "etag", n => { Etag = n.GetStringValue(); } },
-                { "fileHashes", n => { FileHashes = n.GetCollectionOfObjectValues<FileHash>(FileHash.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "fileHashes", n => { FileHashes = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.FileHash>(ApiSdk.Models.Security.FileHash.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
             };
@@ -90,9 +90,9 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<BlobContainerEvidence>("blobContainer", BlobContainer);
+            writer.WriteObjectValue<ApiSdk.Models.Security.BlobContainerEvidence>("blobContainer", BlobContainer);
             writer.WriteStringValue("etag", Etag);
-            writer.WriteCollectionOfObjectValues<FileHash>("fileHashes", FileHashes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.FileHash>("fileHashes", FileHashes);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("url", Url);
         }

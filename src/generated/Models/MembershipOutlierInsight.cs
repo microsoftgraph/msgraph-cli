@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class MembershipOutlierInsight : GovernanceInsight, IParsable
+    public class MembershipOutlierInsight : ApiSdk.Models.GovernanceInsight, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Navigation link to the container directory object. For example, to a group.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DirectoryObject? Container { get; set; }
+        public ApiSdk.Models.DirectoryObject? Container { get; set; }
 #nullable restore
 #else
-        public DirectoryObject Container { get; set; }
+        public ApiSdk.Models.DirectoryObject Container { get; set; }
 #endif
         /// <summary>Indicates the identifier of the container, for example, a group ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,18 +29,18 @@ namespace ApiSdk.Models
         /// <summary>Navigation link to a member object who modified the record. For example, to a user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public User? LastModifiedBy { get; set; }
+        public ApiSdk.Models.User? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public User LastModifiedBy { get; set; }
+        public ApiSdk.Models.User LastModifiedBy { get; set; }
 #endif
         /// <summary>Navigation link to a member object. For example, to a user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DirectoryObject? Member { get; set; }
+        public ApiSdk.Models.DirectoryObject? Member { get; set; }
 #nullable restore
 #else
-        public DirectoryObject Member { get; set; }
+        public ApiSdk.Models.DirectoryObject Member { get; set; }
 #endif
         /// <summary>Indicates the identifier of the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
         /// <summary>The outlierMemberType property</summary>
         public ApiSdk.Models.OutlierMemberType? OutlierMemberType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MembershipOutlierInsight"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MembershipOutlierInsight"/> and sets the default values.
         /// </summary>
         public MembershipOutlierInsight() : base()
         {
@@ -64,12 +64,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MembershipOutlierInsight"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MembershipOutlierInsight"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MembershipOutlierInsight CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MembershipOutlierInsight CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MembershipOutlierInsight();
+            return new ApiSdk.Models.MembershipOutlierInsight();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,13 +79,13 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "container", n => { Container = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
+                { "container", n => { Container = n.GetObjectValue<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue); } },
                 { "containerId", n => { ContainerId = n.GetStringValue(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<User>(User.CreateFromDiscriminatorValue); } },
-                { "member", n => { Member = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
+                { "member", n => { Member = n.GetObjectValue<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue); } },
                 { "memberId", n => { MemberId = n.GetStringValue(); } },
-                { "outlierContainerType", n => { OutlierContainerType = n.GetEnumValue<OutlierContainerType>(); } },
-                { "outlierMemberType", n => { OutlierMemberType = n.GetEnumValue<OutlierMemberType>(); } },
+                { "outlierContainerType", n => { OutlierContainerType = n.GetEnumValue<ApiSdk.Models.OutlierContainerType>(); } },
+                { "outlierMemberType", n => { OutlierMemberType = n.GetEnumValue<ApiSdk.Models.OutlierMemberType>(); } },
             };
         }
         /// <summary>
@@ -96,13 +96,13 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<DirectoryObject>("container", Container);
+            writer.WriteObjectValue<ApiSdk.Models.DirectoryObject>("container", Container);
             writer.WriteStringValue("containerId", ContainerId);
-            writer.WriteObjectValue<User>("lastModifiedBy", LastModifiedBy);
-            writer.WriteObjectValue<DirectoryObject>("member", Member);
+            writer.WriteObjectValue<ApiSdk.Models.User>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.DirectoryObject>("member", Member);
             writer.WriteStringValue("memberId", MemberId);
-            writer.WriteEnumValue<OutlierContainerType>("outlierContainerType", OutlierContainerType);
-            writer.WriteEnumValue<OutlierMemberType>("outlierMemberType", OutlierMemberType);
+            writer.WriteEnumValue<ApiSdk.Models.OutlierContainerType>("outlierContainerType", OutlierContainerType);
+            writer.WriteEnumValue<ApiSdk.Models.OutlierMemberType>("outlierMemberType", OutlierMemberType);
         }
     }
 }

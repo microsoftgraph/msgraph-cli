@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Entity which represents a connection to device management partner.
     /// </summary>
-    public class DeviceManagementPartner : Entity, IParsable
+    public class DeviceManagementPartner : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Partner display name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,19 +22,19 @@ namespace ApiSdk.Models
         /// <summary>User groups that specifies whether enrollment is through partner.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DeviceManagementPartnerAssignment>? GroupsRequiringPartnerEnrollment { get; set; }
+        public List<ApiSdk.Models.DeviceManagementPartnerAssignment>? GroupsRequiringPartnerEnrollment { get; set; }
 #nullable restore
 #else
-        public List<DeviceManagementPartnerAssignment> GroupsRequiringPartnerEnrollment { get; set; }
+        public List<ApiSdk.Models.DeviceManagementPartnerAssignment> GroupsRequiringPartnerEnrollment { get; set; }
 #endif
         /// <summary>Whether device management partner is configured or not</summary>
         public bool? IsConfigured { get; set; }
         /// <summary>Timestamp of last heartbeat after admin enabled option Connect to Device management Partner</summary>
         public DateTimeOffset? LastHeartbeatDateTime { get; set; }
         /// <summary>Partner App Type.</summary>
-        public DeviceManagementPartnerAppType? PartnerAppType { get; set; }
+        public ApiSdk.Models.DeviceManagementPartnerAppType? PartnerAppType { get; set; }
         /// <summary>Partner state of this tenant.</summary>
-        public DeviceManagementPartnerTenantState? PartnerState { get; set; }
+        public ApiSdk.Models.DeviceManagementPartnerTenantState? PartnerState { get; set; }
         /// <summary>Partner Single tenant App id</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -50,12 +50,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceManagementPartner"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceManagementPartner"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceManagementPartner CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceManagementPartner CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceManagementPartner();
+            return new ApiSdk.Models.DeviceManagementPartner();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,11 +66,11 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "groupsRequiringPartnerEnrollment", n => { GroupsRequiringPartnerEnrollment = n.GetCollectionOfObjectValues<DeviceManagementPartnerAssignment>(DeviceManagementPartnerAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "groupsRequiringPartnerEnrollment", n => { GroupsRequiringPartnerEnrollment = n.GetCollectionOfObjectValues<ApiSdk.Models.DeviceManagementPartnerAssignment>(ApiSdk.Models.DeviceManagementPartnerAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isConfigured", n => { IsConfigured = n.GetBoolValue(); } },
                 { "lastHeartbeatDateTime", n => { LastHeartbeatDateTime = n.GetDateTimeOffsetValue(); } },
-                { "partnerAppType", n => { PartnerAppType = n.GetEnumValue<DeviceManagementPartnerAppType>(); } },
-                { "partnerState", n => { PartnerState = n.GetEnumValue<DeviceManagementPartnerTenantState>(); } },
+                { "partnerAppType", n => { PartnerAppType = n.GetEnumValue<ApiSdk.Models.DeviceManagementPartnerAppType>(); } },
+                { "partnerState", n => { PartnerState = n.GetEnumValue<ApiSdk.Models.DeviceManagementPartnerTenantState>(); } },
                 { "singleTenantAppId", n => { SingleTenantAppId = n.GetStringValue(); } },
                 { "whenPartnerDevicesWillBeMarkedAsNonCompliantDateTime", n => { WhenPartnerDevicesWillBeMarkedAsNonCompliantDateTime = n.GetDateTimeOffsetValue(); } },
                 { "whenPartnerDevicesWillBeRemovedDateTime", n => { WhenPartnerDevicesWillBeRemovedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -85,11 +85,11 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<DeviceManagementPartnerAssignment>("groupsRequiringPartnerEnrollment", GroupsRequiringPartnerEnrollment);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DeviceManagementPartnerAssignment>("groupsRequiringPartnerEnrollment", GroupsRequiringPartnerEnrollment);
             writer.WriteBoolValue("isConfigured", IsConfigured);
             writer.WriteDateTimeOffsetValue("lastHeartbeatDateTime", LastHeartbeatDateTime);
-            writer.WriteEnumValue<DeviceManagementPartnerAppType>("partnerAppType", PartnerAppType);
-            writer.WriteEnumValue<DeviceManagementPartnerTenantState>("partnerState", PartnerState);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceManagementPartnerAppType>("partnerAppType", PartnerAppType);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceManagementPartnerTenantState>("partnerState", PartnerState);
             writer.WriteStringValue("singleTenantAppId", SingleTenantAppId);
             writer.WriteDateTimeOffsetValue("whenPartnerDevicesWillBeMarkedAsNonCompliantDateTime", WhenPartnerDevicesWillBeMarkedAsNonCompliantDateTime);
             writer.WriteDateTimeOffsetValue("whenPartnerDevicesWillBeRemovedDateTime", WhenPartnerDevicesWillBeRemovedDateTime);

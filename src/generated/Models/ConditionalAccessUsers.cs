@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>Internal guests or external users excluded from the policy scope. Optionally populated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ConditionalAccessGuestsOrExternalUsers? ExcludeGuestsOrExternalUsers { get; set; }
+        public ApiSdk.Models.ConditionalAccessGuestsOrExternalUsers? ExcludeGuestsOrExternalUsers { get; set; }
 #nullable restore
 #else
-        public ConditionalAccessGuestsOrExternalUsers ExcludeGuestsOrExternalUsers { get; set; }
+        public ApiSdk.Models.ConditionalAccessGuestsOrExternalUsers ExcludeGuestsOrExternalUsers { get; set; }
 #endif
         /// <summary>Role IDs excluded from scope of policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,10 +55,10 @@ namespace ApiSdk.Models
         /// <summary>Internal guests or external users included in the policy scope. Optionally populated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ConditionalAccessGuestsOrExternalUsers? IncludeGuestsOrExternalUsers { get; set; }
+        public ApiSdk.Models.ConditionalAccessGuestsOrExternalUsers? IncludeGuestsOrExternalUsers { get; set; }
 #nullable restore
 #else
-        public ConditionalAccessGuestsOrExternalUsers IncludeGuestsOrExternalUsers { get; set; }
+        public ApiSdk.Models.ConditionalAccessGuestsOrExternalUsers IncludeGuestsOrExternalUsers { get; set; }
 #endif
         /// <summary>Role IDs in scope of policy unless explicitly excluded.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -85,7 +85,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ConditionalAccessUsers"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ConditionalAccessUsers"/> and sets the default values.
         /// </summary>
         public ConditionalAccessUsers()
         {
@@ -94,12 +94,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConditionalAccessUsers"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConditionalAccessUsers"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ConditionalAccessUsers CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ConditionalAccessUsers CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConditionalAccessUsers();
+            return new ApiSdk.Models.ConditionalAccessUsers();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -110,11 +110,11 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "excludeGroups", n => { ExcludeGroups = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "excludeGuestsOrExternalUsers", n => { ExcludeGuestsOrExternalUsers = n.GetObjectValue<ConditionalAccessGuestsOrExternalUsers>(ConditionalAccessGuestsOrExternalUsers.CreateFromDiscriminatorValue); } },
+                { "excludeGuestsOrExternalUsers", n => { ExcludeGuestsOrExternalUsers = n.GetObjectValue<ApiSdk.Models.ConditionalAccessGuestsOrExternalUsers>(ApiSdk.Models.ConditionalAccessGuestsOrExternalUsers.CreateFromDiscriminatorValue); } },
                 { "excludeRoles", n => { ExcludeRoles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "excludeUsers", n => { ExcludeUsers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "includeGroups", n => { IncludeGroups = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "includeGuestsOrExternalUsers", n => { IncludeGuestsOrExternalUsers = n.GetObjectValue<ConditionalAccessGuestsOrExternalUsers>(ConditionalAccessGuestsOrExternalUsers.CreateFromDiscriminatorValue); } },
+                { "includeGuestsOrExternalUsers", n => { IncludeGuestsOrExternalUsers = n.GetObjectValue<ApiSdk.Models.ConditionalAccessGuestsOrExternalUsers>(ApiSdk.Models.ConditionalAccessGuestsOrExternalUsers.CreateFromDiscriminatorValue); } },
                 { "includeRoles", n => { IncludeRoles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "includeUsers", n => { IncludeUsers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
@@ -128,11 +128,11 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("excludeGroups", ExcludeGroups);
-            writer.WriteObjectValue<ConditionalAccessGuestsOrExternalUsers>("excludeGuestsOrExternalUsers", ExcludeGuestsOrExternalUsers);
+            writer.WriteObjectValue<ApiSdk.Models.ConditionalAccessGuestsOrExternalUsers>("excludeGuestsOrExternalUsers", ExcludeGuestsOrExternalUsers);
             writer.WriteCollectionOfPrimitiveValues<string>("excludeRoles", ExcludeRoles);
             writer.WriteCollectionOfPrimitiveValues<string>("excludeUsers", ExcludeUsers);
             writer.WriteCollectionOfPrimitiveValues<string>("includeGroups", IncludeGroups);
-            writer.WriteObjectValue<ConditionalAccessGuestsOrExternalUsers>("includeGuestsOrExternalUsers", IncludeGuestsOrExternalUsers);
+            writer.WriteObjectValue<ApiSdk.Models.ConditionalAccessGuestsOrExternalUsers>("includeGuestsOrExternalUsers", IncludeGuestsOrExternalUsers);
             writer.WriteCollectionOfPrimitiveValues<string>("includeRoles", IncludeRoles);
             writer.WriteCollectionOfPrimitiveValues<string>("includeUsers", IncludeUsers);
             writer.WriteStringValue("@odata.type", OdataType);

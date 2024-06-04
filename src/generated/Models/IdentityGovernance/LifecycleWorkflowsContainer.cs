@@ -13,10 +13,10 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>The customTaskExtension instance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CustomTaskExtension>? CustomTaskExtensions { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.CustomTaskExtension>? CustomTaskExtensions { get; set; }
 #nullable restore
 #else
-        public List<CustomTaskExtension> CustomTaskExtensions { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.CustomTaskExtension> CustomTaskExtensions { get; set; }
 #endif
         /// <summary>Deleted workflows in your lifecycle workflows instance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,44 +29,44 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>The settings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public LifecycleManagementSettings? Settings { get; set; }
+        public ApiSdk.Models.IdentityGovernance.LifecycleManagementSettings? Settings { get; set; }
 #nullable restore
 #else
-        public LifecycleManagementSettings Settings { get; set; }
+        public ApiSdk.Models.IdentityGovernance.LifecycleManagementSettings Settings { get; set; }
 #endif
         /// <summary>The definition of tasks within the lifecycle workflows instance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TaskDefinition>? TaskDefinitions { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.TaskDefinition>? TaskDefinitions { get; set; }
 #nullable restore
 #else
-        public List<TaskDefinition> TaskDefinitions { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.TaskDefinition> TaskDefinitions { get; set; }
 #endif
         /// <summary>The workflows in the lifecycle workflows instance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Workflow>? Workflows { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.Workflow>? Workflows { get; set; }
 #nullable restore
 #else
-        public List<Workflow> Workflows { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.Workflow> Workflows { get; set; }
 #endif
         /// <summary>The workflow templates in the lifecycle workflow instance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkflowTemplate>? WorkflowTemplates { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.WorkflowTemplate>? WorkflowTemplates { get; set; }
 #nullable restore
 #else
-        public List<WorkflowTemplate> WorkflowTemplates { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.WorkflowTemplate> WorkflowTemplates { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LifecycleWorkflowsContainer"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.LifecycleWorkflowsContainer"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new LifecycleWorkflowsContainer CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.LifecycleWorkflowsContainer CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LifecycleWorkflowsContainer();
+            return new ApiSdk.Models.IdentityGovernance.LifecycleWorkflowsContainer();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,12 +76,12 @@ namespace ApiSdk.Models.IdentityGovernance
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "customTaskExtensions", n => { CustomTaskExtensions = n.GetCollectionOfObjectValues<CustomTaskExtension>(CustomTaskExtension.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "customTaskExtensions", n => { CustomTaskExtensions = n.GetCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.CustomTaskExtension>(ApiSdk.Models.IdentityGovernance.CustomTaskExtension.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "deletedItems", n => { DeletedItems = n.GetObjectValue<ApiSdk.Models.DeletedItemContainer>(ApiSdk.Models.DeletedItemContainer.CreateFromDiscriminatorValue); } },
-                { "settings", n => { Settings = n.GetObjectValue<LifecycleManagementSettings>(LifecycleManagementSettings.CreateFromDiscriminatorValue); } },
-                { "taskDefinitions", n => { TaskDefinitions = n.GetCollectionOfObjectValues<TaskDefinition>(TaskDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "workflowTemplates", n => { WorkflowTemplates = n.GetCollectionOfObjectValues<WorkflowTemplate>(WorkflowTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "workflows", n => { Workflows = n.GetCollectionOfObjectValues<Workflow>(Workflow.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "settings", n => { Settings = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.LifecycleManagementSettings>(ApiSdk.Models.IdentityGovernance.LifecycleManagementSettings.CreateFromDiscriminatorValue); } },
+                { "taskDefinitions", n => { TaskDefinitions = n.GetCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.TaskDefinition>(ApiSdk.Models.IdentityGovernance.TaskDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "workflowTemplates", n => { WorkflowTemplates = n.GetCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.WorkflowTemplate>(ApiSdk.Models.IdentityGovernance.WorkflowTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "workflows", n => { Workflows = n.GetCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.Workflow>(ApiSdk.Models.IdentityGovernance.Workflow.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -92,12 +92,12 @@ namespace ApiSdk.Models.IdentityGovernance
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<CustomTaskExtension>("customTaskExtensions", CustomTaskExtensions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.CustomTaskExtension>("customTaskExtensions", CustomTaskExtensions);
             writer.WriteObjectValue<ApiSdk.Models.DeletedItemContainer>("deletedItems", DeletedItems);
-            writer.WriteObjectValue<LifecycleManagementSettings>("settings", Settings);
-            writer.WriteCollectionOfObjectValues<TaskDefinition>("taskDefinitions", TaskDefinitions);
-            writer.WriteCollectionOfObjectValues<Workflow>("workflows", Workflows);
-            writer.WriteCollectionOfObjectValues<WorkflowTemplate>("workflowTemplates", WorkflowTemplates);
+            writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.LifecycleManagementSettings>("settings", Settings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.TaskDefinition>("taskDefinitions", TaskDefinitions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.Workflow>("workflows", Workflows);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.WorkflowTemplate>("workflowTemplates", WorkflowTemplates);
         }
     }
 }

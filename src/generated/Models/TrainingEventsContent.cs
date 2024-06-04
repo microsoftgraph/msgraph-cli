@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>List of assigned trainings and their information in an attack simulation and training campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AssignedTrainingInfo>? AssignedTrainingsInfos { get; set; }
+        public List<ApiSdk.Models.AssignedTrainingInfo>? AssignedTrainingsInfos { get; set; }
 #nullable restore
 #else
-        public List<AssignedTrainingInfo> AssignedTrainingsInfos { get; set; }
+        public List<ApiSdk.Models.AssignedTrainingInfo> AssignedTrainingsInfos { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         /// <summary>Number of users who were assigned trainings in an attack simulation and training campaign.</summary>
         public int? TrainingsAssignedUserCount { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TrainingEventsContent"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TrainingEventsContent"/> and sets the default values.
         /// </summary>
         public TrainingEventsContent()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TrainingEventsContent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TrainingEventsContent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TrainingEventsContent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TrainingEventsContent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TrainingEventsContent();
+            return new ApiSdk.Models.TrainingEventsContent();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "assignedTrainingsInfos", n => { AssignedTrainingsInfos = n.GetCollectionOfObjectValues<AssignedTrainingInfo>(AssignedTrainingInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignedTrainingsInfos", n => { AssignedTrainingsInfos = n.GetCollectionOfObjectValues<ApiSdk.Models.AssignedTrainingInfo>(ApiSdk.Models.AssignedTrainingInfo.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "trainingsAssignedUserCount", n => { TrainingsAssignedUserCount = n.GetIntValue(); } },
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<AssignedTrainingInfo>("assignedTrainingsInfos", AssignedTrainingsInfos);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AssignedTrainingInfo>("assignedTrainingsInfos", AssignedTrainingsInfos);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("trainingsAssignedUserCount", TrainingsAssignedUserCount);
             writer.WriteAdditionalData(AdditionalData);

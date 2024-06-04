@@ -16,13 +16,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImAbs
         /// <summary>The inumber property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Inumber { get; set; }
+        public ApiSdk.Models.Json? Inumber { get; set; }
 #nullable restore
 #else
-        public Json Inumber { get; set; }
+        public ApiSdk.Models.Json Inumber { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ImAbsPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImAbs.ImAbsPostRequestBody"/> and sets the default values.
         /// </summary>
         public ImAbsPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImAbs
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ImAbsPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImAbs.ImAbsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ImAbsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImAbs.ImAbsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ImAbsPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImAbs.ImAbsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImAbs
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "inumber", n => { Inumber = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "inumber", n => { Inumber = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImAbs
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("inumber", Inumber);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("inumber", Inumber);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

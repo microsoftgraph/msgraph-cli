@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Collection of the certification controls associated with the certification.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CertificationControl>? CertificationControls { get; set; }
+        public List<ApiSdk.Models.CertificationControl>? CertificationControls { get; set; }
 #nullable restore
 #else
-        public List<CertificationControl> CertificationControls { get; set; }
+        public List<ApiSdk.Models.CertificationControl> CertificationControls { get; set; }
 #endif
         /// <summary>The name of the compliance certification, for example, ISO 27018:2014, GDPR, FedRAMP, and NIST 800-171.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ComplianceInformation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ComplianceInformation"/> and sets the default values.
         /// </summary>
         public ComplianceInformation()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ComplianceInformation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ComplianceInformation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ComplianceInformation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ComplianceInformation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ComplianceInformation();
+            return new ApiSdk.Models.ComplianceInformation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "certificationControls", n => { CertificationControls = n.GetCollectionOfObjectValues<CertificationControl>(CertificationControl.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "certificationControls", n => { CertificationControls = n.GetCollectionOfObjectValues<ApiSdk.Models.CertificationControl>(ApiSdk.Models.CertificationControl.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "certificationName", n => { CertificationName = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -73,7 +73,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<CertificationControl>("certificationControls", CertificationControls);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CertificationControl>("certificationControls", CertificationControls);
             writer.WriteStringValue("certificationName", CertificationName);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

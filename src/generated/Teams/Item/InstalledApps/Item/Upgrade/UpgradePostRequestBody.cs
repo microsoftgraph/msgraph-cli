@@ -16,13 +16,13 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade
         /// <summary>The consentedPermissionSet property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamsAppPermissionSet? ConsentedPermissionSet { get; set; }
+        public ApiSdk.Models.TeamsAppPermissionSet? ConsentedPermissionSet { get; set; }
 #nullable restore
 #else
-        public TeamsAppPermissionSet ConsentedPermissionSet { get; set; }
+        public ApiSdk.Models.TeamsAppPermissionSet ConsentedPermissionSet { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UpgradePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teams.Item.InstalledApps.Item.Upgrade.UpgradePostRequestBody"/> and sets the default values.
         /// </summary>
         public UpgradePostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UpgradePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Teams.Item.InstalledApps.Item.Upgrade.UpgradePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UpgradePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Teams.Item.InstalledApps.Item.Upgrade.UpgradePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UpgradePostRequestBody();
+            return new ApiSdk.Teams.Item.InstalledApps.Item.Upgrade.UpgradePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "consentedPermissionSet", n => { ConsentedPermissionSet = n.GetObjectValue<TeamsAppPermissionSet>(TeamsAppPermissionSet.CreateFromDiscriminatorValue); } },
+                { "consentedPermissionSet", n => { ConsentedPermissionSet = n.GetObjectValue<ApiSdk.Models.TeamsAppPermissionSet>(ApiSdk.Models.TeamsAppPermissionSet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<TeamsAppPermissionSet>("consentedPermissionSet", ConsentedPermissionSet);
+            writer.WriteObjectValue<ApiSdk.Models.TeamsAppPermissionSet>("consentedPermissionSet", ConsentedPermissionSet);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class GoogleCloudResourceEvidence : AlertEvidence, IParsable
+    public class GoogleCloudResourceEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The fullResourceName property</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Security
         public string Location { get; set; }
 #endif
         /// <summary>The type of location. Possible values are: unknown, regional, zonal, global, unknownFutureValue.</summary>
-        public GoogleCloudLocationType? LocationType { get; set; }
+        public ApiSdk.Models.Security.GoogleCloudLocationType? LocationType { get; set; }
         /// <summary>The Google project ID as defined by the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -55,7 +55,7 @@ namespace ApiSdk.Models.Security
         public string ResourceType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="GoogleCloudResourceEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.GoogleCloudResourceEvidence"/> and sets the default values.
         /// </summary>
         public GoogleCloudResourceEvidence() : base()
         {
@@ -64,12 +64,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GoogleCloudResourceEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.GoogleCloudResourceEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GoogleCloudResourceEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.GoogleCloudResourceEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GoogleCloudResourceEvidence();
+            return new ApiSdk.Models.Security.GoogleCloudResourceEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -81,7 +81,7 @@ namespace ApiSdk.Models.Security
             {
                 { "fullResourceName", n => { FullResourceName = n.GetStringValue(); } },
                 { "location", n => { Location = n.GetStringValue(); } },
-                { "locationType", n => { LocationType = n.GetEnumValue<GoogleCloudLocationType>(); } },
+                { "locationType", n => { LocationType = n.GetEnumValue<ApiSdk.Models.Security.GoogleCloudLocationType>(); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
                 { "projectNumber", n => { ProjectNumber = n.GetLongValue(); } },
                 { "resourceName", n => { ResourceName = n.GetStringValue(); } },
@@ -98,7 +98,7 @@ namespace ApiSdk.Models.Security
             base.Serialize(writer);
             writer.WriteStringValue("fullResourceName", FullResourceName);
             writer.WriteStringValue("location", Location);
-            writer.WriteEnumValue<GoogleCloudLocationType>("locationType", LocationType);
+            writer.WriteEnumValue<ApiSdk.Models.Security.GoogleCloudLocationType>("locationType", LocationType);
             writer.WriteStringValue("projectId", ProjectId);
             writer.WriteLongValue("projectNumber", ProjectNumber);
             writer.WriteStringValue("resourceName", ResourceName);

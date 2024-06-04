@@ -11,26 +11,26 @@ namespace ApiSdk.Models.Security
     #pragma warning restore CS1591
     {
         /// <summary>The classification property</summary>
-        public HostReputationClassification? Classification { get; set; }
+        public ApiSdk.Models.Security.HostReputationClassification? Classification { get; set; }
         /// <summary>A collection of rules that have been used to calculate the classification and score.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostReputationRule>? Rules { get; set; }
+        public List<ApiSdk.Models.Security.HostReputationRule>? Rules { get; set; }
 #nullable restore
 #else
-        public List<HostReputationRule> Rules { get; set; }
+        public List<ApiSdk.Models.Security.HostReputationRule> Rules { get; set; }
 #endif
         /// <summary>The calculated score (0-100) of the requested host. A higher value indicates that this host is more likely to be suspicious or malicious.</summary>
         public int? Score { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HostReputation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.HostReputation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new HostReputation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.HostReputation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HostReputation();
+            return new ApiSdk.Models.Security.HostReputation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,8 +40,8 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "classification", n => { Classification = n.GetEnumValue<HostReputationClassification>(); } },
-                { "rules", n => { Rules = n.GetCollectionOfObjectValues<HostReputationRule>(HostReputationRule.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "classification", n => { Classification = n.GetEnumValue<ApiSdk.Models.Security.HostReputationClassification>(); } },
+                { "rules", n => { Rules = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostReputationRule>(ApiSdk.Models.Security.HostReputationRule.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "score", n => { Score = n.GetIntValue(); } },
             };
         }
@@ -53,8 +53,8 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<HostReputationClassification>("classification", Classification);
-            writer.WriteCollectionOfObjectValues<HostReputationRule>("rules", Rules);
+            writer.WriteEnumValue<ApiSdk.Models.Security.HostReputationClassification>("classification", Classification);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostReputationRule>("rules", Rules);
             writer.WriteIntValue("score", Score);
         }
     }

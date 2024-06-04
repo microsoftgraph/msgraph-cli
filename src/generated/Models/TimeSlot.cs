@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The end property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? End { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? End { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone End { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone End { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,13 +31,13 @@ namespace ApiSdk.Models
         /// <summary>The start property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? Start { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? Start { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone Start { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone Start { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TimeSlot"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TimeSlot"/> and sets the default values.
         /// </summary>
         public TimeSlot()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TimeSlot"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TimeSlot"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TimeSlot CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TimeSlot CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TimeSlot();
+            return new ApiSdk.Models.TimeSlot();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,9 +61,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "end", n => { End = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "end", n => { End = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "start", n => { Start = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "start", n => { Start = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -73,9 +73,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<DateTimeTimeZone>("end", End);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("end", End);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<DateTimeTimeZone>("start", Start);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("start", Start);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

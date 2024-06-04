@@ -23,7 +23,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Accept
         /// <summary>The SendResponse property</summary>
         public bool? SendResponse { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AcceptPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Calendar.Events.Item.Accept.AcceptPostRequestBody"/> and sets the default values.
         /// </summary>
         public AcceptPostRequestBody()
         {
@@ -32,12 +32,12 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Accept
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AcceptPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.Calendar.Events.Item.Accept.AcceptPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AcceptPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.Calendar.Events.Item.Accept.AcceptPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AcceptPostRequestBody();
+            return new ApiSdk.Groups.Item.Calendar.Events.Item.Accept.AcceptPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

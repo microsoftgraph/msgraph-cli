@@ -23,7 +23,7 @@ namespace ApiSdk.Models.CallRecords
         public string BasicServiceSetIdentifier { get; set; }
 #endif
         /// <summary>The connectionType property</summary>
-        public NetworkConnectionType? ConnectionType { get; set; }
+        public ApiSdk.Models.CallRecords.NetworkConnectionType? ConnectionType { get; set; }
         /// <summary>Fraction of the call that the media endpoint detected the network delay was significant enough to impact the ability to have real-time two-way communication.</summary>
         public float? DelayEventRatio { get; set; }
         /// <summary>DNS suffix associated with the network adapter of the media endpoint.</summary>
@@ -97,10 +97,10 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>List of network trace route hops collected for this media stream.*</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TraceRouteHop>? TraceRouteHops { get; set; }
+        public List<ApiSdk.Models.CallRecords.TraceRouteHop>? TraceRouteHops { get; set; }
 #nullable restore
 #else
-        public List<TraceRouteHop> TraceRouteHops { get; set; }
+        public List<ApiSdk.Models.CallRecords.TraceRouteHop> TraceRouteHops { get; set; }
 #endif
         /// <summary>The wifiBand property</summary>
         public ApiSdk.Models.CallRecords.WifiBand? WifiBand { get; set; }
@@ -145,7 +145,7 @@ namespace ApiSdk.Models.CallRecords
         public string WifiVendorDriverVersion { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="NetworkInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CallRecords.NetworkInfo"/> and sets the default values.
         /// </summary>
         public NetworkInfo()
         {
@@ -154,12 +154,12 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="NetworkInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallRecords.NetworkInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static NetworkInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CallRecords.NetworkInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new NetworkInfo();
+            return new ApiSdk.Models.CallRecords.NetworkInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -171,13 +171,13 @@ namespace ApiSdk.Models.CallRecords
             {
                 { "bandwidthLowEventRatio", n => { BandwidthLowEventRatio = n.GetFloatValue(); } },
                 { "basicServiceSetIdentifier", n => { BasicServiceSetIdentifier = n.GetStringValue(); } },
-                { "connectionType", n => { ConnectionType = n.GetEnumValue<NetworkConnectionType>(); } },
+                { "connectionType", n => { ConnectionType = n.GetEnumValue<ApiSdk.Models.CallRecords.NetworkConnectionType>(); } },
                 { "delayEventRatio", n => { DelayEventRatio = n.GetFloatValue(); } },
                 { "dnsSuffix", n => { DnsSuffix = n.GetStringValue(); } },
                 { "ipAddress", n => { IpAddress = n.GetStringValue(); } },
                 { "linkSpeed", n => { LinkSpeed = n.GetLongValue(); } },
                 { "macAddress", n => { MacAddress = n.GetStringValue(); } },
-                { "networkTransportProtocol", n => { NetworkTransportProtocol = n.GetEnumValue<NetworkTransportProtocol>(); } },
+                { "networkTransportProtocol", n => { NetworkTransportProtocol = n.GetEnumValue<ApiSdk.Models.CallRecords.NetworkTransportProtocol>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "port", n => { Port = n.GetIntValue(); } },
                 { "receivedQualityEventRatio", n => { ReceivedQualityEventRatio = n.GetFloatValue(); } },
@@ -186,13 +186,13 @@ namespace ApiSdk.Models.CallRecords
                 { "relayPort", n => { RelayPort = n.GetIntValue(); } },
                 { "sentQualityEventRatio", n => { SentQualityEventRatio = n.GetFloatValue(); } },
                 { "subnet", n => { Subnet = n.GetStringValue(); } },
-                { "traceRouteHops", n => { TraceRouteHops = n.GetCollectionOfObjectValues<TraceRouteHop>(TraceRouteHop.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "wifiBand", n => { WifiBand = n.GetEnumValue<WifiBand>(); } },
+                { "traceRouteHops", n => { TraceRouteHops = n.GetCollectionOfObjectValues<ApiSdk.Models.CallRecords.TraceRouteHop>(ApiSdk.Models.CallRecords.TraceRouteHop.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "wifiBand", n => { WifiBand = n.GetEnumValue<ApiSdk.Models.CallRecords.WifiBand>(); } },
                 { "wifiBatteryCharge", n => { WifiBatteryCharge = n.GetIntValue(); } },
                 { "wifiChannel", n => { WifiChannel = n.GetIntValue(); } },
                 { "wifiMicrosoftDriver", n => { WifiMicrosoftDriver = n.GetStringValue(); } },
                 { "wifiMicrosoftDriverVersion", n => { WifiMicrosoftDriverVersion = n.GetStringValue(); } },
-                { "wifiRadioType", n => { WifiRadioType = n.GetEnumValue<WifiRadioType>(); } },
+                { "wifiRadioType", n => { WifiRadioType = n.GetEnumValue<ApiSdk.Models.CallRecords.WifiRadioType>(); } },
                 { "wifiSignalStrength", n => { WifiSignalStrength = n.GetIntValue(); } },
                 { "wifiVendorDriver", n => { WifiVendorDriver = n.GetStringValue(); } },
                 { "wifiVendorDriverVersion", n => { WifiVendorDriverVersion = n.GetStringValue(); } },
@@ -207,13 +207,13 @@ namespace ApiSdk.Models.CallRecords
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteFloatValue("bandwidthLowEventRatio", BandwidthLowEventRatio);
             writer.WriteStringValue("basicServiceSetIdentifier", BasicServiceSetIdentifier);
-            writer.WriteEnumValue<NetworkConnectionType>("connectionType", ConnectionType);
+            writer.WriteEnumValue<ApiSdk.Models.CallRecords.NetworkConnectionType>("connectionType", ConnectionType);
             writer.WriteFloatValue("delayEventRatio", DelayEventRatio);
             writer.WriteStringValue("dnsSuffix", DnsSuffix);
             writer.WriteStringValue("ipAddress", IpAddress);
             writer.WriteLongValue("linkSpeed", LinkSpeed);
             writer.WriteStringValue("macAddress", MacAddress);
-            writer.WriteEnumValue<NetworkTransportProtocol>("networkTransportProtocol", NetworkTransportProtocol);
+            writer.WriteEnumValue<ApiSdk.Models.CallRecords.NetworkTransportProtocol>("networkTransportProtocol", NetworkTransportProtocol);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("port", Port);
             writer.WriteFloatValue("receivedQualityEventRatio", ReceivedQualityEventRatio);
@@ -222,13 +222,13 @@ namespace ApiSdk.Models.CallRecords
             writer.WriteIntValue("relayPort", RelayPort);
             writer.WriteFloatValue("sentQualityEventRatio", SentQualityEventRatio);
             writer.WriteStringValue("subnet", Subnet);
-            writer.WriteCollectionOfObjectValues<TraceRouteHop>("traceRouteHops", TraceRouteHops);
-            writer.WriteEnumValue<WifiBand>("wifiBand", WifiBand);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CallRecords.TraceRouteHop>("traceRouteHops", TraceRouteHops);
+            writer.WriteEnumValue<ApiSdk.Models.CallRecords.WifiBand>("wifiBand", WifiBand);
             writer.WriteIntValue("wifiBatteryCharge", WifiBatteryCharge);
             writer.WriteIntValue("wifiChannel", WifiChannel);
             writer.WriteStringValue("wifiMicrosoftDriver", WifiMicrosoftDriver);
             writer.WriteStringValue("wifiMicrosoftDriverVersion", WifiMicrosoftDriverVersion);
-            writer.WriteEnumValue<WifiRadioType>("wifiRadioType", WifiRadioType);
+            writer.WriteEnumValue<ApiSdk.Models.CallRecords.WifiRadioType>("wifiRadioType", WifiRadioType);
             writer.WriteIntValue("wifiSignalStrength", WifiSignalStrength);
             writer.WriteStringValue("wifiVendorDriver", WifiVendorDriver);
             writer.WriteStringValue("wifiVendorDriverVersion", WifiVendorDriverVersion);

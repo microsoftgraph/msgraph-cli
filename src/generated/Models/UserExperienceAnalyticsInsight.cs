@@ -30,7 +30,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>Indicates severity of insights. Possible values are: None, Informational, Warning, Error.</summary>
-        public UserExperienceAnalyticsInsightSeverity? Severity { get; set; }
+        public ApiSdk.Models.UserExperienceAnalyticsInsightSeverity? Severity { get; set; }
         /// <summary>The unique identifier of the user experience analytics metric.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -42,13 +42,13 @@ namespace ApiSdk.Models
         /// <summary>The value of the user experience analytics insight.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserExperienceAnalyticsInsightValue>? Values { get; set; }
+        public List<ApiSdk.Models.UserExperienceAnalyticsInsightValue>? Values { get; set; }
 #nullable restore
 #else
-        public List<UserExperienceAnalyticsInsightValue> Values { get; set; }
+        public List<ApiSdk.Models.UserExperienceAnalyticsInsightValue> Values { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsInsight"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UserExperienceAnalyticsInsight"/> and sets the default values.
         /// </summary>
         public UserExperienceAnalyticsInsight()
         {
@@ -57,12 +57,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsInsight"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsInsight"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UserExperienceAnalyticsInsight CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UserExperienceAnalyticsInsight CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsInsight();
+            return new ApiSdk.Models.UserExperienceAnalyticsInsight();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -74,9 +74,9 @@ namespace ApiSdk.Models
             {
                 { "insightId", n => { InsightId = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "severity", n => { Severity = n.GetEnumValue<UserExperienceAnalyticsInsightSeverity>(); } },
+                { "severity", n => { Severity = n.GetEnumValue<ApiSdk.Models.UserExperienceAnalyticsInsightSeverity>(); } },
                 { "userExperienceAnalyticsMetricId", n => { UserExperienceAnalyticsMetricId = n.GetStringValue(); } },
-                { "values", n => { Values = n.GetCollectionOfObjectValues<UserExperienceAnalyticsInsightValue>(UserExperienceAnalyticsInsightValue.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "values", n => { Values = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsInsightValue>(ApiSdk.Models.UserExperienceAnalyticsInsightValue.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -88,9 +88,9 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("insightId", InsightId);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<UserExperienceAnalyticsInsightSeverity>("severity", Severity);
+            writer.WriteEnumValue<ApiSdk.Models.UserExperienceAnalyticsInsightSeverity>("severity", Severity);
             writer.WriteStringValue("userExperienceAnalyticsMetricId", UserExperienceAnalyticsMetricId);
-            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsInsightValue>("values", Values);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsInsightValue>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

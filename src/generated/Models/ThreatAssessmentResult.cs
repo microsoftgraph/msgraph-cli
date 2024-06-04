@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ThreatAssessmentResult : Entity, IParsable
+    public class ThreatAssessmentResult : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
@@ -21,16 +21,16 @@ namespace ApiSdk.Models
         public string Message { get; set; }
 #endif
         /// <summary>The threat assessment result type. Possible values are: checkPolicy, rescan.</summary>
-        public ThreatAssessmentResultType? ResultType { get; set; }
+        public ApiSdk.Models.ThreatAssessmentResultType? ResultType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ThreatAssessmentResult"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ThreatAssessmentResult"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ThreatAssessmentResult CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ThreatAssessmentResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ThreatAssessmentResult();
+            return new ApiSdk.Models.ThreatAssessmentResult();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -42,7 +42,7 @@ namespace ApiSdk.Models
             {
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "message", n => { Message = n.GetStringValue(); } },
-                { "resultType", n => { ResultType = n.GetEnumValue<ThreatAssessmentResultType>(); } },
+                { "resultType", n => { ResultType = n.GetEnumValue<ApiSdk.Models.ThreatAssessmentResultType>(); } },
             };
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("message", Message);
-            writer.WriteEnumValue<ThreatAssessmentResultType>("resultType", ResultType);
+            writer.WriteEnumValue<ApiSdk.Models.ThreatAssessmentResultType>("resultType", ResultType);
         }
     }
 }

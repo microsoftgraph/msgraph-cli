@@ -58,7 +58,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<GetNotebookFromWebUrlPostRequestBody>(GetNotebookFromWebUrlPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl.GetNotebookFromWebUrlPostRequestBody>(ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl.GetNotebookFromWebUrlPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -80,14 +80,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetNotebookFromWebUrlRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl.GetNotebookFromWebUrlRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetNotebookFromWebUrlRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/getNotebookFromWebUrl", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetNotebookFromWebUrlRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl.GetNotebookFromWebUrlRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetNotebookFromWebUrlRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/getNotebookFromWebUrl", rawUrl)
@@ -101,11 +101,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(GetNotebookFromWebUrlPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl.GetNotebookFromWebUrlPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(GetNotebookFromWebUrlPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl.GetNotebookFromWebUrlPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

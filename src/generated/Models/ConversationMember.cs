@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ConversationMember : Entity, IParsable
+    public class ConversationMember : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The display name of the user.</summary>
@@ -31,21 +31,21 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConversationMember"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConversationMember"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ConversationMember CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ConversationMember CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.aadUserConversationMember" => new AadUserConversationMember(),
-                "#microsoft.graph.anonymousGuestConversationMember" => new AnonymousGuestConversationMember(),
-                "#microsoft.graph.azureCommunicationServicesUserConversationMember" => new AzureCommunicationServicesUserConversationMember(),
-                "#microsoft.graph.microsoftAccountUserConversationMember" => new MicrosoftAccountUserConversationMember(),
-                "#microsoft.graph.skypeForBusinessUserConversationMember" => new SkypeForBusinessUserConversationMember(),
-                "#microsoft.graph.skypeUserConversationMember" => new SkypeUserConversationMember(),
-                _ => new ConversationMember(),
+                "#microsoft.graph.aadUserConversationMember" => new ApiSdk.Models.AadUserConversationMember(),
+                "#microsoft.graph.anonymousGuestConversationMember" => new ApiSdk.Models.AnonymousGuestConversationMember(),
+                "#microsoft.graph.azureCommunicationServicesUserConversationMember" => new ApiSdk.Models.AzureCommunicationServicesUserConversationMember(),
+                "#microsoft.graph.microsoftAccountUserConversationMember" => new ApiSdk.Models.MicrosoftAccountUserConversationMember(),
+                "#microsoft.graph.skypeForBusinessUserConversationMember" => new ApiSdk.Models.SkypeForBusinessUserConversationMember(),
+                "#microsoft.graph.skypeUserConversationMember" => new ApiSdk.Models.SkypeUserConversationMember(),
+                _ => new ApiSdk.Models.ConversationMember(),
             };
         }
         /// <summary>

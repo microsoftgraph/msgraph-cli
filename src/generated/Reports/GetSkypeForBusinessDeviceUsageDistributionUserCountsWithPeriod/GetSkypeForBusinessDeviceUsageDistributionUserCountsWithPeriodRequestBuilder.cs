@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageDistributionUserCountsWit
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriod.GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageDistributionUserCounts(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriod.GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageDistributionUserCounts(period='{period}')", rawUrl)

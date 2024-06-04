@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Details of the detected risk. Possible values are: none, adminGeneratedTemporaryPassword, userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe, aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser, adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue. For more information about each value, see Risk types and detection.</summary>
-        public RiskDetail? Detail { get; set; }
+        public ApiSdk.Models.RiskDetail? Detail { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public List<string> RiskEventTypes { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RiskUserActivity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RiskUserActivity"/> and sets the default values.
         /// </summary>
         public RiskUserActivity()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RiskUserActivity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RiskUserActivity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RiskUserActivity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.RiskUserActivity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RiskUserActivity();
+            return new ApiSdk.Models.RiskUserActivity();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "detail", n => { Detail = n.GetEnumValue<RiskDetail>(); } },
+                { "detail", n => { Detail = n.GetEnumValue<ApiSdk.Models.RiskDetail>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "riskEventTypes", n => { RiskEventTypes = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<RiskDetail>("detail", Detail);
+            writer.WriteEnumValue<ApiSdk.Models.RiskDetail>("detail", Detail);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfPrimitiveValues<string>("riskEventTypes", RiskEventTypes);
             writer.WriteAdditionalData(AdditionalData);

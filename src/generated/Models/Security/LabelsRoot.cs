@@ -13,60 +13,60 @@ namespace ApiSdk.Models.Security
         /// <summary>Specifies the underlying authority that describes the type of content to be retained and its retention schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthorityTemplate>? Authorities { get; set; }
+        public List<ApiSdk.Models.Security.AuthorityTemplate>? Authorities { get; set; }
 #nullable restore
 #else
-        public List<AuthorityTemplate> Authorities { get; set; }
+        public List<ApiSdk.Models.Security.AuthorityTemplate> Authorities { get; set; }
 #endif
         /// <summary>Specifies a group of similar types of content in a particular department.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CategoryTemplate>? Categories { get; set; }
+        public List<ApiSdk.Models.Security.CategoryTemplate>? Categories { get; set; }
 #nullable restore
 #else
-        public List<CategoryTemplate> Categories { get; set; }
+        public List<ApiSdk.Models.Security.CategoryTemplate> Categories { get; set; }
 #endif
         /// <summary>The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CitationTemplate>? Citations { get; set; }
+        public List<ApiSdk.Models.Security.CitationTemplate>? Citations { get; set; }
 #nullable restore
 #else
-        public List<CitationTemplate> Citations { get; set; }
+        public List<ApiSdk.Models.Security.CitationTemplate> Citations { get; set; }
 #endif
         /// <summary>Specifies the department or business unit of an organization to which a label belongs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DepartmentTemplate>? Departments { get; set; }
+        public List<ApiSdk.Models.Security.DepartmentTemplate>? Departments { get; set; }
 #nullable restore
 #else
-        public List<DepartmentTemplate> Departments { get; set; }
+        public List<ApiSdk.Models.Security.DepartmentTemplate> Departments { get; set; }
 #endif
         /// <summary>Specifies a unique alpha-numeric identifier for an organization’s retention schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<FilePlanReferenceTemplate>? FilePlanReferences { get; set; }
+        public List<ApiSdk.Models.Security.FilePlanReferenceTemplate>? FilePlanReferences { get; set; }
 #nullable restore
 #else
-        public List<FilePlanReferenceTemplate> FilePlanReferences { get; set; }
+        public List<ApiSdk.Models.Security.FilePlanReferenceTemplate> FilePlanReferences { get; set; }
 #endif
         /// <summary>Represents how customers can manage their data, whether and for how long to retain or delete it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RetentionLabel>? RetentionLabels { get; set; }
+        public List<ApiSdk.Models.Security.RetentionLabel>? RetentionLabels { get; set; }
 #nullable restore
 #else
-        public List<RetentionLabel> RetentionLabels { get; set; }
+        public List<ApiSdk.Models.Security.RetentionLabel> RetentionLabels { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LabelsRoot"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.LabelsRoot"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new LabelsRoot CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.LabelsRoot CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LabelsRoot();
+            return new ApiSdk.Models.Security.LabelsRoot();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,12 +76,12 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "authorities", n => { Authorities = n.GetCollectionOfObjectValues<AuthorityTemplate>(AuthorityTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "categories", n => { Categories = n.GetCollectionOfObjectValues<CategoryTemplate>(CategoryTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "citations", n => { Citations = n.GetCollectionOfObjectValues<CitationTemplate>(CitationTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "departments", n => { Departments = n.GetCollectionOfObjectValues<DepartmentTemplate>(DepartmentTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "filePlanReferences", n => { FilePlanReferences = n.GetCollectionOfObjectValues<FilePlanReferenceTemplate>(FilePlanReferenceTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "retentionLabels", n => { RetentionLabels = n.GetCollectionOfObjectValues<RetentionLabel>(RetentionLabel.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "authorities", n => { Authorities = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.AuthorityTemplate>(ApiSdk.Models.Security.AuthorityTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "categories", n => { Categories = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.CategoryTemplate>(ApiSdk.Models.Security.CategoryTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "citations", n => { Citations = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.CitationTemplate>(ApiSdk.Models.Security.CitationTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "departments", n => { Departments = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.DepartmentTemplate>(ApiSdk.Models.Security.DepartmentTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "filePlanReferences", n => { FilePlanReferences = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.FilePlanReferenceTemplate>(ApiSdk.Models.Security.FilePlanReferenceTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "retentionLabels", n => { RetentionLabels = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.RetentionLabel>(ApiSdk.Models.Security.RetentionLabel.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -92,12 +92,12 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AuthorityTemplate>("authorities", Authorities);
-            writer.WriteCollectionOfObjectValues<CategoryTemplate>("categories", Categories);
-            writer.WriteCollectionOfObjectValues<CitationTemplate>("citations", Citations);
-            writer.WriteCollectionOfObjectValues<DepartmentTemplate>("departments", Departments);
-            writer.WriteCollectionOfObjectValues<FilePlanReferenceTemplate>("filePlanReferences", FilePlanReferences);
-            writer.WriteCollectionOfObjectValues<RetentionLabel>("retentionLabels", RetentionLabels);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.AuthorityTemplate>("authorities", Authorities);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.CategoryTemplate>("categories", Categories);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.CitationTemplate>("citations", Citations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.DepartmentTemplate>("departments", Departments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.FilePlanReferenceTemplate>("filePlanReferences", FilePlanReferences);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.RetentionLabel>("retentionLabels", RetentionLabels);
         }
     }
 }

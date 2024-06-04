@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TimeZoneInformation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TimeZoneInformation"/> and sets the default values.
         /// </summary>
         public TimeZoneInformation()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TimeZoneInformation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TimeZoneInformation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TimeZoneInformation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TimeZoneInformation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TimeZoneInformation();
+            return new ApiSdk.Models.TimeZoneInformation();
         }
         /// <summary>
         /// The deserialization information for the current model

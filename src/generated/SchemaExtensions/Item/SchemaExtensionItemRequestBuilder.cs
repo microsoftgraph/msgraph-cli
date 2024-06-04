@@ -142,7 +142,7 @@ namespace ApiSdk.SchemaExtensions.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SchemaExtension>(SchemaExtension.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.SchemaExtension>(ApiSdk.Models.SchemaExtension.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -163,14 +163,14 @@ namespace ApiSdk.SchemaExtensions.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SchemaExtensionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.SchemaExtensions.Item.SchemaExtensionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SchemaExtensionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/schemaExtensions/{schemaExtension%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SchemaExtensionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.SchemaExtensions.Item.SchemaExtensionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SchemaExtensionItemRequestBuilder(string rawUrl) : base("{+baseurl}/schemaExtensions/{schemaExtension%2Did}{?%24expand,%24select}", rawUrl)
@@ -202,11 +202,11 @@ namespace ApiSdk.SchemaExtensions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SchemaExtensionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.SchemaExtensions.Item.SchemaExtensionItemRequestBuilder.SchemaExtensionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SchemaExtensionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.SchemaExtensions.Item.SchemaExtensionItemRequestBuilder.SchemaExtensionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -222,11 +222,11 @@ namespace ApiSdk.SchemaExtensions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(SchemaExtension body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SchemaExtension body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(SchemaExtension body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SchemaExtension body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

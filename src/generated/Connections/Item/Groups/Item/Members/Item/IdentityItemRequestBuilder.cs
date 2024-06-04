@@ -196,14 +196,14 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="IdentityItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Connections.Item.Groups.Item.Members.Item.IdentityItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IdentityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}/groups/{externalGroup%2Did}/members/{identity%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="IdentityItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Connections.Item.Groups.Item.Members.Item.IdentityItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IdentityItemRequestBuilder(string rawUrl) : base("{+baseurl}/connections/{externalConnection%2Did}/groups/{externalGroup%2Did}/members/{identity%2Did}{?%24expand,%24select}", rawUrl)
@@ -235,11 +235,11 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Connections.Item.Groups.Item.Members.Item.IdentityItemRequestBuilder.IdentityItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Connections.Item.Groups.Item.Members.Item.IdentityItemRequestBuilder.IdentityItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

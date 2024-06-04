@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AppConsentApprovalRoute : Entity, IParsable
+    public class AppConsentApprovalRoute : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A collection of appConsentRequest objects representing apps for which admin consent has been requested by one or more users.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppConsentRequest>? AppConsentRequests { get; set; }
+        public List<ApiSdk.Models.AppConsentRequest>? AppConsentRequests { get; set; }
 #nullable restore
 #else
-        public List<AppConsentRequest> AppConsentRequests { get; set; }
+        public List<ApiSdk.Models.AppConsentRequest> AppConsentRequests { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AppConsentApprovalRoute"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AppConsentApprovalRoute"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AppConsentApprovalRoute CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AppConsentApprovalRoute CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AppConsentApprovalRoute();
+            return new ApiSdk.Models.AppConsentApprovalRoute();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "appConsentRequests", n => { AppConsentRequests = n.GetCollectionOfObjectValues<AppConsentRequest>(AppConsentRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appConsentRequests", n => { AppConsentRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.AppConsentRequest>(ApiSdk.Models.AppConsentRequest.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AppConsentRequest>("appConsentRequests", AppConsentRequests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppConsentRequest>("appConsentRequests", AppConsentRequests);
         }
     }
 }

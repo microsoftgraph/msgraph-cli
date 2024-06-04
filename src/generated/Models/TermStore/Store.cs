@@ -21,10 +21,10 @@ namespace ApiSdk.Models.TermStore
         /// <summary>Collection of all groups available in the term store.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Group>? Groups { get; set; }
+        public List<ApiSdk.Models.TermStore.Group>? Groups { get; set; }
 #nullable restore
 #else
-        public List<Group> Groups { get; set; }
+        public List<ApiSdk.Models.TermStore.Group> Groups { get; set; }
 #endif
         /// <summary>List of languages for the term store.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,20 +37,20 @@ namespace ApiSdk.Models.TermStore
         /// <summary>Collection of all sets available in the term store. This relationship can only be used to load a specific term set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Set>? Sets { get; set; }
+        public List<ApiSdk.Models.TermStore.Set>? Sets { get; set; }
 #nullable restore
 #else
-        public List<Set> Sets { get; set; }
+        public List<ApiSdk.Models.TermStore.Set> Sets { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Store"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermStore.Store"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Store CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TermStore.Store CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Store();
+            return new ApiSdk.Models.TermStore.Store();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,9 +61,9 @@ namespace ApiSdk.Models.TermStore
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "defaultLanguageTag", n => { DefaultLanguageTag = n.GetStringValue(); } },
-                { "groups", n => { Groups = n.GetCollectionOfObjectValues<Group>(Group.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "groups", n => { Groups = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.Group>(ApiSdk.Models.TermStore.Group.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "languageTags", n => { LanguageTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "sets", n => { Sets = n.GetCollectionOfObjectValues<Set>(Set.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sets", n => { Sets = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.Set>(ApiSdk.Models.TermStore.Set.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -75,9 +75,9 @@ namespace ApiSdk.Models.TermStore
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("defaultLanguageTag", DefaultLanguageTag);
-            writer.WriteCollectionOfObjectValues<Group>("groups", Groups);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.Group>("groups", Groups);
             writer.WriteCollectionOfPrimitiveValues<string>("languageTags", LanguageTags);
-            writer.WriteCollectionOfObjectValues<Set>("sets", Sets);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.Set>("sets", Sets);
         }
     }
 }

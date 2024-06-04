@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Place : Entity, IParsable
+    public class Place : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The street address of the place.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PhysicalAddress? Address { get; set; }
+        public ApiSdk.Models.PhysicalAddress? Address { get; set; }
 #nullable restore
 #else
-        public PhysicalAddress Address { get; set; }
+        public ApiSdk.Models.PhysicalAddress Address { get; set; }
 #endif
         /// <summary>The name associated with the place.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,10 +29,10 @@ namespace ApiSdk.Models
         /// <summary>Specifies the place location in latitude, longitude, and (optionally) altitude coordinates.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public OutlookGeoCoordinates? GeoCoordinates { get; set; }
+        public ApiSdk.Models.OutlookGeoCoordinates? GeoCoordinates { get; set; }
 #nullable restore
 #else
-        public OutlookGeoCoordinates GeoCoordinates { get; set; }
+        public ApiSdk.Models.OutlookGeoCoordinates GeoCoordinates { get; set; }
 #endif
         /// <summary>The phone number of the place.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,17 +45,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Place"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Place"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Place CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Place CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.room" => new Room(),
-                "#microsoft.graph.roomList" => new RoomList(),
-                _ => new Place(),
+                "#microsoft.graph.room" => new ApiSdk.Models.Room(),
+                "#microsoft.graph.roomList" => new ApiSdk.Models.RoomList(),
+                _ => new ApiSdk.Models.Place(),
             };
         }
         /// <summary>
@@ -66,9 +66,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "address", n => { Address = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "address", n => { Address = n.GetObjectValue<ApiSdk.Models.PhysicalAddress>(ApiSdk.Models.PhysicalAddress.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "geoCoordinates", n => { GeoCoordinates = n.GetObjectValue<OutlookGeoCoordinates>(OutlookGeoCoordinates.CreateFromDiscriminatorValue); } },
+                { "geoCoordinates", n => { GeoCoordinates = n.GetObjectValue<ApiSdk.Models.OutlookGeoCoordinates>(ApiSdk.Models.OutlookGeoCoordinates.CreateFromDiscriminatorValue); } },
                 { "phone", n => { Phone = n.GetStringValue(); } },
             };
         }
@@ -80,9 +80,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<PhysicalAddress>("address", Address);
+            writer.WriteObjectValue<ApiSdk.Models.PhysicalAddress>("address", Address);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<OutlookGeoCoordinates>("geoCoordinates", GeoCoordinates);
+            writer.WriteObjectValue<ApiSdk.Models.OutlookGeoCoordinates>("geoCoordinates", GeoCoordinates);
             writer.WriteStringValue("phone", Phone);
         }
     }

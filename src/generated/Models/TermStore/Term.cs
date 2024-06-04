@@ -13,28 +13,28 @@ namespace ApiSdk.Models.TermStore
         /// <summary>Children of current term.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Term>? Children { get; set; }
+        public List<ApiSdk.Models.TermStore.Term>? Children { get; set; }
 #nullable restore
 #else
-        public List<Term> Children { get; set; }
+        public List<ApiSdk.Models.TermStore.Term> Children { get; set; }
 #endif
         /// <summary>Date and time of term creation. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Description about term that is dependent on the languageTag.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LocalizedDescription>? Descriptions { get; set; }
+        public List<ApiSdk.Models.TermStore.LocalizedDescription>? Descriptions { get; set; }
 #nullable restore
 #else
-        public List<LocalizedDescription> Descriptions { get; set; }
+        public List<ApiSdk.Models.TermStore.LocalizedDescription> Descriptions { get; set; }
 #endif
         /// <summary>Label metadata for a term.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LocalizedLabel>? Labels { get; set; }
+        public List<ApiSdk.Models.TermStore.LocalizedLabel>? Labels { get; set; }
 #nullable restore
 #else
-        public List<LocalizedLabel> Labels { get; set; }
+        public List<ApiSdk.Models.TermStore.LocalizedLabel> Labels { get; set; }
 #endif
         /// <summary>Last date and time of term modification. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
@@ -49,10 +49,10 @@ namespace ApiSdk.Models.TermStore
         /// <summary>To indicate which terms are related to the current term as either pinned or reused.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Relation>? Relations { get; set; }
+        public List<ApiSdk.Models.TermStore.Relation>? Relations { get; set; }
 #nullable restore
 #else
-        public List<Relation> Relations { get; set; }
+        public List<ApiSdk.Models.TermStore.Relation> Relations { get; set; }
 #endif
         /// <summary>The [set] in which the term is created.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,12 +65,12 @@ namespace ApiSdk.Models.TermStore
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Term"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermStore.Term"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Term CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TermStore.Term CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Term();
+            return new ApiSdk.Models.TermStore.Term();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -80,13 +80,13 @@ namespace ApiSdk.Models.TermStore
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "children", n => { Children = n.GetCollectionOfObjectValues<Term>(Term.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "children", n => { Children = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.Term>(ApiSdk.Models.TermStore.Term.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "descriptions", n => { Descriptions = n.GetCollectionOfObjectValues<LocalizedDescription>(LocalizedDescription.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "labels", n => { Labels = n.GetCollectionOfObjectValues<LocalizedLabel>(LocalizedLabel.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "descriptions", n => { Descriptions = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.LocalizedDescription>(ApiSdk.Models.TermStore.LocalizedDescription.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "labels", n => { Labels = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.LocalizedLabel>(ApiSdk.Models.TermStore.LocalizedLabel.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "properties", n => { Properties = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValue>(ApiSdk.Models.KeyValue.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "relations", n => { Relations = n.GetCollectionOfObjectValues<Relation>(Relation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "relations", n => { Relations = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.Relation>(ApiSdk.Models.TermStore.Relation.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "set", n => { Set = n.GetObjectValue<ApiSdk.Models.TermStore.Set>(ApiSdk.Models.TermStore.Set.CreateFromDiscriminatorValue); } },
             };
         }
@@ -98,13 +98,13 @@ namespace ApiSdk.Models.TermStore
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Term>("children", Children);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.Term>("children", Children);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteCollectionOfObjectValues<LocalizedDescription>("descriptions", Descriptions);
-            writer.WriteCollectionOfObjectValues<LocalizedLabel>("labels", Labels);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.LocalizedDescription>("descriptions", Descriptions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.LocalizedLabel>("labels", Labels);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValue>("properties", Properties);
-            writer.WriteCollectionOfObjectValues<Relation>("relations", Relations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.Relation>("relations", Relations);
             writer.WriteObjectValue<ApiSdk.Models.TermStore.Set>("set", Set);
         }
     }

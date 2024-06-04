@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Security
         /// <summary>The size property</summary>
         public long? Size { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ExportFileMetadata"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.ExportFileMetadata"/> and sets the default values.
         /// </summary>
         public ExportFileMetadata()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ExportFileMetadata"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.ExportFileMetadata"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ExportFileMetadata CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.ExportFileMetadata CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ExportFileMetadata();
+            return new ApiSdk.Models.Security.ExportFileMetadata();
         }
         /// <summary>
         /// The deserialization information for the current model

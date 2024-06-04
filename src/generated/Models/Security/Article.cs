@@ -13,10 +13,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The body property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FormattedContent? Body { get; set; }
+        public ApiSdk.Models.Security.FormattedContent? Body { get; set; }
 #nullable restore
 #else
-        public FormattedContent Body { get; set; }
+        public ApiSdk.Models.Security.FormattedContent Body { get; set; }
 #endif
         /// <summary>The date and time when this article was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -31,10 +31,10 @@ namespace ApiSdk.Models.Security
         /// <summary>Indicators related to this article.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ArticleIndicator>? Indicators { get; set; }
+        public List<ApiSdk.Models.Security.ArticleIndicator>? Indicators { get; set; }
 #nullable restore
 #else
-        public List<ArticleIndicator> Indicators { get; set; }
+        public List<ApiSdk.Models.Security.ArticleIndicator> Indicators { get; set; }
 #endif
         /// <summary>Indicates whether this article is currently featured by Microsoft.</summary>
         public bool? IsFeatured { get; set; }
@@ -43,10 +43,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The summary property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FormattedContent? Summary { get; set; }
+        public ApiSdk.Models.Security.FormattedContent? Summary { get; set; }
 #nullable restore
 #else
-        public FormattedContent Summary { get; set; }
+        public ApiSdk.Models.Security.FormattedContent Summary { get; set; }
 #endif
         /// <summary>Tags for this article, communicating keywords, or key concepts.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -67,12 +67,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Article"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.Article"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Article CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.Article CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Article();
+            return new ApiSdk.Models.Security.Article();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,13 +82,13 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "body", n => { Body = n.GetObjectValue<FormattedContent>(FormattedContent.CreateFromDiscriminatorValue); } },
+                { "body", n => { Body = n.GetObjectValue<ApiSdk.Models.Security.FormattedContent>(ApiSdk.Models.Security.FormattedContent.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "imageUrl", n => { ImageUrl = n.GetStringValue(); } },
-                { "indicators", n => { Indicators = n.GetCollectionOfObjectValues<ArticleIndicator>(ArticleIndicator.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "indicators", n => { Indicators = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.ArticleIndicator>(ApiSdk.Models.Security.ArticleIndicator.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isFeatured", n => { IsFeatured = n.GetBoolValue(); } },
                 { "lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "summary", n => { Summary = n.GetObjectValue<FormattedContent>(FormattedContent.CreateFromDiscriminatorValue); } },
+                { "summary", n => { Summary = n.GetObjectValue<ApiSdk.Models.Security.FormattedContent>(ApiSdk.Models.Security.FormattedContent.CreateFromDiscriminatorValue); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
             };
@@ -101,13 +101,13 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<FormattedContent>("body", Body);
+            writer.WriteObjectValue<ApiSdk.Models.Security.FormattedContent>("body", Body);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("imageUrl", ImageUrl);
-            writer.WriteCollectionOfObjectValues<ArticleIndicator>("indicators", Indicators);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.ArticleIndicator>("indicators", Indicators);
             writer.WriteBoolValue("isFeatured", IsFeatured);
             writer.WriteDateTimeOffsetValue("lastUpdatedDateTime", LastUpdatedDateTime);
-            writer.WriteObjectValue<FormattedContent>("summary", Summary);
+            writer.WriteObjectValue<ApiSdk.Models.Security.FormattedContent>("summary", Summary);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
             writer.WriteStringValue("title", Title);
         }

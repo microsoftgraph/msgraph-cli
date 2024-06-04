@@ -38,7 +38,7 @@ namespace ApiSdk.DirectoryNamespace
         {
             var command = new Command("administrative-units");
             command.Description = "Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.";
-            var builder = new AdministrativeUnitsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.AdministrativeUnits.AdministrativeUnitsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -66,7 +66,7 @@ namespace ApiSdk.DirectoryNamespace
         {
             var command = new Command("attribute-sets");
             command.Description = "Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.";
-            var builder = new AttributeSetsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.AttributeSets.AttributeSetsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -93,7 +93,7 @@ namespace ApiSdk.DirectoryNamespace
         {
             var command = new Command("custom-security-attribute-definitions");
             command.Description = "Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.";
-            var builder = new CustomSecurityAttributeDefinitionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.CustomSecurityAttributeDefinitionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -120,7 +120,7 @@ namespace ApiSdk.DirectoryNamespace
         {
             var command = new Command("deleted-items");
             command.Description = "Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.";
-            var builder = new DeletedItemsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeletedItems.DeletedItemsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -155,7 +155,7 @@ namespace ApiSdk.DirectoryNamespace
         {
             var command = new Command("device-local-credentials");
             command.Description = "Provides operations to manage the deviceLocalCredentials property of the microsoft.graph.directory entity.";
-            var builder = new DeviceLocalCredentialsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.DeviceLocalCredentials.DeviceLocalCredentialsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -182,7 +182,7 @@ namespace ApiSdk.DirectoryNamespace
         {
             var command = new Command("federation-configurations");
             command.Description = "Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.";
-            var builder = new FederationConfigurationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.FederationConfigurations.FederationConfigurationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAvailableProviderTypesNavCommand());
@@ -256,7 +256,7 @@ namespace ApiSdk.DirectoryNamespace
         {
             var command = new Command("on-premises-synchronization");
             command.Description = "Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.";
-            var builder = new OnPremisesSynchronizationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.OnPremisesSynchronization.OnPremisesSynchronizationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -301,7 +301,7 @@ namespace ApiSdk.DirectoryNamespace
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<DirectoryObject1>(DirectoryObject1.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.DirectoryObject1>(ApiSdk.Models.DirectoryObject1.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -328,7 +328,7 @@ namespace ApiSdk.DirectoryNamespace
         {
             var command = new Command("subscriptions");
             command.Description = "Provides operations to manage the subscriptions property of the microsoft.graph.directory entity.";
-            var builder = new SubscriptionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.Subscriptions.SubscriptionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -355,7 +355,7 @@ namespace ApiSdk.DirectoryNamespace
         {
             var command = new Command("subscriptions-with-commerce-subscription-id");
             command.Description = "Provides operations to manage the subscriptions property of the microsoft.graph.directory entity.";
-            var builder = new SubscriptionsWithCommerceSubscriptionIdRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DirectoryNamespace.SubscriptionsWithCommerceSubscriptionId.SubscriptionsWithCommerceSubscriptionIdRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -367,14 +367,14 @@ namespace ApiSdk.DirectoryNamespace
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryNamespace.DirectoryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryNamespace.DirectoryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryRequestBuilder(string rawUrl) : base("{+baseurl}/directory{?%24expand,%24select}", rawUrl)
@@ -387,11 +387,11 @@ namespace ApiSdk.DirectoryNamespace
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DirectoryNamespace.DirectoryRequestBuilder.DirectoryRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DirectoryNamespace.DirectoryRequestBuilder.DirectoryRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -407,11 +407,11 @@ namespace ApiSdk.DirectoryNamespace
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(DirectoryObject1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DirectoryObject1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(DirectoryObject1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DirectoryObject1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

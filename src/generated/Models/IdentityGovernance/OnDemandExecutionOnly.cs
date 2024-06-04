@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models.IdentityGovernance
 {
     #pragma warning disable CS1591
-    public class OnDemandExecutionOnly : WorkflowExecutionConditions, IParsable
+    public class OnDemandExecutionOnly : ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>
-        /// Instantiates a new <see cref="OnDemandExecutionOnly"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityGovernance.OnDemandExecutionOnly"/> and sets the default values.
         /// </summary>
         public OnDemandExecutionOnly() : base()
         {
@@ -20,12 +20,12 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnDemandExecutionOnly"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.OnDemandExecutionOnly"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OnDemandExecutionOnly CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.OnDemandExecutionOnly CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnDemandExecutionOnly();
+            return new ApiSdk.Models.IdentityGovernance.OnDemandExecutionOnly();
         }
         /// <summary>
         /// The deserialization information for the current model

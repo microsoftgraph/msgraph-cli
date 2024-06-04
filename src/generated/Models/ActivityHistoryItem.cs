@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ActivityHistoryItem : Entity, IParsable
+    public class ActivityHistoryItem : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Optional. The duration of active user engagement. if not supplied, this is calculated from the startedDateTime and lastActiveDateTime.</summary>
@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The activity property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserActivity? Activity { get; set; }
+        public ApiSdk.Models.UserActivity? Activity { get; set; }
 #nullable restore
 #else
-        public UserActivity Activity { get; set; }
+        public ApiSdk.Models.UserActivity Activity { get; set; }
 #endif
         /// <summary>Set by the server. DateTime in UTC when the object was created on the server.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -43,12 +43,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ActivityHistoryItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ActivityHistoryItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ActivityHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ActivityHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ActivityHistoryItem();
+            return new ApiSdk.Models.ActivityHistoryItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,13 +59,13 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "activeDurationSeconds", n => { ActiveDurationSeconds = n.GetIntValue(); } },
-                { "activity", n => { Activity = n.GetObjectValue<UserActivity>(UserActivity.CreateFromDiscriminatorValue); } },
+                { "activity", n => { Activity = n.GetObjectValue<ApiSdk.Models.UserActivity>(ApiSdk.Models.UserActivity.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastActiveDateTime", n => { LastActiveDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "startedDateTime", n => { StartedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<Status>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.Status>(); } },
                 { "userTimezone", n => { UserTimezone = n.GetStringValue(); } },
             };
         }
@@ -78,13 +78,13 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteIntValue("activeDurationSeconds", ActiveDurationSeconds);
-            writer.WriteObjectValue<UserActivity>("activity", Activity);
+            writer.WriteObjectValue<ApiSdk.Models.UserActivity>("activity", Activity);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteDateTimeOffsetValue("lastActiveDateTime", LastActiveDateTime);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteDateTimeOffsetValue("startedDateTime", StartedDateTime);
-            writer.WriteEnumValue<Status>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.Status>("status", Status);
             writer.WriteStringValue("userTimezone", UserTimezone);
         }
     }

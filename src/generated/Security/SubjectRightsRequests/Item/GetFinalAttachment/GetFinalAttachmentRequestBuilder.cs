@@ -62,14 +62,14 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.GetFinalAttachment
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetFinalAttachmentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.SubjectRightsRequests.Item.GetFinalAttachment.GetFinalAttachmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetFinalAttachmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}/getFinalAttachment()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetFinalAttachmentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.SubjectRightsRequests.Item.GetFinalAttachment.GetFinalAttachmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetFinalAttachmentRequestBuilder(string rawUrl) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}/getFinalAttachment()", rawUrl)

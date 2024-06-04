@@ -61,14 +61,14 @@ namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithPeriod.GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageUserDetail(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithPeriod.GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageUserDetail(period='{period}')", rawUrl)

@@ -37,7 +37,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
         {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.deviceConfiguration entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.AssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
         {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
-            var builder = new AssignRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign.AssignRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -117,7 +117,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
         {
             var command = new Command("device-setting-state-summaries");
             command.Description = "Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceConfiguration entity.";
-            var builder = new DeviceSettingStateSummariesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSummaries.DeviceSettingStateSummariesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -144,7 +144,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
         {
             var command = new Command("device-statuses");
             command.Description = "Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceConfiguration entity.";
-            var builder = new DeviceStatusesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.DeviceStatusesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -171,7 +171,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
         {
             var command = new Command("device-status-overview");
             command.Description = "Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceConfiguration entity.";
-            var builder = new DeviceStatusOverviewRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatusOverview.DeviceStatusOverviewRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -243,7 +243,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
         {
             var command = new Command("get-oma-setting-plain-text-value-with-secret-reference-value-id");
             command.Description = "Provides operations to call the getOmaSettingPlainTextValue method.";
-            var builder = new GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTextValueWithSecretReferenceValueId.GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -284,7 +284,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<DeviceConfiguration>(DeviceConfiguration.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.DeviceConfiguration>(ApiSdk.Models.DeviceConfiguration.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -312,7 +312,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
         {
             var command = new Command("user-statuses");
             command.Description = "Provides operations to manage the userStatuses property of the microsoft.graph.deviceConfiguration entity.";
-            var builder = new UserStatusesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses.UserStatusesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -339,7 +339,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
         {
             var command = new Command("user-status-overview");
             command.Description = "Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceConfiguration entity.";
-            var builder = new UserStatusOverviewRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatusOverview.UserStatusOverviewRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -351,14 +351,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceConfigurationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceConfigurationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeviceConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}{?%24expand,%24select}", rawUrl)
@@ -390,11 +390,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceConfigurationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceConfigurationItemRequestBuilder.DeviceConfigurationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceConfigurationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceConfigurationItemRequestBuilder.DeviceConfigurationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -410,11 +410,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(DeviceConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(DeviceConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

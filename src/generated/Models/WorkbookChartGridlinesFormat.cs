@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookChartGridlinesFormat : Entity, IParsable
+    public class WorkbookChartGridlinesFormat : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents chart line formatting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartLineFormat? Line { get; set; }
+        public ApiSdk.Models.WorkbookChartLineFormat? Line { get; set; }
 #nullable restore
 #else
-        public WorkbookChartLineFormat Line { get; set; }
+        public ApiSdk.Models.WorkbookChartLineFormat Line { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookChartGridlinesFormat"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookChartGridlinesFormat"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookChartGridlinesFormat CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookChartGridlinesFormat CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookChartGridlinesFormat();
+            return new ApiSdk.Models.WorkbookChartGridlinesFormat();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "line", n => { Line = n.GetObjectValue<WorkbookChartLineFormat>(WorkbookChartLineFormat.CreateFromDiscriminatorValue); } },
+                { "line", n => { Line = n.GetObjectValue<ApiSdk.Models.WorkbookChartLineFormat>(ApiSdk.Models.WorkbookChartLineFormat.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartLineFormat>("line", Line);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartLineFormat>("line", Line);
         }
     }
 }

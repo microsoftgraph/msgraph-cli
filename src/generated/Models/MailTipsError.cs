@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MailTipsError"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MailTipsError"/> and sets the default values.
         /// </summary>
         public MailTipsError()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MailTipsError"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MailTipsError"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MailTipsError CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MailTipsError CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MailTipsError();
+            return new ApiSdk.Models.MailTipsError();
         }
         /// <summary>
         /// The deserialization information for the current model

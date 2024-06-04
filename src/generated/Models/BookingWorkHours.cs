@@ -14,7 +14,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The day property</summary>
-        public DayOfWeekObject? Day { get; set; }
+        public ApiSdk.Models.DayOfWeekObject? Day { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -26,13 +26,13 @@ namespace ApiSdk.Models
         /// <summary>A list of start/end times during a day.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<BookingWorkTimeSlot>? TimeSlots { get; set; }
+        public List<ApiSdk.Models.BookingWorkTimeSlot>? TimeSlots { get; set; }
 #nullable restore
 #else
-        public List<BookingWorkTimeSlot> TimeSlots { get; set; }
+        public List<ApiSdk.Models.BookingWorkTimeSlot> TimeSlots { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="BookingWorkHours"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.BookingWorkHours"/> and sets the default values.
         /// </summary>
         public BookingWorkHours()
         {
@@ -41,12 +41,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BookingWorkHours"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BookingWorkHours"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BookingWorkHours CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.BookingWorkHours CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BookingWorkHours();
+            return new ApiSdk.Models.BookingWorkHours();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,9 +56,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "day", n => { Day = n.GetEnumValue<DayOfWeekObject>(); } },
+                { "day", n => { Day = n.GetEnumValue<ApiSdk.Models.DayOfWeekObject>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "timeSlots", n => { TimeSlots = n.GetCollectionOfObjectValues<BookingWorkTimeSlot>(BookingWorkTimeSlot.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "timeSlots", n => { TimeSlots = n.GetCollectionOfObjectValues<ApiSdk.Models.BookingWorkTimeSlot>(ApiSdk.Models.BookingWorkTimeSlot.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -68,9 +68,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<DayOfWeekObject>("day", Day);
+            writer.WriteEnumValue<ApiSdk.Models.DayOfWeekObject>("day", Day);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<BookingWorkTimeSlot>("timeSlots", TimeSlots);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.BookingWorkTimeSlot>("timeSlots", TimeSlots);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Add
 {
     #pragma warning disable CS1591
-    public class AddPostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class AddPostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ActionResultPart>? Value { get; set; }
+        public List<ApiSdk.Models.ActionResultPart>? Value { get; set; }
 #nullable restore
 #else
-        public List<ActionResultPart> Value { get; set; }
+        public List<ApiSdk.Models.ActionResultPart> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Add.AddPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AddPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Add.AddPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddPostResponse();
+            return new ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Add.AddPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Add
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<ActionResultPart>(ActionResultPart.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.ActionResultPart>(ApiSdk.Models.ActionResultPart.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Add
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ActionResultPart>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ActionResultPart>("value", Value);
         }
     }
 }

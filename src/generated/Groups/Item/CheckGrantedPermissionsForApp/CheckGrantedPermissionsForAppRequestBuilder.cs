@@ -72,14 +72,14 @@ namespace ApiSdk.Groups.Item.CheckGrantedPermissionsForApp
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CheckGrantedPermissionsForAppRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.CheckGrantedPermissionsForApp.CheckGrantedPermissionsForAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CheckGrantedPermissionsForAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/checkGrantedPermissionsForApp", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CheckGrantedPermissionsForAppRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.CheckGrantedPermissionsForApp.CheckGrantedPermissionsForAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CheckGrantedPermissionsForAppRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/checkGrantedPermissionsForApp", rawUrl)

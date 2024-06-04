@@ -23,20 +23,20 @@ namespace ApiSdk.Models
         /// <summary>The user who shared the document.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public InsightIdentity? SharedBy { get; set; }
+        public ApiSdk.Models.InsightIdentity? SharedBy { get; set; }
 #nullable restore
 #else
-        public InsightIdentity SharedBy { get; set; }
+        public ApiSdk.Models.InsightIdentity SharedBy { get; set; }
 #endif
         /// <summary>The date and time the file was last shared. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? SharedDateTime { get; set; }
         /// <summary>Reference properties of the document, such as the URL and type of the document. Read-only</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ResourceReference? SharingReference { get; private set; }
+        public ApiSdk.Models.ResourceReference? SharingReference { get; private set; }
 #nullable restore
 #else
-        public ResourceReference SharingReference { get; private set; }
+        public ApiSdk.Models.ResourceReference SharingReference { get; private set; }
 #endif
         /// <summary>The subject with which the document was shared.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
         public string SharingType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SharingDetail"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SharingDetail"/> and sets the default values.
         /// </summary>
         public SharingDetail()
         {
@@ -64,12 +64,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SharingDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SharingDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SharingDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SharingDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SharingDetail();
+            return new ApiSdk.Models.SharingDetail();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -80,9 +80,9 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "sharedBy", n => { SharedBy = n.GetObjectValue<InsightIdentity>(InsightIdentity.CreateFromDiscriminatorValue); } },
+                { "sharedBy", n => { SharedBy = n.GetObjectValue<ApiSdk.Models.InsightIdentity>(ApiSdk.Models.InsightIdentity.CreateFromDiscriminatorValue); } },
                 { "sharedDateTime", n => { SharedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "sharingReference", n => { SharingReference = n.GetObjectValue<ResourceReference>(ResourceReference.CreateFromDiscriminatorValue); } },
+                { "sharingReference", n => { SharingReference = n.GetObjectValue<ApiSdk.Models.ResourceReference>(ApiSdk.Models.ResourceReference.CreateFromDiscriminatorValue); } },
                 { "sharingSubject", n => { SharingSubject = n.GetStringValue(); } },
                 { "sharingType", n => { SharingType = n.GetStringValue(); } },
             };
@@ -95,7 +95,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<InsightIdentity>("sharedBy", SharedBy);
+            writer.WriteObjectValue<ApiSdk.Models.InsightIdentity>("sharedBy", SharedBy);
             writer.WriteDateTimeOffsetValue("sharedDateTime", SharedDateTime);
             writer.WriteStringValue("sharingSubject", SharingSubject);
             writer.WriteStringValue("sharingType", SharingType);

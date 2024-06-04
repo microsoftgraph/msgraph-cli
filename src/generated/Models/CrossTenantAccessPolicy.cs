@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CrossTenantAccessPolicy : PolicyBase, IParsable
+    public class CrossTenantAccessPolicy : ApiSdk.Models.PolicyBase, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Used to specify which Microsoft clouds an organization would like to collaborate with. By default, this value is empty. Supported values for this field are: microsoftonline.com, microsoftonline.us, and partner.microsoftonline.cn.</summary>
@@ -21,29 +21,29 @@ namespace ApiSdk.Models
         /// <summary>Defines the default configuration for how your organization interacts with external Microsoft Entra organizations.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CrossTenantAccessPolicyConfigurationDefault? Default { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyConfigurationDefault? Default { get; set; }
 #nullable restore
 #else
-        public CrossTenantAccessPolicyConfigurationDefault Default { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyConfigurationDefault Default { get; set; }
 #endif
         /// <summary>Defines partner-specific configurations for external Microsoft Entra organizations.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CrossTenantAccessPolicyConfigurationPartner>? Partners { get; set; }
+        public List<ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner>? Partners { get; set; }
 #nullable restore
 #else
-        public List<CrossTenantAccessPolicyConfigurationPartner> Partners { get; set; }
+        public List<ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner> Partners { get; set; }
 #endif
         /// <summary>Represents the base policy in the directory for multitenant organization settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PolicyTemplate? Templates { get; set; }
+        public ApiSdk.Models.PolicyTemplate? Templates { get; set; }
 #nullable restore
 #else
-        public PolicyTemplate Templates { get; set; }
+        public ApiSdk.Models.PolicyTemplate Templates { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CrossTenantAccessPolicy"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CrossTenantAccessPolicy"/> and sets the default values.
         /// </summary>
         public CrossTenantAccessPolicy() : base()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CrossTenantAccessPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CrossTenantAccessPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CrossTenantAccessPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CrossTenantAccessPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CrossTenantAccessPolicy();
+            return new ApiSdk.Models.CrossTenantAccessPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,9 +68,9 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "allowedCloudEndpoints", n => { AllowedCloudEndpoints = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "default", n => { Default = n.GetObjectValue<CrossTenantAccessPolicyConfigurationDefault>(CrossTenantAccessPolicyConfigurationDefault.CreateFromDiscriminatorValue); } },
-                { "partners", n => { Partners = n.GetCollectionOfObjectValues<CrossTenantAccessPolicyConfigurationPartner>(CrossTenantAccessPolicyConfigurationPartner.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "templates", n => { Templates = n.GetObjectValue<PolicyTemplate>(PolicyTemplate.CreateFromDiscriminatorValue); } },
+                { "default", n => { Default = n.GetObjectValue<ApiSdk.Models.CrossTenantAccessPolicyConfigurationDefault>(ApiSdk.Models.CrossTenantAccessPolicyConfigurationDefault.CreateFromDiscriminatorValue); } },
+                { "partners", n => { Partners = n.GetCollectionOfObjectValues<ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner>(ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "templates", n => { Templates = n.GetObjectValue<ApiSdk.Models.PolicyTemplate>(ApiSdk.Models.PolicyTemplate.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -82,9 +82,9 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfPrimitiveValues<string>("allowedCloudEndpoints", AllowedCloudEndpoints);
-            writer.WriteObjectValue<CrossTenantAccessPolicyConfigurationDefault>("default", Default);
-            writer.WriteCollectionOfObjectValues<CrossTenantAccessPolicyConfigurationPartner>("partners", Partners);
-            writer.WriteObjectValue<PolicyTemplate>("templates", Templates);
+            writer.WriteObjectValue<ApiSdk.Models.CrossTenantAccessPolicyConfigurationDefault>("default", Default);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner>("partners", Partners);
+            writer.WriteObjectValue<ApiSdk.Models.PolicyTemplate>("templates", Templates);
         }
     }
 }

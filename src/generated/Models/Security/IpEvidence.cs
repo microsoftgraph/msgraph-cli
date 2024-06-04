@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class IpEvidence : AlertEvidence, IParsable
+    public class IpEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The two-letter country code according to ISO 3166 format, for example: US, UK, CA, etc.</summary>
@@ -29,21 +29,21 @@ namespace ApiSdk.Models.Security
         /// <summary>The location property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public GeoLocation? Location { get; set; }
+        public ApiSdk.Models.Security.GeoLocation? Location { get; set; }
 #nullable restore
 #else
-        public GeoLocation Location { get; set; }
+        public ApiSdk.Models.Security.GeoLocation Location { get; set; }
 #endif
         /// <summary>The stream property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public StreamObject? Stream { get; set; }
+        public ApiSdk.Models.Security.StreamObject? Stream { get; set; }
 #nullable restore
 #else
-        public StreamObject Stream { get; set; }
+        public ApiSdk.Models.Security.StreamObject Stream { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IpEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.IpEvidence"/> and sets the default values.
         /// </summary>
         public IpEvidence() : base()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IpEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.IpEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IpEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.IpEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IpEvidence();
+            return new ApiSdk.Models.Security.IpEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,8 +69,8 @@ namespace ApiSdk.Models.Security
             {
                 { "countryLetterCode", n => { CountryLetterCode = n.GetStringValue(); } },
                 { "ipAddress", n => { IpAddress = n.GetStringValue(); } },
-                { "location", n => { Location = n.GetObjectValue<GeoLocation>(GeoLocation.CreateFromDiscriminatorValue); } },
-                { "stream", n => { Stream = n.GetObjectValue<StreamObject>(StreamObject.CreateFromDiscriminatorValue); } },
+                { "location", n => { Location = n.GetObjectValue<ApiSdk.Models.Security.GeoLocation>(ApiSdk.Models.Security.GeoLocation.CreateFromDiscriminatorValue); } },
+                { "stream", n => { Stream = n.GetObjectValue<ApiSdk.Models.Security.StreamObject>(ApiSdk.Models.Security.StreamObject.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -83,8 +83,8 @@ namespace ApiSdk.Models.Security
             base.Serialize(writer);
             writer.WriteStringValue("countryLetterCode", CountryLetterCode);
             writer.WriteStringValue("ipAddress", IpAddress);
-            writer.WriteObjectValue<GeoLocation>("location", Location);
-            writer.WriteObjectValue<StreamObject>("stream", Stream);
+            writer.WriteObjectValue<ApiSdk.Models.Security.GeoLocation>("location", Location);
+            writer.WriteObjectValue<ApiSdk.Models.Security.StreamObject>("stream", Stream);
         }
     }
 }

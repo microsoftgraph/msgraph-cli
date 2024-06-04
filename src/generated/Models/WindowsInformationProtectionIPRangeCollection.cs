@@ -32,13 +32,13 @@ namespace ApiSdk.Models
         /// <summary>Collection of ip ranges</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<IpRange>? Ranges { get; set; }
+        public List<ApiSdk.Models.IpRange>? Ranges { get; set; }
 #nullable restore
 #else
-        public List<IpRange> Ranges { get; set; }
+        public List<ApiSdk.Models.IpRange> Ranges { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WindowsInformationProtectionIPRangeCollection"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WindowsInformationProtectionIPRangeCollection"/> and sets the default values.
         /// </summary>
         public WindowsInformationProtectionIPRangeCollection()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsInformationProtectionIPRangeCollection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsInformationProtectionIPRangeCollection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WindowsInformationProtectionIPRangeCollection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WindowsInformationProtectionIPRangeCollection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsInformationProtectionIPRangeCollection();
+            return new ApiSdk.Models.WindowsInformationProtectionIPRangeCollection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,7 +64,7 @@ namespace ApiSdk.Models
             {
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "ranges", n => { Ranges = n.GetCollectionOfObjectValues<IpRange>(IpRange.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "ranges", n => { Ranges = n.GetCollectionOfObjectValues<ApiSdk.Models.IpRange>(ApiSdk.Models.IpRange.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -76,7 +76,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<IpRange>("ranges", Ranges);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IpRange>("ranges", Ranges);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

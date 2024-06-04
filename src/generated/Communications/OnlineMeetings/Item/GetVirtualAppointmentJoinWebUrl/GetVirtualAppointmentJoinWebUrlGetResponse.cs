@@ -21,7 +21,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWeb
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="GetVirtualAppointmentJoinWebUrlGetResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl.GetVirtualAppointmentJoinWebUrlGetResponse"/> and sets the default values.
         /// </summary>
         public GetVirtualAppointmentJoinWebUrlGetResponse()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWeb
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetVirtualAppointmentJoinWebUrlGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl.GetVirtualAppointmentJoinWebUrlGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetVirtualAppointmentJoinWebUrlGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl.GetVirtualAppointmentJoinWebUrlGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetVirtualAppointmentJoinWebUrlGetResponse();
+            return new ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl.GetVirtualAppointmentJoinWebUrlGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

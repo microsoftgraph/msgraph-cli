@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>Content types allowed in document set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ContentTypeInfo>? AllowedContentTypes { get; set; }
+        public List<ApiSdk.Models.ContentTypeInfo>? AllowedContentTypes { get; set; }
 #nullable restore
 #else
-        public List<ContentTypeInfo> AllowedContentTypes { get; set; }
+        public List<ApiSdk.Models.ContentTypeInfo> AllowedContentTypes { get; set; }
 #endif
         /// <summary>Default contents of document set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DocumentSetContent>? DefaultContents { get; set; }
+        public List<ApiSdk.Models.DocumentSetContent>? DefaultContents { get; set; }
 #nullable restore
 #else
-        public List<DocumentSetContent> DefaultContents { get; set; }
+        public List<ApiSdk.Models.DocumentSetContent> DefaultContents { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,20 +41,20 @@ namespace ApiSdk.Models
         /// <summary>The sharedColumns property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ColumnDefinition>? SharedColumns { get; set; }
+        public List<ApiSdk.Models.ColumnDefinition>? SharedColumns { get; set; }
 #nullable restore
 #else
-        public List<ColumnDefinition> SharedColumns { get; set; }
+        public List<ApiSdk.Models.ColumnDefinition> SharedColumns { get; set; }
 #endif
         /// <summary>Indicates whether to add the name of the document set to each file name.</summary>
         public bool? ShouldPrefixNameToFile { get; set; }
         /// <summary>The welcomePageColumns property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ColumnDefinition>? WelcomePageColumns { get; set; }
+        public List<ApiSdk.Models.ColumnDefinition>? WelcomePageColumns { get; set; }
 #nullable restore
 #else
-        public List<ColumnDefinition> WelcomePageColumns { get; set; }
+        public List<ApiSdk.Models.ColumnDefinition> WelcomePageColumns { get; set; }
 #endif
         /// <summary>Welcome page absolute URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
         public string WelcomePageUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DocumentSet"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DocumentSet"/> and sets the default values.
         /// </summary>
         public DocumentSet()
         {
@@ -74,12 +74,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DocumentSet"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DocumentSet"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DocumentSet CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.DocumentSet CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DocumentSet();
+            return new ApiSdk.Models.DocumentSet();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -89,13 +89,13 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "allowedContentTypes", n => { AllowedContentTypes = n.GetCollectionOfObjectValues<ContentTypeInfo>(ContentTypeInfo.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "defaultContents", n => { DefaultContents = n.GetCollectionOfObjectValues<DocumentSetContent>(DocumentSetContent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "allowedContentTypes", n => { AllowedContentTypes = n.GetCollectionOfObjectValues<ApiSdk.Models.ContentTypeInfo>(ApiSdk.Models.ContentTypeInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "defaultContents", n => { DefaultContents = n.GetCollectionOfObjectValues<ApiSdk.Models.DocumentSetContent>(ApiSdk.Models.DocumentSetContent.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "propagateWelcomePageChanges", n => { PropagateWelcomePageChanges = n.GetBoolValue(); } },
-                { "sharedColumns", n => { SharedColumns = n.GetCollectionOfObjectValues<ColumnDefinition>(ColumnDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sharedColumns", n => { SharedColumns = n.GetCollectionOfObjectValues<ApiSdk.Models.ColumnDefinition>(ApiSdk.Models.ColumnDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "shouldPrefixNameToFile", n => { ShouldPrefixNameToFile = n.GetBoolValue(); } },
-                { "welcomePageColumns", n => { WelcomePageColumns = n.GetCollectionOfObjectValues<ColumnDefinition>(ColumnDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "welcomePageColumns", n => { WelcomePageColumns = n.GetCollectionOfObjectValues<ApiSdk.Models.ColumnDefinition>(ApiSdk.Models.ColumnDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "welcomePageUrl", n => { WelcomePageUrl = n.GetStringValue(); } },
             };
         }
@@ -106,13 +106,13 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<ContentTypeInfo>("allowedContentTypes", AllowedContentTypes);
-            writer.WriteCollectionOfObjectValues<DocumentSetContent>("defaultContents", DefaultContents);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ContentTypeInfo>("allowedContentTypes", AllowedContentTypes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DocumentSetContent>("defaultContents", DefaultContents);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("propagateWelcomePageChanges", PropagateWelcomePageChanges);
-            writer.WriteCollectionOfObjectValues<ColumnDefinition>("sharedColumns", SharedColumns);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ColumnDefinition>("sharedColumns", SharedColumns);
             writer.WriteBoolValue("shouldPrefixNameToFile", ShouldPrefixNameToFile);
-            writer.WriteCollectionOfObjectValues<ColumnDefinition>("welcomePageColumns", WelcomePageColumns);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ColumnDefinition>("welcomePageColumns", WelcomePageColumns);
             writer.WriteStringValue("welcomePageUrl", WelcomePageUrl);
             writer.WriteAdditionalData(AdditionalData);
         }

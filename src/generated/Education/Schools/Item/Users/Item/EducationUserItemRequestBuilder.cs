@@ -25,7 +25,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Item
         {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
-            var builder = new RefRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Schools.Item.Users.Item.Ref.RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             foreach (var cmd in execCommands)
@@ -35,14 +35,14 @@ namespace ApiSdk.Education.Schools.Item.Users.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="EducationUserItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Schools.Item.Users.Item.EducationUserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public EducationUserItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/users/{educationUser%2Did}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="EducationUserItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Schools.Item.Users.Item.EducationUserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public EducationUserItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/users/{educationUser%2Did}", rawUrl)

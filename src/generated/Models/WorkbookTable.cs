@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookTable : Entity, IParsable
+    public class WorkbookTable : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents a collection of all the columns in the table. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookTableColumn>? Columns { get; set; }
+        public List<ApiSdk.Models.WorkbookTableColumn>? Columns { get; set; }
 #nullable restore
 #else
-        public List<WorkbookTableColumn> Columns { get; set; }
+        public List<ApiSdk.Models.WorkbookTableColumn> Columns { get; set; }
 #endif
         /// <summary>Indicates whether the first column contains special formatting.</summary>
         public bool? HighlightFirstColumn { get; set; }
@@ -41,10 +41,10 @@ namespace ApiSdk.Models
         /// <summary>Represents a collection of all the rows in the table. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookTableRow>? Rows { get; set; }
+        public List<ApiSdk.Models.WorkbookTableRow>? Rows { get; set; }
 #nullable restore
 #else
-        public List<WorkbookTableRow> Rows { get; set; }
+        public List<ApiSdk.Models.WorkbookTableRow> Rows { get; set; }
 #endif
         /// <summary>Indicates whether the columns show banded formatting in which odd columns are highlighted differently from even ones to make reading the table easier.</summary>
         public bool? ShowBandedColumns { get; set; }
@@ -59,10 +59,10 @@ namespace ApiSdk.Models
         /// <summary>Represents the sorting for the table. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookTableSort? Sort { get; set; }
+        public ApiSdk.Models.WorkbookTableSort? Sort { get; set; }
 #nullable restore
 #else
-        public WorkbookTableSort Sort { get; set; }
+        public ApiSdk.Models.WorkbookTableSort Sort { get; set; }
 #endif
         /// <summary>Constant value that represents the Table style. The possible values are: TableStyleLight1 through TableStyleLight21, TableStyleMedium1 through TableStyleMedium28, TableStyleStyleDark1 through TableStyleStyleDark11. A custom user-defined style present in the workbook can also be specified.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -75,20 +75,20 @@ namespace ApiSdk.Models
         /// <summary>The worksheet containing the current table. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookWorksheet? Worksheet { get; set; }
+        public ApiSdk.Models.WorkbookWorksheet? Worksheet { get; set; }
 #nullable restore
 #else
-        public WorkbookWorksheet Worksheet { get; set; }
+        public ApiSdk.Models.WorkbookWorksheet Worksheet { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookTable"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookTable"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookTable CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookTable CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookTable();
+            return new ApiSdk.Models.WorkbookTable();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -98,20 +98,20 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "columns", n => { Columns = n.GetCollectionOfObjectValues<WorkbookTableColumn>(WorkbookTableColumn.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "columns", n => { Columns = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookTableColumn>(ApiSdk.Models.WorkbookTableColumn.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "highlightFirstColumn", n => { HighlightFirstColumn = n.GetBoolValue(); } },
                 { "highlightLastColumn", n => { HighlightLastColumn = n.GetBoolValue(); } },
                 { "legacyId", n => { LegacyId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "rows", n => { Rows = n.GetCollectionOfObjectValues<WorkbookTableRow>(WorkbookTableRow.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "rows", n => { Rows = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookTableRow>(ApiSdk.Models.WorkbookTableRow.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "showBandedColumns", n => { ShowBandedColumns = n.GetBoolValue(); } },
                 { "showBandedRows", n => { ShowBandedRows = n.GetBoolValue(); } },
                 { "showFilterButton", n => { ShowFilterButton = n.GetBoolValue(); } },
                 { "showHeaders", n => { ShowHeaders = n.GetBoolValue(); } },
                 { "showTotals", n => { ShowTotals = n.GetBoolValue(); } },
-                { "sort", n => { Sort = n.GetObjectValue<WorkbookTableSort>(WorkbookTableSort.CreateFromDiscriminatorValue); } },
+                { "sort", n => { Sort = n.GetObjectValue<ApiSdk.Models.WorkbookTableSort>(ApiSdk.Models.WorkbookTableSort.CreateFromDiscriminatorValue); } },
                 { "style", n => { Style = n.GetStringValue(); } },
-                { "worksheet", n => { Worksheet = n.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue); } },
+                { "worksheet", n => { Worksheet = n.GetObjectValue<ApiSdk.Models.WorkbookWorksheet>(ApiSdk.Models.WorkbookWorksheet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -122,20 +122,20 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<WorkbookTableColumn>("columns", Columns);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookTableColumn>("columns", Columns);
             writer.WriteBoolValue("highlightFirstColumn", HighlightFirstColumn);
             writer.WriteBoolValue("highlightLastColumn", HighlightLastColumn);
             writer.WriteStringValue("legacyId", LegacyId);
             writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfObjectValues<WorkbookTableRow>("rows", Rows);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookTableRow>("rows", Rows);
             writer.WriteBoolValue("showBandedColumns", ShowBandedColumns);
             writer.WriteBoolValue("showBandedRows", ShowBandedRows);
             writer.WriteBoolValue("showFilterButton", ShowFilterButton);
             writer.WriteBoolValue("showHeaders", ShowHeaders);
             writer.WriteBoolValue("showTotals", ShowTotals);
-            writer.WriteObjectValue<WorkbookTableSort>("sort", Sort);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookTableSort>("sort", Sort);
             writer.WriteStringValue("style", Style);
-            writer.WriteObjectValue<WorkbookWorksheet>("worksheet", Worksheet);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookWorksheet>("worksheet", Worksheet);
         }
     }
 }

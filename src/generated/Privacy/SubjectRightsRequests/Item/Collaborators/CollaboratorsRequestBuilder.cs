@@ -31,7 +31,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new UserItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.Item.UserItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildMailboxSettingsNavCommand());
             commands.Add(builder.BuildServiceProvisioningErrorsNavCommand());
@@ -45,7 +45,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -158,14 +158,14 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CollaboratorsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.CollaboratorsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CollaboratorsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/collaborators{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CollaboratorsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.CollaboratorsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CollaboratorsRequestBuilder(string rawUrl) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/collaborators{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -179,11 +179,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CollaboratorsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.CollaboratorsRequestBuilder.CollaboratorsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CollaboratorsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.CollaboratorsRequestBuilder.CollaboratorsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

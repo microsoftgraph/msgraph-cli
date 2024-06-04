@@ -63,14 +63,14 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetFinalReportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport.GetFinalReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetFinalReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/getFinalReport()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetFinalReportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport.GetFinalReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetFinalReportRequestBuilder(string rawUrl) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/getFinalReport()", rawUrl)

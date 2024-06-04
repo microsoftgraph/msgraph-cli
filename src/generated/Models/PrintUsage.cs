@@ -8,7 +8,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrintUsage : Entity, IParsable
+    public class PrintUsage : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The blackAndWhitePageCount property</summary>
@@ -36,17 +36,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrintUsage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrintUsage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrintUsage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrintUsage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.printUsageByPrinter" => new PrintUsageByPrinter(),
-                "#microsoft.graph.printUsageByUser" => new PrintUsageByUser(),
-                _ => new PrintUsage(),
+                "#microsoft.graph.printUsageByPrinter" => new ApiSdk.Models.PrintUsageByPrinter(),
+                "#microsoft.graph.printUsageByUser" => new ApiSdk.Models.PrintUsageByUser(),
+                _ => new ApiSdk.Models.PrintUsage(),
             };
         }
         /// <summary>

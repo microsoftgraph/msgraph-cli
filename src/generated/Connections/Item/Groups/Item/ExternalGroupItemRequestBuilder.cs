@@ -129,7 +129,7 @@ namespace ApiSdk.Connections.Item.Groups.Item
         {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.externalConnectors.externalGroup entity.";
-            var builder = new MembersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Connections.Item.Groups.Item.Members.MembersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -184,7 +184,7 @@ namespace ApiSdk.Connections.Item.Groups.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ExternalGroup>(ExternalGroup.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ExternalConnectors.ExternalGroup>(ApiSdk.Models.ExternalConnectors.ExternalGroup.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -206,14 +206,14 @@ namespace ApiSdk.Connections.Item.Groups.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ExternalGroupItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Connections.Item.Groups.Item.ExternalGroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ExternalGroupItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}/groups/{externalGroup%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ExternalGroupItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Connections.Item.Groups.Item.ExternalGroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ExternalGroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/connections/{externalConnection%2Did}/groups/{externalGroup%2Did}{?%24expand,%24select}", rawUrl)
@@ -245,11 +245,11 @@ namespace ApiSdk.Connections.Item.Groups.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ExternalGroupItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Connections.Item.Groups.Item.ExternalGroupItemRequestBuilder.ExternalGroupItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ExternalGroupItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Connections.Item.Groups.Item.ExternalGroupItemRequestBuilder.ExternalGroupItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -265,11 +265,11 @@ namespace ApiSdk.Connections.Item.Groups.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ExternalGroup body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ExternalConnectors.ExternalGroup body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ExternalGroup body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ExternalConnectors.ExternalGroup body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

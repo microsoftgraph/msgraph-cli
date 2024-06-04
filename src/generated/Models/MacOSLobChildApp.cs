@@ -46,7 +46,7 @@ namespace ApiSdk.Models
         public string VersionNumber { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MacOSLobChildApp"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MacOSLobChildApp"/> and sets the default values.
         /// </summary>
         public MacOSLobChildApp()
         {
@@ -55,12 +55,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MacOSLobChildApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MacOSLobChildApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MacOSLobChildApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MacOSLobChildApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MacOSLobChildApp();
+            return new ApiSdk.Models.MacOSLobChildApp();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookChartDataLabels : Entity, IParsable
+    public class WorkbookChartDataLabels : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents the format of chart data labels, which includes fill and font formatting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartDataLabelFormat? Format { get; set; }
+        public ApiSdk.Models.WorkbookChartDataLabelFormat? Format { get; set; }
 #nullable restore
 #else
-        public WorkbookChartDataLabelFormat Format { get; set; }
+        public ApiSdk.Models.WorkbookChartDataLabelFormat Format { get; set; }
 #endif
         /// <summary>DataLabelPosition value that represents the position of the data label. The possible values are: None, Center, InsideEnd, InsideBase, OutsideEnd, Left, Right, Top, Bottom, BestFit, Callout.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -49,12 +49,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookChartDataLabels"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookChartDataLabels"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookChartDataLabels CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookChartDataLabels CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookChartDataLabels();
+            return new ApiSdk.Models.WorkbookChartDataLabels();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,7 +64,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "format", n => { Format = n.GetObjectValue<WorkbookChartDataLabelFormat>(WorkbookChartDataLabelFormat.CreateFromDiscriminatorValue); } },
+                { "format", n => { Format = n.GetObjectValue<ApiSdk.Models.WorkbookChartDataLabelFormat>(ApiSdk.Models.WorkbookChartDataLabelFormat.CreateFromDiscriminatorValue); } },
                 { "position", n => { Position = n.GetStringValue(); } },
                 { "separator", n => { Separator = n.GetStringValue(); } },
                 { "showBubbleSize", n => { ShowBubbleSize = n.GetBoolValue(); } },
@@ -83,7 +83,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartDataLabelFormat>("format", Format);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartDataLabelFormat>("format", Format);
             writer.WriteStringValue("position", Position);
             writer.WriteStringValue("separator", Separator);
             writer.WriteBoolValue("showBubbleSize", ShowBubbleSize);

@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item
         {
             var command = new Command("begin-onboarding");
             command.Description = "Provides operations to call the beginOnboarding method.";
-            var builder = new BeginOnboardingRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.BeginOnboarding.BeginOnboardingRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -84,7 +84,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item
         {
             var command = new Command("disconnect");
             command.Description = "Provides operations to call the disconnect method.";
-            var builder = new DisconnectRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect.DisconnectRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -178,7 +178,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<RemoteAssistancePartner>(RemoteAssistancePartner.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.RemoteAssistancePartner>(ApiSdk.Models.RemoteAssistancePartner.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -199,14 +199,14 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RemoteAssistancePartnerItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.RemoteAssistancePartnerItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RemoteAssistancePartnerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/remoteAssistancePartners/{remoteAssistancePartner%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RemoteAssistancePartnerItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.RemoteAssistancePartnerItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RemoteAssistancePartnerItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/remoteAssistancePartners/{remoteAssistancePartner%2Did}{?%24expand,%24select}", rawUrl)
@@ -238,11 +238,11 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RemoteAssistancePartnerItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.RemoteAssistancePartnerItemRequestBuilder.RemoteAssistancePartnerItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RemoteAssistancePartnerItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.RemoteAssistancePartnerItemRequestBuilder.RemoteAssistancePartnerItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -258,11 +258,11 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(RemoteAssistancePartner body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.RemoteAssistancePartner body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(RemoteAssistancePartner body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.RemoteAssistancePartner body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

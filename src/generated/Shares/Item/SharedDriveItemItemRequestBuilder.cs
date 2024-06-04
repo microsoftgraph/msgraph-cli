@@ -38,7 +38,7 @@ namespace ApiSdk.Shares.Item
         {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
-            var builder = new CreatedByUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.CreatedByUser.CreatedByUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -97,7 +97,7 @@ namespace ApiSdk.Shares.Item
         {
             var command = new Command("drive-item");
             command.Description = "Provides operations to manage the driveItem property of the microsoft.graph.sharedDriveItem entity.";
-            var builder = new DriveItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.DriveItem.DriveItemRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildContentNavCommand());
@@ -173,7 +173,7 @@ namespace ApiSdk.Shares.Item
         {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.sharedDriveItem entity.";
-            var builder = new ItemsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.Items.ItemsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -199,7 +199,7 @@ namespace ApiSdk.Shares.Item
         {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
-            var builder = new LastModifiedByUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.LastModifiedByUser.LastModifiedByUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -223,7 +223,7 @@ namespace ApiSdk.Shares.Item
         {
             var command = new Command("list-item");
             command.Description = "Provides operations to manage the listItem property of the microsoft.graph.sharedDriveItem entity.";
-            var builder = new ListItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.ListItem.ListItemRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -240,7 +240,7 @@ namespace ApiSdk.Shares.Item
         {
             var command = new Command("list");
             command.Description = "Provides operations to manage the list property of the microsoft.graph.sharedDriveItem entity.";
-            var builder = new ListRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.List.ListRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildColumnsNavCommand());
@@ -295,7 +295,7 @@ namespace ApiSdk.Shares.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SharedDriveItem>(SharedDriveItem.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.SharedDriveItem>(ApiSdk.Models.SharedDriveItem.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -323,7 +323,7 @@ namespace ApiSdk.Shares.Item
         {
             var command = new Command("permission");
             command.Description = "Provides operations to manage the permission property of the microsoft.graph.sharedDriveItem entity.";
-            var builder = new PermissionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.Permission.PermissionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -348,7 +348,7 @@ namespace ApiSdk.Shares.Item
         {
             var command = new Command("root");
             command.Description = "Provides operations to manage the root property of the microsoft.graph.sharedDriveItem entity.";
-            var builder = new RootRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.Root.RootRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildContentNavCommand());
@@ -371,7 +371,7 @@ namespace ApiSdk.Shares.Item
         {
             var command = new Command("site");
             command.Description = "Provides operations to manage the site property of the microsoft.graph.sharedDriveItem entity.";
-            var builder = new SiteRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.Site.SiteRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -381,14 +381,14 @@ namespace ApiSdk.Shares.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SharedDriveItemItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Shares.Item.SharedDriveItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SharedDriveItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SharedDriveItemItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Shares.Item.SharedDriveItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SharedDriveItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}{?%24expand,%24select}", rawUrl)
@@ -420,11 +420,11 @@ namespace ApiSdk.Shares.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SharedDriveItemItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Shares.Item.SharedDriveItemItemRequestBuilder.SharedDriveItemItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SharedDriveItemItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Shares.Item.SharedDriveItemItemRequestBuilder.SharedDriveItemItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -440,11 +440,11 @@ namespace ApiSdk.Shares.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(SharedDriveItem body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SharedDriveItem body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(SharedDriveItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SharedDriveItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

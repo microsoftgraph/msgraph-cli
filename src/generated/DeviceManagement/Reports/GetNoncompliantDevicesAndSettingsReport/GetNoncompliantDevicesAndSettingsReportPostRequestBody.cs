@@ -73,7 +73,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetNoncompliantDevicesAndSettingsRepor
         /// <summary>The top property</summary>
         public int? Top { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="GetNoncompliantDevicesAndSettingsReportPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.Reports.GetNoncompliantDevicesAndSettingsReport.GetNoncompliantDevicesAndSettingsReportPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetNoncompliantDevicesAndSettingsReportPostRequestBody()
         {
@@ -82,12 +82,12 @@ namespace ApiSdk.DeviceManagement.Reports.GetNoncompliantDevicesAndSettingsRepor
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetNoncompliantDevicesAndSettingsReportPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.Reports.GetNoncompliantDevicesAndSettingsReport.GetNoncompliantDevicesAndSettingsReportPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetNoncompliantDevicesAndSettingsReportPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DeviceManagement.Reports.GetNoncompliantDevicesAndSettingsReport.GetNoncompliantDevicesAndSettingsReportPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetNoncompliantDevicesAndSettingsReportPostRequestBody();
+            return new ApiSdk.DeviceManagement.Reports.GetNoncompliantDevicesAndSettingsReport.GetNoncompliantDevicesAndSettingsReportPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -8,7 +8,7 @@ using System;
 namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory
 {
     #pragma warning disable CS1591
-    public class GetAuditActivityTypesWithCategoryGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetAuditActivityTypesWithCategoryGetResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
@@ -22,12 +22,12 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetAuditActivityTypesWithCategoryGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory.GetAuditActivityTypesWithCategoryGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetAuditActivityTypesWithCategoryGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory.GetAuditActivityTypesWithCategoryGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetAuditActivityTypesWithCategoryGetResponse();
+            return new ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory.GetAuditActivityTypesWithCategoryGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

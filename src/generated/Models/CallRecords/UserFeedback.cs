@@ -21,7 +21,7 @@ namespace ApiSdk.Models.CallRecords
         public string OdataType { get; set; }
 #endif
         /// <summary>The rating property</summary>
-        public UserFeedbackRating? Rating { get; set; }
+        public ApiSdk.Models.CallRecords.UserFeedbackRating? Rating { get; set; }
         /// <summary>The feedback text provided by the user of this endpoint for the session.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -33,13 +33,13 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>The set of feedback tokens provided by the user of this endpoint for the session. This is a set of Boolean properties. The property names should not be relied upon since they may change depending on what tokens are offered to the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FeedbackTokenSet? Tokens { get; set; }
+        public ApiSdk.Models.CallRecords.FeedbackTokenSet? Tokens { get; set; }
 #nullable restore
 #else
-        public FeedbackTokenSet Tokens { get; set; }
+        public ApiSdk.Models.CallRecords.FeedbackTokenSet Tokens { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UserFeedback"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CallRecords.UserFeedback"/> and sets the default values.
         /// </summary>
         public UserFeedback()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserFeedback"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallRecords.UserFeedback"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UserFeedback CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CallRecords.UserFeedback CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserFeedback();
+            return new ApiSdk.Models.CallRecords.UserFeedback();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,9 +64,9 @@ namespace ApiSdk.Models.CallRecords
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "rating", n => { Rating = n.GetEnumValue<UserFeedbackRating>(); } },
+                { "rating", n => { Rating = n.GetEnumValue<ApiSdk.Models.CallRecords.UserFeedbackRating>(); } },
                 { "text", n => { Text = n.GetStringValue(); } },
-                { "tokens", n => { Tokens = n.GetObjectValue<FeedbackTokenSet>(FeedbackTokenSet.CreateFromDiscriminatorValue); } },
+                { "tokens", n => { Tokens = n.GetObjectValue<ApiSdk.Models.CallRecords.FeedbackTokenSet>(ApiSdk.Models.CallRecords.FeedbackTokenSet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -77,9 +77,9 @@ namespace ApiSdk.Models.CallRecords
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<UserFeedbackRating>("rating", Rating);
+            writer.WriteEnumValue<ApiSdk.Models.CallRecords.UserFeedbackRating>("rating", Rating);
             writer.WriteStringValue("text", Text);
-            writer.WriteObjectValue<FeedbackTokenSet>("tokens", Tokens);
+            writer.WriteObjectValue<ApiSdk.Models.CallRecords.FeedbackTokenSet>("tokens", Tokens);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

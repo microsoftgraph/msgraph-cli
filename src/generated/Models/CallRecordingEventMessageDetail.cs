@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CallRecordingEventMessageDetail : EventMessageDetail, IParsable
+    public class CallRecordingEventMessageDetail : ApiSdk.Models.EventMessageDetail, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Unique identifier of the call.</summary>
@@ -41,21 +41,21 @@ namespace ApiSdk.Models
         /// <summary>Initiator of the event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet? Initiator { get; set; }
 #nullable restore
 #else
-        public IdentitySet Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet Initiator { get; set; }
 #endif
         /// <summary>Organizer of the meeting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? MeetingOrganizer { get; set; }
+        public ApiSdk.Models.IdentitySet? MeetingOrganizer { get; set; }
 #nullable restore
 #else
-        public IdentitySet MeetingOrganizer { get; set; }
+        public ApiSdk.Models.IdentitySet MeetingOrganizer { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CallRecordingEventMessageDetail"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CallRecordingEventMessageDetail"/> and sets the default values.
         /// </summary>
         public CallRecordingEventMessageDetail() : base()
         {
@@ -64,12 +64,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CallRecordingEventMessageDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallRecordingEventMessageDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CallRecordingEventMessageDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CallRecordingEventMessageDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CallRecordingEventMessageDetail();
+            return new ApiSdk.Models.CallRecordingEventMessageDetail();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,10 +82,10 @@ namespace ApiSdk.Models
                 { "callId", n => { CallId = n.GetStringValue(); } },
                 { "callRecordingDisplayName", n => { CallRecordingDisplayName = n.GetStringValue(); } },
                 { "callRecordingDuration", n => { CallRecordingDuration = n.GetTimeSpanValue(); } },
-                { "callRecordingStatus", n => { CallRecordingStatus = n.GetEnumValue<CallRecordingStatus>(); } },
+                { "callRecordingStatus", n => { CallRecordingStatus = n.GetEnumValue<ApiSdk.Models.CallRecordingStatus>(); } },
                 { "callRecordingUrl", n => { CallRecordingUrl = n.GetStringValue(); } },
-                { "initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                { "meetingOrganizer", n => { MeetingOrganizer = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "initiator", n => { Initiator = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
+                { "meetingOrganizer", n => { MeetingOrganizer = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -99,10 +99,10 @@ namespace ApiSdk.Models
             writer.WriteStringValue("callId", CallId);
             writer.WriteStringValue("callRecordingDisplayName", CallRecordingDisplayName);
             writer.WriteTimeSpanValue("callRecordingDuration", CallRecordingDuration);
-            writer.WriteEnumValue<CallRecordingStatus>("callRecordingStatus", CallRecordingStatus);
+            writer.WriteEnumValue<ApiSdk.Models.CallRecordingStatus>("callRecordingStatus", CallRecordingStatus);
             writer.WriteStringValue("callRecordingUrl", CallRecordingUrl);
-            writer.WriteObjectValue<IdentitySet>("initiator", Initiator);
-            writer.WriteObjectValue<IdentitySet>("meetingOrganizer", MeetingOrganizer);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("initiator", Initiator);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("meetingOrganizer", MeetingOrganizer);
         }
     }
 }

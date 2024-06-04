@@ -21,9 +21,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>Type of setting. Possible values are: microsoftCustom, microsoftManaged, noTraining, custom, unknownFutureValue.</summary>
-        public TrainingSettingType? SettingType { get; set; }
+        public ApiSdk.Models.TrainingSettingType? SettingType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TrainingSetting"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TrainingSetting"/> and sets the default values.
         /// </summary>
         public TrainingSetting()
         {
@@ -32,20 +32,20 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TrainingSetting"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TrainingSetting"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TrainingSetting CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TrainingSetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.customTrainingSetting" => new CustomTrainingSetting(),
-                "#microsoft.graph.microsoftCustomTrainingSetting" => new MicrosoftCustomTrainingSetting(),
-                "#microsoft.graph.microsoftManagedTrainingSetting" => new MicrosoftManagedTrainingSetting(),
-                "#microsoft.graph.microsoftTrainingAssignmentMapping" => new MicrosoftTrainingAssignmentMapping(),
-                "#microsoft.graph.noTrainingSetting" => new NoTrainingSetting(),
-                _ => new TrainingSetting(),
+                "#microsoft.graph.customTrainingSetting" => new ApiSdk.Models.CustomTrainingSetting(),
+                "#microsoft.graph.microsoftCustomTrainingSetting" => new ApiSdk.Models.MicrosoftCustomTrainingSetting(),
+                "#microsoft.graph.microsoftManagedTrainingSetting" => new ApiSdk.Models.MicrosoftManagedTrainingSetting(),
+                "#microsoft.graph.microsoftTrainingAssignmentMapping" => new ApiSdk.Models.MicrosoftTrainingAssignmentMapping(),
+                "#microsoft.graph.noTrainingSetting" => new ApiSdk.Models.NoTrainingSetting(),
+                _ => new ApiSdk.Models.TrainingSetting(),
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "settingType", n => { SettingType = n.GetEnumValue<TrainingSettingType>(); } },
+                { "settingType", n => { SettingType = n.GetEnumValue<ApiSdk.Models.TrainingSettingType>(); } },
             };
         }
         /// <summary>
@@ -68,7 +68,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<TrainingSettingType>("settingType", SettingType);
+            writer.WriteEnumValue<ApiSdk.Models.TrainingSettingType>("settingType", SettingType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

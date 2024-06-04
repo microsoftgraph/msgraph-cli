@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>The language that the automatic reply message is in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public LocaleInfo? MessageLanguage { get; set; }
+        public ApiSdk.Models.LocaleInfo? MessageLanguage { get; set; }
 #nullable restore
 #else
-        public LocaleInfo MessageLanguage { get; set; }
+        public ApiSdk.Models.LocaleInfo MessageLanguage { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,21 +39,21 @@ namespace ApiSdk.Models
         /// <summary>The date and time that automatic replies are set to end.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? ScheduledEndTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? ScheduledEndTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone ScheduledEndTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone ScheduledEndTime { get; set; }
 #endif
         /// <summary>The date and time that automatic replies are set to begin.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? ScheduledStartTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? ScheduledStartTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone ScheduledStartTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone ScheduledStartTime { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AutomaticRepliesMailTips"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AutomaticRepliesMailTips"/> and sets the default values.
         /// </summary>
         public AutomaticRepliesMailTips()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AutomaticRepliesMailTips"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AutomaticRepliesMailTips"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AutomaticRepliesMailTips CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AutomaticRepliesMailTips CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AutomaticRepliesMailTips();
+            return new ApiSdk.Models.AutomaticRepliesMailTips();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,10 +78,10 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "message", n => { Message = n.GetStringValue(); } },
-                { "messageLanguage", n => { MessageLanguage = n.GetObjectValue<LocaleInfo>(LocaleInfo.CreateFromDiscriminatorValue); } },
+                { "messageLanguage", n => { MessageLanguage = n.GetObjectValue<ApiSdk.Models.LocaleInfo>(ApiSdk.Models.LocaleInfo.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "scheduledEndTime", n => { ScheduledEndTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "scheduledStartTime", n => { ScheduledStartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "scheduledEndTime", n => { ScheduledEndTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "scheduledStartTime", n => { ScheduledStartTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -92,10 +92,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("message", Message);
-            writer.WriteObjectValue<LocaleInfo>("messageLanguage", MessageLanguage);
+            writer.WriteObjectValue<ApiSdk.Models.LocaleInfo>("messageLanguage", MessageLanguage);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<DateTimeTimeZone>("scheduledEndTime", ScheduledEndTime);
-            writer.WriteObjectValue<DateTimeTimeZone>("scheduledStartTime", ScheduledStartTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("scheduledEndTime", ScheduledEndTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("scheduledStartTime", ScheduledStartTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

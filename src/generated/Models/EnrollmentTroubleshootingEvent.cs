@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Event representing an enrollment failure.
     /// </summary>
-    public class EnrollmentTroubleshootingEvent : DeviceManagementTroubleshootingEvent, IParsable
+    public class EnrollmentTroubleshootingEvent : ApiSdk.Models.DeviceManagementTroubleshootingEvent, IParsable
     {
         /// <summary>Azure AD device identifier.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -20,9 +20,9 @@ namespace ApiSdk.Models
         public string DeviceId { get; set; }
 #endif
         /// <summary>Possible ways of adding a mobile device to management.</summary>
-        public DeviceEnrollmentType? EnrollmentType { get; set; }
+        public ApiSdk.Models.DeviceEnrollmentType? EnrollmentType { get; set; }
         /// <summary>Top level failure categories for enrollment.</summary>
-        public DeviceEnrollmentFailureReason? FailureCategory { get; set; }
+        public ApiSdk.Models.DeviceEnrollmentFailureReason? FailureCategory { get; set; }
         /// <summary>Detailed failure reason.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -66,12 +66,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EnrollmentTroubleshootingEvent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EnrollmentTroubleshootingEvent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EnrollmentTroubleshootingEvent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EnrollmentTroubleshootingEvent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EnrollmentTroubleshootingEvent();
+            return new ApiSdk.Models.EnrollmentTroubleshootingEvent();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,8 +82,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "deviceId", n => { DeviceId = n.GetStringValue(); } },
-                { "enrollmentType", n => { EnrollmentType = n.GetEnumValue<DeviceEnrollmentType>(); } },
-                { "failureCategory", n => { FailureCategory = n.GetEnumValue<DeviceEnrollmentFailureReason>(); } },
+                { "enrollmentType", n => { EnrollmentType = n.GetEnumValue<ApiSdk.Models.DeviceEnrollmentType>(); } },
+                { "failureCategory", n => { FailureCategory = n.GetEnumValue<ApiSdk.Models.DeviceEnrollmentFailureReason>(); } },
                 { "failureReason", n => { FailureReason = n.GetStringValue(); } },
                 { "managedDeviceIdentifier", n => { ManagedDeviceIdentifier = n.GetStringValue(); } },
                 { "operatingSystem", n => { OperatingSystem = n.GetStringValue(); } },
@@ -100,8 +100,8 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("deviceId", DeviceId);
-            writer.WriteEnumValue<DeviceEnrollmentType>("enrollmentType", EnrollmentType);
-            writer.WriteEnumValue<DeviceEnrollmentFailureReason>("failureCategory", FailureCategory);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceEnrollmentType>("enrollmentType", EnrollmentType);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceEnrollmentFailureReason>("failureCategory", FailureCategory);
             writer.WriteStringValue("failureReason", FailureReason);
             writer.WriteStringValue("managedDeviceIdentifier", ManagedDeviceIdentifier);
             writer.WriteStringValue("operatingSystem", OperatingSystem);

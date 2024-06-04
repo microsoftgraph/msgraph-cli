@@ -51,7 +51,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Impor
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ImportPostRequestBody>(ImportPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Import.ImportPostRequestBody>(ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Import.ImportPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -80,14 +80,14 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Impor
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ImportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Import.ImportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ImportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/importedWindowsAutopilotDeviceIdentities/import", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ImportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Import.ImportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ImportRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/importedWindowsAutopilotDeviceIdentities/import", rawUrl)
@@ -101,11 +101,11 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Impor
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ImportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Import.ImportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ImportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Import.ImportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

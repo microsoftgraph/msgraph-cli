@@ -31,7 +31,7 @@ namespace ApiSdk.Groups.Item.Owners.Item
         {
             var command = new Command("graph-application-by-id");
             command.Description = "Casts the previous resource to application.";
-            var builder = new GraphApplicationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Owners.Item.GraphApplication.GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -48,7 +48,7 @@ namespace ApiSdk.Groups.Item.Owners.Item
         {
             var command = new Command("graph-device-by-id");
             command.Description = "Casts the previous resource to device.";
-            var builder = new GraphDeviceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Owners.Item.GraphDevice.GraphDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -65,7 +65,7 @@ namespace ApiSdk.Groups.Item.Owners.Item
         {
             var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
-            var builder = new GraphGroupRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Owners.Item.GraphGroup.GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -82,7 +82,7 @@ namespace ApiSdk.Groups.Item.Owners.Item
         {
             var command = new Command("graph-org-contact-by-id");
             command.Description = "Casts the previous resource to orgContact.";
-            var builder = new GraphOrgContactRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Owners.Item.GraphOrgContact.GraphOrgContactRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -99,7 +99,7 @@ namespace ApiSdk.Groups.Item.Owners.Item
         {
             var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Owners.Item.GraphServicePrincipal.GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -116,7 +116,7 @@ namespace ApiSdk.Groups.Item.Owners.Item
         {
             var command = new Command("graph-user-by-id");
             command.Description = "Casts the previous resource to user.";
-            var builder = new GraphUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Owners.Item.GraphUser.GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -133,7 +133,7 @@ namespace ApiSdk.Groups.Item.Owners.Item
         {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of group entities.";
-            var builder = new RefRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Owners.Item.Ref.RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             foreach (var cmd in execCommands)
@@ -143,14 +143,14 @@ namespace ApiSdk.Groups.Item.Owners.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Owners.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/owners/{directoryObject%2Did}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Owners.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/owners/{directoryObject%2Did}", rawUrl)

@@ -46,7 +46,7 @@ namespace ApiSdk.Models
         public string OldValue { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AuditProperty"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AuditProperty"/> and sets the default values.
         /// </summary>
         public AuditProperty()
         {
@@ -55,12 +55,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuditProperty"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuditProperty"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AuditProperty CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AuditProperty CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuditProperty();
+            return new ApiSdk.Models.AuditProperty();
         }
         /// <summary>
         /// The deserialization information for the current model

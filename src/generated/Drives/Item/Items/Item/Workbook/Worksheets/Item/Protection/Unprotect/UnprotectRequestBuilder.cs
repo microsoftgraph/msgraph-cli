@@ -62,14 +62,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Unpr
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnprotectRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Unprotect.UnprotectRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnprotectRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/protection/unprotect", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnprotectRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Unprotect.UnprotectRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnprotectRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/protection/unprotect", rawUrl)

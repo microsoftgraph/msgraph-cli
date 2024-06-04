@@ -9,23 +9,23 @@ namespace ApiSdk.Models
     /// <summary>
     /// An abstract class containing the base properties for Intune mobile apps. Note: Listing mobile apps with `$expand=assignments` has been deprecated. Instead get the list of apps without the `$expand` query on `assignments`. Then, perform the expansion on individual applications.
     /// </summary>
-    public class MobileApp : Entity, IParsable
+    public class MobileApp : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The list of group assignments for this mobile app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MobileAppAssignment>? Assignments { get; set; }
+        public List<ApiSdk.Models.MobileAppAssignment>? Assignments { get; set; }
 #nullable restore
 #else
-        public List<MobileAppAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.MobileAppAssignment> Assignments { get; set; }
 #endif
         /// <summary>The list of categories for this app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MobileAppCategory>? Categories { get; set; }
+        public List<ApiSdk.Models.MobileAppCategory>? Categories { get; set; }
 #nullable restore
 #else
-        public List<MobileAppCategory> Categories { get; set; }
+        public List<ApiSdk.Models.MobileAppCategory> Categories { get; set; }
 #endif
         /// <summary>The date and time the app was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; private set; }
@@ -66,10 +66,10 @@ namespace ApiSdk.Models
         /// <summary>The large icon, to be displayed in the app details and used for upload of the icon.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MimeContent? LargeIcon { get; set; }
+        public ApiSdk.Models.MimeContent? LargeIcon { get; set; }
 #nullable restore
 #else
-        public MimeContent LargeIcon { get; set; }
+        public ApiSdk.Models.MimeContent LargeIcon { get; set; }
 #endif
         /// <summary>The date and time the app was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; private set; }
@@ -106,45 +106,45 @@ namespace ApiSdk.Models
         public string Publisher { get; set; }
 #endif
         /// <summary>Indicates the publishing state of an app.</summary>
-        public MobileAppPublishingState? PublishingState { get; set; }
+        public ApiSdk.Models.MobileAppPublishingState? PublishingState { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MobileApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MobileApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MobileApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MobileApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.androidLobApp" => new AndroidLobApp(),
-                "#microsoft.graph.androidStoreApp" => new AndroidStoreApp(),
-                "#microsoft.graph.iosiPadOSWebClip" => new IosiPadOSWebClip(),
-                "#microsoft.graph.iosLobApp" => new IosLobApp(),
-                "#microsoft.graph.iosStoreApp" => new IosStoreApp(),
-                "#microsoft.graph.iosVppApp" => new IosVppApp(),
-                "#microsoft.graph.macOSDmgApp" => new MacOSDmgApp(),
-                "#microsoft.graph.macOSLobApp" => new MacOSLobApp(),
-                "#microsoft.graph.macOSMicrosoftDefenderApp" => new MacOSMicrosoftDefenderApp(),
-                "#microsoft.graph.macOSMicrosoftEdgeApp" => new MacOSMicrosoftEdgeApp(),
-                "#microsoft.graph.macOSOfficeSuiteApp" => new MacOSOfficeSuiteApp(),
-                "#microsoft.graph.managedAndroidLobApp" => new ManagedAndroidLobApp(),
-                "#microsoft.graph.managedAndroidStoreApp" => new ManagedAndroidStoreApp(),
-                "#microsoft.graph.managedApp" => new ManagedApp(),
-                "#microsoft.graph.managedIOSLobApp" => new ManagedIOSLobApp(),
-                "#microsoft.graph.managedIOSStoreApp" => new ManagedIOSStoreApp(),
-                "#microsoft.graph.managedMobileLobApp" => new ManagedMobileLobApp(),
-                "#microsoft.graph.microsoftStoreForBusinessApp" => new MicrosoftStoreForBusinessApp(),
-                "#microsoft.graph.mobileLobApp" => new MobileLobApp(),
-                "#microsoft.graph.webApp" => new WebApp(),
-                "#microsoft.graph.win32LobApp" => new Win32LobApp(),
-                "#microsoft.graph.windowsAppX" => new WindowsAppX(),
-                "#microsoft.graph.windowsMicrosoftEdgeApp" => new WindowsMicrosoftEdgeApp(),
-                "#microsoft.graph.windowsMobileMSI" => new WindowsMobileMSI(),
-                "#microsoft.graph.windowsUniversalAppX" => new WindowsUniversalAppX(),
-                "#microsoft.graph.windowsWebApp" => new WindowsWebApp(),
-                _ => new MobileApp(),
+                "#microsoft.graph.androidLobApp" => new ApiSdk.Models.AndroidLobApp(),
+                "#microsoft.graph.androidStoreApp" => new ApiSdk.Models.AndroidStoreApp(),
+                "#microsoft.graph.iosiPadOSWebClip" => new ApiSdk.Models.IosiPadOSWebClip(),
+                "#microsoft.graph.iosLobApp" => new ApiSdk.Models.IosLobApp(),
+                "#microsoft.graph.iosStoreApp" => new ApiSdk.Models.IosStoreApp(),
+                "#microsoft.graph.iosVppApp" => new ApiSdk.Models.IosVppApp(),
+                "#microsoft.graph.macOSDmgApp" => new ApiSdk.Models.MacOSDmgApp(),
+                "#microsoft.graph.macOSLobApp" => new ApiSdk.Models.MacOSLobApp(),
+                "#microsoft.graph.macOSMicrosoftDefenderApp" => new ApiSdk.Models.MacOSMicrosoftDefenderApp(),
+                "#microsoft.graph.macOSMicrosoftEdgeApp" => new ApiSdk.Models.MacOSMicrosoftEdgeApp(),
+                "#microsoft.graph.macOSOfficeSuiteApp" => new ApiSdk.Models.MacOSOfficeSuiteApp(),
+                "#microsoft.graph.managedAndroidLobApp" => new ApiSdk.Models.ManagedAndroidLobApp(),
+                "#microsoft.graph.managedAndroidStoreApp" => new ApiSdk.Models.ManagedAndroidStoreApp(),
+                "#microsoft.graph.managedApp" => new ApiSdk.Models.ManagedApp(),
+                "#microsoft.graph.managedIOSLobApp" => new ApiSdk.Models.ManagedIOSLobApp(),
+                "#microsoft.graph.managedIOSStoreApp" => new ApiSdk.Models.ManagedIOSStoreApp(),
+                "#microsoft.graph.managedMobileLobApp" => new ApiSdk.Models.ManagedMobileLobApp(),
+                "#microsoft.graph.microsoftStoreForBusinessApp" => new ApiSdk.Models.MicrosoftStoreForBusinessApp(),
+                "#microsoft.graph.mobileLobApp" => new ApiSdk.Models.MobileLobApp(),
+                "#microsoft.graph.webApp" => new ApiSdk.Models.WebApp(),
+                "#microsoft.graph.win32LobApp" => new ApiSdk.Models.Win32LobApp(),
+                "#microsoft.graph.windowsAppX" => new ApiSdk.Models.WindowsAppX(),
+                "#microsoft.graph.windowsMicrosoftEdgeApp" => new ApiSdk.Models.WindowsMicrosoftEdgeApp(),
+                "#microsoft.graph.windowsMobileMSI" => new ApiSdk.Models.WindowsMobileMSI(),
+                "#microsoft.graph.windowsUniversalAppX" => new ApiSdk.Models.WindowsUniversalAppX(),
+                "#microsoft.graph.windowsWebApp" => new ApiSdk.Models.WindowsWebApp(),
+                _ => new ApiSdk.Models.MobileApp(),
             };
         }
         /// <summary>
@@ -155,21 +155,21 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<MobileAppAssignment>(MobileAppAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "categories", n => { Categories = n.GetCollectionOfObjectValues<MobileAppCategory>(MobileAppCategory.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.MobileAppAssignment>(ApiSdk.Models.MobileAppAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "categories", n => { Categories = n.GetCollectionOfObjectValues<ApiSdk.Models.MobileAppCategory>(ApiSdk.Models.MobileAppCategory.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "developer", n => { Developer = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "informationUrl", n => { InformationUrl = n.GetStringValue(); } },
                 { "isFeatured", n => { IsFeatured = n.GetBoolValue(); } },
-                { "largeIcon", n => { LargeIcon = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
+                { "largeIcon", n => { LargeIcon = n.GetObjectValue<ApiSdk.Models.MimeContent>(ApiSdk.Models.MimeContent.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "notes", n => { Notes = n.GetStringValue(); } },
                 { "owner", n => { Owner = n.GetStringValue(); } },
                 { "privacyInformationUrl", n => { PrivacyInformationUrl = n.GetStringValue(); } },
                 { "publisher", n => { Publisher = n.GetStringValue(); } },
-                { "publishingState", n => { PublishingState = n.GetEnumValue<MobileAppPublishingState>(); } },
+                { "publishingState", n => { PublishingState = n.GetEnumValue<ApiSdk.Models.MobileAppPublishingState>(); } },
             };
         }
         /// <summary>
@@ -180,19 +180,19 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<MobileAppAssignment>("assignments", Assignments);
-            writer.WriteCollectionOfObjectValues<MobileAppCategory>("categories", Categories);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MobileAppAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MobileAppCategory>("categories", Categories);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("developer", Developer);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("informationUrl", InformationUrl);
             writer.WriteBoolValue("isFeatured", IsFeatured);
-            writer.WriteObjectValue<MimeContent>("largeIcon", LargeIcon);
+            writer.WriteObjectValue<ApiSdk.Models.MimeContent>("largeIcon", LargeIcon);
             writer.WriteStringValue("notes", Notes);
             writer.WriteStringValue("owner", Owner);
             writer.WriteStringValue("privacyInformationUrl", PrivacyInformationUrl);
             writer.WriteStringValue("publisher", Publisher);
-            writer.WriteEnumValue<MobileAppPublishingState>("publishingState", PublishingState);
+            writer.WriteEnumValue<ApiSdk.Models.MobileAppPublishingState>("publishingState", PublishingState);
         }
     }
 }

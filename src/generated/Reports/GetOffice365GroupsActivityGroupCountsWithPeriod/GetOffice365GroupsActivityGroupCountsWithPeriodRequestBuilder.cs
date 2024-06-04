@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityGroupCountsWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOffice365GroupsActivityGroupCountsWithPeriod.GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365GroupsActivityGroupCounts(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOffice365GroupsActivityGroupCountsWithPeriod.GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOffice365GroupsActivityGroupCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOffice365GroupsActivityGroupCounts(period='{period}')", rawUrl)

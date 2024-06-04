@@ -25,10 +25,10 @@ namespace ApiSdk.Models
         /// <summary>The definition of the delegated permissions exposed by the web API represented by this application registration. These delegated permissions may be requested by a client application, and may be granted by users or administrators during consent. Delegated permissions are sometimes referred to as OAuth 2.0 scopes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PermissionScope>? Oauth2PermissionScopes { get; set; }
+        public List<ApiSdk.Models.PermissionScope>? Oauth2PermissionScopes { get; set; }
 #nullable restore
 #else
-        public List<PermissionScope> Oauth2PermissionScopes { get; set; }
+        public List<ApiSdk.Models.PermissionScope> Oauth2PermissionScopes { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,15 +41,15 @@ namespace ApiSdk.Models
         /// <summary>Lists the client applications that are preauthorized with the specified delegated permissions to access this application&apos;s APIs. Users aren&apos;t required to consent to any preauthorized application (for the permissions specified). However, any other permissions not listed in preAuthorizedApplications (requested through incremental consent for example) will require user consent.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PreAuthorizedApplication>? PreAuthorizedApplications { get; set; }
+        public List<ApiSdk.Models.PreAuthorizedApplication>? PreAuthorizedApplications { get; set; }
 #nullable restore
 #else
-        public List<PreAuthorizedApplication> PreAuthorizedApplications { get; set; }
+        public List<ApiSdk.Models.PreAuthorizedApplication> PreAuthorizedApplications { get; set; }
 #endif
         /// <summary>Specifies the access token version expected by this resource. This changes the version and format of the JWT produced independent of the endpoint or client used to request the access token.  The endpoint used, v1.0 or v2.0, is chosen by the client and only impacts the version of id_tokens. Resources need to explicitly configure requestedAccessTokenVersion to indicate the supported access token format.  Possible values for requestedAccessTokenVersion are 1, 2, or null. If the value is null, this defaults to 1, which corresponds to the v1.0 endpoint.  If signInAudience on the application is configured as AzureADandPersonalMicrosoftAccount or PersonalMicrosoftAccount, the value for this property must be 2.</summary>
         public int? RequestedAccessTokenVersion { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ApiApplication"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ApiApplication"/> and sets the default values.
         /// </summary>
         public ApiApplication()
         {
@@ -58,12 +58,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ApiApplication"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ApiApplication"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ApiApplication CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ApiApplication CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ApiApplication();
+            return new ApiSdk.Models.ApiApplication();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -75,9 +75,9 @@ namespace ApiSdk.Models
             {
                 { "acceptMappedClaims", n => { AcceptMappedClaims = n.GetBoolValue(); } },
                 { "knownClientApplications", n => { KnownClientApplications = n.GetCollectionOfPrimitiveValues<Guid?>()?.ToList(); } },
-                { "oauth2PermissionScopes", n => { Oauth2PermissionScopes = n.GetCollectionOfObjectValues<PermissionScope>(PermissionScope.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "oauth2PermissionScopes", n => { Oauth2PermissionScopes = n.GetCollectionOfObjectValues<ApiSdk.Models.PermissionScope>(ApiSdk.Models.PermissionScope.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "preAuthorizedApplications", n => { PreAuthorizedApplications = n.GetCollectionOfObjectValues<PreAuthorizedApplication>(PreAuthorizedApplication.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "preAuthorizedApplications", n => { PreAuthorizedApplications = n.GetCollectionOfObjectValues<ApiSdk.Models.PreAuthorizedApplication>(ApiSdk.Models.PreAuthorizedApplication.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "requestedAccessTokenVersion", n => { RequestedAccessTokenVersion = n.GetIntValue(); } },
             };
         }
@@ -90,9 +90,9 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("acceptMappedClaims", AcceptMappedClaims);
             writer.WriteCollectionOfPrimitiveValues<Guid?>("knownClientApplications", KnownClientApplications);
-            writer.WriteCollectionOfObjectValues<PermissionScope>("oauth2PermissionScopes", Oauth2PermissionScopes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PermissionScope>("oauth2PermissionScopes", Oauth2PermissionScopes);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<PreAuthorizedApplication>("preAuthorizedApplications", PreAuthorizedApplications);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PreAuthorizedApplication>("preAuthorizedApplications", PreAuthorizedApplications);
             writer.WriteIntValue("requestedAccessTokenVersion", RequestedAccessTokenVersion);
             writer.WriteAdditionalData(AdditionalData);
         }

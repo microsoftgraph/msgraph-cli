@@ -23,13 +23,13 @@ namespace ApiSdk.Models
         /// <summary>The subjectRightsRequests property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectRightsRequest>? SubjectRightsRequests { get; set; }
+        public List<ApiSdk.Models.SubjectRightsRequest>? SubjectRightsRequests { get; set; }
 #nullable restore
 #else
-        public List<SubjectRightsRequest> SubjectRightsRequests { get; set; }
+        public List<ApiSdk.Models.SubjectRightsRequest> SubjectRightsRequests { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Privacy"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Privacy"/> and sets the default values.
         /// </summary>
         public Privacy()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Privacy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Privacy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Privacy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Privacy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Privacy();
+            return new ApiSdk.Models.Privacy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "subjectRightsRequests", n => { SubjectRightsRequests = n.GetCollectionOfObjectValues<SubjectRightsRequest>(SubjectRightsRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "subjectRightsRequests", n => { SubjectRightsRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequest>(ApiSdk.Models.SubjectRightsRequest.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<SubjectRightsRequest>("subjectRightsRequests", SubjectRightsRequests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequest>("subjectRightsRequests", SubjectRightsRequests);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

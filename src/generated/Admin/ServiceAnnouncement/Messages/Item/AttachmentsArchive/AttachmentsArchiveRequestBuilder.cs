@@ -147,14 +147,14 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttachmentsArchiveRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive.AttachmentsArchiveRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AttachmentsArchiveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/messages/{serviceUpdateMessage%2Did}/attachmentsArchive", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttachmentsArchiveRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive.AttachmentsArchiveRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AttachmentsArchiveRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement/messages/{serviceUpdateMessage%2Did}/attachmentsArchive", rawUrl)

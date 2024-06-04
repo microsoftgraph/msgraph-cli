@@ -61,14 +61,14 @@ namespace ApiSdk.Reports.GetYammerGroupsActivityDetailWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetYammerGroupsActivityDetailWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetYammerGroupsActivityDetailWithPeriod.GetYammerGroupsActivityDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetYammerGroupsActivityDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getYammerGroupsActivityDetail(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetYammerGroupsActivityDetailWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetYammerGroupsActivityDetailWithPeriod.GetYammerGroupsActivityDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetYammerGroupsActivityDetailWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getYammerGroupsActivityDetail(period='{period}')", rawUrl)

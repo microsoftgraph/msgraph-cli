@@ -40,7 +40,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         {
             var command = new Command("accept");
             command.Description = "Provides operations to call the accept method.";
-            var builder = new AcceptRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Accept.AcceptRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -57,7 +57,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.event entity.";
-            var builder = new AttachmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Attachments.AttachmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -85,7 +85,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         {
             var command = new Command("calendar");
             command.Description = "Provides operations to manage the calendar property of the microsoft.graph.event entity.";
-            var builder = new CalendarRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Calendar.CalendarRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -102,7 +102,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
-            var builder = new CancelRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Cancel.CancelRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -119,7 +119,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         {
             var command = new Command("decline");
             command.Description = "Provides operations to call the decline method.";
-            var builder = new DeclineRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Decline.DeclineRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -136,7 +136,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         {
             var command = new Command("dismiss-reminder");
             command.Description = "Provides operations to call the dismissReminder method.";
-            var builder = new DismissReminderRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.DismissReminder.DismissReminderRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -153,7 +153,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.event entity.";
-            var builder = new ExtensionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Extensions.ExtensionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -180,7 +180,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         {
             var command = new Command("forward");
             command.Description = "Provides operations to call the forward method.";
-            var builder = new ForwardRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Forward.ForwardRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -272,7 +272,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         {
             var command = new Command("instances");
             command.Description = "Provides operations to manage the instances property of the microsoft.graph.event entity.";
-            var builder = new InstancesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.InstancesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -299,7 +299,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         {
             var command = new Command("snooze-reminder");
             command.Description = "Provides operations to call the snoozeReminder method.";
-            var builder = new SnoozeReminderRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.SnoozeReminder.SnoozeReminderRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -316,7 +316,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         {
             var command = new Command("tentatively-accept");
             command.Description = "Provides operations to call the tentativelyAccept method.";
-            var builder = new TentativelyAcceptRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.TentativelyAccept.TentativelyAcceptRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -326,14 +326,14 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="EventItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.EventItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarView/{event%2Did}?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="EventItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.EventItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public EventItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarView/{event%2Did}?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24select}", rawUrl)
@@ -346,11 +346,11 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EventItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.EventItemRequestBuilder.EventItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EventItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.EventItemRequestBuilder.EventItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

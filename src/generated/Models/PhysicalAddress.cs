@@ -61,7 +61,7 @@ namespace ApiSdk.Models
         public string Street { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PhysicalAddress"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PhysicalAddress"/> and sets the default values.
         /// </summary>
         public PhysicalAddress()
         {
@@ -70,12 +70,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PhysicalAddress"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PhysicalAddress"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PhysicalAddress CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PhysicalAddress CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PhysicalAddress();
+            return new ApiSdk.Models.PhysicalAddress();
         }
         /// <summary>
         /// The deserialization information for the current model

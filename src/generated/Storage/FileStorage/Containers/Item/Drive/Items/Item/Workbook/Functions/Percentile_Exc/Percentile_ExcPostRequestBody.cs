@@ -16,21 +16,21 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The array property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Array { get; set; }
+        public ApiSdk.Models.Json? Array { get; set; }
 #nullable restore
 #else
-        public Json Array { get; set; }
+        public ApiSdk.Models.Json Array { get; set; }
 #endif
         /// <summary>The k property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? K { get; set; }
+        public ApiSdk.Models.Json? K { get; set; }
 #nullable restore
 #else
-        public Json K { get; set; }
+        public ApiSdk.Models.Json K { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Percentile_ExcPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Percentile_Exc.Percentile_ExcPostRequestBody"/> and sets the default values.
         /// </summary>
         public Percentile_ExcPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Percentile_ExcPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Percentile_Exc.Percentile_ExcPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Percentile_ExcPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Percentile_Exc.Percentile_ExcPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Percentile_ExcPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Percentile_Exc.Percentile_ExcPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "array", n => { Array = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "k", n => { K = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "array", n => { Array = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "k", n => { K = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("array", Array);
-            writer.WriteObjectValue<Json>("k", K);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("array", Array);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("k", K);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -29,9 +29,9 @@ namespace ApiSdk.Models
         public string Target { get; set; }
 #endif
         /// <summary>The type of resource that you want to target. The possible values are: user, group, application, unknownFutureValue.</summary>
-        public CrossTenantAccessPolicyTargetType? TargetType { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyTargetType? TargetType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CrossTenantAccessPolicyTarget"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CrossTenantAccessPolicyTarget"/> and sets the default values.
         /// </summary>
         public CrossTenantAccessPolicyTarget()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CrossTenantAccessPolicyTarget"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CrossTenantAccessPolicyTarget"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CrossTenantAccessPolicyTarget CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CrossTenantAccessPolicyTarget CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CrossTenantAccessPolicyTarget();
+            return new ApiSdk.Models.CrossTenantAccessPolicyTarget();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "target", n => { Target = n.GetStringValue(); } },
-                { "targetType", n => { TargetType = n.GetEnumValue<CrossTenantAccessPolicyTargetType>(); } },
+                { "targetType", n => { TargetType = n.GetEnumValue<ApiSdk.Models.CrossTenantAccessPolicyTargetType>(); } },
             };
         }
         /// <summary>
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("target", Target);
-            writer.WriteEnumValue<CrossTenantAccessPolicyTargetType>("targetType", TargetType);
+            writer.WriteEnumValue<ApiSdk.Models.CrossTenantAccessPolicyTargetType>("targetType", TargetType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

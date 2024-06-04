@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         /// <summary>true for persistent session. false for non-persistent session (view mode)</summary>
         public bool? PersistChanges { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="WorkbookSessionInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WorkbookSessionInfo"/> and sets the default values.
         /// </summary>
         public WorkbookSessionInfo()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookSessionInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookSessionInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WorkbookSessionInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WorkbookSessionInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookSessionInfo();
+            return new ApiSdk.Models.WorkbookSessionInfo();
         }
         /// <summary>
         /// The deserialization information for the current model

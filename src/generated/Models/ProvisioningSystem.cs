@@ -7,19 +7,19 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ProvisioningSystem : Identity, IParsable
+    public class ProvisioningSystem : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Details of the system.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DetailsInfo? Details { get; set; }
+        public ApiSdk.Models.DetailsInfo? Details { get; set; }
 #nullable restore
 #else
-        public DetailsInfo Details { get; set; }
+        public ApiSdk.Models.DetailsInfo Details { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ProvisioningSystem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ProvisioningSystem"/> and sets the default values.
         /// </summary>
         public ProvisioningSystem() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ProvisioningSystem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ProvisioningSystem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ProvisioningSystem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ProvisioningSystem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ProvisioningSystem();
+            return new ApiSdk.Models.ProvisioningSystem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -43,7 +43,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "details", n => { Details = n.GetObjectValue<DetailsInfo>(DetailsInfo.CreateFromDiscriminatorValue); } },
+                { "details", n => { Details = n.GetObjectValue<ApiSdk.Models.DetailsInfo>(ApiSdk.Models.DetailsInfo.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<DetailsInfo>("details", Details);
+            writer.WriteObjectValue<ApiSdk.Models.DetailsInfo>("details", Details);
         }
     }
 }

@@ -23,21 +23,21 @@ namespace ApiSdk.Models
         /// <summary>Overview of an attack simulation and training campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SimulationReportOverview? Overview { get; set; }
+        public ApiSdk.Models.SimulationReportOverview? Overview { get; set; }
 #nullable restore
 #else
-        public SimulationReportOverview Overview { get; set; }
+        public ApiSdk.Models.SimulationReportOverview Overview { get; set; }
 #endif
         /// <summary>The tenant users and their online actions in an attack simulation and training campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserSimulationDetails>? SimulationUsers { get; set; }
+        public List<ApiSdk.Models.UserSimulationDetails>? SimulationUsers { get; set; }
 #nullable restore
 #else
-        public List<UserSimulationDetails> SimulationUsers { get; set; }
+        public List<ApiSdk.Models.UserSimulationDetails> SimulationUsers { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SimulationReport"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SimulationReport"/> and sets the default values.
         /// </summary>
         public SimulationReport()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SimulationReport"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SimulationReport"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SimulationReport CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SimulationReport CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SimulationReport();
+            return new ApiSdk.Models.SimulationReport();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,8 +62,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "overview", n => { Overview = n.GetObjectValue<SimulationReportOverview>(SimulationReportOverview.CreateFromDiscriminatorValue); } },
-                { "simulationUsers", n => { SimulationUsers = n.GetCollectionOfObjectValues<UserSimulationDetails>(UserSimulationDetails.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "overview", n => { Overview = n.GetObjectValue<ApiSdk.Models.SimulationReportOverview>(ApiSdk.Models.SimulationReportOverview.CreateFromDiscriminatorValue); } },
+                { "simulationUsers", n => { SimulationUsers = n.GetCollectionOfObjectValues<ApiSdk.Models.UserSimulationDetails>(ApiSdk.Models.UserSimulationDetails.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -74,8 +74,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<SimulationReportOverview>("overview", Overview);
-            writer.WriteCollectionOfObjectValues<UserSimulationDetails>("simulationUsers", SimulationUsers);
+            writer.WriteObjectValue<ApiSdk.Models.SimulationReportOverview>("overview", Overview);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserSimulationDetails>("simulationUsers", SimulationUsers);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

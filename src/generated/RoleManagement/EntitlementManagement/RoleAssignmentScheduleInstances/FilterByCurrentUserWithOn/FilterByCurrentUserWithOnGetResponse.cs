@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInstances.FilterByCurrentUserWithOn
 {
     #pragma warning disable CS1591
-    public class FilterByCurrentUserWithOnGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class FilterByCurrentUserWithOnGetResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UnifiedRoleAssignmentScheduleInstance>? Value { get; set; }
+        public List<ApiSdk.Models.UnifiedRoleAssignmentScheduleInstance>? Value { get; set; }
 #nullable restore
 #else
-        public List<UnifiedRoleAssignmentScheduleInstance> Value { get; set; }
+        public List<ApiSdk.Models.UnifiedRoleAssignmentScheduleInstance> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FilterByCurrentUserWithOnGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInstances.FilterByCurrentUserWithOn.FilterByCurrentUserWithOnGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FilterByCurrentUserWithOnGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInstances.FilterByCurrentUserWithOn.FilterByCurrentUserWithOnGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FilterByCurrentUserWithOnGetResponse();
+            return new ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInstances.FilterByCurrentUserWithOn.FilterByCurrentUserWithOnGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<UnifiedRoleAssignmentScheduleInstance>(UnifiedRoleAssignmentScheduleInstance.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.UnifiedRoleAssignmentScheduleInstance>(ApiSdk.Models.UnifiedRoleAssignmentScheduleInstance.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<UnifiedRoleAssignmentScheduleInstance>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UnifiedRoleAssignmentScheduleInstance>("value", Value);
         }
     }
 }

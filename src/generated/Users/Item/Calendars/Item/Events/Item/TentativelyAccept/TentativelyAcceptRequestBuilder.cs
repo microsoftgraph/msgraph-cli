@@ -54,7 +54,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.TentativelyAccept
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<TentativelyAcceptPostRequestBody>(TentativelyAcceptPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Users.Item.Calendars.Item.Events.Item.TentativelyAccept.TentativelyAcceptPostRequestBody>(ApiSdk.Users.Item.Calendars.Item.Events.Item.TentativelyAccept.TentativelyAcceptPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -75,14 +75,14 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.TentativelyAccept
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TentativelyAcceptRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Calendars.Item.Events.Item.TentativelyAccept.TentativelyAcceptRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TentativelyAcceptRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}/events/{event%2Did}/tentativelyAccept", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TentativelyAcceptRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Calendars.Item.Events.Item.TentativelyAccept.TentativelyAcceptRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TentativelyAcceptRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}/events/{event%2Did}/tentativelyAccept", rawUrl)
@@ -96,11 +96,11 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.TentativelyAccept
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(TentativelyAcceptPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Users.Item.Calendars.Item.Events.Item.TentativelyAccept.TentativelyAcceptPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(TentativelyAcceptPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Users.Item.Calendars.Item.Events.Item.TentativelyAccept.TentativelyAcceptPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

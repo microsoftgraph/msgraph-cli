@@ -15,7 +15,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.IsPublished
         /// <summary>The value property</summary>
         public bool? Value { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="IsPublishedGetResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.IsPublished.IsPublishedGetResponse"/> and sets the default values.
         /// </summary>
         public IsPublishedGetResponse()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.IsPublished
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IsPublishedGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.IsPublished.IsPublishedGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IsPublishedGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.IsPublished.IsPublishedGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IsPublishedGetResponse();
+            return new ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.IsPublished.IsPublishedGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -9,15 +9,15 @@ namespace ApiSdk.Models
     /// <summary>
     /// An abstract class for Mobile app configuration for enrolled devices.
     /// </summary>
-    public class ManagedDeviceMobileAppConfiguration : Entity, IParsable
+    public class ManagedDeviceMobileAppConfiguration : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The list of group assignemenets for app configration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ManagedDeviceMobileAppConfigurationAssignment>? Assignments { get; set; }
+        public List<ApiSdk.Models.ManagedDeviceMobileAppConfigurationAssignment>? Assignments { get; set; }
 #nullable restore
 #else
-        public List<ManagedDeviceMobileAppConfigurationAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.ManagedDeviceMobileAppConfigurationAssignment> Assignments { get; set; }
 #endif
         /// <summary>DateTime the object was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -32,18 +32,18 @@ namespace ApiSdk.Models
         /// <summary>List of ManagedDeviceMobileAppConfigurationDeviceStatus.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ManagedDeviceMobileAppConfigurationDeviceStatus>? DeviceStatuses { get; set; }
+        public List<ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceStatus>? DeviceStatuses { get; set; }
 #nullable restore
 #else
-        public List<ManagedDeviceMobileAppConfigurationDeviceStatus> DeviceStatuses { get; set; }
+        public List<ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceStatus> DeviceStatuses { get; set; }
 #endif
         /// <summary>App configuration device status summary.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ManagedDeviceMobileAppConfigurationDeviceSummary? DeviceStatusSummary { get; set; }
+        public ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceSummary? DeviceStatusSummary { get; set; }
 #nullable restore
 #else
-        public ManagedDeviceMobileAppConfigurationDeviceSummary DeviceStatusSummary { get; set; }
+        public ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceSummary DeviceStatusSummary { get; set; }
 #endif
         /// <summary>Admin provided name of the device configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,34 +66,34 @@ namespace ApiSdk.Models
         /// <summary>List of ManagedDeviceMobileAppConfigurationUserStatus.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ManagedDeviceMobileAppConfigurationUserStatus>? UserStatuses { get; set; }
+        public List<ApiSdk.Models.ManagedDeviceMobileAppConfigurationUserStatus>? UserStatuses { get; set; }
 #nullable restore
 #else
-        public List<ManagedDeviceMobileAppConfigurationUserStatus> UserStatuses { get; set; }
+        public List<ApiSdk.Models.ManagedDeviceMobileAppConfigurationUserStatus> UserStatuses { get; set; }
 #endif
         /// <summary>App configuration user status summary.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ManagedDeviceMobileAppConfigurationUserSummary? UserStatusSummary { get; set; }
+        public ApiSdk.Models.ManagedDeviceMobileAppConfigurationUserSummary? UserStatusSummary { get; set; }
 #nullable restore
 #else
-        public ManagedDeviceMobileAppConfigurationUserSummary UserStatusSummary { get; set; }
+        public ApiSdk.Models.ManagedDeviceMobileAppConfigurationUserSummary UserStatusSummary { get; set; }
 #endif
         /// <summary>Version of the device configuration.</summary>
         public int? Version { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ManagedDeviceMobileAppConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ManagedDeviceMobileAppConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ManagedDeviceMobileAppConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ManagedDeviceMobileAppConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.iosMobileAppConfiguration" => new IosMobileAppConfiguration(),
-                _ => new ManagedDeviceMobileAppConfiguration(),
+                "#microsoft.graph.iosMobileAppConfiguration" => new ApiSdk.Models.IosMobileAppConfiguration(),
+                _ => new ApiSdk.Models.ManagedDeviceMobileAppConfiguration(),
             };
         }
         /// <summary>
@@ -104,16 +104,16 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationAssignment>(ManagedDeviceMobileAppConfigurationAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.ManagedDeviceMobileAppConfigurationAssignment>(ApiSdk.Models.ManagedDeviceMobileAppConfigurationAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "deviceStatusSummary", n => { DeviceStatusSummary = n.GetObjectValue<ManagedDeviceMobileAppConfigurationDeviceSummary>(ManagedDeviceMobileAppConfigurationDeviceSummary.CreateFromDiscriminatorValue); } },
-                { "deviceStatuses", n => { DeviceStatuses = n.GetCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationDeviceStatus>(ManagedDeviceMobileAppConfigurationDeviceStatus.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "deviceStatusSummary", n => { DeviceStatusSummary = n.GetObjectValue<ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceSummary>(ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceSummary.CreateFromDiscriminatorValue); } },
+                { "deviceStatuses", n => { DeviceStatuses = n.GetCollectionOfObjectValues<ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceStatus>(ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceStatus.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "targetedMobileApps", n => { TargetedMobileApps = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "userStatusSummary", n => { UserStatusSummary = n.GetObjectValue<ManagedDeviceMobileAppConfigurationUserSummary>(ManagedDeviceMobileAppConfigurationUserSummary.CreateFromDiscriminatorValue); } },
-                { "userStatuses", n => { UserStatuses = n.GetCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationUserStatus>(ManagedDeviceMobileAppConfigurationUserStatus.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "userStatusSummary", n => { UserStatusSummary = n.GetObjectValue<ApiSdk.Models.ManagedDeviceMobileAppConfigurationUserSummary>(ApiSdk.Models.ManagedDeviceMobileAppConfigurationUserSummary.CreateFromDiscriminatorValue); } },
+                { "userStatuses", n => { UserStatuses = n.GetCollectionOfObjectValues<ApiSdk.Models.ManagedDeviceMobileAppConfigurationUserStatus>(ApiSdk.Models.ManagedDeviceMobileAppConfigurationUserStatus.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "version", n => { Version = n.GetIntValue(); } },
             };
         }
@@ -125,16 +125,16 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ManagedDeviceMobileAppConfigurationAssignment>("assignments", Assignments);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationDeviceStatus>("deviceStatuses", DeviceStatuses);
-            writer.WriteObjectValue<ManagedDeviceMobileAppConfigurationDeviceSummary>("deviceStatusSummary", DeviceStatusSummary);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceStatus>("deviceStatuses", DeviceStatuses);
+            writer.WriteObjectValue<ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceSummary>("deviceStatusSummary", DeviceStatusSummary);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("targetedMobileApps", TargetedMobileApps);
-            writer.WriteCollectionOfObjectValues<ManagedDeviceMobileAppConfigurationUserStatus>("userStatuses", UserStatuses);
-            writer.WriteObjectValue<ManagedDeviceMobileAppConfigurationUserSummary>("userStatusSummary", UserStatusSummary);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ManagedDeviceMobileAppConfigurationUserStatus>("userStatuses", UserStatuses);
+            writer.WriteObjectValue<ApiSdk.Models.ManagedDeviceMobileAppConfigurationUserSummary>("userStatusSummary", UserStatusSummary);
             writer.WriteIntValue("version", Version);
         }
     }

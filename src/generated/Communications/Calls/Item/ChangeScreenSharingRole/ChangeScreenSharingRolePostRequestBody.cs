@@ -14,9 +14,9 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The role property</summary>
-        public ScreenSharingRole? Role { get; set; }
+        public ApiSdk.Models.ScreenSharingRole? Role { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ChangeScreenSharingRolePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole.ChangeScreenSharingRolePostRequestBody"/> and sets the default values.
         /// </summary>
         public ChangeScreenSharingRolePostRequestBody()
         {
@@ -25,12 +25,12 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChangeScreenSharingRolePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole.ChangeScreenSharingRolePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ChangeScreenSharingRolePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole.ChangeScreenSharingRolePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChangeScreenSharingRolePostRequestBody();
+            return new ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole.ChangeScreenSharingRolePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,7 +40,7 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "role", n => { Role = n.GetEnumValue<ScreenSharingRole>(); } },
+                { "role", n => { Role = n.GetEnumValue<ApiSdk.Models.ScreenSharingRole>(); } },
             };
         }
         /// <summary>
@@ -50,7 +50,7 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<ScreenSharingRole>("role", Role);
+            writer.WriteEnumValue<ApiSdk.Models.ScreenSharingRole>("role", Role);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

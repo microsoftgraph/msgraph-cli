@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SubscribedSku : Entity, IParsable
+    public class SubscribedSku : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The unique ID of the account this SKU belongs to.</summary>
@@ -47,18 +47,18 @@ namespace ApiSdk.Models
         /// <summary>Information about the number and status of prepaid licenses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public LicenseUnitsDetail? PrepaidUnits { get; set; }
+        public ApiSdk.Models.LicenseUnitsDetail? PrepaidUnits { get; set; }
 #nullable restore
 #else
-        public LicenseUnitsDetail PrepaidUnits { get; set; }
+        public ApiSdk.Models.LicenseUnitsDetail PrepaidUnits { get; set; }
 #endif
         /// <summary>Information about the service plans that are available with the SKU. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ServicePlanInfo>? ServicePlans { get; set; }
+        public List<ApiSdk.Models.ServicePlanInfo>? ServicePlans { get; set; }
 #nullable restore
 #else
-        public List<ServicePlanInfo> ServicePlans { get; set; }
+        public List<ApiSdk.Models.ServicePlanInfo> ServicePlans { get; set; }
 #endif
         /// <summary>The unique identifier (GUID) for the service SKU.</summary>
         public Guid? SkuId { get; set; }
@@ -81,12 +81,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SubscribedSku"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SubscribedSku"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SubscribedSku CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SubscribedSku CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SubscribedSku();
+            return new ApiSdk.Models.SubscribedSku();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -101,8 +101,8 @@ namespace ApiSdk.Models
                 { "appliesTo", n => { AppliesTo = n.GetStringValue(); } },
                 { "capabilityStatus", n => { CapabilityStatus = n.GetStringValue(); } },
                 { "consumedUnits", n => { ConsumedUnits = n.GetIntValue(); } },
-                { "prepaidUnits", n => { PrepaidUnits = n.GetObjectValue<LicenseUnitsDetail>(LicenseUnitsDetail.CreateFromDiscriminatorValue); } },
-                { "servicePlans", n => { ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>(ServicePlanInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "prepaidUnits", n => { PrepaidUnits = n.GetObjectValue<ApiSdk.Models.LicenseUnitsDetail>(ApiSdk.Models.LicenseUnitsDetail.CreateFromDiscriminatorValue); } },
+                { "servicePlans", n => { ServicePlans = n.GetCollectionOfObjectValues<ApiSdk.Models.ServicePlanInfo>(ApiSdk.Models.ServicePlanInfo.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "skuId", n => { SkuId = n.GetGuidValue(); } },
                 { "skuPartNumber", n => { SkuPartNumber = n.GetStringValue(); } },
                 { "subscriptionIds", n => { SubscriptionIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
@@ -121,8 +121,8 @@ namespace ApiSdk.Models
             writer.WriteStringValue("appliesTo", AppliesTo);
             writer.WriteStringValue("capabilityStatus", CapabilityStatus);
             writer.WriteIntValue("consumedUnits", ConsumedUnits);
-            writer.WriteObjectValue<LicenseUnitsDetail>("prepaidUnits", PrepaidUnits);
-            writer.WriteCollectionOfObjectValues<ServicePlanInfo>("servicePlans", ServicePlans);
+            writer.WriteObjectValue<ApiSdk.Models.LicenseUnitsDetail>("prepaidUnits", PrepaidUnits);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ServicePlanInfo>("servicePlans", ServicePlans);
             writer.WriteGuidValue("skuId", SkuId);
             writer.WriteStringValue("skuPartNumber", SkuPartNumber);
             writer.WriteCollectionOfPrimitiveValues<string>("subscriptionIds", SubscriptionIds);

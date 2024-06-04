@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ColumnLink : Entity, IParsable
+    public class ColumnLink : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The name of the column  in this content type.</summary>
@@ -21,12 +21,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ColumnLink"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ColumnLink"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ColumnLink CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ColumnLink CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ColumnLink();
+            return new ApiSdk.Models.ColumnLink();
         }
         /// <summary>
         /// The deserialization information for the current model

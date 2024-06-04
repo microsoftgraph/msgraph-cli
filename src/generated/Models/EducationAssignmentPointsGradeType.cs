@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationAssignmentPointsGradeType : EducationAssignmentGradeType, IParsable
+    public class EducationAssignmentPointsGradeType : ApiSdk.Models.EducationAssignmentGradeType, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Max points possible for this assignment.</summary>
         public float? MaxPoints { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="EducationAssignmentPointsGradeType"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EducationAssignmentPointsGradeType"/> and sets the default values.
         /// </summary>
         public EducationAssignmentPointsGradeType() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationAssignmentPointsGradeType"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationAssignmentPointsGradeType"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationAssignmentPointsGradeType CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationAssignmentPointsGradeType CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationAssignmentPointsGradeType();
+            return new ApiSdk.Models.EducationAssignmentPointsGradeType();
         }
         /// <summary>
         /// The deserialization information for the current model

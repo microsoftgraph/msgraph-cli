@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WindowsHelloForBusinessAuthenticationMethod : AuthenticationMethod, IParsable
+    public class WindowsHelloForBusinessAuthenticationMethod : ApiSdk.Models.AuthenticationMethod, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The date and time that this Windows Hello for Business key was registered.</summary>
@@ -29,9 +29,9 @@ namespace ApiSdk.Models
         public string DisplayName { get; set; }
 #endif
         /// <summary>Key strength of this Windows Hello for Business key. Possible values are: normal, weak, unknown.</summary>
-        public AuthenticationMethodKeyStrength? KeyStrength { get; set; }
+        public ApiSdk.Models.AuthenticationMethodKeyStrength? KeyStrength { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="WindowsHelloForBusinessAuthenticationMethod"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WindowsHelloForBusinessAuthenticationMethod"/> and sets the default values.
         /// </summary>
         public WindowsHelloForBusinessAuthenticationMethod() : base()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsHelloForBusinessAuthenticationMethod"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsHelloForBusinessAuthenticationMethod"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WindowsHelloForBusinessAuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WindowsHelloForBusinessAuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsHelloForBusinessAuthenticationMethod();
+            return new ApiSdk.Models.WindowsHelloForBusinessAuthenticationMethod();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,7 +58,7 @@ namespace ApiSdk.Models
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "device", n => { Device = n.GetObjectValue<ApiSdk.Models.Device>(ApiSdk.Models.Device.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "keyStrength", n => { KeyStrength = n.GetEnumValue<AuthenticationMethodKeyStrength>(); } },
+                { "keyStrength", n => { KeyStrength = n.GetEnumValue<ApiSdk.Models.AuthenticationMethodKeyStrength>(); } },
             };
         }
         /// <summary>
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<ApiSdk.Models.Device>("device", Device);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<AuthenticationMethodKeyStrength>("keyStrength", KeyStrength);
+            writer.WriteEnumValue<ApiSdk.Models.AuthenticationMethodKeyStrength>("keyStrength", KeyStrength);
         }
     }
 }

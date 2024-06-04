@@ -44,7 +44,7 @@ namespace ApiSdk.Teams.Item.Archive
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ArchivePostRequestBody>(ArchivePostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Teams.Item.Archive.ArchivePostRequestBody>(ApiSdk.Teams.Item.Archive.ArchivePostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -63,14 +63,14 @@ namespace ApiSdk.Teams.Item.Archive
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ArchiveRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teams.Item.Archive.ArchiveRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ArchiveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/archive", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ArchiveRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teams.Item.Archive.ArchiveRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ArchiveRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/archive", rawUrl)
@@ -84,11 +84,11 @@ namespace ApiSdk.Teams.Item.Archive
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ArchivePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Teams.Item.Archive.ArchivePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ArchivePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Teams.Item.Archive.ArchivePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

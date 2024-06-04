@@ -56,14 +56,14 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.Retire
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RetireRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.ManagedDevices.Item.Retire.RetireRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RetireRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/retire", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RetireRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.ManagedDevices.Item.Retire.RetireRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RetireRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/retire", rawUrl)

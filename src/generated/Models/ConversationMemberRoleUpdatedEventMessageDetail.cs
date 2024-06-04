@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ConversationMemberRoleUpdatedEventMessageDetail : EventMessageDetail, IParsable
+    public class ConversationMemberRoleUpdatedEventMessageDetail : ApiSdk.Models.EventMessageDetail, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Roles for the coversation member user.</summary>
@@ -21,21 +21,21 @@ namespace ApiSdk.Models
         /// <summary>Identity of the conversation member user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamworkUserIdentity? ConversationMemberUser { get; set; }
+        public ApiSdk.Models.TeamworkUserIdentity? ConversationMemberUser { get; set; }
 #nullable restore
 #else
-        public TeamworkUserIdentity ConversationMemberUser { get; set; }
+        public ApiSdk.Models.TeamworkUserIdentity ConversationMemberUser { get; set; }
 #endif
         /// <summary>Initiator of the event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet? Initiator { get; set; }
 #nullable restore
 #else
-        public IdentitySet Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet Initiator { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ConversationMemberRoleUpdatedEventMessageDetail"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ConversationMemberRoleUpdatedEventMessageDetail"/> and sets the default values.
         /// </summary>
         public ConversationMemberRoleUpdatedEventMessageDetail() : base()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConversationMemberRoleUpdatedEventMessageDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConversationMemberRoleUpdatedEventMessageDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ConversationMemberRoleUpdatedEventMessageDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ConversationMemberRoleUpdatedEventMessageDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConversationMemberRoleUpdatedEventMessageDetail();
+            return new ApiSdk.Models.ConversationMemberRoleUpdatedEventMessageDetail();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,8 +60,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "conversationMemberRoles", n => { ConversationMemberRoles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "conversationMemberUser", n => { ConversationMemberUser = n.GetObjectValue<TeamworkUserIdentity>(TeamworkUserIdentity.CreateFromDiscriminatorValue); } },
-                { "initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "conversationMemberUser", n => { ConversationMemberUser = n.GetObjectValue<ApiSdk.Models.TeamworkUserIdentity>(ApiSdk.Models.TeamworkUserIdentity.CreateFromDiscriminatorValue); } },
+                { "initiator", n => { Initiator = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -73,8 +73,8 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfPrimitiveValues<string>("conversationMemberRoles", ConversationMemberRoles);
-            writer.WriteObjectValue<TeamworkUserIdentity>("conversationMemberUser", ConversationMemberUser);
-            writer.WriteObjectValue<IdentitySet>("initiator", Initiator);
+            writer.WriteObjectValue<ApiSdk.Models.TeamworkUserIdentity>("conversationMemberUser", ConversationMemberUser);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("initiator", Initiator);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("child-host-pairs");
             command.Description = "Provides operations to manage the childHostPairs property of the microsoft.graph.security.host entity.";
-            var builder = new ChildHostPairsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.ChildHostPairs.ChildHostPairsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -68,7 +68,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("components");
             command.Description = "Provides operations to manage the components property of the microsoft.graph.security.host entity.";
-            var builder = new ComponentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.Components.ComponentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -94,7 +94,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("cookies");
             command.Description = "Provides operations to manage the cookies property of the microsoft.graph.security.host entity.";
-            var builder = new CookiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.Cookies.CookiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -208,7 +208,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("host-pairs");
             command.Description = "Provides operations to manage the hostPairs property of the microsoft.graph.security.host entity.";
-            var builder = new HostPairsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.HostPairs.HostPairsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -234,7 +234,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("parent-host-pairs");
             command.Description = "Provides operations to manage the parentHostPairs property of the microsoft.graph.security.host entity.";
-            var builder = new ParentHostPairsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.ParentHostPairs.ParentHostPairsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -260,7 +260,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("passive-dns");
             command.Description = "Provides operations to manage the passiveDns property of the microsoft.graph.security.host entity.";
-            var builder = new PassiveDnsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDns.PassiveDnsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -286,7 +286,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("passive-dns-reverse");
             command.Description = "Provides operations to manage the passiveDnsReverse property of the microsoft.graph.security.host entity.";
-            var builder = new PassiveDnsReverseRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse.PassiveDnsReverseRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -363,7 +363,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("ports");
             command.Description = "Provides operations to manage the ports property of the microsoft.graph.security.host entity.";
-            var builder = new PortsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.Ports.PortsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -389,7 +389,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("reputation");
             command.Description = "Provides operations to manage the reputation property of the microsoft.graph.security.host entity.";
-            var builder = new ReputationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation.ReputationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -408,7 +408,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("ssl-certificates");
             command.Description = "Provides operations to manage the sslCertificates property of the microsoft.graph.security.host entity.";
-            var builder = new SslCertificatesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.SslCertificates.SslCertificatesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -434,7 +434,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("subdomains");
             command.Description = "Provides operations to manage the subdomains property of the microsoft.graph.security.host entity.";
-            var builder = new SubdomainsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.Subdomains.SubdomainsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -460,7 +460,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("trackers");
             command.Description = "Provides operations to manage the trackers property of the microsoft.graph.security.host entity.";
-            var builder = new TrackersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.Trackers.TrackersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -486,7 +486,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         {
             var command = new Command("whois");
             command.Description = "Provides operations to manage the whois property of the microsoft.graph.security.host entity.";
-            var builder = new WhoisRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.Whois.WhoisRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -496,14 +496,14 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="HostItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.ThreatIntelligence.Hosts.Item.HostItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public HostItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="HostItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.ThreatIntelligence.Hosts.Item.HostItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public HostItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}{?%24expand,%24select}", rawUrl)
@@ -535,11 +535,11 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.ThreatIntelligence.Hosts.Item.HostItemRequestBuilder.HostItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.ThreatIntelligence.Hosts.Item.HostItemRequestBuilder.HostItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

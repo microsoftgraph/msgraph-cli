@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationSubmissionResourceCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class EducationSubmissionResourceCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationSubmissionResource>? Value { get; set; }
+        public List<ApiSdk.Models.EducationSubmissionResource>? Value { get; set; }
 #nullable restore
 #else
-        public List<EducationSubmissionResource> Value { get; set; }
+        public List<ApiSdk.Models.EducationSubmissionResource> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationSubmissionResourceCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationSubmissionResourceCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationSubmissionResourceCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationSubmissionResourceCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationSubmissionResourceCollectionResponse();
+            return new ApiSdk.Models.EducationSubmissionResourceCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<EducationSubmissionResource>(EducationSubmissionResource.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationSubmissionResource>(ApiSdk.Models.EducationSubmissionResource.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<EducationSubmissionResource>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationSubmissionResource>("value", Value);
         }
     }
 }

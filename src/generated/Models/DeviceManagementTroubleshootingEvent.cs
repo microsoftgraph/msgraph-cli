@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Event representing an general failure.
     /// </summary>
-    public class DeviceManagementTroubleshootingEvent : Entity, IParsable
+    public class DeviceManagementTroubleshootingEvent : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Id used for tracing the failure in the service.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -24,16 +24,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceManagementTroubleshootingEvent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceManagementTroubleshootingEvent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceManagementTroubleshootingEvent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceManagementTroubleshootingEvent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.enrollmentTroubleshootingEvent" => new EnrollmentTroubleshootingEvent(),
-                _ => new DeviceManagementTroubleshootingEvent(),
+                "#microsoft.graph.enrollmentTroubleshootingEvent" => new ApiSdk.Models.EnrollmentTroubleshootingEvent(),
+                _ => new ApiSdk.Models.DeviceManagementTroubleshootingEvent(),
             };
         }
         /// <summary>

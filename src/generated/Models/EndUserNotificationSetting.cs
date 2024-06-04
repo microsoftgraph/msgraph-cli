@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Notification preference. Possible values are: unknown, microsoft, custom, unknownFutureValue.</summary>
-        public EndUserNotificationPreference? NotificationPreference { get; set; }
+        public ApiSdk.Models.EndUserNotificationPreference? NotificationPreference { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -25,15 +25,15 @@ namespace ApiSdk.Models
         /// <summary>Positive reinforcement detail.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PositiveReinforcementNotification? PositiveReinforcement { get; set; }
+        public ApiSdk.Models.PositiveReinforcementNotification? PositiveReinforcement { get; set; }
 #nullable restore
 #else
-        public PositiveReinforcementNotification PositiveReinforcement { get; set; }
+        public ApiSdk.Models.PositiveReinforcementNotification PositiveReinforcement { get; set; }
 #endif
         /// <summary>End user notification type. Possible values are: unknown, noTraining, trainingSelected, noNotification, unknownFutureValue.</summary>
-        public EndUserNotificationSettingType? SettingType { get; set; }
+        public ApiSdk.Models.EndUserNotificationSettingType? SettingType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="EndUserNotificationSetting"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EndUserNotificationSetting"/> and sets the default values.
         /// </summary>
         public EndUserNotificationSetting()
         {
@@ -42,17 +42,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EndUserNotificationSetting"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EndUserNotificationSetting"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static EndUserNotificationSetting CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.EndUserNotificationSetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.noTrainingNotificationSetting" => new NoTrainingNotificationSetting(),
-                "#microsoft.graph.trainingNotificationSetting" => new TrainingNotificationSetting(),
-                _ => new EndUserNotificationSetting(),
+                "#microsoft.graph.noTrainingNotificationSetting" => new ApiSdk.Models.NoTrainingNotificationSetting(),
+                "#microsoft.graph.trainingNotificationSetting" => new ApiSdk.Models.TrainingNotificationSetting(),
+                _ => new ApiSdk.Models.EndUserNotificationSetting(),
             };
         }
         /// <summary>
@@ -63,10 +63,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "notificationPreference", n => { NotificationPreference = n.GetEnumValue<EndUserNotificationPreference>(); } },
+                { "notificationPreference", n => { NotificationPreference = n.GetEnumValue<ApiSdk.Models.EndUserNotificationPreference>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "positiveReinforcement", n => { PositiveReinforcement = n.GetObjectValue<PositiveReinforcementNotification>(PositiveReinforcementNotification.CreateFromDiscriminatorValue); } },
-                { "settingType", n => { SettingType = n.GetEnumValue<EndUserNotificationSettingType>(); } },
+                { "positiveReinforcement", n => { PositiveReinforcement = n.GetObjectValue<ApiSdk.Models.PositiveReinforcementNotification>(ApiSdk.Models.PositiveReinforcementNotification.CreateFromDiscriminatorValue); } },
+                { "settingType", n => { SettingType = n.GetEnumValue<ApiSdk.Models.EndUserNotificationSettingType>(); } },
             };
         }
         /// <summary>
@@ -76,10 +76,10 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<EndUserNotificationPreference>("notificationPreference", NotificationPreference);
+            writer.WriteEnumValue<ApiSdk.Models.EndUserNotificationPreference>("notificationPreference", NotificationPreference);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<PositiveReinforcementNotification>("positiveReinforcement", PositiveReinforcement);
-            writer.WriteEnumValue<EndUserNotificationSettingType>("settingType", SettingType);
+            writer.WriteObjectValue<ApiSdk.Models.PositiveReinforcementNotification>("positiveReinforcement", PositiveReinforcement);
+            writer.WriteEnumValue<ApiSdk.Models.EndUserNotificationSettingType>("settingType", SettingType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

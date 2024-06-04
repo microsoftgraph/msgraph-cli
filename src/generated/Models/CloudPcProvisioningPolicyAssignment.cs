@@ -7,34 +7,34 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CloudPcProvisioningPolicyAssignment : Entity, IParsable
+    public class CloudPcProvisioningPolicyAssignment : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. Read-only. Supports$expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<User>? AssignedUsers { get; set; }
+        public List<ApiSdk.Models.User>? AssignedUsers { get; set; }
 #nullable restore
 #else
-        public List<User> AssignedUsers { get; set; }
+        public List<ApiSdk.Models.User> AssignedUsers { get; set; }
 #endif
         /// <summary>The assignment target for the provisioning policy. Currently, the only target supported for this policy is a user group. For details, see cloudPcManagementGroupAssignmentTarget.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CloudPcManagementAssignmentTarget? Target { get; set; }
+        public ApiSdk.Models.CloudPcManagementAssignmentTarget? Target { get; set; }
 #nullable restore
 #else
-        public CloudPcManagementAssignmentTarget Target { get; set; }
+        public ApiSdk.Models.CloudPcManagementAssignmentTarget Target { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudPcProvisioningPolicyAssignment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudPcProvisioningPolicyAssignment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CloudPcProvisioningPolicyAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CloudPcProvisioningPolicyAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudPcProvisioningPolicyAssignment();
+            return new ApiSdk.Models.CloudPcProvisioningPolicyAssignment();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -44,8 +44,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "assignedUsers", n => { AssignedUsers = n.GetCollectionOfObjectValues<User>(User.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "target", n => { Target = n.GetObjectValue<CloudPcManagementAssignmentTarget>(CloudPcManagementAssignmentTarget.CreateFromDiscriminatorValue); } },
+                { "assignedUsers", n => { AssignedUsers = n.GetCollectionOfObjectValues<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "target", n => { Target = n.GetObjectValue<ApiSdk.Models.CloudPcManagementAssignmentTarget>(ApiSdk.Models.CloudPcManagementAssignmentTarget.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,8 +56,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<User>("assignedUsers", AssignedUsers);
-            writer.WriteObjectValue<CloudPcManagementAssignmentTarget>("target", Target);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.User>("assignedUsers", AssignedUsers);
+            writer.WriteObjectValue<ApiSdk.Models.CloudPcManagementAssignmentTarget>("target", Target);
         }
     }
 }

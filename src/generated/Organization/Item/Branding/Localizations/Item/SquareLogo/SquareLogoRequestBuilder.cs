@@ -169,14 +169,14 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.SquareLogo
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SquareLogoRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.Localizations.Item.SquareLogo.SquareLogoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SquareLogoRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/squareLogo", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SquareLogoRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.Localizations.Item.SquareLogo.SquareLogoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SquareLogoRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/squareLogo", rawUrl)

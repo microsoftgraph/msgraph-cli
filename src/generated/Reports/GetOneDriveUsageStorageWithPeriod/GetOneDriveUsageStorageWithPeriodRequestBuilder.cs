@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetOneDriveUsageStorageWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOneDriveUsageStorageWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOneDriveUsageStorageWithPeriod.GetOneDriveUsageStorageWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOneDriveUsageStorageWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOneDriveUsageStorage(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOneDriveUsageStorageWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOneDriveUsageStorageWithPeriod.GetOneDriveUsageStorageWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOneDriveUsageStorageWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOneDriveUsageStorage(period='{period}')", rawUrl)

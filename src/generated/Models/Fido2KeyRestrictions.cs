@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Enforcement type. Possible values are: allow, block.</summary>
-        public Fido2RestrictionEnforcementType? EnforcementType { get; set; }
+        public ApiSdk.Models.Fido2RestrictionEnforcementType? EnforcementType { get; set; }
         /// <summary>Determines if the configured key enforcement is enabled.</summary>
         public bool? IsEnforced { get; set; }
         /// <summary>The OdataType property</summary>
@@ -33,7 +33,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Fido2KeyRestrictions"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Fido2KeyRestrictions"/> and sets the default values.
         /// </summary>
         public Fido2KeyRestrictions()
         {
@@ -42,12 +42,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Fido2KeyRestrictions"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Fido2KeyRestrictions"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Fido2KeyRestrictions CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Fido2KeyRestrictions CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Fido2KeyRestrictions();
+            return new ApiSdk.Models.Fido2KeyRestrictions();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,7 +58,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "aaGuids", n => { AaGuids = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "enforcementType", n => { EnforcementType = n.GetEnumValue<Fido2RestrictionEnforcementType>(); } },
+                { "enforcementType", n => { EnforcementType = n.GetEnumValue<ApiSdk.Models.Fido2RestrictionEnforcementType>(); } },
                 { "isEnforced", n => { IsEnforced = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -71,7 +71,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("aaGuids", AaGuids);
-            writer.WriteEnumValue<Fido2RestrictionEnforcementType>("enforcementType", EnforcementType);
+            writer.WriteEnumValue<ApiSdk.Models.Fido2RestrictionEnforcementType>("enforcementType", EnforcementType);
             writer.WriteBoolValue("isEnforced", IsEnforced);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

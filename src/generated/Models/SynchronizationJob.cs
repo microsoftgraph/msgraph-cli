@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SynchronizationJob : Entity, IParsable
+    public class SynchronizationJob : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The bulk upload operation for the job.</summary>
@@ -21,34 +21,34 @@ namespace ApiSdk.Models
         /// <summary>Schedule used to run the job. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SynchronizationSchedule? Schedule { get; set; }
+        public ApiSdk.Models.SynchronizationSchedule? Schedule { get; set; }
 #nullable restore
 #else
-        public SynchronizationSchedule Schedule { get; set; }
+        public ApiSdk.Models.SynchronizationSchedule Schedule { get; set; }
 #endif
         /// <summary>The synchronization schema configured for the job.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SynchronizationSchema? Schema { get; set; }
+        public ApiSdk.Models.SynchronizationSchema? Schema { get; set; }
 #nullable restore
 #else
-        public SynchronizationSchema Schema { get; set; }
+        public ApiSdk.Models.SynchronizationSchema Schema { get; set; }
 #endif
         /// <summary>Status of the job, which includes when the job was last run, current job state, and errors.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SynchronizationStatus? Status { get; set; }
+        public ApiSdk.Models.SynchronizationStatus? Status { get; set; }
 #nullable restore
 #else
-        public SynchronizationStatus Status { get; set; }
+        public ApiSdk.Models.SynchronizationStatus Status { get; set; }
 #endif
         /// <summary>Settings associated with the job. Some settings are inherited from the template.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<KeyValuePair>? SynchronizationJobSettings { get; set; }
+        public List<ApiSdk.Models.KeyValuePair>? SynchronizationJobSettings { get; set; }
 #nullable restore
 #else
-        public List<KeyValuePair> SynchronizationJobSettings { get; set; }
+        public List<ApiSdk.Models.KeyValuePair> SynchronizationJobSettings { get; set; }
 #endif
         /// <summary>Identifier of the synchronization template this job is based on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -61,12 +61,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SynchronizationJob"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SynchronizationJob"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SynchronizationJob CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SynchronizationJob CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SynchronizationJob();
+            return new ApiSdk.Models.SynchronizationJob();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -77,10 +77,10 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "bulkUpload", n => { BulkUpload = n.GetObjectValue<ApiSdk.Models.BulkUpload>(ApiSdk.Models.BulkUpload.CreateFromDiscriminatorValue); } },
-                { "schedule", n => { Schedule = n.GetObjectValue<SynchronizationSchedule>(SynchronizationSchedule.CreateFromDiscriminatorValue); } },
-                { "schema", n => { Schema = n.GetObjectValue<SynchronizationSchema>(SynchronizationSchema.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetObjectValue<SynchronizationStatus>(SynchronizationStatus.CreateFromDiscriminatorValue); } },
-                { "synchronizationJobSettings", n => { SynchronizationJobSettings = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "schedule", n => { Schedule = n.GetObjectValue<ApiSdk.Models.SynchronizationSchedule>(ApiSdk.Models.SynchronizationSchedule.CreateFromDiscriminatorValue); } },
+                { "schema", n => { Schema = n.GetObjectValue<ApiSdk.Models.SynchronizationSchema>(ApiSdk.Models.SynchronizationSchema.CreateFromDiscriminatorValue); } },
+                { "status", n => { Status = n.GetObjectValue<ApiSdk.Models.SynchronizationStatus>(ApiSdk.Models.SynchronizationStatus.CreateFromDiscriminatorValue); } },
+                { "synchronizationJobSettings", n => { SynchronizationJobSettings = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>(ApiSdk.Models.KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "templateId", n => { TemplateId = n.GetStringValue(); } },
             };
         }
@@ -93,10 +93,10 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.BulkUpload>("bulkUpload", BulkUpload);
-            writer.WriteObjectValue<SynchronizationSchedule>("schedule", Schedule);
-            writer.WriteObjectValue<SynchronizationSchema>("schema", Schema);
-            writer.WriteObjectValue<SynchronizationStatus>("status", Status);
-            writer.WriteCollectionOfObjectValues<KeyValuePair>("synchronizationJobSettings", SynchronizationJobSettings);
+            writer.WriteObjectValue<ApiSdk.Models.SynchronizationSchedule>("schedule", Schedule);
+            writer.WriteObjectValue<ApiSdk.Models.SynchronizationSchema>("schema", Schema);
+            writer.WriteObjectValue<ApiSdk.Models.SynchronizationStatus>("status", Status);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>("synchronizationJobSettings", SynchronizationJobSettings);
             writer.WriteStringValue("templateId", TemplateId);
         }
     }

@@ -23,13 +23,13 @@ namespace ApiSdk.Models
         /// <summary>Set of permissions required by the teamsApp.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamsAppPermissionSet? RequiredPermissionSet { get; set; }
+        public ApiSdk.Models.TeamsAppPermissionSet? RequiredPermissionSet { get; set; }
 #nullable restore
 #else
-        public TeamsAppPermissionSet RequiredPermissionSet { get; set; }
+        public ApiSdk.Models.TeamsAppPermissionSet RequiredPermissionSet { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TeamsAppAuthorization"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TeamsAppAuthorization"/> and sets the default values.
         /// </summary>
         public TeamsAppAuthorization()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamsAppAuthorization"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamsAppAuthorization"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TeamsAppAuthorization CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TeamsAppAuthorization CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamsAppAuthorization();
+            return new ApiSdk.Models.TeamsAppAuthorization();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "requiredPermissionSet", n => { RequiredPermissionSet = n.GetObjectValue<TeamsAppPermissionSet>(TeamsAppPermissionSet.CreateFromDiscriminatorValue); } },
+                { "requiredPermissionSet", n => { RequiredPermissionSet = n.GetObjectValue<ApiSdk.Models.TeamsAppPermissionSet>(ApiSdk.Models.TeamsAppPermissionSet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<TeamsAppPermissionSet>("requiredPermissionSet", RequiredPermissionSet);
+            writer.WriteObjectValue<ApiSdk.Models.TeamsAppPermissionSet>("requiredPermissionSet", RequiredPermissionSet);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

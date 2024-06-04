@@ -31,7 +31,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item
         {
             var command = new Command("definition");
             command.Description = "Provides operations to manage the definition property of the microsoft.graph.printTask entity.";
-            var builder = new DefinitionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition.DefinitionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -177,7 +177,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<PrintTask>(PrintTask.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.PrintTask>(ApiSdk.Models.PrintTask.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -206,7 +206,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item
         {
             var command = new Command("trigger");
             command.Description = "Provides operations to manage the trigger property of the microsoft.graph.printTask entity.";
-            var builder = new TriggerRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger.TriggerRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -216,14 +216,14 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PrintTaskItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.PrintTaskItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PrintTaskItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PrintTaskItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.PrintTaskItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PrintTaskItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}{?%24expand,%24select}", rawUrl)
@@ -255,11 +255,11 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintTaskItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.PrintTaskItemRequestBuilder.PrintTaskItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintTaskItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.PrintTaskItemRequestBuilder.PrintTaskItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -275,11 +275,11 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PrintTask body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PrintTask body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PrintTask body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PrintTask body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

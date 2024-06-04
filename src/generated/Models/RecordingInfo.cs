@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The identities of the recording initiator.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet? Initiator { get; set; }
 #nullable restore
 #else
-        public IdentitySet Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet Initiator { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         /// <summary>The recordingStatus property</summary>
         public ApiSdk.Models.RecordingStatus? RecordingStatus { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="RecordingInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RecordingInfo"/> and sets the default values.
         /// </summary>
         public RecordingInfo()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RecordingInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RecordingInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RecordingInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.RecordingInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RecordingInfo();
+            return new ApiSdk.Models.RecordingInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,9 +55,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "initiator", n => { Initiator = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "recordingStatus", n => { RecordingStatus = n.GetEnumValue<RecordingStatus>(); } },
+                { "recordingStatus", n => { RecordingStatus = n.GetEnumValue<ApiSdk.Models.RecordingStatus>(); } },
             };
         }
         /// <summary>
@@ -67,9 +67,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<IdentitySet>("initiator", Initiator);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("initiator", Initiator);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<RecordingStatus>("recordingStatus", RecordingStatus);
+            writer.WriteEnumValue<ApiSdk.Models.RecordingStatus>("recordingStatus", RecordingStatus);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

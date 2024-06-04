@@ -7,28 +7,28 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class VerticalSection : Entity, IParsable
+    public class VerticalSection : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.</summary>
-        public SectionEmphasisType? Emphasis { get; set; }
+        public ApiSdk.Models.SectionEmphasisType? Emphasis { get; set; }
         /// <summary>The set of web parts in this section.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WebPart>? Webparts { get; set; }
+        public List<ApiSdk.Models.WebPart>? Webparts { get; set; }
 #nullable restore
 #else
-        public List<WebPart> Webparts { get; set; }
+        public List<ApiSdk.Models.WebPart> Webparts { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="VerticalSection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.VerticalSection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new VerticalSection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.VerticalSection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new VerticalSection();
+            return new ApiSdk.Models.VerticalSection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -38,8 +38,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "emphasis", n => { Emphasis = n.GetEnumValue<SectionEmphasisType>(); } },
-                { "webparts", n => { Webparts = n.GetCollectionOfObjectValues<WebPart>(WebPart.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "emphasis", n => { Emphasis = n.GetEnumValue<ApiSdk.Models.SectionEmphasisType>(); } },
+                { "webparts", n => { Webparts = n.GetCollectionOfObjectValues<ApiSdk.Models.WebPart>(ApiSdk.Models.WebPart.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -50,8 +50,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<SectionEmphasisType>("emphasis", Emphasis);
-            writer.WriteCollectionOfObjectValues<WebPart>("webparts", Webparts);
+            writer.WriteEnumValue<ApiSdk.Models.SectionEmphasisType>("emphasis", Emphasis);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WebPart>("webparts", Webparts);
         }
     }
 }

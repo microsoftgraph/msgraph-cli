@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>Possible values are: sharedSecret, unknownFutureValue.</summary>
-        public WorkforceIntegrationEncryptionProtocol? Protocol { get; set; }
+        public ApiSdk.Models.WorkforceIntegrationEncryptionProtocol? Protocol { get; set; }
         /// <summary>Encryption shared secret.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string Secret { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WorkforceIntegrationEncryption"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WorkforceIntegrationEncryption"/> and sets the default values.
         /// </summary>
         public WorkforceIntegrationEncryption()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkforceIntegrationEncryption"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkforceIntegrationEncryption"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WorkforceIntegrationEncryption CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WorkforceIntegrationEncryption CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkforceIntegrationEncryption();
+            return new ApiSdk.Models.WorkforceIntegrationEncryption();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "protocol", n => { Protocol = n.GetEnumValue<WorkforceIntegrationEncryptionProtocol>(); } },
+                { "protocol", n => { Protocol = n.GetEnumValue<ApiSdk.Models.WorkforceIntegrationEncryptionProtocol>(); } },
                 { "secret", n => { Secret = n.GetStringValue(); } },
             };
         }
@@ -68,7 +68,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<WorkforceIntegrationEncryptionProtocol>("protocol", Protocol);
+            writer.WriteEnumValue<ApiSdk.Models.WorkforceIntegrationEncryptionProtocol>("protocol", Protocol);
             writer.WriteStringValue("secret", Secret);
             writer.WriteAdditionalData(AdditionalData);
         }

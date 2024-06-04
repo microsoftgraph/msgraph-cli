@@ -7,34 +7,34 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookRangeFormat : Entity, IParsable
+    public class WorkbookRangeFormat : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Collection of border objects that apply to the overall range selected Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookRangeBorder>? Borders { get; set; }
+        public List<ApiSdk.Models.WorkbookRangeBorder>? Borders { get; set; }
 #nullable restore
 #else
-        public List<WorkbookRangeBorder> Borders { get; set; }
+        public List<ApiSdk.Models.WorkbookRangeBorder> Borders { get; set; }
 #endif
         /// <summary>Gets or sets the width of all columns within the range. If the column widths aren&apos;t uniform, null will be returned.</summary>
         public double? ColumnWidth { get; set; }
         /// <summary>Returns the fill object defined on the overall range. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookRangeFill? Fill { get; set; }
+        public ApiSdk.Models.WorkbookRangeFill? Fill { get; set; }
 #nullable restore
 #else
-        public WorkbookRangeFill Fill { get; set; }
+        public ApiSdk.Models.WorkbookRangeFill Fill { get; set; }
 #endif
         /// <summary>Returns the font object defined on the overall range selected Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookRangeFont? Font { get; set; }
+        public ApiSdk.Models.WorkbookRangeFont? Font { get; set; }
 #nullable restore
 #else
-        public WorkbookRangeFont Font { get; set; }
+        public ApiSdk.Models.WorkbookRangeFont Font { get; set; }
 #endif
         /// <summary>Represents the horizontal alignment for the specified object. The possible values are: General, Left, Center, Right, Fill, Justify, CenterAcrossSelection, Distributed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,10 +47,10 @@ namespace ApiSdk.Models
         /// <summary>Returns the format protection object for a range. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookFormatProtection? Protection { get; set; }
+        public ApiSdk.Models.WorkbookFormatProtection? Protection { get; set; }
 #nullable restore
 #else
-        public WorkbookFormatProtection Protection { get; set; }
+        public ApiSdk.Models.WorkbookFormatProtection Protection { get; set; }
 #endif
         /// <summary>Gets or sets the height of all rows in the range. If the row heights aren&apos;t uniform null will be returned.</summary>
         public double? RowHeight { get; set; }
@@ -67,12 +67,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookRangeFormat"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookRangeFormat"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookRangeFormat CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookRangeFormat CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookRangeFormat();
+            return new ApiSdk.Models.WorkbookRangeFormat();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,12 +82,12 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "borders", n => { Borders = n.GetCollectionOfObjectValues<WorkbookRangeBorder>(WorkbookRangeBorder.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "borders", n => { Borders = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookRangeBorder>(ApiSdk.Models.WorkbookRangeBorder.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "columnWidth", n => { ColumnWidth = n.GetDoubleValue(); } },
-                { "fill", n => { Fill = n.GetObjectValue<WorkbookRangeFill>(WorkbookRangeFill.CreateFromDiscriminatorValue); } },
-                { "font", n => { Font = n.GetObjectValue<WorkbookRangeFont>(WorkbookRangeFont.CreateFromDiscriminatorValue); } },
+                { "fill", n => { Fill = n.GetObjectValue<ApiSdk.Models.WorkbookRangeFill>(ApiSdk.Models.WorkbookRangeFill.CreateFromDiscriminatorValue); } },
+                { "font", n => { Font = n.GetObjectValue<ApiSdk.Models.WorkbookRangeFont>(ApiSdk.Models.WorkbookRangeFont.CreateFromDiscriminatorValue); } },
                 { "horizontalAlignment", n => { HorizontalAlignment = n.GetStringValue(); } },
-                { "protection", n => { Protection = n.GetObjectValue<WorkbookFormatProtection>(WorkbookFormatProtection.CreateFromDiscriminatorValue); } },
+                { "protection", n => { Protection = n.GetObjectValue<ApiSdk.Models.WorkbookFormatProtection>(ApiSdk.Models.WorkbookFormatProtection.CreateFromDiscriminatorValue); } },
                 { "rowHeight", n => { RowHeight = n.GetDoubleValue(); } },
                 { "verticalAlignment", n => { VerticalAlignment = n.GetStringValue(); } },
                 { "wrapText", n => { WrapText = n.GetBoolValue(); } },
@@ -101,12 +101,12 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<WorkbookRangeBorder>("borders", Borders);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookRangeBorder>("borders", Borders);
             writer.WriteDoubleValue("columnWidth", ColumnWidth);
-            writer.WriteObjectValue<WorkbookRangeFill>("fill", Fill);
-            writer.WriteObjectValue<WorkbookRangeFont>("font", Font);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookRangeFill>("fill", Fill);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookRangeFont>("font", Font);
             writer.WriteStringValue("horizontalAlignment", HorizontalAlignment);
-            writer.WriteObjectValue<WorkbookFormatProtection>("protection", Protection);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookFormatProtection>("protection", Protection);
             writer.WriteDoubleValue("rowHeight", RowHeight);
             writer.WriteStringValue("verticalAlignment", VerticalAlignment);
             writer.WriteBoolValue("wrapText", WrapText);

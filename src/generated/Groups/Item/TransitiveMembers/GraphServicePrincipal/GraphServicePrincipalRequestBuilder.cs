@@ -30,7 +30,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers.GraphServicePrincipal
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.TransitiveMembers.GraphServicePrincipal.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -149,14 +149,14 @@ namespace ApiSdk.Groups.Item.TransitiveMembers.GraphServicePrincipal
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphServicePrincipalRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.TransitiveMembers.GraphServicePrincipal.GraphServicePrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphServicePrincipalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/transitiveMembers/graph.servicePrincipal{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphServicePrincipalRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.TransitiveMembers.GraphServicePrincipal.GraphServicePrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphServicePrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/transitiveMembers/graph.servicePrincipal{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -169,11 +169,11 @@ namespace ApiSdk.Groups.Item.TransitiveMembers.GraphServicePrincipal
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphServicePrincipalRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.TransitiveMembers.GraphServicePrincipal.GraphServicePrincipalRequestBuilder.GraphServicePrincipalRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphServicePrincipalRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.TransitiveMembers.GraphServicePrincipal.GraphServicePrincipalRequestBuilder.GraphServicePrincipalRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

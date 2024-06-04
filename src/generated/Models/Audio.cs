@@ -95,7 +95,7 @@ namespace ApiSdk.Models
         /// <summary>The year the audio file was recorded.</summary>
         public int? Year { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Audio"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Audio"/> and sets the default values.
         /// </summary>
         public Audio()
         {
@@ -104,12 +104,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Audio"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Audio"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Audio CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Audio CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Audio();
+            return new ApiSdk.Models.Audio();
         }
         /// <summary>
         /// The deserialization information for the current model

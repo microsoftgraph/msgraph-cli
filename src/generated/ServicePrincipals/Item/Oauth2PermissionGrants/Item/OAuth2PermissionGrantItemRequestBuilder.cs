@@ -80,14 +80,14 @@ namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="OAuth2PermissionGrantItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item.OAuth2PermissionGrantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OAuth2PermissionGrantItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/oauth2PermissionGrants/{oAuth2PermissionGrant%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="OAuth2PermissionGrantItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item.OAuth2PermissionGrantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OAuth2PermissionGrantItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/oauth2PermissionGrants/{oAuth2PermissionGrant%2Did}{?%24expand,%24select}", rawUrl)
@@ -100,11 +100,11 @@ namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OAuth2PermissionGrantItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item.OAuth2PermissionGrantItemRequestBuilder.OAuth2PermissionGrantItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OAuth2PermissionGrantItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item.OAuth2PermissionGrantItemRequestBuilder.OAuth2PermissionGrantItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

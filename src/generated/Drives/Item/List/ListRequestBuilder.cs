@@ -37,7 +37,7 @@ namespace ApiSdk.Drives.Item.List
         {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.list entity.";
-            var builder = new ColumnsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.Columns.ColumnsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -64,7 +64,7 @@ namespace ApiSdk.Drives.Item.List
         {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.list entity.";
-            var builder = new ContentTypesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.ContentTypes.ContentTypesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddCopyFromContentTypeHubNavCommand());
@@ -94,7 +94,7 @@ namespace ApiSdk.Drives.Item.List
         {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
-            var builder = new CreatedByUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.CreatedByUser.CreatedByUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -153,7 +153,7 @@ namespace ApiSdk.Drives.Item.List
         {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.list entity.";
-            var builder = new DriveRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.Drive.DriveRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -222,7 +222,7 @@ namespace ApiSdk.Drives.Item.List
         {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.list entity.";
-            var builder = new ItemsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.Items.ItemsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -251,7 +251,7 @@ namespace ApiSdk.Drives.Item.List
         {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
-            var builder = new LastModifiedByUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.LastModifiedByUser.LastModifiedByUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -275,7 +275,7 @@ namespace ApiSdk.Drives.Item.List
         {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.list entity.";
-            var builder = new OperationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.Operations.OperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -353,7 +353,7 @@ namespace ApiSdk.Drives.Item.List
         {
             var command = new Command("subscriptions");
             command.Description = "Provides operations to manage the subscriptions property of the microsoft.graph.list entity.";
-            var builder = new SubscriptionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.List.Subscriptions.SubscriptionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -373,14 +373,14 @@ namespace ApiSdk.Drives.Item.List
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ListRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.List.ListRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ListRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ListRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.List.ListRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ListRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list{?%24expand,%24select}", rawUrl)
@@ -412,11 +412,11 @@ namespace ApiSdk.Drives.Item.List
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ListRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.List.ListRequestBuilder.ListRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ListRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.List.ListRequestBuilder.ListRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

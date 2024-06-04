@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class HomeRealmDiscoveryPolicy : StsPolicy, IParsable
+    public class HomeRealmDiscoveryPolicy : ApiSdk.Models.StsPolicy, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>
-        /// Instantiates a new <see cref="HomeRealmDiscoveryPolicy"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.HomeRealmDiscoveryPolicy"/> and sets the default values.
         /// </summary>
         public HomeRealmDiscoveryPolicy() : base()
         {
@@ -20,12 +20,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HomeRealmDiscoveryPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.HomeRealmDiscoveryPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new HomeRealmDiscoveryPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.HomeRealmDiscoveryPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HomeRealmDiscoveryPolicy();
+            return new ApiSdk.Models.HomeRealmDiscoveryPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model

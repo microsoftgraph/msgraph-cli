@@ -32,7 +32,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item
         {
             var command = new Command("applied-policies");
             command.Description = "Provides operations to manage the appliedPolicies property of the microsoft.graph.managedAppRegistration entity.";
-            var builder = new AppliedPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicies.AppliedPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -147,7 +147,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item
         {
             var command = new Command("intended-policies");
             command.Description = "Provides operations to manage the intendedPolicies property of the microsoft.graph.managedAppRegistration entity.";
-            var builder = new IntendedPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolicies.IntendedPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -174,7 +174,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item
         {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.managedAppRegistration entity.";
-            var builder = new OperationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.OperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -224,7 +224,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ManagedAppRegistration>(ManagedAppRegistration.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ManagedAppRegistration>(ApiSdk.Models.ManagedAppRegistration.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -245,14 +245,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedAppRegistrationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.ManagedAppRegistrationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ManagedAppRegistrationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations/{managedAppRegistration%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedAppRegistrationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.ManagedAppRegistrationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ManagedAppRegistrationItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations/{managedAppRegistration%2Did}{?%24expand,%24select}", rawUrl)
@@ -284,11 +284,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedAppRegistrationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.ManagedAppRegistrationItemRequestBuilder.ManagedAppRegistrationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedAppRegistrationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.ManagedAppRegistrationItemRequestBuilder.ManagedAppRegistrationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -304,11 +304,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ManagedAppRegistration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ManagedAppRegistration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ManagedAppRegistration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ManagedAppRegistration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

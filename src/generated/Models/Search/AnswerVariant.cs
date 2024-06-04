@@ -45,7 +45,7 @@ namespace ApiSdk.Models.Search
         public string OdataType { get; set; }
 #endif
         /// <summary>The device or operating system that can view this answer variation. Possible values are: android, androidForWork, ios, macOS, windowsPhone81, windowsPhone81AndLater, windows10AndLater, androidWorkProfile, unknown, androidASOP, androidMobileApplicationManagement, iOSMobileApplicationManagement, unknownFutureValue.</summary>
-        public DevicePlatformType? Platform { get; set; }
+        public ApiSdk.Models.DevicePlatformType? Platform { get; set; }
         /// <summary>The URL link for the answer variation. When users select this answer variation from the search results, they&apos;re directed to the specified URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -55,7 +55,7 @@ namespace ApiSdk.Models.Search
         public string WebUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AnswerVariant"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Search.AnswerVariant"/> and sets the default values.
         /// </summary>
         public AnswerVariant()
         {
@@ -64,12 +64,12 @@ namespace ApiSdk.Models.Search
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AnswerVariant"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Search.AnswerVariant"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AnswerVariant CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Search.AnswerVariant CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AnswerVariant();
+            return new ApiSdk.Models.Search.AnswerVariant();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -83,7 +83,7 @@ namespace ApiSdk.Models.Search
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "languageTag", n => { LanguageTag = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "platform", n => { Platform = n.GetEnumValue<DevicePlatformType>(); } },
+                { "platform", n => { Platform = n.GetEnumValue<ApiSdk.Models.DevicePlatformType>(); } },
                 { "webUrl", n => { WebUrl = n.GetStringValue(); } },
             };
         }
@@ -98,7 +98,7 @@ namespace ApiSdk.Models.Search
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("languageTag", LanguageTag);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<DevicePlatformType>("platform", Platform);
+            writer.WriteEnumValue<ApiSdk.Models.DevicePlatformType>("platform", Platform);
             writer.WriteStringValue("webUrl", WebUrl);
             writer.WriteAdditionalData(AdditionalData);
         }

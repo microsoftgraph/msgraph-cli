@@ -29,22 +29,22 @@ namespace ApiSdk.Models.Security
         public string DisplayName { get; set; }
 #endif
         /// <summary>The hold status of the dataSource.The possible values are: notApplied, applied, applying, removing, partial</summary>
-        public DataSourceHoldStatus? HoldStatus { get; set; }
+        public ApiSdk.Models.Security.DataSourceHoldStatus? HoldStatus { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DataSource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.DataSource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DataSource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.DataSource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.siteSource" => new SiteSource(),
-                "#microsoft.graph.security.unifiedGroupSource" => new UnifiedGroupSource(),
-                "#microsoft.graph.security.userSource" => new UserSource(),
-                _ => new DataSource(),
+                "#microsoft.graph.security.siteSource" => new ApiSdk.Models.Security.SiteSource(),
+                "#microsoft.graph.security.unifiedGroupSource" => new ApiSdk.Models.Security.UnifiedGroupSource(),
+                "#microsoft.graph.security.userSource" => new ApiSdk.Models.Security.UserSource(),
+                _ => new ApiSdk.Models.Security.DataSource(),
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace ApiSdk.Models.Security
                 { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "holdStatus", n => { HoldStatus = n.GetEnumValue<DataSourceHoldStatus>(); } },
+                { "holdStatus", n => { HoldStatus = n.GetEnumValue<ApiSdk.Models.Security.DataSourceHoldStatus>(); } },
             };
         }
         /// <summary>
@@ -72,7 +72,7 @@ namespace ApiSdk.Models.Security
             writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<DataSourceHoldStatus>("holdStatus", HoldStatus);
+            writer.WriteEnumValue<ApiSdk.Models.Security.DataSourceHoldStatus>("holdStatus", HoldStatus);
         }
     }
 }

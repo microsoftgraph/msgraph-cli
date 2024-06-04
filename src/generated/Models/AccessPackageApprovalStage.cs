@@ -19,26 +19,26 @@ namespace ApiSdk.Models
         /// <summary>If escalation is enabled and the primary approvers do not respond before the escalation time, the escalationApprovers are the users who will be asked to approve requests.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectSet>? EscalationApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet>? EscalationApprovers { get; set; }
 #nullable restore
 #else
-        public List<SubjectSet> EscalationApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet> EscalationApprovers { get; set; }
 #endif
         /// <summary>The subjects, typically users, who are the fallback escalation approvers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectSet>? FallbackEscalationApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet>? FallbackEscalationApprovers { get; set; }
 #nullable restore
 #else
-        public List<SubjectSet> FallbackEscalationApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet> FallbackEscalationApprovers { get; set; }
 #endif
         /// <summary>The subjects, typically users, who are the fallback primary approvers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectSet>? FallbackPrimaryApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet>? FallbackPrimaryApprovers { get; set; }
 #nullable restore
 #else
-        public List<SubjectSet> FallbackPrimaryApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet> FallbackPrimaryApprovers { get; set; }
 #endif
         /// <summary>Indicates whether the approver is required to provide a justification for approving a request.</summary>
         public bool? IsApproverJustificationRequired { get; set; }
@@ -55,13 +55,13 @@ namespace ApiSdk.Models
         /// <summary>The subjects, typically users, who will be asked to approve requests. A collection of singleUser, groupMembers, requestorManager, internalSponsors, externalSponsors, or targetUserSponsors.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectSet>? PrimaryApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet>? PrimaryApprovers { get; set; }
 #nullable restore
 #else
-        public List<SubjectSet> PrimaryApprovers { get; set; }
+        public List<ApiSdk.Models.SubjectSet> PrimaryApprovers { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessPackageApprovalStage"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessPackageApprovalStage"/> and sets the default values.
         /// </summary>
         public AccessPackageApprovalStage()
         {
@@ -70,12 +70,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageApprovalStage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageApprovalStage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AccessPackageApprovalStage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AccessPackageApprovalStage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageApprovalStage();
+            return new ApiSdk.Models.AccessPackageApprovalStage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -87,13 +87,13 @@ namespace ApiSdk.Models
             {
                 { "durationBeforeAutomaticDenial", n => { DurationBeforeAutomaticDenial = n.GetTimeSpanValue(); } },
                 { "durationBeforeEscalation", n => { DurationBeforeEscalation = n.GetTimeSpanValue(); } },
-                { "escalationApprovers", n => { EscalationApprovers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "fallbackEscalationApprovers", n => { FallbackEscalationApprovers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "fallbackPrimaryApprovers", n => { FallbackPrimaryApprovers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "escalationApprovers", n => { EscalationApprovers = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectSet>(ApiSdk.Models.SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "fallbackEscalationApprovers", n => { FallbackEscalationApprovers = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectSet>(ApiSdk.Models.SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "fallbackPrimaryApprovers", n => { FallbackPrimaryApprovers = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectSet>(ApiSdk.Models.SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isApproverJustificationRequired", n => { IsApproverJustificationRequired = n.GetBoolValue(); } },
                 { "isEscalationEnabled", n => { IsEscalationEnabled = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "primaryApprovers", n => { PrimaryApprovers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "primaryApprovers", n => { PrimaryApprovers = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectSet>(ApiSdk.Models.SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -105,13 +105,13 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteTimeSpanValue("durationBeforeAutomaticDenial", DurationBeforeAutomaticDenial);
             writer.WriteTimeSpanValue("durationBeforeEscalation", DurationBeforeEscalation);
-            writer.WriteCollectionOfObjectValues<SubjectSet>("escalationApprovers", EscalationApprovers);
-            writer.WriteCollectionOfObjectValues<SubjectSet>("fallbackEscalationApprovers", FallbackEscalationApprovers);
-            writer.WriteCollectionOfObjectValues<SubjectSet>("fallbackPrimaryApprovers", FallbackPrimaryApprovers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectSet>("escalationApprovers", EscalationApprovers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectSet>("fallbackEscalationApprovers", FallbackEscalationApprovers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectSet>("fallbackPrimaryApprovers", FallbackPrimaryApprovers);
             writer.WriteBoolValue("isApproverJustificationRequired", IsApproverJustificationRequired);
             writer.WriteBoolValue("isEscalationEnabled", IsEscalationEnabled);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<SubjectSet>("primaryApprovers", PrimaryApprovers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectSet>("primaryApprovers", PrimaryApprovers);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -74,14 +74,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item.Rest
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RestoreVersionRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item.RestoreVersion.RestoreVersionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RestoreVersionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/versions/{listItemVersion%2Did}/restoreVersion", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RestoreVersionRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item.RestoreVersion.RestoreVersionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RestoreVersionRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/versions/{listItemVersion%2Did}/restoreVersion", rawUrl)

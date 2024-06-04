@@ -151,14 +151,14 @@ namespace ApiSdk.Organization.Item.Branding.BackgroundImage
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="BackgroundImageRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.BackgroundImage.BackgroundImageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BackgroundImageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/backgroundImage", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="BackgroundImageRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.BackgroundImage.BackgroundImageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BackgroundImageRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/backgroundImage", rawUrl)

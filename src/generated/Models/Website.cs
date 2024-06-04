@@ -37,9 +37,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The possible values are: other, home, work, blog, profile.</summary>
-        public WebsiteType? Type { get; set; }
+        public ApiSdk.Models.WebsiteType? Type { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Website"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Website"/> and sets the default values.
         /// </summary>
         public Website()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Website"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Website"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Website CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Website CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Website();
+            return new ApiSdk.Models.Website();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
                 { "address", n => { Address = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<WebsiteType>(); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.WebsiteType>(); } },
             };
         }
         /// <summary>
@@ -79,7 +79,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("address", Address);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<WebsiteType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.WebsiteType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

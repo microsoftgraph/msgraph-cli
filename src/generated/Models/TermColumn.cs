@@ -26,10 +26,10 @@ namespace ApiSdk.Models
         /// <summary>The parentTerm property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Term? ParentTerm { get; set; }
+        public ApiSdk.Models.TermStore.Term? ParentTerm { get; set; }
 #nullable restore
 #else
-        public Term ParentTerm { get; set; }
+        public ApiSdk.Models.TermStore.Term ParentTerm { get; set; }
 #endif
         /// <summary>Specifies whether to display the entire term path or only the term label.</summary>
         public bool? ShowFullyQualifiedName { get; set; }
@@ -42,7 +42,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.TermStore.Set TermSet { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TermColumn"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TermColumn"/> and sets the default values.
         /// </summary>
         public TermColumn()
         {
@@ -51,12 +51,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TermColumn"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermColumn"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TermColumn CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TermColumn CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TermColumn();
+            return new ApiSdk.Models.TermColumn();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,7 +68,7 @@ namespace ApiSdk.Models
             {
                 { "allowMultipleValues", n => { AllowMultipleValues = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "parentTerm", n => { ParentTerm = n.GetObjectValue<Term>(Term.CreateFromDiscriminatorValue); } },
+                { "parentTerm", n => { ParentTerm = n.GetObjectValue<ApiSdk.Models.TermStore.Term>(ApiSdk.Models.TermStore.Term.CreateFromDiscriminatorValue); } },
                 { "showFullyQualifiedName", n => { ShowFullyQualifiedName = n.GetBoolValue(); } },
                 { "termSet", n => { TermSet = n.GetObjectValue<ApiSdk.Models.TermStore.Set>(ApiSdk.Models.TermStore.Set.CreateFromDiscriminatorValue); } },
             };
@@ -82,7 +82,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("allowMultipleValues", AllowMultipleValues);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<Term>("parentTerm", ParentTerm);
+            writer.WriteObjectValue<ApiSdk.Models.TermStore.Term>("parentTerm", ParentTerm);
             writer.WriteBoolValue("showFullyQualifiedName", ShowFullyQualifiedName);
             writer.WriteObjectValue<ApiSdk.Models.TermStore.Set>("termSet", TermSet);
             writer.WriteAdditionalData(AdditionalData);

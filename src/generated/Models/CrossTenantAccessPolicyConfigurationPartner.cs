@@ -15,58 +15,58 @@ namespace ApiSdk.Models
         /// <summary>Determines the partner-specific configuration for automatic user consent settings. Unless specifically configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public InboundOutboundPolicyConfiguration? AutomaticUserConsentSettings { get; set; }
+        public ApiSdk.Models.InboundOutboundPolicyConfiguration? AutomaticUserConsentSettings { get; set; }
 #nullable restore
 #else
-        public InboundOutboundPolicyConfiguration AutomaticUserConsentSettings { get; set; }
+        public ApiSdk.Models.InboundOutboundPolicyConfiguration AutomaticUserConsentSettings { get; set; }
 #endif
         /// <summary>Defines your partner-specific configuration for users from other organizations accessing your resources via Microsoft Entra B2B collaboration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CrossTenantAccessPolicyB2BSetting? B2bCollaborationInbound { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyB2BSetting? B2bCollaborationInbound { get; set; }
 #nullable restore
 #else
-        public CrossTenantAccessPolicyB2BSetting B2bCollaborationInbound { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyB2BSetting B2bCollaborationInbound { get; set; }
 #endif
         /// <summary>Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Microsoft Entra B2B collaboration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CrossTenantAccessPolicyB2BSetting? B2bCollaborationOutbound { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyB2BSetting? B2bCollaborationOutbound { get; set; }
 #nullable restore
 #else
-        public CrossTenantAccessPolicyB2BSetting B2bCollaborationOutbound { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyB2BSetting B2bCollaborationOutbound { get; set; }
 #endif
         /// <summary>Defines your partner-specific configuration for users from other organizations accessing your resources via Azure B2B direct connect.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CrossTenantAccessPolicyB2BSetting? B2bDirectConnectInbound { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyB2BSetting? B2bDirectConnectInbound { get; set; }
 #nullable restore
 #else
-        public CrossTenantAccessPolicyB2BSetting B2bDirectConnectInbound { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyB2BSetting B2bDirectConnectInbound { get; set; }
 #endif
         /// <summary>Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Microsoft Entra B2B direct connect.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CrossTenantAccessPolicyB2BSetting? B2bDirectConnectOutbound { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyB2BSetting? B2bDirectConnectOutbound { get; set; }
 #nullable restore
 #else
-        public CrossTenantAccessPolicyB2BSetting B2bDirectConnectOutbound { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyB2BSetting B2bDirectConnectOutbound { get; set; }
 #endif
         /// <summary>Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multitenant organization by automating the creation, update, and deletion of users from one tenant to another.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CrossTenantIdentitySyncPolicyPartner? IdentitySynchronization { get; set; }
+        public ApiSdk.Models.CrossTenantIdentitySyncPolicyPartner? IdentitySynchronization { get; set; }
 #nullable restore
 #else
-        public CrossTenantIdentitySyncPolicyPartner IdentitySynchronization { get; set; }
+        public ApiSdk.Models.CrossTenantIdentitySyncPolicyPartner IdentitySynchronization { get; set; }
 #endif
         /// <summary>Determines the partner-specific configuration for trusting other Conditional Access claims from external Microsoft Entra organizations.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CrossTenantAccessPolicyInboundTrust? InboundTrust { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyInboundTrust? InboundTrust { get; set; }
 #nullable restore
 #else
-        public CrossTenantAccessPolicyInboundTrust InboundTrust { get; set; }
+        public ApiSdk.Models.CrossTenantAccessPolicyInboundTrust InboundTrust { get; set; }
 #endif
         /// <summary>Identifies whether a tenant is a member of a multitenant organization.</summary>
         public bool? IsInMultiTenantOrganization { get; set; }
@@ -89,7 +89,7 @@ namespace ApiSdk.Models
         public string TenantId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CrossTenantAccessPolicyConfigurationPartner"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner"/> and sets the default values.
         /// </summary>
         public CrossTenantAccessPolicyConfigurationPartner()
         {
@@ -98,12 +98,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CrossTenantAccessPolicyConfigurationPartner"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CrossTenantAccessPolicyConfigurationPartner CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CrossTenantAccessPolicyConfigurationPartner();
+            return new ApiSdk.Models.CrossTenantAccessPolicyConfigurationPartner();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -113,13 +113,13 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "automaticUserConsentSettings", n => { AutomaticUserConsentSettings = n.GetObjectValue<InboundOutboundPolicyConfiguration>(InboundOutboundPolicyConfiguration.CreateFromDiscriminatorValue); } },
-                { "b2bCollaborationInbound", n => { B2bCollaborationInbound = n.GetObjectValue<CrossTenantAccessPolicyB2BSetting>(CrossTenantAccessPolicyB2BSetting.CreateFromDiscriminatorValue); } },
-                { "b2bCollaborationOutbound", n => { B2bCollaborationOutbound = n.GetObjectValue<CrossTenantAccessPolicyB2BSetting>(CrossTenantAccessPolicyB2BSetting.CreateFromDiscriminatorValue); } },
-                { "b2bDirectConnectInbound", n => { B2bDirectConnectInbound = n.GetObjectValue<CrossTenantAccessPolicyB2BSetting>(CrossTenantAccessPolicyB2BSetting.CreateFromDiscriminatorValue); } },
-                { "b2bDirectConnectOutbound", n => { B2bDirectConnectOutbound = n.GetObjectValue<CrossTenantAccessPolicyB2BSetting>(CrossTenantAccessPolicyB2BSetting.CreateFromDiscriminatorValue); } },
-                { "identitySynchronization", n => { IdentitySynchronization = n.GetObjectValue<CrossTenantIdentitySyncPolicyPartner>(CrossTenantIdentitySyncPolicyPartner.CreateFromDiscriminatorValue); } },
-                { "inboundTrust", n => { InboundTrust = n.GetObjectValue<CrossTenantAccessPolicyInboundTrust>(CrossTenantAccessPolicyInboundTrust.CreateFromDiscriminatorValue); } },
+                { "automaticUserConsentSettings", n => { AutomaticUserConsentSettings = n.GetObjectValue<ApiSdk.Models.InboundOutboundPolicyConfiguration>(ApiSdk.Models.InboundOutboundPolicyConfiguration.CreateFromDiscriminatorValue); } },
+                { "b2bCollaborationInbound", n => { B2bCollaborationInbound = n.GetObjectValue<ApiSdk.Models.CrossTenantAccessPolicyB2BSetting>(ApiSdk.Models.CrossTenantAccessPolicyB2BSetting.CreateFromDiscriminatorValue); } },
+                { "b2bCollaborationOutbound", n => { B2bCollaborationOutbound = n.GetObjectValue<ApiSdk.Models.CrossTenantAccessPolicyB2BSetting>(ApiSdk.Models.CrossTenantAccessPolicyB2BSetting.CreateFromDiscriminatorValue); } },
+                { "b2bDirectConnectInbound", n => { B2bDirectConnectInbound = n.GetObjectValue<ApiSdk.Models.CrossTenantAccessPolicyB2BSetting>(ApiSdk.Models.CrossTenantAccessPolicyB2BSetting.CreateFromDiscriminatorValue); } },
+                { "b2bDirectConnectOutbound", n => { B2bDirectConnectOutbound = n.GetObjectValue<ApiSdk.Models.CrossTenantAccessPolicyB2BSetting>(ApiSdk.Models.CrossTenantAccessPolicyB2BSetting.CreateFromDiscriminatorValue); } },
+                { "identitySynchronization", n => { IdentitySynchronization = n.GetObjectValue<ApiSdk.Models.CrossTenantIdentitySyncPolicyPartner>(ApiSdk.Models.CrossTenantIdentitySyncPolicyPartner.CreateFromDiscriminatorValue); } },
+                { "inboundTrust", n => { InboundTrust = n.GetObjectValue<ApiSdk.Models.CrossTenantAccessPolicyInboundTrust>(ApiSdk.Models.CrossTenantAccessPolicyInboundTrust.CreateFromDiscriminatorValue); } },
                 { "isInMultiTenantOrganization", n => { IsInMultiTenantOrganization = n.GetBoolValue(); } },
                 { "isServiceProvider", n => { IsServiceProvider = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
@@ -133,13 +133,13 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<InboundOutboundPolicyConfiguration>("automaticUserConsentSettings", AutomaticUserConsentSettings);
-            writer.WriteObjectValue<CrossTenantAccessPolicyB2BSetting>("b2bCollaborationInbound", B2bCollaborationInbound);
-            writer.WriteObjectValue<CrossTenantAccessPolicyB2BSetting>("b2bCollaborationOutbound", B2bCollaborationOutbound);
-            writer.WriteObjectValue<CrossTenantAccessPolicyB2BSetting>("b2bDirectConnectInbound", B2bDirectConnectInbound);
-            writer.WriteObjectValue<CrossTenantAccessPolicyB2BSetting>("b2bDirectConnectOutbound", B2bDirectConnectOutbound);
-            writer.WriteObjectValue<CrossTenantIdentitySyncPolicyPartner>("identitySynchronization", IdentitySynchronization);
-            writer.WriteObjectValue<CrossTenantAccessPolicyInboundTrust>("inboundTrust", InboundTrust);
+            writer.WriteObjectValue<ApiSdk.Models.InboundOutboundPolicyConfiguration>("automaticUserConsentSettings", AutomaticUserConsentSettings);
+            writer.WriteObjectValue<ApiSdk.Models.CrossTenantAccessPolicyB2BSetting>("b2bCollaborationInbound", B2bCollaborationInbound);
+            writer.WriteObjectValue<ApiSdk.Models.CrossTenantAccessPolicyB2BSetting>("b2bCollaborationOutbound", B2bCollaborationOutbound);
+            writer.WriteObjectValue<ApiSdk.Models.CrossTenantAccessPolicyB2BSetting>("b2bDirectConnectInbound", B2bDirectConnectInbound);
+            writer.WriteObjectValue<ApiSdk.Models.CrossTenantAccessPolicyB2BSetting>("b2bDirectConnectOutbound", B2bDirectConnectOutbound);
+            writer.WriteObjectValue<ApiSdk.Models.CrossTenantIdentitySyncPolicyPartner>("identitySynchronization", IdentitySynchronization);
+            writer.WriteObjectValue<ApiSdk.Models.CrossTenantAccessPolicyInboundTrust>("inboundTrust", InboundTrust);
             writer.WriteBoolValue("isInMultiTenantOrganization", IsInMultiTenantOrganization);
             writer.WriteBoolValue("isServiceProvider", IsServiceProvider);
             writer.WriteStringValue("@odata.type", OdataType);

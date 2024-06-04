@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lookup
         /// <summary>The lookupValue property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? LookupValue { get; set; }
+        public ApiSdk.Models.Json? LookupValue { get; set; }
 #nullable restore
 #else
-        public Json LookupValue { get; set; }
+        public ApiSdk.Models.Json LookupValue { get; set; }
 #endif
         /// <summary>The lookupVector property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? LookupVector { get; set; }
+        public ApiSdk.Models.Json? LookupVector { get; set; }
 #nullable restore
 #else
-        public Json LookupVector { get; set; }
+        public ApiSdk.Models.Json LookupVector { get; set; }
 #endif
         /// <summary>The resultVector property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? ResultVector { get; set; }
+        public ApiSdk.Models.Json? ResultVector { get; set; }
 #nullable restore
 #else
-        public Json ResultVector { get; set; }
+        public ApiSdk.Models.Json ResultVector { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="LookupPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lookup.LookupPostRequestBody"/> and sets the default values.
         /// </summary>
         public LookupPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lookup
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LookupPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lookup.LookupPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static LookupPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lookup.LookupPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LookupPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lookup.LookupPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lookup
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "lookupValue", n => { LookupValue = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "lookupVector", n => { LookupVector = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "resultVector", n => { ResultVector = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "lookupValue", n => { LookupValue = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "lookupVector", n => { LookupVector = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "resultVector", n => { ResultVector = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lookup
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("lookupValue", LookupValue);
-            writer.WriteObjectValue<Json>("lookupVector", LookupVector);
-            writer.WriteObjectValue<Json>("resultVector", ResultVector);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("lookupValue", LookupValue);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("lookupVector", LookupVector);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("resultVector", ResultVector);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -159,7 +159,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<TargetedManagedAppPolicyAssignment>(TargetedManagedAppPolicyAssignment.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.TargetedManagedAppPolicyAssignment>(ApiSdk.Models.TargetedManagedAppPolicyAssignment.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -181,14 +181,14 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TargetedManagedAppPolicyAssignmentItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.Item.TargetedManagedAppPolicyAssignmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TargetedManagedAppPolicyAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/iosManagedAppProtections/{iosManagedAppProtection%2Did}/assignments/{targetedManagedAppPolicyAssignment%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TargetedManagedAppPolicyAssignmentItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.Item.TargetedManagedAppPolicyAssignmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TargetedManagedAppPolicyAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/iosManagedAppProtections/{iosManagedAppProtection%2Did}/assignments/{targetedManagedAppPolicyAssignment%2Did}{?%24expand,%24select}", rawUrl)
@@ -220,11 +220,11 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TargetedManagedAppPolicyAssignmentItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.Item.TargetedManagedAppPolicyAssignmentItemRequestBuilder.TargetedManagedAppPolicyAssignmentItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TargetedManagedAppPolicyAssignmentItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.Item.TargetedManagedAppPolicyAssignmentItemRequestBuilder.TargetedManagedAppPolicyAssignmentItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -240,11 +240,11 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(TargetedManagedAppPolicyAssignment body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TargetedManagedAppPolicyAssignment body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(TargetedManagedAppPolicyAssignment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TargetedManagedAppPolicyAssignment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

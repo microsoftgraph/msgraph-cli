@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Windows Information Protection AppLocker File
     /// </summary>
-    public class WindowsInformationProtectionAppLockerFile : Entity, IParsable
+    public class WindowsInformationProtectionAppLockerFile : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The friendly name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsInformationProtectionAppLockerFile"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsInformationProtectionAppLockerFile"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WindowsInformationProtectionAppLockerFile CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WindowsInformationProtectionAppLockerFile CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsInformationProtectionAppLockerFile();
+            return new ApiSdk.Models.WindowsInformationProtectionAppLockerFile();
         }
         /// <summary>
         /// The deserialization information for the current model

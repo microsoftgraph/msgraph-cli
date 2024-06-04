@@ -28,7 +28,7 @@ namespace ApiSdk.Models
         /// <summary>Total count of tenant attach devices. Read-only.</summary>
         public int? TenantAttachDeviceCount { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsCloudManagementDevicesSummary"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UserExperienceAnalyticsCloudManagementDevicesSummary"/> and sets the default values.
         /// </summary>
         public UserExperienceAnalyticsCloudManagementDevicesSummary()
         {
@@ -37,12 +37,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsCloudManagementDevicesSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsCloudManagementDevicesSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UserExperienceAnalyticsCloudManagementDevicesSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UserExperienceAnalyticsCloudManagementDevicesSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsCloudManagementDevicesSummary();
+            return new ApiSdk.Models.UserExperienceAnalyticsCloudManagementDevicesSummary();
         }
         /// <summary>
         /// The deserialization information for the current model

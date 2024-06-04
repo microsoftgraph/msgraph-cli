@@ -21,7 +21,7 @@ namespace ApiSdk.Communications.Calls.Item.Unmute
         public string ClientContext { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UnmutePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.Unmute.UnmutePostRequestBody"/> and sets the default values.
         /// </summary>
         public UnmutePostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Communications.Calls.Item.Unmute
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnmutePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.Calls.Item.Unmute.UnmutePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UnmutePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.Calls.Item.Unmute.UnmutePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnmutePostRequestBody();
+            return new ApiSdk.Communications.Calls.Item.Unmute.UnmutePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

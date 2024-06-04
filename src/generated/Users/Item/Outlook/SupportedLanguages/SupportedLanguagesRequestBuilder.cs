@@ -103,14 +103,14 @@ namespace ApiSdk.Users.Item.Outlook.SupportedLanguages
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SupportedLanguagesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Outlook.SupportedLanguages.SupportedLanguagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SupportedLanguagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/outlook/supportedLanguages(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SupportedLanguagesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Outlook.SupportedLanguages.SupportedLanguagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SupportedLanguagesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/outlook/supportedLanguages(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
@@ -123,11 +123,11 @@ namespace ApiSdk.Users.Item.Outlook.SupportedLanguages
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SupportedLanguagesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Outlook.SupportedLanguages.SupportedLanguagesRequestBuilder.SupportedLanguagesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SupportedLanguagesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Outlook.SupportedLanguages.SupportedLanguagesRequestBuilder.SupportedLanguagesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

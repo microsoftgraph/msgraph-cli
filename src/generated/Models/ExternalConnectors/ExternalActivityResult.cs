@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.ExternalConnectors
 {
     #pragma warning disable CS1591
-    public class ExternalActivityResult : ExternalActivity, IParsable
+    public class ExternalActivityResult : ApiSdk.Models.ExternalConnectors.ExternalActivity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Error information that explains the failure to process an external activity.</summary>
@@ -21,12 +21,12 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ExternalActivityResult"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.ExternalActivityResult"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ExternalActivityResult CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ExternalConnectors.ExternalActivityResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ExternalActivityResult();
+            return new ApiSdk.Models.ExternalConnectors.ExternalActivityResult();
         }
         /// <summary>
         /// The deserialization information for the current model

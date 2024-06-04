@@ -53,7 +53,7 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.CopyToNote
         public string SiteId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CopyToNotebookPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.CopyToNotebook.CopyToNotebookPostRequestBody"/> and sets the default values.
         /// </summary>
         public CopyToNotebookPostRequestBody()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.CopyToNote
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CopyToNotebookPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.CopyToNotebook.CopyToNotebookPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CopyToNotebookPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.CopyToNotebook.CopyToNotebookPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CopyToNotebookPostRequestBody();
+            return new ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.CopyToNotebook.CopyToNotebookPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

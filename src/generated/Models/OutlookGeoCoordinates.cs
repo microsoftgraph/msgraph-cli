@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OutlookGeoCoordinates"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OutlookGeoCoordinates"/> and sets the default values.
         /// </summary>
         public OutlookGeoCoordinates()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OutlookGeoCoordinates"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OutlookGeoCoordinates"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static OutlookGeoCoordinates CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.OutlookGeoCoordinates CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OutlookGeoCoordinates();
+            return new ApiSdk.Models.OutlookGeoCoordinates();
         }
         /// <summary>
         /// The deserialization information for the current model

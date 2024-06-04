@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class User : DirectoryObject, IParsable
+    public class User : ApiSdk.Models.DirectoryObject, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A freeform text entry field for the user to describe themselves. Returned only on $select.</summary>
@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>The user&apos;s activities across devices. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserActivity>? Activities { get; set; }
+        public List<ApiSdk.Models.UserActivity>? Activities { get; set; }
 #nullable restore
 #else
-        public List<UserActivity> Activities { get; set; }
+        public List<ApiSdk.Models.UserActivity> Activities { get; set; }
 #endif
         /// <summary>Sets the age group of the user. Allowed values: null, Minor, NotAdult, and Adult. For more information, see legal age group property definitions. Returned only on $select. Supports $filter (eq, ne, not, and in).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,34 +39,34 @@ namespace ApiSdk.Models
         /// <summary>The user&apos;s terms of use acceptance statuses. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AgreementAcceptance>? AgreementAcceptances { get; set; }
+        public List<ApiSdk.Models.AgreementAcceptance>? AgreementAcceptances { get; set; }
 #nullable restore
 #else
-        public List<AgreementAcceptance> AgreementAcceptances { get; set; }
+        public List<ApiSdk.Models.AgreementAcceptance> AgreementAcceptances { get; set; }
 #endif
         /// <summary>Represents the app roles a user has been granted for an application. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppRoleAssignment>? AppRoleAssignments { get; set; }
+        public List<ApiSdk.Models.AppRoleAssignment>? AppRoleAssignments { get; set; }
 #nullable restore
 #else
-        public List<AppRoleAssignment> AppRoleAssignments { get; set; }
+        public List<ApiSdk.Models.AppRoleAssignment> AppRoleAssignments { get; set; }
 #endif
         /// <summary>The licenses that are assigned to the user, including inherited (group-based) licenses. This property doesn&apos;t differentiate between directly assigned and inherited licenses. Use the licenseAssignmentStates property to identify the directly assigned and inherited licenses.  Not nullable. Returned only on $select. Supports $filter (eq, not, /$count eq 0, /$count ne 0).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AssignedLicense>? AssignedLicenses { get; set; }
+        public List<ApiSdk.Models.AssignedLicense>? AssignedLicenses { get; set; }
 #nullable restore
 #else
-        public List<AssignedLicense> AssignedLicenses { get; set; }
+        public List<ApiSdk.Models.AssignedLicense> AssignedLicenses { get; set; }
 #endif
         /// <summary>The plans that are assigned to the user. Read-only. Not nullable. Returned only on $select. Supports $filter (eq and not).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AssignedPlan>? AssignedPlans { get; set; }
+        public List<ApiSdk.Models.AssignedPlan>? AssignedPlans { get; set; }
 #nullable restore
 #else
-        public List<AssignedPlan> AssignedPlans { get; set; }
+        public List<ApiSdk.Models.AssignedPlan> AssignedPlans { get; set; }
 #endif
         /// <summary>The authentication methods that are supported for the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -105,10 +105,10 @@ namespace ApiSdk.Models
         /// <summary>The user&apos;s calendar groups. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CalendarGroup>? CalendarGroups { get; set; }
+        public List<ApiSdk.Models.CalendarGroup>? CalendarGroups { get; set; }
 #nullable restore
 #else
-        public List<CalendarGroup> CalendarGroups { get; set; }
+        public List<ApiSdk.Models.CalendarGroup> CalendarGroups { get; set; }
 #endif
         /// <summary>The user&apos;s calendars. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -121,18 +121,18 @@ namespace ApiSdk.Models
         /// <summary>The calendar view for the calendar. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Event>? CalendarView { get; set; }
+        public List<ApiSdk.Models.Event>? CalendarView { get; set; }
 #nullable restore
 #else
-        public List<Event> CalendarView { get; set; }
+        public List<ApiSdk.Models.Event> CalendarView { get; set; }
 #endif
         /// <summary>The chats property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Chat>? Chats { get; set; }
+        public List<ApiSdk.Models.Chat>? Chats { get; set; }
 #nullable restore
 #else
-        public List<Chat> Chats { get; set; }
+        public List<ApiSdk.Models.Chat> Chats { get; set; }
 #endif
         /// <summary>The city where the user is located. Maximum length is 128 characters. Returned only on $select. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -145,10 +145,10 @@ namespace ApiSdk.Models
         /// <summary>The cloudClipboard property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CloudClipboardRoot? CloudClipboard { get; set; }
+        public ApiSdk.Models.CloudClipboardRoot? CloudClipboard { get; set; }
 #nullable restore
 #else
-        public CloudClipboardRoot CloudClipboard { get; set; }
+        public ApiSdk.Models.CloudClipboardRoot CloudClipboard { get; set; }
 #endif
         /// <summary>The name of the company that the user is associated with. This property can be useful for describing the company that an external user comes from. The maximum length is 64 characters.Returned only on $select. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -169,18 +169,18 @@ namespace ApiSdk.Models
         /// <summary>The user&apos;s contacts folders. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ContactFolder>? ContactFolders { get; set; }
+        public List<ApiSdk.Models.ContactFolder>? ContactFolders { get; set; }
 #nullable restore
 #else
-        public List<ContactFolder> ContactFolders { get; set; }
+        public List<ApiSdk.Models.ContactFolder> ContactFolders { get; set; }
 #endif
         /// <summary>The user&apos;s contacts. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Contact>? Contacts { get; set; }
+        public List<ApiSdk.Models.Contact>? Contacts { get; set; }
 #nullable restore
 #else
-        public List<Contact> Contacts { get; set; }
+        public List<ApiSdk.Models.Contact> Contacts { get; set; }
 #endif
         /// <summary>The country or region where the user is located; for example, US or UK. Maximum length is 128 characters. Returned only on $select. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -195,10 +195,10 @@ namespace ApiSdk.Models
         /// <summary>Directory objects that the user created. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? CreatedObjects { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? CreatedObjects { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> CreatedObjects { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> CreatedObjects { get; set; }
 #endif
         /// <summary>Indicates whether the user account was created through one of the following methods:  As a regular school or work account (null). As an external account (Invitation). As a local account for an Azure Active Directory B2C tenant (LocalAccount). Through self-service sign-up by an internal user using email verification (EmailVerified). Through self-service sign-up by an external user signing up through a link that is part of a user flow (SelfServiceSignUp). Read-only.Returned only on $select. Supports $filter (eq, ne, not, in).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -211,10 +211,10 @@ namespace ApiSdk.Models
         /// <summary>An open complex type that holds the value of a custom security attribute that is assigned to a directory object. Nullable. Returned only on $select. Supports $filter (eq, ne, not, startsWith). The filter value is case-sensitive.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CustomSecurityAttributeValue? CustomSecurityAttributes { get; set; }
+        public ApiSdk.Models.CustomSecurityAttributeValue? CustomSecurityAttributes { get; set; }
 #nullable restore
 #else
-        public CustomSecurityAttributeValue CustomSecurityAttributes { get; set; }
+        public ApiSdk.Models.CustomSecurityAttributeValue CustomSecurityAttributes { get; set; }
 #endif
         /// <summary>The name of the department in which the user works. Maximum length is 64 characters. Returned only on $select. Supports $filter (eq, ne, not , ge, le, in, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -229,18 +229,18 @@ namespace ApiSdk.Models
         /// <summary>The list of troubleshooting events for this user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DeviceManagementTroubleshootingEvent>? DeviceManagementTroubleshootingEvents { get; set; }
+        public List<ApiSdk.Models.DeviceManagementTroubleshootingEvent>? DeviceManagementTroubleshootingEvents { get; set; }
 #nullable restore
 #else
-        public List<DeviceManagementTroubleshootingEvent> DeviceManagementTroubleshootingEvents { get; set; }
+        public List<ApiSdk.Models.DeviceManagementTroubleshootingEvent> DeviceManagementTroubleshootingEvents { get; set; }
 #endif
         /// <summary>The users and contacts that report to the user. (The users and contacts that have their manager property set to this user.) Read-only. Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? DirectReports { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? DirectReports { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> DirectReports { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> DirectReports { get; set; }
 #endif
         /// <summary>The name displayed in the address book for the user. This is usually the combination of the user&apos;s first name, middle initial, and last name. This property is required when a user is created and it cannot be cleared during updates. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values), $orderby, and $search.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -269,10 +269,10 @@ namespace ApiSdk.Models
         /// <summary>The employeeExperience property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EmployeeExperienceUser? EmployeeExperience { get; set; }
+        public ApiSdk.Models.EmployeeExperienceUser? EmployeeExperience { get; set; }
 #nullable restore
 #else
-        public EmployeeExperienceUser EmployeeExperience { get; set; }
+        public ApiSdk.Models.EmployeeExperienceUser EmployeeExperience { get; set; }
 #endif
         /// <summary>The date and time when the user was hired or will start work in a future hire. Returned only on $select. Supports $filter (eq, ne, not , ge, le, in).</summary>
         public DateTimeOffset? EmployeeHireDate { get; set; }
@@ -305,18 +305,18 @@ namespace ApiSdk.Models
         /// <summary>The user&apos;s events. Default is to show Events under the Default Calendar. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Event>? Events { get; set; }
+        public List<ApiSdk.Models.Event>? Events { get; set; }
 #nullable restore
 #else
-        public List<Event> Events { get; set; }
+        public List<ApiSdk.Models.Event> Events { get; set; }
 #endif
         /// <summary>The collection of open extensions defined for the user. Read-only. Supports $expand. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Extension>? Extensions { get; set; }
+        public List<ApiSdk.Models.Extension>? Extensions { get; set; }
 #nullable restore
 #else
-        public List<Extension> Extensions { get; set; }
+        public List<ApiSdk.Models.Extension> Extensions { get; set; }
 #endif
         /// <summary>For an external user invited to the tenant using the invitation API, this property represents the invited user&apos;s invitation status. For invited users, the state can be PendingAcceptance or Accepted, or null for all other users. Returned only on $select. Supports $filter (eq, ne, not , in).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -339,10 +339,10 @@ namespace ApiSdk.Models
         /// <summary>The followedSites property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Site>? FollowedSites { get; set; }
+        public List<ApiSdk.Models.Site>? FollowedSites { get; set; }
 #nullable restore
 #else
-        public List<Site> FollowedSites { get; set; }
+        public List<ApiSdk.Models.Site> FollowedSites { get; set; }
 #endif
         /// <summary>The given name (first name) of the user. Maximum length is 64 characters. Returned by default. Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -357,10 +357,10 @@ namespace ApiSdk.Models
         /// <summary>Represents the identities that can be used to sign in to this user account. Microsoft (also known as a local account), organizations, or social identity providers such as Facebook, Google, and Microsoft can provide identity and tie it to a user account. It may contain multiple items with the same signInType value. Returned only on $select.  Supports $filter (eq) with limitations.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ObjectIdentity>? Identities { get; set; }
+        public List<ApiSdk.Models.ObjectIdentity>? Identities { get; set; }
 #nullable restore
 #else
-        public List<ObjectIdentity> Identities { get; set; }
+        public List<ApiSdk.Models.ObjectIdentity> Identities { get; set; }
 #endif
         /// <summary>The instant message voice-over IP (VOIP) session initiation protocol (SIP) addresses for the user. Read-only. Returned only on $select. Supports $filter (eq, not, ge, le, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -381,10 +381,10 @@ namespace ApiSdk.Models
         /// <summary>The insights property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public OfficeGraphInsights? Insights { get; set; }
+        public ApiSdk.Models.OfficeGraphInsights? Insights { get; set; }
 #nullable restore
 #else
-        public OfficeGraphInsights Insights { get; set; }
+        public ApiSdk.Models.OfficeGraphInsights Insights { get; set; }
 #endif
         /// <summary>A list for the user to describe their interests. Returned only on $select.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -407,10 +407,10 @@ namespace ApiSdk.Models
         /// <summary>The joinedTeams property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Team>? JoinedTeams { get; set; }
+        public List<ApiSdk.Models.Team>? JoinedTeams { get; set; }
 #nullable restore
 #else
-        public List<Team> JoinedTeams { get; set; }
+        public List<ApiSdk.Models.Team> JoinedTeams { get; set; }
 #endif
         /// <summary>The time when this Microsoft Entra user last changed their password or when their password was created, whichever date the latest action was performed. The date and time information uses ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Returned only on $select.</summary>
         public DateTimeOffset? LastPasswordChangeDateTime { get; set; }
@@ -425,10 +425,10 @@ namespace ApiSdk.Models
         /// <summary>State of license assignments for this user. Also indicates licenses that are directly assigned or the user has inherited through group memberships. Read-only. Returned only on $select.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LicenseAssignmentState>? LicenseAssignmentStates { get; set; }
+        public List<ApiSdk.Models.LicenseAssignmentState>? LicenseAssignmentStates { get; set; }
 #nullable restore
 #else
-        public List<LicenseAssignmentState> LicenseAssignmentStates { get; set; }
+        public List<ApiSdk.Models.LicenseAssignmentState> LicenseAssignmentStates { get; set; }
 #endif
         /// <summary>A collection of this user&apos;s license details. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -457,10 +457,10 @@ namespace ApiSdk.Models
         /// <summary>The user&apos;s mail folders. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MailFolder>? MailFolders { get; set; }
+        public List<ApiSdk.Models.MailFolder>? MailFolders { get; set; }
 #nullable restore
 #else
-        public List<MailFolder> MailFolders { get; set; }
+        public List<ApiSdk.Models.MailFolder> MailFolders { get; set; }
 #endif
         /// <summary>The mail alias for the user. This property must be specified when a user is created. Maximum length is 64 characters. Returned only on $select. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -473,42 +473,42 @@ namespace ApiSdk.Models
         /// <summary>Zero or more managed app registrations that belong to the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ManagedAppRegistration>? ManagedAppRegistrations { get; set; }
+        public List<ApiSdk.Models.ManagedAppRegistration>? ManagedAppRegistrations { get; set; }
 #nullable restore
 #else
-        public List<ManagedAppRegistration> ManagedAppRegistrations { get; set; }
+        public List<ApiSdk.Models.ManagedAppRegistration> ManagedAppRegistrations { get; set; }
 #endif
         /// <summary>The managed devices associated with the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ManagedDevice>? ManagedDevices { get; set; }
+        public List<ApiSdk.Models.ManagedDevice>? ManagedDevices { get; set; }
 #nullable restore
 #else
-        public List<ManagedDevice> ManagedDevices { get; set; }
+        public List<ApiSdk.Models.ManagedDevice> ManagedDevices { get; set; }
 #endif
         /// <summary>The user or contact that is this user&apos;s manager. Read-only. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DirectoryObject? Manager { get; set; }
+        public ApiSdk.Models.DirectoryObject? Manager { get; set; }
 #nullable restore
 #else
-        public DirectoryObject Manager { get; set; }
+        public ApiSdk.Models.DirectoryObject Manager { get; set; }
 #endif
         /// <summary>The groups and directory roles that the user is a member of. Read-only. Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? MemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? MemberOf { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> MemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> MemberOf { get; set; }
 #endif
         /// <summary>The messages in a mailbox or folder. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Message>? Messages { get; set; }
+        public List<ApiSdk.Models.Message>? Messages { get; set; }
 #nullable restore
 #else
-        public List<Message> Messages { get; set; }
+        public List<ApiSdk.Models.Message> Messages { get; set; }
 #endif
         /// <summary>The primary cellular telephone number for the user. Read-only for users synced from the on-premises directory. Maximum length is 64 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values) and $search.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -529,10 +529,10 @@ namespace ApiSdk.Models
         /// <summary>The oauth2PermissionGrants property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OAuth2PermissionGrant>? Oauth2PermissionGrants { get; set; }
+        public List<ApiSdk.Models.OAuth2PermissionGrant>? Oauth2PermissionGrants { get; set; }
 #nullable restore
 #else
-        public List<OAuth2PermissionGrant> Oauth2PermissionGrants { get; set; }
+        public List<ApiSdk.Models.OAuth2PermissionGrant> Oauth2PermissionGrants { get; set; }
 #endif
         /// <summary>The office location in the user&apos;s place of business. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -553,10 +553,10 @@ namespace ApiSdk.Models
         /// <summary>Information about a meeting, including the URL used to join a meeting, the attendees list, and the description.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OnlineMeeting>? OnlineMeetings { get; set; }
+        public List<ApiSdk.Models.OnlineMeeting>? OnlineMeetings { get; set; }
 #nullable restore
 #else
-        public List<OnlineMeeting> OnlineMeetings { get; set; }
+        public List<ApiSdk.Models.OnlineMeeting> OnlineMeetings { get; set; }
 #endif
         /// <summary>Contains the on-premises Active Directory distinguished name or DN. The property is only populated for customers who are synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect. Read-only. Returned only on $select.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -595,10 +595,10 @@ namespace ApiSdk.Models
         /// <summary>Errors when using Microsoft synchronization product during provisioning. Returned only on $select. Supports $filter (eq, not, ge, le).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OnPremisesProvisioningError>? OnPremisesProvisioningErrors { get; set; }
+        public List<ApiSdk.Models.OnPremisesProvisioningError>? OnPremisesProvisioningErrors { get; set; }
 #nullable restore
 #else
-        public List<OnPremisesProvisioningError> OnPremisesProvisioningErrors { get; set; }
+        public List<ApiSdk.Models.OnPremisesProvisioningError> OnPremisesProvisioningErrors { get; set; }
 #endif
         /// <summary>Contains the on-premises samAccountName synchronized from the on-premises directory. The property is only populated for customers who are synchronizing their on-premises directory to Microsoft Entra ID via Microsoft Entra Connect. Read-only. Returned only on $select. Supports $filter (eq, ne, not, ge, le, in, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -637,26 +637,26 @@ namespace ApiSdk.Models
         /// <summary>The outlook property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public OutlookUser? Outlook { get; set; }
+        public ApiSdk.Models.OutlookUser? Outlook { get; set; }
 #nullable restore
 #else
-        public OutlookUser Outlook { get; set; }
+        public ApiSdk.Models.OutlookUser Outlook { get; set; }
 #endif
         /// <summary>Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? OwnedDevices { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? OwnedDevices { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> OwnedDevices { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> OwnedDevices { get; set; }
 #endif
         /// <summary>Directory objects that are owned by the user. Read-only. Nullable. Supports $expand, $select nested in $expand, and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? OwnedObjects { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? OwnedObjects { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> OwnedObjects { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> OwnedObjects { get; set; }
 #endif
         /// <summary>Specifies password policies for the user. This value is an enumeration with one possible value being DisableStrongPassword, which allows weaker passwords than the default policy to be specified. DisablePasswordExpiration can also be specified. The two may be specified together; for example: DisablePasswordExpiration, DisableStrongPassword. Returned only on $select. For more information on the default password policies, see Microsoft Entra password policies. Supports $filter (ne, not, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -685,42 +685,42 @@ namespace ApiSdk.Models
         /// <summary>People that are relevant to the user. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Person>? People { get; set; }
+        public List<ApiSdk.Models.Person>? People { get; set; }
 #nullable restore
 #else
-        public List<Person> People { get; set; }
+        public List<ApiSdk.Models.Person> People { get; set; }
 #endif
         /// <summary>List all resource-specific permission grants of a user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ResourceSpecificPermissionGrant>? PermissionGrants { get; set; }
+        public List<ApiSdk.Models.ResourceSpecificPermissionGrant>? PermissionGrants { get; set; }
 #nullable restore
 #else
-        public List<ResourceSpecificPermissionGrant> PermissionGrants { get; set; }
+        public List<ApiSdk.Models.ResourceSpecificPermissionGrant> PermissionGrants { get; set; }
 #endif
         /// <summary>The user&apos;s profile photo. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ProfilePhoto? Photo { get; set; }
+        public ApiSdk.Models.ProfilePhoto? Photo { get; set; }
 #nullable restore
 #else
-        public ProfilePhoto Photo { get; set; }
+        public ApiSdk.Models.ProfilePhoto Photo { get; set; }
 #endif
         /// <summary>The collection of the user&apos;s profile photos in different sizes. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ProfilePhoto>? Photos { get; set; }
+        public List<ApiSdk.Models.ProfilePhoto>? Photos { get; set; }
 #nullable restore
 #else
-        public List<ProfilePhoto> Photos { get; set; }
+        public List<ApiSdk.Models.ProfilePhoto> Photos { get; set; }
 #endif
         /// <summary>Entry-point to the Planner resource that might exist for a user. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PlannerUser? Planner { get; set; }
+        public ApiSdk.Models.PlannerUser? Planner { get; set; }
 #nullable restore
 #else
-        public PlannerUser Planner { get; set; }
+        public ApiSdk.Models.PlannerUser Planner { get; set; }
 #endif
         /// <summary>The postal code for the user&apos;s postal address. The postal code is specific to the user&apos;s country/region. In the United States of America, this attribute contains the ZIP code. Maximum length is 40 characters. Returned only on $select. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -765,18 +765,18 @@ namespace ApiSdk.Models
         /// <summary>The print property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserPrint? Print { get; set; }
+        public ApiSdk.Models.UserPrint? Print { get; set; }
 #nullable restore
 #else
-        public UserPrint Print { get; set; }
+        public ApiSdk.Models.UserPrint Print { get; set; }
 #endif
         /// <summary>The plans that are provisioned for the user. Read-only. Not nullable. Returned only on $select. Supports $filter (eq, not, ge, le).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ProvisionedPlan>? ProvisionedPlans { get; set; }
+        public List<ApiSdk.Models.ProvisionedPlan>? ProvisionedPlans { get; set; }
 #nullable restore
 #else
-        public List<ProvisionedPlan> ProvisionedPlans { get; set; }
+        public List<ApiSdk.Models.ProvisionedPlan> ProvisionedPlans { get; set; }
 #endif
         /// <summary>For example: [&apos;SMTP: bob@contoso.com&apos;, &apos;smtp: bob@sales.contoso.com&apos;]. Changes to the mail property will also update this collection to include the value as an SMTP address. For more information, see mail and proxyAddresses properties. The proxy address prefixed with SMTP (capitalized) is the primary proxy address while those prefixed with smtp are the secondary proxy addresses. For Azure AD B2C accounts, this property has a limit of 10 unique addresses. Read-only in Microsoft Graph; you can update this property only through the Microsoft 365 admin center. Not nullable. Returned only on $select. Supports $filter (eq, not, ge, le, startsWith, endsWith, /$count eq 0, /$count ne 0).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -789,10 +789,10 @@ namespace ApiSdk.Models
         /// <summary>Devices that are registered for the user. Read-only. Nullable. Supports $expand and returns up to 100 objects.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? RegisteredDevices { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? RegisteredDevices { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> RegisteredDevices { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> RegisteredDevices { get; set; }
 #endif
         /// <summary>A list for the user to enumerate their responsibilities. Returned only on $select.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -813,10 +813,10 @@ namespace ApiSdk.Models
         /// <summary>The scopedRoleMemberOf property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ScopedRoleMembership>? ScopedRoleMemberOf { get; set; }
+        public List<ApiSdk.Models.ScopedRoleMembership>? ScopedRoleMemberOf { get; set; }
 #nullable restore
 #else
-        public List<ScopedRoleMembership> ScopedRoleMemberOf { get; set; }
+        public List<ApiSdk.Models.ScopedRoleMembership> ScopedRoleMemberOf { get; set; }
 #endif
         /// <summary>Security identifier (SID) of the user, used in Windows scenarios. Read-only. Returned by default. Supports $select and $filter (eq, not, ge, le, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -829,18 +829,18 @@ namespace ApiSdk.Models
         /// <summary>Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a user object .  Supports $filter (eq, not, for isResolved and serviceInstance).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ServiceProvisioningError>? ServiceProvisioningErrors { get; set; }
+        public List<ApiSdk.Models.ServiceProvisioningError>? ServiceProvisioningErrors { get; set; }
 #nullable restore
 #else
-        public List<ServiceProvisioningError> ServiceProvisioningErrors { get; set; }
+        public List<ApiSdk.Models.ServiceProvisioningError> ServiceProvisioningErrors { get; set; }
 #endif
         /// <summary>The settings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserSettings? Settings { get; set; }
+        public ApiSdk.Models.UserSettings? Settings { get; set; }
 #nullable restore
 #else
-        public UserSettings Settings { get; set; }
+        public ApiSdk.Models.UserSettings Settings { get; set; }
 #endif
         /// <summary>Do not use in Microsoft Graph. Manage this property through the Microsoft 365 admin center instead. Represents whether the user should be included in the Outlook global address list. See Known issue.</summary>
         public bool? ShowInAddressList { get; set; }
@@ -865,10 +865,10 @@ namespace ApiSdk.Models
         /// <summary>The users and groups responsible for this guest user&apos;s privileges in the tenant and keep the guest user&apos;s information and access updated. (HTTP Methods: GET, POST, DELETE.). Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? Sponsors { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? Sponsors { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> Sponsors { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> Sponsors { get; set; }
 #endif
         /// <summary>The state or province in the user&apos;s address. Maximum length is 128 characters. Returned only on $select. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -897,10 +897,10 @@ namespace ApiSdk.Models
         /// <summary>A container for Microsoft Teams features available for the user. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserTeamwork? Teamwork { get; set; }
+        public ApiSdk.Models.UserTeamwork? Teamwork { get; set; }
 #nullable restore
 #else
-        public UserTeamwork Teamwork { get; set; }
+        public ApiSdk.Models.UserTeamwork Teamwork { get; set; }
 #endif
         /// <summary>Represents the To Do services available to a user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -913,10 +913,10 @@ namespace ApiSdk.Models
         /// <summary>The groups, including nested groups, and directory roles that a user is a member of. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? TransitiveMemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? TransitiveMemberOf { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> TransitiveMemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> TransitiveMemberOf { get; set; }
 #endif
         /// <summary>A two-letter country code (ISO standard 3166). Required for users that are assigned licenses due to legal requirements to check for availability of services in countries.  Examples include: US, JP, and GB. Not nullable. Returned only on $select. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -943,7 +943,7 @@ namespace ApiSdk.Models
         public string UserType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="User"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.User"/> and sets the default values.
         /// </summary>
         public User() : base()
         {
@@ -952,12 +952,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="User"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.User"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new User CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.User CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new User();
+            return new ApiSdk.Models.User();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -969,128 +969,128 @@ namespace ApiSdk.Models
             {
                 { "aboutMe", n => { AboutMe = n.GetStringValue(); } },
                 { "accountEnabled", n => { AccountEnabled = n.GetBoolValue(); } },
-                { "activities", n => { Activities = n.GetCollectionOfObjectValues<UserActivity>(UserActivity.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "activities", n => { Activities = n.GetCollectionOfObjectValues<ApiSdk.Models.UserActivity>(ApiSdk.Models.UserActivity.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "ageGroup", n => { AgeGroup = n.GetStringValue(); } },
-                { "agreementAcceptances", n => { AgreementAcceptances = n.GetCollectionOfObjectValues<AgreementAcceptance>(AgreementAcceptance.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "appRoleAssignments", n => { AppRoleAssignments = n.GetCollectionOfObjectValues<AppRoleAssignment>(AppRoleAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "assignedLicenses", n => { AssignedLicenses = n.GetCollectionOfObjectValues<AssignedLicense>(AssignedLicense.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "assignedPlans", n => { AssignedPlans = n.GetCollectionOfObjectValues<AssignedPlan>(AssignedPlan.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "agreementAcceptances", n => { AgreementAcceptances = n.GetCollectionOfObjectValues<ApiSdk.Models.AgreementAcceptance>(ApiSdk.Models.AgreementAcceptance.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appRoleAssignments", n => { AppRoleAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.AppRoleAssignment>(ApiSdk.Models.AppRoleAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignedLicenses", n => { AssignedLicenses = n.GetCollectionOfObjectValues<ApiSdk.Models.AssignedLicense>(ApiSdk.Models.AssignedLicense.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignedPlans", n => { AssignedPlans = n.GetCollectionOfObjectValues<ApiSdk.Models.AssignedPlan>(ApiSdk.Models.AssignedPlan.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "authentication", n => { Authentication = n.GetObjectValue<ApiSdk.Models.Authentication>(ApiSdk.Models.Authentication.CreateFromDiscriminatorValue); } },
                 { "authorizationInfo", n => { AuthorizationInfo = n.GetObjectValue<ApiSdk.Models.AuthorizationInfo>(ApiSdk.Models.AuthorizationInfo.CreateFromDiscriminatorValue); } },
                 { "birthday", n => { Birthday = n.GetDateTimeOffsetValue(); } },
                 { "businessPhones", n => { BusinessPhones = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "calendar", n => { Calendar = n.GetObjectValue<ApiSdk.Models.Calendar>(ApiSdk.Models.Calendar.CreateFromDiscriminatorValue); } },
-                { "calendarGroups", n => { CalendarGroups = n.GetCollectionOfObjectValues<CalendarGroup>(CalendarGroup.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "calendarView", n => { CalendarView = n.GetCollectionOfObjectValues<Event>(Event.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "calendarGroups", n => { CalendarGroups = n.GetCollectionOfObjectValues<ApiSdk.Models.CalendarGroup>(ApiSdk.Models.CalendarGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "calendarView", n => { CalendarView = n.GetCollectionOfObjectValues<ApiSdk.Models.Event>(ApiSdk.Models.Event.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "calendars", n => { Calendars = n.GetCollectionOfObjectValues<ApiSdk.Models.Calendar>(ApiSdk.Models.Calendar.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "chats", n => { Chats = n.GetCollectionOfObjectValues<Chat>(Chat.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "chats", n => { Chats = n.GetCollectionOfObjectValues<ApiSdk.Models.Chat>(ApiSdk.Models.Chat.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "city", n => { City = n.GetStringValue(); } },
-                { "cloudClipboard", n => { CloudClipboard = n.GetObjectValue<CloudClipboardRoot>(CloudClipboardRoot.CreateFromDiscriminatorValue); } },
+                { "cloudClipboard", n => { CloudClipboard = n.GetObjectValue<ApiSdk.Models.CloudClipboardRoot>(ApiSdk.Models.CloudClipboardRoot.CreateFromDiscriminatorValue); } },
                 { "companyName", n => { CompanyName = n.GetStringValue(); } },
                 { "consentProvidedForMinor", n => { ConsentProvidedForMinor = n.GetStringValue(); } },
-                { "contactFolders", n => { ContactFolders = n.GetCollectionOfObjectValues<ContactFolder>(ContactFolder.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "contacts", n => { Contacts = n.GetCollectionOfObjectValues<Contact>(Contact.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "contactFolders", n => { ContactFolders = n.GetCollectionOfObjectValues<ApiSdk.Models.ContactFolder>(ApiSdk.Models.ContactFolder.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "contacts", n => { Contacts = n.GetCollectionOfObjectValues<ApiSdk.Models.Contact>(ApiSdk.Models.Contact.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "country", n => { Country = n.GetStringValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "createdObjects", n => { CreatedObjects = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "createdObjects", n => { CreatedObjects = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "creationType", n => { CreationType = n.GetStringValue(); } },
-                { "customSecurityAttributes", n => { CustomSecurityAttributes = n.GetObjectValue<CustomSecurityAttributeValue>(CustomSecurityAttributeValue.CreateFromDiscriminatorValue); } },
+                { "customSecurityAttributes", n => { CustomSecurityAttributes = n.GetObjectValue<ApiSdk.Models.CustomSecurityAttributeValue>(ApiSdk.Models.CustomSecurityAttributeValue.CreateFromDiscriminatorValue); } },
                 { "department", n => { Department = n.GetStringValue(); } },
                 { "deviceEnrollmentLimit", n => { DeviceEnrollmentLimit = n.GetIntValue(); } },
-                { "deviceManagementTroubleshootingEvents", n => { DeviceManagementTroubleshootingEvents = n.GetCollectionOfObjectValues<DeviceManagementTroubleshootingEvent>(DeviceManagementTroubleshootingEvent.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "directReports", n => { DirectReports = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "deviceManagementTroubleshootingEvents", n => { DeviceManagementTroubleshootingEvents = n.GetCollectionOfObjectValues<ApiSdk.Models.DeviceManagementTroubleshootingEvent>(ApiSdk.Models.DeviceManagementTroubleshootingEvent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "directReports", n => { DirectReports = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "drive", n => { Drive = n.GetObjectValue<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue); } },
                 { "drives", n => { Drives = n.GetCollectionOfObjectValues<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "employeeExperience", n => { EmployeeExperience = n.GetObjectValue<EmployeeExperienceUser>(EmployeeExperienceUser.CreateFromDiscriminatorValue); } },
+                { "employeeExperience", n => { EmployeeExperience = n.GetObjectValue<ApiSdk.Models.EmployeeExperienceUser>(ApiSdk.Models.EmployeeExperienceUser.CreateFromDiscriminatorValue); } },
                 { "employeeHireDate", n => { EmployeeHireDate = n.GetDateTimeOffsetValue(); } },
                 { "employeeId", n => { EmployeeId = n.GetStringValue(); } },
                 { "employeeLeaveDateTime", n => { EmployeeLeaveDateTime = n.GetDateTimeOffsetValue(); } },
                 { "employeeOrgData", n => { EmployeeOrgData = n.GetObjectValue<ApiSdk.Models.EmployeeOrgData>(ApiSdk.Models.EmployeeOrgData.CreateFromDiscriminatorValue); } },
                 { "employeeType", n => { EmployeeType = n.GetStringValue(); } },
-                { "events", n => { Events = n.GetCollectionOfObjectValues<Event>(Event.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "events", n => { Events = n.GetCollectionOfObjectValues<ApiSdk.Models.Event>(ApiSdk.Models.Event.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<ApiSdk.Models.Extension>(ApiSdk.Models.Extension.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "externalUserState", n => { ExternalUserState = n.GetStringValue(); } },
                 { "externalUserStateChangeDateTime", n => { ExternalUserStateChangeDateTime = n.GetDateTimeOffsetValue(); } },
                 { "faxNumber", n => { FaxNumber = n.GetStringValue(); } },
-                { "followedSites", n => { FollowedSites = n.GetCollectionOfObjectValues<Site>(Site.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "followedSites", n => { FollowedSites = n.GetCollectionOfObjectValues<ApiSdk.Models.Site>(ApiSdk.Models.Site.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "givenName", n => { GivenName = n.GetStringValue(); } },
                 { "hireDate", n => { HireDate = n.GetDateTimeOffsetValue(); } },
-                { "identities", n => { Identities = n.GetCollectionOfObjectValues<ObjectIdentity>(ObjectIdentity.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "identities", n => { Identities = n.GetCollectionOfObjectValues<ApiSdk.Models.ObjectIdentity>(ApiSdk.Models.ObjectIdentity.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "imAddresses", n => { ImAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "inferenceClassification", n => { InferenceClassification = n.GetObjectValue<ApiSdk.Models.InferenceClassification>(ApiSdk.Models.InferenceClassification.CreateFromDiscriminatorValue); } },
-                { "insights", n => { Insights = n.GetObjectValue<OfficeGraphInsights>(OfficeGraphInsights.CreateFromDiscriminatorValue); } },
+                { "insights", n => { Insights = n.GetObjectValue<ApiSdk.Models.OfficeGraphInsights>(ApiSdk.Models.OfficeGraphInsights.CreateFromDiscriminatorValue); } },
                 { "interests", n => { Interests = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "isResourceAccount", n => { IsResourceAccount = n.GetBoolValue(); } },
                 { "jobTitle", n => { JobTitle = n.GetStringValue(); } },
-                { "joinedTeams", n => { JoinedTeams = n.GetCollectionOfObjectValues<Team>(Team.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "joinedTeams", n => { JoinedTeams = n.GetCollectionOfObjectValues<ApiSdk.Models.Team>(ApiSdk.Models.Team.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "lastPasswordChangeDateTime", n => { LastPasswordChangeDateTime = n.GetDateTimeOffsetValue(); } },
                 { "legalAgeGroupClassification", n => { LegalAgeGroupClassification = n.GetStringValue(); } },
-                { "licenseAssignmentStates", n => { LicenseAssignmentStates = n.GetCollectionOfObjectValues<LicenseAssignmentState>(LicenseAssignmentState.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "licenseAssignmentStates", n => { LicenseAssignmentStates = n.GetCollectionOfObjectValues<ApiSdk.Models.LicenseAssignmentState>(ApiSdk.Models.LicenseAssignmentState.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "licenseDetails", n => { LicenseDetails = n.GetCollectionOfObjectValues<ApiSdk.Models.LicenseDetails>(ApiSdk.Models.LicenseDetails.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "mail", n => { Mail = n.GetStringValue(); } },
-                { "mailFolders", n => { MailFolders = n.GetCollectionOfObjectValues<MailFolder>(MailFolder.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "mailFolders", n => { MailFolders = n.GetCollectionOfObjectValues<ApiSdk.Models.MailFolder>(ApiSdk.Models.MailFolder.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "mailNickname", n => { MailNickname = n.GetStringValue(); } },
                 { "mailboxSettings", n => { MailboxSettings = n.GetObjectValue<ApiSdk.Models.MailboxSettings>(ApiSdk.Models.MailboxSettings.CreateFromDiscriminatorValue); } },
-                { "managedAppRegistrations", n => { ManagedAppRegistrations = n.GetCollectionOfObjectValues<ManagedAppRegistration>(ManagedAppRegistration.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "managedDevices", n => { ManagedDevices = n.GetCollectionOfObjectValues<ManagedDevice>(ManagedDevice.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "manager", n => { Manager = n.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue); } },
-                { "memberOf", n => { MemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "messages", n => { Messages = n.GetCollectionOfObjectValues<Message>(Message.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "managedAppRegistrations", n => { ManagedAppRegistrations = n.GetCollectionOfObjectValues<ApiSdk.Models.ManagedAppRegistration>(ApiSdk.Models.ManagedAppRegistration.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "managedDevices", n => { ManagedDevices = n.GetCollectionOfObjectValues<ApiSdk.Models.ManagedDevice>(ApiSdk.Models.ManagedDevice.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "manager", n => { Manager = n.GetObjectValue<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue); } },
+                { "memberOf", n => { MemberOf = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "messages", n => { Messages = n.GetCollectionOfObjectValues<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "mobilePhone", n => { MobilePhone = n.GetStringValue(); } },
                 { "mySite", n => { MySite = n.GetStringValue(); } },
-                { "oauth2PermissionGrants", n => { Oauth2PermissionGrants = n.GetCollectionOfObjectValues<OAuth2PermissionGrant>(OAuth2PermissionGrant.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "oauth2PermissionGrants", n => { Oauth2PermissionGrants = n.GetCollectionOfObjectValues<ApiSdk.Models.OAuth2PermissionGrant>(ApiSdk.Models.OAuth2PermissionGrant.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "officeLocation", n => { OfficeLocation = n.GetStringValue(); } },
                 { "onPremisesDistinguishedName", n => { OnPremisesDistinguishedName = n.GetStringValue(); } },
                 { "onPremisesDomainName", n => { OnPremisesDomainName = n.GetStringValue(); } },
                 { "onPremisesExtensionAttributes", n => { OnPremisesExtensionAttributes = n.GetObjectValue<ApiSdk.Models.OnPremisesExtensionAttributes>(ApiSdk.Models.OnPremisesExtensionAttributes.CreateFromDiscriminatorValue); } },
                 { "onPremisesImmutableId", n => { OnPremisesImmutableId = n.GetStringValue(); } },
                 { "onPremisesLastSyncDateTime", n => { OnPremisesLastSyncDateTime = n.GetDateTimeOffsetValue(); } },
-                { "onPremisesProvisioningErrors", n => { OnPremisesProvisioningErrors = n.GetCollectionOfObjectValues<OnPremisesProvisioningError>(OnPremisesProvisioningError.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "onPremisesProvisioningErrors", n => { OnPremisesProvisioningErrors = n.GetCollectionOfObjectValues<ApiSdk.Models.OnPremisesProvisioningError>(ApiSdk.Models.OnPremisesProvisioningError.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "onPremisesSamAccountName", n => { OnPremisesSamAccountName = n.GetStringValue(); } },
                 { "onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
                 { "onPremisesSyncEnabled", n => { OnPremisesSyncEnabled = n.GetBoolValue(); } },
                 { "onPremisesUserPrincipalName", n => { OnPremisesUserPrincipalName = n.GetStringValue(); } },
                 { "onenote", n => { Onenote = n.GetObjectValue<ApiSdk.Models.Onenote>(ApiSdk.Models.Onenote.CreateFromDiscriminatorValue); } },
-                { "onlineMeetings", n => { OnlineMeetings = n.GetCollectionOfObjectValues<OnlineMeeting>(OnlineMeeting.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "onlineMeetings", n => { OnlineMeetings = n.GetCollectionOfObjectValues<ApiSdk.Models.OnlineMeeting>(ApiSdk.Models.OnlineMeeting.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "otherMails", n => { OtherMails = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "outlook", n => { Outlook = n.GetObjectValue<OutlookUser>(OutlookUser.CreateFromDiscriminatorValue); } },
-                { "ownedDevices", n => { OwnedDevices = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "ownedObjects", n => { OwnedObjects = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "outlook", n => { Outlook = n.GetObjectValue<ApiSdk.Models.OutlookUser>(ApiSdk.Models.OutlookUser.CreateFromDiscriminatorValue); } },
+                { "ownedDevices", n => { OwnedDevices = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "ownedObjects", n => { OwnedObjects = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "passwordPolicies", n => { PasswordPolicies = n.GetStringValue(); } },
                 { "passwordProfile", n => { PasswordProfile = n.GetObjectValue<ApiSdk.Models.PasswordProfile>(ApiSdk.Models.PasswordProfile.CreateFromDiscriminatorValue); } },
                 { "pastProjects", n => { PastProjects = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "people", n => { People = n.GetCollectionOfObjectValues<Person>(Person.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "permissionGrants", n => { PermissionGrants = n.GetCollectionOfObjectValues<ResourceSpecificPermissionGrant>(ResourceSpecificPermissionGrant.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "photo", n => { Photo = n.GetObjectValue<ProfilePhoto>(ProfilePhoto.CreateFromDiscriminatorValue); } },
-                { "photos", n => { Photos = n.GetCollectionOfObjectValues<ProfilePhoto>(ProfilePhoto.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "planner", n => { Planner = n.GetObjectValue<PlannerUser>(PlannerUser.CreateFromDiscriminatorValue); } },
+                { "people", n => { People = n.GetCollectionOfObjectValues<ApiSdk.Models.Person>(ApiSdk.Models.Person.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "permissionGrants", n => { PermissionGrants = n.GetCollectionOfObjectValues<ApiSdk.Models.ResourceSpecificPermissionGrant>(ApiSdk.Models.ResourceSpecificPermissionGrant.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "photo", n => { Photo = n.GetObjectValue<ApiSdk.Models.ProfilePhoto>(ApiSdk.Models.ProfilePhoto.CreateFromDiscriminatorValue); } },
+                { "photos", n => { Photos = n.GetCollectionOfObjectValues<ApiSdk.Models.ProfilePhoto>(ApiSdk.Models.ProfilePhoto.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "planner", n => { Planner = n.GetObjectValue<ApiSdk.Models.PlannerUser>(ApiSdk.Models.PlannerUser.CreateFromDiscriminatorValue); } },
                 { "postalCode", n => { PostalCode = n.GetStringValue(); } },
                 { "preferredDataLocation", n => { PreferredDataLocation = n.GetStringValue(); } },
                 { "preferredLanguage", n => { PreferredLanguage = n.GetStringValue(); } },
                 { "preferredName", n => { PreferredName = n.GetStringValue(); } },
                 { "presence", n => { Presence = n.GetObjectValue<ApiSdk.Models.Presence>(ApiSdk.Models.Presence.CreateFromDiscriminatorValue); } },
-                { "print", n => { Print = n.GetObjectValue<UserPrint>(UserPrint.CreateFromDiscriminatorValue); } },
-                { "provisionedPlans", n => { ProvisionedPlans = n.GetCollectionOfObjectValues<ProvisionedPlan>(ProvisionedPlan.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "print", n => { Print = n.GetObjectValue<ApiSdk.Models.UserPrint>(ApiSdk.Models.UserPrint.CreateFromDiscriminatorValue); } },
+                { "provisionedPlans", n => { ProvisionedPlans = n.GetCollectionOfObjectValues<ApiSdk.Models.ProvisionedPlan>(ApiSdk.Models.ProvisionedPlan.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "proxyAddresses", n => { ProxyAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "registeredDevices", n => { RegisteredDevices = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "registeredDevices", n => { RegisteredDevices = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "responsibilities", n => { Responsibilities = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "schools", n => { Schools = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "scopedRoleMemberOf", n => { ScopedRoleMemberOf = n.GetCollectionOfObjectValues<ScopedRoleMembership>(ScopedRoleMembership.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "scopedRoleMemberOf", n => { ScopedRoleMemberOf = n.GetCollectionOfObjectValues<ApiSdk.Models.ScopedRoleMembership>(ApiSdk.Models.ScopedRoleMembership.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "securityIdentifier", n => { SecurityIdentifier = n.GetStringValue(); } },
-                { "serviceProvisioningErrors", n => { ServiceProvisioningErrors = n.GetCollectionOfObjectValues<ServiceProvisioningError>(ServiceProvisioningError.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "settings", n => { Settings = n.GetObjectValue<UserSettings>(UserSettings.CreateFromDiscriminatorValue); } },
+                { "serviceProvisioningErrors", n => { ServiceProvisioningErrors = n.GetCollectionOfObjectValues<ApiSdk.Models.ServiceProvisioningError>(ApiSdk.Models.ServiceProvisioningError.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "settings", n => { Settings = n.GetObjectValue<ApiSdk.Models.UserSettings>(ApiSdk.Models.UserSettings.CreateFromDiscriminatorValue); } },
                 { "showInAddressList", n => { ShowInAddressList = n.GetBoolValue(); } },
                 { "signInActivity", n => { SignInActivity = n.GetObjectValue<ApiSdk.Models.SignInActivity>(ApiSdk.Models.SignInActivity.CreateFromDiscriminatorValue); } },
                 { "signInSessionsValidFromDateTime", n => { SignInSessionsValidFromDateTime = n.GetDateTimeOffsetValue(); } },
                 { "skills", n => { Skills = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "sponsors", n => { Sponsors = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sponsors", n => { Sponsors = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "state", n => { State = n.GetStringValue(); } },
                 { "streetAddress", n => { StreetAddress = n.GetStringValue(); } },
                 { "surname", n => { Surname = n.GetStringValue(); } },
-                { "teamwork", n => { Teamwork = n.GetObjectValue<UserTeamwork>(UserTeamwork.CreateFromDiscriminatorValue); } },
+                { "teamwork", n => { Teamwork = n.GetObjectValue<ApiSdk.Models.UserTeamwork>(ApiSdk.Models.UserTeamwork.CreateFromDiscriminatorValue); } },
                 { "todo", n => { Todo = n.GetObjectValue<ApiSdk.Models.Todo>(ApiSdk.Models.Todo.CreateFromDiscriminatorValue); } },
-                { "transitiveMemberOf", n => { TransitiveMemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "transitiveMemberOf", n => { TransitiveMemberOf = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "usageLocation", n => { UsageLocation = n.GetStringValue(); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
                 { "userType", n => { UserType = n.GetStringValue(); } },
@@ -1106,128 +1106,128 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("aboutMe", AboutMe);
             writer.WriteBoolValue("accountEnabled", AccountEnabled);
-            writer.WriteCollectionOfObjectValues<UserActivity>("activities", Activities);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserActivity>("activities", Activities);
             writer.WriteStringValue("ageGroup", AgeGroup);
-            writer.WriteCollectionOfObjectValues<AgreementAcceptance>("agreementAcceptances", AgreementAcceptances);
-            writer.WriteCollectionOfObjectValues<AppRoleAssignment>("appRoleAssignments", AppRoleAssignments);
-            writer.WriteCollectionOfObjectValues<AssignedLicense>("assignedLicenses", AssignedLicenses);
-            writer.WriteCollectionOfObjectValues<AssignedPlan>("assignedPlans", AssignedPlans);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AgreementAcceptance>("agreementAcceptances", AgreementAcceptances);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppRoleAssignment>("appRoleAssignments", AppRoleAssignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AssignedLicense>("assignedLicenses", AssignedLicenses);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AssignedPlan>("assignedPlans", AssignedPlans);
             writer.WriteObjectValue<ApiSdk.Models.Authentication>("authentication", Authentication);
             writer.WriteObjectValue<ApiSdk.Models.AuthorizationInfo>("authorizationInfo", AuthorizationInfo);
             writer.WriteDateTimeOffsetValue("birthday", Birthday);
             writer.WriteCollectionOfPrimitiveValues<string>("businessPhones", BusinessPhones);
             writer.WriteObjectValue<ApiSdk.Models.Calendar>("calendar", Calendar);
-            writer.WriteCollectionOfObjectValues<CalendarGroup>("calendarGroups", CalendarGroups);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CalendarGroup>("calendarGroups", CalendarGroups);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Calendar>("calendars", Calendars);
-            writer.WriteCollectionOfObjectValues<Event>("calendarView", CalendarView);
-            writer.WriteCollectionOfObjectValues<Chat>("chats", Chats);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Event>("calendarView", CalendarView);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Chat>("chats", Chats);
             writer.WriteStringValue("city", City);
-            writer.WriteObjectValue<CloudClipboardRoot>("cloudClipboard", CloudClipboard);
+            writer.WriteObjectValue<ApiSdk.Models.CloudClipboardRoot>("cloudClipboard", CloudClipboard);
             writer.WriteStringValue("companyName", CompanyName);
             writer.WriteStringValue("consentProvidedForMinor", ConsentProvidedForMinor);
-            writer.WriteCollectionOfObjectValues<ContactFolder>("contactFolders", ContactFolders);
-            writer.WriteCollectionOfObjectValues<Contact>("contacts", Contacts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ContactFolder>("contactFolders", ContactFolders);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Contact>("contacts", Contacts);
             writer.WriteStringValue("country", Country);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("createdObjects", CreatedObjects);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("createdObjects", CreatedObjects);
             writer.WriteStringValue("creationType", CreationType);
-            writer.WriteObjectValue<CustomSecurityAttributeValue>("customSecurityAttributes", CustomSecurityAttributes);
+            writer.WriteObjectValue<ApiSdk.Models.CustomSecurityAttributeValue>("customSecurityAttributes", CustomSecurityAttributes);
             writer.WriteStringValue("department", Department);
             writer.WriteIntValue("deviceEnrollmentLimit", DeviceEnrollmentLimit);
-            writer.WriteCollectionOfObjectValues<DeviceManagementTroubleshootingEvent>("deviceManagementTroubleshootingEvents", DeviceManagementTroubleshootingEvents);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("directReports", DirectReports);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DeviceManagementTroubleshootingEvent>("deviceManagementTroubleshootingEvents", DeviceManagementTroubleshootingEvents);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("directReports", DirectReports);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteObjectValue<ApiSdk.Models.Drive>("drive", Drive);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Drive>("drives", Drives);
-            writer.WriteObjectValue<EmployeeExperienceUser>("employeeExperience", EmployeeExperience);
+            writer.WriteObjectValue<ApiSdk.Models.EmployeeExperienceUser>("employeeExperience", EmployeeExperience);
             writer.WriteDateTimeOffsetValue("employeeHireDate", EmployeeHireDate);
             writer.WriteStringValue("employeeId", EmployeeId);
             writer.WriteDateTimeOffsetValue("employeeLeaveDateTime", EmployeeLeaveDateTime);
             writer.WriteObjectValue<ApiSdk.Models.EmployeeOrgData>("employeeOrgData", EmployeeOrgData);
             writer.WriteStringValue("employeeType", EmployeeType);
-            writer.WriteCollectionOfObjectValues<Event>("events", Events);
-            writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Event>("events", Events);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Extension>("extensions", Extensions);
             writer.WriteStringValue("externalUserState", ExternalUserState);
             writer.WriteDateTimeOffsetValue("externalUserStateChangeDateTime", ExternalUserStateChangeDateTime);
             writer.WriteStringValue("faxNumber", FaxNumber);
-            writer.WriteCollectionOfObjectValues<Site>("followedSites", FollowedSites);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Site>("followedSites", FollowedSites);
             writer.WriteStringValue("givenName", GivenName);
             writer.WriteDateTimeOffsetValue("hireDate", HireDate);
-            writer.WriteCollectionOfObjectValues<ObjectIdentity>("identities", Identities);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ObjectIdentity>("identities", Identities);
             writer.WriteCollectionOfPrimitiveValues<string>("imAddresses", ImAddresses);
             writer.WriteObjectValue<ApiSdk.Models.InferenceClassification>("inferenceClassification", InferenceClassification);
-            writer.WriteObjectValue<OfficeGraphInsights>("insights", Insights);
+            writer.WriteObjectValue<ApiSdk.Models.OfficeGraphInsights>("insights", Insights);
             writer.WriteCollectionOfPrimitiveValues<string>("interests", Interests);
             writer.WriteBoolValue("isResourceAccount", IsResourceAccount);
             writer.WriteStringValue("jobTitle", JobTitle);
-            writer.WriteCollectionOfObjectValues<Team>("joinedTeams", JoinedTeams);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Team>("joinedTeams", JoinedTeams);
             writer.WriteDateTimeOffsetValue("lastPasswordChangeDateTime", LastPasswordChangeDateTime);
             writer.WriteStringValue("legalAgeGroupClassification", LegalAgeGroupClassification);
-            writer.WriteCollectionOfObjectValues<LicenseAssignmentState>("licenseAssignmentStates", LicenseAssignmentStates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.LicenseAssignmentState>("licenseAssignmentStates", LicenseAssignmentStates);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.LicenseDetails>("licenseDetails", LicenseDetails);
             writer.WriteStringValue("mail", Mail);
             writer.WriteObjectValue<ApiSdk.Models.MailboxSettings>("mailboxSettings", MailboxSettings);
-            writer.WriteCollectionOfObjectValues<MailFolder>("mailFolders", MailFolders);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MailFolder>("mailFolders", MailFolders);
             writer.WriteStringValue("mailNickname", MailNickname);
-            writer.WriteCollectionOfObjectValues<ManagedAppRegistration>("managedAppRegistrations", ManagedAppRegistrations);
-            writer.WriteCollectionOfObjectValues<ManagedDevice>("managedDevices", ManagedDevices);
-            writer.WriteObjectValue<DirectoryObject>("manager", Manager);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("memberOf", MemberOf);
-            writer.WriteCollectionOfObjectValues<Message>("messages", Messages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ManagedAppRegistration>("managedAppRegistrations", ManagedAppRegistrations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ManagedDevice>("managedDevices", ManagedDevices);
+            writer.WriteObjectValue<ApiSdk.Models.DirectoryObject>("manager", Manager);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("memberOf", MemberOf);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Message>("messages", Messages);
             writer.WriteStringValue("mobilePhone", MobilePhone);
             writer.WriteStringValue("mySite", MySite);
-            writer.WriteCollectionOfObjectValues<OAuth2PermissionGrant>("oauth2PermissionGrants", Oauth2PermissionGrants);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OAuth2PermissionGrant>("oauth2PermissionGrants", Oauth2PermissionGrants);
             writer.WriteStringValue("officeLocation", OfficeLocation);
             writer.WriteObjectValue<ApiSdk.Models.Onenote>("onenote", Onenote);
-            writer.WriteCollectionOfObjectValues<OnlineMeeting>("onlineMeetings", OnlineMeetings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OnlineMeeting>("onlineMeetings", OnlineMeetings);
             writer.WriteStringValue("onPremisesDistinguishedName", OnPremisesDistinguishedName);
             writer.WriteStringValue("onPremisesDomainName", OnPremisesDomainName);
             writer.WriteObjectValue<ApiSdk.Models.OnPremisesExtensionAttributes>("onPremisesExtensionAttributes", OnPremisesExtensionAttributes);
             writer.WriteStringValue("onPremisesImmutableId", OnPremisesImmutableId);
             writer.WriteDateTimeOffsetValue("onPremisesLastSyncDateTime", OnPremisesLastSyncDateTime);
-            writer.WriteCollectionOfObjectValues<OnPremisesProvisioningError>("onPremisesProvisioningErrors", OnPremisesProvisioningErrors);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OnPremisesProvisioningError>("onPremisesProvisioningErrors", OnPremisesProvisioningErrors);
             writer.WriteStringValue("onPremisesSamAccountName", OnPremisesSamAccountName);
             writer.WriteStringValue("onPremisesSecurityIdentifier", OnPremisesSecurityIdentifier);
             writer.WriteBoolValue("onPremisesSyncEnabled", OnPremisesSyncEnabled);
             writer.WriteStringValue("onPremisesUserPrincipalName", OnPremisesUserPrincipalName);
             writer.WriteCollectionOfPrimitiveValues<string>("otherMails", OtherMails);
-            writer.WriteObjectValue<OutlookUser>("outlook", Outlook);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("ownedDevices", OwnedDevices);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("ownedObjects", OwnedObjects);
+            writer.WriteObjectValue<ApiSdk.Models.OutlookUser>("outlook", Outlook);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("ownedDevices", OwnedDevices);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("ownedObjects", OwnedObjects);
             writer.WriteStringValue("passwordPolicies", PasswordPolicies);
             writer.WriteObjectValue<ApiSdk.Models.PasswordProfile>("passwordProfile", PasswordProfile);
             writer.WriteCollectionOfPrimitiveValues<string>("pastProjects", PastProjects);
-            writer.WriteCollectionOfObjectValues<Person>("people", People);
-            writer.WriteCollectionOfObjectValues<ResourceSpecificPermissionGrant>("permissionGrants", PermissionGrants);
-            writer.WriteObjectValue<ProfilePhoto>("photo", Photo);
-            writer.WriteCollectionOfObjectValues<ProfilePhoto>("photos", Photos);
-            writer.WriteObjectValue<PlannerUser>("planner", Planner);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Person>("people", People);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ResourceSpecificPermissionGrant>("permissionGrants", PermissionGrants);
+            writer.WriteObjectValue<ApiSdk.Models.ProfilePhoto>("photo", Photo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ProfilePhoto>("photos", Photos);
+            writer.WriteObjectValue<ApiSdk.Models.PlannerUser>("planner", Planner);
             writer.WriteStringValue("postalCode", PostalCode);
             writer.WriteStringValue("preferredDataLocation", PreferredDataLocation);
             writer.WriteStringValue("preferredLanguage", PreferredLanguage);
             writer.WriteStringValue("preferredName", PreferredName);
             writer.WriteObjectValue<ApiSdk.Models.Presence>("presence", Presence);
-            writer.WriteObjectValue<UserPrint>("print", Print);
-            writer.WriteCollectionOfObjectValues<ProvisionedPlan>("provisionedPlans", ProvisionedPlans);
+            writer.WriteObjectValue<ApiSdk.Models.UserPrint>("print", Print);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ProvisionedPlan>("provisionedPlans", ProvisionedPlans);
             writer.WriteCollectionOfPrimitiveValues<string>("proxyAddresses", ProxyAddresses);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("registeredDevices", RegisteredDevices);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("registeredDevices", RegisteredDevices);
             writer.WriteCollectionOfPrimitiveValues<string>("responsibilities", Responsibilities);
             writer.WriteCollectionOfPrimitiveValues<string>("schools", Schools);
-            writer.WriteCollectionOfObjectValues<ScopedRoleMembership>("scopedRoleMemberOf", ScopedRoleMemberOf);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ScopedRoleMembership>("scopedRoleMemberOf", ScopedRoleMemberOf);
             writer.WriteStringValue("securityIdentifier", SecurityIdentifier);
-            writer.WriteCollectionOfObjectValues<ServiceProvisioningError>("serviceProvisioningErrors", ServiceProvisioningErrors);
-            writer.WriteObjectValue<UserSettings>("settings", Settings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ServiceProvisioningError>("serviceProvisioningErrors", ServiceProvisioningErrors);
+            writer.WriteObjectValue<ApiSdk.Models.UserSettings>("settings", Settings);
             writer.WriteBoolValue("showInAddressList", ShowInAddressList);
             writer.WriteObjectValue<ApiSdk.Models.SignInActivity>("signInActivity", SignInActivity);
             writer.WriteDateTimeOffsetValue("signInSessionsValidFromDateTime", SignInSessionsValidFromDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("skills", Skills);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("sponsors", Sponsors);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("sponsors", Sponsors);
             writer.WriteStringValue("state", State);
             writer.WriteStringValue("streetAddress", StreetAddress);
             writer.WriteStringValue("surname", Surname);
-            writer.WriteObjectValue<UserTeamwork>("teamwork", Teamwork);
+            writer.WriteObjectValue<ApiSdk.Models.UserTeamwork>("teamwork", Teamwork);
             writer.WriteObjectValue<ApiSdk.Models.Todo>("todo", Todo);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("transitiveMemberOf", TransitiveMemberOf);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("transitiveMemberOf", TransitiveMemberOf);
             writer.WriteStringValue("usageLocation", UsageLocation);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);
             writer.WriteStringValue("userType", UserType);

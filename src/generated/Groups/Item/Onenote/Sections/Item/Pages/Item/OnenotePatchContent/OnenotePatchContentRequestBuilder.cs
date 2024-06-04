@@ -53,7 +53,7 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.OnenotePatchConten
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<OnenotePatchContentPostRequestBody>(OnenotePatchContentPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.OnenotePatchContent.OnenotePatchContentPostRequestBody>(ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.OnenotePatchContent.OnenotePatchContentPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -74,14 +74,14 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.OnenotePatchConten
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="OnenotePatchContentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.OnenotePatchContent.OnenotePatchContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OnenotePatchContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/onenote/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}/onenotePatchContent", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="OnenotePatchContentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.OnenotePatchContent.OnenotePatchContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OnenotePatchContentRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/onenote/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}/onenotePatchContent", rawUrl)
@@ -95,11 +95,11 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.OnenotePatchConten
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(OnenotePatchContentPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.OnenotePatchContent.OnenotePatchContentPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(OnenotePatchContentPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Groups.Item.Onenote.Sections.Item.Pages.Item.OnenotePatchContent.OnenotePatchContentPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

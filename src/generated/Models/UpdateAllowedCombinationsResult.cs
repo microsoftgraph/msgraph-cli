@@ -31,10 +31,10 @@ namespace ApiSdk.Models
         /// <summary>The list of current authentication method combinations allowed by the authentication strength.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationMethodModes?>? CurrentCombinations { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodModes?>? CurrentCombinations { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationMethodModes?> CurrentCombinations { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodModes?> CurrentCombinations { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,13 +47,13 @@ namespace ApiSdk.Models
         /// <summary>The list of former authentication method combinations allowed by the authentication strength before they were updated through the updateAllowedCombinations action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationMethodModes?>? PreviousCombinations { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodModes?>? PreviousCombinations { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationMethodModes?> PreviousCombinations { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodModes?> PreviousCombinations { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UpdateAllowedCombinationsResult"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UpdateAllowedCombinationsResult"/> and sets the default values.
         /// </summary>
         public UpdateAllowedCombinationsResult()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UpdateAllowedCombinationsResult"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UpdateAllowedCombinationsResult"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UpdateAllowedCombinationsResult CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UpdateAllowedCombinationsResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UpdateAllowedCombinationsResult();
+            return new ApiSdk.Models.UpdateAllowedCombinationsResult();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,9 +79,9 @@ namespace ApiSdk.Models
             {
                 { "additionalInformation", n => { AdditionalInformation = n.GetStringValue(); } },
                 { "conditionalAccessReferences", n => { ConditionalAccessReferences = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "currentCombinations", n => { CurrentCombinations = n.GetCollectionOfEnumValues<AuthenticationMethodModes>()?.ToList(); } },
+                { "currentCombinations", n => { CurrentCombinations = n.GetCollectionOfEnumValues<ApiSdk.Models.AuthenticationMethodModes>()?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "previousCombinations", n => { PreviousCombinations = n.GetCollectionOfEnumValues<AuthenticationMethodModes>()?.ToList(); } },
+                { "previousCombinations", n => { PreviousCombinations = n.GetCollectionOfEnumValues<ApiSdk.Models.AuthenticationMethodModes>()?.ToList(); } },
             };
         }
         /// <summary>
@@ -93,9 +93,9 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("additionalInformation", AdditionalInformation);
             writer.WriteCollectionOfPrimitiveValues<string>("conditionalAccessReferences", ConditionalAccessReferences);
-            writer.WriteCollectionOfEnumValues<AuthenticationMethodModes>("currentCombinations", CurrentCombinations);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.AuthenticationMethodModes>("currentCombinations", CurrentCombinations);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfEnumValues<AuthenticationMethodModes>("previousCombinations", PreviousCombinations);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.AuthenticationMethodModes>("previousCombinations", PreviousCombinations);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -125,14 +125,14 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AdministrativeUnitRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Schools.Item.AdministrativeUnit.AdministrativeUnitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AdministrativeUnitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/administrativeUnit{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AdministrativeUnitRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Schools.Item.AdministrativeUnit.AdministrativeUnitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AdministrativeUnitRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/administrativeUnit{?%24expand,%24select}", rawUrl)
@@ -145,11 +145,11 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AdministrativeUnitRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.Schools.Item.AdministrativeUnit.AdministrativeUnitRequestBuilder.AdministrativeUnitRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AdministrativeUnitRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.Schools.Item.AdministrativeUnit.AdministrativeUnitRequestBuilder.AdministrativeUnitRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

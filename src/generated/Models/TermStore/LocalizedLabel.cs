@@ -39,7 +39,7 @@ namespace ApiSdk.Models.TermStore
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="LocalizedLabel"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TermStore.LocalizedLabel"/> and sets the default values.
         /// </summary>
         public LocalizedLabel()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models.TermStore
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LocalizedLabel"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermStore.LocalizedLabel"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static LocalizedLabel CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TermStore.LocalizedLabel CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LocalizedLabel();
+            return new ApiSdk.Models.TermStore.LocalizedLabel();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -17,10 +17,10 @@ namespace ApiSdk.Models
         /// <summary>List of simulation events in an attack simulation and training campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SimulationEvent>? Events { get; set; }
+        public List<ApiSdk.Models.SimulationEvent>? Events { get; set; }
 #nullable restore
 #else
-        public List<SimulationEvent> Events { get; set; }
+        public List<ApiSdk.Models.SimulationEvent> Events { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SimulationEventsContent"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SimulationEventsContent"/> and sets the default values.
         /// </summary>
         public SimulationEventsContent()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SimulationEventsContent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SimulationEventsContent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SimulationEventsContent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SimulationEventsContent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SimulationEventsContent();
+            return new ApiSdk.Models.SimulationEventsContent();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "compromisedRate", n => { CompromisedRate = n.GetDoubleValue(); } },
-                { "events", n => { Events = n.GetCollectionOfObjectValues<SimulationEvent>(SimulationEvent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "events", n => { Events = n.GetCollectionOfObjectValues<ApiSdk.Models.SimulationEvent>(ApiSdk.Models.SimulationEvent.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -68,7 +68,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("compromisedRate", CompromisedRate);
-            writer.WriteCollectionOfObjectValues<SimulationEvent>("events", Events);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SimulationEvent>("events", Events);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

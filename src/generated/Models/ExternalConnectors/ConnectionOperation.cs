@@ -19,16 +19,16 @@ namespace ApiSdk.Models.ExternalConnectors
         public ApiSdk.Models.PublicError Error { get; set; }
 #endif
         /// <summary>Indicates the status of the asynchronous operation. Possible values are: unspecified, inprogress, completed, failed, unknownFutureValue.</summary>
-        public ConnectionOperationStatus? Status { get; set; }
+        public ApiSdk.Models.ExternalConnectors.ConnectionOperationStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConnectionOperation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.ConnectionOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ConnectionOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ExternalConnectors.ConnectionOperation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConnectionOperation();
+            return new ApiSdk.Models.ExternalConnectors.ConnectionOperation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.ExternalConnectors
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "error", n => { Error = n.GetObjectValue<ApiSdk.Models.PublicError>(ApiSdk.Models.PublicError.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetEnumValue<ConnectionOperationStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.ExternalConnectors.ConnectionOperationStatus>(); } },
             };
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace ApiSdk.Models.ExternalConnectors
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.PublicError>("error", Error);
-            writer.WriteEnumValue<ConnectionOperationStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.ExternalConnectors.ConnectionOperationStatus>("status", Status);
         }
     }
 }

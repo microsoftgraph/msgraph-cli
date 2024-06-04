@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>The display configuration of attributes being collected on the attribute collection page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationAttributeCollectionInputConfiguration>? Inputs { get; set; }
+        public List<ApiSdk.Models.AuthenticationAttributeCollectionInputConfiguration>? Inputs { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationAttributeCollectionInputConfiguration> Inputs { get; set; }
+        public List<ApiSdk.Models.AuthenticationAttributeCollectionInputConfiguration> Inputs { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string Title { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationAttributeCollectionPageViewConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AuthenticationAttributeCollectionPageViewConfiguration"/> and sets the default values.
         /// </summary>
         public AuthenticationAttributeCollectionPageViewConfiguration()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationAttributeCollectionPageViewConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationAttributeCollectionPageViewConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AuthenticationAttributeCollectionPageViewConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AuthenticationAttributeCollectionPageViewConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthenticationAttributeCollectionPageViewConfiguration();
+            return new ApiSdk.Models.AuthenticationAttributeCollectionPageViewConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,7 +70,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "inputs", n => { Inputs = n.GetCollectionOfObjectValues<AuthenticationAttributeCollectionInputConfiguration>(AuthenticationAttributeCollectionInputConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "inputs", n => { Inputs = n.GetCollectionOfObjectValues<ApiSdk.Models.AuthenticationAttributeCollectionInputConfiguration>(ApiSdk.Models.AuthenticationAttributeCollectionInputConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
             };
@@ -83,7 +83,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfObjectValues<AuthenticationAttributeCollectionInputConfiguration>("inputs", Inputs);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuthenticationAttributeCollectionInputConfiguration>("inputs", Inputs);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("title", Title);
             writer.WriteAdditionalData(AdditionalData);

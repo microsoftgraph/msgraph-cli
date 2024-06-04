@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         /// <summary>Specifies if the organization’s banner logo should be included in email notifications. The banner logo will replace the Microsoft logo at the top of the email notification. If true the banner logo will be taken from the tenant’s branding settings. This value can only be set to true if the organizationalBranding bannerLogo property is set.</summary>
         public bool? UseCompanyBranding { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="EmailSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EmailSettings"/> and sets the default values.
         /// </summary>
         public EmailSettings()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EmailSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EmailSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static EmailSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.EmailSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EmailSettings();
+            return new ApiSdk.Models.EmailSettings();
         }
         /// <summary>
         /// The deserialization information for the current model

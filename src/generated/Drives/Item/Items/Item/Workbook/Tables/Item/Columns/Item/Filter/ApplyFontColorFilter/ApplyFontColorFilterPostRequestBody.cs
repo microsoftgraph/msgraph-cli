@@ -21,7 +21,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public string Color { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ApplyFontColorFilterPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyFontColorFilter.ApplyFontColorFilterPostRequestBody"/> and sets the default values.
         /// </summary>
         public ApplyFontColorFilterPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ApplyFontColorFilterPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyFontColorFilter.ApplyFontColorFilterPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ApplyFontColorFilterPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyFontColorFilter.ApplyFontColorFilterPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ApplyFontColorFilterPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyFontColorFilter.ApplyFontColorFilterPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -56,14 +56,14 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.CompleteMigration
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CompleteMigrationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.CompleteMigration.CompleteMigrationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CompleteMigrationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}/completeMigration", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CompleteMigrationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.CompleteMigration.CompleteMigrationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CompleteMigrationRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}/completeMigration", rawUrl)

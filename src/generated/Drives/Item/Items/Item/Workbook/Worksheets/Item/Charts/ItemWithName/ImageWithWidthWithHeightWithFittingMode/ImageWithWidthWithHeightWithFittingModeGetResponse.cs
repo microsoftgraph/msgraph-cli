@@ -21,7 +21,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ImageWithWidthWithHeightWithFittingModeGetResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.ImageWithWidthWithHeightWithFittingMode.ImageWithWidthWithHeightWithFittingModeGetResponse"/> and sets the default values.
         /// </summary>
         public ImageWithWidthWithHeightWithFittingModeGetResponse()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ImageWithWidthWithHeightWithFittingModeGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.ImageWithWidthWithHeightWithFittingMode.ImageWithWidthWithHeightWithFittingModeGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ImageWithWidthWithHeightWithFittingModeGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.ImageWithWidthWithHeightWithFittingMode.ImageWithWidthWithHeightWithFittingModeGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ImageWithWidthWithHeightWithFittingModeGetResponse();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.ImageWithWidthWithHeightWithFittingMode.ImageWithWidthWithHeightWithFittingModeGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

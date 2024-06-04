@@ -29,7 +29,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The type of the resource that contains the plan. For supported types, see the previous table. Possible values are: group, unknownFutureValue, roster. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value in this evolvable enum: roster. Optional.</summary>
-        public PlannerContainerType? Type { get; set; }
+        public ApiSdk.Models.PlannerContainerType? Type { get; set; }
         /// <summary>The full canonical URL of the container. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,7 +39,7 @@ namespace ApiSdk.Models
         public string Url { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PlannerPlanContainer"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PlannerPlanContainer"/> and sets the default values.
         /// </summary>
         public PlannerPlanContainer()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PlannerPlanContainer"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PlannerPlanContainer"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PlannerPlanContainer CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PlannerPlanContainer CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PlannerPlanContainer();
+            return new ApiSdk.Models.PlannerPlanContainer();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
             {
                 { "containerId", n => { ContainerId = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<PlannerContainerType>(); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.PlannerContainerType>(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
             };
         }
@@ -78,7 +78,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("containerId", ContainerId);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<PlannerContainerType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.PlannerContainerType>("type", Type);
             writer.WriteStringValue("url", Url);
             writer.WriteAdditionalData(AdditionalData);
         }

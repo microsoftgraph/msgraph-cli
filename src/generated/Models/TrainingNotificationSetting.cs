@@ -7,27 +7,27 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TrainingNotificationSetting : EndUserNotificationSetting, IParsable
+    public class TrainingNotificationSetting : ApiSdk.Models.EndUserNotificationSetting, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Training assignment details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public BaseEndUserNotification? TrainingAssignment { get; set; }
+        public ApiSdk.Models.BaseEndUserNotification? TrainingAssignment { get; set; }
 #nullable restore
 #else
-        public BaseEndUserNotification TrainingAssignment { get; set; }
+        public ApiSdk.Models.BaseEndUserNotification TrainingAssignment { get; set; }
 #endif
         /// <summary>Training reminder details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TrainingReminderNotification? TrainingReminder { get; set; }
+        public ApiSdk.Models.TrainingReminderNotification? TrainingReminder { get; set; }
 #nullable restore
 #else
-        public TrainingReminderNotification TrainingReminder { get; set; }
+        public ApiSdk.Models.TrainingReminderNotification TrainingReminder { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TrainingNotificationSetting"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TrainingNotificationSetting"/> and sets the default values.
         /// </summary>
         public TrainingNotificationSetting() : base()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TrainingNotificationSetting"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TrainingNotificationSetting"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TrainingNotificationSetting CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TrainingNotificationSetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TrainingNotificationSetting();
+            return new ApiSdk.Models.TrainingNotificationSetting();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -51,8 +51,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "trainingAssignment", n => { TrainingAssignment = n.GetObjectValue<BaseEndUserNotification>(BaseEndUserNotification.CreateFromDiscriminatorValue); } },
-                { "trainingReminder", n => { TrainingReminder = n.GetObjectValue<TrainingReminderNotification>(TrainingReminderNotification.CreateFromDiscriminatorValue); } },
+                { "trainingAssignment", n => { TrainingAssignment = n.GetObjectValue<ApiSdk.Models.BaseEndUserNotification>(ApiSdk.Models.BaseEndUserNotification.CreateFromDiscriminatorValue); } },
+                { "trainingReminder", n => { TrainingReminder = n.GetObjectValue<ApiSdk.Models.TrainingReminderNotification>(ApiSdk.Models.TrainingReminderNotification.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -63,8 +63,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<BaseEndUserNotification>("trainingAssignment", TrainingAssignment);
-            writer.WriteObjectValue<TrainingReminderNotification>("trainingReminder", TrainingReminder);
+            writer.WriteObjectValue<ApiSdk.Models.BaseEndUserNotification>("trainingAssignment", TrainingAssignment);
+            writer.WriteObjectValue<ApiSdk.Models.TrainingReminderNotification>("trainingReminder", TrainingReminder);
         }
     }
 }

@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DelegatedPermissionClassification : Entity, IParsable
+    public class DelegatedPermissionClassification : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The classification value. Possible values: low, medium (preview), high (preview). Doesn&apos;t support $filter.</summary>
-        public PermissionClassificationType? Classification { get; set; }
+        public ApiSdk.Models.PermissionClassificationType? Classification { get; set; }
         /// <summary>The unique identifier (id) for the delegated permission listed in the oauth2PermissionScopes collection of the servicePrincipal. Required on create. Doesn&apos;t support $filter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,12 +31,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DelegatedPermissionClassification"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DelegatedPermissionClassification"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DelegatedPermissionClassification CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DelegatedPermissionClassification CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DelegatedPermissionClassification();
+            return new ApiSdk.Models.DelegatedPermissionClassification();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "classification", n => { Classification = n.GetEnumValue<PermissionClassificationType>(); } },
+                { "classification", n => { Classification = n.GetEnumValue<ApiSdk.Models.PermissionClassificationType>(); } },
                 { "permissionId", n => { PermissionId = n.GetStringValue(); } },
                 { "permissionName", n => { PermissionName = n.GetStringValue(); } },
             };
@@ -59,7 +59,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<PermissionClassificationType>("classification", Classification);
+            writer.WriteEnumValue<ApiSdk.Models.PermissionClassificationType>("classification", Classification);
             writer.WriteStringValue("permissionId", PermissionId);
             writer.WriteStringValue("permissionName", PermissionName);
         }

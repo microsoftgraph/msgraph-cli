@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookRangeFill : Entity, IParsable
+    public class WorkbookRangeFill : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>HTML color code representing the color of the border line, of the form #RRGGBB (for example &apos;FFA500&apos;) or as a named HTML color (for example &apos;orange&apos;)</summary>
@@ -21,12 +21,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookRangeFill"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookRangeFill"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookRangeFill CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookRangeFill CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookRangeFill();
+            return new ApiSdk.Models.WorkbookRangeFill();
         }
         /// <summary>
         /// The deserialization information for the current model

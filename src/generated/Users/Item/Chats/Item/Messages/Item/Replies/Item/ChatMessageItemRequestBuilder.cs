@@ -157,7 +157,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item
         {
             var command = new Command("hosted-contents");
             command.Description = "Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.";
-            var builder = new HostedContentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.HostedContents.HostedContentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -222,7 +222,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ChatMessage>(ApiSdk.Models.ChatMessage.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -253,7 +253,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item
         {
             var command = new Command("set-reaction");
             command.Description = "Provides operations to call the setReaction method.";
-            var builder = new SetReactionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.SetReaction.SetReactionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -270,7 +270,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item
         {
             var command = new Command("soft-delete");
             command.Description = "Provides operations to call the softDelete method.";
-            var builder = new SoftDeleteRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.SoftDelete.SoftDeleteRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -287,7 +287,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item
         {
             var command = new Command("undo-soft-delete");
             command.Description = "Provides operations to call the undoSoftDelete method.";
-            var builder = new UndoSoftDeleteRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.UndoSoftDelete.UndoSoftDeleteRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -304,7 +304,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item
         {
             var command = new Command("unset-reaction");
             command.Description = "Provides operations to call the unsetReaction method.";
-            var builder = new UnsetReactionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.UnsetReaction.UnsetReactionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -314,14 +314,14 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ChatMessageItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.ChatMessageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ChatMessageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ChatMessageItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.ChatMessageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ChatMessageItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}{?%24expand,%24select}", rawUrl)
@@ -353,11 +353,11 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChatMessageItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.ChatMessageItemRequestBuilder.ChatMessageItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChatMessageItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.ChatMessageItemRequestBuilder.ChatMessageItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -373,11 +373,11 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ChatMessage body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ChatMessage body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ChatMessage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ChatMessage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

@@ -7,36 +7,36 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class M365AppsInstallationOptions : Entity, IParsable
+    public class M365AppsInstallationOptions : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The appsForMac property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AppsInstallationOptionsForMac? AppsForMac { get; set; }
+        public ApiSdk.Models.AppsInstallationOptionsForMac? AppsForMac { get; set; }
 #nullable restore
 #else
-        public AppsInstallationOptionsForMac AppsForMac { get; set; }
+        public ApiSdk.Models.AppsInstallationOptionsForMac AppsForMac { get; set; }
 #endif
         /// <summary>The appsForWindows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AppsInstallationOptionsForWindows? AppsForWindows { get; set; }
+        public ApiSdk.Models.AppsInstallationOptionsForWindows? AppsForWindows { get; set; }
 #nullable restore
 #else
-        public AppsInstallationOptionsForWindows AppsForWindows { get; set; }
+        public ApiSdk.Models.AppsInstallationOptionsForWindows AppsForWindows { get; set; }
 #endif
         /// <summary>The updateChannel property</summary>
-        public AppsUpdateChannelType? UpdateChannel { get; set; }
+        public ApiSdk.Models.AppsUpdateChannelType? UpdateChannel { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="M365AppsInstallationOptions"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.M365AppsInstallationOptions"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new M365AppsInstallationOptions CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.M365AppsInstallationOptions CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new M365AppsInstallationOptions();
+            return new ApiSdk.Models.M365AppsInstallationOptions();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,9 +46,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "appsForMac", n => { AppsForMac = n.GetObjectValue<AppsInstallationOptionsForMac>(AppsInstallationOptionsForMac.CreateFromDiscriminatorValue); } },
-                { "appsForWindows", n => { AppsForWindows = n.GetObjectValue<AppsInstallationOptionsForWindows>(AppsInstallationOptionsForWindows.CreateFromDiscriminatorValue); } },
-                { "updateChannel", n => { UpdateChannel = n.GetEnumValue<AppsUpdateChannelType>(); } },
+                { "appsForMac", n => { AppsForMac = n.GetObjectValue<ApiSdk.Models.AppsInstallationOptionsForMac>(ApiSdk.Models.AppsInstallationOptionsForMac.CreateFromDiscriminatorValue); } },
+                { "appsForWindows", n => { AppsForWindows = n.GetObjectValue<ApiSdk.Models.AppsInstallationOptionsForWindows>(ApiSdk.Models.AppsInstallationOptionsForWindows.CreateFromDiscriminatorValue); } },
+                { "updateChannel", n => { UpdateChannel = n.GetEnumValue<ApiSdk.Models.AppsUpdateChannelType>(); } },
             };
         }
         /// <summary>
@@ -59,9 +59,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<AppsInstallationOptionsForMac>("appsForMac", AppsForMac);
-            writer.WriteObjectValue<AppsInstallationOptionsForWindows>("appsForWindows", AppsForWindows);
-            writer.WriteEnumValue<AppsUpdateChannelType>("updateChannel", UpdateChannel);
+            writer.WriteObjectValue<ApiSdk.Models.AppsInstallationOptionsForMac>("appsForMac", AppsForMac);
+            writer.WriteObjectValue<ApiSdk.Models.AppsInstallationOptionsForWindows>("appsForWindows", AppsForWindows);
+            writer.WriteEnumValue<ApiSdk.Models.AppsUpdateChannelType>("updateChannel", UpdateChannel);
         }
     }
 }

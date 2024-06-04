@@ -18,13 +18,13 @@ namespace ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser
         /// <summary>The user property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamworkUserIdentity? User { get; set; }
+        public ApiSdk.Models.TeamworkUserIdentity? User { get; set; }
 #nullable restore
 #else
-        public TeamworkUserIdentity User { get; set; }
+        public ApiSdk.Models.TeamworkUserIdentity User { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MarkChatUnreadForUserPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser.MarkChatUnreadForUserPostRequestBody"/> and sets the default values.
         /// </summary>
         public MarkChatUnreadForUserPostRequestBody()
         {
@@ -33,12 +33,12 @@ namespace ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MarkChatUnreadForUserPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser.MarkChatUnreadForUserPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MarkChatUnreadForUserPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser.MarkChatUnreadForUserPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MarkChatUnreadForUserPostRequestBody();
+            return new ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser.MarkChatUnreadForUserPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,7 +49,7 @@ namespace ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "lastMessageReadDateTime", n => { LastMessageReadDateTime = n.GetDateTimeOffsetValue(); } },
-                { "user", n => { User = n.GetObjectValue<TeamworkUserIdentity>(TeamworkUserIdentity.CreateFromDiscriminatorValue); } },
+                { "user", n => { User = n.GetObjectValue<ApiSdk.Models.TeamworkUserIdentity>(ApiSdk.Models.TeamworkUserIdentity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -60,7 +60,7 @@ namespace ApiSdk.Users.Item.Chats.Item.MarkChatUnreadForUser
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("lastMessageReadDateTime", LastMessageReadDateTime);
-            writer.WriteObjectValue<TeamworkUserIdentity>("user", User);
+            writer.WriteObjectValue<ApiSdk.Models.TeamworkUserIdentity>("user", User);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

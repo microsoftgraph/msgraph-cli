@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Entity representing a job to export a report.
     /// </summary>
-    public class DeviceManagementExportJob : Entity, IParsable
+    public class DeviceManagementExportJob : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Time that the exported report expires</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
@@ -22,9 +22,9 @@ namespace ApiSdk.Models
         public string Filter { get; set; }
 #endif
         /// <summary>Possible values for the file format of a report.</summary>
-        public DeviceManagementReportFileFormat? Format { get; set; }
+        public ApiSdk.Models.DeviceManagementReportFileFormat? Format { get; set; }
         /// <summary>Configures how the requested export job is localized.</summary>
-        public DeviceManagementExportJobLocalizationType? LocalizationType { get; set; }
+        public ApiSdk.Models.DeviceManagementExportJobLocalizationType? LocalizationType { get; set; }
         /// <summary>Name of the report</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,7 +52,7 @@ namespace ApiSdk.Models
         public string SnapshotId { get; set; }
 #endif
         /// <summary>Possible statuses associated with a generated report.</summary>
-        public DeviceManagementReportStatus? Status { get; set; }
+        public ApiSdk.Models.DeviceManagementReportStatus? Status { get; set; }
         /// <summary>Temporary location of the exported report</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -64,12 +64,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceManagementExportJob"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceManagementExportJob"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceManagementExportJob CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceManagementExportJob CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceManagementExportJob();
+            return new ApiSdk.Models.DeviceManagementExportJob();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -81,13 +81,13 @@ namespace ApiSdk.Models
             {
                 { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 { "filter", n => { Filter = n.GetStringValue(); } },
-                { "format", n => { Format = n.GetEnumValue<DeviceManagementReportFileFormat>(); } },
-                { "localizationType", n => { LocalizationType = n.GetEnumValue<DeviceManagementExportJobLocalizationType>(); } },
+                { "format", n => { Format = n.GetEnumValue<ApiSdk.Models.DeviceManagementReportFileFormat>(); } },
+                { "localizationType", n => { LocalizationType = n.GetEnumValue<ApiSdk.Models.DeviceManagementExportJobLocalizationType>(); } },
                 { "reportName", n => { ReportName = n.GetStringValue(); } },
                 { "requestDateTime", n => { RequestDateTime = n.GetDateTimeOffsetValue(); } },
                 { "select", n => { Select = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "snapshotId", n => { SnapshotId = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<DeviceManagementReportStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.DeviceManagementReportStatus>(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
             };
         }
@@ -101,13 +101,13 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteStringValue("filter", Filter);
-            writer.WriteEnumValue<DeviceManagementReportFileFormat>("format", Format);
-            writer.WriteEnumValue<DeviceManagementExportJobLocalizationType>("localizationType", LocalizationType);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceManagementReportFileFormat>("format", Format);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceManagementExportJobLocalizationType>("localizationType", LocalizationType);
             writer.WriteStringValue("reportName", ReportName);
             writer.WriteDateTimeOffsetValue("requestDateTime", RequestDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("select", Select);
             writer.WriteStringValue("snapshotId", SnapshotId);
-            writer.WriteEnumValue<DeviceManagementReportStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceManagementReportStatus>("status", Status);
             writer.WriteStringValue("url", Url);
         }
     }

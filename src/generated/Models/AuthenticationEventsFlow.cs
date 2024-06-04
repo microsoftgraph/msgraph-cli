@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AuthenticationEventsFlow : Entity, IParsable
+    public class AuthenticationEventsFlow : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The conditions representing the context of the authentication request that&apos;s used to decide whether the events policy is invoked.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AuthenticationConditions? Conditions { get; set; }
+        public ApiSdk.Models.AuthenticationConditions? Conditions { get; set; }
 #nullable restore
 #else
-        public AuthenticationConditions Conditions { get; set; }
+        public ApiSdk.Models.AuthenticationConditions Conditions { get; set; }
 #endif
         /// <summary>The description of the events policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,16 +37,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationEventsFlow"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationEventsFlow"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AuthenticationEventsFlow CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AuthenticationEventsFlow CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.externalUsersSelfServiceSignUpEventsFlow" => new ExternalUsersSelfServiceSignUpEventsFlow(),
-                _ => new AuthenticationEventsFlow(),
+                "#microsoft.graph.externalUsersSelfServiceSignUpEventsFlow" => new ApiSdk.Models.ExternalUsersSelfServiceSignUpEventsFlow(),
+                _ => new ApiSdk.Models.AuthenticationEventsFlow(),
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "conditions", n => { Conditions = n.GetObjectValue<AuthenticationConditions>(AuthenticationConditions.CreateFromDiscriminatorValue); } },
+                { "conditions", n => { Conditions = n.GetObjectValue<ApiSdk.Models.AuthenticationConditions>(ApiSdk.Models.AuthenticationConditions.CreateFromDiscriminatorValue); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
             };
@@ -70,7 +70,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<AuthenticationConditions>("conditions", Conditions);
+            writer.WriteObjectValue<ApiSdk.Models.AuthenticationConditions>("conditions", Conditions);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
         }

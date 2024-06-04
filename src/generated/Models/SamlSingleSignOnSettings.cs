@@ -29,7 +29,7 @@ namespace ApiSdk.Models
         public string RelayState { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SamlSingleSignOnSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SamlSingleSignOnSettings"/> and sets the default values.
         /// </summary>
         public SamlSingleSignOnSettings()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SamlSingleSignOnSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SamlSingleSignOnSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SamlSingleSignOnSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SamlSingleSignOnSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SamlSingleSignOnSettings();
+            return new ApiSdk.Models.SamlSingleSignOnSettings();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -38,7 +38,7 @@ namespace ApiSdk.ServicePrincipals.Item.AddKey
         public string Proof { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AddKeyPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.AddKey.AddKeyPostRequestBody"/> and sets the default values.
         /// </summary>
         public AddKeyPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.ServicePrincipals.Item.AddKey
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddKeyPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.ServicePrincipals.Item.AddKey.AddKeyPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AddKeyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.ServicePrincipals.Item.AddKey.AddKeyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddKeyPostRequestBody();
+            return new ApiSdk.ServicePrincipals.Item.AddKey.AddKeyPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

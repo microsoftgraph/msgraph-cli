@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ThumbnailColumn"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ThumbnailColumn"/> and sets the default values.
         /// </summary>
         public ThumbnailColumn()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ThumbnailColumn"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ThumbnailColumn"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ThumbnailColumn CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ThumbnailColumn CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ThumbnailColumn();
+            return new ApiSdk.Models.ThumbnailColumn();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Represents an operation applied against an app registration.
     /// </summary>
-    public class ManagedAppOperation : Entity, IParsable
+    public class ManagedAppOperation : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The operation name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ManagedAppOperation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ManagedAppOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ManagedAppOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ManagedAppOperation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedAppOperation();
+            return new ApiSdk.Models.ManagedAppOperation();
         }
         /// <summary>
         /// The deserialization information for the current model

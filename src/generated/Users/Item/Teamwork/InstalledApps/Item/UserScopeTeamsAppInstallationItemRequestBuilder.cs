@@ -32,7 +32,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item
         {
             var command = new Command("chat");
             command.Description = "Provides operations to manage the chat property of the microsoft.graph.userScopeTeamsAppInstallation entity.";
-            var builder = new ChatRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat.ChatRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -178,7 +178,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<UserScopeTeamsAppInstallation>(UserScopeTeamsAppInstallation.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.UserScopeTeamsAppInstallation>(ApiSdk.Models.UserScopeTeamsAppInstallation.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -207,7 +207,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item
         {
             var command = new Command("teams-app-definition");
             command.Description = "Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.";
-            var builder = new TeamsAppDefinitionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Teamwork.InstalledApps.Item.TeamsAppDefinition.TeamsAppDefinitionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -224,7 +224,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item
         {
             var command = new Command("teams-app");
             command.Description = "Provides operations to manage the teamsApp property of the microsoft.graph.teamsAppInstallation entity.";
-            var builder = new TeamsAppRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Teamwork.InstalledApps.Item.TeamsApp.TeamsAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -234,14 +234,14 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserScopeTeamsAppInstallationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Teamwork.InstalledApps.Item.UserScopeTeamsAppInstallationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserScopeTeamsAppInstallationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps/{userScopeTeamsAppInstallation%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserScopeTeamsAppInstallationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Teamwork.InstalledApps.Item.UserScopeTeamsAppInstallationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserScopeTeamsAppInstallationItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps/{userScopeTeamsAppInstallation%2Did}{?%24expand,%24select}", rawUrl)
@@ -273,11 +273,11 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserScopeTeamsAppInstallationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Teamwork.InstalledApps.Item.UserScopeTeamsAppInstallationItemRequestBuilder.UserScopeTeamsAppInstallationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserScopeTeamsAppInstallationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Teamwork.InstalledApps.Item.UserScopeTeamsAppInstallationItemRequestBuilder.UserScopeTeamsAppInstallationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -293,11 +293,11 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UserScopeTeamsAppInstallation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UserScopeTeamsAppInstallation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UserScopeTeamsAppInstallation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UserScopeTeamsAppInstallation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

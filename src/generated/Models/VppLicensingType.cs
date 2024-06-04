@@ -26,7 +26,7 @@ namespace ApiSdk.Models
         /// <summary>Whether the program supports the user licensing type.</summary>
         public bool? SupportsUserLicensing { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="VppLicensingType"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.VppLicensingType"/> and sets the default values.
         /// </summary>
         public VppLicensingType()
         {
@@ -35,12 +35,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="VppLicensingType"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.VppLicensingType"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static VppLicensingType CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.VppLicensingType CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new VppLicensingType();
+            return new ApiSdk.Models.VppLicensingType();
         }
         /// <summary>
         /// The deserialization information for the current model

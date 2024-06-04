@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DomainDnsMxRecord : DomainDnsRecord, IParsable
+    public class DomainDnsMxRecord : ApiSdk.Models.DomainDnsRecord, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Value used when configuring the answer/destination/value of the MX record at the DNS host.</summary>
@@ -23,12 +23,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DomainDnsMxRecord"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DomainDnsMxRecord"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DomainDnsMxRecord CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DomainDnsMxRecord CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DomainDnsMxRecord();
+            return new ApiSdk.Models.DomainDnsMxRecord();
         }
         /// <summary>
         /// The deserialization information for the current model

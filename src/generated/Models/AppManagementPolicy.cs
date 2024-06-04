@@ -7,29 +7,29 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AppManagementPolicy : PolicyBase, IParsable
+    public class AppManagementPolicy : ApiSdk.Models.PolicyBase, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Collection of applications and service principals to which the policy is applied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? AppliesTo { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? AppliesTo { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> AppliesTo { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> AppliesTo { get; set; }
 #endif
         /// <summary>Denotes whether the policy is enabled.</summary>
         public bool? IsEnabled { get; set; }
         /// <summary>Restrictions that apply to an application or service principal object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AppManagementConfiguration? Restrictions { get; set; }
+        public ApiSdk.Models.AppManagementConfiguration? Restrictions { get; set; }
 #nullable restore
 #else
-        public AppManagementConfiguration Restrictions { get; set; }
+        public ApiSdk.Models.AppManagementConfiguration Restrictions { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AppManagementPolicy"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AppManagementPolicy"/> and sets the default values.
         /// </summary>
         public AppManagementPolicy() : base()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AppManagementPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AppManagementPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AppManagementPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AppManagementPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AppManagementPolicy();
+            return new ApiSdk.Models.AppManagementPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -53,9 +53,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "appliesTo", n => { AppliesTo = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appliesTo", n => { AppliesTo = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
-                { "restrictions", n => { Restrictions = n.GetObjectValue<AppManagementConfiguration>(AppManagementConfiguration.CreateFromDiscriminatorValue); } },
+                { "restrictions", n => { Restrictions = n.GetObjectValue<ApiSdk.Models.AppManagementConfiguration>(ApiSdk.Models.AppManagementConfiguration.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -66,9 +66,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("appliesTo", AppliesTo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("appliesTo", AppliesTo);
             writer.WriteBoolValue("isEnabled", IsEnabled);
-            writer.WriteObjectValue<AppManagementConfiguration>("restrictions", Restrictions);
+            writer.WriteObjectValue<ApiSdk.Models.AppManagementConfiguration>("restrictions", Restrictions);
         }
     }
 }

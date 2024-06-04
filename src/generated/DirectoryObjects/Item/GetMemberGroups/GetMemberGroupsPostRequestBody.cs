@@ -15,7 +15,7 @@ namespace ApiSdk.DirectoryObjects.Item.GetMemberGroups
         /// <summary>The securityEnabledOnly property</summary>
         public bool? SecurityEnabledOnly { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="GetMemberGroupsPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryObjects.Item.GetMemberGroups.GetMemberGroupsPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetMemberGroupsPostRequestBody()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.DirectoryObjects.Item.GetMemberGroups
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetMemberGroupsPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.DirectoryObjects.Item.GetMemberGroups.GetMemberGroupsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetMemberGroupsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DirectoryObjects.Item.GetMemberGroups.GetMemberGroupsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetMemberGroupsPostRequestBody();
+            return new ApiSdk.DirectoryObjects.Item.GetMemberGroups.GetMemberGroupsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

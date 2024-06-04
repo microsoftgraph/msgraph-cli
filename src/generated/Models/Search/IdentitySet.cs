@@ -15,18 +15,18 @@ namespace ApiSdk.Models.Search
         /// <summary>The application property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Identity? Application { get; set; }
+        public ApiSdk.Models.Search.Identity? Application { get; set; }
 #nullable restore
 #else
-        public Identity Application { get; set; }
+        public ApiSdk.Models.Search.Identity Application { get; set; }
 #endif
         /// <summary>The device property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Identity? Device { get; set; }
+        public ApiSdk.Models.Search.Identity? Device { get; set; }
 #nullable restore
 #else
-        public Identity Device { get; set; }
+        public ApiSdk.Models.Search.Identity Device { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,13 +39,13 @@ namespace ApiSdk.Models.Search
         /// <summary>The user property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Identity? User { get; set; }
+        public ApiSdk.Models.Search.Identity? User { get; set; }
 #nullable restore
 #else
-        public Identity User { get; set; }
+        public ApiSdk.Models.Search.Identity User { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IdentitySet"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Search.IdentitySet"/> and sets the default values.
         /// </summary>
         public IdentitySet()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models.Search
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IdentitySet"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Search.IdentitySet"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IdentitySet CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Search.IdentitySet CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IdentitySet();
+            return new ApiSdk.Models.Search.IdentitySet();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,10 +69,10 @@ namespace ApiSdk.Models.Search
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "application", n => { Application = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
-                { "device", n => { Device = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                { "application", n => { Application = n.GetObjectValue<ApiSdk.Models.Search.Identity>(ApiSdk.Models.Search.Identity.CreateFromDiscriminatorValue); } },
+                { "device", n => { Device = n.GetObjectValue<ApiSdk.Models.Search.Identity>(ApiSdk.Models.Search.Identity.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "user", n => { User = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                { "user", n => { User = n.GetObjectValue<ApiSdk.Models.Search.Identity>(ApiSdk.Models.Search.Identity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -82,10 +82,10 @@ namespace ApiSdk.Models.Search
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Identity>("application", Application);
-            writer.WriteObjectValue<Identity>("device", Device);
+            writer.WriteObjectValue<ApiSdk.Models.Search.Identity>("application", Application);
+            writer.WriteObjectValue<ApiSdk.Models.Search.Identity>("device", Device);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<Identity>("user", User);
+            writer.WriteObjectValue<ApiSdk.Models.Search.Identity>("user", User);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

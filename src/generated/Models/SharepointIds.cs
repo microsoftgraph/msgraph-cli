@@ -77,7 +77,7 @@ namespace ApiSdk.Models
         public string WebId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SharepointIds"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SharepointIds"/> and sets the default values.
         /// </summary>
         public SharepointIds()
         {
@@ -86,12 +86,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SharepointIds"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SharepointIds"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SharepointIds CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SharepointIds CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SharepointIds();
+            return new ApiSdk.Models.SharepointIds();
         }
         /// <summary>
         /// The deserialization information for the current model

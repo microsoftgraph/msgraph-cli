@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TimeOffReason : ChangeTrackedEntity, IParsable
+    public class TimeOffReason : ApiSdk.Models.ChangeTrackedEntity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The name of the timeOffReason. Required.</summary>
@@ -19,11 +19,11 @@ namespace ApiSdk.Models
         public string DisplayName { get; set; }
 #endif
         /// <summary>Supported icon types are: none, car, calendar, running, plane, firstAid, doctor, notWorking, clock, juryDuty, globe, cup, phone, weather, umbrella, piggyBank, dog, cake, trafficCone, pin, sunny. Required.</summary>
-        public TimeOffReasonIconType? IconType { get; set; }
+        public ApiSdk.Models.TimeOffReasonIconType? IconType { get; set; }
         /// <summary>Indicates whether the timeOffReason can be used when creating new entities or updating existing ones. Required.</summary>
         public bool? IsActive { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TimeOffReason"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TimeOffReason"/> and sets the default values.
         /// </summary>
         public TimeOffReason() : base()
         {
@@ -32,12 +32,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TimeOffReason"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TimeOffReason"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TimeOffReason CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TimeOffReason CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TimeOffReason();
+            return new ApiSdk.Models.TimeOffReason();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "iconType", n => { IconType = n.GetEnumValue<TimeOffReasonIconType>(); } },
+                { "iconType", n => { IconType = n.GetEnumValue<ApiSdk.Models.TimeOffReasonIconType>(); } },
                 { "isActive", n => { IsActive = n.GetBoolValue(); } },
             };
         }
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<TimeOffReasonIconType>("iconType", IconType);
+            writer.WriteEnumValue<ApiSdk.Models.TimeOffReasonIconType>("iconType", IconType);
             writer.WriteBoolValue("isActive", IsActive);
         }
     }

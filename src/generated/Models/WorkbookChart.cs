@@ -7,32 +7,32 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookChart : Entity, IParsable
+    public class WorkbookChart : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents chart axes. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartAxes? Axes { get; set; }
+        public ApiSdk.Models.WorkbookChartAxes? Axes { get; set; }
 #nullable restore
 #else
-        public WorkbookChartAxes Axes { get; set; }
+        public ApiSdk.Models.WorkbookChartAxes Axes { get; set; }
 #endif
         /// <summary>Represents the data labels on the chart. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartDataLabels? DataLabels { get; set; }
+        public ApiSdk.Models.WorkbookChartDataLabels? DataLabels { get; set; }
 #nullable restore
 #else
-        public WorkbookChartDataLabels DataLabels { get; set; }
+        public ApiSdk.Models.WorkbookChartDataLabels DataLabels { get; set; }
 #endif
         /// <summary>Encapsulates the format properties for the chart area. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartAreaFormat? Format { get; set; }
+        public ApiSdk.Models.WorkbookChartAreaFormat? Format { get; set; }
 #nullable restore
 #else
-        public WorkbookChartAreaFormat Format { get; set; }
+        public ApiSdk.Models.WorkbookChartAreaFormat Format { get; set; }
 #endif
         /// <summary>Represents the height, in points, of the chart object.</summary>
         public double? Height { get; set; }
@@ -41,10 +41,10 @@ namespace ApiSdk.Models
         /// <summary>Represents the legend for the chart. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartLegend? Legend { get; set; }
+        public ApiSdk.Models.WorkbookChartLegend? Legend { get; set; }
 #nullable restore
 #else
-        public WorkbookChartLegend Legend { get; set; }
+        public ApiSdk.Models.WorkbookChartLegend Legend { get; set; }
 #endif
         /// <summary>Represents the name of a chart object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,18 +57,18 @@ namespace ApiSdk.Models
         /// <summary>Represents either a single series or collection of series in the chart. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookChartSeries>? Series { get; set; }
+        public List<ApiSdk.Models.WorkbookChartSeries>? Series { get; set; }
 #nullable restore
 #else
-        public List<WorkbookChartSeries> Series { get; set; }
+        public List<ApiSdk.Models.WorkbookChartSeries> Series { get; set; }
 #endif
         /// <summary>Represents the title of the specified chart, including the text, visibility, position and formatting of the title. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookChartTitle? Title { get; set; }
+        public ApiSdk.Models.WorkbookChartTitle? Title { get; set; }
 #nullable restore
 #else
-        public WorkbookChartTitle Title { get; set; }
+        public ApiSdk.Models.WorkbookChartTitle Title { get; set; }
 #endif
         /// <summary>Represents the distance, in points, from the top edge of the object to the top of row 1 (on a worksheet) or the top of the chart area (on a chart).</summary>
         public double? Top { get; set; }
@@ -77,20 +77,20 @@ namespace ApiSdk.Models
         /// <summary>The worksheet containing the current chart. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookWorksheet? Worksheet { get; set; }
+        public ApiSdk.Models.WorkbookWorksheet? Worksheet { get; set; }
 #nullable restore
 #else
-        public WorkbookWorksheet Worksheet { get; set; }
+        public ApiSdk.Models.WorkbookWorksheet Worksheet { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookChart"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookChart"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookChart CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookChart CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookChart();
+            return new ApiSdk.Models.WorkbookChart();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -100,18 +100,18 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "axes", n => { Axes = n.GetObjectValue<WorkbookChartAxes>(WorkbookChartAxes.CreateFromDiscriminatorValue); } },
-                { "dataLabels", n => { DataLabels = n.GetObjectValue<WorkbookChartDataLabels>(WorkbookChartDataLabels.CreateFromDiscriminatorValue); } },
-                { "format", n => { Format = n.GetObjectValue<WorkbookChartAreaFormat>(WorkbookChartAreaFormat.CreateFromDiscriminatorValue); } },
+                { "axes", n => { Axes = n.GetObjectValue<ApiSdk.Models.WorkbookChartAxes>(ApiSdk.Models.WorkbookChartAxes.CreateFromDiscriminatorValue); } },
+                { "dataLabels", n => { DataLabels = n.GetObjectValue<ApiSdk.Models.WorkbookChartDataLabels>(ApiSdk.Models.WorkbookChartDataLabels.CreateFromDiscriminatorValue); } },
+                { "format", n => { Format = n.GetObjectValue<ApiSdk.Models.WorkbookChartAreaFormat>(ApiSdk.Models.WorkbookChartAreaFormat.CreateFromDiscriminatorValue); } },
                 { "height", n => { Height = n.GetDoubleValue(); } },
                 { "left", n => { Left = n.GetDoubleValue(); } },
-                { "legend", n => { Legend = n.GetObjectValue<WorkbookChartLegend>(WorkbookChartLegend.CreateFromDiscriminatorValue); } },
+                { "legend", n => { Legend = n.GetObjectValue<ApiSdk.Models.WorkbookChartLegend>(ApiSdk.Models.WorkbookChartLegend.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "series", n => { Series = n.GetCollectionOfObjectValues<WorkbookChartSeries>(WorkbookChartSeries.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "title", n => { Title = n.GetObjectValue<WorkbookChartTitle>(WorkbookChartTitle.CreateFromDiscriminatorValue); } },
+                { "series", n => { Series = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookChartSeries>(ApiSdk.Models.WorkbookChartSeries.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "title", n => { Title = n.GetObjectValue<ApiSdk.Models.WorkbookChartTitle>(ApiSdk.Models.WorkbookChartTitle.CreateFromDiscriminatorValue); } },
                 { "top", n => { Top = n.GetDoubleValue(); } },
                 { "width", n => { Width = n.GetDoubleValue(); } },
-                { "worksheet", n => { Worksheet = n.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue); } },
+                { "worksheet", n => { Worksheet = n.GetObjectValue<ApiSdk.Models.WorkbookWorksheet>(ApiSdk.Models.WorkbookWorksheet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -122,18 +122,18 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookChartAxes>("axes", Axes);
-            writer.WriteObjectValue<WorkbookChartDataLabels>("dataLabels", DataLabels);
-            writer.WriteObjectValue<WorkbookChartAreaFormat>("format", Format);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartAxes>("axes", Axes);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartDataLabels>("dataLabels", DataLabels);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartAreaFormat>("format", Format);
             writer.WriteDoubleValue("height", Height);
             writer.WriteDoubleValue("left", Left);
-            writer.WriteObjectValue<WorkbookChartLegend>("legend", Legend);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartLegend>("legend", Legend);
             writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfObjectValues<WorkbookChartSeries>("series", Series);
-            writer.WriteObjectValue<WorkbookChartTitle>("title", Title);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookChartSeries>("series", Series);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookChartTitle>("title", Title);
             writer.WriteDoubleValue("top", Top);
             writer.WriteDoubleValue("width", Width);
-            writer.WriteObjectValue<WorkbookWorksheet>("worksheet", Worksheet);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookWorksheet>("worksheet", Worksheet);
         }
     }
 }

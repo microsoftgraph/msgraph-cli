@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CloudPcAuditEvent : Entity, IParsable
+    public class CloudPcAuditEvent : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The friendly name of the audit activity.</summary>
@@ -21,9 +21,9 @@ namespace ApiSdk.Models
         /// <summary>The date time in UTC when the activity was performed. Read-only.</summary>
         public DateTimeOffset? ActivityDateTime { get; set; }
         /// <summary>The activityOperationType property</summary>
-        public CloudPcAuditActivityOperationType? ActivityOperationType { get; set; }
+        public ApiSdk.Models.CloudPcAuditActivityOperationType? ActivityOperationType { get; set; }
         /// <summary>The activityResult property</summary>
-        public CloudPcAuditActivityResult? ActivityResult { get; set; }
+        public ApiSdk.Models.CloudPcAuditActivityResult? ActivityResult { get; set; }
         /// <summary>The type of activity that was performed. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -35,13 +35,13 @@ namespace ApiSdk.Models
         /// <summary>The actor property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CloudPcAuditActor? Actor { get; set; }
+        public ApiSdk.Models.CloudPcAuditActor? Actor { get; set; }
 #nullable restore
 #else
-        public CloudPcAuditActor Actor { get; set; }
+        public ApiSdk.Models.CloudPcAuditActor Actor { get; set; }
 #endif
         /// <summary>The category property</summary>
-        public CloudPcAuditCategory? Category { get; set; }
+        public ApiSdk.Models.CloudPcAuditCategory? Category { get; set; }
         /// <summary>The component name for the audit event. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -69,20 +69,20 @@ namespace ApiSdk.Models
         /// <summary>The list of cloudPcAuditResource objects. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CloudPcAuditResource>? Resources { get; set; }
+        public List<ApiSdk.Models.CloudPcAuditResource>? Resources { get; set; }
 #nullable restore
 #else
-        public List<CloudPcAuditResource> Resources { get; set; }
+        public List<ApiSdk.Models.CloudPcAuditResource> Resources { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudPcAuditEvent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudPcAuditEvent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CloudPcAuditEvent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CloudPcAuditEvent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudPcAuditEvent();
+            return new ApiSdk.Models.CloudPcAuditEvent();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -94,15 +94,15 @@ namespace ApiSdk.Models
             {
                 { "activity", n => { Activity = n.GetStringValue(); } },
                 { "activityDateTime", n => { ActivityDateTime = n.GetDateTimeOffsetValue(); } },
-                { "activityOperationType", n => { ActivityOperationType = n.GetEnumValue<CloudPcAuditActivityOperationType>(); } },
-                { "activityResult", n => { ActivityResult = n.GetEnumValue<CloudPcAuditActivityResult>(); } },
+                { "activityOperationType", n => { ActivityOperationType = n.GetEnumValue<ApiSdk.Models.CloudPcAuditActivityOperationType>(); } },
+                { "activityResult", n => { ActivityResult = n.GetEnumValue<ApiSdk.Models.CloudPcAuditActivityResult>(); } },
                 { "activityType", n => { ActivityType = n.GetStringValue(); } },
-                { "actor", n => { Actor = n.GetObjectValue<CloudPcAuditActor>(CloudPcAuditActor.CreateFromDiscriminatorValue); } },
-                { "category", n => { Category = n.GetEnumValue<CloudPcAuditCategory>(); } },
+                { "actor", n => { Actor = n.GetObjectValue<ApiSdk.Models.CloudPcAuditActor>(ApiSdk.Models.CloudPcAuditActor.CreateFromDiscriminatorValue); } },
+                { "category", n => { Category = n.GetEnumValue<ApiSdk.Models.CloudPcAuditCategory>(); } },
                 { "componentName", n => { ComponentName = n.GetStringValue(); } },
                 { "correlationId", n => { CorrelationId = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "resources", n => { Resources = n.GetCollectionOfObjectValues<CloudPcAuditResource>(CloudPcAuditResource.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "resources", n => { Resources = n.GetCollectionOfObjectValues<ApiSdk.Models.CloudPcAuditResource>(ApiSdk.Models.CloudPcAuditResource.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -115,15 +115,15 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("activity", Activity);
             writer.WriteDateTimeOffsetValue("activityDateTime", ActivityDateTime);
-            writer.WriteEnumValue<CloudPcAuditActivityOperationType>("activityOperationType", ActivityOperationType);
-            writer.WriteEnumValue<CloudPcAuditActivityResult>("activityResult", ActivityResult);
+            writer.WriteEnumValue<ApiSdk.Models.CloudPcAuditActivityOperationType>("activityOperationType", ActivityOperationType);
+            writer.WriteEnumValue<ApiSdk.Models.CloudPcAuditActivityResult>("activityResult", ActivityResult);
             writer.WriteStringValue("activityType", ActivityType);
-            writer.WriteObjectValue<CloudPcAuditActor>("actor", Actor);
-            writer.WriteEnumValue<CloudPcAuditCategory>("category", Category);
+            writer.WriteObjectValue<ApiSdk.Models.CloudPcAuditActor>("actor", Actor);
+            writer.WriteEnumValue<ApiSdk.Models.CloudPcAuditCategory>("category", Category);
             writer.WriteStringValue("componentName", ComponentName);
             writer.WriteStringValue("correlationId", CorrelationId);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<CloudPcAuditResource>("resources", Resources);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CloudPcAuditResource>("resources", Resources);
         }
     }
 }

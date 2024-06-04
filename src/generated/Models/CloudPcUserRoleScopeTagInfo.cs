@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string RoleScopeTagId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CloudPcUserRoleScopeTagInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CloudPcUserRoleScopeTagInfo"/> and sets the default values.
         /// </summary>
         public CloudPcUserRoleScopeTagInfo()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudPcUserRoleScopeTagInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudPcUserRoleScopeTagInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CloudPcUserRoleScopeTagInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CloudPcUserRoleScopeTagInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudPcUserRoleScopeTagInfo();
+            return new ApiSdk.Models.CloudPcUserRoleScopeTagInfo();
         }
         /// <summary>
         /// The deserialization information for the current model

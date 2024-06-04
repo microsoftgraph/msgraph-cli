@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UserSettings : Entity, IParsable
+    public class UserSettings : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Reflects the organization level setting controlling delegate access to the trending API. When set to true, the organization doesn&apos;t have access to Office Delve. The relevancy of the content displayed in Microsoft 365, for example in Suggested sites in SharePoint Home and the Discover view in OneDrive for Business is affected for the whole organization. This setting is read-only and can only be changed by administrators in the SharePoint admin center.</summary>
@@ -25,20 +25,20 @@ namespace ApiSdk.Models
         /// <summary>The windows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WindowsSetting>? Windows { get; set; }
+        public List<ApiSdk.Models.WindowsSetting>? Windows { get; set; }
 #nullable restore
 #else
-        public List<WindowsSetting> Windows { get; set; }
+        public List<ApiSdk.Models.WindowsSetting> Windows { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserSettings();
+            return new ApiSdk.Models.UserSettings();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -51,7 +51,7 @@ namespace ApiSdk.Models
                 { "contributionToContentDiscoveryAsOrganizationDisabled", n => { ContributionToContentDiscoveryAsOrganizationDisabled = n.GetBoolValue(); } },
                 { "contributionToContentDiscoveryDisabled", n => { ContributionToContentDiscoveryDisabled = n.GetBoolValue(); } },
                 { "shiftPreferences", n => { ShiftPreferences = n.GetObjectValue<ApiSdk.Models.ShiftPreferences>(ApiSdk.Models.ShiftPreferences.CreateFromDiscriminatorValue); } },
-                { "windows", n => { Windows = n.GetCollectionOfObjectValues<WindowsSetting>(WindowsSetting.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "windows", n => { Windows = n.GetCollectionOfObjectValues<ApiSdk.Models.WindowsSetting>(ApiSdk.Models.WindowsSetting.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("contributionToContentDiscoveryAsOrganizationDisabled", ContributionToContentDiscoveryAsOrganizationDisabled);
             writer.WriteBoolValue("contributionToContentDiscoveryDisabled", ContributionToContentDiscoveryDisabled);
             writer.WriteObjectValue<ApiSdk.Models.ShiftPreferences>("shiftPreferences", ShiftPreferences);
-            writer.WriteCollectionOfObjectValues<WindowsSetting>("windows", Windows);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WindowsSetting>("windows", Windows);
         }
     }
 }

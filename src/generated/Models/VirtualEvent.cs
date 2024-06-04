@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class VirtualEvent : Entity, IParsable
+    public class VirtualEvent : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Identity information for the creator of the virtual event. Inherited from virtualEvent.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CommunicationsIdentitySet? CreatedBy { get; set; }
+        public ApiSdk.Models.CommunicationsIdentitySet? CreatedBy { get; set; }
 #nullable restore
 #else
-        public CommunicationsIdentitySet CreatedBy { get; set; }
+        public ApiSdk.Models.CommunicationsIdentitySet CreatedBy { get; set; }
 #endif
         /// <summary>Description of the virtual event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemBody? Description { get; set; }
+        public ApiSdk.Models.ItemBody? Description { get; set; }
 #nullable restore
 #else
-        public ItemBody Description { get; set; }
+        public ApiSdk.Models.ItemBody Description { get; set; }
 #endif
         /// <summary>Display name of the virtual event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,42 +37,42 @@ namespace ApiSdk.Models
         /// <summary>End time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? EndDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? EndDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone EndDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone EndDateTime { get; set; }
 #endif
         /// <summary>Sessions for the virtual event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<VirtualEventSession>? Sessions { get; set; }
+        public List<ApiSdk.Models.VirtualEventSession>? Sessions { get; set; }
 #nullable restore
 #else
-        public List<VirtualEventSession> Sessions { get; set; }
+        public List<ApiSdk.Models.VirtualEventSession> Sessions { get; set; }
 #endif
         /// <summary>Start time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows. For details on how to get all available time zones using PowerShell, see Get-TimeZone.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? StartDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? StartDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone StartDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone StartDateTime { get; set; }
 #endif
         /// <summary>Status of the virtual event. The possible values are: draft, published, canceled, unknownFutureValue.</summary>
-        public VirtualEventStatus? Status { get; set; }
+        public ApiSdk.Models.VirtualEventStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="VirtualEvent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.VirtualEvent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new VirtualEvent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.VirtualEvent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.virtualEventWebinar" => new VirtualEventWebinar(),
-                _ => new VirtualEvent(),
+                "#microsoft.graph.virtualEventWebinar" => new ApiSdk.Models.VirtualEventWebinar(),
+                _ => new ApiSdk.Models.VirtualEvent(),
             };
         }
         /// <summary>
@@ -83,13 +83,13 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<CommunicationsIdentitySet>(CommunicationsIdentitySet.CreateFromDiscriminatorValue); } },
-                { "description", n => { Description = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.CommunicationsIdentitySet>(ApiSdk.Models.CommunicationsIdentitySet.CreateFromDiscriminatorValue); } },
+                { "description", n => { Description = n.GetObjectValue<ApiSdk.Models.ItemBody>(ApiSdk.Models.ItemBody.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "endDateTime", n => { EndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "sessions", n => { Sessions = n.GetCollectionOfObjectValues<VirtualEventSession>(VirtualEventSession.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "startDateTime", n => { StartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetEnumValue<VirtualEventStatus>(); } },
+                { "endDateTime", n => { EndDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "sessions", n => { Sessions = n.GetCollectionOfObjectValues<ApiSdk.Models.VirtualEventSession>(ApiSdk.Models.VirtualEventSession.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "startDateTime", n => { StartDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.VirtualEventStatus>(); } },
             };
         }
         /// <summary>
@@ -100,13 +100,13 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<CommunicationsIdentitySet>("createdBy", CreatedBy);
-            writer.WriteObjectValue<ItemBody>("description", Description);
+            writer.WriteObjectValue<ApiSdk.Models.CommunicationsIdentitySet>("createdBy", CreatedBy);
+            writer.WriteObjectValue<ApiSdk.Models.ItemBody>("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<DateTimeTimeZone>("endDateTime", EndDateTime);
-            writer.WriteCollectionOfObjectValues<VirtualEventSession>("sessions", Sessions);
-            writer.WriteObjectValue<DateTimeTimeZone>("startDateTime", StartDateTime);
-            writer.WriteEnumValue<VirtualEventStatus>("status", Status);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("endDateTime", EndDateTime);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.VirtualEventSession>("sessions", Sessions);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("startDateTime", StartDateTime);
+            writer.WriteEnumValue<ApiSdk.Models.VirtualEventStatus>("status", Status);
         }
     }
 }

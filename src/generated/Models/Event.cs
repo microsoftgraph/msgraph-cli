@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Event : OutlookItem, IParsable
+    public class Event : ApiSdk.Models.OutlookItem, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>true if the meeting organizer allows invitees to propose a new time when responding; otherwise, false. Optional. Default is true.</summary>
@@ -15,26 +15,26 @@ namespace ApiSdk.Models
         /// <summary>The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Attachment>? Attachments { get; set; }
+        public List<ApiSdk.Models.Attachment>? Attachments { get; set; }
 #nullable restore
 #else
-        public List<Attachment> Attachments { get; set; }
+        public List<ApiSdk.Models.Attachment> Attachments { get; set; }
 #endif
         /// <summary>The collection of attendees for the event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Attendee>? Attendees { get; set; }
+        public List<ApiSdk.Models.Attendee>? Attendees { get; set; }
 #nullable restore
 #else
-        public List<Attendee> Attendees { get; set; }
+        public List<ApiSdk.Models.Attendee> Attendees { get; set; }
 #endif
         /// <summary>The body of the message associated with the event. It can be in HTML or text format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemBody? Body { get; set; }
+        public ApiSdk.Models.ItemBody? Body { get; set; }
 #nullable restore
 #else
-        public ItemBody Body { get; set; }
+        public ApiSdk.Models.ItemBody Body { get; set; }
 #endif
         /// <summary>The preview of the message associated with the event. It is in text format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,18 +55,18 @@ namespace ApiSdk.Models
         /// <summary>The date, time, and time zone that the event ends. By default, the end time is in UTC.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? End { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? End { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone End { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone End { get; set; }
 #endif
         /// <summary>The collection of open extensions defined for the event. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Extension>? Extensions { get; set; }
+        public List<ApiSdk.Models.Extension>? Extensions { get; set; }
 #nullable restore
 #else
-        public List<Extension> Extensions { get; set; }
+        public List<ApiSdk.Models.Extension> Extensions { get; set; }
 #endif
         /// <summary>Set to true if the event has attachments.</summary>
         public bool? HasAttachments { get; set; }
@@ -85,10 +85,10 @@ namespace ApiSdk.Models
         /// <summary>The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Event>? Instances { get; set; }
+        public List<ApiSdk.Models.Event>? Instances { get; set; }
 #nullable restore
 #else
-        public List<Event> Instances { get; set; }
+        public List<ApiSdk.Models.Event> Instances { get; set; }
 #endif
         /// <summary>Set to true if the event lasts all day. If true, regardless of whether it&apos;s a single-day or multi-day event, start and end time must be set to midnight and be in the same time zone.</summary>
         public bool? IsAllDay { get; set; }
@@ -121,21 +121,21 @@ namespace ApiSdk.Models
         /// <summary>The collection of multi-value extended properties defined for the event. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MultiValueLegacyExtendedProperty>? MultiValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.MultiValueLegacyExtendedProperty>? MultiValueExtendedProperties { get; set; }
 #nullable restore
 #else
-        public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
 #endif
         /// <summary>Details for an attendee to join the meeting online. Default is null. Read-only. After you set the isOnlineMeeting and onlineMeetingProvider properties to enable a meeting online, Microsoft Graph initializes onlineMeeting. When set, the meeting remains available online, and you cannot change the isOnlineMeeting, onlineMeetingProvider, and onlneMeeting properties again.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public OnlineMeetingInfo? OnlineMeeting { get; set; }
+        public ApiSdk.Models.OnlineMeetingInfo? OnlineMeeting { get; set; }
 #nullable restore
 #else
-        public OnlineMeetingInfo OnlineMeeting { get; set; }
+        public ApiSdk.Models.OnlineMeetingInfo OnlineMeeting { get; set; }
 #endif
         /// <summary>Represents the online meeting service provider. By default, onlineMeetingProvider is unknown. The possible values are unknown, teamsForBusiness, skypeForBusiness, and skypeForConsumer. Optional.  After you set onlineMeetingProvider, Microsoft Graph initializes onlineMeeting. Subsequently you cannot change onlineMeetingProvider again, and the meeting remains available online.</summary>
-        public OnlineMeetingProviderType? OnlineMeetingProvider { get; set; }
+        public ApiSdk.Models.OnlineMeetingProviderType? OnlineMeetingProvider { get; set; }
         /// <summary>A URL for an online meeting. The property is set only when an organizer specifies in Outlook that an event is an online meeting such as Skype. Read-only.To access the URL to join an online meeting, use joinUrl which is exposed via the onlineMeeting property of the event. The onlineMeetingUrl property will be deprecated in the future.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -147,10 +147,10 @@ namespace ApiSdk.Models
         /// <summary>The organizer of the event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Recipient? Organizer { get; set; }
+        public ApiSdk.Models.Recipient? Organizer { get; set; }
 #nullable restore
 #else
-        public Recipient Organizer { get; set; }
+        public ApiSdk.Models.Recipient Organizer { get; set; }
 #endif
         /// <summary>The end time zone that was set when the event was created. A value of tzone://Microsoft/Custom indicates that a legacy custom time zone was set in desktop Outlook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,10 +173,10 @@ namespace ApiSdk.Models
         /// <summary>The recurrence pattern for the event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PatternedRecurrence? Recurrence { get; set; }
+        public ApiSdk.Models.PatternedRecurrence? Recurrence { get; set; }
 #nullable restore
 #else
-        public PatternedRecurrence Recurrence { get; set; }
+        public ApiSdk.Models.PatternedRecurrence Recurrence { get; set; }
 #endif
         /// <summary>The number of minutes before the event start time that the reminder alert occurs.</summary>
         public int? ReminderMinutesBeforeStart { get; set; }
@@ -201,22 +201,22 @@ namespace ApiSdk.Models
         public string SeriesMasterId { get; set; }
 #endif
         /// <summary>The status to show. Possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
-        public FreeBusyStatus? ShowAs { get; set; }
+        public ApiSdk.Models.FreeBusyStatus? ShowAs { get; set; }
         /// <summary>The collection of single-value extended properties defined for the event. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SingleValueLegacyExtendedProperty>? SingleValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.SingleValueLegacyExtendedProperty>? SingleValueExtendedProperties { get; set; }
 #nullable restore
 #else
-        public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
 #endif
         /// <summary>The start date, time, and time zone of the event. By default, the start time is in UTC.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? Start { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? Start { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone Start { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone Start { get; set; }
 #endif
         /// <summary>The text of the event&apos;s subject line.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +235,7 @@ namespace ApiSdk.Models
         public string TransactionId { get; set; }
 #endif
         /// <summary>The event type. Possible values are: singleInstance, occurrence, exception, seriesMaster. Read-only</summary>
-        public EventType? Type { get; set; }
+        public ApiSdk.Models.EventType? Type { get; set; }
         /// <summary>The URL to open the event in Outlook on the web.Outlook on the web opens the event in the browser if you are signed in to your mailbox. Otherwise, Outlook on the web prompts you to sign in.This URL cannot be accessed from within an iFrame.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -245,7 +245,7 @@ namespace ApiSdk.Models
         public string WebLink { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Event"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Event"/> and sets the default values.
         /// </summary>
         public Event() : base()
         {
@@ -254,12 +254,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Event"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Event"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Event CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Event CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Event();
+            return new ApiSdk.Models.Event();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -270,18 +270,18 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "allowNewTimeProposals", n => { AllowNewTimeProposals = n.GetBoolValue(); } },
-                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<Attachment>(Attachment.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "attendees", n => { Attendees = n.GetCollectionOfObjectValues<Attendee>(Attendee.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "body", n => { Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<ApiSdk.Models.Attachment>(ApiSdk.Models.Attachment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "attendees", n => { Attendees = n.GetCollectionOfObjectValues<ApiSdk.Models.Attendee>(ApiSdk.Models.Attendee.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "body", n => { Body = n.GetObjectValue<ApiSdk.Models.ItemBody>(ApiSdk.Models.ItemBody.CreateFromDiscriminatorValue); } },
                 { "bodyPreview", n => { BodyPreview = n.GetStringValue(); } },
                 { "calendar", n => { Calendar = n.GetObjectValue<ApiSdk.Models.Calendar>(ApiSdk.Models.Calendar.CreateFromDiscriminatorValue); } },
-                { "end", n => { End = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "end", n => { End = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<ApiSdk.Models.Extension>(ApiSdk.Models.Extension.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "hasAttachments", n => { HasAttachments = n.GetBoolValue(); } },
                 { "hideAttendees", n => { HideAttendees = n.GetBoolValue(); } },
                 { "iCalUId", n => { ICalUId = n.GetStringValue(); } },
-                { "importance", n => { Importance = n.GetEnumValue<Importance>(); } },
-                { "instances", n => { Instances = n.GetCollectionOfObjectValues<Event>(Event.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "importance", n => { Importance = n.GetEnumValue<ApiSdk.Models.Importance>(); } },
+                { "instances", n => { Instances = n.GetCollectionOfObjectValues<ApiSdk.Models.Event>(ApiSdk.Models.Event.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isAllDay", n => { IsAllDay = n.GetBoolValue(); } },
                 { "isCancelled", n => { IsCancelled = n.GetBoolValue(); } },
                 { "isDraft", n => { IsDraft = n.GetBoolValue(); } },
@@ -290,26 +290,26 @@ namespace ApiSdk.Models
                 { "isReminderOn", n => { IsReminderOn = n.GetBoolValue(); } },
                 { "location", n => { Location = n.GetObjectValue<ApiSdk.Models.Location>(ApiSdk.Models.Location.CreateFromDiscriminatorValue); } },
                 { "locations", n => { Locations = n.GetCollectionOfObjectValues<ApiSdk.Models.Location>(ApiSdk.Models.Location.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "multiValueExtendedProperties", n => { MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>(MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "onlineMeeting", n => { OnlineMeeting = n.GetObjectValue<OnlineMeetingInfo>(OnlineMeetingInfo.CreateFromDiscriminatorValue); } },
-                { "onlineMeetingProvider", n => { OnlineMeetingProvider = n.GetEnumValue<OnlineMeetingProviderType>(); } },
+                { "multiValueExtendedProperties", n => { MultiValueExtendedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.MultiValueLegacyExtendedProperty>(ApiSdk.Models.MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "onlineMeeting", n => { OnlineMeeting = n.GetObjectValue<ApiSdk.Models.OnlineMeetingInfo>(ApiSdk.Models.OnlineMeetingInfo.CreateFromDiscriminatorValue); } },
+                { "onlineMeetingProvider", n => { OnlineMeetingProvider = n.GetEnumValue<ApiSdk.Models.OnlineMeetingProviderType>(); } },
                 { "onlineMeetingUrl", n => { OnlineMeetingUrl = n.GetStringValue(); } },
-                { "organizer", n => { Organizer = n.GetObjectValue<Recipient>(Recipient.CreateFromDiscriminatorValue); } },
+                { "organizer", n => { Organizer = n.GetObjectValue<ApiSdk.Models.Recipient>(ApiSdk.Models.Recipient.CreateFromDiscriminatorValue); } },
                 { "originalEndTimeZone", n => { OriginalEndTimeZone = n.GetStringValue(); } },
                 { "originalStart", n => { OriginalStart = n.GetDateTimeOffsetValue(); } },
                 { "originalStartTimeZone", n => { OriginalStartTimeZone = n.GetStringValue(); } },
-                { "recurrence", n => { Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
+                { "recurrence", n => { Recurrence = n.GetObjectValue<ApiSdk.Models.PatternedRecurrence>(ApiSdk.Models.PatternedRecurrence.CreateFromDiscriminatorValue); } },
                 { "reminderMinutesBeforeStart", n => { ReminderMinutesBeforeStart = n.GetIntValue(); } },
                 { "responseRequested", n => { ResponseRequested = n.GetBoolValue(); } },
                 { "responseStatus", n => { ResponseStatus = n.GetObjectValue<ApiSdk.Models.ResponseStatus>(ApiSdk.Models.ResponseStatus.CreateFromDiscriminatorValue); } },
-                { "sensitivity", n => { Sensitivity = n.GetEnumValue<Sensitivity>(); } },
+                { "sensitivity", n => { Sensitivity = n.GetEnumValue<ApiSdk.Models.Sensitivity>(); } },
                 { "seriesMasterId", n => { SeriesMasterId = n.GetStringValue(); } },
-                { "showAs", n => { ShowAs = n.GetEnumValue<FreeBusyStatus>(); } },
-                { "singleValueExtendedProperties", n => { SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>(SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "start", n => { Start = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "showAs", n => { ShowAs = n.GetEnumValue<ApiSdk.Models.FreeBusyStatus>(); } },
+                { "singleValueExtendedProperties", n => { SingleValueExtendedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.SingleValueLegacyExtendedProperty>(ApiSdk.Models.SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "start", n => { Start = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 { "subject", n => { Subject = n.GetStringValue(); } },
                 { "transactionId", n => { TransactionId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<EventType>(); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.EventType>(); } },
                 { "webLink", n => { WebLink = n.GetStringValue(); } },
             };
         }
@@ -322,18 +322,18 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("allowNewTimeProposals", AllowNewTimeProposals);
-            writer.WriteCollectionOfObjectValues<Attachment>("attachments", Attachments);
-            writer.WriteCollectionOfObjectValues<Attendee>("attendees", Attendees);
-            writer.WriteObjectValue<ItemBody>("body", Body);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Attachment>("attachments", Attachments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Attendee>("attendees", Attendees);
+            writer.WriteObjectValue<ApiSdk.Models.ItemBody>("body", Body);
             writer.WriteStringValue("bodyPreview", BodyPreview);
             writer.WriteObjectValue<ApiSdk.Models.Calendar>("calendar", Calendar);
-            writer.WriteObjectValue<DateTimeTimeZone>("end", End);
-            writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("end", End);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Extension>("extensions", Extensions);
             writer.WriteBoolValue("hasAttachments", HasAttachments);
             writer.WriteBoolValue("hideAttendees", HideAttendees);
             writer.WriteStringValue("iCalUId", ICalUId);
-            writer.WriteEnumValue<Importance>("importance", Importance);
-            writer.WriteCollectionOfObjectValues<Event>("instances", Instances);
+            writer.WriteEnumValue<ApiSdk.Models.Importance>("importance", Importance);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Event>("instances", Instances);
             writer.WriteBoolValue("isAllDay", IsAllDay);
             writer.WriteBoolValue("isCancelled", IsCancelled);
             writer.WriteBoolValue("isDraft", IsDraft);
@@ -342,26 +342,26 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("isReminderOn", IsReminderOn);
             writer.WriteObjectValue<ApiSdk.Models.Location>("location", Location);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Location>("locations", Locations);
-            writer.WriteCollectionOfObjectValues<MultiValueLegacyExtendedProperty>("multiValueExtendedProperties", MultiValueExtendedProperties);
-            writer.WriteObjectValue<OnlineMeetingInfo>("onlineMeeting", OnlineMeeting);
-            writer.WriteEnumValue<OnlineMeetingProviderType>("onlineMeetingProvider", OnlineMeetingProvider);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MultiValueLegacyExtendedProperty>("multiValueExtendedProperties", MultiValueExtendedProperties);
+            writer.WriteObjectValue<ApiSdk.Models.OnlineMeetingInfo>("onlineMeeting", OnlineMeeting);
+            writer.WriteEnumValue<ApiSdk.Models.OnlineMeetingProviderType>("onlineMeetingProvider", OnlineMeetingProvider);
             writer.WriteStringValue("onlineMeetingUrl", OnlineMeetingUrl);
-            writer.WriteObjectValue<Recipient>("organizer", Organizer);
+            writer.WriteObjectValue<ApiSdk.Models.Recipient>("organizer", Organizer);
             writer.WriteStringValue("originalEndTimeZone", OriginalEndTimeZone);
             writer.WriteDateTimeOffsetValue("originalStart", OriginalStart);
             writer.WriteStringValue("originalStartTimeZone", OriginalStartTimeZone);
-            writer.WriteObjectValue<PatternedRecurrence>("recurrence", Recurrence);
+            writer.WriteObjectValue<ApiSdk.Models.PatternedRecurrence>("recurrence", Recurrence);
             writer.WriteIntValue("reminderMinutesBeforeStart", ReminderMinutesBeforeStart);
             writer.WriteBoolValue("responseRequested", ResponseRequested);
             writer.WriteObjectValue<ApiSdk.Models.ResponseStatus>("responseStatus", ResponseStatus);
-            writer.WriteEnumValue<Sensitivity>("sensitivity", Sensitivity);
+            writer.WriteEnumValue<ApiSdk.Models.Sensitivity>("sensitivity", Sensitivity);
             writer.WriteStringValue("seriesMasterId", SeriesMasterId);
-            writer.WriteEnumValue<FreeBusyStatus>("showAs", ShowAs);
-            writer.WriteCollectionOfObjectValues<SingleValueLegacyExtendedProperty>("singleValueExtendedProperties", SingleValueExtendedProperties);
-            writer.WriteObjectValue<DateTimeTimeZone>("start", Start);
+            writer.WriteEnumValue<ApiSdk.Models.FreeBusyStatus>("showAs", ShowAs);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SingleValueLegacyExtendedProperty>("singleValueExtendedProperties", SingleValueExtendedProperties);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("start", Start);
             writer.WriteStringValue("subject", Subject);
             writer.WriteStringValue("transactionId", TransactionId);
-            writer.WriteEnumValue<EventType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.EventType>("type", Type);
             writer.WriteStringValue("webLink", WebLink);
         }
     }

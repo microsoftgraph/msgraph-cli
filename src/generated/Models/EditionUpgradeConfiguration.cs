@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Windows 10 Edition Upgrade configuration.
     /// </summary>
-    public class EditionUpgradeConfiguration : DeviceConfiguration, IParsable
+    public class EditionUpgradeConfiguration : ApiSdk.Models.DeviceConfiguration, IParsable
     {
         /// <summary>Edition Upgrade License File Content.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -20,7 +20,7 @@ namespace ApiSdk.Models
         public string License { get; set; }
 #endif
         /// <summary>Edition Upgrade License type</summary>
-        public EditionUpgradeLicenseType? LicenseType { get; set; }
+        public ApiSdk.Models.EditionUpgradeLicenseType? LicenseType { get; set; }
         /// <summary>Edition Upgrade Product Key.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -30,9 +30,9 @@ namespace ApiSdk.Models
         public string ProductKey { get; set; }
 #endif
         /// <summary>Windows 10 Edition type.</summary>
-        public Windows10EditionType? TargetEdition { get; set; }
+        public ApiSdk.Models.Windows10EditionType? TargetEdition { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="EditionUpgradeConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EditionUpgradeConfiguration"/> and sets the default values.
         /// </summary>
         public EditionUpgradeConfiguration() : base()
         {
@@ -41,12 +41,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EditionUpgradeConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EditionUpgradeConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EditionUpgradeConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EditionUpgradeConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EditionUpgradeConfiguration();
+            return new ApiSdk.Models.EditionUpgradeConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,9 +57,9 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "license", n => { License = n.GetStringValue(); } },
-                { "licenseType", n => { LicenseType = n.GetEnumValue<EditionUpgradeLicenseType>(); } },
+                { "licenseType", n => { LicenseType = n.GetEnumValue<ApiSdk.Models.EditionUpgradeLicenseType>(); } },
                 { "productKey", n => { ProductKey = n.GetStringValue(); } },
-                { "targetEdition", n => { TargetEdition = n.GetEnumValue<Windows10EditionType>(); } },
+                { "targetEdition", n => { TargetEdition = n.GetEnumValue<ApiSdk.Models.Windows10EditionType>(); } },
             };
         }
         /// <summary>
@@ -71,9 +71,9 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("license", License);
-            writer.WriteEnumValue<EditionUpgradeLicenseType>("licenseType", LicenseType);
+            writer.WriteEnumValue<ApiSdk.Models.EditionUpgradeLicenseType>("licenseType", LicenseType);
             writer.WriteStringValue("productKey", ProductKey);
-            writer.WriteEnumValue<Windows10EditionType>("targetEdition", TargetEdition);
+            writer.WriteEnumValue<ApiSdk.Models.Windows10EditionType>("targetEdition", TargetEdition);
         }
     }
 }

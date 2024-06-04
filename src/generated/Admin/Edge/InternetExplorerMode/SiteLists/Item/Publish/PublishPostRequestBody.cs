@@ -24,21 +24,21 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish
         /// <summary>The sharedCookies property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<BrowserSharedCookie>? SharedCookies { get; set; }
+        public List<ApiSdk.Models.BrowserSharedCookie>? SharedCookies { get; set; }
 #nullable restore
 #else
-        public List<BrowserSharedCookie> SharedCookies { get; set; }
+        public List<ApiSdk.Models.BrowserSharedCookie> SharedCookies { get; set; }
 #endif
         /// <summary>The sites property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<BrowserSite>? Sites { get; set; }
+        public List<ApiSdk.Models.BrowserSite>? Sites { get; set; }
 #nullable restore
 #else
-        public List<BrowserSite> Sites { get; set; }
+        public List<ApiSdk.Models.BrowserSite> Sites { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PublishPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish.PublishPostRequestBody"/> and sets the default values.
         /// </summary>
         public PublishPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PublishPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish.PublishPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PublishPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish.PublishPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PublishPostRequestBody();
+            return new ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish.PublishPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,8 +63,8 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "revision", n => { Revision = n.GetStringValue(); } },
-                { "sharedCookies", n => { SharedCookies = n.GetCollectionOfObjectValues<BrowserSharedCookie>(BrowserSharedCookie.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "sites", n => { Sites = n.GetCollectionOfObjectValues<BrowserSite>(BrowserSite.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sharedCookies", n => { SharedCookies = n.GetCollectionOfObjectValues<ApiSdk.Models.BrowserSharedCookie>(ApiSdk.Models.BrowserSharedCookie.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sites", n => { Sites = n.GetCollectionOfObjectValues<ApiSdk.Models.BrowserSite>(ApiSdk.Models.BrowserSite.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -75,8 +75,8 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("revision", Revision);
-            writer.WriteCollectionOfObjectValues<BrowserSharedCookie>("sharedCookies", SharedCookies);
-            writer.WriteCollectionOfObjectValues<BrowserSite>("sites", Sites);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.BrowserSharedCookie>("sharedCookies", SharedCookies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.BrowserSite>("sites", Sites);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties for the installation summary of a book for a device.
     /// </summary>
-    public class EBookInstallSummary : Entity, IParsable
+    public class EBookInstallSummary : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Number of Devices that have failed to install this book.</summary>
         public int? FailedDeviceCount { get; set; }
@@ -26,12 +26,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EBookInstallSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EBookInstallSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EBookInstallSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EBookInstallSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EBookInstallSummary();
+            return new ApiSdk.Models.EBookInstallSummary();
         }
         /// <summary>
         /// The deserialization information for the current model

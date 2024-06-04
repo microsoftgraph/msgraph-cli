@@ -9,10 +9,10 @@ namespace ApiSdk.Models
     /// <summary>
     /// Scheduled Action Configuration
     /// </summary>
-    public class DeviceComplianceActionItem : Entity, IParsable
+    public class DeviceComplianceActionItem : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Scheduled Action Type Enum</summary>
-        public DeviceComplianceActionType? ActionType { get; set; }
+        public ApiSdk.Models.DeviceComplianceActionType? ActionType { get; set; }
         /// <summary>Number of hours to wait till the action will be enforced. Valid values 0 to 8760</summary>
         public int? GracePeriodHours { get; set; }
         /// <summary>A list of group IDs to speicify who to CC this notification message to.</summary>
@@ -34,12 +34,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceComplianceActionItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceComplianceActionItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceComplianceActionItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceComplianceActionItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceComplianceActionItem();
+            return new ApiSdk.Models.DeviceComplianceActionItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,7 +49,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "actionType", n => { ActionType = n.GetEnumValue<DeviceComplianceActionType>(); } },
+                { "actionType", n => { ActionType = n.GetEnumValue<ApiSdk.Models.DeviceComplianceActionType>(); } },
                 { "gracePeriodHours", n => { GracePeriodHours = n.GetIntValue(); } },
                 { "notificationMessageCCList", n => { NotificationMessageCCList = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "notificationTemplateId", n => { NotificationTemplateId = n.GetStringValue(); } },
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<DeviceComplianceActionType>("actionType", ActionType);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceComplianceActionType>("actionType", ActionType);
             writer.WriteIntValue("gracePeriodHours", GracePeriodHours);
             writer.WriteCollectionOfPrimitiveValues<string>("notificationMessageCCList", NotificationMessageCCList);
             writer.WriteStringValue("notificationTemplateId", NotificationTemplateId);

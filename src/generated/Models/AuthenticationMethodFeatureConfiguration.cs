@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>A single entity that is excluded from this feature.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FeatureTarget? ExcludeTarget { get; set; }
+        public ApiSdk.Models.FeatureTarget? ExcludeTarget { get; set; }
 #nullable restore
 #else
-        public FeatureTarget ExcludeTarget { get; set; }
+        public ApiSdk.Models.FeatureTarget ExcludeTarget { get; set; }
 #endif
         /// <summary>A single entity that is included in this feature.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FeatureTarget? IncludeTarget { get; set; }
+        public ApiSdk.Models.FeatureTarget? IncludeTarget { get; set; }
 #nullable restore
 #else
-        public FeatureTarget IncludeTarget { get; set; }
+        public ApiSdk.Models.FeatureTarget IncludeTarget { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,9 +37,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>Enable or disable the feature. Possible values are: default, enabled, disabled, unknownFutureValue. The default value is used when the configuration hasn&apos;t been explicitly set and uses the default behavior of Microsoft Entra ID for the setting. The default value is disabled.</summary>
-        public AdvancedConfigState? State { get; set; }
+        public ApiSdk.Models.AdvancedConfigState? State { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationMethodFeatureConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AuthenticationMethodFeatureConfiguration"/> and sets the default values.
         /// </summary>
         public AuthenticationMethodFeatureConfiguration()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationMethodFeatureConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationMethodFeatureConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AuthenticationMethodFeatureConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AuthenticationMethodFeatureConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthenticationMethodFeatureConfiguration();
+            return new ApiSdk.Models.AuthenticationMethodFeatureConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,10 +63,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "excludeTarget", n => { ExcludeTarget = n.GetObjectValue<FeatureTarget>(FeatureTarget.CreateFromDiscriminatorValue); } },
-                { "includeTarget", n => { IncludeTarget = n.GetObjectValue<FeatureTarget>(FeatureTarget.CreateFromDiscriminatorValue); } },
+                { "excludeTarget", n => { ExcludeTarget = n.GetObjectValue<ApiSdk.Models.FeatureTarget>(ApiSdk.Models.FeatureTarget.CreateFromDiscriminatorValue); } },
+                { "includeTarget", n => { IncludeTarget = n.GetObjectValue<ApiSdk.Models.FeatureTarget>(ApiSdk.Models.FeatureTarget.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "state", n => { State = n.GetEnumValue<AdvancedConfigState>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.AdvancedConfigState>(); } },
             };
         }
         /// <summary>
@@ -76,10 +76,10 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<FeatureTarget>("excludeTarget", ExcludeTarget);
-            writer.WriteObjectValue<FeatureTarget>("includeTarget", IncludeTarget);
+            writer.WriteObjectValue<ApiSdk.Models.FeatureTarget>("excludeTarget", ExcludeTarget);
+            writer.WriteObjectValue<ApiSdk.Models.FeatureTarget>("includeTarget", IncludeTarget);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<AdvancedConfigState>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.AdvancedConfigState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

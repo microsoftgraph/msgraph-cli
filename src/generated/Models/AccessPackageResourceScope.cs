@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageResourceScope : Entity, IParsable
+    public class AccessPackageResourceScope : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The description of the scope.</summary>
@@ -47,20 +47,20 @@ namespace ApiSdk.Models
         /// <summary>The resource property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageResource? Resource { get; set; }
+        public ApiSdk.Models.AccessPackageResource? Resource { get; set; }
 #nullable restore
 #else
-        public AccessPackageResource Resource { get; set; }
+        public ApiSdk.Models.AccessPackageResource Resource { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageResourceScope"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageResourceScope"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageResourceScope CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageResourceScope CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageResourceScope();
+            return new ApiSdk.Models.AccessPackageResourceScope();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -75,7 +75,7 @@ namespace ApiSdk.Models
                 { "isRootScope", n => { IsRootScope = n.GetBoolValue(); } },
                 { "originId", n => { OriginId = n.GetStringValue(); } },
                 { "originSystem", n => { OriginSystem = n.GetStringValue(); } },
-                { "resource", n => { Resource = n.GetObjectValue<AccessPackageResource>(AccessPackageResource.CreateFromDiscriminatorValue); } },
+                { "resource", n => { Resource = n.GetObjectValue<ApiSdk.Models.AccessPackageResource>(ApiSdk.Models.AccessPackageResource.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -91,7 +91,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("isRootScope", IsRootScope);
             writer.WriteStringValue("originId", OriginId);
             writer.WriteStringValue("originSystem", OriginSystem);
-            writer.WriteObjectValue<AccessPackageResource>("resource", Resource);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageResource>("resource", Resource);
         }
     }
 }

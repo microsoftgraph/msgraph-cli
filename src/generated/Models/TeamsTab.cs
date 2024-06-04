@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamsTab : Entity, IParsable
+    public class TeamsTab : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Container for custom settings applied to a tab. The tab is considered configured only once this property is set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamsTabConfiguration? Configuration { get; set; }
+        public ApiSdk.Models.TeamsTabConfiguration? Configuration { get; set; }
 #nullable restore
 #else
-        public TeamsTabConfiguration Configuration { get; set; }
+        public ApiSdk.Models.TeamsTabConfiguration Configuration { get; set; }
 #endif
         /// <summary>Name of the tab.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,12 +45,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamsTab"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamsTab"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamsTab CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamsTab CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamsTab();
+            return new ApiSdk.Models.TeamsTab();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,7 +60,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "configuration", n => { Configuration = n.GetObjectValue<TeamsTabConfiguration>(TeamsTabConfiguration.CreateFromDiscriminatorValue); } },
+                { "configuration", n => { Configuration = n.GetObjectValue<ApiSdk.Models.TeamsTabConfiguration>(ApiSdk.Models.TeamsTabConfiguration.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "teamsApp", n => { TeamsApp = n.GetObjectValue<ApiSdk.Models.TeamsApp>(ApiSdk.Models.TeamsApp.CreateFromDiscriminatorValue); } },
                 { "webUrl", n => { WebUrl = n.GetStringValue(); } },
@@ -74,7 +74,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<TeamsTabConfiguration>("configuration", Configuration);
+            writer.WriteObjectValue<ApiSdk.Models.TeamsTabConfiguration>("configuration", Configuration);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteObjectValue<ApiSdk.Models.TeamsApp>("teamsApp", TeamsApp);
             writer.WriteStringValue("webUrl", WebUrl);

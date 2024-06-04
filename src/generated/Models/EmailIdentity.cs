@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EmailIdentity : Identity, IParsable
+    public class EmailIdentity : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Email address of the user.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string Email { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EmailIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EmailIdentity"/> and sets the default values.
         /// </summary>
         public EmailIdentity() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EmailIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EmailIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EmailIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EmailIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EmailIdentity();
+            return new ApiSdk.Models.EmailIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model

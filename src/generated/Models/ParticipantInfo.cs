@@ -25,10 +25,10 @@ namespace ApiSdk.Models
         /// <summary>The identity property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Identity { get; set; }
+        public ApiSdk.Models.IdentitySet? Identity { get; set; }
 #nullable restore
 #else
-        public IdentitySet Identity { get; set; }
+        public ApiSdk.Models.IdentitySet Identity { get; set; }
 #endif
         /// <summary>The language culture string. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
         public string Region { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ParticipantInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ParticipantInfo"/> and sets the default values.
         /// </summary>
         public ParticipantInfo()
         {
@@ -72,12 +72,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ParticipantInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ParticipantInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ParticipantInfo();
+            return new ApiSdk.Models.ParticipantInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,8 +88,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "countryCode", n => { CountryCode = n.GetStringValue(); } },
-                { "endpointType", n => { EndpointType = n.GetEnumValue<EndpointType>(); } },
-                { "identity", n => { Identity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "endpointType", n => { EndpointType = n.GetEnumValue<ApiSdk.Models.EndpointType>(); } },
+                { "identity", n => { Identity = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "languageId", n => { LanguageId = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "participantId", n => { ParticipantId = n.GetStringValue(); } },
@@ -104,8 +104,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("countryCode", CountryCode);
-            writer.WriteEnumValue<EndpointType>("endpointType", EndpointType);
-            writer.WriteObjectValue<IdentitySet>("identity", Identity);
+            writer.WriteEnumValue<ApiSdk.Models.EndpointType>("endpointType", EndpointType);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("identity", Identity);
             writer.WriteStringValue("languageId", LanguageId);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("participantId", ParticipantId);

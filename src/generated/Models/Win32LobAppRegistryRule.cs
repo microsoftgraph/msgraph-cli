@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// A complex type to store registry rule data for a Win32 LOB app.
     /// </summary>
-    public class Win32LobAppRegistryRule : Win32LobAppRule, IParsable
+    public class Win32LobAppRegistryRule : ApiSdk.Models.Win32LobAppRule, IParsable
     {
         /// <summary>A value indicating whether to search the 32-bit registry on 64-bit systems.</summary>
         public bool? Check32BitOn64System { get; set; }
@@ -30,9 +30,9 @@ namespace ApiSdk.Models
         public string KeyPath { get; set; }
 #endif
         /// <summary>A list of possible operations for rules used to make determinations about an application based on registry keys or values. Unless noted, the values can be used with either detection or requirement rules.</summary>
-        public Win32LobAppRegistryRuleOperationType? OperationType { get; set; }
+        public ApiSdk.Models.Win32LobAppRegistryRuleOperationType? OperationType { get; set; }
         /// <summary>Contains properties for detection operator.</summary>
-        public Win32LobAppRuleOperator? Operator { get; set; }
+        public ApiSdk.Models.Win32LobAppRuleOperator? Operator { get; set; }
         /// <summary>The name of the registry value to detect.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -42,7 +42,7 @@ namespace ApiSdk.Models
         public string ValueName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Win32LobAppRegistryRule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Win32LobAppRegistryRule"/> and sets the default values.
         /// </summary>
         public Win32LobAppRegistryRule() : base()
         {
@@ -51,12 +51,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Win32LobAppRegistryRule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Win32LobAppRegistryRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Win32LobAppRegistryRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Win32LobAppRegistryRule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Win32LobAppRegistryRule();
+            return new ApiSdk.Models.Win32LobAppRegistryRule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,8 +69,8 @@ namespace ApiSdk.Models
                 { "check32BitOn64System", n => { Check32BitOn64System = n.GetBoolValue(); } },
                 { "comparisonValue", n => { ComparisonValue = n.GetStringValue(); } },
                 { "keyPath", n => { KeyPath = n.GetStringValue(); } },
-                { "operationType", n => { OperationType = n.GetEnumValue<Win32LobAppRegistryRuleOperationType>(); } },
-                { "operator", n => { Operator = n.GetEnumValue<Win32LobAppRuleOperator>(); } },
+                { "operationType", n => { OperationType = n.GetEnumValue<ApiSdk.Models.Win32LobAppRegistryRuleOperationType>(); } },
+                { "operator", n => { Operator = n.GetEnumValue<ApiSdk.Models.Win32LobAppRuleOperator>(); } },
                 { "valueName", n => { ValueName = n.GetStringValue(); } },
             };
         }
@@ -85,8 +85,8 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("check32BitOn64System", Check32BitOn64System);
             writer.WriteStringValue("comparisonValue", ComparisonValue);
             writer.WriteStringValue("keyPath", KeyPath);
-            writer.WriteEnumValue<Win32LobAppRegistryRuleOperationType>("operationType", OperationType);
-            writer.WriteEnumValue<Win32LobAppRuleOperator>("operator", Operator);
+            writer.WriteEnumValue<ApiSdk.Models.Win32LobAppRegistryRuleOperationType>("operationType", OperationType);
+            writer.WriteEnumValue<ApiSdk.Models.Win32LobAppRuleOperator>("operator", Operator);
             writer.WriteStringValue("valueName", ValueName);
         }
     }

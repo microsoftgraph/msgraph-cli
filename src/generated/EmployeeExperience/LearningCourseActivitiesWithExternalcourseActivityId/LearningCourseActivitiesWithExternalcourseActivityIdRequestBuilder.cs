@@ -140,7 +140,7 @@ namespace ApiSdk.EmployeeExperience.LearningCourseActivitiesWithExternalcourseAc
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<LearningCourseActivity>(LearningCourseActivity.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.LearningCourseActivity>(ApiSdk.Models.LearningCourseActivity.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -161,14 +161,14 @@ namespace ApiSdk.EmployeeExperience.LearningCourseActivitiesWithExternalcourseAc
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.EmployeeExperience.LearningCourseActivitiesWithExternalcourseActivityId.LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience/learningCourseActivities(externalcourseActivityId='{externalcourseActivityId}'){?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.EmployeeExperience.LearningCourseActivitiesWithExternalcourseActivityId.LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder(string rawUrl) : base("{+baseurl}/employeeExperience/learningCourseActivities(externalcourseActivityId='{externalcourseActivityId}'){?%24expand,%24select}", rawUrl)
@@ -200,11 +200,11 @@ namespace ApiSdk.EmployeeExperience.LearningCourseActivitiesWithExternalcourseAc
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.EmployeeExperience.LearningCourseActivitiesWithExternalcourseActivityId.LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder.LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.EmployeeExperience.LearningCourseActivitiesWithExternalcourseActivityId.LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder.LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -220,11 +220,11 @@ namespace ApiSdk.EmployeeExperience.LearningCourseActivitiesWithExternalcourseAc
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(LearningCourseActivity body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.LearningCourseActivity body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(LearningCourseActivity body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.LearningCourseActivity body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

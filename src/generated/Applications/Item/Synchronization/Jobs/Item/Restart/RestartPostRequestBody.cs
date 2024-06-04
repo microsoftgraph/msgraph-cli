@@ -16,13 +16,13 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart
         /// <summary>The criteria property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SynchronizationJobRestartCriteria? Criteria { get; set; }
+        public ApiSdk.Models.SynchronizationJobRestartCriteria? Criteria { get; set; }
 #nullable restore
 #else
-        public SynchronizationJobRestartCriteria Criteria { get; set; }
+        public ApiSdk.Models.SynchronizationJobRestartCriteria Criteria { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RestartPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart.RestartPostRequestBody"/> and sets the default values.
         /// </summary>
         public RestartPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RestartPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart.RestartPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RestartPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart.RestartPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RestartPostRequestBody();
+            return new ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart.RestartPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "criteria", n => { Criteria = n.GetObjectValue<SynchronizationJobRestartCriteria>(SynchronizationJobRestartCriteria.CreateFromDiscriminatorValue); } },
+                { "criteria", n => { Criteria = n.GetObjectValue<ApiSdk.Models.SynchronizationJobRestartCriteria>(ApiSdk.Models.SynchronizationJobRestartCriteria.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<SynchronizationJobRestartCriteria>("criteria", Criteria);
+            writer.WriteObjectValue<ApiSdk.Models.SynchronizationJobRestartCriteria>("criteria", Criteria);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

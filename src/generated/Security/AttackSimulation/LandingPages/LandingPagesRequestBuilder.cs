@@ -31,7 +31,7 @@ namespace ApiSdk.Security.AttackSimulation.LandingPages
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new LandingPageItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.LandingPages.Item.LandingPageItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildDetailsNavCommand());
             executables.Add(builder.BuildGetCommand());
@@ -46,7 +46,7 @@ namespace ApiSdk.Security.AttackSimulation.LandingPages
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.LandingPages.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -198,14 +198,14 @@ namespace ApiSdk.Security.AttackSimulation.LandingPages
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="LandingPagesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.AttackSimulation.LandingPages.LandingPagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LandingPagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/landingPages{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="LandingPagesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.AttackSimulation.LandingPages.LandingPagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LandingPagesRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/landingPages{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -218,11 +218,11 @@ namespace ApiSdk.Security.AttackSimulation.LandingPages
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<LandingPagesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.AttackSimulation.LandingPages.LandingPagesRequestBuilder.LandingPagesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<LandingPagesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.AttackSimulation.LandingPages.LandingPagesRequestBuilder.LandingPagesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

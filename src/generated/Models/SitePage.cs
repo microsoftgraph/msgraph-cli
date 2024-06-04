@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SitePage : BaseSitePage, IParsable
+    public class SitePage : ApiSdk.Models.BaseSitePage, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical sections.</summary>
@@ -19,14 +19,14 @@ namespace ApiSdk.Models
         public ApiSdk.Models.CanvasLayout CanvasLayout { get; set; }
 #endif
         /// <summary>Indicates the promotion kind of the sitePage. The possible values are: microsoftReserved, page, newsPost, unknownFutureValue.</summary>
-        public PagePromotionType? PromotionKind { get; set; }
+        public ApiSdk.Models.PagePromotionType? PromotionKind { get; set; }
         /// <summary>Reactions information for the page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ReactionsFacet? Reactions { get; set; }
+        public ApiSdk.Models.ReactionsFacet? Reactions { get; set; }
 #nullable restore
 #else
-        public ReactionsFacet Reactions { get; set; }
+        public ApiSdk.Models.ReactionsFacet Reactions { get; set; }
 #endif
         /// <summary>Determines whether or not to show comments at the bottom of the page.</summary>
         public bool? ShowComments { get; set; }
@@ -51,20 +51,20 @@ namespace ApiSdk.Models
         /// <summary>Collection of webparts on the SharePoint page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WebPart>? WebParts { get; set; }
+        public List<ApiSdk.Models.WebPart>? WebParts { get; set; }
 #nullable restore
 #else
-        public List<WebPart> WebParts { get; set; }
+        public List<ApiSdk.Models.WebPart> WebParts { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SitePage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SitePage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SitePage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SitePage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SitePage();
+            return new ApiSdk.Models.SitePage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -75,13 +75,13 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "canvasLayout", n => { CanvasLayout = n.GetObjectValue<ApiSdk.Models.CanvasLayout>(ApiSdk.Models.CanvasLayout.CreateFromDiscriminatorValue); } },
-                { "promotionKind", n => { PromotionKind = n.GetEnumValue<PagePromotionType>(); } },
-                { "reactions", n => { Reactions = n.GetObjectValue<ReactionsFacet>(ReactionsFacet.CreateFromDiscriminatorValue); } },
+                { "promotionKind", n => { PromotionKind = n.GetEnumValue<ApiSdk.Models.PagePromotionType>(); } },
+                { "reactions", n => { Reactions = n.GetObjectValue<ApiSdk.Models.ReactionsFacet>(ApiSdk.Models.ReactionsFacet.CreateFromDiscriminatorValue); } },
                 { "showComments", n => { ShowComments = n.GetBoolValue(); } },
                 { "showRecommendedPages", n => { ShowRecommendedPages = n.GetBoolValue(); } },
                 { "thumbnailWebUrl", n => { ThumbnailWebUrl = n.GetStringValue(); } },
                 { "titleArea", n => { TitleArea = n.GetObjectValue<ApiSdk.Models.TitleArea>(ApiSdk.Models.TitleArea.CreateFromDiscriminatorValue); } },
-                { "webParts", n => { WebParts = n.GetCollectionOfObjectValues<WebPart>(WebPart.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "webParts", n => { WebParts = n.GetCollectionOfObjectValues<ApiSdk.Models.WebPart>(ApiSdk.Models.WebPart.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -93,13 +93,13 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.CanvasLayout>("canvasLayout", CanvasLayout);
-            writer.WriteEnumValue<PagePromotionType>("promotionKind", PromotionKind);
-            writer.WriteObjectValue<ReactionsFacet>("reactions", Reactions);
+            writer.WriteEnumValue<ApiSdk.Models.PagePromotionType>("promotionKind", PromotionKind);
+            writer.WriteObjectValue<ApiSdk.Models.ReactionsFacet>("reactions", Reactions);
             writer.WriteBoolValue("showComments", ShowComments);
             writer.WriteBoolValue("showRecommendedPages", ShowRecommendedPages);
             writer.WriteStringValue("thumbnailWebUrl", ThumbnailWebUrl);
             writer.WriteObjectValue<ApiSdk.Models.TitleArea>("titleArea", TitleArea);
-            writer.WriteCollectionOfObjectValues<WebPart>("webParts", WebParts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WebPart>("webParts", WebParts);
         }
     }
 }

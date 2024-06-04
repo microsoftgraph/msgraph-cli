@@ -21,7 +21,7 @@ namespace ApiSdk.Users.Item.ExportPersonalData
         public string StorageLocation { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ExportPersonalDataPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.ExportPersonalData.ExportPersonalDataPostRequestBody"/> and sets the default values.
         /// </summary>
         public ExportPersonalDataPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Users.Item.ExportPersonalData
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ExportPersonalDataPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.ExportPersonalData.ExportPersonalDataPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ExportPersonalDataPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.ExportPersonalData.ExportPersonalDataPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ExportPersonalDataPostRequestBody();
+            return new ApiSdk.Users.Item.ExportPersonalData.ExportPersonalDataPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

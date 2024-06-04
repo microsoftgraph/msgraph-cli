@@ -50,14 +50,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnpublishRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Solutions.BookingBusinesses.Item.Unpublish.UnpublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnpublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/unpublish", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnpublishRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Solutions.BookingBusinesses.Item.Unpublish.UnpublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnpublishRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/unpublish", rawUrl)

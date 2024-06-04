@@ -79,14 +79,14 @@ namespace ApiSdk.Users.Item.Events.Item.Instances.Item.Calendar
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CalendarRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Events.Item.Instances.Item.Calendar.CalendarRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/events/{event%2Did}/instances/{event%2Did1}/calendar{?%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CalendarRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Events.Item.Instances.Item.Calendar.CalendarRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CalendarRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/events/{event%2Did}/instances/{event%2Did1}/calendar{?%24select}", rawUrl)
@@ -99,11 +99,11 @@ namespace ApiSdk.Users.Item.Events.Item.Instances.Item.Calendar
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CalendarRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Events.Item.Instances.Item.Calendar.CalendarRequestBuilder.CalendarRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CalendarRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Events.Item.Instances.Item.Calendar.CalendarRequestBuilder.CalendarRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

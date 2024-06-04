@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string StatementUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PrivacyProfile"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PrivacyProfile"/> and sets the default values.
         /// </summary>
         public PrivacyProfile()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrivacyProfile"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrivacyProfile"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PrivacyProfile CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PrivacyProfile CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrivacyProfile();
+            return new ApiSdk.Models.PrivacyProfile();
         }
         /// <summary>
         /// The deserialization information for the current model

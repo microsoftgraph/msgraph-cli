@@ -68,14 +68,14 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedDeviceOverviewRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDeviceOverview.ManagedDeviceOverviewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ManagedDeviceOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDeviceOverview{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedDeviceOverviewRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDeviceOverview.ManagedDeviceOverviewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ManagedDeviceOverviewRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDeviceOverview{?%24expand,%24select}", rawUrl)
@@ -88,11 +88,11 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceOverviewRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.ManagedDeviceOverview.ManagedDeviceOverviewRequestBuilder.ManagedDeviceOverviewRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceOverviewRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.ManagedDeviceOverview.ManagedDeviceOverviewRequestBuilder.ManagedDeviceOverviewRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

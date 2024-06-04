@@ -118,14 +118,14 @@ namespace ApiSdk.DirectoryRoleTemplates.Delta
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeltaRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryRoleTemplates.Delta.DeltaRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeltaRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoleTemplates/delta(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeltaRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryRoleTemplates.Delta.DeltaRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeltaRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoleTemplates/delta(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -138,11 +138,11 @@ namespace ApiSdk.DirectoryRoleTemplates.Delta
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeltaRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DirectoryRoleTemplates.Delta.DeltaRequestBuilder.DeltaRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeltaRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DirectoryRoleTemplates.Delta.DeltaRequestBuilder.DeltaRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

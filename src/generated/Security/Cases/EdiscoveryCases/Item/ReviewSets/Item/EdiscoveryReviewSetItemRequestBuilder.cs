@@ -132,7 +132,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item
         {
             var command = new Command("microsoft-graph-security-add-to-review-set");
             command.Description = "Provides operations to call the addToReviewSet method.";
-            var builder = new MicrosoftGraphSecurityAddToReviewSetRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.MicrosoftGraphSecurityAddToReviewSet.MicrosoftGraphSecurityAddToReviewSetRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -149,7 +149,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item
         {
             var command = new Command("microsoft-graph-security-export");
             command.Description = "Provides operations to call the export method.";
-            var builder = new MicrosoftGraphSecurityExportRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.MicrosoftGraphSecurityExport.MicrosoftGraphSecurityExportRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -194,7 +194,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<EdiscoveryReviewSet>(EdiscoveryReviewSet.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Security.EdiscoveryReviewSet>(ApiSdk.Models.Security.EdiscoveryReviewSet.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -223,7 +223,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item
         {
             var command = new Command("queries");
             command.Description = "Provides operations to manage the queries property of the microsoft.graph.security.ediscoveryReviewSet entity.";
-            var builder = new QueriesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.QueriesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -243,14 +243,14 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="EdiscoveryReviewSetItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.EdiscoveryReviewSetItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public EdiscoveryReviewSetItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/reviewSets/{ediscoveryReviewSet%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="EdiscoveryReviewSetItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.EdiscoveryReviewSetItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public EdiscoveryReviewSetItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/reviewSets/{ediscoveryReviewSet%2Did}{?%24expand,%24select}", rawUrl)
@@ -282,11 +282,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EdiscoveryReviewSetItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.EdiscoveryReviewSetItemRequestBuilder.EdiscoveryReviewSetItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EdiscoveryReviewSetItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.EdiscoveryReviewSetItemRequestBuilder.EdiscoveryReviewSetItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -302,11 +302,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EdiscoveryReviewSet body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.EdiscoveryReviewSet body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(EdiscoveryReviewSet body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.EdiscoveryReviewSet body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

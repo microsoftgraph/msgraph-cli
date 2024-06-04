@@ -39,26 +39,26 @@ namespace ApiSdk.Models.Security
         /// <summary>Represents the success status of a created event and additional information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EventPropagationResult>? EventPropagationResults { get; set; }
+        public List<ApiSdk.Models.Security.EventPropagationResult>? EventPropagationResults { get; set; }
 #nullable restore
 #else
-        public List<EventPropagationResult> EventPropagationResults { get; set; }
+        public List<ApiSdk.Models.Security.EventPropagationResult> EventPropagationResults { get; set; }
 #endif
         /// <summary>Represents the workload (SharePoint Online, OneDrive for Business, Exchange Online) and identification information associated with a retention event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EventQuery>? EventQueries { get; set; }
+        public List<ApiSdk.Models.Security.EventQuery>? EventQueries { get; set; }
 #nullable restore
 #else
-        public List<EventQuery> EventQueries { get; set; }
+        public List<ApiSdk.Models.Security.EventQuery> EventQueries { get; set; }
 #endif
         /// <summary>Status of event propogation to the scoped locations after the event has been created.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RetentionEventStatus? EventStatus { get; set; }
+        public ApiSdk.Models.Security.RetentionEventStatus? EventStatus { get; set; }
 #nullable restore
 #else
-        public RetentionEventStatus EventStatus { get; set; }
+        public ApiSdk.Models.Security.RetentionEventStatus EventStatus { get; set; }
 #endif
         /// <summary>Optional time when the event should be triggered.</summary>
         public DateTimeOffset? EventTriggerDateTime { get; set; }
@@ -85,12 +85,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RetentionEvent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.RetentionEvent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RetentionEvent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.RetentionEvent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RetentionEvent();
+            return new ApiSdk.Models.Security.RetentionEvent();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -104,9 +104,9 @@ namespace ApiSdk.Models.Security
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "eventPropagationResults", n => { EventPropagationResults = n.GetCollectionOfObjectValues<EventPropagationResult>(EventPropagationResult.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "eventQueries", n => { EventQueries = n.GetCollectionOfObjectValues<EventQuery>(EventQuery.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "eventStatus", n => { EventStatus = n.GetObjectValue<RetentionEventStatus>(RetentionEventStatus.CreateFromDiscriminatorValue); } },
+                { "eventPropagationResults", n => { EventPropagationResults = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.EventPropagationResult>(ApiSdk.Models.Security.EventPropagationResult.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "eventQueries", n => { EventQueries = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.EventQuery>(ApiSdk.Models.Security.EventQuery.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "eventStatus", n => { EventStatus = n.GetObjectValue<ApiSdk.Models.Security.RetentionEventStatus>(ApiSdk.Models.Security.RetentionEventStatus.CreateFromDiscriminatorValue); } },
                 { "eventTriggerDateTime", n => { EventTriggerDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -126,9 +126,9 @@ namespace ApiSdk.Models.Security
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<EventPropagationResult>("eventPropagationResults", EventPropagationResults);
-            writer.WriteCollectionOfObjectValues<EventQuery>("eventQueries", EventQueries);
-            writer.WriteObjectValue<RetentionEventStatus>("eventStatus", EventStatus);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.EventPropagationResult>("eventPropagationResults", EventPropagationResults);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.EventQuery>("eventQueries", EventQueries);
+            writer.WriteObjectValue<ApiSdk.Models.Security.RetentionEventStatus>("eventStatus", EventStatus);
             writer.WriteDateTimeOffsetValue("eventTriggerDateTime", EventTriggerDateTime);
             writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);

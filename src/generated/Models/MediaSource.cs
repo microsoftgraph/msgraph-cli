@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Enumeration value that indicates the media content category.</summary>
-        public MediaSourceContentCategory? ContentCategory { get; set; }
+        public ApiSdk.Models.MediaSourceContentCategory? ContentCategory { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -23,7 +23,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MediaSource"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MediaSource"/> and sets the default values.
         /// </summary>
         public MediaSource()
         {
@@ -32,12 +32,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MediaSource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MediaSource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MediaSource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MediaSource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MediaSource();
+            return new ApiSdk.Models.MediaSource();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "contentCategory", n => { ContentCategory = n.GetEnumValue<MediaSourceContentCategory>(); } },
+                { "contentCategory", n => { ContentCategory = n.GetEnumValue<ApiSdk.Models.MediaSourceContentCategory>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -58,7 +58,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<MediaSourceContentCategory>("contentCategory", ContentCategory);
+            writer.WriteEnumValue<ApiSdk.Models.MediaSourceContentCategory>("contentCategory", ContentCategory);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

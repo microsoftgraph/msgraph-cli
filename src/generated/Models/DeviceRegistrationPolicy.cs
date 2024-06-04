@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DeviceRegistrationPolicy : Entity, IParsable
+    public class DeviceRegistrationPolicy : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The azureADJoin property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AzureADJoinPolicy? AzureADJoin { get; set; }
+        public ApiSdk.Models.AzureADJoinPolicy? AzureADJoin { get; set; }
 #nullable restore
 #else
-        public AzureADJoinPolicy AzureADJoin { get; set; }
+        public ApiSdk.Models.AzureADJoinPolicy AzureADJoin { get; set; }
 #endif
         /// <summary>The azureADRegistration property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AzureADRegistrationPolicy? AzureADRegistration { get; set; }
+        public ApiSdk.Models.AzureADRegistrationPolicy? AzureADRegistration { get; set; }
 #nullable restore
 #else
-        public AzureADRegistrationPolicy AzureADRegistration { get; set; }
+        public ApiSdk.Models.AzureADRegistrationPolicy AzureADRegistration { get; set; }
 #endif
         /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,10 +45,10 @@ namespace ApiSdk.Models
         /// <summary>The localAdminPassword property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public LocalAdminPasswordSettings? LocalAdminPassword { get; set; }
+        public ApiSdk.Models.LocalAdminPasswordSettings? LocalAdminPassword { get; set; }
 #nullable restore
 #else
-        public LocalAdminPasswordSettings LocalAdminPassword { get; set; }
+        public ApiSdk.Models.LocalAdminPasswordSettings LocalAdminPassword { get; set; }
 #endif
         /// <summary>The multiFactorAuthConfiguration property</summary>
         public ApiSdk.Models.MultiFactorAuthConfiguration? MultiFactorAuthConfiguration { get; set; }
@@ -57,12 +57,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceRegistrationPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceRegistrationPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceRegistrationPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceRegistrationPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceRegistrationPolicy();
+            return new ApiSdk.Models.DeviceRegistrationPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,12 +72,12 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "azureADJoin", n => { AzureADJoin = n.GetObjectValue<AzureADJoinPolicy>(AzureADJoinPolicy.CreateFromDiscriminatorValue); } },
-                { "azureADRegistration", n => { AzureADRegistration = n.GetObjectValue<AzureADRegistrationPolicy>(AzureADRegistrationPolicy.CreateFromDiscriminatorValue); } },
+                { "azureADJoin", n => { AzureADJoin = n.GetObjectValue<ApiSdk.Models.AzureADJoinPolicy>(ApiSdk.Models.AzureADJoinPolicy.CreateFromDiscriminatorValue); } },
+                { "azureADRegistration", n => { AzureADRegistration = n.GetObjectValue<ApiSdk.Models.AzureADRegistrationPolicy>(ApiSdk.Models.AzureADRegistrationPolicy.CreateFromDiscriminatorValue); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "localAdminPassword", n => { LocalAdminPassword = n.GetObjectValue<LocalAdminPasswordSettings>(LocalAdminPasswordSettings.CreateFromDiscriminatorValue); } },
-                { "multiFactorAuthConfiguration", n => { MultiFactorAuthConfiguration = n.GetEnumValue<MultiFactorAuthConfiguration>(); } },
+                { "localAdminPassword", n => { LocalAdminPassword = n.GetObjectValue<ApiSdk.Models.LocalAdminPasswordSettings>(ApiSdk.Models.LocalAdminPasswordSettings.CreateFromDiscriminatorValue); } },
+                { "multiFactorAuthConfiguration", n => { MultiFactorAuthConfiguration = n.GetEnumValue<ApiSdk.Models.MultiFactorAuthConfiguration>(); } },
                 { "userDeviceQuota", n => { UserDeviceQuota = n.GetIntValue(); } },
             };
         }
@@ -89,12 +89,12 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<AzureADJoinPolicy>("azureADJoin", AzureADJoin);
-            writer.WriteObjectValue<AzureADRegistrationPolicy>("azureADRegistration", AzureADRegistration);
+            writer.WriteObjectValue<ApiSdk.Models.AzureADJoinPolicy>("azureADJoin", AzureADJoin);
+            writer.WriteObjectValue<ApiSdk.Models.AzureADRegistrationPolicy>("azureADRegistration", AzureADRegistration);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<LocalAdminPasswordSettings>("localAdminPassword", LocalAdminPassword);
-            writer.WriteEnumValue<MultiFactorAuthConfiguration>("multiFactorAuthConfiguration", MultiFactorAuthConfiguration);
+            writer.WriteObjectValue<ApiSdk.Models.LocalAdminPasswordSettings>("localAdminPassword", LocalAdminPassword);
+            writer.WriteEnumValue<ApiSdk.Models.MultiFactorAuthConfiguration>("multiFactorAuthConfiguration", MultiFactorAuthConfiguration);
             writer.WriteIntValue("userDeviceQuota", UserDeviceQuota);
         }
     }

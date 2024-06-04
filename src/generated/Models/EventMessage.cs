@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EventMessage : Message, IParsable
+    public class EventMessage : ApiSdk.Models.Message, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The endDateTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? EndDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? EndDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone EndDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone EndDateTime { get; set; }
 #endif
         /// <summary>The event associated with the event message. The assumption for attendees or room resources is that the Calendar Attendant is set to automatically update the calendar with an event when meeting request event messages arrive. Navigation property.  Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,23 +45,23 @@ namespace ApiSdk.Models
         /// <summary>The recurrence property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PatternedRecurrence? Recurrence { get; set; }
+        public ApiSdk.Models.PatternedRecurrence? Recurrence { get; set; }
 #nullable restore
 #else
-        public PatternedRecurrence Recurrence { get; set; }
+        public ApiSdk.Models.PatternedRecurrence Recurrence { get; set; }
 #endif
         /// <summary>The startDateTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? StartDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? StartDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone StartDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone StartDateTime { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public EventType? Type { get; set; }
+        public ApiSdk.Models.EventType? Type { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="EventMessage"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EventMessage"/> and sets the default values.
         /// </summary>
         public EventMessage() : base()
         {
@@ -70,17 +70,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EventMessage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EventMessage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EventMessage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EventMessage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.eventMessageRequest" => new EventMessageRequest(),
-                "#microsoft.graph.eventMessageResponse" => new EventMessageResponse(),
-                _ => new EventMessage(),
+                "#microsoft.graph.eventMessageRequest" => new ApiSdk.Models.EventMessageRequest(),
+                "#microsoft.graph.eventMessageResponse" => new ApiSdk.Models.EventMessageResponse(),
+                _ => new ApiSdk.Models.EventMessage(),
             };
         }
         /// <summary>
@@ -91,16 +91,16 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "endDateTime", n => { EndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "endDateTime", n => { EndDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 { "event", n => { Event = n.GetObjectValue<ApiSdk.Models.Event>(ApiSdk.Models.Event.CreateFromDiscriminatorValue); } },
                 { "isAllDay", n => { IsAllDay = n.GetBoolValue(); } },
                 { "isDelegated", n => { IsDelegated = n.GetBoolValue(); } },
                 { "isOutOfDate", n => { IsOutOfDate = n.GetBoolValue(); } },
                 { "location", n => { Location = n.GetObjectValue<ApiSdk.Models.Location>(ApiSdk.Models.Location.CreateFromDiscriminatorValue); } },
-                { "meetingMessageType", n => { MeetingMessageType = n.GetEnumValue<MeetingMessageType>(); } },
-                { "recurrence", n => { Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
-                { "startDateTime", n => { StartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetEnumValue<EventType>(); } },
+                { "meetingMessageType", n => { MeetingMessageType = n.GetEnumValue<ApiSdk.Models.MeetingMessageType>(); } },
+                { "recurrence", n => { Recurrence = n.GetObjectValue<ApiSdk.Models.PatternedRecurrence>(ApiSdk.Models.PatternedRecurrence.CreateFromDiscriminatorValue); } },
+                { "startDateTime", n => { StartDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.EventType>(); } },
             };
         }
         /// <summary>
@@ -111,16 +111,16 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<DateTimeTimeZone>("endDateTime", EndDateTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("endDateTime", EndDateTime);
             writer.WriteObjectValue<ApiSdk.Models.Event>("event", Event);
             writer.WriteBoolValue("isAllDay", IsAllDay);
             writer.WriteBoolValue("isDelegated", IsDelegated);
             writer.WriteBoolValue("isOutOfDate", IsOutOfDate);
             writer.WriteObjectValue<ApiSdk.Models.Location>("location", Location);
-            writer.WriteEnumValue<MeetingMessageType>("meetingMessageType", MeetingMessageType);
-            writer.WriteObjectValue<PatternedRecurrence>("recurrence", Recurrence);
-            writer.WriteObjectValue<DateTimeTimeZone>("startDateTime", StartDateTime);
-            writer.WriteEnumValue<EventType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.MeetingMessageType>("meetingMessageType", MeetingMessageType);
+            writer.WriteObjectValue<ApiSdk.Models.PatternedRecurrence>("recurrence", Recurrence);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("startDateTime", StartDateTime);
+            writer.WriteEnumValue<ApiSdk.Models.EventType>("type", Type);
         }
     }
 }

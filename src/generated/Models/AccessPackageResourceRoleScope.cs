@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageResourceRoleScope : Entity, IParsable
+    public class AccessPackageResourceRoleScope : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
@@ -15,28 +15,28 @@ namespace ApiSdk.Models
         /// <summary>The role property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageResourceRole? Role { get; set; }
+        public ApiSdk.Models.AccessPackageResourceRole? Role { get; set; }
 #nullable restore
 #else
-        public AccessPackageResourceRole Role { get; set; }
+        public ApiSdk.Models.AccessPackageResourceRole Role { get; set; }
 #endif
         /// <summary>The scope property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageResourceScope? Scope { get; set; }
+        public ApiSdk.Models.AccessPackageResourceScope? Scope { get; set; }
 #nullable restore
 #else
-        public AccessPackageResourceScope Scope { get; set; }
+        public ApiSdk.Models.AccessPackageResourceScope Scope { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageResourceRoleScope"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageResourceRoleScope"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageResourceRoleScope CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageResourceRoleScope CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageResourceRoleScope();
+            return new ApiSdk.Models.AccessPackageResourceRoleScope();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,8 +47,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "role", n => { Role = n.GetObjectValue<AccessPackageResourceRole>(AccessPackageResourceRole.CreateFromDiscriminatorValue); } },
-                { "scope", n => { Scope = n.GetObjectValue<AccessPackageResourceScope>(AccessPackageResourceScope.CreateFromDiscriminatorValue); } },
+                { "role", n => { Role = n.GetObjectValue<ApiSdk.Models.AccessPackageResourceRole>(ApiSdk.Models.AccessPackageResourceRole.CreateFromDiscriminatorValue); } },
+                { "scope", n => { Scope = n.GetObjectValue<ApiSdk.Models.AccessPackageResourceScope>(ApiSdk.Models.AccessPackageResourceScope.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -60,8 +60,8 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<AccessPackageResourceRole>("role", Role);
-            writer.WriteObjectValue<AccessPackageResourceScope>("scope", Scope);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageResourceRole>("role", Role);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageResourceScope>("scope", Scope);
         }
     }
 }

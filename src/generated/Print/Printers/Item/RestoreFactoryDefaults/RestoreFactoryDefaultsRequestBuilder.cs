@@ -50,14 +50,14 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RestoreFactoryDefaultsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.Printers.Item.RestoreFactoryDefaults.RestoreFactoryDefaultsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RestoreFactoryDefaultsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/restoreFactoryDefaults", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RestoreFactoryDefaultsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.Printers.Item.RestoreFactoryDefaults.RestoreFactoryDefaultsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RestoreFactoryDefaultsRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/restoreFactoryDefaults", rawUrl)

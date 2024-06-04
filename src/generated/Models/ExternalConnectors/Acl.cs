@@ -23,7 +23,7 @@ namespace ApiSdk.Models.ExternalConnectors
         public string OdataType { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public AclType? Type { get; set; }
+        public ApiSdk.Models.ExternalConnectors.AclType? Type { get; set; }
         /// <summary>The unique identifer of the identity. For Microsoft Entra identities, value is set to the object identifier of the user, group or tenant for types user, group and everyone (and everyoneExceptGuests) respectively. For external groups value is set to the ID of the externalGroup</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -33,7 +33,7 @@ namespace ApiSdk.Models.ExternalConnectors
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Acl"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ExternalConnectors.Acl"/> and sets the default values.
         /// </summary>
         public Acl()
         {
@@ -42,12 +42,12 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Acl"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.Acl"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Acl CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ExternalConnectors.Acl CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Acl();
+            return new ApiSdk.Models.ExternalConnectors.Acl();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,9 +57,9 @@ namespace ApiSdk.Models.ExternalConnectors
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "accessType", n => { AccessType = n.GetEnumValue<AccessType>(); } },
+                { "accessType", n => { AccessType = n.GetEnumValue<ApiSdk.Models.ExternalConnectors.AccessType>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<AclType>(); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.ExternalConnectors.AclType>(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
             };
         }
@@ -70,9 +70,9 @@ namespace ApiSdk.Models.ExternalConnectors
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<AccessType>("accessType", AccessType);
+            writer.WriteEnumValue<ApiSdk.Models.ExternalConnectors.AccessType>("accessType", AccessType);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<AclType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.ExternalConnectors.AclType>("type", Type);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }

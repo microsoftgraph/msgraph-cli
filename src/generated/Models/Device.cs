@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Device : DirectoryObject, IParsable
+    public class Device : ApiSdk.Models.DirectoryObject, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>true if the account is enabled; otherwise, false. Required. Default is true.  Supports $filter (eq, ne, not, in). Only callers with at least the Cloud Device Administrator role can set this property.</summary>
@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>For internal use only. Not nullable. Supports $filter (eq, not, ge, le).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AlternativeSecurityId>? AlternativeSecurityIds { get; set; }
+        public List<ApiSdk.Models.AlternativeSecurityId>? AlternativeSecurityIds { get; set; }
 #nullable restore
 #else
-        public List<AlternativeSecurityId> AlternativeSecurityIds { get; set; }
+        public List<ApiSdk.Models.AlternativeSecurityId> AlternativeSecurityIds { get; set; }
 #endif
         /// <summary>The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter (eq, ne, not, ge, le, and eq on null values) and $orderby.</summary>
         public DateTimeOffset? ApproximateLastSignInDateTime { get; set; }
@@ -85,10 +85,10 @@ namespace ApiSdk.Models
         /// <summary>The collection of open extensions defined for the device. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Extension>? Extensions { get; set; }
+        public List<ApiSdk.Models.Extension>? Extensions { get; set; }
 #nullable restore
 #else
-        public List<Extension> Extensions { get; set; }
+        public List<ApiSdk.Models.Extension> Extensions { get; set; }
 #endif
         /// <summary>true if the device complies with Mobile Device Management (MDM) policies; otherwise, false. Read-only. This can only be updated by Intune for any device OS type or by an approved MDM app for Windows OS devices. Supports $filter (eq, ne, not).</summary>
         public bool? IsCompliant { get; set; }
@@ -123,10 +123,10 @@ namespace ApiSdk.Models
         /// <summary>Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? MemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? MemberOf { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> MemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> MemberOf { get; set; }
 #endif
         /// <summary>Model of the device. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -183,18 +183,18 @@ namespace ApiSdk.Models
         /// <summary>The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? RegisteredOwners { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? RegisteredOwners { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> RegisteredOwners { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> RegisteredOwners { get; set; }
 #endif
         /// <summary>Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? RegisteredUsers { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? RegisteredUsers { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> RegisteredUsers { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> RegisteredUsers { get; set; }
 #endif
         /// <summary>Date and time of when the device was registered. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? RegistrationDateTime { get; set; }
@@ -209,10 +209,10 @@ namespace ApiSdk.Models
         /// <summary>Groups and administrative units that the device is a member of. This operation is transitive. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? TransitiveMemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? TransitiveMemberOf { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> TransitiveMemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> TransitiveMemberOf { get; set; }
 #endif
         /// <summary>Type of trust for the joined device. Read-only. Possible values:  Workplace (indicates bring your own personal devices), AzureAd (Cloud only joined devices), ServerAd (on-premises domain joined devices joined to Microsoft Entra ID). For more details, see Introduction to device management in Microsoft Entra ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -223,7 +223,7 @@ namespace ApiSdk.Models
         public string TrustType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Device"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Device"/> and sets the default values.
         /// </summary>
         public Device() : base()
         {
@@ -232,12 +232,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Device"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Device"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Device CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Device CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Device();
+            return new ApiSdk.Models.Device();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -248,7 +248,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "accountEnabled", n => { AccountEnabled = n.GetBoolValue(); } },
-                { "alternativeSecurityIds", n => { AlternativeSecurityIds = n.GetCollectionOfObjectValues<AlternativeSecurityId>(AlternativeSecurityId.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "alternativeSecurityIds", n => { AlternativeSecurityIds = n.GetCollectionOfObjectValues<ApiSdk.Models.AlternativeSecurityId>(ApiSdk.Models.AlternativeSecurityId.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "approximateLastSignInDateTime", n => { ApproximateLastSignInDateTime = n.GetDateTimeOffsetValue(); } },
                 { "complianceExpirationDateTime", n => { ComplianceExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 { "deviceCategory", n => { DeviceCategory = n.GetStringValue(); } },
@@ -259,14 +259,14 @@ namespace ApiSdk.Models
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "enrollmentProfileName", n => { EnrollmentProfileName = n.GetStringValue(); } },
                 { "enrollmentType", n => { EnrollmentType = n.GetStringValue(); } },
-                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<ApiSdk.Models.Extension>(ApiSdk.Models.Extension.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isCompliant", n => { IsCompliant = n.GetBoolValue(); } },
                 { "isManaged", n => { IsManaged = n.GetBoolValue(); } },
                 { "isRooted", n => { IsRooted = n.GetBoolValue(); } },
                 { "managementType", n => { ManagementType = n.GetStringValue(); } },
                 { "manufacturer", n => { Manufacturer = n.GetStringValue(); } },
                 { "mdmAppId", n => { MdmAppId = n.GetStringValue(); } },
-                { "memberOf", n => { MemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "memberOf", n => { MemberOf = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "model", n => { Model = n.GetStringValue(); } },
                 { "onPremisesLastSyncDateTime", n => { OnPremisesLastSyncDateTime = n.GetDateTimeOffsetValue(); } },
                 { "onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
@@ -275,11 +275,11 @@ namespace ApiSdk.Models
                 { "operatingSystemVersion", n => { OperatingSystemVersion = n.GetStringValue(); } },
                 { "physicalIds", n => { PhysicalIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "profileType", n => { ProfileType = n.GetStringValue(); } },
-                { "registeredOwners", n => { RegisteredOwners = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "registeredUsers", n => { RegisteredUsers = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "registeredOwners", n => { RegisteredOwners = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "registeredUsers", n => { RegisteredUsers = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "registrationDateTime", n => { RegistrationDateTime = n.GetDateTimeOffsetValue(); } },
                 { "systemLabels", n => { SystemLabels = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "transitiveMemberOf", n => { TransitiveMemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "transitiveMemberOf", n => { TransitiveMemberOf = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "trustType", n => { TrustType = n.GetStringValue(); } },
             };
         }
@@ -292,7 +292,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("accountEnabled", AccountEnabled);
-            writer.WriteCollectionOfObjectValues<AlternativeSecurityId>("alternativeSecurityIds", AlternativeSecurityIds);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AlternativeSecurityId>("alternativeSecurityIds", AlternativeSecurityIds);
             writer.WriteDateTimeOffsetValue("approximateLastSignInDateTime", ApproximateLastSignInDateTime);
             writer.WriteDateTimeOffsetValue("complianceExpirationDateTime", ComplianceExpirationDateTime);
             writer.WriteStringValue("deviceCategory", DeviceCategory);
@@ -303,14 +303,14 @@ namespace ApiSdk.Models
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("enrollmentProfileName", EnrollmentProfileName);
             writer.WriteStringValue("enrollmentType", EnrollmentType);
-            writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Extension>("extensions", Extensions);
             writer.WriteBoolValue("isCompliant", IsCompliant);
             writer.WriteBoolValue("isManaged", IsManaged);
             writer.WriteBoolValue("isRooted", IsRooted);
             writer.WriteStringValue("managementType", ManagementType);
             writer.WriteStringValue("manufacturer", Manufacturer);
             writer.WriteStringValue("mdmAppId", MdmAppId);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("memberOf", MemberOf);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("memberOf", MemberOf);
             writer.WriteStringValue("model", Model);
             writer.WriteDateTimeOffsetValue("onPremisesLastSyncDateTime", OnPremisesLastSyncDateTime);
             writer.WriteStringValue("onPremisesSecurityIdentifier", OnPremisesSecurityIdentifier);
@@ -319,11 +319,11 @@ namespace ApiSdk.Models
             writer.WriteStringValue("operatingSystemVersion", OperatingSystemVersion);
             writer.WriteCollectionOfPrimitiveValues<string>("physicalIds", PhysicalIds);
             writer.WriteStringValue("profileType", ProfileType);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("registeredOwners", RegisteredOwners);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("registeredUsers", RegisteredUsers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("registeredOwners", RegisteredOwners);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("registeredUsers", RegisteredUsers);
             writer.WriteDateTimeOffsetValue("registrationDateTime", RegistrationDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("systemLabels", SystemLabels);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("transitiveMemberOf", TransitiveMemberOf);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("transitiveMemberOf", TransitiveMemberOf);
             writer.WriteStringValue("trustType", TrustType);
         }
     }

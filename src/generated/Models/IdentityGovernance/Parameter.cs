@@ -37,9 +37,9 @@ namespace ApiSdk.Models.IdentityGovernance
         public List<string> Values { get; set; }
 #endif
         /// <summary>The valueType property</summary>
-        public ValueTypeObject? ValueType { get; set; }
+        public ApiSdk.Models.IdentityGovernance.ValueTypeObject? ValueType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Parameter"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityGovernance.Parameter"/> and sets the default values.
         /// </summary>
         public Parameter()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Parameter"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.Parameter"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Parameter CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IdentityGovernance.Parameter CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Parameter();
+            return new ApiSdk.Models.IdentityGovernance.Parameter();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,7 +65,7 @@ namespace ApiSdk.Models.IdentityGovernance
             {
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "valueType", n => { ValueType = n.GetEnumValue<ValueTypeObject>(); } },
+                { "valueType", n => { ValueType = n.GetEnumValue<ApiSdk.Models.IdentityGovernance.ValueTypeObject>(); } },
                 { "values", n => { Values = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
@@ -79,7 +79,7 @@ namespace ApiSdk.Models.IdentityGovernance
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfPrimitiveValues<string>("values", Values);
-            writer.WriteEnumValue<ValueTypeObject>("valueType", ValueType);
+            writer.WriteEnumValue<ApiSdk.Models.IdentityGovernance.ValueTypeObject>("valueType", ValueType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The allowedToJoin property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DeviceRegistrationMembership? AllowedToJoin { get; set; }
+        public ApiSdk.Models.DeviceRegistrationMembership? AllowedToJoin { get; set; }
 #nullable restore
 #else
-        public DeviceRegistrationMembership AllowedToJoin { get; set; }
+        public ApiSdk.Models.DeviceRegistrationMembership AllowedToJoin { get; set; }
 #endif
         /// <summary>The isAdminConfigurable property</summary>
         public bool? IsAdminConfigurable { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AzureADJoinPolicy"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AzureADJoinPolicy"/> and sets the default values.
         /// </summary>
         public AzureADJoinPolicy()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AzureADJoinPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AzureADJoinPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AzureADJoinPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AzureADJoinPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AzureADJoinPolicy();
+            return new ApiSdk.Models.AzureADJoinPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "allowedToJoin", n => { AllowedToJoin = n.GetObjectValue<DeviceRegistrationMembership>(DeviceRegistrationMembership.CreateFromDiscriminatorValue); } },
+                { "allowedToJoin", n => { AllowedToJoin = n.GetObjectValue<ApiSdk.Models.DeviceRegistrationMembership>(ApiSdk.Models.DeviceRegistrationMembership.CreateFromDiscriminatorValue); } },
                 { "isAdminConfigurable", n => { IsAdminConfigurable = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<DeviceRegistrationMembership>("allowedToJoin", AllowedToJoin);
+            writer.WriteObjectValue<ApiSdk.Models.DeviceRegistrationMembership>("allowedToJoin", AllowedToJoin);
             writer.WriteBoolValue("isAdminConfigurable", IsAdminConfigurable);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

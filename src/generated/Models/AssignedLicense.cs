@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         /// <summary>The unique identifier for the SKU.</summary>
         public Guid? SkuId { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AssignedLicense"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AssignedLicense"/> and sets the default values.
         /// </summary>
         public AssignedLicense()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AssignedLicense"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AssignedLicense"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AssignedLicense CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AssignedLicense CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AssignedLicense();
+            return new ApiSdk.Models.AssignedLicense();
         }
         /// <summary>
         /// The deserialization information for the current model

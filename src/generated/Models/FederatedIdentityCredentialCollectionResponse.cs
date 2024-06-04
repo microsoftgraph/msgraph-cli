@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class FederatedIdentityCredentialCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class FederatedIdentityCredentialCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<FederatedIdentityCredential>? Value { get; set; }
+        public List<ApiSdk.Models.FederatedIdentityCredential>? Value { get; set; }
 #nullable restore
 #else
-        public List<FederatedIdentityCredential> Value { get; set; }
+        public List<ApiSdk.Models.FederatedIdentityCredential> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FederatedIdentityCredentialCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.FederatedIdentityCredentialCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FederatedIdentityCredentialCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.FederatedIdentityCredentialCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FederatedIdentityCredentialCollectionResponse();
+            return new ApiSdk.Models.FederatedIdentityCredentialCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<FederatedIdentityCredential>(FederatedIdentityCredential.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.FederatedIdentityCredential>(ApiSdk.Models.FederatedIdentityCredential.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<FederatedIdentityCredential>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.FederatedIdentityCredential>("value", Value);
         }
     }
 }

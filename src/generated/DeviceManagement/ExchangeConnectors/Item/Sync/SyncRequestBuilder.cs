@@ -44,7 +44,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SyncPostRequestBody>(SyncPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync.SyncPostRequestBody>(ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync.SyncPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -63,14 +63,14 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SyncRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync.SyncRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SyncRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/exchangeConnectors/{deviceManagementExchangeConnector%2Did}/sync", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SyncRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync.SyncRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SyncRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/exchangeConnectors/{deviceManagementExchangeConnector%2Did}/sync", rawUrl)
@@ -84,11 +84,11 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(SyncPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync.SyncPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(SyncPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync.SyncPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

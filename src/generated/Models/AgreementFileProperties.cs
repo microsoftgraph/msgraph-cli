@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AgreementFileProperties : Entity, IParsable
+    public class AgreementFileProperties : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The date time representing when the file was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>Data that represents the terms of use PDF document. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AgreementFileData? FileData { get; set; }
+        public ApiSdk.Models.AgreementFileData? FileData { get; set; }
 #nullable restore
 #else
-        public AgreementFileData FileData { get; set; }
+        public ApiSdk.Models.AgreementFileData FileData { get; set; }
 #endif
         /// <summary>Name of the agreement file (for example, TOU.pdf). Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -51,18 +51,18 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AgreementFileProperties"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AgreementFileProperties"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AgreementFileProperties CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AgreementFileProperties CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.agreementFile" => new AgreementFile(),
-                "#microsoft.graph.agreementFileLocalization" => new AgreementFileLocalization(),
-                "#microsoft.graph.agreementFileVersion" => new AgreementFileVersion(),
-                _ => new AgreementFileProperties(),
+                "#microsoft.graph.agreementFile" => new ApiSdk.Models.AgreementFile(),
+                "#microsoft.graph.agreementFileLocalization" => new ApiSdk.Models.AgreementFileLocalization(),
+                "#microsoft.graph.agreementFileVersion" => new ApiSdk.Models.AgreementFileVersion(),
+                _ => new ApiSdk.Models.AgreementFileProperties(),
             };
         }
         /// <summary>
@@ -75,7 +75,7 @@ namespace ApiSdk.Models
             {
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "fileData", n => { FileData = n.GetObjectValue<AgreementFileData>(AgreementFileData.CreateFromDiscriminatorValue); } },
+                { "fileData", n => { FileData = n.GetObjectValue<ApiSdk.Models.AgreementFileData>(ApiSdk.Models.AgreementFileData.CreateFromDiscriminatorValue); } },
                 { "fileName", n => { FileName = n.GetStringValue(); } },
                 { "isDefault", n => { IsDefault = n.GetBoolValue(); } },
                 { "isMajorVersion", n => { IsMajorVersion = n.GetBoolValue(); } },
@@ -92,7 +92,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<AgreementFileData>("fileData", FileData);
+            writer.WriteObjectValue<ApiSdk.Models.AgreementFileData>("fileData", FileData);
             writer.WriteStringValue("fileName", FileName);
             writer.WriteBoolValue("isDefault", IsDefault);
             writer.WriteBoolValue("isMajorVersion", IsMajorVersion);

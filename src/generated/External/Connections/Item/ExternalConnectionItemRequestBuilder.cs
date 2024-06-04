@@ -122,7 +122,7 @@ namespace ApiSdk.External.Connections.Item
         {
             var command = new Command("groups");
             command.Description = "Provides operations to manage the groups property of the microsoft.graph.externalConnectors.externalConnection entity.";
-            var builder = new GroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.External.Connections.Item.Groups.GroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -149,7 +149,7 @@ namespace ApiSdk.External.Connections.Item
         {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.externalConnectors.externalConnection entity.";
-            var builder = new ItemsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.External.Connections.Item.Items.ItemsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -176,7 +176,7 @@ namespace ApiSdk.External.Connections.Item
         {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.externalConnectors.externalConnection entity.";
-            var builder = new OperationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.External.Connections.Item.Operations.OperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -227,7 +227,7 @@ namespace ApiSdk.External.Connections.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ExternalConnection>(ExternalConnection.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.ExternalConnectors.ExternalConnection>(ApiSdk.Models.ExternalConnectors.ExternalConnection.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -255,7 +255,7 @@ namespace ApiSdk.External.Connections.Item
         {
             var command = new Command("schema");
             command.Description = "Provides operations to manage the schema property of the microsoft.graph.externalConnectors.externalConnection entity.";
-            var builder = new SchemaRequestBuilder(PathParameters);
+            var builder = new ApiSdk.External.Connections.Item.Schema.SchemaRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
@@ -266,14 +266,14 @@ namespace ApiSdk.External.Connections.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ExternalConnectionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.External.Connections.Item.ExternalConnectionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ExternalConnectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external/connections/{externalConnection%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ExternalConnectionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.External.Connections.Item.ExternalConnectionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ExternalConnectionItemRequestBuilder(string rawUrl) : base("{+baseurl}/external/connections/{externalConnection%2Did}{?%24expand,%24select}", rawUrl)
@@ -305,11 +305,11 @@ namespace ApiSdk.External.Connections.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ExternalConnectionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.External.Connections.Item.ExternalConnectionItemRequestBuilder.ExternalConnectionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ExternalConnectionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.External.Connections.Item.ExternalConnectionItemRequestBuilder.ExternalConnectionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -325,11 +325,11 @@ namespace ApiSdk.External.Connections.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ExternalConnection body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ExternalConnectors.ExternalConnection body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ExternalConnection body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ExternalConnectors.ExternalConnection body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

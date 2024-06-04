@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv
         /// <summary>The alpha property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Alpha { get; set; }
+        public ApiSdk.Models.Json? Alpha { get; set; }
 #nullable restore
 #else
-        public Json Alpha { get; set; }
+        public ApiSdk.Models.Json Alpha { get; set; }
 #endif
         /// <summary>The beta property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Beta { get; set; }
+        public ApiSdk.Models.Json? Beta { get; set; }
 #nullable restore
 #else
-        public Json Beta { get; set; }
+        public ApiSdk.Models.Json Beta { get; set; }
 #endif
         /// <summary>The probability property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Probability { get; set; }
+        public ApiSdk.Models.Json? Probability { get; set; }
 #nullable restore
 #else
-        public Json Probability { get; set; }
+        public ApiSdk.Models.Json Probability { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Gamma_InvPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv.Gamma_InvPostRequestBody"/> and sets the default values.
         /// </summary>
         public Gamma_InvPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Gamma_InvPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv.Gamma_InvPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Gamma_InvPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv.Gamma_InvPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Gamma_InvPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv.Gamma_InvPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "alpha", n => { Alpha = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "beta", n => { Beta = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "probability", n => { Probability = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "alpha", n => { Alpha = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "beta", n => { Beta = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "probability", n => { Probability = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("alpha", Alpha);
-            writer.WriteObjectValue<Json>("beta", Beta);
-            writer.WriteObjectValue<Json>("probability", Probability);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("alpha", Alpha);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("beta", Beta);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("probability", Probability);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

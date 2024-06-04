@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>When the eligible or active assignment expires.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ExpirationPattern? Expiration { get; set; }
+        public ApiSdk.Models.ExpirationPattern? Expiration { get; set; }
 #nullable restore
 #else
-        public ExpirationPattern Expiration { get; set; }
+        public ApiSdk.Models.ExpirationPattern Expiration { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,15 +31,15 @@ namespace ApiSdk.Models
         /// <summary>The frequency of the  eligible or active assignment. This property is currently unsupported in PIM.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PatternedRecurrence? Recurrence { get; set; }
+        public ApiSdk.Models.PatternedRecurrence? Recurrence { get; set; }
 #nullable restore
 #else
-        public PatternedRecurrence Recurrence { get; set; }
+        public ApiSdk.Models.PatternedRecurrence Recurrence { get; set; }
 #endif
         /// <summary>When the  eligible or active assignment becomes active.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="RequestSchedule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RequestSchedule"/> and sets the default values.
         /// </summary>
         public RequestSchedule()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RequestSchedule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RequestSchedule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RequestSchedule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.RequestSchedule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RequestSchedule();
+            return new ApiSdk.Models.RequestSchedule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,9 +63,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "expiration", n => { Expiration = n.GetObjectValue<ExpirationPattern>(ExpirationPattern.CreateFromDiscriminatorValue); } },
+                { "expiration", n => { Expiration = n.GetObjectValue<ApiSdk.Models.ExpirationPattern>(ApiSdk.Models.ExpirationPattern.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "recurrence", n => { Recurrence = n.GetObjectValue<PatternedRecurrence>(PatternedRecurrence.CreateFromDiscriminatorValue); } },
+                { "recurrence", n => { Recurrence = n.GetObjectValue<ApiSdk.Models.PatternedRecurrence>(ApiSdk.Models.PatternedRecurrence.CreateFromDiscriminatorValue); } },
                 { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -76,9 +76,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ExpirationPattern>("expiration", Expiration);
+            writer.WriteObjectValue<ApiSdk.Models.ExpirationPattern>("expiration", Expiration);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<PatternedRecurrence>("recurrence", Recurrence);
+            writer.WriteObjectValue<ApiSdk.Models.PatternedRecurrence>("recurrence", Recurrence);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteAdditionalData(AdditionalData);
         }

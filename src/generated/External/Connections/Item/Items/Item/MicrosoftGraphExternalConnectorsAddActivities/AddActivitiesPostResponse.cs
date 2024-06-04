@@ -9,26 +9,26 @@ using System;
 namespace ApiSdk.External.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAddActivities
 {
     #pragma warning disable CS1591
-    public class AddActivitiesPostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class AddActivitiesPostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ExternalActivityResult>? Value { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ExternalActivityResult>? Value { get; set; }
 #nullable restore
 #else
-        public List<ExternalActivityResult> Value { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.ExternalActivityResult> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddActivitiesPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.External.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAddActivities.AddActivitiesPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AddActivitiesPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.External.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAddActivities.AddActivitiesPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddActivitiesPostResponse();
+            return new ApiSdk.External.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAddActivities.AddActivitiesPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -38,7 +38,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item.MicrosoftGraphExternalConn
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<ExternalActivityResult>(ExternalActivityResult.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ExternalActivityResult>(ApiSdk.Models.ExternalConnectors.ExternalActivityResult.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item.MicrosoftGraphExternalConn
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ExternalActivityResult>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.ExternalActivityResult>("value", Value);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// This topic provides descriptions of the declared methods, properties and relationships exposed by the Windows10EndpointProtectionConfiguration resource.
     /// </summary>
-    public class Windows10EndpointProtectionConfiguration : DeviceConfiguration, IParsable
+    public class Windows10EndpointProtectionConfiguration : ApiSdk.Models.DeviceConfiguration, IParsable
     {
         /// <summary>Allow persisting user generated data inside the App Guard Containter (favorites, cookies, web passwords, etc.)</summary>
         public bool? ApplicationGuardAllowPersistence { get; set; }
@@ -22,9 +22,9 @@ namespace ApiSdk.Models
         /// <summary>Allow printing to XPS from Container</summary>
         public bool? ApplicationGuardAllowPrintToXPS { get; set; }
         /// <summary>Possible values for applicationGuardBlockClipboardSharingType</summary>
-        public ApplicationGuardBlockClipboardSharingType? ApplicationGuardBlockClipboardSharing { get; set; }
+        public ApiSdk.Models.ApplicationGuardBlockClipboardSharingType? ApplicationGuardBlockClipboardSharing { get; set; }
         /// <summary>Possible values for applicationGuardBlockFileTransfer</summary>
-        public ApplicationGuardBlockFileTransferType? ApplicationGuardBlockFileTransfer { get; set; }
+        public ApiSdk.Models.ApplicationGuardBlockFileTransferType? ApplicationGuardBlockFileTransfer { get; set; }
         /// <summary>Block enterprise sites to load non-enterprise content, such as third party plug-ins</summary>
         public bool? ApplicationGuardBlockNonEnterpriseContent { get; set; }
         /// <summary>Enable Windows Defender Application Guard</summary>
@@ -32,7 +32,7 @@ namespace ApiSdk.Models
         /// <summary>Force auditing will persist Windows logs and events to meet security/compliance criteria (sample events are user login-logoff, use of privilege rights, software installation, system changes, etc.)</summary>
         public bool? ApplicationGuardForceAuditing { get; set; }
         /// <summary>Possible values of AppLocker Application Control Types</summary>
-        public AppLockerApplicationControlType? AppLockerApplicationControl { get; set; }
+        public ApiSdk.Models.AppLockerApplicationControlType? AppLockerApplicationControl { get; set; }
         /// <summary>Allows the Admin to disable the warning prompt for other disk encryption on the user machines.</summary>
         public bool? BitLockerDisableWarningForOtherDiskEncryption { get; set; }
         /// <summary>Allows the admin to require encryption to be turned on using BitLocker. This policy is valid only for a mobile SKU.</summary>
@@ -92,7 +92,7 @@ namespace ApiSdk.Models
         /// <summary>Blocks stateful FTP connections to the device</summary>
         public bool? FirewallBlockStatefulFTP { get; set; }
         /// <summary>Possible values for firewallCertificateRevocationListCheckMethod</summary>
-        public FirewallCertificateRevocationListCheckMethodType? FirewallCertificateRevocationListCheckMethod { get; set; }
+        public ApiSdk.Models.FirewallCertificateRevocationListCheckMethodType? FirewallCertificateRevocationListCheckMethod { get; set; }
         /// <summary>Configures the idle timeout for security associations, in seconds, from 300 to 3600 inclusive. This is the period after which security associations will expire and be deleted. Valid values 300 to 3600</summary>
         public int? FirewallIdleTimeoutForSecurityAssociationInSeconds { get; set; }
         /// <summary>Configures IPSec exemptions to allow both IPv4 and IPv6 DHCP traffic</summary>
@@ -106,39 +106,39 @@ namespace ApiSdk.Models
         /// <summary>If an authentication set is not fully supported by a keying module, direct the module to ignore only unsupported authentication suites rather than the entire set</summary>
         public bool? FirewallMergeKeyingModuleSettings { get; set; }
         /// <summary>Possible values for firewallPacketQueueingMethod</summary>
-        public FirewallPacketQueueingMethodType? FirewallPacketQueueingMethod { get; set; }
+        public ApiSdk.Models.FirewallPacketQueueingMethodType? FirewallPacketQueueingMethod { get; set; }
         /// <summary>Possible values for firewallPreSharedKeyEncodingMethod</summary>
-        public FirewallPreSharedKeyEncodingMethodType? FirewallPreSharedKeyEncodingMethod { get; set; }
+        public ApiSdk.Models.FirewallPreSharedKeyEncodingMethodType? FirewallPreSharedKeyEncodingMethod { get; set; }
         /// <summary>Configures the firewall profile settings for domain networks</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WindowsFirewallNetworkProfile? FirewallProfileDomain { get; set; }
+        public ApiSdk.Models.WindowsFirewallNetworkProfile? FirewallProfileDomain { get; set; }
 #nullable restore
 #else
-        public WindowsFirewallNetworkProfile FirewallProfileDomain { get; set; }
+        public ApiSdk.Models.WindowsFirewallNetworkProfile FirewallProfileDomain { get; set; }
 #endif
         /// <summary>Configures the firewall profile settings for private networks</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WindowsFirewallNetworkProfile? FirewallProfilePrivate { get; set; }
+        public ApiSdk.Models.WindowsFirewallNetworkProfile? FirewallProfilePrivate { get; set; }
 #nullable restore
 #else
-        public WindowsFirewallNetworkProfile FirewallProfilePrivate { get; set; }
+        public ApiSdk.Models.WindowsFirewallNetworkProfile FirewallProfilePrivate { get; set; }
 #endif
         /// <summary>Configures the firewall profile settings for public networks</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WindowsFirewallNetworkProfile? FirewallProfilePublic { get; set; }
+        public ApiSdk.Models.WindowsFirewallNetworkProfile? FirewallProfilePublic { get; set; }
 #nullable restore
 #else
-        public WindowsFirewallNetworkProfile FirewallProfilePublic { get; set; }
+        public ApiSdk.Models.WindowsFirewallNetworkProfile FirewallProfilePublic { get; set; }
 #endif
         /// <summary>Allows IT Admins to control whether users can can ignore SmartScreen warnings and run malicious files.</summary>
         public bool? SmartScreenBlockOverrideForFiles { get; set; }
         /// <summary>Allows IT Admins to configure SmartScreen for Windows.</summary>
         public bool? SmartScreenEnableInShell { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Windows10EndpointProtectionConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Windows10EndpointProtectionConfiguration"/> and sets the default values.
         /// </summary>
         public Windows10EndpointProtectionConfiguration() : base()
         {
@@ -147,12 +147,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Windows10EndpointProtectionConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Windows10EndpointProtectionConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Windows10EndpointProtectionConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Windows10EndpointProtectionConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Windows10EndpointProtectionConfiguration();
+            return new ApiSdk.Models.Windows10EndpointProtectionConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -162,14 +162,14 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "appLockerApplicationControl", n => { AppLockerApplicationControl = n.GetEnumValue<AppLockerApplicationControlType>(); } },
+                { "appLockerApplicationControl", n => { AppLockerApplicationControl = n.GetEnumValue<ApiSdk.Models.AppLockerApplicationControlType>(); } },
                 { "applicationGuardAllowPersistence", n => { ApplicationGuardAllowPersistence = n.GetBoolValue(); } },
                 { "applicationGuardAllowPrintToLocalPrinters", n => { ApplicationGuardAllowPrintToLocalPrinters = n.GetBoolValue(); } },
                 { "applicationGuardAllowPrintToNetworkPrinters", n => { ApplicationGuardAllowPrintToNetworkPrinters = n.GetBoolValue(); } },
                 { "applicationGuardAllowPrintToPDF", n => { ApplicationGuardAllowPrintToPDF = n.GetBoolValue(); } },
                 { "applicationGuardAllowPrintToXPS", n => { ApplicationGuardAllowPrintToXPS = n.GetBoolValue(); } },
-                { "applicationGuardBlockClipboardSharing", n => { ApplicationGuardBlockClipboardSharing = n.GetEnumValue<ApplicationGuardBlockClipboardSharingType>(); } },
-                { "applicationGuardBlockFileTransfer", n => { ApplicationGuardBlockFileTransfer = n.GetEnumValue<ApplicationGuardBlockFileTransferType>(); } },
+                { "applicationGuardBlockClipboardSharing", n => { ApplicationGuardBlockClipboardSharing = n.GetEnumValue<ApiSdk.Models.ApplicationGuardBlockClipboardSharingType>(); } },
+                { "applicationGuardBlockFileTransfer", n => { ApplicationGuardBlockFileTransfer = n.GetEnumValue<ApiSdk.Models.ApplicationGuardBlockFileTransferType>(); } },
                 { "applicationGuardBlockNonEnterpriseContent", n => { ApplicationGuardBlockNonEnterpriseContent = n.GetBoolValue(); } },
                 { "applicationGuardEnabled", n => { ApplicationGuardEnabled = n.GetBoolValue(); } },
                 { "applicationGuardForceAuditing", n => { ApplicationGuardForceAuditing = n.GetBoolValue(); } },
@@ -184,18 +184,18 @@ namespace ApiSdk.Models
                 { "defenderGuardedFoldersAllowedAppPaths", n => { DefenderGuardedFoldersAllowedAppPaths = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "defenderSecurityCenterBlockExploitProtectionOverride", n => { DefenderSecurityCenterBlockExploitProtectionOverride = n.GetBoolValue(); } },
                 { "firewallBlockStatefulFTP", n => { FirewallBlockStatefulFTP = n.GetBoolValue(); } },
-                { "firewallCertificateRevocationListCheckMethod", n => { FirewallCertificateRevocationListCheckMethod = n.GetEnumValue<FirewallCertificateRevocationListCheckMethodType>(); } },
+                { "firewallCertificateRevocationListCheckMethod", n => { FirewallCertificateRevocationListCheckMethod = n.GetEnumValue<ApiSdk.Models.FirewallCertificateRevocationListCheckMethodType>(); } },
                 { "firewallIPSecExemptionsAllowDHCP", n => { FirewallIPSecExemptionsAllowDHCP = n.GetBoolValue(); } },
                 { "firewallIPSecExemptionsAllowICMP", n => { FirewallIPSecExemptionsAllowICMP = n.GetBoolValue(); } },
                 { "firewallIPSecExemptionsAllowNeighborDiscovery", n => { FirewallIPSecExemptionsAllowNeighborDiscovery = n.GetBoolValue(); } },
                 { "firewallIPSecExemptionsAllowRouterDiscovery", n => { FirewallIPSecExemptionsAllowRouterDiscovery = n.GetBoolValue(); } },
                 { "firewallIdleTimeoutForSecurityAssociationInSeconds", n => { FirewallIdleTimeoutForSecurityAssociationInSeconds = n.GetIntValue(); } },
                 { "firewallMergeKeyingModuleSettings", n => { FirewallMergeKeyingModuleSettings = n.GetBoolValue(); } },
-                { "firewallPacketQueueingMethod", n => { FirewallPacketQueueingMethod = n.GetEnumValue<FirewallPacketQueueingMethodType>(); } },
-                { "firewallPreSharedKeyEncodingMethod", n => { FirewallPreSharedKeyEncodingMethod = n.GetEnumValue<FirewallPreSharedKeyEncodingMethodType>(); } },
-                { "firewallProfileDomain", n => { FirewallProfileDomain = n.GetObjectValue<WindowsFirewallNetworkProfile>(WindowsFirewallNetworkProfile.CreateFromDiscriminatorValue); } },
-                { "firewallProfilePrivate", n => { FirewallProfilePrivate = n.GetObjectValue<WindowsFirewallNetworkProfile>(WindowsFirewallNetworkProfile.CreateFromDiscriminatorValue); } },
-                { "firewallProfilePublic", n => { FirewallProfilePublic = n.GetObjectValue<WindowsFirewallNetworkProfile>(WindowsFirewallNetworkProfile.CreateFromDiscriminatorValue); } },
+                { "firewallPacketQueueingMethod", n => { FirewallPacketQueueingMethod = n.GetEnumValue<ApiSdk.Models.FirewallPacketQueueingMethodType>(); } },
+                { "firewallPreSharedKeyEncodingMethod", n => { FirewallPreSharedKeyEncodingMethod = n.GetEnumValue<ApiSdk.Models.FirewallPreSharedKeyEncodingMethodType>(); } },
+                { "firewallProfileDomain", n => { FirewallProfileDomain = n.GetObjectValue<ApiSdk.Models.WindowsFirewallNetworkProfile>(ApiSdk.Models.WindowsFirewallNetworkProfile.CreateFromDiscriminatorValue); } },
+                { "firewallProfilePrivate", n => { FirewallProfilePrivate = n.GetObjectValue<ApiSdk.Models.WindowsFirewallNetworkProfile>(ApiSdk.Models.WindowsFirewallNetworkProfile.CreateFromDiscriminatorValue); } },
+                { "firewallProfilePublic", n => { FirewallProfilePublic = n.GetObjectValue<ApiSdk.Models.WindowsFirewallNetworkProfile>(ApiSdk.Models.WindowsFirewallNetworkProfile.CreateFromDiscriminatorValue); } },
                 { "smartScreenBlockOverrideForFiles", n => { SmartScreenBlockOverrideForFiles = n.GetBoolValue(); } },
                 { "smartScreenEnableInShell", n => { SmartScreenEnableInShell = n.GetBoolValue(); } },
             };
@@ -213,12 +213,12 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("applicationGuardAllowPrintToNetworkPrinters", ApplicationGuardAllowPrintToNetworkPrinters);
             writer.WriteBoolValue("applicationGuardAllowPrintToPDF", ApplicationGuardAllowPrintToPDF);
             writer.WriteBoolValue("applicationGuardAllowPrintToXPS", ApplicationGuardAllowPrintToXPS);
-            writer.WriteEnumValue<ApplicationGuardBlockClipboardSharingType>("applicationGuardBlockClipboardSharing", ApplicationGuardBlockClipboardSharing);
-            writer.WriteEnumValue<ApplicationGuardBlockFileTransferType>("applicationGuardBlockFileTransfer", ApplicationGuardBlockFileTransfer);
+            writer.WriteEnumValue<ApiSdk.Models.ApplicationGuardBlockClipboardSharingType>("applicationGuardBlockClipboardSharing", ApplicationGuardBlockClipboardSharing);
+            writer.WriteEnumValue<ApiSdk.Models.ApplicationGuardBlockFileTransferType>("applicationGuardBlockFileTransfer", ApplicationGuardBlockFileTransfer);
             writer.WriteBoolValue("applicationGuardBlockNonEnterpriseContent", ApplicationGuardBlockNonEnterpriseContent);
             writer.WriteBoolValue("applicationGuardEnabled", ApplicationGuardEnabled);
             writer.WriteBoolValue("applicationGuardForceAuditing", ApplicationGuardForceAuditing);
-            writer.WriteEnumValue<AppLockerApplicationControlType>("appLockerApplicationControl", AppLockerApplicationControl);
+            writer.WriteEnumValue<ApiSdk.Models.AppLockerApplicationControlType>("appLockerApplicationControl", AppLockerApplicationControl);
             writer.WriteBoolValue("bitLockerDisableWarningForOtherDiskEncryption", BitLockerDisableWarningForOtherDiskEncryption);
             writer.WriteBoolValue("bitLockerEnableStorageCardEncryptionOnMobile", BitLockerEnableStorageCardEncryptionOnMobile);
             writer.WriteBoolValue("bitLockerEncryptDevice", BitLockerEncryptDevice);
@@ -230,18 +230,18 @@ namespace ApiSdk.Models
             writer.WriteCollectionOfPrimitiveValues<string>("defenderGuardedFoldersAllowedAppPaths", DefenderGuardedFoldersAllowedAppPaths);
             writer.WriteBoolValue("defenderSecurityCenterBlockExploitProtectionOverride", DefenderSecurityCenterBlockExploitProtectionOverride);
             writer.WriteBoolValue("firewallBlockStatefulFTP", FirewallBlockStatefulFTP);
-            writer.WriteEnumValue<FirewallCertificateRevocationListCheckMethodType>("firewallCertificateRevocationListCheckMethod", FirewallCertificateRevocationListCheckMethod);
+            writer.WriteEnumValue<ApiSdk.Models.FirewallCertificateRevocationListCheckMethodType>("firewallCertificateRevocationListCheckMethod", FirewallCertificateRevocationListCheckMethod);
             writer.WriteIntValue("firewallIdleTimeoutForSecurityAssociationInSeconds", FirewallIdleTimeoutForSecurityAssociationInSeconds);
             writer.WriteBoolValue("firewallIPSecExemptionsAllowDHCP", FirewallIPSecExemptionsAllowDHCP);
             writer.WriteBoolValue("firewallIPSecExemptionsAllowICMP", FirewallIPSecExemptionsAllowICMP);
             writer.WriteBoolValue("firewallIPSecExemptionsAllowNeighborDiscovery", FirewallIPSecExemptionsAllowNeighborDiscovery);
             writer.WriteBoolValue("firewallIPSecExemptionsAllowRouterDiscovery", FirewallIPSecExemptionsAllowRouterDiscovery);
             writer.WriteBoolValue("firewallMergeKeyingModuleSettings", FirewallMergeKeyingModuleSettings);
-            writer.WriteEnumValue<FirewallPacketQueueingMethodType>("firewallPacketQueueingMethod", FirewallPacketQueueingMethod);
-            writer.WriteEnumValue<FirewallPreSharedKeyEncodingMethodType>("firewallPreSharedKeyEncodingMethod", FirewallPreSharedKeyEncodingMethod);
-            writer.WriteObjectValue<WindowsFirewallNetworkProfile>("firewallProfileDomain", FirewallProfileDomain);
-            writer.WriteObjectValue<WindowsFirewallNetworkProfile>("firewallProfilePrivate", FirewallProfilePrivate);
-            writer.WriteObjectValue<WindowsFirewallNetworkProfile>("firewallProfilePublic", FirewallProfilePublic);
+            writer.WriteEnumValue<ApiSdk.Models.FirewallPacketQueueingMethodType>("firewallPacketQueueingMethod", FirewallPacketQueueingMethod);
+            writer.WriteEnumValue<ApiSdk.Models.FirewallPreSharedKeyEncodingMethodType>("firewallPreSharedKeyEncodingMethod", FirewallPreSharedKeyEncodingMethod);
+            writer.WriteObjectValue<ApiSdk.Models.WindowsFirewallNetworkProfile>("firewallProfileDomain", FirewallProfileDomain);
+            writer.WriteObjectValue<ApiSdk.Models.WindowsFirewallNetworkProfile>("firewallProfilePrivate", FirewallProfilePrivate);
+            writer.WriteObjectValue<ApiSdk.Models.WindowsFirewallNetworkProfile>("firewallProfilePublic", FirewallProfilePublic);
             writer.WriteBoolValue("smartScreenBlockOverrideForFiles", SmartScreenBlockOverrideForFiles);
             writer.WriteBoolValue("smartScreenEnableInShell", SmartScreenEnableInShell);
         }

@@ -28,7 +28,7 @@ namespace ApiSdk.Models
         /// <summary>The number of minutes to snooze the restart notification dialog when the snooze button is selected.</summary>
         public int? RestartNotificationSnoozeDurationInMinutes { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Win32LobAppRestartSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Win32LobAppRestartSettings"/> and sets the default values.
         /// </summary>
         public Win32LobAppRestartSettings()
         {
@@ -37,12 +37,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Win32LobAppRestartSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Win32LobAppRestartSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Win32LobAppRestartSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Win32LobAppRestartSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Win32LobAppRestartSettings();
+            return new ApiSdk.Models.Win32LobAppRestartSettings();
         }
         /// <summary>
         /// The deserialization information for the current model

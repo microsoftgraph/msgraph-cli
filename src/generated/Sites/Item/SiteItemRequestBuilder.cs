@@ -50,7 +50,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("analytics");
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.site entity.";
-            var builder = new AnalyticsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Analytics.AnalyticsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAllTimeNavCommand());
@@ -77,7 +77,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.site entity.";
-            var builder = new ColumnsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Columns.ColumnsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -104,7 +104,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.site entity.";
-            var builder = new ContentTypesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.ContentTypes.ContentTypesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddCopyFromContentTypeHubNavCommand());
@@ -134,7 +134,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
-            var builder = new CreatedByUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.CreatedByUser.CreatedByUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -158,7 +158,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.site entity.";
-            var builder = new DriveRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Drive.DriveRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -175,7 +175,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the drives property of the microsoft.graph.site entity.";
-            var builder = new DrivesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Drives.DrivesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -201,7 +201,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("external-columns");
             command.Description = "Provides operations to manage the externalColumns property of the microsoft.graph.site entity.";
-            var builder = new ExternalColumnsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.ExternalColumns.ExternalColumnsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -227,7 +227,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("get-activities-by-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
-            var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.GetActivitiesByInterval.GetActivitiesByIntervalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -244,7 +244,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("get-activities-by-interval-with-start-date-time-with-end-date-time-with-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
-            var builder = new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -261,7 +261,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("get-applicable-content-types-for-list-with-list-id");
             command.Description = "Provides operations to call the getApplicableContentTypesForList method.";
-            var builder = new GetApplicableContentTypesForListWithListIdRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId.GetApplicableContentTypesForListWithListIdRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -278,7 +278,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("get-by-path-with-path");
             command.Description = "Provides operations to call the getByPath method.";
-            var builder = new GetByPathWithPathRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPathRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAnalyticsNavCommand());
@@ -374,7 +374,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.site entity.";
-            var builder = new ItemsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Items.ItemsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -400,7 +400,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
-            var builder = new LastModifiedByUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.LastModifiedByUser.LastModifiedByUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -424,7 +424,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("lists");
             command.Description = "Provides operations to manage the lists property of the microsoft.graph.site entity.";
-            var builder = new ListsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Lists.ListsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -451,7 +451,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("onenote");
             command.Description = "Provides operations to manage the onenote property of the microsoft.graph.site entity.";
-            var builder = new OnenoteRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Onenote.OnenoteRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -481,7 +481,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.site entity.";
-            var builder = new OperationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Operations.OperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -508,7 +508,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("pages");
             command.Description = "Provides operations to manage the pages property of the microsoft.graph.site entity.";
-            var builder = new PagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Pages.PagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -587,7 +587,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("permissions");
             command.Description = "Provides operations to manage the permissions property of the microsoft.graph.site entity.";
-            var builder = new PermissionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Permissions.PermissionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -640,7 +640,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("term-store");
             command.Description = "Provides operations to manage the termStore property of the microsoft.graph.site entity.";
-            var builder = new TermStoreRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.TermStore.TermStoreRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -666,7 +666,7 @@ namespace ApiSdk.Sites.Item
         {
             var command = new Command("term-stores");
             command.Description = "Provides operations to manage the termStores property of the microsoft.graph.site entity.";
-            var builder = new TermStoresRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.TermStores.TermStoresRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -686,14 +686,14 @@ namespace ApiSdk.Sites.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SiteItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.SiteItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SiteItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SiteItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.SiteItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SiteItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}{?%24expand,%24select}", rawUrl)
@@ -706,11 +706,11 @@ namespace ApiSdk.Sites.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SiteItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.SiteItemRequestBuilder.SiteItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SiteItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.SiteItemRequestBuilder.SiteItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

@@ -61,14 +61,14 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item.Usage
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UsageRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.AuthenticationStrengthPolicies.Item.Usage.UsageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UsageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/authenticationStrengthPolicies/{authenticationStrengthPolicy%2Did}/usage()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UsageRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.AuthenticationStrengthPolicies.Item.Usage.UsageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UsageRequestBuilder(string rawUrl) : base("{+baseurl}/policies/authenticationStrengthPolicies/{authenticationStrengthPolicy%2Did}/usage()", rawUrl)

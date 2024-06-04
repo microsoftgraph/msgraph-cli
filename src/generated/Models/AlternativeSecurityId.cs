@@ -39,7 +39,7 @@ namespace ApiSdk.Models
         /// <summary>For internal use only.</summary>
         public int? Type { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AlternativeSecurityId"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AlternativeSecurityId"/> and sets the default values.
         /// </summary>
         public AlternativeSecurityId()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AlternativeSecurityId"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AlternativeSecurityId"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AlternativeSecurityId CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AlternativeSecurityId CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AlternativeSecurityId();
+            return new ApiSdk.Models.AlternativeSecurityId();
         }
         /// <summary>
         /// The deserialization information for the current model

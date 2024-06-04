@@ -169,7 +169,7 @@ namespace ApiSdk.Security.ThreatIntelligence.SslCertificates.Item
         {
             var command = new Command("related-hosts");
             command.Description = "Provides operations to manage the relatedHosts property of the microsoft.graph.security.sslCertificate entity.";
-            var builder = new RelatedHostsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.SslCertificates.Item.RelatedHosts.RelatedHostsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -188,14 +188,14 @@ namespace ApiSdk.Security.ThreatIntelligence.SslCertificates.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SslCertificateItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.ThreatIntelligence.SslCertificates.Item.SslCertificateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SslCertificateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/sslCertificates/{sslCertificate%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SslCertificateItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.ThreatIntelligence.SslCertificates.Item.SslCertificateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SslCertificateItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/sslCertificates/{sslCertificate%2Did}{?%24expand,%24select}", rawUrl)
@@ -227,11 +227,11 @@ namespace ApiSdk.Security.ThreatIntelligence.SslCertificates.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SslCertificateItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.ThreatIntelligence.SslCertificates.Item.SslCertificateItemRequestBuilder.SslCertificateItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SslCertificateItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.ThreatIntelligence.SslCertificates.Item.SslCertificateItemRequestBuilder.SslCertificateItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>The user who created the print job. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserIdentity? CreatedBy { get; set; }
+        public ApiSdk.Models.UserIdentity? CreatedBy { get; set; }
 #nullable restore
 #else
-        public UserIdentity CreatedBy { get; set; }
+        public ApiSdk.Models.UserIdentity CreatedBy { get; set; }
 #endif
         /// <summary>The dateTimeOffset when the job was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -63,9 +63,9 @@ namespace ApiSdk.Models
         public string PrinterName { get; set; }
 #endif
         /// <summary>The processingState property</summary>
-        public PrintJobProcessingState? ProcessingState { get; set; }
+        public ApiSdk.Models.PrintJobProcessingState? ProcessingState { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ArchivedPrintJob"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ArchivedPrintJob"/> and sets the default values.
         /// </summary>
         public ArchivedPrintJob()
         {
@@ -74,12 +74,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ArchivedPrintJob"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ArchivedPrintJob"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ArchivedPrintJob CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ArchivedPrintJob CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ArchivedPrintJob();
+            return new ApiSdk.Models.ArchivedPrintJob();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -93,13 +93,13 @@ namespace ApiSdk.Models
                 { "acquiredDateTime", n => { AcquiredDateTime = n.GetDateTimeOffsetValue(); } },
                 { "completionDateTime", n => { CompletionDateTime = n.GetDateTimeOffsetValue(); } },
                 { "copiesPrinted", n => { CopiesPrinted = n.GetIntValue(); } },
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.UserIdentity>(ApiSdk.Models.UserIdentity.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "printerId", n => { PrinterId = n.GetStringValue(); } },
                 { "printerName", n => { PrinterName = n.GetStringValue(); } },
-                { "processingState", n => { ProcessingState = n.GetEnumValue<PrintJobProcessingState>(); } },
+                { "processingState", n => { ProcessingState = n.GetEnumValue<ApiSdk.Models.PrintJobProcessingState>(); } },
             };
         }
         /// <summary>
@@ -113,13 +113,13 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("acquiredDateTime", AcquiredDateTime);
             writer.WriteDateTimeOffsetValue("completionDateTime", CompletionDateTime);
             writer.WriteIntValue("copiesPrinted", CopiesPrinted);
-            writer.WriteObjectValue<UserIdentity>("createdBy", CreatedBy);
+            writer.WriteObjectValue<ApiSdk.Models.UserIdentity>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("printerId", PrinterId);
             writer.WriteStringValue("printerName", PrinterName);
-            writer.WriteEnumValue<PrintJobProcessingState>("processingState", ProcessingState);
+            writer.WriteEnumValue<ApiSdk.Models.PrintJobProcessingState>("processingState", ProcessingState);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

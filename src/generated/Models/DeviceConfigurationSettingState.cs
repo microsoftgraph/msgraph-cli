@@ -66,13 +66,13 @@ namespace ApiSdk.Models
         /// <summary>Contributing policies</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SettingSource>? Sources { get; set; }
+        public List<ApiSdk.Models.SettingSource>? Sources { get; set; }
 #nullable restore
 #else
-        public List<SettingSource> Sources { get; set; }
+        public List<ApiSdk.Models.SettingSource> Sources { get; set; }
 #endif
         /// <summary>The state property</summary>
-        public ComplianceStatus? State { get; set; }
+        public ApiSdk.Models.ComplianceStatus? State { get; set; }
         /// <summary>UserEmail</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -106,7 +106,7 @@ namespace ApiSdk.Models
         public string UserPrincipalName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DeviceConfigurationSettingState"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DeviceConfigurationSettingState"/> and sets the default values.
         /// </summary>
         public DeviceConfigurationSettingState()
         {
@@ -115,12 +115,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceConfigurationSettingState"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceConfigurationSettingState"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DeviceConfigurationSettingState CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.DeviceConfigurationSettingState CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceConfigurationSettingState();
+            return new ApiSdk.Models.DeviceConfigurationSettingState();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -137,8 +137,8 @@ namespace ApiSdk.Models
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "setting", n => { Setting = n.GetStringValue(); } },
                 { "settingName", n => { SettingName = n.GetStringValue(); } },
-                { "sources", n => { Sources = n.GetCollectionOfObjectValues<SettingSource>(SettingSource.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "state", n => { State = n.GetEnumValue<ComplianceStatus>(); } },
+                { "sources", n => { Sources = n.GetCollectionOfObjectValues<ApiSdk.Models.SettingSource>(ApiSdk.Models.SettingSource.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.ComplianceStatus>(); } },
                 { "userEmail", n => { UserEmail = n.GetStringValue(); } },
                 { "userId", n => { UserId = n.GetStringValue(); } },
                 { "userName", n => { UserName = n.GetStringValue(); } },
@@ -159,8 +159,8 @@ namespace ApiSdk.Models
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("setting", Setting);
             writer.WriteStringValue("settingName", SettingName);
-            writer.WriteCollectionOfObjectValues<SettingSource>("sources", Sources);
-            writer.WriteEnumValue<ComplianceStatus>("state", State);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SettingSource>("sources", Sources);
+            writer.WriteEnumValue<ApiSdk.Models.ComplianceStatus>("state", State);
             writer.WriteStringValue("userEmail", UserEmail);
             writer.WriteStringValue("userId", UserId);
             writer.WriteStringValue("userName", UserName);

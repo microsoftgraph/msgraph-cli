@@ -23,13 +23,13 @@ namespace ApiSdk.Models
         /// <summary>Identity of the call participant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Participant { get; set; }
+        public ApiSdk.Models.IdentitySet? Participant { get; set; }
 #nullable restore
 #else
-        public IdentitySet Participant { get; set; }
+        public ApiSdk.Models.IdentitySet Participant { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CallParticipantInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CallParticipantInfo"/> and sets the default values.
         /// </summary>
         public CallParticipantInfo()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CallParticipantInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallParticipantInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CallParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CallParticipantInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CallParticipantInfo();
+            return new ApiSdk.Models.CallParticipantInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "participant", n => { Participant = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "participant", n => { Participant = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<IdentitySet>("participant", Participant);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("participant", Participant);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -55,14 +55,14 @@ namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByFeature
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UsersRegisteredByFeatureRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByFeature.UsersRegisteredByFeatureRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UsersRegisteredByFeatureRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/authenticationMethods/usersRegisteredByFeature()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UsersRegisteredByFeatureRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByFeature.UsersRegisteredByFeatureRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UsersRegisteredByFeatureRequestBuilder(string rawUrl) : base("{+baseurl}/reports/authenticationMethods/usersRegisteredByFeature()", rawUrl)

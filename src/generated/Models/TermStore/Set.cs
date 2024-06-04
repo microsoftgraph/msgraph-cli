@@ -13,10 +13,10 @@ namespace ApiSdk.Models.TermStore
         /// <summary>Children terms of set in term [store].</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Term>? Children { get; set; }
+        public List<ApiSdk.Models.TermStore.Term>? Children { get; set; }
 #nullable restore
 #else
-        public List<Term> Children { get; set; }
+        public List<ApiSdk.Models.TermStore.Term> Children { get; set; }
 #endif
         /// <summary>Date and time of set creation. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -31,18 +31,18 @@ namespace ApiSdk.Models.TermStore
         /// <summary>Name of the set for each languageTag.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LocalizedName>? LocalizedNames { get; set; }
+        public List<ApiSdk.Models.TermStore.LocalizedName>? LocalizedNames { get; set; }
 #nullable restore
 #else
-        public List<LocalizedName> LocalizedNames { get; set; }
+        public List<ApiSdk.Models.TermStore.LocalizedName> LocalizedNames { get; set; }
 #endif
         /// <summary>The parentGroup property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Group? ParentGroup { get; set; }
+        public ApiSdk.Models.TermStore.Group? ParentGroup { get; set; }
 #nullable restore
 #else
-        public Group ParentGroup { get; set; }
+        public ApiSdk.Models.TermStore.Group ParentGroup { get; set; }
 #endif
         /// <summary>Custom properties for the set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,28 +55,28 @@ namespace ApiSdk.Models.TermStore
         /// <summary>Indicates which terms have been pinned or reused directly under the set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Relation>? Relations { get; set; }
+        public List<ApiSdk.Models.TermStore.Relation>? Relations { get; set; }
 #nullable restore
 #else
-        public List<Relation> Relations { get; set; }
+        public List<ApiSdk.Models.TermStore.Relation> Relations { get; set; }
 #endif
         /// <summary>All the terms under the set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Term>? Terms { get; set; }
+        public List<ApiSdk.Models.TermStore.Term>? Terms { get; set; }
 #nullable restore
 #else
-        public List<Term> Terms { get; set; }
+        public List<ApiSdk.Models.TermStore.Term> Terms { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Set"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermStore.Set"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Set CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TermStore.Set CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Set();
+            return new ApiSdk.Models.TermStore.Set();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -86,14 +86,14 @@ namespace ApiSdk.Models.TermStore
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "children", n => { Children = n.GetCollectionOfObjectValues<Term>(Term.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "children", n => { Children = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.Term>(ApiSdk.Models.TermStore.Term.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "localizedNames", n => { LocalizedNames = n.GetCollectionOfObjectValues<LocalizedName>(LocalizedName.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "parentGroup", n => { ParentGroup = n.GetObjectValue<Group>(Group.CreateFromDiscriminatorValue); } },
+                { "localizedNames", n => { LocalizedNames = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.LocalizedName>(ApiSdk.Models.TermStore.LocalizedName.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "parentGroup", n => { ParentGroup = n.GetObjectValue<ApiSdk.Models.TermStore.Group>(ApiSdk.Models.TermStore.Group.CreateFromDiscriminatorValue); } },
                 { "properties", n => { Properties = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValue>(ApiSdk.Models.KeyValue.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "relations", n => { Relations = n.GetCollectionOfObjectValues<Relation>(Relation.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "terms", n => { Terms = n.GetCollectionOfObjectValues<Term>(Term.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "relations", n => { Relations = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.Relation>(ApiSdk.Models.TermStore.Relation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "terms", n => { Terms = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.Term>(ApiSdk.Models.TermStore.Term.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -104,14 +104,14 @@ namespace ApiSdk.Models.TermStore
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Term>("children", Children);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.Term>("children", Children);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfObjectValues<LocalizedName>("localizedNames", LocalizedNames);
-            writer.WriteObjectValue<Group>("parentGroup", ParentGroup);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.LocalizedName>("localizedNames", LocalizedNames);
+            writer.WriteObjectValue<ApiSdk.Models.TermStore.Group>("parentGroup", ParentGroup);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValue>("properties", Properties);
-            writer.WriteCollectionOfObjectValues<Relation>("relations", Relations);
-            writer.WriteCollectionOfObjectValues<Term>("terms", Terms);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.Relation>("relations", Relations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.Term>("terms", Terms);
         }
     }
 }

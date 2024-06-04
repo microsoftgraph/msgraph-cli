@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CloudClipboardItem : Entity, IParsable
+    public class CloudClipboardItem : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Set by the server. DateTime in UTC when the object was created on the server.</summary>
@@ -19,20 +19,20 @@ namespace ApiSdk.Models
         /// <summary>A cloudClipboardItem can have multiple cloudClipboardItemPayload objects in the payloads. A window can place more than one clipboard object on the clipboard. Each one represents the same information in a different clipboard format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<CloudClipboardItemPayload>? Payloads { get; set; }
+        public List<ApiSdk.Models.CloudClipboardItemPayload>? Payloads { get; set; }
 #nullable restore
 #else
-        public List<CloudClipboardItemPayload> Payloads { get; set; }
+        public List<ApiSdk.Models.CloudClipboardItemPayload> Payloads { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudClipboardItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudClipboardItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CloudClipboardItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CloudClipboardItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudClipboardItem();
+            return new ApiSdk.Models.CloudClipboardItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "payloads", n => { Payloads = n.GetCollectionOfObjectValues<CloudClipboardItemPayload>(CloudClipboardItemPayload.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "payloads", n => { Payloads = n.GetCollectionOfObjectValues<ApiSdk.Models.CloudClipboardItemPayload>(ApiSdk.Models.CloudClipboardItemPayload.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -59,7 +59,7 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteCollectionOfObjectValues<CloudClipboardItemPayload>("payloads", Payloads);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.CloudClipboardItemPayload>("payloads", Payloads);
         }
     }
 }

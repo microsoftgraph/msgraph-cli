@@ -16,29 +16,29 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The criteria property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Criteria { get; set; }
+        public ApiSdk.Models.Json? Criteria { get; set; }
 #nullable restore
 #else
-        public Json Criteria { get; set; }
+        public ApiSdk.Models.Json Criteria { get; set; }
 #endif
         /// <summary>The database property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Database { get; set; }
+        public ApiSdk.Models.Json? Database { get; set; }
 #nullable restore
 #else
-        public Json Database { get; set; }
+        public ApiSdk.Models.Json Database { get; set; }
 #endif
         /// <summary>The field property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Field { get; set; }
+        public ApiSdk.Models.Json? Field { get; set; }
 #nullable restore
 #else
-        public Json Field { get; set; }
+        public ApiSdk.Models.Json Field { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DstDevPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DstDev.DstDevPostRequestBody"/> and sets the default values.
         /// </summary>
         public DstDevPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DstDevPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DstDev.DstDevPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DstDevPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DstDev.DstDevPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DstDevPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DstDev.DstDevPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "criteria", n => { Criteria = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "database", n => { Database = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "field", n => { Field = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "criteria", n => { Criteria = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "database", n => { Database = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "field", n => { Field = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("criteria", Criteria);
-            writer.WriteObjectValue<Json>("database", Database);
-            writer.WriteObjectValue<Json>("field", Field);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("criteria", Criteria);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("database", Database);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("field", Field);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

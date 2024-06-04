@@ -22,7 +22,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>Indicates the package type of an MSI Win32LobApp.</summary>
-        public Win32LobAppMsiPackageType? PackageType { get; set; }
+        public ApiSdk.Models.Win32LobAppMsiPackageType? PackageType { get; set; }
         /// <summary>The MSI product code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
         public string UpgradeCode { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Win32LobAppMsiInformation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Win32LobAppMsiInformation"/> and sets the default values.
         /// </summary>
         public Win32LobAppMsiInformation()
         {
@@ -75,12 +75,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Win32LobAppMsiInformation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Win32LobAppMsiInformation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Win32LobAppMsiInformation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Win32LobAppMsiInformation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Win32LobAppMsiInformation();
+            return new ApiSdk.Models.Win32LobAppMsiInformation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -91,7 +91,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "packageType", n => { PackageType = n.GetEnumValue<Win32LobAppMsiPackageType>(); } },
+                { "packageType", n => { PackageType = n.GetEnumValue<ApiSdk.Models.Win32LobAppMsiPackageType>(); } },
                 { "productCode", n => { ProductCode = n.GetStringValue(); } },
                 { "productName", n => { ProductName = n.GetStringValue(); } },
                 { "productVersion", n => { ProductVersion = n.GetStringValue(); } },
@@ -108,7 +108,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<Win32LobAppMsiPackageType>("packageType", PackageType);
+            writer.WriteEnumValue<ApiSdk.Models.Win32LobAppMsiPackageType>("packageType", PackageType);
             writer.WriteStringValue("productCode", ProductCode);
             writer.WriteStringValue("productName", ProductName);
             writer.WriteStringValue("productVersion", ProductVersion);

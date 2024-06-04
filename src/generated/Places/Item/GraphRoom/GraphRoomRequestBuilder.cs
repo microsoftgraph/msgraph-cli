@@ -75,14 +75,14 @@ namespace ApiSdk.Places.Item.GraphRoom
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphRoomRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Places.Item.GraphRoom.GraphRoomRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphRoomRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places/{place%2Did}/graph.room{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GraphRoomRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Places.Item.GraphRoom.GraphRoomRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphRoomRequestBuilder(string rawUrl) : base("{+baseurl}/places/{place%2Did}/graph.room{?%24expand,%24select}", rawUrl)
@@ -95,11 +95,11 @@ namespace ApiSdk.Places.Item.GraphRoom
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphRoomRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Places.Item.GraphRoom.GraphRoomRequestBuilder.GraphRoomRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphRoomRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Places.Item.GraphRoom.GraphRoomRequestBuilder.GraphRoomRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

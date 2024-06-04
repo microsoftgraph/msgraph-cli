@@ -24,13 +24,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         /// <summary>The sourceData property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? SourceData { get; set; }
+        public ApiSdk.Models.Json? SourceData { get; set; }
 #nullable restore
 #else
-        public Json SourceData { get; set; }
+        public ApiSdk.Models.Json SourceData { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SetDataPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.SetData.SetDataPostRequestBody"/> and sets the default values.
         /// </summary>
         public SetDataPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SetDataPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.SetData.SetDataPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SetDataPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.SetData.SetDataPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SetDataPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.SetData.SetDataPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "seriesBy", n => { SeriesBy = n.GetStringValue(); } },
-                { "sourceData", n => { SourceData = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "sourceData", n => { SourceData = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("seriesBy", SeriesBy);
-            writer.WriteObjectValue<Json>("sourceData", SourceData);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("sourceData", SourceData);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

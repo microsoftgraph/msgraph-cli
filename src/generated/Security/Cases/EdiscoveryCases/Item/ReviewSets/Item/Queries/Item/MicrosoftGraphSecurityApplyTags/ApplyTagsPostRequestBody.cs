@@ -16,21 +16,21 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
         /// <summary>The tagsToAdd property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EdiscoveryReviewTag>? TagsToAdd { get; set; }
+        public List<ApiSdk.Models.Security.EdiscoveryReviewTag>? TagsToAdd { get; set; }
 #nullable restore
 #else
-        public List<EdiscoveryReviewTag> TagsToAdd { get; set; }
+        public List<ApiSdk.Models.Security.EdiscoveryReviewTag> TagsToAdd { get; set; }
 #endif
         /// <summary>The tagsToRemove property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EdiscoveryReviewTag>? TagsToRemove { get; set; }
+        public List<ApiSdk.Models.Security.EdiscoveryReviewTag>? TagsToRemove { get; set; }
 #nullable restore
 #else
-        public List<EdiscoveryReviewTag> TagsToRemove { get; set; }
+        public List<ApiSdk.Models.Security.EdiscoveryReviewTag> TagsToRemove { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ApplyTagsPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.MicrosoftGraphSecurityApplyTags.ApplyTagsPostRequestBody"/> and sets the default values.
         /// </summary>
         public ApplyTagsPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ApplyTagsPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.MicrosoftGraphSecurityApplyTags.ApplyTagsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ApplyTagsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.MicrosoftGraphSecurityApplyTags.ApplyTagsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ApplyTagsPostRequestBody();
+            return new ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.MicrosoftGraphSecurityApplyTags.ApplyTagsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "tagsToAdd", n => { TagsToAdd = n.GetCollectionOfObjectValues<EdiscoveryReviewTag>(EdiscoveryReviewTag.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "tagsToRemove", n => { TagsToRemove = n.GetCollectionOfObjectValues<EdiscoveryReviewTag>(EdiscoveryReviewTag.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tagsToAdd", n => { TagsToAdd = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.EdiscoveryReviewTag>(ApiSdk.Models.Security.EdiscoveryReviewTag.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tagsToRemove", n => { TagsToRemove = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.EdiscoveryReviewTag>(ApiSdk.Models.Security.EdiscoveryReviewTag.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<EdiscoveryReviewTag>("tagsToAdd", TagsToAdd);
-            writer.WriteCollectionOfObjectValues<EdiscoveryReviewTag>("tagsToRemove", TagsToRemove);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.EdiscoveryReviewTag>("tagsToAdd", TagsToAdd);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.EdiscoveryReviewTag>("tagsToRemove", TagsToRemove);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

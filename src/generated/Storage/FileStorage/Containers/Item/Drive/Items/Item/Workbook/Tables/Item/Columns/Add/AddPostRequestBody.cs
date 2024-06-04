@@ -26,13 +26,13 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         /// <summary>The values property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Values { get; set; }
+        public ApiSdk.Models.Json? Values { get; set; }
 #nullable restore
 #else
-        public Json Values { get; set; }
+        public ApiSdk.Models.Json Values { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AddPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Add.AddPostRequestBody"/> and sets the default values.
         /// </summary>
         public AddPostRequestBody()
         {
@@ -41,12 +41,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Add.AddPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AddPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Add.AddPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Add.AddPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,7 +58,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
             {
                 { "index", n => { Index = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "values", n => { Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "values", n => { Values = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -70,7 +70,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("index", Index);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<Json>("values", Values);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

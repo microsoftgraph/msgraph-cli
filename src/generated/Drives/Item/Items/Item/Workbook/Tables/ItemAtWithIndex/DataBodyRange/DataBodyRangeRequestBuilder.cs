@@ -73,14 +73,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.DataBody
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DataBodyRangeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.DataBodyRange.DataBodyRangeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DataBodyRangeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/itemAt(index={index})/dataBodyRange()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DataBodyRangeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.DataBodyRange.DataBodyRangeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DataBodyRangeRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/itemAt(index={index})/dataBodyRange()", rawUrl)

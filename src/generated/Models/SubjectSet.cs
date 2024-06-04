@@ -22,7 +22,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SubjectSet"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SubjectSet"/> and sets the default values.
         /// </summary>
         public SubjectSet()
         {
@@ -31,27 +31,27 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SubjectSet"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SubjectSet"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SubjectSet CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SubjectSet CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.attributeRuleMembers" => new AttributeRuleMembers(),
-                "#microsoft.graph.connectedOrganizationMembers" => new ConnectedOrganizationMembers(),
-                "#microsoft.graph.externalSponsors" => new ExternalSponsors(),
-                "#microsoft.graph.groupMembers" => new GroupMembers(),
-                "#microsoft.graph.identityGovernance.ruleBasedSubjectSet" => new RuleBasedSubjectSet(),
-                "#microsoft.graph.internalSponsors" => new InternalSponsors(),
-                "#microsoft.graph.requestorManager" => new RequestorManager(),
-                "#microsoft.graph.singleServicePrincipal" => new SingleServicePrincipal(),
-                "#microsoft.graph.singleUser" => new SingleUser(),
-                "#microsoft.graph.targetApplicationOwners" => new TargetApplicationOwners(),
-                "#microsoft.graph.targetManager" => new TargetManager(),
-                "#microsoft.graph.targetUserSponsors" => new TargetUserSponsors(),
-                _ => new SubjectSet(),
+                "#microsoft.graph.attributeRuleMembers" => new ApiSdk.Models.AttributeRuleMembers(),
+                "#microsoft.graph.connectedOrganizationMembers" => new ApiSdk.Models.ConnectedOrganizationMembers(),
+                "#microsoft.graph.externalSponsors" => new ApiSdk.Models.ExternalSponsors(),
+                "#microsoft.graph.groupMembers" => new ApiSdk.Models.GroupMembers(),
+                "#microsoft.graph.identityGovernance.ruleBasedSubjectSet" => new ApiSdk.Models.IdentityGovernance.RuleBasedSubjectSet(),
+                "#microsoft.graph.internalSponsors" => new ApiSdk.Models.InternalSponsors(),
+                "#microsoft.graph.requestorManager" => new ApiSdk.Models.RequestorManager(),
+                "#microsoft.graph.singleServicePrincipal" => new ApiSdk.Models.SingleServicePrincipal(),
+                "#microsoft.graph.singleUser" => new ApiSdk.Models.SingleUser(),
+                "#microsoft.graph.targetApplicationOwners" => new ApiSdk.Models.TargetApplicationOwners(),
+                "#microsoft.graph.targetManager" => new ApiSdk.Models.TargetManager(),
+                "#microsoft.graph.targetUserSponsors" => new ApiSdk.Models.TargetUserSponsors(),
+                _ => new ApiSdk.Models.SubjectSet(),
             };
         }
         /// <summary>

@@ -48,7 +48,7 @@ namespace ApiSdk.Communications.OnlineMeetings.CreateOrGet
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CreateOrGetPostRequestBody>(CreateOrGetPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Communications.OnlineMeetings.CreateOrGet.CreateOrGetPostRequestBody>(ApiSdk.Communications.OnlineMeetings.CreateOrGet.CreateOrGetPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -68,14 +68,14 @@ namespace ApiSdk.Communications.OnlineMeetings.CreateOrGet
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CreateOrGetRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.OnlineMeetings.CreateOrGet.CreateOrGetRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CreateOrGetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/createOrGet", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CreateOrGetRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.OnlineMeetings.CreateOrGet.CreateOrGetRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CreateOrGetRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/createOrGet", rawUrl)
@@ -89,11 +89,11 @@ namespace ApiSdk.Communications.OnlineMeetings.CreateOrGet
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(CreateOrGetPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Communications.OnlineMeetings.CreateOrGet.CreateOrGetPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(CreateOrGetPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Communications.OnlineMeetings.CreateOrGet.CreateOrGetPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

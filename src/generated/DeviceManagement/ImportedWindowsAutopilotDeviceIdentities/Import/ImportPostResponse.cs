@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Import
 {
     #pragma warning disable CS1591
-    public class ImportPostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class ImportPostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ImportedWindowsAutopilotDeviceIdentity>? Value { get; set; }
+        public List<ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentity>? Value { get; set; }
 #nullable restore
 #else
-        public List<ImportedWindowsAutopilotDeviceIdentity> Value { get; set; }
+        public List<ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentity> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ImportPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Import.ImportPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ImportPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Import.ImportPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ImportPostResponse();
+            return new ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Import.ImportPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Impor
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<ImportedWindowsAutopilotDeviceIdentity>(ImportedWindowsAutopilotDeviceIdentity.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentity>(ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentity.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Impor
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ImportedWindowsAutopilotDeviceIdentity>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentity>("value", Value);
         }
     }
 }

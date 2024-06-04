@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         /// <summary>If set to true, enables users to include stickers and memes.</summary>
         public bool? AllowStickersAndMemes { get; set; }
         /// <summary>Giphy content rating. Possible values are: moderate, strict.</summary>
-        public GiphyRatingType? GiphyContentRating { get; set; }
+        public ApiSdk.Models.GiphyRatingType? GiphyContentRating { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -29,7 +29,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TeamFunSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TeamFunSettings"/> and sets the default values.
         /// </summary>
         public TeamFunSettings()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamFunSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamFunSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TeamFunSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TeamFunSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamFunSettings();
+            return new ApiSdk.Models.TeamFunSettings();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
                 { "allowCustomMemes", n => { AllowCustomMemes = n.GetBoolValue(); } },
                 { "allowGiphy", n => { AllowGiphy = n.GetBoolValue(); } },
                 { "allowStickersAndMemes", n => { AllowStickersAndMemes = n.GetBoolValue(); } },
-                { "giphyContentRating", n => { GiphyContentRating = n.GetEnumValue<GiphyRatingType>(); } },
+                { "giphyContentRating", n => { GiphyContentRating = n.GetEnumValue<ApiSdk.Models.GiphyRatingType>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -70,7 +70,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("allowCustomMemes", AllowCustomMemes);
             writer.WriteBoolValue("allowGiphy", AllowGiphy);
             writer.WriteBoolValue("allowStickersAndMemes", AllowStickersAndMemes);
-            writer.WriteEnumValue<GiphyRatingType>("giphyContentRating", GiphyContentRating);
+            writer.WriteEnumValue<ApiSdk.Models.GiphyRatingType>("giphyContentRating", GiphyContentRating);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UnifiedRoleManagementPolicyAuthenticationContextRule : UnifiedRoleManagementPolicyRule, IParsable
+    public class UnifiedRoleManagementPolicyAuthenticationContextRule : ApiSdk.Models.UnifiedRoleManagementPolicyRule, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value of the authentication context claim.</summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         /// <summary>Determines whether this rule is enabled.</summary>
         public bool? IsEnabled { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="UnifiedRoleManagementPolicyAuthenticationContextRule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UnifiedRoleManagementPolicyAuthenticationContextRule"/> and sets the default values.
         /// </summary>
         public UnifiedRoleManagementPolicyAuthenticationContextRule() : base()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedRoleManagementPolicyAuthenticationContextRule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UnifiedRoleManagementPolicyAuthenticationContextRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UnifiedRoleManagementPolicyAuthenticationContextRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UnifiedRoleManagementPolicyAuthenticationContextRule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedRoleManagementPolicyAuthenticationContextRule();
+            return new ApiSdk.Models.UnifiedRoleManagementPolicyAuthenticationContextRule();
         }
         /// <summary>
         /// The deserialization information for the current model

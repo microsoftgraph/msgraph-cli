@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UnifiedRoleManagementPolicyExpirationRule : UnifiedRoleManagementPolicyRule, IParsable
+    public class UnifiedRoleManagementPolicyExpirationRule : ApiSdk.Models.UnifiedRoleManagementPolicyRule, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates whether expiration is required or if it&apos;s a permanently active assignment or eligibility.</summary>
@@ -15,7 +15,7 @@ namespace ApiSdk.Models
         /// <summary>The maximum duration allowed for eligibility or assignment that isn&apos;t permanent. Required when isExpirationRequired is true.</summary>
         public TimeSpan? MaximumDuration { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="UnifiedRoleManagementPolicyExpirationRule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UnifiedRoleManagementPolicyExpirationRule"/> and sets the default values.
         /// </summary>
         public UnifiedRoleManagementPolicyExpirationRule() : base()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedRoleManagementPolicyExpirationRule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UnifiedRoleManagementPolicyExpirationRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UnifiedRoleManagementPolicyExpirationRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UnifiedRoleManagementPolicyExpirationRule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedRoleManagementPolicyExpirationRule();
+            return new ApiSdk.Models.UnifiedRoleManagementPolicyExpirationRule();
         }
         /// <summary>
         /// The deserialization information for the current model

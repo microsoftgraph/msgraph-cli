@@ -13,20 +13,20 @@ namespace ApiSdk.Models.Search
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Bookmark>? Value { get; set; }
+        public List<ApiSdk.Models.Search.Bookmark>? Value { get; set; }
 #nullable restore
 #else
-        public List<Bookmark> Value { get; set; }
+        public List<ApiSdk.Models.Search.Bookmark> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BookmarkCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Search.BookmarkCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new BookmarkCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Search.BookmarkCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BookmarkCollectionResponse();
+            return new ApiSdk.Models.Search.BookmarkCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Search
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<Bookmark>(Bookmark.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Search.Bookmark>(ApiSdk.Models.Search.Bookmark.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Search
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Bookmark>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Search.Bookmark>("value", Value);
         }
     }
 }

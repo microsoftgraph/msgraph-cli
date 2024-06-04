@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class RiskyServicePrincipalHistoryItem : RiskyServicePrincipal, IParsable
+    public class RiskyServicePrincipalHistoryItem : ApiSdk.Models.RiskyServicePrincipal, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The activity related to service principal risk level change.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RiskServicePrincipalActivity? Activity { get; set; }
+        public ApiSdk.Models.RiskServicePrincipalActivity? Activity { get; set; }
 #nullable restore
 #else
-        public RiskServicePrincipalActivity Activity { get; set; }
+        public ApiSdk.Models.RiskServicePrincipalActivity Activity { get; set; }
 #endif
         /// <summary>The identifier of the actor of the operation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,12 +29,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RiskyServicePrincipalHistoryItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RiskyServicePrincipalHistoryItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RiskyServicePrincipalHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.RiskyServicePrincipalHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RiskyServicePrincipalHistoryItem();
+            return new ApiSdk.Models.RiskyServicePrincipalHistoryItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -44,7 +44,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "activity", n => { Activity = n.GetObjectValue<RiskServicePrincipalActivity>(RiskServicePrincipalActivity.CreateFromDiscriminatorValue); } },
+                { "activity", n => { Activity = n.GetObjectValue<ApiSdk.Models.RiskServicePrincipalActivity>(ApiSdk.Models.RiskServicePrincipalActivity.CreateFromDiscriminatorValue); } },
                 { "initiatedBy", n => { InitiatedBy = n.GetStringValue(); } },
             };
         }
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<RiskServicePrincipalActivity>("activity", Activity);
+            writer.WriteObjectValue<ApiSdk.Models.RiskServicePrincipalActivity>("activity", Activity);
             writer.WriteStringValue("initiatedBy", InitiatedBy);
         }
     }

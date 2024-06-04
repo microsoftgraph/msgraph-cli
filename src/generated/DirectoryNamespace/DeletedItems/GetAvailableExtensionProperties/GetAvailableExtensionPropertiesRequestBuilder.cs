@@ -51,7 +51,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<GetAvailableExtensionPropertiesPostRequestBody>(GetAvailableExtensionPropertiesPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesPostRequestBody>(ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -80,14 +80,14 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetAvailableExtensionPropertiesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetAvailableExtensionPropertiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/deletedItems/getAvailableExtensionProperties", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetAvailableExtensionPropertiesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetAvailableExtensionPropertiesRequestBuilder(string rawUrl) : base("{+baseurl}/directory/deletedItems/getAvailableExtensionProperties", rawUrl)
@@ -101,11 +101,11 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(GetAvailableExtensionPropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(GetAvailableExtensionPropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties.GetAvailableExtensionPropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

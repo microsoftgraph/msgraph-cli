@@ -7,20 +7,20 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class MicrosoftAuthenticatorAuthenticationMethodTarget : AuthenticationMethodTarget, IParsable
+    public class MicrosoftAuthenticatorAuthenticationMethodTarget : ApiSdk.Models.AuthenticationMethodTarget, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The authenticationMode property</summary>
-        public MicrosoftAuthenticatorAuthenticationMode? AuthenticationMode { get; set; }
+        public ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMode? AuthenticationMode { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MicrosoftAuthenticatorAuthenticationMethodTarget"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodTarget"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MicrosoftAuthenticatorAuthenticationMethodTarget CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodTarget CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MicrosoftAuthenticatorAuthenticationMethodTarget();
+            return new ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodTarget();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -30,7 +30,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "authenticationMode", n => { AuthenticationMode = n.GetEnumValue<MicrosoftAuthenticatorAuthenticationMode>(); } },
+                { "authenticationMode", n => { AuthenticationMode = n.GetEnumValue<ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMode>(); } },
             };
         }
         /// <summary>
@@ -41,7 +41,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<MicrosoftAuthenticatorAuthenticationMode>("authenticationMode", AuthenticationMode);
+            writer.WriteEnumValue<ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMode>("authenticationMode", AuthenticationMode);
         }
     }
 }

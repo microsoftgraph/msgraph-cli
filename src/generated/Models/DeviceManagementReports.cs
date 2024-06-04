@@ -9,25 +9,25 @@ namespace ApiSdk.Models
     /// <summary>
     /// Singleton entity that acts as a container for all reports functionality.
     /// </summary>
-    public class DeviceManagementReports : Entity, IParsable
+    public class DeviceManagementReports : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Entity representing a job to export a report</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DeviceManagementExportJob>? ExportJobs { get; set; }
+        public List<ApiSdk.Models.DeviceManagementExportJob>? ExportJobs { get; set; }
 #nullable restore
 #else
-        public List<DeviceManagementExportJob> ExportJobs { get; set; }
+        public List<ApiSdk.Models.DeviceManagementExportJob> ExportJobs { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceManagementReports"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceManagementReports"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceManagementReports CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceManagementReports CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceManagementReports();
+            return new ApiSdk.Models.DeviceManagementReports();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "exportJobs", n => { ExportJobs = n.GetCollectionOfObjectValues<DeviceManagementExportJob>(DeviceManagementExportJob.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "exportJobs", n => { ExportJobs = n.GetCollectionOfObjectValues<ApiSdk.Models.DeviceManagementExportJob>(ApiSdk.Models.DeviceManagementExportJob.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<DeviceManagementExportJob>("exportJobs", ExportJobs);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DeviceManagementExportJob>("exportJobs", ExportJobs);
         }
     }
 }

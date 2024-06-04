@@ -15,26 +15,26 @@ namespace ApiSdk.Models
         /// <summary>*Experimental* Filter group set used to decide whether given object belongs and should be processed as part of this object mapping. An object is considered in scope if ANY of the groups in the collection is evaluated to true.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<FilterGroup>? CategoryFilterGroups { get; set; }
+        public List<ApiSdk.Models.FilterGroup>? CategoryFilterGroups { get; set; }
 #nullable restore
 #else
-        public List<FilterGroup> CategoryFilterGroups { get; set; }
+        public List<ApiSdk.Models.FilterGroup> CategoryFilterGroups { get; set; }
 #endif
         /// <summary>Filter group set used to decide whether given object is in scope for provisioning. This is the filter which should be used in most cases. If an object used to satisfy this filter at a given moment, and then the object or the filter was changed so that filter isn&apos;t satisfied any longer, such object will get deprovisioned&apos;. An object is considered in scope if ANY of the groups in the collection is evaluated to true.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<FilterGroup>? Groups { get; set; }
+        public List<ApiSdk.Models.FilterGroup>? Groups { get; set; }
 #nullable restore
 #else
-        public List<FilterGroup> Groups { get; set; }
+        public List<ApiSdk.Models.FilterGroup> Groups { get; set; }
 #endif
         /// <summary>*Experimental* Filter group set used to filter out objects at the early stage of reading them from the directory. If an object doesn&apos;t satisfy this filter, then it will not be processed further. Important to understand is that if an object used to satisfy this filter at a given moment, and then the object or the filter was changed so that filter is no longer satisfied, such object will NOT get deprovisioned. An object is considered in scope if ANY of the groups in the collection is evaluated to true.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<FilterGroup>? InputFilterGroups { get; set; }
+        public List<ApiSdk.Models.FilterGroup>? InputFilterGroups { get; set; }
 #nullable restore
 #else
-        public List<FilterGroup> InputFilterGroups { get; set; }
+        public List<ApiSdk.Models.FilterGroup> InputFilterGroups { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Filter"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Filter"/> and sets the default values.
         /// </summary>
         public Filter()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Filter"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Filter"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Filter CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Filter CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Filter();
+            return new ApiSdk.Models.Filter();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,9 +69,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "categoryFilterGroups", n => { CategoryFilterGroups = n.GetCollectionOfObjectValues<FilterGroup>(FilterGroup.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "groups", n => { Groups = n.GetCollectionOfObjectValues<FilterGroup>(FilterGroup.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "inputFilterGroups", n => { InputFilterGroups = n.GetCollectionOfObjectValues<FilterGroup>(FilterGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "categoryFilterGroups", n => { CategoryFilterGroups = n.GetCollectionOfObjectValues<ApiSdk.Models.FilterGroup>(ApiSdk.Models.FilterGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "groups", n => { Groups = n.GetCollectionOfObjectValues<ApiSdk.Models.FilterGroup>(ApiSdk.Models.FilterGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "inputFilterGroups", n => { InputFilterGroups = n.GetCollectionOfObjectValues<ApiSdk.Models.FilterGroup>(ApiSdk.Models.FilterGroup.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -82,9 +82,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<FilterGroup>("categoryFilterGroups", CategoryFilterGroups);
-            writer.WriteCollectionOfObjectValues<FilterGroup>("groups", Groups);
-            writer.WriteCollectionOfObjectValues<FilterGroup>("inputFilterGroups", InputFilterGroups);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.FilterGroup>("categoryFilterGroups", CategoryFilterGroups);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.FilterGroup>("groups", Groups);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.FilterGroup>("inputFilterGroups", InputFilterGroups);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

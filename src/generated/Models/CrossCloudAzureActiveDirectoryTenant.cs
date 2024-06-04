@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CrossCloudAzureActiveDirectoryTenant : IdentitySource, IParsable
+    public class CrossCloudAzureActiveDirectoryTenant : ApiSdk.Models.IdentitySource, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The ID of the cloud where the tenant is located, one of microsoftonline.com, microsoftonline.us or partner.microsoftonline.cn. Read only.</summary>
@@ -35,7 +35,7 @@ namespace ApiSdk.Models
         public string TenantId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CrossCloudAzureActiveDirectoryTenant"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CrossCloudAzureActiveDirectoryTenant"/> and sets the default values.
         /// </summary>
         public CrossCloudAzureActiveDirectoryTenant() : base()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CrossCloudAzureActiveDirectoryTenant"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CrossCloudAzureActiveDirectoryTenant"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CrossCloudAzureActiveDirectoryTenant CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CrossCloudAzureActiveDirectoryTenant CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CrossCloudAzureActiveDirectoryTenant();
+            return new ApiSdk.Models.CrossCloudAzureActiveDirectoryTenant();
         }
         /// <summary>
         /// The deserialization information for the current model

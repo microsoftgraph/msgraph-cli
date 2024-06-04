@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// An abstract base class containing properties for all managed mobile line of business apps.
     /// </summary>
-    public class ManagedMobileLobApp : ManagedApp, IParsable
+    public class ManagedMobileLobApp : ApiSdk.Models.ManagedApp, IParsable
     {
         /// <summary>The internal committed content version.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,10 +22,10 @@ namespace ApiSdk.Models
         /// <summary>The list of content versions for this app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MobileAppContent>? ContentVersions { get; set; }
+        public List<ApiSdk.Models.MobileAppContent>? ContentVersions { get; set; }
 #nullable restore
 #else
-        public List<MobileAppContent> ContentVersions { get; set; }
+        public List<ApiSdk.Models.MobileAppContent> ContentVersions { get; set; }
 #endif
         /// <summary>The name of the main Lob application file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -38,7 +38,7 @@ namespace ApiSdk.Models
         /// <summary>The total size, including all uploaded files.</summary>
         public long? Size { get; private set; }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedMobileLobApp"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ManagedMobileLobApp"/> and sets the default values.
         /// </summary>
         public ManagedMobileLobApp() : base()
         {
@@ -47,17 +47,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ManagedMobileLobApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ManagedMobileLobApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ManagedMobileLobApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ManagedMobileLobApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.managedAndroidLobApp" => new ManagedAndroidLobApp(),
-                "#microsoft.graph.managedIOSLobApp" => new ManagedIOSLobApp(),
-                _ => new ManagedMobileLobApp(),
+                "#microsoft.graph.managedAndroidLobApp" => new ApiSdk.Models.ManagedAndroidLobApp(),
+                "#microsoft.graph.managedIOSLobApp" => new ApiSdk.Models.ManagedIOSLobApp(),
+                _ => new ApiSdk.Models.ManagedMobileLobApp(),
             };
         }
         /// <summary>
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "committedContentVersion", n => { CommittedContentVersion = n.GetStringValue(); } },
-                { "contentVersions", n => { ContentVersions = n.GetCollectionOfObjectValues<MobileAppContent>(MobileAppContent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "contentVersions", n => { ContentVersions = n.GetCollectionOfObjectValues<ApiSdk.Models.MobileAppContent>(ApiSdk.Models.MobileAppContent.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "fileName", n => { FileName = n.GetStringValue(); } },
                 { "size", n => { Size = n.GetLongValue(); } },
             };
@@ -83,7 +83,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("committedContentVersion", CommittedContentVersion);
-            writer.WriteCollectionOfObjectValues<MobileAppContent>("contentVersions", ContentVersions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MobileAppContent>("contentVersions", ContentVersions);
             writer.WriteStringValue("fileName", FileName);
         }
     }

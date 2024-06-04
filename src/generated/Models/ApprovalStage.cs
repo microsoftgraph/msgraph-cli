@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ApprovalStage : Entity, IParsable
+    public class ApprovalStage : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates whether the stage is assigned to the calling user to review. Read-only.</summary>
@@ -31,10 +31,10 @@ namespace ApiSdk.Models
         /// <summary>The identifier of the reviewer. 00000000-0000-0000-0000-000000000000 if the assigned reviewer hasn&apos;t reviewed. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Identity? ReviewedBy { get; set; }
+        public ApiSdk.Models.Identity? ReviewedBy { get; set; }
 #nullable restore
 #else
-        public Identity ReviewedBy { get; set; }
+        public ApiSdk.Models.Identity ReviewedBy { get; set; }
 #endif
         /// <summary>The date and time when a decision was recorded. The date and time information uses ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? ReviewedDateTime { get; set; }
@@ -57,12 +57,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ApprovalStage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ApprovalStage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ApprovalStage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ApprovalStage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ApprovalStage();
+            return new ApiSdk.Models.ApprovalStage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,7 +76,7 @@ namespace ApiSdk.Models
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "justification", n => { Justification = n.GetStringValue(); } },
                 { "reviewResult", n => { ReviewResult = n.GetStringValue(); } },
-                { "reviewedBy", n => { ReviewedBy = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                { "reviewedBy", n => { ReviewedBy = n.GetObjectValue<ApiSdk.Models.Identity>(ApiSdk.Models.Identity.CreateFromDiscriminatorValue); } },
                 { "reviewedDateTime", n => { ReviewedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "status", n => { Status = n.GetStringValue(); } },
             };
@@ -92,7 +92,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("assignedToMe", AssignedToMe);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("justification", Justification);
-            writer.WriteObjectValue<Identity>("reviewedBy", ReviewedBy);
+            writer.WriteObjectValue<ApiSdk.Models.Identity>("reviewedBy", ReviewedBy);
             writer.WriteDateTimeOffsetValue("reviewedDateTime", ReviewedDateTime);
             writer.WriteStringValue("reviewResult", ReviewResult);
             writer.WriteStringValue("status", Status);

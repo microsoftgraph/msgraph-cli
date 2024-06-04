@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>Optional. The application associated with this action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Identity? Application { get; set; }
+        public ApiSdk.Models.Identity? Application { get; set; }
 #nullable restore
 #else
-        public Identity Application { get; set; }
+        public ApiSdk.Models.Identity Application { get; set; }
 #endif
         /// <summary>Optional. The device associated with this action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Identity? Device { get; set; }
+        public ApiSdk.Models.Identity? Device { get; set; }
 #nullable restore
 #else
-        public Identity Device { get; set; }
+        public ApiSdk.Models.Identity Device { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,13 +39,13 @@ namespace ApiSdk.Models
         /// <summary>Optional. The user associated with this action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Identity? User { get; set; }
+        public ApiSdk.Models.Identity? User { get; set; }
 #nullable restore
 #else
-        public Identity User { get; set; }
+        public ApiSdk.Models.Identity User { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IdentitySet"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentitySet"/> and sets the default values.
         /// </summary>
         public IdentitySet()
         {
@@ -54,20 +54,20 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IdentitySet"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentitySet"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IdentitySet CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IdentitySet CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.chatMessageFromIdentitySet" => new ChatMessageFromIdentitySet(),
-                "#microsoft.graph.chatMessageMentionedIdentitySet" => new ChatMessageMentionedIdentitySet(),
-                "#microsoft.graph.chatMessageReactionIdentitySet" => new ChatMessageReactionIdentitySet(),
-                "#microsoft.graph.communicationsIdentitySet" => new CommunicationsIdentitySet(),
-                "#microsoft.graph.sharePointIdentitySet" => new SharePointIdentitySet(),
-                _ => new IdentitySet(),
+                "#microsoft.graph.chatMessageFromIdentitySet" => new ApiSdk.Models.ChatMessageFromIdentitySet(),
+                "#microsoft.graph.chatMessageMentionedIdentitySet" => new ApiSdk.Models.ChatMessageMentionedIdentitySet(),
+                "#microsoft.graph.chatMessageReactionIdentitySet" => new ApiSdk.Models.ChatMessageReactionIdentitySet(),
+                "#microsoft.graph.communicationsIdentitySet" => new ApiSdk.Models.CommunicationsIdentitySet(),
+                "#microsoft.graph.sharePointIdentitySet" => new ApiSdk.Models.SharePointIdentitySet(),
+                _ => new ApiSdk.Models.IdentitySet(),
             };
         }
         /// <summary>
@@ -78,10 +78,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "application", n => { Application = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
-                { "device", n => { Device = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                { "application", n => { Application = n.GetObjectValue<ApiSdk.Models.Identity>(ApiSdk.Models.Identity.CreateFromDiscriminatorValue); } },
+                { "device", n => { Device = n.GetObjectValue<ApiSdk.Models.Identity>(ApiSdk.Models.Identity.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "user", n => { User = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                { "user", n => { User = n.GetObjectValue<ApiSdk.Models.Identity>(ApiSdk.Models.Identity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -91,10 +91,10 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Identity>("application", Application);
-            writer.WriteObjectValue<Identity>("device", Device);
+            writer.WriteObjectValue<ApiSdk.Models.Identity>("application", Application);
+            writer.WriteObjectValue<ApiSdk.Models.Identity>("device", Device);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<Identity>("user", User);
+            writer.WriteObjectValue<ApiSdk.Models.Identity>("user", User);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -25,9 +25,9 @@ namespace ApiSdk.Models
         /// <summary>Offset of coachmark.</summary>
         public int? Offset { get; set; }
         /// <summary>Type of coachmark location. The possible values are: unknown, fromEmail, subject, externalTag, displayName, messageBody, unknownFutureValue.</summary>
-        public CoachmarkLocationType? Type { get; set; }
+        public ApiSdk.Models.CoachmarkLocationType? Type { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CoachmarkLocation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CoachmarkLocation"/> and sets the default values.
         /// </summary>
         public CoachmarkLocation()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CoachmarkLocation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CoachmarkLocation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CoachmarkLocation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CoachmarkLocation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CoachmarkLocation();
+            return new ApiSdk.Models.CoachmarkLocation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
                 { "length", n => { Length = n.GetIntValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "offset", n => { Offset = n.GetIntValue(); } },
-                { "type", n => { Type = n.GetEnumValue<CoachmarkLocationType>(); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.CoachmarkLocationType>(); } },
             };
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
             writer.WriteIntValue("length", Length);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("offset", Offset);
-            writer.WriteEnumValue<CoachmarkLocationType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.CoachmarkLocationType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

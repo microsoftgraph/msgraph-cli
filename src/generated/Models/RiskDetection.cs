@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class RiskDetection : Entity, IParsable
+    public class RiskDetection : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates the activity type the detected risk is linked to. Possible values are: signin, user, unknownFutureValue.</summary>
-        public ActivityType? Activity { get; set; }
+        public ApiSdk.Models.ActivityType? Activity { get; set; }
         /// <summary>Date and time that the risky activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is look like this: 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? ActivityDateTime { get; set; }
         /// <summary>Additional information associated with the risk detection in JSON format. For example, &apos;[{/&apos;Key/&apos;:/&apos;userAgent/&apos;,/&apos;Value/&apos;:/&apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36/&apos;}]&apos;. Possible keys in the additionalInfo JSON string are: userAgent, alertUrl, relatedEventTimeInUtc, relatedUserAgent, deviceInformation, relatedLocation, requestId, correlationId, lastActivityTimeInUtc, malwareName, clientLocation, clientIp, riskReasons. For more information about riskReasons and possible values, see riskReasons values.</summary>
@@ -33,7 +33,7 @@ namespace ApiSdk.Models
         /// <summary>Date and time that the risk was detected. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 looks like this: 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? DetectedDateTime { get; set; }
         /// <summary>Timing of the detected risk (real-time/offline). Possible values are: notDefined, realtime, nearRealtime, offline, unknownFutureValue.</summary>
-        public RiskDetectionTimingType? DetectionTimingType { get; set; }
+        public ApiSdk.Models.RiskDetectionTimingType? DetectionTimingType { get; set; }
         /// <summary>Provides the IP address of the client from where the risk occurred.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,10 +47,10 @@ namespace ApiSdk.Models
         /// <summary>Location of the sign-in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SignInLocation? Location { get; set; }
+        public ApiSdk.Models.SignInLocation? Location { get; set; }
 #nullable restore
 #else
-        public SignInLocation Location { get; set; }
+        public ApiSdk.Models.SignInLocation Location { get; set; }
 #endif
         /// <summary>Request ID of the sign-in associated with the risk detection. This property is null if the risk detection is not associated with a sign-in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -111,12 +111,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RiskDetection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RiskDetection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RiskDetection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.RiskDetection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RiskDetection();
+            return new ApiSdk.Models.RiskDetection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -126,22 +126,22 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "activity", n => { Activity = n.GetEnumValue<ActivityType>(); } },
+                { "activity", n => { Activity = n.GetEnumValue<ApiSdk.Models.ActivityType>(); } },
                 { "activityDateTime", n => { ActivityDateTime = n.GetDateTimeOffsetValue(); } },
                 { "additionalInfo", n => { AdditionalInfo = n.GetStringValue(); } },
                 { "correlationId", n => { CorrelationId = n.GetStringValue(); } },
                 { "detectedDateTime", n => { DetectedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "detectionTimingType", n => { DetectionTimingType = n.GetEnumValue<RiskDetectionTimingType>(); } },
+                { "detectionTimingType", n => { DetectionTimingType = n.GetEnumValue<ApiSdk.Models.RiskDetectionTimingType>(); } },
                 { "ipAddress", n => { IpAddress = n.GetStringValue(); } },
                 { "lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "location", n => { Location = n.GetObjectValue<SignInLocation>(SignInLocation.CreateFromDiscriminatorValue); } },
+                { "location", n => { Location = n.GetObjectValue<ApiSdk.Models.SignInLocation>(ApiSdk.Models.SignInLocation.CreateFromDiscriminatorValue); } },
                 { "requestId", n => { RequestId = n.GetStringValue(); } },
-                { "riskDetail", n => { RiskDetail = n.GetEnumValue<RiskDetail>(); } },
+                { "riskDetail", n => { RiskDetail = n.GetEnumValue<ApiSdk.Models.RiskDetail>(); } },
                 { "riskEventType", n => { RiskEventType = n.GetStringValue(); } },
-                { "riskLevel", n => { RiskLevel = n.GetEnumValue<RiskLevel>(); } },
-                { "riskState", n => { RiskState = n.GetEnumValue<RiskState>(); } },
+                { "riskLevel", n => { RiskLevel = n.GetEnumValue<ApiSdk.Models.RiskLevel>(); } },
+                { "riskState", n => { RiskState = n.GetEnumValue<ApiSdk.Models.RiskState>(); } },
                 { "source", n => { Source = n.GetStringValue(); } },
-                { "tokenIssuerType", n => { TokenIssuerType = n.GetEnumValue<TokenIssuerType>(); } },
+                { "tokenIssuerType", n => { TokenIssuerType = n.GetEnumValue<ApiSdk.Models.TokenIssuerType>(); } },
                 { "userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
                 { "userId", n => { UserId = n.GetStringValue(); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
@@ -155,22 +155,22 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<ActivityType>("activity", Activity);
+            writer.WriteEnumValue<ApiSdk.Models.ActivityType>("activity", Activity);
             writer.WriteDateTimeOffsetValue("activityDateTime", ActivityDateTime);
             writer.WriteStringValue("additionalInfo", AdditionalInfo);
             writer.WriteStringValue("correlationId", CorrelationId);
             writer.WriteDateTimeOffsetValue("detectedDateTime", DetectedDateTime);
-            writer.WriteEnumValue<RiskDetectionTimingType>("detectionTimingType", DetectionTimingType);
+            writer.WriteEnumValue<ApiSdk.Models.RiskDetectionTimingType>("detectionTimingType", DetectionTimingType);
             writer.WriteStringValue("ipAddress", IpAddress);
             writer.WriteDateTimeOffsetValue("lastUpdatedDateTime", LastUpdatedDateTime);
-            writer.WriteObjectValue<SignInLocation>("location", Location);
+            writer.WriteObjectValue<ApiSdk.Models.SignInLocation>("location", Location);
             writer.WriteStringValue("requestId", RequestId);
-            writer.WriteEnumValue<RiskDetail>("riskDetail", RiskDetail);
+            writer.WriteEnumValue<ApiSdk.Models.RiskDetail>("riskDetail", RiskDetail);
             writer.WriteStringValue("riskEventType", RiskEventType);
-            writer.WriteEnumValue<RiskLevel>("riskLevel", RiskLevel);
-            writer.WriteEnumValue<RiskState>("riskState", RiskState);
+            writer.WriteEnumValue<ApiSdk.Models.RiskLevel>("riskLevel", RiskLevel);
+            writer.WriteEnumValue<ApiSdk.Models.RiskState>("riskState", RiskState);
             writer.WriteStringValue("source", Source);
-            writer.WriteEnumValue<TokenIssuerType>("tokenIssuerType", TokenIssuerType);
+            writer.WriteEnumValue<ApiSdk.Models.TokenIssuerType>("tokenIssuerType", TokenIssuerType);
             writer.WriteStringValue("userDisplayName", UserDisplayName);
             writer.WriteStringValue("userId", UserId);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);

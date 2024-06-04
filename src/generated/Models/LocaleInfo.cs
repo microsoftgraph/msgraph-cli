@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="LocaleInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.LocaleInfo"/> and sets the default values.
         /// </summary>
         public LocaleInfo()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LocaleInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.LocaleInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static LocaleInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.LocaleInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LocaleInfo();
+            return new ApiSdk.Models.LocaleInfo();
         }
         /// <summary>
         /// The deserialization information for the current model

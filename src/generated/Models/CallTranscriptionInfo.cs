@@ -23,9 +23,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The state property</summary>
-        public CallTranscriptionState? State { get; set; }
+        public ApiSdk.Models.CallTranscriptionState? State { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CallTranscriptionInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CallTranscriptionInfo"/> and sets the default values.
         /// </summary>
         public CallTranscriptionInfo()
         {
@@ -34,12 +34,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CallTranscriptionInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallTranscriptionInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CallTranscriptionInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CallTranscriptionInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CallTranscriptionInfo();
+            return new ApiSdk.Models.CallTranscriptionInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -51,7 +51,7 @@ namespace ApiSdk.Models
             {
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "state", n => { State = n.GetEnumValue<CallTranscriptionState>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.CallTranscriptionState>(); } },
             };
         }
         /// <summary>
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<CallTranscriptionState>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.CallTranscriptionState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

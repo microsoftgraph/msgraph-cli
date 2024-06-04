@@ -127,14 +127,14 @@ namespace ApiSdk.External.Connections.Item.Schema
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SchemaRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.External.Connections.Item.Schema.SchemaRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SchemaRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external/connections/{externalConnection%2Did}/schema{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SchemaRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.External.Connections.Item.Schema.SchemaRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SchemaRequestBuilder(string rawUrl) : base("{+baseurl}/external/connections/{externalConnection%2Did}/schema{?%24expand,%24select}", rawUrl)
@@ -147,11 +147,11 @@ namespace ApiSdk.External.Connections.Item.Schema
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SchemaRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.External.Connections.Item.Schema.SchemaRequestBuilder.SchemaRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SchemaRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.External.Connections.Item.Schema.SchemaRequestBuilder.SchemaRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

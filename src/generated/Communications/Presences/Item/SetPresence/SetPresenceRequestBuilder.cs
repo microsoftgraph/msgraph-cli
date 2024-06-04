@@ -44,7 +44,7 @@ namespace ApiSdk.Communications.Presences.Item.SetPresence
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SetPresencePostRequestBody>(SetPresencePostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Communications.Presences.Item.SetPresence.SetPresencePostRequestBody>(ApiSdk.Communications.Presences.Item.SetPresence.SetPresencePostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -63,14 +63,14 @@ namespace ApiSdk.Communications.Presences.Item.SetPresence
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetPresenceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Presences.Item.SetPresence.SetPresenceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SetPresenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences/{presence%2Did}/setPresence", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetPresenceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Presences.Item.SetPresence.SetPresenceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SetPresenceRequestBuilder(string rawUrl) : base("{+baseurl}/communications/presences/{presence%2Did}/setPresence", rawUrl)
@@ -84,11 +84,11 @@ namespace ApiSdk.Communications.Presences.Item.SetPresence
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(SetPresencePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Communications.Presences.Item.SetPresence.SetPresencePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(SetPresencePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Communications.Presences.Item.SetPresence.SetPresencePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

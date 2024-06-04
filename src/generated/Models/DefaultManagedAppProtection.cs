@@ -9,35 +9,35 @@ namespace ApiSdk.Models
     /// <summary>
     /// Policy used to configure detailed management settings for a specified set of apps for all users not targeted by a TargetedManagedAppProtection Policy
     /// </summary>
-    public class DefaultManagedAppProtection : ManagedAppProtection, IParsable
+    public class DefaultManagedAppProtection : ApiSdk.Models.ManagedAppProtection, IParsable
     {
         /// <summary>Represents the level to which app data is encrypted for managed apps</summary>
-        public ManagedAppDataEncryptionType? AppDataEncryptionType { get; set; }
+        public ApiSdk.Models.ManagedAppDataEncryptionType? AppDataEncryptionType { get; set; }
         /// <summary>List of apps to which the policy is deployed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ManagedMobileApp>? Apps { get; set; }
+        public List<ApiSdk.Models.ManagedMobileApp>? Apps { get; set; }
 #nullable restore
 #else
-        public List<ManagedMobileApp> Apps { get; set; }
+        public List<ApiSdk.Models.ManagedMobileApp> Apps { get; set; }
 #endif
         /// <summary>A set of string key and string value pairs to be sent to the affected users, unalterned by this service</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<KeyValuePair>? CustomSettings { get; set; }
+        public List<ApiSdk.Models.KeyValuePair>? CustomSettings { get; set; }
 #nullable restore
 #else
-        public List<KeyValuePair> CustomSettings { get; set; }
+        public List<ApiSdk.Models.KeyValuePair> CustomSettings { get; set; }
 #endif
         /// <summary>Count of apps to which the current policy is deployed.</summary>
         public int? DeployedAppCount { get; set; }
         /// <summary>Navigation property to deployment summary of the configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ManagedAppPolicyDeploymentSummary? DeploymentSummary { get; set; }
+        public ApiSdk.Models.ManagedAppPolicyDeploymentSummary? DeploymentSummary { get; set; }
 #nullable restore
 #else
-        public ManagedAppPolicyDeploymentSummary DeploymentSummary { get; set; }
+        public ApiSdk.Models.ManagedAppPolicyDeploymentSummary DeploymentSummary { get; set; }
 #endif
         /// <summary>When this setting is enabled, app level encryption is disabled if device level encryption is enabled. (Android only)</summary>
         public bool? DisableAppEncryptionIfDeviceEncryptionIsEnabled { get; set; }
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether screen capture is blocked. (Android only)</summary>
         public bool? ScreenCaptureBlocked { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="DefaultManagedAppProtection"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DefaultManagedAppProtection"/> and sets the default values.
         /// </summary>
         public DefaultManagedAppProtection() : base()
         {
@@ -81,12 +81,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DefaultManagedAppProtection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DefaultManagedAppProtection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DefaultManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DefaultManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DefaultManagedAppProtection();
+            return new ApiSdk.Models.DefaultManagedAppProtection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -96,11 +96,11 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "appDataEncryptionType", n => { AppDataEncryptionType = n.GetEnumValue<ManagedAppDataEncryptionType>(); } },
-                { "apps", n => { Apps = n.GetCollectionOfObjectValues<ManagedMobileApp>(ManagedMobileApp.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "customSettings", n => { CustomSettings = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appDataEncryptionType", n => { AppDataEncryptionType = n.GetEnumValue<ApiSdk.Models.ManagedAppDataEncryptionType>(); } },
+                { "apps", n => { Apps = n.GetCollectionOfObjectValues<ApiSdk.Models.ManagedMobileApp>(ApiSdk.Models.ManagedMobileApp.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "customSettings", n => { CustomSettings = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>(ApiSdk.Models.KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "deployedAppCount", n => { DeployedAppCount = n.GetIntValue(); } },
-                { "deploymentSummary", n => { DeploymentSummary = n.GetObjectValue<ManagedAppPolicyDeploymentSummary>(ManagedAppPolicyDeploymentSummary.CreateFromDiscriminatorValue); } },
+                { "deploymentSummary", n => { DeploymentSummary = n.GetObjectValue<ApiSdk.Models.ManagedAppPolicyDeploymentSummary>(ApiSdk.Models.ManagedAppPolicyDeploymentSummary.CreateFromDiscriminatorValue); } },
                 { "disableAppEncryptionIfDeviceEncryptionIsEnabled", n => { DisableAppEncryptionIfDeviceEncryptionIsEnabled = n.GetBoolValue(); } },
                 { "encryptAppData", n => { EncryptAppData = n.GetBoolValue(); } },
                 { "faceIdBlocked", n => { FaceIdBlocked = n.GetBoolValue(); } },
@@ -118,11 +118,11 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<ManagedAppDataEncryptionType>("appDataEncryptionType", AppDataEncryptionType);
-            writer.WriteCollectionOfObjectValues<ManagedMobileApp>("apps", Apps);
-            writer.WriteCollectionOfObjectValues<KeyValuePair>("customSettings", CustomSettings);
+            writer.WriteEnumValue<ApiSdk.Models.ManagedAppDataEncryptionType>("appDataEncryptionType", AppDataEncryptionType);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ManagedMobileApp>("apps", Apps);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>("customSettings", CustomSettings);
             writer.WriteIntValue("deployedAppCount", DeployedAppCount);
-            writer.WriteObjectValue<ManagedAppPolicyDeploymentSummary>("deploymentSummary", DeploymentSummary);
+            writer.WriteObjectValue<ApiSdk.Models.ManagedAppPolicyDeploymentSummary>("deploymentSummary", DeploymentSummary);
             writer.WriteBoolValue("disableAppEncryptionIfDeviceEncryptionIsEnabled", DisableAppEncryptionIfDeviceEncryptionIsEnabled);
             writer.WriteBoolValue("encryptAppData", EncryptAppData);
             writer.WriteBoolValue("faceIdBlocked", FaceIdBlocked);

@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookOperation : Entity, IParsable
+    public class WorkbookOperation : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The error returned by the operation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookOperationError? Error { get; set; }
+        public ApiSdk.Models.WorkbookOperationError? Error { get; set; }
 #nullable restore
 #else
-        public WorkbookOperationError Error { get; set; }
+        public ApiSdk.Models.WorkbookOperationError Error { get; set; }
 #endif
         /// <summary>The resource URI for the result.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -27,16 +27,16 @@ namespace ApiSdk.Models
         public string ResourceLocation { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public WorkbookOperationStatus? Status { get; set; }
+        public ApiSdk.Models.WorkbookOperationStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookOperation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookOperation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookOperation();
+            return new ApiSdk.Models.WorkbookOperation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,9 +46,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "error", n => { Error = n.GetObjectValue<WorkbookOperationError>(WorkbookOperationError.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<ApiSdk.Models.WorkbookOperationError>(ApiSdk.Models.WorkbookOperationError.CreateFromDiscriminatorValue); } },
                 { "resourceLocation", n => { ResourceLocation = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<WorkbookOperationStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.WorkbookOperationStatus>(); } },
             };
         }
         /// <summary>
@@ -59,9 +59,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookOperationError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookOperationError>("error", Error);
             writer.WriteStringValue("resourceLocation", ResourceLocation);
-            writer.WriteEnumValue<WorkbookOperationStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.WorkbookOperationStatus>("status", Status);
         }
     }
 }

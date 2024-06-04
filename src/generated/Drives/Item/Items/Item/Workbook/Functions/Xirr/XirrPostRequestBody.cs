@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xirr
         /// <summary>The dates property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Dates { get; set; }
+        public ApiSdk.Models.Json? Dates { get; set; }
 #nullable restore
 #else
-        public Json Dates { get; set; }
+        public ApiSdk.Models.Json Dates { get; set; }
 #endif
         /// <summary>The guess property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Guess { get; set; }
+        public ApiSdk.Models.Json? Guess { get; set; }
 #nullable restore
 #else
-        public Json Guess { get; set; }
+        public ApiSdk.Models.Json Guess { get; set; }
 #endif
         /// <summary>The values property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Values { get; set; }
+        public ApiSdk.Models.Json? Values { get; set; }
 #nullable restore
 #else
-        public Json Values { get; set; }
+        public ApiSdk.Models.Json Values { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="XirrPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xirr.XirrPostRequestBody"/> and sets the default values.
         /// </summary>
         public XirrPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xirr
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="XirrPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xirr.XirrPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static XirrPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xirr.XirrPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new XirrPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xirr.XirrPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xirr
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "dates", n => { Dates = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "guess", n => { Guess = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "values", n => { Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "dates", n => { Dates = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "guess", n => { Guess = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "values", n => { Values = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xirr
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("dates", Dates);
-            writer.WriteObjectValue<Json>("guess", Guess);
-            writer.WriteObjectValue<Json>("values", Values);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("dates", Dates);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("guess", Guess);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

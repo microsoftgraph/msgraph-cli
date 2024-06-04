@@ -13,20 +13,20 @@ namespace ApiSdk.Models.Partners.Billing
         /// <summary>The billed property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public BilledReconciliation? Billed { get; set; }
+        public ApiSdk.Models.Partners.Billing.BilledReconciliation? Billed { get; set; }
 #nullable restore
 #else
-        public BilledReconciliation Billed { get; set; }
+        public ApiSdk.Models.Partners.Billing.BilledReconciliation Billed { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BillingReconciliation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Partners.Billing.BillingReconciliation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new BillingReconciliation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Partners.Billing.BillingReconciliation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BillingReconciliation();
+            return new ApiSdk.Models.Partners.Billing.BillingReconciliation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Partners.Billing
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "billed", n => { Billed = n.GetObjectValue<BilledReconciliation>(BilledReconciliation.CreateFromDiscriminatorValue); } },
+                { "billed", n => { Billed = n.GetObjectValue<ApiSdk.Models.Partners.Billing.BilledReconciliation>(ApiSdk.Models.Partners.Billing.BilledReconciliation.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Partners.Billing
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<BilledReconciliation>("billed", Billed);
+            writer.WriteObjectValue<ApiSdk.Models.Partners.Billing.BilledReconciliation>("billed", Billed);
         }
     }
 }

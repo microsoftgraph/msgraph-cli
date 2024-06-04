@@ -16,10 +16,10 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Permissions.Item.Grant
         /// <summary>The recipients property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DriveRecipient>? Recipients { get; set; }
+        public List<ApiSdk.Models.DriveRecipient>? Recipients { get; set; }
 #nullable restore
 #else
-        public List<DriveRecipient> Recipients { get; set; }
+        public List<ApiSdk.Models.DriveRecipient> Recipients { get; set; }
 #endif
         /// <summary>The roles property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -30,7 +30,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Permissions.Item.Grant
         public List<string> Roles { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="GrantPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Permissions.Item.Grant.GrantPostRequestBody"/> and sets the default values.
         /// </summary>
         public GrantPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Permissions.Item.Grant
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GrantPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Permissions.Item.Grant.GrantPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GrantPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Permissions.Item.Grant.GrantPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GrantPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Permissions.Item.Grant.GrantPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Permissions.Item.Grant
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "recipients", n => { Recipients = n.GetCollectionOfObjectValues<DriveRecipient>(DriveRecipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "recipients", n => { Recipients = n.GetCollectionOfObjectValues<ApiSdk.Models.DriveRecipient>(ApiSdk.Models.DriveRecipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "roles", n => { Roles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
@@ -65,7 +65,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Permissions.Item.Grant
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<DriveRecipient>("recipients", Recipients);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DriveRecipient>("recipients", Recipients);
             writer.WriteCollectionOfPrimitiveValues<string>("roles", Roles);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -29,7 +29,7 @@ namespace ApiSdk.Models
         /// <summary>Index of the current web part. Represents the order of the web part in this column or section.</summary>
         public double? WebPartIndex { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="WebPartPosition"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WebPartPosition"/> and sets the default values.
         /// </summary>
         public WebPartPosition()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WebPartPosition"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WebPartPosition"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WebPartPosition CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WebPartPosition CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WebPartPosition();
+            return new ApiSdk.Models.WebPartPosition();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -23,10 +23,10 @@ namespace ApiSdk.Models.ODataErrors
         /// <summary>The details property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ErrorDetails>? Details { get; set; }
+        public List<ApiSdk.Models.ODataErrors.ErrorDetails>? Details { get; set; }
 #nullable restore
 #else
-        public List<ErrorDetails> Details { get; set; }
+        public List<ApiSdk.Models.ODataErrors.ErrorDetails> Details { get; set; }
 #endif
         /// <summary>The innerError property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -53,7 +53,7 @@ namespace ApiSdk.Models.ODataErrors
         public string Target { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MainError"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ODataErrors.MainError"/> and sets the default values.
         /// </summary>
         public MainError()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models.ODataErrors
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MainError"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ODataErrors.MainError"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MainError CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ODataErrors.MainError CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MainError();
+            return new ApiSdk.Models.ODataErrors.MainError();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,7 +78,7 @@ namespace ApiSdk.Models.ODataErrors
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "code", n => { Code = n.GetStringValue(); } },
-                { "details", n => { Details = n.GetCollectionOfObjectValues<ErrorDetails>(ErrorDetails.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "details", n => { Details = n.GetCollectionOfObjectValues<ApiSdk.Models.ODataErrors.ErrorDetails>(ApiSdk.Models.ODataErrors.ErrorDetails.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "innerError", n => { InnerError = n.GetObjectValue<ApiSdk.Models.ODataErrors.InnerError>(ApiSdk.Models.ODataErrors.InnerError.CreateFromDiscriminatorValue); } },
                 { "message", n => { Message = n.GetStringValue(); } },
                 { "target", n => { Target = n.GetStringValue(); } },
@@ -92,7 +92,7 @@ namespace ApiSdk.Models.ODataErrors
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
-            writer.WriteCollectionOfObjectValues<ErrorDetails>("details", Details);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ODataErrors.ErrorDetails>("details", Details);
             writer.WriteObjectValue<ApiSdk.Models.ODataErrors.InnerError>("innerError", InnerError);
             writer.WriteStringValue("message", Message);
             writer.WriteStringValue("target", Target);

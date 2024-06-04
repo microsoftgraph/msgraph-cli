@@ -44,7 +44,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<RemovePasswordPostRequestBody>(RemovePasswordPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.ServicePrincipals.Item.RemovePassword.RemovePasswordPostRequestBody>(ApiSdk.ServicePrincipals.Item.RemovePassword.RemovePasswordPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -63,14 +63,14 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RemovePasswordRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.RemovePassword.RemovePasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RemovePasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/removePassword", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RemovePasswordRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.RemovePassword.RemovePasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RemovePasswordRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/removePassword", rawUrl)
@@ -84,11 +84,11 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(RemovePasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.ServicePrincipals.Item.RemovePassword.RemovePasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(RemovePasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.ServicePrincipals.Item.RemovePassword.RemovePasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

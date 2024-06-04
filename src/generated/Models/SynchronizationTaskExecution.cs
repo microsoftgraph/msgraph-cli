@@ -41,10 +41,10 @@ namespace ApiSdk.Models
         /// <summary>If an error was encountered, contains a synchronizationError object with details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SynchronizationError? Error { get; set; }
+        public ApiSdk.Models.SynchronizationError? Error { get; set; }
 #nullable restore
 #else
-        public SynchronizationError Error { get; set; }
+        public ApiSdk.Models.SynchronizationError Error { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,13 +55,13 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The state property</summary>
-        public SynchronizationTaskExecutionResult? State { get; set; }
+        public ApiSdk.Models.SynchronizationTaskExecutionResult? State { get; set; }
         /// <summary>Time when this job run began. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? TimeBegan { get; set; }
         /// <summary>Time when this job run ended. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? TimeEnded { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SynchronizationTaskExecution"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SynchronizationTaskExecution"/> and sets the default values.
         /// </summary>
         public SynchronizationTaskExecution()
         {
@@ -70,12 +70,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SynchronizationTaskExecution"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SynchronizationTaskExecution"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SynchronizationTaskExecution CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SynchronizationTaskExecution CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SynchronizationTaskExecution();
+            return new ApiSdk.Models.SynchronizationTaskExecution();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -95,9 +95,9 @@ namespace ApiSdk.Models
                 { "countImported", n => { CountImported = n.GetLongValue(); } },
                 { "countImportedDeltas", n => { CountImportedDeltas = n.GetLongValue(); } },
                 { "countImportedReferenceDeltas", n => { CountImportedReferenceDeltas = n.GetLongValue(); } },
-                { "error", n => { Error = n.GetObjectValue<SynchronizationError>(SynchronizationError.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<ApiSdk.Models.SynchronizationError>(ApiSdk.Models.SynchronizationError.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "state", n => { State = n.GetEnumValue<SynchronizationTaskExecutionResult>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.SynchronizationTaskExecutionResult>(); } },
                 { "timeBegan", n => { TimeBegan = n.GetDateTimeOffsetValue(); } },
                 { "timeEnded", n => { TimeEnded = n.GetDateTimeOffsetValue(); } },
             };
@@ -119,9 +119,9 @@ namespace ApiSdk.Models
             writer.WriteLongValue("countImported", CountImported);
             writer.WriteLongValue("countImportedDeltas", CountImportedDeltas);
             writer.WriteLongValue("countImportedReferenceDeltas", CountImportedReferenceDeltas);
-            writer.WriteObjectValue<SynchronizationError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.SynchronizationError>("error", Error);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<SynchronizationTaskExecutionResult>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.SynchronizationTaskExecutionResult>("state", State);
             writer.WriteDateTimeOffsetValue("timeBegan", TimeBegan);
             writer.WriteDateTimeOffsetValue("timeEnded", TimeEnded);
             writer.WriteAdditionalData(AdditionalData);

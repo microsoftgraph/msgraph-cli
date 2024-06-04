@@ -23,7 +23,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ConditionalAccessSessionControl"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ConditionalAccessSessionControl"/> and sets the default values.
         /// </summary>
         public ConditionalAccessSessionControl()
         {
@@ -32,19 +32,19 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConditionalAccessSessionControl"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConditionalAccessSessionControl"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ConditionalAccessSessionControl CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ConditionalAccessSessionControl CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.applicationEnforcedRestrictionsSessionControl" => new ApplicationEnforcedRestrictionsSessionControl(),
-                "#microsoft.graph.cloudAppSecuritySessionControl" => new CloudAppSecuritySessionControl(),
-                "#microsoft.graph.persistentBrowserSessionControl" => new PersistentBrowserSessionControl(),
-                "#microsoft.graph.signInFrequencySessionControl" => new SignInFrequencySessionControl(),
-                _ => new ConditionalAccessSessionControl(),
+                "#microsoft.graph.applicationEnforcedRestrictionsSessionControl" => new ApiSdk.Models.ApplicationEnforcedRestrictionsSessionControl(),
+                "#microsoft.graph.cloudAppSecuritySessionControl" => new ApiSdk.Models.CloudAppSecuritySessionControl(),
+                "#microsoft.graph.persistentBrowserSessionControl" => new ApiSdk.Models.PersistentBrowserSessionControl(),
+                "#microsoft.graph.signInFrequencySessionControl" => new ApiSdk.Models.SignInFrequencySessionControl(),
+                _ => new ApiSdk.Models.ConditionalAccessSessionControl(),
             };
         }
         /// <summary>

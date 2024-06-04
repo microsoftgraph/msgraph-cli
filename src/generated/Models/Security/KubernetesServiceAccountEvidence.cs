@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class KubernetesServiceAccountEvidence : AlertEvidence, IParsable
+    public class KubernetesServiceAccountEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The service account name.</summary>
@@ -21,13 +21,13 @@ namespace ApiSdk.Models.Security
         /// <summary>The service account namespace.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public KubernetesNamespaceEvidence? Namespace { get; set; }
+        public ApiSdk.Models.Security.KubernetesNamespaceEvidence? Namespace { get; set; }
 #nullable restore
 #else
-        public KubernetesNamespaceEvidence Namespace { get; set; }
+        public ApiSdk.Models.Security.KubernetesNamespaceEvidence Namespace { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="KubernetesServiceAccountEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.KubernetesServiceAccountEvidence"/> and sets the default values.
         /// </summary>
         public KubernetesServiceAccountEvidence() : base()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="KubernetesServiceAccountEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.KubernetesServiceAccountEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new KubernetesServiceAccountEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.KubernetesServiceAccountEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new KubernetesServiceAccountEvidence();
+            return new ApiSdk.Models.Security.KubernetesServiceAccountEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -52,7 +52,7 @@ namespace ApiSdk.Models.Security
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "namespace", n => { Namespace = n.GetObjectValue<KubernetesNamespaceEvidence>(KubernetesNamespaceEvidence.CreateFromDiscriminatorValue); } },
+                { "namespace", n => { Namespace = n.GetObjectValue<ApiSdk.Models.Security.KubernetesNamespaceEvidence>(ApiSdk.Models.Security.KubernetesNamespaceEvidence.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -64,7 +64,7 @@ namespace ApiSdk.Models.Security
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<KubernetesNamespaceEvidence>("namespace", Namespace);
+            writer.WriteObjectValue<ApiSdk.Models.Security.KubernetesNamespaceEvidence>("namespace", Namespace);
         }
     }
 }

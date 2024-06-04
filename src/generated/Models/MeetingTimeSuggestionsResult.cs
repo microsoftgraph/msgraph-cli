@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>An array of meeting suggestions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MeetingTimeSuggestion>? MeetingTimeSuggestions { get; set; }
+        public List<ApiSdk.Models.MeetingTimeSuggestion>? MeetingTimeSuggestions { get; set; }
 #nullable restore
 #else
-        public List<MeetingTimeSuggestion> MeetingTimeSuggestions { get; set; }
+        public List<ApiSdk.Models.MeetingTimeSuggestion> MeetingTimeSuggestions { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MeetingTimeSuggestionsResult"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MeetingTimeSuggestionsResult"/> and sets the default values.
         /// </summary>
         public MeetingTimeSuggestionsResult()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MeetingTimeSuggestionsResult"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MeetingTimeSuggestionsResult"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MeetingTimeSuggestionsResult CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MeetingTimeSuggestionsResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MeetingTimeSuggestionsResult();
+            return new ApiSdk.Models.MeetingTimeSuggestionsResult();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,7 +62,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "emptySuggestionsReason", n => { EmptySuggestionsReason = n.GetStringValue(); } },
-                { "meetingTimeSuggestions", n => { MeetingTimeSuggestions = n.GetCollectionOfObjectValues<MeetingTimeSuggestion>(MeetingTimeSuggestion.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "meetingTimeSuggestions", n => { MeetingTimeSuggestions = n.GetCollectionOfObjectValues<ApiSdk.Models.MeetingTimeSuggestion>(ApiSdk.Models.MeetingTimeSuggestion.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -74,7 +74,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("emptySuggestionsReason", EmptySuggestionsReason);
-            writer.WriteCollectionOfObjectValues<MeetingTimeSuggestion>("meetingTimeSuggestions", MeetingTimeSuggestions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MeetingTimeSuggestion>("meetingTimeSuggestions", MeetingTimeSuggestions);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

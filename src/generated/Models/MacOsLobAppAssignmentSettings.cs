@@ -9,12 +9,12 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties used to assign a macOS LOB app to a group.
     /// </summary>
-    public class MacOsLobAppAssignmentSettings : MobileAppAssignmentSettings, IParsable
+    public class MacOsLobAppAssignmentSettings : ApiSdk.Models.MobileAppAssignmentSettings, IParsable
     {
         /// <summary>When TRUE, indicates that the app should be uninstalled when the device is removed from Intune. When FALSE, indicates that the app will not be uninstalled when the device is removed from Intune.</summary>
         public bool? UninstallOnDeviceRemoval { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MacOsLobAppAssignmentSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MacOsLobAppAssignmentSettings"/> and sets the default values.
         /// </summary>
         public MacOsLobAppAssignmentSettings() : base()
         {
@@ -23,12 +23,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MacOsLobAppAssignmentSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MacOsLobAppAssignmentSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MacOsLobAppAssignmentSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MacOsLobAppAssignmentSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MacOsLobAppAssignmentSettings();
+            return new ApiSdk.Models.MacOsLobAppAssignmentSettings();
         }
         /// <summary>
         /// The deserialization information for the current model

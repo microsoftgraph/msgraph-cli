@@ -32,13 +32,13 @@ namespace ApiSdk.Users.Item.Messages.Item.Forward
         /// <summary>The ToRecipients property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Recipient>? ToRecipients { get; set; }
+        public List<ApiSdk.Models.Recipient>? ToRecipients { get; set; }
 #nullable restore
 #else
-        public List<Recipient> ToRecipients { get; set; }
+        public List<ApiSdk.Models.Recipient> ToRecipients { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ForwardPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Messages.Item.Forward.ForwardPostRequestBody"/> and sets the default values.
         /// </summary>
         public ForwardPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Users.Item.Messages.Item.Forward
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ForwardPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.Messages.Item.Forward.ForwardPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ForwardPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.Messages.Item.Forward.ForwardPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ForwardPostRequestBody();
+            return new ApiSdk.Users.Item.Messages.Item.Forward.ForwardPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,7 +64,7 @@ namespace ApiSdk.Users.Item.Messages.Item.Forward
             {
                 { "Comment", n => { Comment = n.GetStringValue(); } },
                 { "Message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
-                { "ToRecipients", n => { ToRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "ToRecipients", n => { ToRecipients = n.GetCollectionOfObjectValues<ApiSdk.Models.Recipient>(ApiSdk.Models.Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -76,7 +76,7 @@ namespace ApiSdk.Users.Item.Messages.Item.Forward
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("Comment", Comment);
             writer.WriteObjectValue<ApiSdk.Models.Message>("Message", Message);
-            writer.WriteCollectionOfObjectValues<Recipient>("ToRecipients", ToRecipients);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Recipient>("ToRecipients", ToRecipients);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

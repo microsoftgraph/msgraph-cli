@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class FederatedIdentityCredential : Entity, IParsable
+    public class FederatedIdentityCredential : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The audience that can appear in the external token. This field is mandatory and should be set to api://AzureADTokenExchange for Microsoft Entra ID. It says what Microsoft identity platform should accept in the aud claim in the incoming token. This value represents Microsoft Entra ID in your external identity provider and has no fixed value across identity providers - you might need to create a new application registration in your identity provider to serve as the audience of this token. This field can only accept a single value and has a limit of 600 characters. Required.</summary>
@@ -53,12 +53,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FederatedIdentityCredential"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.FederatedIdentityCredential"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FederatedIdentityCredential CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.FederatedIdentityCredential CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FederatedIdentityCredential();
+            return new ApiSdk.Models.FederatedIdentityCredential();
         }
         /// <summary>
         /// The deserialization information for the current model

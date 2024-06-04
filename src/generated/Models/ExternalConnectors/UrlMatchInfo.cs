@@ -37,7 +37,7 @@ namespace ApiSdk.Models.ExternalConnectors
         public string UrlPattern { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UrlMatchInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ExternalConnectors.UrlMatchInfo"/> and sets the default values.
         /// </summary>
         public UrlMatchInfo()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UrlMatchInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.UrlMatchInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UrlMatchInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ExternalConnectors.UrlMatchInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UrlMatchInfo();
+            return new ApiSdk.Models.ExternalConnectors.UrlMatchInfo();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -24,10 +24,10 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials
         /// <summary>The credentials property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SynchronizationSecretKeyStringValuePair>? Credentials { get; set; }
+        public List<ApiSdk.Models.SynchronizationSecretKeyStringValuePair>? Credentials { get; set; }
 #nullable restore
 #else
-        public List<SynchronizationSecretKeyStringValuePair> Credentials { get; set; }
+        public List<ApiSdk.Models.SynchronizationSecretKeyStringValuePair> Credentials { get; set; }
 #endif
         /// <summary>The templateId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +40,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials
         /// <summary>The useSavedCredentials property</summary>
         public bool? UseSavedCredentials { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ValidateCredentialsPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials.ValidateCredentialsPostRequestBody"/> and sets the default values.
         /// </summary>
         public ValidateCredentialsPostRequestBody()
         {
@@ -49,12 +49,12 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ValidateCredentialsPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials.ValidateCredentialsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ValidateCredentialsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials.ValidateCredentialsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ValidateCredentialsPostRequestBody();
+            return new ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials.ValidateCredentialsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,7 +65,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "applicationIdentifier", n => { ApplicationIdentifier = n.GetStringValue(); } },
-                { "credentials", n => { Credentials = n.GetCollectionOfObjectValues<SynchronizationSecretKeyStringValuePair>(SynchronizationSecretKeyStringValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "credentials", n => { Credentials = n.GetCollectionOfObjectValues<ApiSdk.Models.SynchronizationSecretKeyStringValuePair>(ApiSdk.Models.SynchronizationSecretKeyStringValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "templateId", n => { TemplateId = n.GetStringValue(); } },
                 { "useSavedCredentials", n => { UseSavedCredentials = n.GetBoolValue(); } },
             };
@@ -78,7 +78,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("applicationIdentifier", ApplicationIdentifier);
-            writer.WriteCollectionOfObjectValues<SynchronizationSecretKeyStringValuePair>("credentials", Credentials);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SynchronizationSecretKeyStringValuePair>("credentials", Credentials);
             writer.WriteStringValue("templateId", TemplateId);
             writer.WriteBoolValue("useSavedCredentials", UseSavedCredentials);
             writer.WriteAdditionalData(AdditionalData);

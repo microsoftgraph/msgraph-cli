@@ -81,14 +81,14 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSect
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.Columns.Item.Webparts.Count.CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/pages/{baseSitePage%2Did}/graph.sitePage/canvasLayout/horizontalSections/{horizontalSection%2Did}/columns/{horizontalSectionColumn%2Did}/webparts/$count{?%24filter,%24search}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.Columns.Item.Webparts.Count.CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CountRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/pages/{baseSitePage%2Did}/graph.sitePage/canvasLayout/horizontalSections/{horizontalSection%2Did}/columns/{horizontalSectionColumn%2Did}/webparts/$count{?%24filter,%24search}", rawUrl)
@@ -101,11 +101,11 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSect
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CountRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.Columns.Item.Webparts.Count.CountRequestBuilder.CountRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CountRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.Columns.Item.Webparts.Count.CountRequestBuilder.CountRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

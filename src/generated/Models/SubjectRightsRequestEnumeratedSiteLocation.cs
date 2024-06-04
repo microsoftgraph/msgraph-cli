@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SubjectRightsRequestEnumeratedSiteLocation : SubjectRightsRequestSiteLocation, IParsable
+    public class SubjectRightsRequestEnumeratedSiteLocation : ApiSdk.Models.SubjectRightsRequestSiteLocation, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Collection of site URLs that should be included. Includes the URL of each site, for example, https://www.contoso.com/site1.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public List<string> Urls { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SubjectRightsRequestEnumeratedSiteLocation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SubjectRightsRequestEnumeratedSiteLocation"/> and sets the default values.
         /// </summary>
         public SubjectRightsRequestEnumeratedSiteLocation() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SubjectRightsRequestEnumeratedSiteLocation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SubjectRightsRequestEnumeratedSiteLocation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SubjectRightsRequestEnumeratedSiteLocation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SubjectRightsRequestEnumeratedSiteLocation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SubjectRightsRequestEnumeratedSiteLocation();
+            return new ApiSdk.Models.SubjectRightsRequestEnumeratedSiteLocation();
         }
         /// <summary>
         /// The deserialization information for the current model

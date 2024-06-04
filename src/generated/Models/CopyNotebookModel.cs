@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>The createdByIdentity property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? CreatedByIdentity { get; set; }
+        public ApiSdk.Models.IdentitySet? CreatedByIdentity { get; set; }
 #nullable restore
 #else
-        public IdentitySet CreatedByIdentity { get; set; }
+        public ApiSdk.Models.IdentitySet CreatedByIdentity { get; set; }
 #endif
         /// <summary>The createdTime property</summary>
         public DateTimeOffset? CreatedTime { get; set; }
@@ -53,20 +53,20 @@ namespace ApiSdk.Models
         /// <summary>The lastModifiedByIdentity property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedByIdentity { get; set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedByIdentity { get; set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedByIdentity { get; set; }
+        public ApiSdk.Models.IdentitySet LastModifiedByIdentity { get; set; }
 #endif
         /// <summary>The lastModifiedTime property</summary>
         public DateTimeOffset? LastModifiedTime { get; set; }
         /// <summary>The links property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public NotebookLinks? Links { get; set; }
+        public ApiSdk.Models.NotebookLinks? Links { get; set; }
 #nullable restore
 #else
-        public NotebookLinks Links { get; set; }
+        public ApiSdk.Models.NotebookLinks Links { get; set; }
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -109,9 +109,9 @@ namespace ApiSdk.Models
         public string Self { get; set; }
 #endif
         /// <summary>The userRole property</summary>
-        public OnenoteUserRole? UserRole { get; set; }
+        public ApiSdk.Models.OnenoteUserRole? UserRole { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CopyNotebookModel"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CopyNotebookModel"/> and sets the default values.
         /// </summary>
         public CopyNotebookModel()
         {
@@ -120,12 +120,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CopyNotebookModel"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CopyNotebookModel"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CopyNotebookModel CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CopyNotebookModel CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CopyNotebookModel();
+            return new ApiSdk.Models.CopyNotebookModel();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -136,21 +136,21 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "createdBy", n => { CreatedBy = n.GetStringValue(); } },
-                { "createdByIdentity", n => { CreatedByIdentity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "createdByIdentity", n => { CreatedByIdentity = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "createdTime", n => { CreatedTime = n.GetDateTimeOffsetValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isDefault", n => { IsDefault = n.GetBoolValue(); } },
                 { "isShared", n => { IsShared = n.GetBoolValue(); } },
                 { "lastModifiedBy", n => { LastModifiedBy = n.GetStringValue(); } },
-                { "lastModifiedByIdentity", n => { LastModifiedByIdentity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedByIdentity", n => { LastModifiedByIdentity = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedTime", n => { LastModifiedTime = n.GetDateTimeOffsetValue(); } },
-                { "links", n => { Links = n.GetObjectValue<NotebookLinks>(NotebookLinks.CreateFromDiscriminatorValue); } },
+                { "links", n => { Links = n.GetObjectValue<ApiSdk.Models.NotebookLinks>(ApiSdk.Models.NotebookLinks.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "sectionGroupsUrl", n => { SectionGroupsUrl = n.GetStringValue(); } },
                 { "sectionsUrl", n => { SectionsUrl = n.GetStringValue(); } },
                 { "self", n => { Self = n.GetStringValue(); } },
-                { "userRole", n => { UserRole = n.GetEnumValue<OnenoteUserRole>(); } },
+                { "userRole", n => { UserRole = n.GetEnumValue<ApiSdk.Models.OnenoteUserRole>(); } },
             };
         }
         /// <summary>
@@ -161,21 +161,21 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("createdBy", CreatedBy);
-            writer.WriteObjectValue<IdentitySet>("createdByIdentity", CreatedByIdentity);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("createdByIdentity", CreatedByIdentity);
             writer.WriteDateTimeOffsetValue("createdTime", CreatedTime);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("isDefault", IsDefault);
             writer.WriteBoolValue("isShared", IsShared);
             writer.WriteStringValue("lastModifiedBy", LastModifiedBy);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedByIdentity", LastModifiedByIdentity);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedByIdentity", LastModifiedByIdentity);
             writer.WriteDateTimeOffsetValue("lastModifiedTime", LastModifiedTime);
-            writer.WriteObjectValue<NotebookLinks>("links", Links);
+            writer.WriteObjectValue<ApiSdk.Models.NotebookLinks>("links", Links);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("sectionGroupsUrl", SectionGroupsUrl);
             writer.WriteStringValue("sectionsUrl", SectionsUrl);
             writer.WriteStringValue("self", Self);
-            writer.WriteEnumValue<OnenoteUserRole>("userRole", UserRole);
+            writer.WriteEnumValue<ApiSdk.Models.OnenoteUserRole>("userRole", UserRole);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

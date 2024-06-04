@@ -7,18 +7,18 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Training : Entity, IParsable
+    public class Training : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Training availability status. Possible values are: unknown, notAvailable, available, archive, delete, unknownFutureValue.</summary>
-        public TrainingAvailabilityStatus? AvailabilityStatus { get; set; }
+        public ApiSdk.Models.TrainingAvailabilityStatus? AvailabilityStatus { get; set; }
         /// <summary>Identity of the user who created the training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EmailIdentity? CreatedBy { get; set; }
+        public ApiSdk.Models.EmailIdentity? CreatedBy { get; set; }
 #nullable restore
 #else
-        public EmailIdentity CreatedBy { get; set; }
+        public ApiSdk.Models.EmailIdentity CreatedBy { get; set; }
 #endif
         /// <summary>Date and time when the training was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -45,23 +45,23 @@ namespace ApiSdk.Models
         /// <summary>Language specific details on a training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TrainingLanguageDetail>? LanguageDetails { get; set; }
+        public List<ApiSdk.Models.TrainingLanguageDetail>? LanguageDetails { get; set; }
 #nullable restore
 #else
-        public List<TrainingLanguageDetail> LanguageDetails { get; set; }
+        public List<ApiSdk.Models.TrainingLanguageDetail> LanguageDetails { get; set; }
 #endif
         /// <summary>Identity of the user who last modified the training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EmailIdentity? LastModifiedBy { get; set; }
+        public ApiSdk.Models.EmailIdentity? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public EmailIdentity LastModifiedBy { get; set; }
+        public ApiSdk.Models.EmailIdentity LastModifiedBy { get; set; }
 #endif
         /// <summary>Date and time when the training was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Training content source. Possible values are: unknown, global, tenant, unknownFutureValue.</summary>
-        public SimulationContentSource? Source { get; set; }
+        public ApiSdk.Models.SimulationContentSource? Source { get; set; }
         /// <summary>Supported locales for content for the associated training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -79,16 +79,16 @@ namespace ApiSdk.Models
         public List<string> Tags { get; set; }
 #endif
         /// <summary>The type of training. Possible values are: unknown, phishing, unknownFutureValue.</summary>
-        public TrainingType? Type { get; set; }
+        public ApiSdk.Models.TrainingType? Type { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Training"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Training"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Training CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Training CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Training();
+            return new ApiSdk.Models.Training();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -98,20 +98,20 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "availabilityStatus", n => { AvailabilityStatus = n.GetEnumValue<TrainingAvailabilityStatus>(); } },
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
+                { "availabilityStatus", n => { AvailabilityStatus = n.GetEnumValue<ApiSdk.Models.TrainingAvailabilityStatus>(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.EmailIdentity>(ApiSdk.Models.EmailIdentity.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "durationInMinutes", n => { DurationInMinutes = n.GetIntValue(); } },
                 { "hasEvaluation", n => { HasEvaluation = n.GetBoolValue(); } },
-                { "languageDetails", n => { LanguageDetails = n.GetCollectionOfObjectValues<TrainingLanguageDetail>(TrainingLanguageDetail.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
+                { "languageDetails", n => { LanguageDetails = n.GetCollectionOfObjectValues<ApiSdk.Models.TrainingLanguageDetail>(ApiSdk.Models.TrainingLanguageDetail.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.EmailIdentity>(ApiSdk.Models.EmailIdentity.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "source", n => { Source = n.GetEnumValue<SimulationContentSource>(); } },
+                { "source", n => { Source = n.GetEnumValue<ApiSdk.Models.SimulationContentSource>(); } },
                 { "supportedLocales", n => { SupportedLocales = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "type", n => { Type = n.GetEnumValue<TrainingType>(); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.TrainingType>(); } },
             };
         }
         /// <summary>
@@ -122,20 +122,20 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<TrainingAvailabilityStatus>("availabilityStatus", AvailabilityStatus);
-            writer.WriteObjectValue<EmailIdentity>("createdBy", CreatedBy);
+            writer.WriteEnumValue<ApiSdk.Models.TrainingAvailabilityStatus>("availabilityStatus", AvailabilityStatus);
+            writer.WriteObjectValue<ApiSdk.Models.EmailIdentity>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteIntValue("durationInMinutes", DurationInMinutes);
             writer.WriteBoolValue("hasEvaluation", HasEvaluation);
-            writer.WriteCollectionOfObjectValues<TrainingLanguageDetail>("languageDetails", LanguageDetails);
-            writer.WriteObjectValue<EmailIdentity>("lastModifiedBy", LastModifiedBy);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TrainingLanguageDetail>("languageDetails", LanguageDetails);
+            writer.WriteObjectValue<ApiSdk.Models.EmailIdentity>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteEnumValue<SimulationContentSource>("source", Source);
+            writer.WriteEnumValue<ApiSdk.Models.SimulationContentSource>("source", Source);
             writer.WriteCollectionOfPrimitiveValues<string>("supportedLocales", SupportedLocales);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
-            writer.WriteEnumValue<TrainingType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.TrainingType>("type", Type);
         }
     }
 }

@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class CategoryTemplate : FilePlanDescriptorTemplate, IParsable
+    public class CategoryTemplate : ApiSdk.Models.Security.FilePlanDescriptorTemplate, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents all subcategories under a particular category.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubcategoryTemplate>? Subcategories { get; set; }
+        public List<ApiSdk.Models.Security.SubcategoryTemplate>? Subcategories { get; set; }
 #nullable restore
 #else
-        public List<SubcategoryTemplate> Subcategories { get; set; }
+        public List<ApiSdk.Models.Security.SubcategoryTemplate> Subcategories { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CategoryTemplate"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.CategoryTemplate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CategoryTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.CategoryTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CategoryTemplate();
+            return new ApiSdk.Models.Security.CategoryTemplate();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "subcategories", n => { Subcategories = n.GetCollectionOfObjectValues<SubcategoryTemplate>(SubcategoryTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "subcategories", n => { Subcategories = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.SubcategoryTemplate>(ApiSdk.Models.Security.SubcategoryTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<SubcategoryTemplate>("subcategories", Subcategories);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.SubcategoryTemplate>("subcategories", Subcategories);
         }
     }
 }

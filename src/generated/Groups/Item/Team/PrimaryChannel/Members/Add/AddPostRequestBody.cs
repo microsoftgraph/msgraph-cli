@@ -16,13 +16,13 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Members.Add
         /// <summary>The values property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ConversationMember>? Values { get; set; }
+        public List<ApiSdk.Models.ConversationMember>? Values { get; set; }
 #nullable restore
 #else
-        public List<ConversationMember> Values { get; set; }
+        public List<ApiSdk.Models.ConversationMember> Values { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AddPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Team.PrimaryChannel.Members.Add.AddPostRequestBody"/> and sets the default values.
         /// </summary>
         public AddPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Members.Add
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.Team.PrimaryChannel.Members.Add.AddPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AddPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.Team.PrimaryChannel.Members.Add.AddPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddPostRequestBody();
+            return new ApiSdk.Groups.Item.Team.PrimaryChannel.Members.Add.AddPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Members.Add
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "values", n => { Values = n.GetCollectionOfObjectValues<ConversationMember>(ConversationMember.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "values", n => { Values = n.GetCollectionOfObjectValues<ApiSdk.Models.ConversationMember>(ApiSdk.Models.ConversationMember.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Members.Add
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<ConversationMember>("values", Values);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ConversationMember>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

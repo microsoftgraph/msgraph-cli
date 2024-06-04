@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SkypeUserConversationMember : ConversationMember, IParsable
+    public class SkypeUserConversationMember : ApiSdk.Models.ConversationMember, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Skype ID of the user.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string SkypeId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SkypeUserConversationMember"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SkypeUserConversationMember"/> and sets the default values.
         /// </summary>
         public SkypeUserConversationMember() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SkypeUserConversationMember"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SkypeUserConversationMember"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SkypeUserConversationMember CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SkypeUserConversationMember CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SkypeUserConversationMember();
+            return new ApiSdk.Models.SkypeUserConversationMember();
         }
         /// <summary>
         /// The deserialization information for the current model

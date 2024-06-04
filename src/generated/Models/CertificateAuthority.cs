@@ -63,7 +63,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CertificateAuthority"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CertificateAuthority"/> and sets the default values.
         /// </summary>
         public CertificateAuthority()
         {
@@ -72,12 +72,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CertificateAuthority"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CertificateAuthority"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CertificateAuthority CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CertificateAuthority CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CertificateAuthority();
+            return new ApiSdk.Models.CertificateAuthority();
         }
         /// <summary>
         /// The deserialization information for the current model

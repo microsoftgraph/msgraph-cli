@@ -39,7 +39,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         {
             var command = new Command("cell-with-row-with-column");
             command.Description = "Provides operations to call the cell method.";
-            var builder = new CellWithRowWithColumnRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.CellWithRowWithColumn.CellWithRowWithColumnRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -56,7 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         {
             var command = new Command("charts");
             command.Description = "Provides operations to manage the charts property of the microsoft.graph.workbookWorksheet entity.";
-            var builder = new ChartsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ChartsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddNavCommand());
@@ -197,7 +197,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         {
             var command = new Command("names");
             command.Description = "Provides operations to manage the names property of the microsoft.graph.workbookWorksheet entity.";
-            var builder = new NamesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.NamesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddFormulaLocalNavCommand());
@@ -259,7 +259,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.WorkbookWorksheet>(ApiSdk.Models.WorkbookWorksheet.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -289,7 +289,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         {
             var command = new Command("pivot-tables");
             command.Description = "Provides operations to manage the pivotTables property of the microsoft.graph.workbookWorksheet entity.";
-            var builder = new PivotTablesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.PivotTablesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -317,7 +317,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         {
             var command = new Command("protection");
             command.Description = "Provides operations to manage the protection property of the microsoft.graph.workbookWorksheet entity.";
-            var builder = new ProtectionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.ProtectionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -343,7 +343,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         {
             var command = new Command("range");
             command.Description = "Provides operations to call the range method.";
-            var builder = new RangeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.RangeNamespace.RangeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -360,7 +360,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         {
             var command = new Command("range-with-address");
             command.Description = "Provides operations to call the range method.";
-            var builder = new RangeWithAddressRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.RangeWithAddress.RangeWithAddressRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -377,7 +377,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         {
             var command = new Command("tables");
             command.Description = "Provides operations to manage the tables property of the microsoft.graph.workbookWorksheet entity.";
-            var builder = new TablesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.TablesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddNavCommand());
@@ -406,7 +406,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         {
             var command = new Command("used-range");
             command.Description = "Provides operations to call the usedRange method.";
-            var builder = new UsedRangeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.UsedRange.UsedRangeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -423,7 +423,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         {
             var command = new Command("used-range-with-values-only");
             command.Description = "Provides operations to call the usedRange method.";
-            var builder = new UsedRangeWithValuesOnlyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.UsedRangeWithValuesOnly.UsedRangeWithValuesOnlyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -433,14 +433,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="WorkbookWorksheetItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.WorkbookWorksheetItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WorkbookWorksheetItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="WorkbookWorksheetItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.WorkbookWorksheetItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public WorkbookWorksheetItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}{?%24expand,%24select}", rawUrl)
@@ -472,11 +472,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookWorksheetItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.WorkbookWorksheetItemRequestBuilder.WorkbookWorksheetItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookWorksheetItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.WorkbookWorksheetItemRequestBuilder.WorkbookWorksheetItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -492,11 +492,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(WorkbookWorksheet body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.WorkbookWorksheet body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(WorkbookWorksheet body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.WorkbookWorksheet body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

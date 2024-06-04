@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ServicePrincipal : DirectoryObject, IParsable
+    public class ServicePrincipal : ApiSdk.Models.DirectoryObject, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>true if the service principal account is enabled; otherwise, false. If set to false, then no users are able to sign in to this app, even if they&apos;re assigned to it. Supports $filter (eq, ne, not, in).</summary>
@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Defines custom behavior that a consuming service can use to call an app in specific contexts. For example, applications that can render file streams may set the addIns property for its &apos;FileHandler&apos; functionality. This lets services like Microsoft 365 call the application in the context of a document the user is working on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AddIn>? AddIns { get; set; }
+        public List<ApiSdk.Models.AddIn>? AddIns { get; set; }
 #nullable restore
 #else
-        public List<AddIn> AddIns { get; set; }
+        public List<ApiSdk.Models.AddIn> AddIns { get; set; }
 #endif
         /// <summary>Used to retrieve service principals by subscription, identify resource group and full resource IDs for managed identities. Supports $filter (eq, not, ge, le, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -63,70 +63,70 @@ namespace ApiSdk.Models
         /// <summary>The appManagementPolicy applied to this application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppManagementPolicy>? AppManagementPolicies { get; set; }
+        public List<ApiSdk.Models.AppManagementPolicy>? AppManagementPolicies { get; set; }
 #nullable restore
 #else
-        public List<AppManagementPolicy> AppManagementPolicies { get; set; }
+        public List<ApiSdk.Models.AppManagementPolicy> AppManagementPolicies { get; set; }
 #endif
         /// <summary>Contains the tenant ID where the application is registered. This is applicable only to service principals backed by applications. Supports $filter (eq, ne, NOT, ge, le).</summary>
         public Guid? AppOwnerOrganizationId { get; set; }
         /// <summary>App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppRoleAssignment>? AppRoleAssignedTo { get; set; }
+        public List<ApiSdk.Models.AppRoleAssignment>? AppRoleAssignedTo { get; set; }
 #nullable restore
 #else
-        public List<AppRoleAssignment> AppRoleAssignedTo { get; set; }
+        public List<ApiSdk.Models.AppRoleAssignment> AppRoleAssignedTo { get; set; }
 #endif
         /// <summary>Specifies whether users or other service principals need to be granted an app role assignment for this service principal before users can sign in or apps can get tokens. The default value is false. Not nullable. Supports $filter (eq, ne, NOT).</summary>
         public bool? AppRoleAssignmentRequired { get; set; }
         /// <summary>App role assignment for another app or service, granted to this service principal. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppRoleAssignment>? AppRoleAssignments { get; set; }
+        public List<ApiSdk.Models.AppRoleAssignment>? AppRoleAssignments { get; set; }
 #nullable restore
 #else
-        public List<AppRoleAssignment> AppRoleAssignments { get; set; }
+        public List<ApiSdk.Models.AppRoleAssignment> AppRoleAssignments { get; set; }
 #endif
         /// <summary>The roles exposed by the application that&apos;s linked to this service principal. For more information, see the appRoles property definition on the application entity. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppRole>? AppRoles { get; set; }
+        public List<ApiSdk.Models.AppRole>? AppRoles { get; set; }
 #nullable restore
 #else
-        public List<AppRole> AppRoles { get; set; }
+        public List<ApiSdk.Models.AppRole> AppRoles { get; set; }
 #endif
         /// <summary>The claimsMappingPolicies assigned to this service principal. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ClaimsMappingPolicy>? ClaimsMappingPolicies { get; set; }
+        public List<ApiSdk.Models.ClaimsMappingPolicy>? ClaimsMappingPolicies { get; set; }
 #nullable restore
 #else
-        public List<ClaimsMappingPolicy> ClaimsMappingPolicies { get; set; }
+        public List<ApiSdk.Models.ClaimsMappingPolicy> ClaimsMappingPolicies { get; set; }
 #endif
         /// <summary>Directory objects created by this service principal. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? CreatedObjects { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? CreatedObjects { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> CreatedObjects { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> CreatedObjects { get; set; }
 #endif
         /// <summary>An open complex type that holds the value of a custom security attribute that is assigned to a directory object. Nullable. Returned only on $select. Supports $filter (eq, ne, not, startsWith). Filter value is case sensitive.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CustomSecurityAttributeValue? CustomSecurityAttributes { get; set; }
+        public ApiSdk.Models.CustomSecurityAttributeValue? CustomSecurityAttributes { get; set; }
 #nullable restore
 #else
-        public CustomSecurityAttributeValue CustomSecurityAttributes { get; set; }
+        public ApiSdk.Models.CustomSecurityAttributeValue CustomSecurityAttributes { get; set; }
 #endif
         /// <summary>The delegatedPermissionClassifications property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DelegatedPermissionClassification>? DelegatedPermissionClassifications { get; set; }
+        public List<ApiSdk.Models.DelegatedPermissionClassification>? DelegatedPermissionClassifications { get; set; }
 #nullable restore
 #else
-        public List<DelegatedPermissionClassification> DelegatedPermissionClassifications { get; set; }
+        public List<ApiSdk.Models.DelegatedPermissionClassification> DelegatedPermissionClassifications { get; set; }
 #endif
         /// <summary>Free text field to provide an internal end-user facing description of the service principal. End-user portals such MyApps displays the application description in this field. The maximum allowed size is 1,024 characters. Supports $filter (eq, ne, not, ge, le, startsWith) and $search.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -155,18 +155,18 @@ namespace ApiSdk.Models
         /// <summary>The endpoints property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Endpoint>? Endpoints { get; set; }
+        public List<ApiSdk.Models.Endpoint>? Endpoints { get; set; }
 #nullable restore
 #else
-        public List<Endpoint> Endpoints { get; set; }
+        public List<ApiSdk.Models.Endpoint> Endpoints { get; set; }
 #endif
         /// <summary>Federated identities for a specific type of service principal - managed identity. Supports $expand and $filter (/$count eq 0, /$count ne 0).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<FederatedIdentityCredential>? FederatedIdentityCredentials { get; set; }
+        public List<ApiSdk.Models.FederatedIdentityCredential>? FederatedIdentityCredentials { get; set; }
 #nullable restore
 #else
-        public List<FederatedIdentityCredential> FederatedIdentityCredentials { get; set; }
+        public List<ApiSdk.Models.FederatedIdentityCredential> FederatedIdentityCredentials { get; set; }
 #endif
         /// <summary>Home page or landing page of the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -179,26 +179,26 @@ namespace ApiSdk.Models
         /// <summary>The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HomeRealmDiscoveryPolicy>? HomeRealmDiscoveryPolicies { get; set; }
+        public List<ApiSdk.Models.HomeRealmDiscoveryPolicy>? HomeRealmDiscoveryPolicies { get; set; }
 #nullable restore
 #else
-        public List<HomeRealmDiscoveryPolicy> HomeRealmDiscoveryPolicies { get; set; }
+        public List<ApiSdk.Models.HomeRealmDiscoveryPolicy> HomeRealmDiscoveryPolicies { get; set; }
 #endif
         /// <summary>Basic profile information of the acquired application such as app&apos;s marketing, support, terms of service and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience. For more info, see How to: Add Terms of service and privacy statement for registered Microsoft Entra apps. Supports $filter (eq, ne, not, ge, le, and eq on null values).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public InformationalUrl? Info { get; set; }
+        public ApiSdk.Models.InformationalUrl? Info { get; set; }
 #nullable restore
 #else
-        public InformationalUrl Info { get; set; }
+        public ApiSdk.Models.InformationalUrl Info { get; set; }
 #endif
         /// <summary>The collection of key credentials associated with the service principal. Not nullable. Supports $filter (eq, not, ge, le).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<KeyCredential>? KeyCredentials { get; set; }
+        public List<ApiSdk.Models.KeyCredential>? KeyCredentials { get; set; }
 #nullable restore
 #else
-        public List<KeyCredential> KeyCredentials { get; set; }
+        public List<ApiSdk.Models.KeyCredential> KeyCredentials { get; set; }
 #endif
         /// <summary>Specifies the URL where the service provider redirects the user to Microsoft Entra ID to authenticate. Microsoft Entra ID uses the URL to launch the application from Microsoft 365 or the Microsoft Entra My Apps. When blank, Microsoft Entra ID performs IdP-initiated sign-on for applications configured with SAML-based single sign-on. The user launches the application from Microsoft 365, the Microsoft Entra My Apps, or the Microsoft Entra SSO URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,10 +219,10 @@ namespace ApiSdk.Models
         /// <summary>Roles that this service principal is a member of. HTTP Methods: GET Read-only. Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? MemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? MemberOf { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> MemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> MemberOf { get; set; }
 #endif
         /// <summary>Free text field to capture information about the service principal, typically used for operational purposes. Maximum allowed size is 1,024 characters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -243,42 +243,42 @@ namespace ApiSdk.Models
         /// <summary>Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OAuth2PermissionGrant>? Oauth2PermissionGrants { get; set; }
+        public List<ApiSdk.Models.OAuth2PermissionGrant>? Oauth2PermissionGrants { get; set; }
 #nullable restore
 #else
-        public List<OAuth2PermissionGrant> Oauth2PermissionGrants { get; set; }
+        public List<ApiSdk.Models.OAuth2PermissionGrant> Oauth2PermissionGrants { get; set; }
 #endif
         /// <summary>The delegated permissions exposed by the application. For more information, see the oauth2PermissionScopes property on the application entity&apos;s api property. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PermissionScope>? Oauth2PermissionScopes { get; set; }
+        public List<ApiSdk.Models.PermissionScope>? Oauth2PermissionScopes { get; set; }
 #nullable restore
 #else
-        public List<PermissionScope> Oauth2PermissionScopes { get; set; }
+        public List<ApiSdk.Models.PermissionScope> Oauth2PermissionScopes { get; set; }
 #endif
         /// <summary>Directory objects that this service principal owns. Read-only. Nullable. Supports $expand, $select nested in $expand, and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? OwnedObjects { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? OwnedObjects { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> OwnedObjects { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> OwnedObjects { get; set; }
 #endif
         /// <summary>Directory objects that are owners of this servicePrincipal. The owners are a set of nonadmin users or servicePrincipals who are allowed to modify this object. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? Owners { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? Owners { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> Owners { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> Owners { get; set; }
 #endif
         /// <summary>The collection of password credentials associated with the application. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PasswordCredential>? PasswordCredentials { get; set; }
+        public List<ApiSdk.Models.PasswordCredential>? PasswordCredentials { get; set; }
 #nullable restore
 #else
-        public List<PasswordCredential> PasswordCredentials { get; set; }
+        public List<ApiSdk.Models.PasswordCredential> PasswordCredentials { get; set; }
 #endif
         /// <summary>Specifies the single sign-on mode configured for this application. Microsoft Entra ID uses the preferred single sign-on mode to launch the application from Microsoft 365 or the My Apps portal. The supported values are password, saml, notSupported, and oidc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -315,10 +315,10 @@ namespace ApiSdk.Models
         /// <summary>The resource-specific application permissions exposed by this application. Currently, resource-specific permissions are only supported for Teams apps accessing to specific chats and teams using Microsoft Graph. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ResourceSpecificPermission>? ResourceSpecificApplicationPermissions { get; set; }
+        public List<ApiSdk.Models.ResourceSpecificPermission>? ResourceSpecificApplicationPermissions { get; set; }
 #nullable restore
 #else
-        public List<ResourceSpecificPermission> ResourceSpecificApplicationPermissions { get; set; }
+        public List<ApiSdk.Models.ResourceSpecificPermission> ResourceSpecificApplicationPermissions { get; set; }
 #endif
         /// <summary>The collection for settings related to saml single sign-on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -373,26 +373,26 @@ namespace ApiSdk.Models
         /// <summary>The tokenIssuancePolicies assigned to this service principal.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TokenIssuancePolicy>? TokenIssuancePolicies { get; set; }
+        public List<ApiSdk.Models.TokenIssuancePolicy>? TokenIssuancePolicies { get; set; }
 #nullable restore
 #else
-        public List<TokenIssuancePolicy> TokenIssuancePolicies { get; set; }
+        public List<ApiSdk.Models.TokenIssuancePolicy> TokenIssuancePolicies { get; set; }
 #endif
         /// <summary>The tokenLifetimePolicies assigned to this service principal.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TokenLifetimePolicy>? TokenLifetimePolicies { get; set; }
+        public List<ApiSdk.Models.TokenLifetimePolicy>? TokenLifetimePolicies { get; set; }
 #nullable restore
 #else
-        public List<TokenLifetimePolicy> TokenLifetimePolicies { get; set; }
+        public List<ApiSdk.Models.TokenLifetimePolicy> TokenLifetimePolicies { get; set; }
 #endif
         /// <summary>The transitiveMemberOf property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? TransitiveMemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? TransitiveMemberOf { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> TransitiveMemberOf { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> TransitiveMemberOf { get; set; }
 #endif
         /// <summary>Specifies the verified publisher of the application that&apos;s linked to this service principal.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -403,7 +403,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.VerifiedPublisher VerifiedPublisher { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ServicePrincipal"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ServicePrincipal"/> and sets the default values.
         /// </summary>
         public ServicePrincipal() : base()
         {
@@ -412,12 +412,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ServicePrincipal"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ServicePrincipal"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ServicePrincipal CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ServicePrincipal CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ServicePrincipal();
+            return new ApiSdk.Models.ServicePrincipal();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -428,46 +428,46 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "accountEnabled", n => { AccountEnabled = n.GetBoolValue(); } },
-                { "addIns", n => { AddIns = n.GetCollectionOfObjectValues<AddIn>(AddIn.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "addIns", n => { AddIns = n.GetCollectionOfObjectValues<ApiSdk.Models.AddIn>(ApiSdk.Models.AddIn.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "alternativeNames", n => { AlternativeNames = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "appDescription", n => { AppDescription = n.GetStringValue(); } },
                 { "appDisplayName", n => { AppDisplayName = n.GetStringValue(); } },
                 { "appId", n => { AppId = n.GetStringValue(); } },
-                { "appManagementPolicies", n => { AppManagementPolicies = n.GetCollectionOfObjectValues<AppManagementPolicy>(AppManagementPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appManagementPolicies", n => { AppManagementPolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.AppManagementPolicy>(ApiSdk.Models.AppManagementPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "appOwnerOrganizationId", n => { AppOwnerOrganizationId = n.GetGuidValue(); } },
-                { "appRoleAssignedTo", n => { AppRoleAssignedTo = n.GetCollectionOfObjectValues<AppRoleAssignment>(AppRoleAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appRoleAssignedTo", n => { AppRoleAssignedTo = n.GetCollectionOfObjectValues<ApiSdk.Models.AppRoleAssignment>(ApiSdk.Models.AppRoleAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "appRoleAssignmentRequired", n => { AppRoleAssignmentRequired = n.GetBoolValue(); } },
-                { "appRoleAssignments", n => { AppRoleAssignments = n.GetCollectionOfObjectValues<AppRoleAssignment>(AppRoleAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "appRoles", n => { AppRoles = n.GetCollectionOfObjectValues<AppRole>(AppRole.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appRoleAssignments", n => { AppRoleAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.AppRoleAssignment>(ApiSdk.Models.AppRoleAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appRoles", n => { AppRoles = n.GetCollectionOfObjectValues<ApiSdk.Models.AppRole>(ApiSdk.Models.AppRole.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "applicationTemplateId", n => { ApplicationTemplateId = n.GetStringValue(); } },
-                { "claimsMappingPolicies", n => { ClaimsMappingPolicies = n.GetCollectionOfObjectValues<ClaimsMappingPolicy>(ClaimsMappingPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "createdObjects", n => { CreatedObjects = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "customSecurityAttributes", n => { CustomSecurityAttributes = n.GetObjectValue<CustomSecurityAttributeValue>(CustomSecurityAttributeValue.CreateFromDiscriminatorValue); } },
-                { "delegatedPermissionClassifications", n => { DelegatedPermissionClassifications = n.GetCollectionOfObjectValues<DelegatedPermissionClassification>(DelegatedPermissionClassification.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "claimsMappingPolicies", n => { ClaimsMappingPolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.ClaimsMappingPolicy>(ApiSdk.Models.ClaimsMappingPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "createdObjects", n => { CreatedObjects = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "customSecurityAttributes", n => { CustomSecurityAttributes = n.GetObjectValue<ApiSdk.Models.CustomSecurityAttributeValue>(ApiSdk.Models.CustomSecurityAttributeValue.CreateFromDiscriminatorValue); } },
+                { "delegatedPermissionClassifications", n => { DelegatedPermissionClassifications = n.GetCollectionOfObjectValues<ApiSdk.Models.DelegatedPermissionClassification>(ApiSdk.Models.DelegatedPermissionClassification.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "disabledByMicrosoftStatus", n => { DisabledByMicrosoftStatus = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<Endpoint>(Endpoint.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "federatedIdentityCredentials", n => { FederatedIdentityCredentials = n.GetCollectionOfObjectValues<FederatedIdentityCredential>(FederatedIdentityCredential.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "homeRealmDiscoveryPolicies", n => { HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<HomeRealmDiscoveryPolicy>(HomeRealmDiscoveryPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<ApiSdk.Models.Endpoint>(ApiSdk.Models.Endpoint.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "federatedIdentityCredentials", n => { FederatedIdentityCredentials = n.GetCollectionOfObjectValues<ApiSdk.Models.FederatedIdentityCredential>(ApiSdk.Models.FederatedIdentityCredential.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "homeRealmDiscoveryPolicies", n => { HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.HomeRealmDiscoveryPolicy>(ApiSdk.Models.HomeRealmDiscoveryPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "homepage", n => { Homepage = n.GetStringValue(); } },
-                { "info", n => { Info = n.GetObjectValue<InformationalUrl>(InformationalUrl.CreateFromDiscriminatorValue); } },
-                { "keyCredentials", n => { KeyCredentials = n.GetCollectionOfObjectValues<KeyCredential>(KeyCredential.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "info", n => { Info = n.GetObjectValue<ApiSdk.Models.InformationalUrl>(ApiSdk.Models.InformationalUrl.CreateFromDiscriminatorValue); } },
+                { "keyCredentials", n => { KeyCredentials = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyCredential>(ApiSdk.Models.KeyCredential.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "loginUrl", n => { LoginUrl = n.GetStringValue(); } },
                 { "logoutUrl", n => { LogoutUrl = n.GetStringValue(); } },
-                { "memberOf", n => { MemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "memberOf", n => { MemberOf = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "notes", n => { Notes = n.GetStringValue(); } },
                 { "notificationEmailAddresses", n => { NotificationEmailAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "oauth2PermissionGrants", n => { Oauth2PermissionGrants = n.GetCollectionOfObjectValues<OAuth2PermissionGrant>(OAuth2PermissionGrant.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "oauth2PermissionScopes", n => { Oauth2PermissionScopes = n.GetCollectionOfObjectValues<PermissionScope>(PermissionScope.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "ownedObjects", n => { OwnedObjects = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "owners", n => { Owners = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<PasswordCredential>(PasswordCredential.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "oauth2PermissionGrants", n => { Oauth2PermissionGrants = n.GetCollectionOfObjectValues<ApiSdk.Models.OAuth2PermissionGrant>(ApiSdk.Models.OAuth2PermissionGrant.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "oauth2PermissionScopes", n => { Oauth2PermissionScopes = n.GetCollectionOfObjectValues<ApiSdk.Models.PermissionScope>(ApiSdk.Models.PermissionScope.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "ownedObjects", n => { OwnedObjects = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "owners", n => { Owners = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<ApiSdk.Models.PasswordCredential>(ApiSdk.Models.PasswordCredential.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "preferredSingleSignOnMode", n => { PreferredSingleSignOnMode = n.GetStringValue(); } },
                 { "preferredTokenSigningKeyThumbprint", n => { PreferredTokenSigningKeyThumbprint = n.GetStringValue(); } },
                 { "remoteDesktopSecurityConfiguration", n => { RemoteDesktopSecurityConfiguration = n.GetObjectValue<ApiSdk.Models.RemoteDesktopSecurityConfiguration>(ApiSdk.Models.RemoteDesktopSecurityConfiguration.CreateFromDiscriminatorValue); } },
                 { "replyUrls", n => { ReplyUrls = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "resourceSpecificApplicationPermissions", n => { ResourceSpecificApplicationPermissions = n.GetCollectionOfObjectValues<ResourceSpecificPermission>(ResourceSpecificPermission.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "resourceSpecificApplicationPermissions", n => { ResourceSpecificApplicationPermissions = n.GetCollectionOfObjectValues<ApiSdk.Models.ResourceSpecificPermission>(ApiSdk.Models.ResourceSpecificPermission.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "samlSingleSignOnSettings", n => { SamlSingleSignOnSettings = n.GetObjectValue<ApiSdk.Models.SamlSingleSignOnSettings>(ApiSdk.Models.SamlSingleSignOnSettings.CreateFromDiscriminatorValue); } },
                 { "servicePrincipalNames", n => { ServicePrincipalNames = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "servicePrincipalType", n => { ServicePrincipalType = n.GetStringValue(); } },
@@ -475,9 +475,9 @@ namespace ApiSdk.Models
                 { "synchronization", n => { Synchronization = n.GetObjectValue<ApiSdk.Models.Synchronization>(ApiSdk.Models.Synchronization.CreateFromDiscriminatorValue); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "tokenEncryptionKeyId", n => { TokenEncryptionKeyId = n.GetGuidValue(); } },
-                { "tokenIssuancePolicies", n => { TokenIssuancePolicies = n.GetCollectionOfObjectValues<TokenIssuancePolicy>(TokenIssuancePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "tokenLifetimePolicies", n => { TokenLifetimePolicies = n.GetCollectionOfObjectValues<TokenLifetimePolicy>(TokenLifetimePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "transitiveMemberOf", n => { TransitiveMemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tokenIssuancePolicies", n => { TokenIssuancePolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.TokenIssuancePolicy>(ApiSdk.Models.TokenIssuancePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tokenLifetimePolicies", n => { TokenLifetimePolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.TokenLifetimePolicy>(ApiSdk.Models.TokenLifetimePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "transitiveMemberOf", n => { TransitiveMemberOf = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "verifiedPublisher", n => { VerifiedPublisher = n.GetObjectValue<ApiSdk.Models.VerifiedPublisher>(ApiSdk.Models.VerifiedPublisher.CreateFromDiscriminatorValue); } },
             };
         }
@@ -490,46 +490,46 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("accountEnabled", AccountEnabled);
-            writer.WriteCollectionOfObjectValues<AddIn>("addIns", AddIns);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AddIn>("addIns", AddIns);
             writer.WriteCollectionOfPrimitiveValues<string>("alternativeNames", AlternativeNames);
             writer.WriteStringValue("appDescription", AppDescription);
             writer.WriteStringValue("appDisplayName", AppDisplayName);
             writer.WriteStringValue("appId", AppId);
             writer.WriteStringValue("applicationTemplateId", ApplicationTemplateId);
-            writer.WriteCollectionOfObjectValues<AppManagementPolicy>("appManagementPolicies", AppManagementPolicies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppManagementPolicy>("appManagementPolicies", AppManagementPolicies);
             writer.WriteGuidValue("appOwnerOrganizationId", AppOwnerOrganizationId);
-            writer.WriteCollectionOfObjectValues<AppRoleAssignment>("appRoleAssignedTo", AppRoleAssignedTo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppRoleAssignment>("appRoleAssignedTo", AppRoleAssignedTo);
             writer.WriteBoolValue("appRoleAssignmentRequired", AppRoleAssignmentRequired);
-            writer.WriteCollectionOfObjectValues<AppRoleAssignment>("appRoleAssignments", AppRoleAssignments);
-            writer.WriteCollectionOfObjectValues<AppRole>("appRoles", AppRoles);
-            writer.WriteCollectionOfObjectValues<ClaimsMappingPolicy>("claimsMappingPolicies", ClaimsMappingPolicies);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("createdObjects", CreatedObjects);
-            writer.WriteObjectValue<CustomSecurityAttributeValue>("customSecurityAttributes", CustomSecurityAttributes);
-            writer.WriteCollectionOfObjectValues<DelegatedPermissionClassification>("delegatedPermissionClassifications", DelegatedPermissionClassifications);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppRoleAssignment>("appRoleAssignments", AppRoleAssignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppRole>("appRoles", AppRoles);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ClaimsMappingPolicy>("claimsMappingPolicies", ClaimsMappingPolicies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("createdObjects", CreatedObjects);
+            writer.WriteObjectValue<ApiSdk.Models.CustomSecurityAttributeValue>("customSecurityAttributes", CustomSecurityAttributes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DelegatedPermissionClassification>("delegatedPermissionClassifications", DelegatedPermissionClassifications);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("disabledByMicrosoftStatus", DisabledByMicrosoftStatus);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<Endpoint>("endpoints", Endpoints);
-            writer.WriteCollectionOfObjectValues<FederatedIdentityCredential>("federatedIdentityCredentials", FederatedIdentityCredentials);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Endpoint>("endpoints", Endpoints);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.FederatedIdentityCredential>("federatedIdentityCredentials", FederatedIdentityCredentials);
             writer.WriteStringValue("homepage", Homepage);
-            writer.WriteCollectionOfObjectValues<HomeRealmDiscoveryPolicy>("homeRealmDiscoveryPolicies", HomeRealmDiscoveryPolicies);
-            writer.WriteObjectValue<InformationalUrl>("info", Info);
-            writer.WriteCollectionOfObjectValues<KeyCredential>("keyCredentials", KeyCredentials);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.HomeRealmDiscoveryPolicy>("homeRealmDiscoveryPolicies", HomeRealmDiscoveryPolicies);
+            writer.WriteObjectValue<ApiSdk.Models.InformationalUrl>("info", Info);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyCredential>("keyCredentials", KeyCredentials);
             writer.WriteStringValue("loginUrl", LoginUrl);
             writer.WriteStringValue("logoutUrl", LogoutUrl);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("memberOf", MemberOf);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("memberOf", MemberOf);
             writer.WriteStringValue("notes", Notes);
             writer.WriteCollectionOfPrimitiveValues<string>("notificationEmailAddresses", NotificationEmailAddresses);
-            writer.WriteCollectionOfObjectValues<OAuth2PermissionGrant>("oauth2PermissionGrants", Oauth2PermissionGrants);
-            writer.WriteCollectionOfObjectValues<PermissionScope>("oauth2PermissionScopes", Oauth2PermissionScopes);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("ownedObjects", OwnedObjects);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("owners", Owners);
-            writer.WriteCollectionOfObjectValues<PasswordCredential>("passwordCredentials", PasswordCredentials);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OAuth2PermissionGrant>("oauth2PermissionGrants", Oauth2PermissionGrants);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PermissionScope>("oauth2PermissionScopes", Oauth2PermissionScopes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("ownedObjects", OwnedObjects);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("owners", Owners);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PasswordCredential>("passwordCredentials", PasswordCredentials);
             writer.WriteStringValue("preferredSingleSignOnMode", PreferredSingleSignOnMode);
             writer.WriteStringValue("preferredTokenSigningKeyThumbprint", PreferredTokenSigningKeyThumbprint);
             writer.WriteObjectValue<ApiSdk.Models.RemoteDesktopSecurityConfiguration>("remoteDesktopSecurityConfiguration", RemoteDesktopSecurityConfiguration);
             writer.WriteCollectionOfPrimitiveValues<string>("replyUrls", ReplyUrls);
-            writer.WriteCollectionOfObjectValues<ResourceSpecificPermission>("resourceSpecificApplicationPermissions", ResourceSpecificApplicationPermissions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ResourceSpecificPermission>("resourceSpecificApplicationPermissions", ResourceSpecificApplicationPermissions);
             writer.WriteObjectValue<ApiSdk.Models.SamlSingleSignOnSettings>("samlSingleSignOnSettings", SamlSingleSignOnSettings);
             writer.WriteCollectionOfPrimitiveValues<string>("servicePrincipalNames", ServicePrincipalNames);
             writer.WriteStringValue("servicePrincipalType", ServicePrincipalType);
@@ -537,9 +537,9 @@ namespace ApiSdk.Models
             writer.WriteObjectValue<ApiSdk.Models.Synchronization>("synchronization", Synchronization);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
             writer.WriteGuidValue("tokenEncryptionKeyId", TokenEncryptionKeyId);
-            writer.WriteCollectionOfObjectValues<TokenIssuancePolicy>("tokenIssuancePolicies", TokenIssuancePolicies);
-            writer.WriteCollectionOfObjectValues<TokenLifetimePolicy>("tokenLifetimePolicies", TokenLifetimePolicies);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("transitiveMemberOf", TransitiveMemberOf);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TokenIssuancePolicy>("tokenIssuancePolicies", TokenIssuancePolicies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TokenLifetimePolicy>("tokenLifetimePolicies", TokenLifetimePolicies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("transitiveMemberOf", TransitiveMemberOf);
             writer.WriteObjectValue<ApiSdk.Models.VerifiedPublisher>("verifiedPublisher", VerifiedPublisher);
         }
     }

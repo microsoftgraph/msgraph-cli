@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationModule : Entity, IParsable
+    public class EducationModule : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The display name of the user that created the module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? CreatedBy { get; private set; }
+        public ApiSdk.Models.IdentitySet? CreatedBy { get; private set; }
 #nullable restore
 #else
-        public IdentitySet CreatedBy { get; private set; }
+        public ApiSdk.Models.IdentitySet CreatedBy { get; private set; }
 #endif
         /// <summary>Date time the module was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CreatedDateTime { get; private set; }
@@ -41,20 +41,20 @@ namespace ApiSdk.Models
         /// <summary>The last user that modified the module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; private set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedBy { get; private set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; private set; }
+        public ApiSdk.Models.IdentitySet LastModifiedBy { get; private set; }
 #endif
         /// <summary>Date time the module was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? LastModifiedDateTime { get; private set; }
         /// <summary>Learning objects that are associated with this module. Only teachers can modify this list. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationModuleResource>? Resources { get; set; }
+        public List<ApiSdk.Models.EducationModuleResource>? Resources { get; set; }
 #nullable restore
 #else
-        public List<EducationModuleResource> Resources { get; set; }
+        public List<ApiSdk.Models.EducationModuleResource> Resources { get; set; }
 #endif
         /// <summary>Folder URL where all the file resources for this module are stored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,16 +65,16 @@ namespace ApiSdk.Models
         public string ResourcesFolderUrl { get; private set; }
 #endif
         /// <summary>Status of the module. You can&apos;t use a PATCH operation to update this value. Possible values are: draft and published.</summary>
-        public EducationModuleStatus? Status { get; private set; }
+        public ApiSdk.Models.EducationModuleStatus? Status { get; private set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationModule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationModule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationModule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationModule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationModule();
+            return new ApiSdk.Models.EducationModule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,16 +84,16 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "isPinned", n => { IsPinned = n.GetBoolValue(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "resources", n => { Resources = n.GetCollectionOfObjectValues<EducationModuleResource>(EducationModuleResource.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "resources", n => { Resources = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationModuleResource>(ApiSdk.Models.EducationModuleResource.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "resourcesFolderUrl", n => { ResourcesFolderUrl = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<EducationModuleStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.EducationModuleStatus>(); } },
             };
         }
         /// <summary>
@@ -107,7 +107,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("isPinned", IsPinned);
-            writer.WriteCollectionOfObjectValues<EducationModuleResource>("resources", Resources);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationModuleResource>("resources", Resources);
         }
     }
 }

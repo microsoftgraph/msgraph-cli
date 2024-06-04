@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SubjectRightsRequestSiteLocation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SubjectRightsRequestSiteLocation"/> and sets the default values.
         /// </summary>
         public SubjectRightsRequestSiteLocation()
         {
@@ -30,17 +30,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SubjectRightsRequestSiteLocation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SubjectRightsRequestSiteLocation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SubjectRightsRequestSiteLocation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SubjectRightsRequestSiteLocation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.subjectRightsRequestAllSiteLocation" => new SubjectRightsRequestAllSiteLocation(),
-                "#microsoft.graph.subjectRightsRequestEnumeratedSiteLocation" => new SubjectRightsRequestEnumeratedSiteLocation(),
-                _ => new SubjectRightsRequestSiteLocation(),
+                "#microsoft.graph.subjectRightsRequestAllSiteLocation" => new ApiSdk.Models.SubjectRightsRequestAllSiteLocation(),
+                "#microsoft.graph.subjectRightsRequestEnumeratedSiteLocation" => new ApiSdk.Models.SubjectRightsRequestEnumeratedSiteLocation(),
+                _ => new ApiSdk.Models.SubjectRightsRequestSiteLocation(),
             };
         }
         /// <summary>

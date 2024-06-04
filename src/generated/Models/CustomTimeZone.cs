@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CustomTimeZone : TimeZoneBase, IParsable
+    public class CustomTimeZone : ApiSdk.Models.TimeZoneBase, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The time offset of the time zone from Coordinated Universal Time (UTC). This value is in minutes. Time zones that are ahead of UTC have a positive offset; time zones that are behind UTC have a negative offset.</summary>
@@ -15,21 +15,21 @@ namespace ApiSdk.Models
         /// <summary>Specifies when the time zone switches from standard time to daylight saving time.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DaylightTimeZoneOffset? DaylightOffset { get; set; }
+        public ApiSdk.Models.DaylightTimeZoneOffset? DaylightOffset { get; set; }
 #nullable restore
 #else
-        public DaylightTimeZoneOffset DaylightOffset { get; set; }
+        public ApiSdk.Models.DaylightTimeZoneOffset DaylightOffset { get; set; }
 #endif
         /// <summary>Specifies when the time zone switches from daylight saving time to standard time.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public StandardTimeZoneOffset? StandardOffset { get; set; }
+        public ApiSdk.Models.StandardTimeZoneOffset? StandardOffset { get; set; }
 #nullable restore
 #else
-        public StandardTimeZoneOffset StandardOffset { get; set; }
+        public ApiSdk.Models.StandardTimeZoneOffset StandardOffset { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CustomTimeZone"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CustomTimeZone"/> and sets the default values.
         /// </summary>
         public CustomTimeZone() : base()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CustomTimeZone"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CustomTimeZone"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CustomTimeZone CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CustomTimeZone CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CustomTimeZone();
+            return new ApiSdk.Models.CustomTimeZone();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "bias", n => { Bias = n.GetIntValue(); } },
-                { "daylightOffset", n => { DaylightOffset = n.GetObjectValue<DaylightTimeZoneOffset>(DaylightTimeZoneOffset.CreateFromDiscriminatorValue); } },
-                { "standardOffset", n => { StandardOffset = n.GetObjectValue<StandardTimeZoneOffset>(StandardTimeZoneOffset.CreateFromDiscriminatorValue); } },
+                { "daylightOffset", n => { DaylightOffset = n.GetObjectValue<ApiSdk.Models.DaylightTimeZoneOffset>(ApiSdk.Models.DaylightTimeZoneOffset.CreateFromDiscriminatorValue); } },
+                { "standardOffset", n => { StandardOffset = n.GetObjectValue<ApiSdk.Models.StandardTimeZoneOffset>(ApiSdk.Models.StandardTimeZoneOffset.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -67,8 +67,8 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteIntValue("bias", Bias);
-            writer.WriteObjectValue<DaylightTimeZoneOffset>("daylightOffset", DaylightOffset);
-            writer.WriteObjectValue<StandardTimeZoneOffset>("standardOffset", StandardOffset);
+            writer.WriteObjectValue<ApiSdk.Models.DaylightTimeZoneOffset>("daylightOffset", DaylightOffset);
+            writer.WriteObjectValue<ApiSdk.Models.StandardTimeZoneOffset>("standardOffset", StandardOffset);
         }
     }
 }

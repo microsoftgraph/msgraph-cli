@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay
         /// <summary>The days property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Days { get; set; }
+        public ApiSdk.Models.Json? Days { get; set; }
 #nullable restore
 #else
-        public Json Days { get; set; }
+        public ApiSdk.Models.Json Days { get; set; }
 #endif
         /// <summary>The holidays property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Holidays { get; set; }
+        public ApiSdk.Models.Json? Holidays { get; set; }
 #nullable restore
 #else
-        public Json Holidays { get; set; }
+        public ApiSdk.Models.Json Holidays { get; set; }
 #endif
         /// <summary>The startDate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? StartDate { get; set; }
+        public ApiSdk.Models.Json? StartDate { get; set; }
 #nullable restore
 #else
-        public Json StartDate { get; set; }
+        public ApiSdk.Models.Json StartDate { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WorkDayPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay.WorkDayPostRequestBody"/> and sets the default values.
         /// </summary>
         public WorkDayPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkDayPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay.WorkDayPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WorkDayPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay.WorkDayPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkDayPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay.WorkDayPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "days", n => { Days = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "holidays", n => { Holidays = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "startDate", n => { StartDate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "days", n => { Days = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "holidays", n => { Holidays = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "startDate", n => { StartDate = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("days", Days);
-            writer.WriteObjectValue<Json>("holidays", Holidays);
-            writer.WriteObjectValue<Json>("startDate", StartDate);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("days", Days);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("holidays", Holidays);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("startDate", StartDate);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

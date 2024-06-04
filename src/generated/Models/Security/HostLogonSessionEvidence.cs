@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class HostLogonSessionEvidence : AlertEvidence, IParsable
+    public class HostLogonSessionEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The account property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserEvidence? Account { get; set; }
+        public ApiSdk.Models.Security.UserEvidence? Account { get; set; }
 #nullable restore
 #else
-        public UserEvidence Account { get; set; }
+        public ApiSdk.Models.Security.UserEvidence Account { get; set; }
 #endif
         /// <summary>The endUtcDateTime property</summary>
         public DateTimeOffset? EndUtcDateTime { get; set; }
         /// <summary>The host property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DeviceEvidence? Host { get; set; }
+        public ApiSdk.Models.Security.DeviceEvidence? Host { get; set; }
 #nullable restore
 #else
-        public DeviceEvidence Host { get; set; }
+        public ApiSdk.Models.Security.DeviceEvidence Host { get; set; }
 #endif
         /// <summary>The sessionId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Security
         /// <summary>The startUtcDateTime property</summary>
         public DateTimeOffset? StartUtcDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="HostLogonSessionEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.HostLogonSessionEvidence"/> and sets the default values.
         /// </summary>
         public HostLogonSessionEvidence() : base()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HostLogonSessionEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.HostLogonSessionEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new HostLogonSessionEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.HostLogonSessionEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HostLogonSessionEvidence();
+            return new ApiSdk.Models.Security.HostLogonSessionEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,9 +63,9 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "account", n => { Account = n.GetObjectValue<UserEvidence>(UserEvidence.CreateFromDiscriminatorValue); } },
+                { "account", n => { Account = n.GetObjectValue<ApiSdk.Models.Security.UserEvidence>(ApiSdk.Models.Security.UserEvidence.CreateFromDiscriminatorValue); } },
                 { "endUtcDateTime", n => { EndUtcDateTime = n.GetDateTimeOffsetValue(); } },
-                { "host", n => { Host = n.GetObjectValue<DeviceEvidence>(DeviceEvidence.CreateFromDiscriminatorValue); } },
+                { "host", n => { Host = n.GetObjectValue<ApiSdk.Models.Security.DeviceEvidence>(ApiSdk.Models.Security.DeviceEvidence.CreateFromDiscriminatorValue); } },
                 { "sessionId", n => { SessionId = n.GetStringValue(); } },
                 { "startUtcDateTime", n => { StartUtcDateTime = n.GetDateTimeOffsetValue(); } },
             };
@@ -78,9 +78,9 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<UserEvidence>("account", Account);
+            writer.WriteObjectValue<ApiSdk.Models.Security.UserEvidence>("account", Account);
             writer.WriteDateTimeOffsetValue("endUtcDateTime", EndUtcDateTime);
-            writer.WriteObjectValue<DeviceEvidence>("host", Host);
+            writer.WriteObjectValue<ApiSdk.Models.Security.DeviceEvidence>("host", Host);
             writer.WriteStringValue("sessionId", SessionId);
             writer.WriteDateTimeOffsetValue("startUtcDateTime", StartUtcDateTime);
         }

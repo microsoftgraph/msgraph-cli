@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class BrowserSharedCookie : Entity, IParsable
+    public class BrowserSharedCookie : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The comment for the shared cookie.</summary>
@@ -33,10 +33,10 @@ namespace ApiSdk.Models
         /// <summary>The history of modifications applied to the cookie.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<BrowserSharedCookieHistory>? History { get; set; }
+        public List<ApiSdk.Models.BrowserSharedCookieHistory>? History { get; set; }
 #nullable restore
 #else
-        public List<BrowserSharedCookieHistory> History { get; set; }
+        public List<ApiSdk.Models.BrowserSharedCookieHistory> History { get; set; }
 #endif
         /// <summary>Controls whether a cookie is a host-only or domain cookie.</summary>
         public bool? HostOnly { get; set; }
@@ -51,10 +51,10 @@ namespace ApiSdk.Models
         /// <summary>The user who last modified the cookie.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet LastModifiedBy { get; set; }
 #endif
         /// <summary>The date and time when the cookie was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
@@ -67,18 +67,18 @@ namespace ApiSdk.Models
         public string Path { get; set; }
 #endif
         /// <summary>The sourceEnvironment property</summary>
-        public BrowserSharedCookieSourceEnvironment? SourceEnvironment { get; set; }
+        public ApiSdk.Models.BrowserSharedCookieSourceEnvironment? SourceEnvironment { get; set; }
         /// <summary>The status property</summary>
-        public BrowserSharedCookieStatus? Status { get; set; }
+        public ApiSdk.Models.BrowserSharedCookieStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BrowserSharedCookie"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BrowserSharedCookie"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new BrowserSharedCookie CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.BrowserSharedCookie CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BrowserSharedCookie();
+            return new ApiSdk.Models.BrowserSharedCookie();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -92,14 +92,14 @@ namespace ApiSdk.Models
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "deletedDateTime", n => { DeletedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "history", n => { History = n.GetCollectionOfObjectValues<BrowserSharedCookieHistory>(BrowserSharedCookieHistory.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "history", n => { History = n.GetCollectionOfObjectValues<ApiSdk.Models.BrowserSharedCookieHistory>(ApiSdk.Models.BrowserSharedCookieHistory.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "hostOnly", n => { HostOnly = n.GetBoolValue(); } },
                 { "hostOrDomain", n => { HostOrDomain = n.GetStringValue(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "path", n => { Path = n.GetStringValue(); } },
-                { "sourceEnvironment", n => { SourceEnvironment = n.GetEnumValue<BrowserSharedCookieSourceEnvironment>(); } },
-                { "status", n => { Status = n.GetEnumValue<BrowserSharedCookieStatus>(); } },
+                { "sourceEnvironment", n => { SourceEnvironment = n.GetEnumValue<ApiSdk.Models.BrowserSharedCookieSourceEnvironment>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.BrowserSharedCookieStatus>(); } },
             };
         }
         /// <summary>
@@ -114,14 +114,14 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDateTimeOffsetValue("deletedDateTime", DeletedDateTime);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<BrowserSharedCookieHistory>("history", History);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.BrowserSharedCookieHistory>("history", History);
             writer.WriteBoolValue("hostOnly", HostOnly);
             writer.WriteStringValue("hostOrDomain", HostOrDomain);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("path", Path);
-            writer.WriteEnumValue<BrowserSharedCookieSourceEnvironment>("sourceEnvironment", SourceEnvironment);
-            writer.WriteEnumValue<BrowserSharedCookieStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.BrowserSharedCookieSourceEnvironment>("sourceEnvironment", SourceEnvironment);
+            writer.WriteEnumValue<ApiSdk.Models.BrowserSharedCookieStatus>("status", Status);
         }
     }
 }

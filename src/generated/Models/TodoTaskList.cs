@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TodoTaskList : Entity, IParsable
+    public class TodoTaskList : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The name of the task list.</summary>
@@ -21,10 +21,10 @@ namespace ApiSdk.Models
         /// <summary>The collection of open extensions defined for the task list. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Extension>? Extensions { get; set; }
+        public List<ApiSdk.Models.Extension>? Extensions { get; set; }
 #nullable restore
 #else
-        public List<Extension> Extensions { get; set; }
+        public List<ApiSdk.Models.Extension> Extensions { get; set; }
 #endif
         /// <summary>True if the user is owner of the given task list.</summary>
         public bool? IsOwner { get; set; }
@@ -33,22 +33,22 @@ namespace ApiSdk.Models
         /// <summary>The tasks in this task list. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TodoTask>? Tasks { get; set; }
+        public List<ApiSdk.Models.TodoTask>? Tasks { get; set; }
 #nullable restore
 #else
-        public List<TodoTask> Tasks { get; set; }
+        public List<ApiSdk.Models.TodoTask> Tasks { get; set; }
 #endif
         /// <summary>The wellknownListName property</summary>
         public ApiSdk.Models.WellknownListName? WellknownListName { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TodoTaskList"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TodoTaskList"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TodoTaskList CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TodoTaskList CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TodoTaskList();
+            return new ApiSdk.Models.TodoTaskList();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,11 +59,11 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<ApiSdk.Models.Extension>(ApiSdk.Models.Extension.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isOwner", n => { IsOwner = n.GetBoolValue(); } },
                 { "isShared", n => { IsShared = n.GetBoolValue(); } },
-                { "tasks", n => { Tasks = n.GetCollectionOfObjectValues<TodoTask>(TodoTask.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "wellknownListName", n => { WellknownListName = n.GetEnumValue<WellknownListName>(); } },
+                { "tasks", n => { Tasks = n.GetCollectionOfObjectValues<ApiSdk.Models.TodoTask>(ApiSdk.Models.TodoTask.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "wellknownListName", n => { WellknownListName = n.GetEnumValue<ApiSdk.Models.WellknownListName>(); } },
             };
         }
         /// <summary>
@@ -75,11 +75,11 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Extension>("extensions", Extensions);
             writer.WriteBoolValue("isOwner", IsOwner);
             writer.WriteBoolValue("isShared", IsShared);
-            writer.WriteCollectionOfObjectValues<TodoTask>("tasks", Tasks);
-            writer.WriteEnumValue<WellknownListName>("wellknownListName", WellknownListName);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TodoTask>("tasks", Tasks);
+            writer.WriteEnumValue<ApiSdk.Models.WellknownListName>("wellknownListName", WellknownListName);
         }
     }
 }

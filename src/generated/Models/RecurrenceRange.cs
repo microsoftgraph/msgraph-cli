@@ -36,9 +36,9 @@ namespace ApiSdk.Models
         /// <summary>The date to start applying the recurrence pattern. The first occurrence of the meeting may be this date or later, depending on the recurrence pattern of the event. Must be the same value as the start property of the recurring event. Required.</summary>
         public Date? StartDate { get; set; }
         /// <summary>The recurrence range. The possible values are: endDate, noEnd, numbered. Required.</summary>
-        public RecurrenceRangeType? Type { get; set; }
+        public ApiSdk.Models.RecurrenceRangeType? Type { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="RecurrenceRange"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RecurrenceRange"/> and sets the default values.
         /// </summary>
         public RecurrenceRange()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RecurrenceRange"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RecurrenceRange"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RecurrenceRange CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.RecurrenceRange CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RecurrenceRange();
+            return new ApiSdk.Models.RecurrenceRange();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "recurrenceTimeZone", n => { RecurrenceTimeZone = n.GetStringValue(); } },
                 { "startDate", n => { StartDate = n.GetDateValue(); } },
-                { "type", n => { Type = n.GetEnumValue<RecurrenceRangeType>(); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.RecurrenceRangeType>(); } },
             };
         }
         /// <summary>
@@ -82,7 +82,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("recurrenceTimeZone", RecurrenceTimeZone);
             writer.WriteDateValue("startDate", StartDate);
-            writer.WriteEnumValue<RecurrenceRangeType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.RecurrenceRangeType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

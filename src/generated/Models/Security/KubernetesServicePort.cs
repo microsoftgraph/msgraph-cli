@@ -41,7 +41,7 @@ namespace ApiSdk.Models.Security
         /// <summary>The port that this service exposes.</summary>
         public int? Port { get; set; }
         /// <summary>The protocol name. Possible values are: udp, tcp, sctp, unknownFutureValue.</summary>
-        public ContainerPortProtocol? Protocol { get; set; }
+        public ApiSdk.Models.Security.ContainerPortProtocol? Protocol { get; set; }
         /// <summary>The name or number of the port to access on the pods targeted by the service. The port number must be in the range 1 to 65535. The name must be an IANASVCNAME.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -51,7 +51,7 @@ namespace ApiSdk.Models.Security
         public string TargetPort { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="KubernetesServicePort"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.KubernetesServicePort"/> and sets the default values.
         /// </summary>
         public KubernetesServicePort()
         {
@@ -60,12 +60,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="KubernetesServicePort"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.KubernetesServicePort"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static KubernetesServicePort CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.KubernetesServicePort CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new KubernetesServicePort();
+            return new ApiSdk.Models.Security.KubernetesServicePort();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -80,7 +80,7 @@ namespace ApiSdk.Models.Security
                 { "nodePort", n => { NodePort = n.GetIntValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "port", n => { Port = n.GetIntValue(); } },
-                { "protocol", n => { Protocol = n.GetEnumValue<ContainerPortProtocol>(); } },
+                { "protocol", n => { Protocol = n.GetEnumValue<ApiSdk.Models.Security.ContainerPortProtocol>(); } },
                 { "targetPort", n => { TargetPort = n.GetStringValue(); } },
             };
         }
@@ -96,7 +96,7 @@ namespace ApiSdk.Models.Security
             writer.WriteIntValue("nodePort", NodePort);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("port", Port);
-            writer.WriteEnumValue<ContainerPortProtocol>("protocol", Protocol);
+            writer.WriteEnumValue<ApiSdk.Models.Security.ContainerPortProtocol>("protocol", Protocol);
             writer.WriteStringValue("targetPort", TargetPort);
             writer.WriteAdditionalData(AdditionalData);
         }

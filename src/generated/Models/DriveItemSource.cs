@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Enumeration value that indicates the source application where the file was created.</summary>
-        public DriveItemSourceApplication? Application { get; set; }
+        public ApiSdk.Models.DriveItemSourceApplication? Application { get; set; }
         /// <summary>The external identifier for the drive item from the source.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DriveItemSource"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DriveItemSource"/> and sets the default values.
         /// </summary>
         public DriveItemSource()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DriveItemSource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DriveItemSource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DriveItemSource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.DriveItemSource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DriveItemSource();
+            return new ApiSdk.Models.DriveItemSource();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "application", n => { Application = n.GetEnumValue<DriveItemSourceApplication>(); } },
+                { "application", n => { Application = n.GetEnumValue<ApiSdk.Models.DriveItemSourceApplication>(); } },
                 { "externalId", n => { ExternalId = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<DriveItemSourceApplication>("application", Application);
+            writer.WriteEnumValue<ApiSdk.Models.DriveItemSourceApplication>("application", Application);
             writer.WriteStringValue("externalId", ExternalId);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

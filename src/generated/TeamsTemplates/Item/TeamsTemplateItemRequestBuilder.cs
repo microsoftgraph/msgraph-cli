@@ -139,7 +139,7 @@ namespace ApiSdk.TeamsTemplates.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<TeamsTemplate>(TeamsTemplate.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.TeamsTemplate>(ApiSdk.Models.TeamsTemplate.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -160,14 +160,14 @@ namespace ApiSdk.TeamsTemplates.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TeamsTemplateItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.TeamsTemplates.Item.TeamsTemplateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TeamsTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamsTemplates/{teamsTemplate%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TeamsTemplateItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.TeamsTemplates.Item.TeamsTemplateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TeamsTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/teamsTemplates/{teamsTemplate%2Did}{?%24expand,%24select}", rawUrl)
@@ -199,11 +199,11 @@ namespace ApiSdk.TeamsTemplates.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsTemplateItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.TeamsTemplates.Item.TeamsTemplateItemRequestBuilder.TeamsTemplateItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsTemplateItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.TeamsTemplates.Item.TeamsTemplateItemRequestBuilder.TeamsTemplateItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -219,11 +219,11 @@ namespace ApiSdk.TeamsTemplates.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(TeamsTemplate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TeamsTemplate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(TeamsTemplate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TeamsTemplate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

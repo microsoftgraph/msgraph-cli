@@ -16,37 +16,37 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The basis property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Basis { get; set; }
+        public ApiSdk.Models.Json? Basis { get; set; }
 #nullable restore
 #else
-        public Json Basis { get; set; }
+        public ApiSdk.Models.Json Basis { get; set; }
 #endif
         /// <summary>The frequency property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Frequency { get; set; }
+        public ApiSdk.Models.Json? Frequency { get; set; }
 #nullable restore
 #else
-        public Json Frequency { get; set; }
+        public ApiSdk.Models.Json Frequency { get; set; }
 #endif
         /// <summary>The maturity property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Maturity { get; set; }
+        public ApiSdk.Models.Json? Maturity { get; set; }
 #nullable restore
 #else
-        public Json Maturity { get; set; }
+        public ApiSdk.Models.Json Maturity { get; set; }
 #endif
         /// <summary>The settlement property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Settlement { get; set; }
+        public ApiSdk.Models.Json? Settlement { get; set; }
 #nullable restore
 #else
-        public Json Settlement { get; set; }
+        public ApiSdk.Models.Json Settlement { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CoupPcdPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.CoupPcd.CoupPcdPostRequestBody"/> and sets the default values.
         /// </summary>
         public CoupPcdPostRequestBody()
         {
@@ -55,12 +55,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CoupPcdPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.CoupPcd.CoupPcdPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CoupPcdPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.CoupPcd.CoupPcdPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CoupPcdPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.CoupPcd.CoupPcdPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,10 +70,10 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "basis", n => { Basis = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "frequency", n => { Frequency = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "maturity", n => { Maturity = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "settlement", n => { Settlement = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "basis", n => { Basis = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "frequency", n => { Frequency = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "maturity", n => { Maturity = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "settlement", n => { Settlement = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -83,10 +83,10 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("basis", Basis);
-            writer.WriteObjectValue<Json>("frequency", Frequency);
-            writer.WriteObjectValue<Json>("maturity", Maturity);
-            writer.WriteObjectValue<Json>("settlement", Settlement);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("basis", Basis);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("frequency", Frequency);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("maturity", Maturity);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("settlement", Settlement);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

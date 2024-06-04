@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class LearningSelfInitiatedCourse : LearningCourseActivity, IParsable
+    public class LearningSelfInitiatedCourse : ApiSdk.Models.LearningCourseActivity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The date and time on which the learner started the self-initiated course. Optional.</summary>
@@ -15,12 +15,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LearningSelfInitiatedCourse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.LearningSelfInitiatedCourse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new LearningSelfInitiatedCourse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.LearningSelfInitiatedCourse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LearningSelfInitiatedCourse();
+            return new ApiSdk.Models.LearningSelfInitiatedCourse();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -30,7 +30,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.Targe
         public Tuple<List<Command>, List<Command>> BuildCommand()
         {
             var executables = new List<Command>();
-            var builder = new TargetDeviceGroupItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.TargetDeviceGroups.Item.TargetDeviceGroupItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());
@@ -44,7 +44,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.Targe
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.TargetDeviceGroups.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -85,7 +85,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.Targe
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<TargetDeviceGroup>(TargetDeviceGroup.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.TargetDeviceGroup>(ApiSdk.Models.TargetDeviceGroup.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -209,14 +209,14 @@ namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.Targe
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TargetDeviceGroupsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.TargetDeviceGroups.TargetDeviceGroupsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TargetDeviceGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/remoteDesktopSecurityConfiguration/targetDeviceGroups{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TargetDeviceGroupsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.TargetDeviceGroups.TargetDeviceGroupsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TargetDeviceGroupsRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/remoteDesktopSecurityConfiguration/targetDeviceGroups{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -229,11 +229,11 @@ namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.Targe
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TargetDeviceGroupsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.TargetDeviceGroups.TargetDeviceGroupsRequestBuilder.TargetDeviceGroupsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TargetDeviceGroupsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.TargetDeviceGroups.TargetDeviceGroupsRequestBuilder.TargetDeviceGroupsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -249,11 +249,11 @@ namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.Targe
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(TargetDeviceGroup body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.TargetDeviceGroup body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(TargetDeviceGroup body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.TargetDeviceGroup body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

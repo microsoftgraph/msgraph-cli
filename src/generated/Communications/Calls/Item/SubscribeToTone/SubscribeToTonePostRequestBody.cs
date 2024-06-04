@@ -21,7 +21,7 @@ namespace ApiSdk.Communications.Calls.Item.SubscribeToTone
         public string ClientContext { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SubscribeToTonePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.SubscribeToTone.SubscribeToTonePostRequestBody"/> and sets the default values.
         /// </summary>
         public SubscribeToTonePostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Communications.Calls.Item.SubscribeToTone
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SubscribeToTonePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.Calls.Item.SubscribeToTone.SubscribeToTonePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SubscribeToTonePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.Calls.Item.SubscribeToTone.SubscribeToTonePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SubscribeToTonePostRequestBody();
+            return new ApiSdk.Communications.Calls.Item.SubscribeToTone.SubscribeToTonePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

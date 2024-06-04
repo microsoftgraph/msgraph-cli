@@ -7,42 +7,42 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Synchronization : Entity, IParsable
+    public class Synchronization : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SynchronizationJob>? Jobs { get; set; }
+        public List<ApiSdk.Models.SynchronizationJob>? Jobs { get; set; }
 #nullable restore
 #else
-        public List<SynchronizationJob> Jobs { get; set; }
+        public List<ApiSdk.Models.SynchronizationJob> Jobs { get; set; }
 #endif
         /// <summary>Represents a collection of credentials to access provisioned cloud applications.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SynchronizationSecretKeyStringValuePair>? Secrets { get; set; }
+        public List<ApiSdk.Models.SynchronizationSecretKeyStringValuePair>? Secrets { get; set; }
 #nullable restore
 #else
-        public List<SynchronizationSecretKeyStringValuePair> Secrets { get; set; }
+        public List<ApiSdk.Models.SynchronizationSecretKeyStringValuePair> Secrets { get; set; }
 #endif
         /// <summary>Preconfigured synchronization settings for a particular application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SynchronizationTemplate>? Templates { get; set; }
+        public List<ApiSdk.Models.SynchronizationTemplate>? Templates { get; set; }
 #nullable restore
 #else
-        public List<SynchronizationTemplate> Templates { get; set; }
+        public List<ApiSdk.Models.SynchronizationTemplate> Templates { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Synchronization"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Synchronization"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Synchronization CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Synchronization CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Synchronization();
+            return new ApiSdk.Models.Synchronization();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -52,9 +52,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "jobs", n => { Jobs = n.GetCollectionOfObjectValues<SynchronizationJob>(SynchronizationJob.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "secrets", n => { Secrets = n.GetCollectionOfObjectValues<SynchronizationSecretKeyStringValuePair>(SynchronizationSecretKeyStringValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "templates", n => { Templates = n.GetCollectionOfObjectValues<SynchronizationTemplate>(SynchronizationTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "jobs", n => { Jobs = n.GetCollectionOfObjectValues<ApiSdk.Models.SynchronizationJob>(ApiSdk.Models.SynchronizationJob.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "secrets", n => { Secrets = n.GetCollectionOfObjectValues<ApiSdk.Models.SynchronizationSecretKeyStringValuePair>(ApiSdk.Models.SynchronizationSecretKeyStringValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "templates", n => { Templates = n.GetCollectionOfObjectValues<ApiSdk.Models.SynchronizationTemplate>(ApiSdk.Models.SynchronizationTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -65,9 +65,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<SynchronizationJob>("jobs", Jobs);
-            writer.WriteCollectionOfObjectValues<SynchronizationSecretKeyStringValuePair>("secrets", Secrets);
-            writer.WriteCollectionOfObjectValues<SynchronizationTemplate>("templates", Templates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SynchronizationJob>("jobs", Jobs);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SynchronizationSecretKeyStringValuePair>("secrets", Secrets);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SynchronizationTemplate>("templates", Templates);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace ApiSdk.Models.IdentityGovernance
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WorkflowExecutionConditions"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions"/> and sets the default values.
         /// </summary>
         public WorkflowExecutionConditions()
         {
@@ -30,17 +30,17 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkflowExecutionConditions"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WorkflowExecutionConditions CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.identityGovernance.onDemandExecutionOnly" => new OnDemandExecutionOnly(),
-                "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions" => new TriggerAndScopeBasedConditions(),
-                _ => new WorkflowExecutionConditions(),
+                "#microsoft.graph.identityGovernance.onDemandExecutionOnly" => new ApiSdk.Models.IdentityGovernance.OnDemandExecutionOnly(),
+                "#microsoft.graph.identityGovernance.triggerAndScopeBasedConditions" => new ApiSdk.Models.IdentityGovernance.TriggerAndScopeBasedConditions(),
+                _ => new ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions(),
             };
         }
         /// <summary>

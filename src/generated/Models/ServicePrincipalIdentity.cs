@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ServicePrincipalIdentity : Identity, IParsable
+    public class ServicePrincipalIdentity : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The application identifier of the service principal.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string AppId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ServicePrincipalIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ServicePrincipalIdentity"/> and sets the default values.
         /// </summary>
         public ServicePrincipalIdentity() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ServicePrincipalIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ServicePrincipalIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ServicePrincipalIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ServicePrincipalIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ServicePrincipalIdentity();
+            return new ApiSdk.Models.ServicePrincipalIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model

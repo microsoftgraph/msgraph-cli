@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CollapseProperty"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CollapseProperty"/> and sets the default values.
         /// </summary>
         public CollapseProperty()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CollapseProperty"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CollapseProperty"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CollapseProperty CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CollapseProperty CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CollapseProperty();
+            return new ApiSdk.Models.CollapseProperty();
         }
         /// <summary>
         /// The deserialization information for the current model

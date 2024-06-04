@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UnifiedRoleAssignmentSchedule : UnifiedRoleScheduleBase, IParsable
+    public class UnifiedRoleAssignmentSchedule : ApiSdk.Models.UnifiedRoleScheduleBase, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>If the request is from an eligible administrator to activate a role, this parameter shows the related eligible assignment for that activation. Otherwise, it&apos;s null. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UnifiedRoleEligibilitySchedule? ActivatedUsing { get; set; }
+        public ApiSdk.Models.UnifiedRoleEligibilitySchedule? ActivatedUsing { get; set; }
 #nullable restore
 #else
-        public UnifiedRoleEligibilitySchedule ActivatedUsing { get; set; }
+        public ApiSdk.Models.UnifiedRoleEligibilitySchedule ActivatedUsing { get; set; }
 #endif
         /// <summary>The type of the assignment that can either be Assigned or Activated. Supports $filter (eq, ne).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,20 +37,20 @@ namespace ApiSdk.Models
         /// <summary>The period of the role assignment. It can represent a single occurrence or multiple recurrences.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestSchedule? ScheduleInfo { get; set; }
+        public ApiSdk.Models.RequestSchedule? ScheduleInfo { get; set; }
 #nullable restore
 #else
-        public RequestSchedule ScheduleInfo { get; set; }
+        public ApiSdk.Models.RequestSchedule ScheduleInfo { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedRoleAssignmentSchedule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UnifiedRoleAssignmentSchedule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UnifiedRoleAssignmentSchedule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UnifiedRoleAssignmentSchedule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedRoleAssignmentSchedule();
+            return new ApiSdk.Models.UnifiedRoleAssignmentSchedule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,10 +60,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "activatedUsing", n => { ActivatedUsing = n.GetObjectValue<UnifiedRoleEligibilitySchedule>(UnifiedRoleEligibilitySchedule.CreateFromDiscriminatorValue); } },
+                { "activatedUsing", n => { ActivatedUsing = n.GetObjectValue<ApiSdk.Models.UnifiedRoleEligibilitySchedule>(ApiSdk.Models.UnifiedRoleEligibilitySchedule.CreateFromDiscriminatorValue); } },
                 { "assignmentType", n => { AssignmentType = n.GetStringValue(); } },
                 { "memberType", n => { MemberType = n.GetStringValue(); } },
-                { "scheduleInfo", n => { ScheduleInfo = n.GetObjectValue<RequestSchedule>(RequestSchedule.CreateFromDiscriminatorValue); } },
+                { "scheduleInfo", n => { ScheduleInfo = n.GetObjectValue<ApiSdk.Models.RequestSchedule>(ApiSdk.Models.RequestSchedule.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,10 +74,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<UnifiedRoleEligibilitySchedule>("activatedUsing", ActivatedUsing);
+            writer.WriteObjectValue<ApiSdk.Models.UnifiedRoleEligibilitySchedule>("activatedUsing", ActivatedUsing);
             writer.WriteStringValue("assignmentType", AssignmentType);
             writer.WriteStringValue("memberType", MemberType);
-            writer.WriteObjectValue<RequestSchedule>("scheduleInfo", ScheduleInfo);
+            writer.WriteObjectValue<ApiSdk.Models.RequestSchedule>("scheduleInfo", ScheduleInfo);
         }
     }
 }

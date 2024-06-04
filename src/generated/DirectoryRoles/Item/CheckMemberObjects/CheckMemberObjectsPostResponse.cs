@@ -8,7 +8,7 @@ using System;
 namespace ApiSdk.DirectoryRoles.Item.CheckMemberObjects
 {
     #pragma warning disable CS1591
-    public class CheckMemberObjectsPostResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class CheckMemberObjectsPostResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
@@ -22,12 +22,12 @@ namespace ApiSdk.DirectoryRoles.Item.CheckMemberObjects
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CheckMemberObjectsPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.DirectoryRoles.Item.CheckMemberObjects.CheckMemberObjectsPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CheckMemberObjectsPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.DirectoryRoles.Item.CheckMemberObjects.CheckMemberObjectsPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CheckMemberObjectsPostResponse();
+            return new ApiSdk.DirectoryRoles.Item.CheckMemberObjects.CheckMemberObjectsPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

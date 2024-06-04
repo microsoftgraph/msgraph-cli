@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item
         {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
-            var builder = new ContentRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.Content.ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -203,7 +203,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AttachmentSession>(AttachmentSession.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.AttachmentSession>(ApiSdk.Models.AttachmentSession.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -227,14 +227,14 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttachmentSessionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.AttachmentSessionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AttachmentSessionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachmentSessions/{attachmentSession%2Did}{?%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttachmentSessionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.AttachmentSessionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AttachmentSessionItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachmentSessions/{attachmentSession%2Did}{?%24select}", rawUrl)
@@ -266,11 +266,11 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttachmentSessionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.AttachmentSessionItemRequestBuilder.AttachmentSessionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttachmentSessionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.AttachmentSessionItemRequestBuilder.AttachmentSessionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -286,11 +286,11 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AttachmentSession body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AttachmentSession body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AttachmentSession body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AttachmentSession body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

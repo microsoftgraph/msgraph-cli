@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AdminConsentRequestPolicy : Entity, IParsable
+    public class AdminConsentRequestPolicy : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Specifies whether the admin consent request feature is enabled or disabled. Required.</summary>
@@ -21,22 +21,22 @@ namespace ApiSdk.Models
         /// <summary>The list of reviewers for the admin consent. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessReviewReviewerScope>? Reviewers { get; set; }
+        public List<ApiSdk.Models.AccessReviewReviewerScope>? Reviewers { get; set; }
 #nullable restore
 #else
-        public List<AccessReviewReviewerScope> Reviewers { get; set; }
+        public List<ApiSdk.Models.AccessReviewReviewerScope> Reviewers { get; set; }
 #endif
         /// <summary>Specifies the version of this policy. When the policy is updated, this version is updated. Read-only.</summary>
         public int? Version { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AdminConsentRequestPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AdminConsentRequestPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AdminConsentRequestPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AdminConsentRequestPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AdminConsentRequestPolicy();
+            return new ApiSdk.Models.AdminConsentRequestPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -50,7 +50,7 @@ namespace ApiSdk.Models
                 { "notifyReviewers", n => { NotifyReviewers = n.GetBoolValue(); } },
                 { "remindersEnabled", n => { RemindersEnabled = n.GetBoolValue(); } },
                 { "requestDurationInDays", n => { RequestDurationInDays = n.GetIntValue(); } },
-                { "reviewers", n => { Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "reviewers", n => { Reviewers = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessReviewReviewerScope>(ApiSdk.Models.AccessReviewReviewerScope.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "version", n => { Version = n.GetIntValue(); } },
             };
         }
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("notifyReviewers", NotifyReviewers);
             writer.WriteBoolValue("remindersEnabled", RemindersEnabled);
             writer.WriteIntValue("requestDurationInDays", RequestDurationInDays);
-            writer.WriteCollectionOfObjectValues<AccessReviewReviewerScope>("reviewers", Reviewers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessReviewReviewerScope>("reviewers", Reviewers);
             writer.WriteIntValue("version", Version);
         }
     }

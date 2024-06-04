@@ -79,7 +79,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
         {
             var command = new Command("excuse");
             command.Description = "Provides operations to call the excuse method.";
-            var builder = new ExcuseRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Excuse.ExcuseRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -154,7 +154,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
         {
             var command = new Command("outcomes");
             command.Description = "Provides operations to manage the outcomes property of the microsoft.graph.educationSubmission entity.";
-            var builder = new OutcomesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.OutcomesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -209,7 +209,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<EducationSubmission>(EducationSubmission.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.EducationSubmission>(ApiSdk.Models.EducationSubmission.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -238,7 +238,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
         {
             var command = new Command("reassign");
             command.Description = "Provides operations to call the reassign method.";
-            var builder = new ReassignRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Reassign.ReassignRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -255,7 +255,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
         {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.educationSubmission entity.";
-            var builder = new ResourcesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources.ResourcesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -282,7 +282,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
         {
             var command = new Command("return");
             command.Description = "Provides operations to call the return method.";
-            var builder = new ReturnRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Return.ReturnRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -299,7 +299,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
         {
             var command = new Command("set-up-resources-folder");
             command.Description = "Provides operations to call the setUpResourcesFolder method.";
-            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Assignments.Item.Submissions.Item.SetUpResourcesFolder.SetUpResourcesFolderRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -316,7 +316,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
         {
             var command = new Command("submit");
             command.Description = "Provides operations to call the submit method.";
-            var builder = new SubmitRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Submit.SubmitRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -333,7 +333,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
         {
             var command = new Command("submitted-resources");
             command.Description = "Provides operations to manage the submittedResources property of the microsoft.graph.educationSubmission entity.";
-            var builder = new SubmittedResourcesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Assignments.Item.Submissions.Item.SubmittedResources.SubmittedResourcesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -360,7 +360,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
         {
             var command = new Command("unsubmit");
             command.Description = "Provides operations to call the unsubmit method.";
-            var builder = new UnsubmitRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Unsubmit.UnsubmitRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -370,14 +370,14 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="EducationSubmissionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Me.Assignments.Item.Submissions.Item.EducationSubmissionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public EducationSubmissionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="EducationSubmissionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Me.Assignments.Item.Submissions.Item.EducationSubmissionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public EducationSubmissionItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}{?%24expand,%24select}", rawUrl)
@@ -409,11 +409,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationSubmissionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.Me.Assignments.Item.Submissions.Item.EducationSubmissionItemRequestBuilder.EducationSubmissionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationSubmissionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.Me.Assignments.Item.Submissions.Item.EducationSubmissionItemRequestBuilder.EducationSubmissionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -429,11 +429,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EducationSubmission body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.EducationSubmission body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(EducationSubmission body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.EducationSubmission body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

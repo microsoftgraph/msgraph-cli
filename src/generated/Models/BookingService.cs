@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Represents a particular service offered by a booking business.
     /// </summary>
-    public class BookingService : Entity, IParsable
+    public class BookingService : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Additional information that is sent to the customer when an appointment is confirmed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,32 +22,32 @@ namespace ApiSdk.Models
         /// <summary>Contains the set of custom questions associated with a particular service.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<BookingQuestionAssignment>? CustomQuestions { get; set; }
+        public List<ApiSdk.Models.BookingQuestionAssignment>? CustomQuestions { get; set; }
 #nullable restore
 #else
-        public List<BookingQuestionAssignment> CustomQuestions { get; set; }
+        public List<ApiSdk.Models.BookingQuestionAssignment> CustomQuestions { get; set; }
 #endif
         /// <summary>The default length of the service, represented in numbers of days, hours, minutes, and seconds. For example, P11D23H59M59.999999999999S.</summary>
         public TimeSpan? DefaultDuration { get; set; }
         /// <summary>The default physical location for the service.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Location? DefaultLocation { get; set; }
+        public ApiSdk.Models.Location? DefaultLocation { get; set; }
 #nullable restore
 #else
-        public Location DefaultLocation { get; set; }
+        public ApiSdk.Models.Location DefaultLocation { get; set; }
 #endif
         /// <summary>The default monetary price for the service.</summary>
         public double? DefaultPrice { get; set; }
         /// <summary>Represents the type of pricing of a booking service.</summary>
-        public BookingPriceType? DefaultPriceType { get; set; }
+        public ApiSdk.Models.BookingPriceType? DefaultPriceType { get; set; }
         /// <summary>The default set of reminders for an appointment of this service. The value of this property is available only when reading this bookingService by its ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<BookingReminder>? DefaultReminders { get; set; }
+        public List<ApiSdk.Models.BookingReminder>? DefaultReminders { get; set; }
 #nullable restore
 #else
-        public List<BookingReminder> DefaultReminders { get; set; }
+        public List<ApiSdk.Models.BookingReminder> DefaultReminders { get; set; }
 #endif
         /// <summary>A text description for the service.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -96,10 +96,10 @@ namespace ApiSdk.Models
         /// <summary>The set of policies that determine how appointments for this type of service should be created and managed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public BookingSchedulingPolicy? SchedulingPolicy { get; set; }
+        public ApiSdk.Models.BookingSchedulingPolicy? SchedulingPolicy { get; set; }
 #nullable restore
 #else
-        public BookingSchedulingPolicy SchedulingPolicy { get; set; }
+        public ApiSdk.Models.BookingSchedulingPolicy SchedulingPolicy { get; set; }
 #endif
         /// <summary>True indicates SMS notifications can be sent to the customers for the appointment of the service. Default value is false.</summary>
         public bool? SmsNotificationsEnabled { get; set; }
@@ -122,12 +122,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BookingService"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BookingService"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new BookingService CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.BookingService CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BookingService();
+            return new ApiSdk.Models.BookingService();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -138,12 +138,12 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "additionalInformation", n => { AdditionalInformation = n.GetStringValue(); } },
-                { "customQuestions", n => { CustomQuestions = n.GetCollectionOfObjectValues<BookingQuestionAssignment>(BookingQuestionAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "customQuestions", n => { CustomQuestions = n.GetCollectionOfObjectValues<ApiSdk.Models.BookingQuestionAssignment>(ApiSdk.Models.BookingQuestionAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "defaultDuration", n => { DefaultDuration = n.GetTimeSpanValue(); } },
-                { "defaultLocation", n => { DefaultLocation = n.GetObjectValue<Location>(Location.CreateFromDiscriminatorValue); } },
+                { "defaultLocation", n => { DefaultLocation = n.GetObjectValue<ApiSdk.Models.Location>(ApiSdk.Models.Location.CreateFromDiscriminatorValue); } },
                 { "defaultPrice", n => { DefaultPrice = n.GetDoubleValue(); } },
-                { "defaultPriceType", n => { DefaultPriceType = n.GetEnumValue<BookingPriceType>(); } },
-                { "defaultReminders", n => { DefaultReminders = n.GetCollectionOfObjectValues<BookingReminder>(BookingReminder.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "defaultPriceType", n => { DefaultPriceType = n.GetEnumValue<ApiSdk.Models.BookingPriceType>(); } },
+                { "defaultReminders", n => { DefaultReminders = n.GetCollectionOfObjectValues<ApiSdk.Models.BookingReminder>(ApiSdk.Models.BookingReminder.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "isAnonymousJoinEnabled", n => { IsAnonymousJoinEnabled = n.GetBoolValue(); } },
@@ -154,7 +154,7 @@ namespace ApiSdk.Models
                 { "notes", n => { Notes = n.GetStringValue(); } },
                 { "postBuffer", n => { PostBuffer = n.GetTimeSpanValue(); } },
                 { "preBuffer", n => { PreBuffer = n.GetTimeSpanValue(); } },
-                { "schedulingPolicy", n => { SchedulingPolicy = n.GetObjectValue<BookingSchedulingPolicy>(BookingSchedulingPolicy.CreateFromDiscriminatorValue); } },
+                { "schedulingPolicy", n => { SchedulingPolicy = n.GetObjectValue<ApiSdk.Models.BookingSchedulingPolicy>(ApiSdk.Models.BookingSchedulingPolicy.CreateFromDiscriminatorValue); } },
                 { "smsNotificationsEnabled", n => { SmsNotificationsEnabled = n.GetBoolValue(); } },
                 { "staffMemberIds", n => { StaffMemberIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "webUrl", n => { WebUrl = n.GetStringValue(); } },
@@ -169,12 +169,12 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("additionalInformation", AdditionalInformation);
-            writer.WriteCollectionOfObjectValues<BookingQuestionAssignment>("customQuestions", CustomQuestions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.BookingQuestionAssignment>("customQuestions", CustomQuestions);
             writer.WriteTimeSpanValue("defaultDuration", DefaultDuration);
-            writer.WriteObjectValue<Location>("defaultLocation", DefaultLocation);
+            writer.WriteObjectValue<ApiSdk.Models.Location>("defaultLocation", DefaultLocation);
             writer.WriteDoubleValue("defaultPrice", DefaultPrice);
-            writer.WriteEnumValue<BookingPriceType>("defaultPriceType", DefaultPriceType);
-            writer.WriteCollectionOfObjectValues<BookingReminder>("defaultReminders", DefaultReminders);
+            writer.WriteEnumValue<ApiSdk.Models.BookingPriceType>("defaultPriceType", DefaultPriceType);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.BookingReminder>("defaultReminders", DefaultReminders);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("isAnonymousJoinEnabled", IsAnonymousJoinEnabled);
@@ -185,7 +185,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("notes", Notes);
             writer.WriteTimeSpanValue("postBuffer", PostBuffer);
             writer.WriteTimeSpanValue("preBuffer", PreBuffer);
-            writer.WriteObjectValue<BookingSchedulingPolicy>("schedulingPolicy", SchedulingPolicy);
+            writer.WriteObjectValue<ApiSdk.Models.BookingSchedulingPolicy>("schedulingPolicy", SchedulingPolicy);
             writer.WriteBoolValue("smsNotificationsEnabled", SmsNotificationsEnabled);
             writer.WriteCollectionOfPrimitiveValues<string>("staffMemberIds", StaffMemberIds);
         }

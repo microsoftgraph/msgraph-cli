@@ -74,14 +74,14 @@ namespace ApiSdk.Sites.Item.Analytics.LastSevenDays
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="LastSevenDaysRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Analytics.LastSevenDays.LastSevenDaysRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LastSevenDaysRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/analytics/lastSevenDays{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="LastSevenDaysRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Analytics.LastSevenDays.LastSevenDaysRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LastSevenDaysRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/analytics/lastSevenDays{?%24expand,%24select}", rawUrl)
@@ -94,11 +94,11 @@ namespace ApiSdk.Sites.Item.Analytics.LastSevenDays
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<LastSevenDaysRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Analytics.LastSevenDays.LastSevenDaysRequestBuilder.LastSevenDaysRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<LastSevenDaysRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Analytics.LastSevenDays.LastSevenDaysRequestBuilder.LastSevenDaysRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

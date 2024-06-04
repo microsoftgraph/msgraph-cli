@@ -164,14 +164,14 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttendeeReportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport.AttendeeReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AttendeeReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/attendeeReport", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttendeeReportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport.AttendeeReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AttendeeReportRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/attendeeReport", rawUrl)

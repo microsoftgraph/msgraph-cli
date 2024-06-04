@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// A singleton entity which is used to specify IE mode site list metadata
     /// </summary>
-    public class BrowserSiteList : Entity, IParsable
+    public class BrowserSiteList : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The description of the site list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -30,20 +30,20 @@ namespace ApiSdk.Models
         /// <summary>The user who last modified the site list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet LastModifiedBy { get; set; }
 #endif
         /// <summary>The date and time when the site list was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>The user who published the site list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? PublishedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? PublishedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet PublishedBy { get; set; }
+        public ApiSdk.Models.IdentitySet PublishedBy { get; set; }
 #endif
         /// <summary>The date and time when the site list was published.</summary>
         public DateTimeOffset? PublishedDateTime { get; set; }
@@ -58,30 +58,30 @@ namespace ApiSdk.Models
         /// <summary>A collection of shared cookies defined for the site list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<BrowserSharedCookie>? SharedCookies { get; set; }
+        public List<ApiSdk.Models.BrowserSharedCookie>? SharedCookies { get; set; }
 #nullable restore
 #else
-        public List<BrowserSharedCookie> SharedCookies { get; set; }
+        public List<ApiSdk.Models.BrowserSharedCookie> SharedCookies { get; set; }
 #endif
         /// <summary>A collection of sites defined for the site list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<BrowserSite>? Sites { get; set; }
+        public List<ApiSdk.Models.BrowserSite>? Sites { get; set; }
 #nullable restore
 #else
-        public List<BrowserSite> Sites { get; set; }
+        public List<ApiSdk.Models.BrowserSite> Sites { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public BrowserSiteListStatus? Status { get; set; }
+        public ApiSdk.Models.BrowserSiteListStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BrowserSiteList"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BrowserSiteList"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new BrowserSiteList CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.BrowserSiteList CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BrowserSiteList();
+            return new ApiSdk.Models.BrowserSiteList();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -93,14 +93,14 @@ namespace ApiSdk.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "publishedBy", n => { PublishedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "publishedBy", n => { PublishedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "publishedDateTime", n => { PublishedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "revision", n => { Revision = n.GetStringValue(); } },
-                { "sharedCookies", n => { SharedCookies = n.GetCollectionOfObjectValues<BrowserSharedCookie>(BrowserSharedCookie.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "sites", n => { Sites = n.GetCollectionOfObjectValues<BrowserSite>(BrowserSite.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "status", n => { Status = n.GetEnumValue<BrowserSiteListStatus>(); } },
+                { "sharedCookies", n => { SharedCookies = n.GetCollectionOfObjectValues<ApiSdk.Models.BrowserSharedCookie>(ApiSdk.Models.BrowserSharedCookie.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sites", n => { Sites = n.GetCollectionOfObjectValues<ApiSdk.Models.BrowserSite>(ApiSdk.Models.BrowserSite.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.BrowserSiteListStatus>(); } },
             };
         }
         /// <summary>
@@ -113,14 +113,14 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteObjectValue<IdentitySet>("publishedBy", PublishedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("publishedBy", PublishedBy);
             writer.WriteDateTimeOffsetValue("publishedDateTime", PublishedDateTime);
             writer.WriteStringValue("revision", Revision);
-            writer.WriteCollectionOfObjectValues<BrowserSharedCookie>("sharedCookies", SharedCookies);
-            writer.WriteCollectionOfObjectValues<BrowserSite>("sites", Sites);
-            writer.WriteEnumValue<BrowserSiteListStatus>("status", Status);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.BrowserSharedCookie>("sharedCookies", SharedCookies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.BrowserSite>("sites", Sites);
+            writer.WriteEnumValue<ApiSdk.Models.BrowserSiteListStatus>("status", Status);
         }
     }
 }

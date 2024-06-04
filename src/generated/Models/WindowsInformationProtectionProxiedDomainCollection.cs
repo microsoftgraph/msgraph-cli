@@ -32,13 +32,13 @@ namespace ApiSdk.Models
         /// <summary>Collection of proxied domains</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ProxiedDomain>? ProxiedDomains { get; set; }
+        public List<ApiSdk.Models.ProxiedDomain>? ProxiedDomains { get; set; }
 #nullable restore
 #else
-        public List<ProxiedDomain> ProxiedDomains { get; set; }
+        public List<ApiSdk.Models.ProxiedDomain> ProxiedDomains { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WindowsInformationProtectionProxiedDomainCollection"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WindowsInformationProtectionProxiedDomainCollection"/> and sets the default values.
         /// </summary>
         public WindowsInformationProtectionProxiedDomainCollection()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsInformationProtectionProxiedDomainCollection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsInformationProtectionProxiedDomainCollection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WindowsInformationProtectionProxiedDomainCollection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WindowsInformationProtectionProxiedDomainCollection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsInformationProtectionProxiedDomainCollection();
+            return new ApiSdk.Models.WindowsInformationProtectionProxiedDomainCollection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,7 +64,7 @@ namespace ApiSdk.Models
             {
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "proxiedDomains", n => { ProxiedDomains = n.GetCollectionOfObjectValues<ProxiedDomain>(ProxiedDomain.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "proxiedDomains", n => { ProxiedDomains = n.GetCollectionOfObjectValues<ApiSdk.Models.ProxiedDomain>(ApiSdk.Models.ProxiedDomain.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -76,7 +76,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<ProxiedDomain>("proxiedDomains", ProxiedDomains);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ProxiedDomain>("proxiedDomains", ProxiedDomains);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

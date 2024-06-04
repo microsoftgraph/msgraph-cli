@@ -22,7 +22,7 @@ namespace ApiSdk.Groups.Item.Sites.Remove
         public List<ApiSdk.Models.Site> Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RemovePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Remove.RemovePostRequestBody"/> and sets the default values.
         /// </summary>
         public RemovePostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Groups.Item.Sites.Remove
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RemovePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.Sites.Remove.RemovePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RemovePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.Sites.Remove.RemovePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RemovePostRequestBody();
+            return new ApiSdk.Groups.Item.Sites.Remove.RemovePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

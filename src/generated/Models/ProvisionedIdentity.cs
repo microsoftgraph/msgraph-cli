@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ProvisionedIdentity : Identity, IParsable
+    public class ProvisionedIdentity : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Details of the identity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DetailsInfo? Details { get; set; }
+        public ApiSdk.Models.DetailsInfo? Details { get; set; }
 #nullable restore
 #else
-        public DetailsInfo Details { get; set; }
+        public ApiSdk.Models.DetailsInfo Details { get; set; }
 #endif
         /// <summary>Type of identity that has been provisioned, such as &apos;user&apos; or &apos;group&apos;. Supports $filter (eq, contains).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -27,7 +27,7 @@ namespace ApiSdk.Models
         public string IdentityType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ProvisionedIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ProvisionedIdentity"/> and sets the default values.
         /// </summary>
         public ProvisionedIdentity() : base()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ProvisionedIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ProvisionedIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ProvisionedIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ProvisionedIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ProvisionedIdentity();
+            return new ApiSdk.Models.ProvisionedIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -51,7 +51,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "details", n => { Details = n.GetObjectValue<DetailsInfo>(DetailsInfo.CreateFromDiscriminatorValue); } },
+                { "details", n => { Details = n.GetObjectValue<ApiSdk.Models.DetailsInfo>(ApiSdk.Models.DetailsInfo.CreateFromDiscriminatorValue); } },
                 { "identityType", n => { IdentityType = n.GetStringValue(); } },
             };
         }
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<DetailsInfo>("details", Details);
+            writer.WriteObjectValue<ApiSdk.Models.DetailsInfo>("details", Details);
             writer.WriteStringValue("identityType", IdentityType);
         }
     }

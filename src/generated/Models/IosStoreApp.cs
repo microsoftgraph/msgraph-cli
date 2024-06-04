@@ -9,15 +9,15 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties and inherited properties for iOS store apps.
     /// </summary>
-    public class IosStoreApp : MobileApp, IParsable
+    public class IosStoreApp : ApiSdk.Models.MobileApp, IParsable
     {
         /// <summary>Contains properties of the possible iOS device types the mobile app can run on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IosDeviceType? ApplicableDeviceType { get; set; }
+        public ApiSdk.Models.IosDeviceType? ApplicableDeviceType { get; set; }
 #nullable restore
 #else
-        public IosDeviceType ApplicableDeviceType { get; set; }
+        public ApiSdk.Models.IosDeviceType ApplicableDeviceType { get; set; }
 #endif
         /// <summary>The Apple App Store URL</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -38,13 +38,13 @@ namespace ApiSdk.Models
         /// <summary>The value for the minimum applicable operating system.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IosMinimumOperatingSystem? MinimumSupportedOperatingSystem { get; set; }
+        public ApiSdk.Models.IosMinimumOperatingSystem? MinimumSupportedOperatingSystem { get; set; }
 #nullable restore
 #else
-        public IosMinimumOperatingSystem MinimumSupportedOperatingSystem { get; set; }
+        public ApiSdk.Models.IosMinimumOperatingSystem MinimumSupportedOperatingSystem { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IosStoreApp"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IosStoreApp"/> and sets the default values.
         /// </summary>
         public IosStoreApp() : base()
         {
@@ -53,12 +53,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosStoreApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosStoreApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IosStoreApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IosStoreApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IosStoreApp();
+            return new ApiSdk.Models.IosStoreApp();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,9 +69,9 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "appStoreUrl", n => { AppStoreUrl = n.GetStringValue(); } },
-                { "applicableDeviceType", n => { ApplicableDeviceType = n.GetObjectValue<IosDeviceType>(IosDeviceType.CreateFromDiscriminatorValue); } },
+                { "applicableDeviceType", n => { ApplicableDeviceType = n.GetObjectValue<ApiSdk.Models.IosDeviceType>(ApiSdk.Models.IosDeviceType.CreateFromDiscriminatorValue); } },
                 { "bundleId", n => { BundleId = n.GetStringValue(); } },
-                { "minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<IosMinimumOperatingSystem>(IosMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
+                { "minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<ApiSdk.Models.IosMinimumOperatingSystem>(ApiSdk.Models.IosMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -82,10 +82,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<IosDeviceType>("applicableDeviceType", ApplicableDeviceType);
+            writer.WriteObjectValue<ApiSdk.Models.IosDeviceType>("applicableDeviceType", ApplicableDeviceType);
             writer.WriteStringValue("appStoreUrl", AppStoreUrl);
             writer.WriteStringValue("bundleId", BundleId);
-            writer.WriteObjectValue<IosMinimumOperatingSystem>("minimumSupportedOperatingSystem", MinimumSupportedOperatingSystem);
+            writer.WriteObjectValue<ApiSdk.Models.IosMinimumOperatingSystem>("minimumSupportedOperatingSystem", MinimumSupportedOperatingSystem);
         }
     }
 }

@@ -31,21 +31,21 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FilePlanDescriptorTemplate"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.FilePlanDescriptorTemplate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FilePlanDescriptorTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.FilePlanDescriptorTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.authorityTemplate" => new AuthorityTemplate(),
-                "#microsoft.graph.security.categoryTemplate" => new CategoryTemplate(),
-                "#microsoft.graph.security.citationTemplate" => new CitationTemplate(),
-                "#microsoft.graph.security.departmentTemplate" => new DepartmentTemplate(),
-                "#microsoft.graph.security.filePlanReferenceTemplate" => new FilePlanReferenceTemplate(),
-                "#microsoft.graph.security.subcategoryTemplate" => new SubcategoryTemplate(),
-                _ => new FilePlanDescriptorTemplate(),
+                "#microsoft.graph.security.authorityTemplate" => new ApiSdk.Models.Security.AuthorityTemplate(),
+                "#microsoft.graph.security.categoryTemplate" => new ApiSdk.Models.Security.CategoryTemplate(),
+                "#microsoft.graph.security.citationTemplate" => new ApiSdk.Models.Security.CitationTemplate(),
+                "#microsoft.graph.security.departmentTemplate" => new ApiSdk.Models.Security.DepartmentTemplate(),
+                "#microsoft.graph.security.filePlanReferenceTemplate" => new ApiSdk.Models.Security.FilePlanReferenceTemplate(),
+                "#microsoft.graph.security.subcategoryTemplate" => new ApiSdk.Models.Security.SubcategoryTemplate(),
+                _ => new ApiSdk.Models.Security.FilePlanDescriptorTemplate(),
             };
         }
         /// <summary>

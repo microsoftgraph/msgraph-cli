@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models.IdentityGovernance
 {
     #pragma warning disable CS1591
-    public class WorkflowVersion : WorkflowBase, IParsable
+    public class WorkflowVersion : ApiSdk.Models.IdentityGovernance.WorkflowBase, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The version of the workflow.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.</summary>
         public int? VersionNumber { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="WorkflowVersion"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityGovernance.WorkflowVersion"/> and sets the default values.
         /// </summary>
         public WorkflowVersion() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkflowVersion"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.WorkflowVersion"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkflowVersion CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.WorkflowVersion CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkflowVersion();
+            return new ApiSdk.Models.IdentityGovernance.WorkflowVersion();
         }
         /// <summary>
         /// The deserialization information for the current model

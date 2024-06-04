@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Schedule : Entity, IParsable
+    public class Schedule : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates whether the schedule is enabled for the team. Required.</summary>
@@ -15,33 +15,33 @@ namespace ApiSdk.Models
         /// <summary>The offer requests for shifts in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OfferShiftRequest>? OfferShiftRequests { get; set; }
+        public List<ApiSdk.Models.OfferShiftRequest>? OfferShiftRequests { get; set; }
 #nullable restore
 #else
-        public List<OfferShiftRequest> OfferShiftRequests { get; set; }
+        public List<ApiSdk.Models.OfferShiftRequest> OfferShiftRequests { get; set; }
 #endif
         /// <summary>Indicates whether offer shift requests are enabled for the schedule.</summary>
         public bool? OfferShiftRequestsEnabled { get; set; }
         /// <summary>The open shift requests in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OpenShiftChangeRequest>? OpenShiftChangeRequests { get; set; }
+        public List<ApiSdk.Models.OpenShiftChangeRequest>? OpenShiftChangeRequests { get; set; }
 #nullable restore
 #else
-        public List<OpenShiftChangeRequest> OpenShiftChangeRequests { get; set; }
+        public List<ApiSdk.Models.OpenShiftChangeRequest> OpenShiftChangeRequests { get; set; }
 #endif
         /// <summary>The set of open shifts in a scheduling group in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OpenShift>? OpenShifts { get; set; }
+        public List<ApiSdk.Models.OpenShift>? OpenShifts { get; set; }
 #nullable restore
 #else
-        public List<OpenShift> OpenShifts { get; set; }
+        public List<ApiSdk.Models.OpenShift> OpenShifts { get; set; }
 #endif
         /// <summary>Indicates whether open shifts are enabled for the schedule.</summary>
         public bool? OpenShiftsEnabled { get; set; }
         /// <summary>The status of the schedule provisioning. The possible values are notStarted, running, completed, failed.</summary>
-        public OperationStatus? ProvisionStatus { get; private set; }
+        public ApiSdk.Models.OperationStatus? ProvisionStatus { get; private set; }
         /// <summary>Additional information about why schedule provisioning failed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -53,26 +53,26 @@ namespace ApiSdk.Models
         /// <summary>The logical grouping of users in the schedule (usually by role).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SchedulingGroup>? SchedulingGroups { get; set; }
+        public List<ApiSdk.Models.SchedulingGroup>? SchedulingGroups { get; set; }
 #nullable restore
 #else
-        public List<SchedulingGroup> SchedulingGroups { get; set; }
+        public List<ApiSdk.Models.SchedulingGroup> SchedulingGroups { get; set; }
 #endif
         /// <summary>The shifts in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Shift>? Shifts { get; set; }
+        public List<ApiSdk.Models.Shift>? Shifts { get; set; }
 #nullable restore
 #else
-        public List<Shift> Shifts { get; set; }
+        public List<ApiSdk.Models.Shift> Shifts { get; set; }
 #endif
         /// <summary>The swap requests for shifts in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SwapShiftsChangeRequest>? SwapShiftsChangeRequests { get; set; }
+        public List<ApiSdk.Models.SwapShiftsChangeRequest>? SwapShiftsChangeRequests { get; set; }
 #nullable restore
 #else
-        public List<SwapShiftsChangeRequest> SwapShiftsChangeRequests { get; set; }
+        public List<ApiSdk.Models.SwapShiftsChangeRequest> SwapShiftsChangeRequests { get; set; }
 #endif
         /// <summary>Indicates whether swap shifts requests are enabled for the schedule.</summary>
         public bool? SwapShiftsRequestsEnabled { get; set; }
@@ -81,28 +81,28 @@ namespace ApiSdk.Models
         /// <summary>The set of reasons for a time off in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TimeOffReason>? TimeOffReasons { get; set; }
+        public List<ApiSdk.Models.TimeOffReason>? TimeOffReasons { get; set; }
 #nullable restore
 #else
-        public List<TimeOffReason> TimeOffReasons { get; set; }
+        public List<ApiSdk.Models.TimeOffReason> TimeOffReasons { get; set; }
 #endif
         /// <summary>The time off requests in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TimeOffRequest>? TimeOffRequests { get; set; }
+        public List<ApiSdk.Models.TimeOffRequest>? TimeOffRequests { get; set; }
 #nullable restore
 #else
-        public List<TimeOffRequest> TimeOffRequests { get; set; }
+        public List<ApiSdk.Models.TimeOffRequest> TimeOffRequests { get; set; }
 #endif
         /// <summary>Indicates whether time off requests are enabled for the schedule.</summary>
         public bool? TimeOffRequestsEnabled { get; set; }
         /// <summary>The instances of times off in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TimeOff>? TimesOff { get; set; }
+        public List<ApiSdk.Models.TimeOff>? TimesOff { get; set; }
 #nullable restore
 #else
-        public List<TimeOff> TimesOff { get; set; }
+        public List<ApiSdk.Models.TimeOff> TimesOff { get; set; }
 #endif
         /// <summary>Indicates the time zone of the schedule team using tz database format. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -123,12 +123,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Schedule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Schedule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Schedule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Schedule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Schedule();
+            return new ApiSdk.Models.Schedule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -139,23 +139,23 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "enabled", n => { Enabled = n.GetBoolValue(); } },
-                { "offerShiftRequests", n => { OfferShiftRequests = n.GetCollectionOfObjectValues<OfferShiftRequest>(OfferShiftRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "offerShiftRequests", n => { OfferShiftRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.OfferShiftRequest>(ApiSdk.Models.OfferShiftRequest.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "offerShiftRequestsEnabled", n => { OfferShiftRequestsEnabled = n.GetBoolValue(); } },
-                { "openShiftChangeRequests", n => { OpenShiftChangeRequests = n.GetCollectionOfObjectValues<OpenShiftChangeRequest>(OpenShiftChangeRequest.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "openShifts", n => { OpenShifts = n.GetCollectionOfObjectValues<OpenShift>(OpenShift.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "openShiftChangeRequests", n => { OpenShiftChangeRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.OpenShiftChangeRequest>(ApiSdk.Models.OpenShiftChangeRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "openShifts", n => { OpenShifts = n.GetCollectionOfObjectValues<ApiSdk.Models.OpenShift>(ApiSdk.Models.OpenShift.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "openShiftsEnabled", n => { OpenShiftsEnabled = n.GetBoolValue(); } },
-                { "provisionStatus", n => { ProvisionStatus = n.GetEnumValue<OperationStatus>(); } },
+                { "provisionStatus", n => { ProvisionStatus = n.GetEnumValue<ApiSdk.Models.OperationStatus>(); } },
                 { "provisionStatusCode", n => { ProvisionStatusCode = n.GetStringValue(); } },
-                { "schedulingGroups", n => { SchedulingGroups = n.GetCollectionOfObjectValues<SchedulingGroup>(SchedulingGroup.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "shifts", n => { Shifts = n.GetCollectionOfObjectValues<Shift>(Shift.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "swapShiftsChangeRequests", n => { SwapShiftsChangeRequests = n.GetCollectionOfObjectValues<SwapShiftsChangeRequest>(SwapShiftsChangeRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "schedulingGroups", n => { SchedulingGroups = n.GetCollectionOfObjectValues<ApiSdk.Models.SchedulingGroup>(ApiSdk.Models.SchedulingGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "shifts", n => { Shifts = n.GetCollectionOfObjectValues<ApiSdk.Models.Shift>(ApiSdk.Models.Shift.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "swapShiftsChangeRequests", n => { SwapShiftsChangeRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.SwapShiftsChangeRequest>(ApiSdk.Models.SwapShiftsChangeRequest.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "swapShiftsRequestsEnabled", n => { SwapShiftsRequestsEnabled = n.GetBoolValue(); } },
                 { "timeClockEnabled", n => { TimeClockEnabled = n.GetBoolValue(); } },
-                { "timeOffReasons", n => { TimeOffReasons = n.GetCollectionOfObjectValues<TimeOffReason>(TimeOffReason.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "timeOffRequests", n => { TimeOffRequests = n.GetCollectionOfObjectValues<TimeOffRequest>(TimeOffRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "timeOffReasons", n => { TimeOffReasons = n.GetCollectionOfObjectValues<ApiSdk.Models.TimeOffReason>(ApiSdk.Models.TimeOffReason.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "timeOffRequests", n => { TimeOffRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.TimeOffRequest>(ApiSdk.Models.TimeOffRequest.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "timeOffRequestsEnabled", n => { TimeOffRequestsEnabled = n.GetBoolValue(); } },
                 { "timeZone", n => { TimeZone = n.GetStringValue(); } },
-                { "timesOff", n => { TimesOff = n.GetCollectionOfObjectValues<TimeOff>(TimeOff.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "timesOff", n => { TimesOff = n.GetCollectionOfObjectValues<ApiSdk.Models.TimeOff>(ApiSdk.Models.TimeOff.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "workforceIntegrationIds", n => { WorkforceIntegrationIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
@@ -168,20 +168,20 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("enabled", Enabled);
-            writer.WriteCollectionOfObjectValues<OfferShiftRequest>("offerShiftRequests", OfferShiftRequests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OfferShiftRequest>("offerShiftRequests", OfferShiftRequests);
             writer.WriteBoolValue("offerShiftRequestsEnabled", OfferShiftRequestsEnabled);
-            writer.WriteCollectionOfObjectValues<OpenShiftChangeRequest>("openShiftChangeRequests", OpenShiftChangeRequests);
-            writer.WriteCollectionOfObjectValues<OpenShift>("openShifts", OpenShifts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OpenShiftChangeRequest>("openShiftChangeRequests", OpenShiftChangeRequests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OpenShift>("openShifts", OpenShifts);
             writer.WriteBoolValue("openShiftsEnabled", OpenShiftsEnabled);
-            writer.WriteCollectionOfObjectValues<SchedulingGroup>("schedulingGroups", SchedulingGroups);
-            writer.WriteCollectionOfObjectValues<Shift>("shifts", Shifts);
-            writer.WriteCollectionOfObjectValues<SwapShiftsChangeRequest>("swapShiftsChangeRequests", SwapShiftsChangeRequests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SchedulingGroup>("schedulingGroups", SchedulingGroups);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Shift>("shifts", Shifts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SwapShiftsChangeRequest>("swapShiftsChangeRequests", SwapShiftsChangeRequests);
             writer.WriteBoolValue("swapShiftsRequestsEnabled", SwapShiftsRequestsEnabled);
             writer.WriteBoolValue("timeClockEnabled", TimeClockEnabled);
-            writer.WriteCollectionOfObjectValues<TimeOffReason>("timeOffReasons", TimeOffReasons);
-            writer.WriteCollectionOfObjectValues<TimeOffRequest>("timeOffRequests", TimeOffRequests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TimeOffReason>("timeOffReasons", TimeOffReasons);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TimeOffRequest>("timeOffRequests", TimeOffRequests);
             writer.WriteBoolValue("timeOffRequestsEnabled", TimeOffRequestsEnabled);
-            writer.WriteCollectionOfObjectValues<TimeOff>("timesOff", TimesOff);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TimeOff>("timesOff", TimesOff);
             writer.WriteStringValue("timeZone", TimeZone);
             writer.WriteCollectionOfPrimitiveValues<string>("workforceIntegrationIds", WorkforceIntegrationIds);
         }

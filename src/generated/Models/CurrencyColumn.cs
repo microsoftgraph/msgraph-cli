@@ -29,7 +29,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CurrencyColumn"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CurrencyColumn"/> and sets the default values.
         /// </summary>
         public CurrencyColumn()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CurrencyColumn"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CurrencyColumn"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CurrencyColumn CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CurrencyColumn CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CurrencyColumn();
+            return new ApiSdk.Models.CurrencyColumn();
         }
         /// <summary>
         /// The deserialization information for the current model

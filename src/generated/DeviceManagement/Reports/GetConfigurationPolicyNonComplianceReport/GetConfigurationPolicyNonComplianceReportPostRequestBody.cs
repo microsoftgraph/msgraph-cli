@@ -73,7 +73,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceRep
         /// <summary>The top property</summary>
         public int? Top { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="GetConfigurationPolicyNonComplianceReportPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceReport.GetConfigurationPolicyNonComplianceReportPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetConfigurationPolicyNonComplianceReportPostRequestBody()
         {
@@ -82,12 +82,12 @@ namespace ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceRep
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetConfigurationPolicyNonComplianceReportPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceReport.GetConfigurationPolicyNonComplianceReportPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetConfigurationPolicyNonComplianceReportPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceReport.GetConfigurationPolicyNonComplianceReportPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetConfigurationPolicyNonComplianceReportPostRequestBody();
+            return new ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceReport.GetConfigurationPolicyNonComplianceReportPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

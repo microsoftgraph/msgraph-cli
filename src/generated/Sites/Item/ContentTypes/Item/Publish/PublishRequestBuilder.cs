@@ -56,14 +56,14 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Publish
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PublishRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.ContentTypes.Item.Publish.PublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/contentTypes/{contentType%2Did}/publish", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PublishRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.ContentTypes.Item.Publish.PublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PublishRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/contentTypes/{contentType%2Did}/publish", rawUrl)

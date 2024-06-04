@@ -31,7 +31,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item
         {
             var command = new Command("allowed-members");
             command.Description = "Provides operations to manage the allowedMembers property of the microsoft.graph.sharedWithChannelTeamInfo entity.";
-            var builder = new AllowedMembersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.AllowedMembers.AllowedMembersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -201,7 +201,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SharedWithChannelTeamInfo>(SharedWithChannelTeamInfo.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.SharedWithChannelTeamInfo>(ApiSdk.Models.SharedWithChannelTeamInfo.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -231,7 +231,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item
         {
             var command = new Command("team");
             command.Description = "Provides operations to manage the team property of the microsoft.graph.teamInfo entity.";
-            var builder = new TeamRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.Team.TeamRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -241,14 +241,14 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SharedWithChannelTeamInfoItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.SharedWithChannelTeamInfoItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SharedWithChannelTeamInfoItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}/sharedWithTeams/{sharedWithChannelTeamInfo%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SharedWithChannelTeamInfoItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.SharedWithChannelTeamInfoItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SharedWithChannelTeamInfoItemRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}/sharedWithTeams/{sharedWithChannelTeamInfo%2Did}{?%24expand,%24select}", rawUrl)
@@ -280,11 +280,11 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SharedWithChannelTeamInfoItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.SharedWithChannelTeamInfoItemRequestBuilder.SharedWithChannelTeamInfoItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SharedWithChannelTeamInfoItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.SharedWithChannelTeamInfoItemRequestBuilder.SharedWithChannelTeamInfoItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -300,11 +300,11 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(SharedWithChannelTeamInfo body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SharedWithChannelTeamInfo body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(SharedWithChannelTeamInfo body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SharedWithChannelTeamInfo body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

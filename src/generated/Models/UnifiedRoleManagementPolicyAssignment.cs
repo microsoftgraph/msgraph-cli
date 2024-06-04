@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UnifiedRoleManagementPolicyAssignment : Entity, IParsable
+    public class UnifiedRoleManagementPolicyAssignment : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The policy that&apos;s associated with a policy assignment. Supports $expand and a nested $expand of the rules and effectiveRules relationships for the policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UnifiedRoleManagementPolicy? Policy { get; set; }
+        public ApiSdk.Models.UnifiedRoleManagementPolicy? Policy { get; set; }
 #nullable restore
 #else
-        public UnifiedRoleManagementPolicy Policy { get; set; }
+        public ApiSdk.Models.UnifiedRoleManagementPolicy Policy { get; set; }
 #endif
         /// <summary>The id of the policy. Inherited from entity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -53,12 +53,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedRoleManagementPolicyAssignment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UnifiedRoleManagementPolicyAssignment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UnifiedRoleManagementPolicyAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UnifiedRoleManagementPolicyAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedRoleManagementPolicyAssignment();
+            return new ApiSdk.Models.UnifiedRoleManagementPolicyAssignment();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,7 +68,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "policy", n => { Policy = n.GetObjectValue<UnifiedRoleManagementPolicy>(UnifiedRoleManagementPolicy.CreateFromDiscriminatorValue); } },
+                { "policy", n => { Policy = n.GetObjectValue<ApiSdk.Models.UnifiedRoleManagementPolicy>(ApiSdk.Models.UnifiedRoleManagementPolicy.CreateFromDiscriminatorValue); } },
                 { "policyId", n => { PolicyId = n.GetStringValue(); } },
                 { "roleDefinitionId", n => { RoleDefinitionId = n.GetStringValue(); } },
                 { "scopeId", n => { ScopeId = n.GetStringValue(); } },
@@ -83,7 +83,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<UnifiedRoleManagementPolicy>("policy", Policy);
+            writer.WriteObjectValue<ApiSdk.Models.UnifiedRoleManagementPolicy>("policy", Policy);
             writer.WriteStringValue("policyId", PolicyId);
             writer.WriteStringValue("roleDefinitionId", RoleDefinitionId);
             writer.WriteStringValue("scopeId", ScopeId);

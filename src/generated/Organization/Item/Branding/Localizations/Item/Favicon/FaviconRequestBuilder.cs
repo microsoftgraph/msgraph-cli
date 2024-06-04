@@ -169,14 +169,14 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.Favicon
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="FaviconRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.Localizations.Item.Favicon.FaviconRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FaviconRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/favicon", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="FaviconRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.Localizations.Item.Favicon.FaviconRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FaviconRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/favicon", rawUrl)

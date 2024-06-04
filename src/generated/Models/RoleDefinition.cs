@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// The Role Definition resource. The role definition is the foundation of role based access in Intune. The role combines an Intune resource such as a Mobile App and associated role permissions such as Create or Read for the resource. There are two types of roles, built-in and custom. Built-in roles cannot be modified. Both built-in roles and custom roles must have assignments to be enforced. Create custom roles if you want to define a role that allows any of the available resources and role permissions to be combined into a single role.
     /// </summary>
-    public class RoleDefinition : Entity, IParsable
+    public class RoleDefinition : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Description of the Role definition.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -32,32 +32,32 @@ namespace ApiSdk.Models
         /// <summary>List of Role assignments for this role definition.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RoleAssignment>? RoleAssignments { get; set; }
+        public List<ApiSdk.Models.RoleAssignment>? RoleAssignments { get; set; }
 #nullable restore
 #else
-        public List<RoleAssignment> RoleAssignments { get; set; }
+        public List<ApiSdk.Models.RoleAssignment> RoleAssignments { get; set; }
 #endif
         /// <summary>List of Role Permissions this role is allowed to perform. These must match the actionName that is defined as part of the rolePermission.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RolePermission>? RolePermissions { get; set; }
+        public List<ApiSdk.Models.RolePermission>? RolePermissions { get; set; }
 #nullable restore
 #else
-        public List<RolePermission> RolePermissions { get; set; }
+        public List<ApiSdk.Models.RolePermission> RolePermissions { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RoleDefinition"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RoleDefinition"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RoleDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.RoleDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.deviceAndAppManagementRoleDefinition" => new DeviceAndAppManagementRoleDefinition(),
-                _ => new RoleDefinition(),
+                "#microsoft.graph.deviceAndAppManagementRoleDefinition" => new ApiSdk.Models.DeviceAndAppManagementRoleDefinition(),
+                _ => new ApiSdk.Models.RoleDefinition(),
             };
         }
         /// <summary>
@@ -71,8 +71,8 @@ namespace ApiSdk.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "isBuiltIn", n => { IsBuiltIn = n.GetBoolValue(); } },
-                { "roleAssignments", n => { RoleAssignments = n.GetCollectionOfObjectValues<RoleAssignment>(RoleAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "rolePermissions", n => { RolePermissions = n.GetCollectionOfObjectValues<RolePermission>(RolePermission.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "roleAssignments", n => { RoleAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.RoleAssignment>(ApiSdk.Models.RoleAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "rolePermissions", n => { RolePermissions = n.GetCollectionOfObjectValues<ApiSdk.Models.RolePermission>(ApiSdk.Models.RolePermission.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -86,8 +86,8 @@ namespace ApiSdk.Models
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("isBuiltIn", IsBuiltIn);
-            writer.WriteCollectionOfObjectValues<RoleAssignment>("roleAssignments", RoleAssignments);
-            writer.WriteCollectionOfObjectValues<RolePermission>("rolePermissions", RolePermissions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RoleAssignment>("roleAssignments", RoleAssignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RolePermission>("rolePermissions", RolePermissions);
         }
     }
 }

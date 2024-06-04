@@ -7,32 +7,32 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class KubernetesServiceEvidence : AlertEvidence, IParsable
+    public class KubernetesServiceEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The service cluster IP.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IpEvidence? ClusterIP { get; set; }
+        public ApiSdk.Models.Security.IpEvidence? ClusterIP { get; set; }
 #nullable restore
 #else
-        public IpEvidence ClusterIP { get; set; }
+        public ApiSdk.Models.Security.IpEvidence ClusterIP { get; set; }
 #endif
         /// <summary>The service external IPs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<IpEvidence>? ExternalIPs { get; set; }
+        public List<ApiSdk.Models.Security.IpEvidence>? ExternalIPs { get; set; }
 #nullable restore
 #else
-        public List<IpEvidence> ExternalIPs { get; set; }
+        public List<ApiSdk.Models.Security.IpEvidence> ExternalIPs { get; set; }
 #endif
         /// <summary>The service labels.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Dictionary? Labels { get; set; }
+        public ApiSdk.Models.Security.Dictionary? Labels { get; set; }
 #nullable restore
 #else
-        public Dictionary Labels { get; set; }
+        public ApiSdk.Models.Security.Dictionary Labels { get; set; }
 #endif
         /// <summary>The service name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,31 +45,31 @@ namespace ApiSdk.Models.Security
         /// <summary>The service namespace.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public KubernetesNamespaceEvidence? Namespace { get; set; }
+        public ApiSdk.Models.Security.KubernetesNamespaceEvidence? Namespace { get; set; }
 #nullable restore
 #else
-        public KubernetesNamespaceEvidence Namespace { get; set; }
+        public ApiSdk.Models.Security.KubernetesNamespaceEvidence Namespace { get; set; }
 #endif
         /// <summary>The service selector.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Dictionary? Selector { get; set; }
+        public ApiSdk.Models.Security.Dictionary? Selector { get; set; }
 #nullable restore
 #else
-        public Dictionary Selector { get; set; }
+        public ApiSdk.Models.Security.Dictionary Selector { get; set; }
 #endif
         /// <summary>The list of service ports.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<KubernetesServicePort>? ServicePorts { get; set; }
+        public List<ApiSdk.Models.Security.KubernetesServicePort>? ServicePorts { get; set; }
 #nullable restore
 #else
-        public List<KubernetesServicePort> ServicePorts { get; set; }
+        public List<ApiSdk.Models.Security.KubernetesServicePort> ServicePorts { get; set; }
 #endif
         /// <summary>The serviceType property</summary>
-        public KubernetesServiceType? ServiceType { get; set; }
+        public ApiSdk.Models.Security.KubernetesServiceType? ServiceType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="KubernetesServiceEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.KubernetesServiceEvidence"/> and sets the default values.
         /// </summary>
         public KubernetesServiceEvidence() : base()
         {
@@ -78,12 +78,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="KubernetesServiceEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.KubernetesServiceEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new KubernetesServiceEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.KubernetesServiceEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new KubernetesServiceEvidence();
+            return new ApiSdk.Models.Security.KubernetesServiceEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -93,14 +93,14 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "clusterIP", n => { ClusterIP = n.GetObjectValue<IpEvidence>(IpEvidence.CreateFromDiscriminatorValue); } },
-                { "externalIPs", n => { ExternalIPs = n.GetCollectionOfObjectValues<IpEvidence>(IpEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "labels", n => { Labels = n.GetObjectValue<Dictionary>(Dictionary.CreateFromDiscriminatorValue); } },
+                { "clusterIP", n => { ClusterIP = n.GetObjectValue<ApiSdk.Models.Security.IpEvidence>(ApiSdk.Models.Security.IpEvidence.CreateFromDiscriminatorValue); } },
+                { "externalIPs", n => { ExternalIPs = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.IpEvidence>(ApiSdk.Models.Security.IpEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "labels", n => { Labels = n.GetObjectValue<ApiSdk.Models.Security.Dictionary>(ApiSdk.Models.Security.Dictionary.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "namespace", n => { Namespace = n.GetObjectValue<KubernetesNamespaceEvidence>(KubernetesNamespaceEvidence.CreateFromDiscriminatorValue); } },
-                { "selector", n => { Selector = n.GetObjectValue<Dictionary>(Dictionary.CreateFromDiscriminatorValue); } },
-                { "servicePorts", n => { ServicePorts = n.GetCollectionOfObjectValues<KubernetesServicePort>(KubernetesServicePort.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "serviceType", n => { ServiceType = n.GetEnumValue<KubernetesServiceType>(); } },
+                { "namespace", n => { Namespace = n.GetObjectValue<ApiSdk.Models.Security.KubernetesNamespaceEvidence>(ApiSdk.Models.Security.KubernetesNamespaceEvidence.CreateFromDiscriminatorValue); } },
+                { "selector", n => { Selector = n.GetObjectValue<ApiSdk.Models.Security.Dictionary>(ApiSdk.Models.Security.Dictionary.CreateFromDiscriminatorValue); } },
+                { "servicePorts", n => { ServicePorts = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.KubernetesServicePort>(ApiSdk.Models.Security.KubernetesServicePort.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "serviceType", n => { ServiceType = n.GetEnumValue<ApiSdk.Models.Security.KubernetesServiceType>(); } },
             };
         }
         /// <summary>
@@ -111,14 +111,14 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<IpEvidence>("clusterIP", ClusterIP);
-            writer.WriteCollectionOfObjectValues<IpEvidence>("externalIPs", ExternalIPs);
-            writer.WriteObjectValue<Dictionary>("labels", Labels);
+            writer.WriteObjectValue<ApiSdk.Models.Security.IpEvidence>("clusterIP", ClusterIP);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.IpEvidence>("externalIPs", ExternalIPs);
+            writer.WriteObjectValue<ApiSdk.Models.Security.Dictionary>("labels", Labels);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<KubernetesNamespaceEvidence>("namespace", Namespace);
-            writer.WriteObjectValue<Dictionary>("selector", Selector);
-            writer.WriteCollectionOfObjectValues<KubernetesServicePort>("servicePorts", ServicePorts);
-            writer.WriteEnumValue<KubernetesServiceType>("serviceType", ServiceType);
+            writer.WriteObjectValue<ApiSdk.Models.Security.KubernetesNamespaceEvidence>("namespace", Namespace);
+            writer.WriteObjectValue<ApiSdk.Models.Security.Dictionary>("selector", Selector);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.KubernetesServicePort>("servicePorts", ServicePorts);
+            writer.WriteEnumValue<ApiSdk.Models.Security.KubernetesServiceType>("serviceType", ServiceType);
         }
     }
 }

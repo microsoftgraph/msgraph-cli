@@ -16,61 +16,61 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Price
         /// <summary>The basis property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Basis { get; set; }
+        public ApiSdk.Models.Json? Basis { get; set; }
 #nullable restore
 #else
-        public Json Basis { get; set; }
+        public ApiSdk.Models.Json Basis { get; set; }
 #endif
         /// <summary>The frequency property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Frequency { get; set; }
+        public ApiSdk.Models.Json? Frequency { get; set; }
 #nullable restore
 #else
-        public Json Frequency { get; set; }
+        public ApiSdk.Models.Json Frequency { get; set; }
 #endif
         /// <summary>The maturity property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Maturity { get; set; }
+        public ApiSdk.Models.Json? Maturity { get; set; }
 #nullable restore
 #else
-        public Json Maturity { get; set; }
+        public ApiSdk.Models.Json Maturity { get; set; }
 #endif
         /// <summary>The rate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Rate { get; set; }
+        public ApiSdk.Models.Json? Rate { get; set; }
 #nullable restore
 #else
-        public Json Rate { get; set; }
+        public ApiSdk.Models.Json Rate { get; set; }
 #endif
         /// <summary>The redemption property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Redemption { get; set; }
+        public ApiSdk.Models.Json? Redemption { get; set; }
 #nullable restore
 #else
-        public Json Redemption { get; set; }
+        public ApiSdk.Models.Json Redemption { get; set; }
 #endif
         /// <summary>The settlement property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Settlement { get; set; }
+        public ApiSdk.Models.Json? Settlement { get; set; }
 #nullable restore
 #else
-        public Json Settlement { get; set; }
+        public ApiSdk.Models.Json Settlement { get; set; }
 #endif
         /// <summary>The yld property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Yld { get; set; }
+        public ApiSdk.Models.Json? Yld { get; set; }
 #nullable restore
 #else
-        public Json Yld { get; set; }
+        public ApiSdk.Models.Json Yld { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PricePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Price.PricePostRequestBody"/> and sets the default values.
         /// </summary>
         public PricePostRequestBody()
         {
@@ -79,12 +79,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Price
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PricePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Price.PricePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PricePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Price.PricePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PricePostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Price.PricePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -94,13 +94,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Price
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "basis", n => { Basis = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "frequency", n => { Frequency = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "maturity", n => { Maturity = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "rate", n => { Rate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "redemption", n => { Redemption = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "settlement", n => { Settlement = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "yld", n => { Yld = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "basis", n => { Basis = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "frequency", n => { Frequency = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "maturity", n => { Maturity = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "rate", n => { Rate = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "redemption", n => { Redemption = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "settlement", n => { Settlement = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "yld", n => { Yld = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -110,13 +110,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Price
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("basis", Basis);
-            writer.WriteObjectValue<Json>("frequency", Frequency);
-            writer.WriteObjectValue<Json>("maturity", Maturity);
-            writer.WriteObjectValue<Json>("rate", Rate);
-            writer.WriteObjectValue<Json>("redemption", Redemption);
-            writer.WriteObjectValue<Json>("settlement", Settlement);
-            writer.WriteObjectValue<Json>("yld", Yld);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("basis", Basis);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("frequency", Frequency);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("maturity", Maturity);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("rate", Rate);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("redemption", Redemption);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("settlement", Settlement);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("yld", Yld);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Request : Entity, IParsable
+    public class Request : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The identifier of the approval of the request.</summary>
@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>The principal that created the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? CreatedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet CreatedBy { get; set; }
 #endif
         /// <summary>The request creation date time.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -49,21 +49,21 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Request"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Request"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Request CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Request CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest" => new PrivilegedAccessGroupAssignmentScheduleRequest(),
-                "#microsoft.graph.privilegedAccessGroupEligibilityScheduleRequest" => new PrivilegedAccessGroupEligibilityScheduleRequest(),
-                "#microsoft.graph.privilegedAccessScheduleRequest" => new PrivilegedAccessScheduleRequest(),
-                "#microsoft.graph.unifiedRoleAssignmentScheduleRequest" => new UnifiedRoleAssignmentScheduleRequest(),
-                "#microsoft.graph.unifiedRoleEligibilityScheduleRequest" => new UnifiedRoleEligibilityScheduleRequest(),
-                "#microsoft.graph.userConsentRequest" => new UserConsentRequest(),
-                _ => new Request(),
+                "#microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest" => new ApiSdk.Models.PrivilegedAccessGroupAssignmentScheduleRequest(),
+                "#microsoft.graph.privilegedAccessGroupEligibilityScheduleRequest" => new ApiSdk.Models.PrivilegedAccessGroupEligibilityScheduleRequest(),
+                "#microsoft.graph.privilegedAccessScheduleRequest" => new ApiSdk.Models.PrivilegedAccessScheduleRequest(),
+                "#microsoft.graph.unifiedRoleAssignmentScheduleRequest" => new ApiSdk.Models.UnifiedRoleAssignmentScheduleRequest(),
+                "#microsoft.graph.unifiedRoleEligibilityScheduleRequest" => new ApiSdk.Models.UnifiedRoleEligibilityScheduleRequest(),
+                "#microsoft.graph.userConsentRequest" => new ApiSdk.Models.UserConsentRequest(),
+                _ => new ApiSdk.Models.Request(),
             };
         }
         /// <summary>
@@ -76,7 +76,7 @@ namespace ApiSdk.Models
             {
                 { "approvalId", n => { ApprovalId = n.GetStringValue(); } },
                 { "completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "customData", n => { CustomData = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetStringValue(); } },
@@ -92,7 +92,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("approvalId", ApprovalId);
             writer.WriteDateTimeOffsetValue("completedDateTime", CompletedDateTime);
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("customData", CustomData);
             writer.WriteStringValue("status", Status);

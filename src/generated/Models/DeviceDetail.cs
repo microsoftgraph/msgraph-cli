@@ -65,7 +65,7 @@ namespace ApiSdk.Models
         public string TrustType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DeviceDetail"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DeviceDetail"/> and sets the default values.
         /// </summary>
         public DeviceDetail()
         {
@@ -74,12 +74,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DeviceDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.DeviceDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceDetail();
+            return new ApiSdk.Models.DeviceDetail();
         }
         /// <summary>
         /// The deserialization information for the current model

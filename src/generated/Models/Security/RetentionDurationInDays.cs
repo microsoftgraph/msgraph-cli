@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class RetentionDurationInDays : RetentionDuration, IParsable
+    public class RetentionDurationInDays : ApiSdk.Models.Security.RetentionDuration, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Specifies the time period in days for which an item with the applied retention label will be retained for.</summary>
         public int? Days { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="RetentionDurationInDays"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.RetentionDurationInDays"/> and sets the default values.
         /// </summary>
         public RetentionDurationInDays() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RetentionDurationInDays"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.RetentionDurationInDays"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RetentionDurationInDays CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.RetentionDurationInDays CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RetentionDurationInDays();
+            return new ApiSdk.Models.Security.RetentionDurationInDays();
         }
         /// <summary>
         /// The deserialization information for the current model

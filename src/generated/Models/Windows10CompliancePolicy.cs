@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// This class contains compliance settings for Windows 10.
     /// </summary>
-    public class Windows10CompliancePolicy : DeviceCompliancePolicy, IParsable
+    public class Windows10CompliancePolicy : ApiSdk.Models.DeviceCompliancePolicy, IParsable
     {
         /// <summary>Require devices to be reported healthy by Windows Device Health Attestation - bit locker is enabled</summary>
         public bool? BitLockerEnabled { get; set; }
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
         /// <summary>Require a password to unlock an idle device.</summary>
         public bool? PasswordRequiredToUnlockFromIdle { get; set; }
         /// <summary>Possible values of required passwords.</summary>
-        public RequiredPasswordType? PasswordRequiredType { get; set; }
+        public ApiSdk.Models.RequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Require devices to be reported as healthy by Windows Device Health Attestation.</summary>
         public bool? RequireHealthyDeviceReport { get; set; }
         /// <summary>Require devices to be reported as healthy by Windows Device Health Attestation - secure boot is enabled.</summary>
@@ -74,7 +74,7 @@ namespace ApiSdk.Models
         /// <summary>Require encryption on windows devices.</summary>
         public bool? StorageRequireEncryption { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Windows10CompliancePolicy"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Windows10CompliancePolicy"/> and sets the default values.
         /// </summary>
         public Windows10CompliancePolicy() : base()
         {
@@ -83,12 +83,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Windows10CompliancePolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Windows10CompliancePolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Windows10CompliancePolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Windows10CompliancePolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Windows10CompliancePolicy();
+            return new ApiSdk.Models.Windows10CompliancePolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -113,7 +113,7 @@ namespace ApiSdk.Models
                 { "passwordPreviousPasswordBlockCount", n => { PasswordPreviousPasswordBlockCount = n.GetIntValue(); } },
                 { "passwordRequired", n => { PasswordRequired = n.GetBoolValue(); } },
                 { "passwordRequiredToUnlockFromIdle", n => { PasswordRequiredToUnlockFromIdle = n.GetBoolValue(); } },
-                { "passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<RequiredPasswordType>(); } },
+                { "passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<ApiSdk.Models.RequiredPasswordType>(); } },
                 { "requireHealthyDeviceReport", n => { RequireHealthyDeviceReport = n.GetBoolValue(); } },
                 { "secureBootEnabled", n => { SecureBootEnabled = n.GetBoolValue(); } },
                 { "storageRequireEncryption", n => { StorageRequireEncryption = n.GetBoolValue(); } },
@@ -142,7 +142,7 @@ namespace ApiSdk.Models
             writer.WriteIntValue("passwordPreviousPasswordBlockCount", PasswordPreviousPasswordBlockCount);
             writer.WriteBoolValue("passwordRequired", PasswordRequired);
             writer.WriteBoolValue("passwordRequiredToUnlockFromIdle", PasswordRequiredToUnlockFromIdle);
-            writer.WriteEnumValue<RequiredPasswordType>("passwordRequiredType", PasswordRequiredType);
+            writer.WriteEnumValue<ApiSdk.Models.RequiredPasswordType>("passwordRequiredType", PasswordRequiredType);
             writer.WriteBoolValue("requireHealthyDeviceReport", RequireHealthyDeviceReport);
             writer.WriteBoolValue("secureBootEnabled", SecureBootEnabled);
             writer.WriteBoolValue("storageRequireEncryption", StorageRequireEncryption);

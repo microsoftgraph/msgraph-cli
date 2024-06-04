@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageDistributionUserCountsWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetTeamsDeviceUsageDistributionUserCountsWithPeriod.GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getTeamsDeviceUsageDistributionUserCounts(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetTeamsDeviceUsageDistributionUserCountsWithPeriod.GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getTeamsDeviceUsageDistributionUserCounts(period='{period}')", rawUrl)

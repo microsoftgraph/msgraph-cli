@@ -25,18 +25,18 @@ namespace ApiSdk.Models
         /// <summary>An array that specifies the name and geographic location of each meeting location for this meeting suggestion.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Location>? Locations { get; set; }
+        public List<ApiSdk.Models.Location>? Locations { get; set; }
 #nullable restore
 #else
-        public List<Location> Locations { get; set; }
+        public List<ApiSdk.Models.Location> Locations { get; set; }
 #endif
         /// <summary>A time period suggested for the meeting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TimeSlot? MeetingTimeSlot { get; set; }
+        public ApiSdk.Models.TimeSlot? MeetingTimeSlot { get; set; }
 #nullable restore
 #else
-        public TimeSlot MeetingTimeSlot { get; set; }
+        public ApiSdk.Models.TimeSlot MeetingTimeSlot { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -49,7 +49,7 @@ namespace ApiSdk.Models
         /// <summary>Order of meeting time suggestions sorted by their computed confidence value from high to low, then by chronology if there are suggestions with the same confidence.</summary>
         public int? Order { get; set; }
         /// <summary>Availability of the meeting organizer for this meeting suggestion. The possible values are: free, tentative, busy, oof, workingElsewhere, unknown.</summary>
-        public FreeBusyStatus? OrganizerAvailability { get; set; }
+        public ApiSdk.Models.FreeBusyStatus? OrganizerAvailability { get; set; }
         /// <summary>Reason for suggesting the meeting time.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -59,7 +59,7 @@ namespace ApiSdk.Models
         public string SuggestionReason { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MeetingTimeSuggestion"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MeetingTimeSuggestion"/> and sets the default values.
         /// </summary>
         public MeetingTimeSuggestion()
         {
@@ -68,12 +68,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MeetingTimeSuggestion"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MeetingTimeSuggestion"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MeetingTimeSuggestion CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MeetingTimeSuggestion CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MeetingTimeSuggestion();
+            return new ApiSdk.Models.MeetingTimeSuggestion();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -85,11 +85,11 @@ namespace ApiSdk.Models
             {
                 { "attendeeAvailability", n => { AttendeeAvailability = n.GetCollectionOfObjectValues<ApiSdk.Models.AttendeeAvailability>(ApiSdk.Models.AttendeeAvailability.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "confidence", n => { Confidence = n.GetDoubleValue(); } },
-                { "locations", n => { Locations = n.GetCollectionOfObjectValues<Location>(Location.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "meetingTimeSlot", n => { MeetingTimeSlot = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
+                { "locations", n => { Locations = n.GetCollectionOfObjectValues<ApiSdk.Models.Location>(ApiSdk.Models.Location.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "meetingTimeSlot", n => { MeetingTimeSlot = n.GetObjectValue<ApiSdk.Models.TimeSlot>(ApiSdk.Models.TimeSlot.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "order", n => { Order = n.GetIntValue(); } },
-                { "organizerAvailability", n => { OrganizerAvailability = n.GetEnumValue<FreeBusyStatus>(); } },
+                { "organizerAvailability", n => { OrganizerAvailability = n.GetEnumValue<ApiSdk.Models.FreeBusyStatus>(); } },
                 { "suggestionReason", n => { SuggestionReason = n.GetStringValue(); } },
             };
         }
@@ -102,11 +102,11 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.AttendeeAvailability>("attendeeAvailability", AttendeeAvailability);
             writer.WriteDoubleValue("confidence", Confidence);
-            writer.WriteCollectionOfObjectValues<Location>("locations", Locations);
-            writer.WriteObjectValue<TimeSlot>("meetingTimeSlot", MeetingTimeSlot);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Location>("locations", Locations);
+            writer.WriteObjectValue<ApiSdk.Models.TimeSlot>("meetingTimeSlot", MeetingTimeSlot);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("order", Order);
-            writer.WriteEnumValue<FreeBusyStatus>("organizerAvailability", OrganizerAvailability);
+            writer.WriteEnumValue<ApiSdk.Models.FreeBusyStatus>("organizerAvailability", OrganizerAvailability);
             writer.WriteStringValue("suggestionReason", SuggestionReason);
             writer.WriteAdditionalData(AdditionalData);
         }

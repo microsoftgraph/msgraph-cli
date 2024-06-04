@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ServicePrincipalRiskDetection : Entity, IParsable
+    public class ServicePrincipalRiskDetection : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates the activity type the detected risk is linked to.  The possible values are: signin, servicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: servicePrincipal.</summary>
-        public ActivityType? Activity { get; set; }
+        public ApiSdk.Models.ActivityType? Activity { get; set; }
         /// <summary>Date and time when the risky activity occurred. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? ActivityDateTime { get; set; }
         /// <summary>Additional information associated with the risk detection. This string value is represented as a JSON object with the quotations escaped.</summary>
@@ -41,7 +41,7 @@ namespace ApiSdk.Models
         /// <summary>Date and time when the risk was detected. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? DetectedDateTime { get; set; }
         /// <summary>Timing of the detected risk , whether real-time or offline. The possible values are: notDefined, realtime, nearRealtime, offline, unknownFutureValue.</summary>
-        public RiskDetectionTimingType? DetectionTimingType { get; set; }
+        public ApiSdk.Models.RiskDetectionTimingType? DetectionTimingType { get; set; }
         /// <summary>Provides the IP address of the client from where the risk occurred.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -63,10 +63,10 @@ namespace ApiSdk.Models
         /// <summary>Location from where the sign-in was initiated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SignInLocation? Location { get; set; }
+        public ApiSdk.Models.SignInLocation? Location { get; set; }
 #nullable restore
 #else
-        public SignInLocation Location { get; set; }
+        public ApiSdk.Models.SignInLocation Location { get; set; }
 #endif
         /// <summary>Request identifier of the sign-in activity associated with the risk detection. This property is null if the risk detection is not associated with a sign-in activity. Supports $filter (eq).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -119,12 +119,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ServicePrincipalRiskDetection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ServicePrincipalRiskDetection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ServicePrincipalRiskDetection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ServicePrincipalRiskDetection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ServicePrincipalRiskDetection();
+            return new ApiSdk.Models.ServicePrincipalRiskDetection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -134,26 +134,26 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "activity", n => { Activity = n.GetEnumValue<ActivityType>(); } },
+                { "activity", n => { Activity = n.GetEnumValue<ApiSdk.Models.ActivityType>(); } },
                 { "activityDateTime", n => { ActivityDateTime = n.GetDateTimeOffsetValue(); } },
                 { "additionalInfo", n => { AdditionalInfo = n.GetStringValue(); } },
                 { "appId", n => { AppId = n.GetStringValue(); } },
                 { "correlationId", n => { CorrelationId = n.GetStringValue(); } },
                 { "detectedDateTime", n => { DetectedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "detectionTimingType", n => { DetectionTimingType = n.GetEnumValue<RiskDetectionTimingType>(); } },
+                { "detectionTimingType", n => { DetectionTimingType = n.GetEnumValue<ApiSdk.Models.RiskDetectionTimingType>(); } },
                 { "ipAddress", n => { IpAddress = n.GetStringValue(); } },
                 { "keyIds", n => { KeyIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "location", n => { Location = n.GetObjectValue<SignInLocation>(SignInLocation.CreateFromDiscriminatorValue); } },
+                { "location", n => { Location = n.GetObjectValue<ApiSdk.Models.SignInLocation>(ApiSdk.Models.SignInLocation.CreateFromDiscriminatorValue); } },
                 { "requestId", n => { RequestId = n.GetStringValue(); } },
-                { "riskDetail", n => { RiskDetail = n.GetEnumValue<RiskDetail>(); } },
+                { "riskDetail", n => { RiskDetail = n.GetEnumValue<ApiSdk.Models.RiskDetail>(); } },
                 { "riskEventType", n => { RiskEventType = n.GetStringValue(); } },
-                { "riskLevel", n => { RiskLevel = n.GetEnumValue<RiskLevel>(); } },
-                { "riskState", n => { RiskState = n.GetEnumValue<RiskState>(); } },
+                { "riskLevel", n => { RiskLevel = n.GetEnumValue<ApiSdk.Models.RiskLevel>(); } },
+                { "riskState", n => { RiskState = n.GetEnumValue<ApiSdk.Models.RiskState>(); } },
                 { "servicePrincipalDisplayName", n => { ServicePrincipalDisplayName = n.GetStringValue(); } },
                 { "servicePrincipalId", n => { ServicePrincipalId = n.GetStringValue(); } },
                 { "source", n => { Source = n.GetStringValue(); } },
-                { "tokenIssuerType", n => { TokenIssuerType = n.GetEnumValue<TokenIssuerType>(); } },
+                { "tokenIssuerType", n => { TokenIssuerType = n.GetEnumValue<ApiSdk.Models.TokenIssuerType>(); } },
             };
         }
         /// <summary>
@@ -164,26 +164,26 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<ActivityType>("activity", Activity);
+            writer.WriteEnumValue<ApiSdk.Models.ActivityType>("activity", Activity);
             writer.WriteDateTimeOffsetValue("activityDateTime", ActivityDateTime);
             writer.WriteStringValue("additionalInfo", AdditionalInfo);
             writer.WriteStringValue("appId", AppId);
             writer.WriteStringValue("correlationId", CorrelationId);
             writer.WriteDateTimeOffsetValue("detectedDateTime", DetectedDateTime);
-            writer.WriteEnumValue<RiskDetectionTimingType>("detectionTimingType", DetectionTimingType);
+            writer.WriteEnumValue<ApiSdk.Models.RiskDetectionTimingType>("detectionTimingType", DetectionTimingType);
             writer.WriteStringValue("ipAddress", IpAddress);
             writer.WriteCollectionOfPrimitiveValues<string>("keyIds", KeyIds);
             writer.WriteDateTimeOffsetValue("lastUpdatedDateTime", LastUpdatedDateTime);
-            writer.WriteObjectValue<SignInLocation>("location", Location);
+            writer.WriteObjectValue<ApiSdk.Models.SignInLocation>("location", Location);
             writer.WriteStringValue("requestId", RequestId);
-            writer.WriteEnumValue<RiskDetail>("riskDetail", RiskDetail);
+            writer.WriteEnumValue<ApiSdk.Models.RiskDetail>("riskDetail", RiskDetail);
             writer.WriteStringValue("riskEventType", RiskEventType);
-            writer.WriteEnumValue<RiskLevel>("riskLevel", RiskLevel);
-            writer.WriteEnumValue<RiskState>("riskState", RiskState);
+            writer.WriteEnumValue<ApiSdk.Models.RiskLevel>("riskLevel", RiskLevel);
+            writer.WriteEnumValue<ApiSdk.Models.RiskState>("riskState", RiskState);
             writer.WriteStringValue("servicePrincipalDisplayName", ServicePrincipalDisplayName);
             writer.WriteStringValue("servicePrincipalId", ServicePrincipalId);
             writer.WriteStringValue("source", Source);
-            writer.WriteEnumValue<TokenIssuerType>("tokenIssuerType", TokenIssuerType);
+            writer.WriteEnumValue<ApiSdk.Models.TokenIssuerType>("tokenIssuerType", TokenIssuerType);
         }
     }
 }

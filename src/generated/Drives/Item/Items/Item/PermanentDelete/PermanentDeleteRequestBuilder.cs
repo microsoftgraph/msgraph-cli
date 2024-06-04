@@ -55,14 +55,14 @@ namespace ApiSdk.Drives.Item.Items.Item.PermanentDelete
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PermanentDeleteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.PermanentDelete.PermanentDeleteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PermanentDeleteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/permanentDelete", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PermanentDeleteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.PermanentDelete.PermanentDeleteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PermanentDeleteRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/permanentDelete", rawUrl)

@@ -31,7 +31,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new DelegatedAdminRelationshipItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.DelegatedAdminRelationshipItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildAccessAssignmentsNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
@@ -48,7 +48,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.TenantRelationships.DelegatedAdminRelationships.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -84,7 +84,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<DelegatedAdminRelationship>(DelegatedAdminRelationship.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.DelegatedAdminRelationship>(ApiSdk.Models.DelegatedAdminRelationship.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -201,14 +201,14 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DelegatedAdminRelationshipsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.TenantRelationships.DelegatedAdminRelationships.DelegatedAdminRelationshipsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DelegatedAdminRelationshipsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DelegatedAdminRelationshipsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.TenantRelationships.DelegatedAdminRelationships.DelegatedAdminRelationshipsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DelegatedAdminRelationshipsRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -221,11 +221,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DelegatedAdminRelationshipsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.TenantRelationships.DelegatedAdminRelationships.DelegatedAdminRelationshipsRequestBuilder.DelegatedAdminRelationshipsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DelegatedAdminRelationshipsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.TenantRelationships.DelegatedAdminRelationships.DelegatedAdminRelationshipsRequestBuilder.DelegatedAdminRelationshipsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -241,11 +241,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(DelegatedAdminRelationship body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DelegatedAdminRelationship body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(DelegatedAdminRelationship body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DelegatedAdminRelationship body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

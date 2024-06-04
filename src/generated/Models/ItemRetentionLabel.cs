@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ItemRetentionLabel : Entity, IParsable
+    public class ItemRetentionLabel : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Specifies whether the label is applied explicitly on the item. True indicates that the label is applied explicitly; otherwise, the label is inherited from its parent. Read-only.</summary>
@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Identity of the user who applied the label. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LabelAppliedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? LabelAppliedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet LabelAppliedBy { get; set; }
+        public ApiSdk.Models.IdentitySet LabelAppliedBy { get; set; }
 #endif
         /// <summary>The date and time when the label was applied on the item. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? LabelAppliedDateTime { get; set; }
@@ -33,20 +33,20 @@ namespace ApiSdk.Models
         /// <summary>The retention settings enforced on the item. Read-write.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RetentionLabelSettings? RetentionSettings { get; set; }
+        public ApiSdk.Models.RetentionLabelSettings? RetentionSettings { get; set; }
 #nullable restore
 #else
-        public RetentionLabelSettings RetentionSettings { get; set; }
+        public ApiSdk.Models.RetentionLabelSettings RetentionSettings { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ItemRetentionLabel"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ItemRetentionLabel"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ItemRetentionLabel CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ItemRetentionLabel CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ItemRetentionLabel();
+            return new ApiSdk.Models.ItemRetentionLabel();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,10 +57,10 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "isLabelAppliedExplicitly", n => { IsLabelAppliedExplicitly = n.GetBoolValue(); } },
-                { "labelAppliedBy", n => { LabelAppliedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "labelAppliedBy", n => { LabelAppliedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "labelAppliedDateTime", n => { LabelAppliedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "retentionSettings", n => { RetentionSettings = n.GetObjectValue<RetentionLabelSettings>(RetentionLabelSettings.CreateFromDiscriminatorValue); } },
+                { "retentionSettings", n => { RetentionSettings = n.GetObjectValue<ApiSdk.Models.RetentionLabelSettings>(ApiSdk.Models.RetentionLabelSettings.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -72,10 +72,10 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("isLabelAppliedExplicitly", IsLabelAppliedExplicitly);
-            writer.WriteObjectValue<IdentitySet>("labelAppliedBy", LabelAppliedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("labelAppliedBy", LabelAppliedBy);
             writer.WriteDateTimeOffsetValue("labelAppliedDateTime", LabelAppliedDateTime);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<RetentionLabelSettings>("retentionSettings", RetentionSettings);
+            writer.WriteObjectValue<ApiSdk.Models.RetentionLabelSettings>("retentionSettings", RetentionSettings);
         }
     }
 }

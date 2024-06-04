@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class MailboxConfigurationEvidence : AlertEvidence, IParsable
+    public class MailboxConfigurationEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The configurationId property</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models.Security
         public string ConfigurationId { get; set; }
 #endif
         /// <summary>The configurationType property</summary>
-        public MailboxConfigurationType? ConfigurationType { get; set; }
+        public ApiSdk.Models.Security.MailboxConfigurationType? ConfigurationType { get; set; }
         /// <summary>The displayName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security
         public string Upn { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MailboxConfigurationEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.MailboxConfigurationEvidence"/> and sets the default values.
         /// </summary>
         public MailboxConfigurationEvidence() : base()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MailboxConfigurationEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.MailboxConfigurationEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MailboxConfigurationEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.MailboxConfigurationEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MailboxConfigurationEvidence();
+            return new ApiSdk.Models.Security.MailboxConfigurationEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +72,7 @@ namespace ApiSdk.Models.Security
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "configurationId", n => { ConfigurationId = n.GetStringValue(); } },
-                { "configurationType", n => { ConfigurationType = n.GetEnumValue<MailboxConfigurationType>(); } },
+                { "configurationType", n => { ConfigurationType = n.GetEnumValue<ApiSdk.Models.Security.MailboxConfigurationType>(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "externalDirectoryObjectId", n => { ExternalDirectoryObjectId = n.GetGuidValue(); } },
                 { "mailboxPrimaryAddress", n => { MailboxPrimaryAddress = n.GetStringValue(); } },
@@ -88,7 +88,7 @@ namespace ApiSdk.Models.Security
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("configurationId", ConfigurationId);
-            writer.WriteEnumValue<MailboxConfigurationType>("configurationType", ConfigurationType);
+            writer.WriteEnumValue<ApiSdk.Models.Security.MailboxConfigurationType>("configurationType", ConfigurationType);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteGuidValue("externalDirectoryObjectId", ExternalDirectoryObjectId);
             writer.WriteStringValue("mailboxPrimaryAddress", MailboxPrimaryAddress);

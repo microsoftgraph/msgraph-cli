@@ -50,14 +50,14 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.RecoverPasscode
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RecoverPasscodeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.RecoverPasscode.RecoverPasscodeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RecoverPasscodeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/recoverPasscode", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RecoverPasscodeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.RecoverPasscode.RecoverPasscodeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RecoverPasscodeRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/recoverPasscode", rawUrl)

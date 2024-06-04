@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         /// <summary>Time the action was initiated</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceActionResult"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DeviceActionResult"/> and sets the default values.
         /// </summary>
         public DeviceActionResult()
         {
@@ -45,21 +45,21 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceActionResult"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceActionResult"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DeviceActionResult CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.DeviceActionResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.deleteUserFromSharedAppleDeviceActionResult" => new DeleteUserFromSharedAppleDeviceActionResult(),
-                "#microsoft.graph.locateDeviceActionResult" => new LocateDeviceActionResult(),
-                "#microsoft.graph.remoteLockActionResult" => new RemoteLockActionResult(),
-                "#microsoft.graph.resetPasscodeActionResult" => new ResetPasscodeActionResult(),
-                "#microsoft.graph.rotateBitLockerKeysDeviceActionResult" => new RotateBitLockerKeysDeviceActionResult(),
-                "#microsoft.graph.windowsDefenderScanActionResult" => new WindowsDefenderScanActionResult(),
-                _ => new DeviceActionResult(),
+                "#microsoft.graph.deleteUserFromSharedAppleDeviceActionResult" => new ApiSdk.Models.DeleteUserFromSharedAppleDeviceActionResult(),
+                "#microsoft.graph.locateDeviceActionResult" => new ApiSdk.Models.LocateDeviceActionResult(),
+                "#microsoft.graph.remoteLockActionResult" => new ApiSdk.Models.RemoteLockActionResult(),
+                "#microsoft.graph.resetPasscodeActionResult" => new ApiSdk.Models.ResetPasscodeActionResult(),
+                "#microsoft.graph.rotateBitLockerKeysDeviceActionResult" => new ApiSdk.Models.RotateBitLockerKeysDeviceActionResult(),
+                "#microsoft.graph.windowsDefenderScanActionResult" => new ApiSdk.Models.WindowsDefenderScanActionResult(),
+                _ => new ApiSdk.Models.DeviceActionResult(),
             };
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "actionName", n => { ActionName = n.GetStringValue(); } },
-                { "actionState", n => { ActionState = n.GetEnumValue<ActionState>(); } },
+                { "actionState", n => { ActionState = n.GetEnumValue<ApiSdk.Models.ActionState>(); } },
                 { "lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
@@ -85,7 +85,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("actionName", ActionName);
-            writer.WriteEnumValue<ActionState>("actionState", ActionState);
+            writer.WriteEnumValue<ApiSdk.Models.ActionState>("actionState", ActionState);
             writer.WriteDateTimeOffsetValue("lastUpdatedDateTime", LastUpdatedDateTime);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);

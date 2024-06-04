@@ -96,7 +96,7 @@ namespace ApiSdk.Contacts.Item.DirectReports.Item
         {
             var command = new Command("graph-org-contact-by-id");
             command.Description = "Casts the previous resource to orgContact.";
-            var builder = new GraphOrgContactRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.DirectReports.Item.GraphOrgContact.GraphOrgContactRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -113,7 +113,7 @@ namespace ApiSdk.Contacts.Item.DirectReports.Item
         {
             var command = new Command("graph-user-by-id");
             command.Description = "Casts the previous resource to user.";
-            var builder = new GraphUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Contacts.Item.DirectReports.Item.GraphUser.GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -123,14 +123,14 @@ namespace ApiSdk.Contacts.Item.DirectReports.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Contacts.Item.DirectReports.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/directReports/{directoryObject%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Contacts.Item.DirectReports.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/contacts/{orgContact%2Did}/directReports/{directoryObject%2Did}{?%24expand,%24select}", rawUrl)
@@ -143,11 +143,11 @@ namespace ApiSdk.Contacts.Item.DirectReports.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Contacts.Item.DirectReports.Item.DirectoryObjectItemRequestBuilder.DirectoryObjectItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Contacts.Item.DirectReports.Item.DirectoryObjectItemRequestBuilder.DirectoryObjectItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class OnenotePage : OnenoteEntitySchemaObjectModel, IParsable
+    public class OnenotePage : ApiSdk.Models.OnenoteEntitySchemaObjectModel, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The page&apos;s HTML content.</summary>
@@ -41,28 +41,28 @@ namespace ApiSdk.Models
         /// <summary>Links for opening the page. The oneNoteClientURL link opens the page in the OneNote native client if it &apos;s installed. The oneNoteWebUrl link opens the page in OneNote on the web. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PageLinks? Links { get; set; }
+        public ApiSdk.Models.PageLinks? Links { get; set; }
 #nullable restore
 #else
-        public PageLinks Links { get; set; }
+        public ApiSdk.Models.PageLinks Links { get; set; }
 #endif
         /// <summary>The order of the page within its parent section. Read-only.</summary>
         public int? Order { get; set; }
         /// <summary>The notebook that contains the page.  Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Notebook? ParentNotebook { get; set; }
+        public ApiSdk.Models.Notebook? ParentNotebook { get; set; }
 #nullable restore
 #else
-        public Notebook ParentNotebook { get; set; }
+        public ApiSdk.Models.Notebook ParentNotebook { get; set; }
 #endif
         /// <summary>The section that contains the page. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public OnenoteSection? ParentSection { get; set; }
+        public ApiSdk.Models.OnenoteSection? ParentSection { get; set; }
 #nullable restore
 #else
-        public OnenoteSection ParentSection { get; set; }
+        public ApiSdk.Models.OnenoteSection ParentSection { get; set; }
 #endif
         /// <summary>The title of the page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -81,7 +81,7 @@ namespace ApiSdk.Models
         public List<string> UserTags { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OnenotePage"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OnenotePage"/> and sets the default values.
         /// </summary>
         public OnenotePage() : base()
         {
@@ -90,12 +90,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnenotePage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnenotePage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OnenotePage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OnenotePage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnenotePage();
+            return new ApiSdk.Models.OnenotePage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -110,10 +110,10 @@ namespace ApiSdk.Models
                 { "createdByAppId", n => { CreatedByAppId = n.GetStringValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "level", n => { Level = n.GetIntValue(); } },
-                { "links", n => { Links = n.GetObjectValue<PageLinks>(PageLinks.CreateFromDiscriminatorValue); } },
+                { "links", n => { Links = n.GetObjectValue<ApiSdk.Models.PageLinks>(ApiSdk.Models.PageLinks.CreateFromDiscriminatorValue); } },
                 { "order", n => { Order = n.GetIntValue(); } },
-                { "parentNotebook", n => { ParentNotebook = n.GetObjectValue<Notebook>(Notebook.CreateFromDiscriminatorValue); } },
-                { "parentSection", n => { ParentSection = n.GetObjectValue<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue); } },
+                { "parentNotebook", n => { ParentNotebook = n.GetObjectValue<ApiSdk.Models.Notebook>(ApiSdk.Models.Notebook.CreateFromDiscriminatorValue); } },
+                { "parentSection", n => { ParentSection = n.GetObjectValue<ApiSdk.Models.OnenoteSection>(ApiSdk.Models.OnenoteSection.CreateFromDiscriminatorValue); } },
                 { "title", n => { Title = n.GetStringValue(); } },
                 { "userTags", n => { UserTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
@@ -131,10 +131,10 @@ namespace ApiSdk.Models
             writer.WriteStringValue("createdByAppId", CreatedByAppId);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteIntValue("level", Level);
-            writer.WriteObjectValue<PageLinks>("links", Links);
+            writer.WriteObjectValue<ApiSdk.Models.PageLinks>("links", Links);
             writer.WriteIntValue("order", Order);
-            writer.WriteObjectValue<Notebook>("parentNotebook", ParentNotebook);
-            writer.WriteObjectValue<OnenoteSection>("parentSection", ParentSection);
+            writer.WriteObjectValue<ApiSdk.Models.Notebook>("parentNotebook", ParentNotebook);
+            writer.WriteObjectValue<ApiSdk.Models.OnenoteSection>("parentSection", ParentSection);
             writer.WriteStringValue("title", Title);
             writer.WriteCollectionOfPrimitiveValues<string>("userTags", UserTags);
         }

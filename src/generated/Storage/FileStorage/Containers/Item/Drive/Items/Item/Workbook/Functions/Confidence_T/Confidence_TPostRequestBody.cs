@@ -16,29 +16,29 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The alpha property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Alpha { get; set; }
+        public ApiSdk.Models.Json? Alpha { get; set; }
 #nullable restore
 #else
-        public Json Alpha { get; set; }
+        public ApiSdk.Models.Json Alpha { get; set; }
 #endif
         /// <summary>The size property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Size { get; set; }
+        public ApiSdk.Models.Json? Size { get; set; }
 #nullable restore
 #else
-        public Json Size { get; set; }
+        public ApiSdk.Models.Json Size { get; set; }
 #endif
         /// <summary>The standardDev property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? StandardDev { get; set; }
+        public ApiSdk.Models.Json? StandardDev { get; set; }
 #nullable restore
 #else
-        public Json StandardDev { get; set; }
+        public ApiSdk.Models.Json StandardDev { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Confidence_TPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Confidence_T.Confidence_TPostRequestBody"/> and sets the default values.
         /// </summary>
         public Confidence_TPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Confidence_TPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Confidence_T.Confidence_TPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Confidence_TPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Confidence_T.Confidence_TPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Confidence_TPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Confidence_T.Confidence_TPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "alpha", n => { Alpha = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "size", n => { Size = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "standardDev", n => { StandardDev = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "alpha", n => { Alpha = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "size", n => { Size = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "standardDev", n => { StandardDev = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("alpha", Alpha);
-            writer.WriteObjectValue<Json>("size", Size);
-            writer.WriteObjectValue<Json>("standardDev", StandardDev);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("alpha", Alpha);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("size", Size);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("standardDev", StandardDev);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -36,7 +36,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
         {
             var command = new Command("assignment-approvals");
             command.Description = "Provides operations to manage the assignmentApprovals property of the microsoft.graph.privilegedAccessGroup entity.";
-            var builder = new AssignmentApprovalsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.AssignmentApprovalsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -64,7 +64,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
         {
             var command = new Command("assignment-schedule-instances");
             command.Description = "Provides operations to manage the assignmentScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.";
-            var builder = new AssignmentScheduleInstancesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleInstances.AssignmentScheduleInstancesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -92,7 +92,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
         {
             var command = new Command("assignment-schedule-requests");
             command.Description = "Provides operations to manage the assignmentScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.";
-            var builder = new AssignmentScheduleRequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.AssignmentScheduleRequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -120,7 +120,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
         {
             var command = new Command("assignment-schedules");
             command.Description = "Provides operations to manage the assignmentSchedules property of the microsoft.graph.privilegedAccessGroup entity.";
-            var builder = new AssignmentSchedulesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.AssignmentSchedulesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -177,7 +177,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
         {
             var command = new Command("eligibility-schedule-instances");
             command.Description = "Provides operations to manage the eligibilityScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.";
-            var builder = new EligibilityScheduleInstancesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleInstances.EligibilityScheduleInstancesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -205,7 +205,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
         {
             var command = new Command("eligibility-schedule-requests");
             command.Description = "Provides operations to manage the eligibilityScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.";
-            var builder = new EligibilityScheduleRequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleRequests.EligibilityScheduleRequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -233,7 +233,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
         {
             var command = new Command("eligibility-schedules");
             command.Description = "Provides operations to manage the eligibilitySchedules property of the microsoft.graph.privilegedAccessGroup entity.";
-            var builder = new EligibilitySchedulesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilitySchedules.EligibilitySchedulesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -325,7 +325,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<PrivilegedAccessGroup>(PrivilegedAccessGroup.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.PrivilegedAccessGroup>(ApiSdk.Models.PrivilegedAccessGroup.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -345,14 +345,14 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GroupRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.PrivilegedAccess.Group.GroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GroupRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.PrivilegedAccess.Group.GroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GroupRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group{?%24expand,%24select}", rawUrl)
@@ -384,11 +384,11 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GroupRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.PrivilegedAccess.Group.GroupRequestBuilder.GroupRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GroupRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.PrivilegedAccess.Group.GroupRequestBuilder.GroupRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -404,11 +404,11 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PrivilegedAccessGroup body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PrivilegedAccessGroup body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PrivilegedAccessGroup body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PrivilegedAccessGroup body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

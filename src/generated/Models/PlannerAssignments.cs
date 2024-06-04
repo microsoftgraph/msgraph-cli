@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PlannerAssignments"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PlannerAssignments"/> and sets the default values.
         /// </summary>
         public PlannerAssignments()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PlannerAssignments"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PlannerAssignments"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PlannerAssignments CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PlannerAssignments CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PlannerAssignments();
+            return new ApiSdk.Models.PlannerAssignments();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetSharePointActivityPagesWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSharePointActivityPagesWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSharePointActivityPagesWithPeriod.GetSharePointActivityPagesWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetSharePointActivityPagesWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSharePointActivityPages(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSharePointActivityPagesWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSharePointActivityPagesWithPeriod.GetSharePointActivityPagesWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetSharePointActivityPagesWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSharePointActivityPages(period='{period}')", rawUrl)

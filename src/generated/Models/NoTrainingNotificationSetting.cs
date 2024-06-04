@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class NoTrainingNotificationSetting : EndUserNotificationSetting, IParsable
+    public class NoTrainingNotificationSetting : ApiSdk.Models.EndUserNotificationSetting, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The notification for the user who is part of the simulation.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.SimulationNotification SimulationNotification { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="NoTrainingNotificationSetting"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.NoTrainingNotificationSetting"/> and sets the default values.
         /// </summary>
         public NoTrainingNotificationSetting() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="NoTrainingNotificationSetting"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.NoTrainingNotificationSetting"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new NoTrainingNotificationSetting CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.NoTrainingNotificationSetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new NoTrainingNotificationSetting();
+            return new ApiSdk.Models.NoTrainingNotificationSetting();
         }
         /// <summary>
         /// The deserialization information for the current model

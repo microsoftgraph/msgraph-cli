@@ -23,21 +23,21 @@ namespace ApiSdk.Models
         /// <summary>Opens the page in the OneNote native client if it&apos;s installed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ExternalLink? OneNoteClientUrl { get; set; }
+        public ApiSdk.Models.ExternalLink? OneNoteClientUrl { get; set; }
 #nullable restore
 #else
-        public ExternalLink OneNoteClientUrl { get; set; }
+        public ApiSdk.Models.ExternalLink OneNoteClientUrl { get; set; }
 #endif
         /// <summary>Opens the page in OneNote on the web.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ExternalLink? OneNoteWebUrl { get; set; }
+        public ApiSdk.Models.ExternalLink? OneNoteWebUrl { get; set; }
 #nullable restore
 #else
-        public ExternalLink OneNoteWebUrl { get; set; }
+        public ApiSdk.Models.ExternalLink OneNoteWebUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PageLinks"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PageLinks"/> and sets the default values.
         /// </summary>
         public PageLinks()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PageLinks"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PageLinks"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PageLinks CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PageLinks CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PageLinks();
+            return new ApiSdk.Models.PageLinks();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,8 +62,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "oneNoteClientUrl", n => { OneNoteClientUrl = n.GetObjectValue<ExternalLink>(ExternalLink.CreateFromDiscriminatorValue); } },
-                { "oneNoteWebUrl", n => { OneNoteWebUrl = n.GetObjectValue<ExternalLink>(ExternalLink.CreateFromDiscriminatorValue); } },
+                { "oneNoteClientUrl", n => { OneNoteClientUrl = n.GetObjectValue<ApiSdk.Models.ExternalLink>(ApiSdk.Models.ExternalLink.CreateFromDiscriminatorValue); } },
+                { "oneNoteWebUrl", n => { OneNoteWebUrl = n.GetObjectValue<ApiSdk.Models.ExternalLink>(ApiSdk.Models.ExternalLink.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,8 +74,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<ExternalLink>("oneNoteClientUrl", OneNoteClientUrl);
-            writer.WriteObjectValue<ExternalLink>("oneNoteWebUrl", OneNoteWebUrl);
+            writer.WriteObjectValue<ApiSdk.Models.ExternalLink>("oneNoteClientUrl", OneNoteClientUrl);
+            writer.WriteObjectValue<ApiSdk.Models.ExternalLink>("oneNoteWebUrl", OneNoteWebUrl);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

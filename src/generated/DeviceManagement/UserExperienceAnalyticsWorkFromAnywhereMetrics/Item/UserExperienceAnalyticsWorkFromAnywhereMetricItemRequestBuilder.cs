@@ -117,7 +117,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics
         {
             var command = new Command("metric-devices");
             command.Description = "Provides operations to manage the metricDevices property of the microsoft.graph.userExperienceAnalyticsWorkFromAnywhereMetric entity.";
-            var builder = new MetricDevicesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics.Item.MetricDevices.MetricDevicesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -167,7 +167,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<UserExperienceAnalyticsWorkFromAnywhereMetric>(UserExperienceAnalyticsWorkFromAnywhereMetric.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereMetric>(ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereMetric.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -188,14 +188,14 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics.Item.UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/{userExperienceAnalyticsWorkFromAnywhereMetric%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics.Item.UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/{userExperienceAnalyticsWorkFromAnywhereMetric%2Did}{?%24expand,%24select}", rawUrl)
@@ -227,11 +227,11 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics.Item.UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder.UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics.Item.UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilder.UserExperienceAnalyticsWorkFromAnywhereMetricItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -247,11 +247,11 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsWorkFromAnywhereMetric body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereMetric body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsWorkFromAnywhereMetric body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereMetric body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

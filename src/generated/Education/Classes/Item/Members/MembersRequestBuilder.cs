@@ -31,7 +31,7 @@ namespace ApiSdk.Education.Classes.Item.Members
         public Tuple<List<Command>, List<Command>> BuildCommand()
         {
             var commands = new List<Command>();
-            var builder = new EducationUserItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Classes.Item.Members.Item.EducationUserItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildRefByIdNavCommand());
             return new(new(0), commands);
         }
@@ -43,7 +43,7 @@ namespace ApiSdk.Education.Classes.Item.Members
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Classes.Item.Members.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -163,7 +163,7 @@ namespace ApiSdk.Education.Classes.Item.Members
         {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
-            var builder = new RefRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Classes.Item.Members.Ref.RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -175,14 +175,14 @@ namespace ApiSdk.Education.Classes.Item.Members
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MembersRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Classes.Item.Members.MembersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/members{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MembersRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Classes.Item.Members.MembersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MembersRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/members{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -195,11 +195,11 @@ namespace ApiSdk.Education.Classes.Item.Members
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MembersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.Classes.Item.Members.MembersRequestBuilder.MembersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MembersRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.Classes.Item.Members.MembersRequestBuilder.MembersRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class OpenShift : ChangeTrackedEntity, IParsable
+    public class OpenShift : ApiSdk.Models.ChangeTrackedEntity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>An unpublished open shift.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public OpenShiftItem? DraftOpenShift { get; set; }
+        public ApiSdk.Models.OpenShiftItem? DraftOpenShift { get; set; }
 #nullable restore
 #else
-        public OpenShiftItem DraftOpenShift { get; set; }
+        public ApiSdk.Models.OpenShiftItem DraftOpenShift { get; set; }
 #endif
         /// <summary>ID for the scheduling group that the open shift belongs to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,13 +29,13 @@ namespace ApiSdk.Models
         /// <summary>A published open shift.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public OpenShiftItem? SharedOpenShift { get; set; }
+        public ApiSdk.Models.OpenShiftItem? SharedOpenShift { get; set; }
 #nullable restore
 #else
-        public OpenShiftItem SharedOpenShift { get; set; }
+        public ApiSdk.Models.OpenShiftItem SharedOpenShift { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OpenShift"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OpenShift"/> and sets the default values.
         /// </summary>
         public OpenShift() : base()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OpenShift"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OpenShift"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OpenShift CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OpenShift CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OpenShift();
+            return new ApiSdk.Models.OpenShift();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,9 +59,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "draftOpenShift", n => { DraftOpenShift = n.GetObjectValue<OpenShiftItem>(OpenShiftItem.CreateFromDiscriminatorValue); } },
+                { "draftOpenShift", n => { DraftOpenShift = n.GetObjectValue<ApiSdk.Models.OpenShiftItem>(ApiSdk.Models.OpenShiftItem.CreateFromDiscriminatorValue); } },
                 { "schedulingGroupId", n => { SchedulingGroupId = n.GetStringValue(); } },
-                { "sharedOpenShift", n => { SharedOpenShift = n.GetObjectValue<OpenShiftItem>(OpenShiftItem.CreateFromDiscriminatorValue); } },
+                { "sharedOpenShift", n => { SharedOpenShift = n.GetObjectValue<ApiSdk.Models.OpenShiftItem>(ApiSdk.Models.OpenShiftItem.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -72,9 +72,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<OpenShiftItem>("draftOpenShift", DraftOpenShift);
+            writer.WriteObjectValue<ApiSdk.Models.OpenShiftItem>("draftOpenShift", DraftOpenShift);
             writer.WriteStringValue("schedulingGroupId", SchedulingGroupId);
-            writer.WriteObjectValue<OpenShiftItem>("sharedOpenShift", SharedOpenShift);
+            writer.WriteObjectValue<ApiSdk.Models.OpenShiftItem>("sharedOpenShift", SharedOpenShift);
         }
     }
 }

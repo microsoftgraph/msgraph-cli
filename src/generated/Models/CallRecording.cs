@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CallRecording : Entity, IParsable
+    public class CallRecording : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The content of the recording. Read-only.</summary>
@@ -31,10 +31,10 @@ namespace ApiSdk.Models
         /// <summary>The identity information of the organizer of the onlineMeeting related to this recording. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? MeetingOrganizer { get; set; }
+        public ApiSdk.Models.IdentitySet? MeetingOrganizer { get; set; }
 #nullable restore
 #else
-        public IdentitySet MeetingOrganizer { get; set; }
+        public ApiSdk.Models.IdentitySet MeetingOrganizer { get; set; }
 #endif
         /// <summary>The URL that can be used to access the content of the recording. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,12 +47,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CallRecording"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallRecording"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CallRecording CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CallRecording CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CallRecording();
+            return new ApiSdk.Models.CallRecording();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
                 { "content", n => { Content = n.GetByteArrayValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "meetingId", n => { MeetingId = n.GetStringValue(); } },
-                { "meetingOrganizer", n => { MeetingOrganizer = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "meetingOrganizer", n => { MeetingOrganizer = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "recordingContentUrl", n => { RecordingContentUrl = n.GetStringValue(); } },
             };
         }
@@ -80,7 +80,7 @@ namespace ApiSdk.Models
             writer.WriteByteArrayValue("content", Content);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("meetingId", MeetingId);
-            writer.WriteObjectValue<IdentitySet>("meetingOrganizer", MeetingOrganizer);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("meetingOrganizer", MeetingOrganizer);
             writer.WriteStringValue("recordingContentUrl", RecordingContentUrl);
         }
     }

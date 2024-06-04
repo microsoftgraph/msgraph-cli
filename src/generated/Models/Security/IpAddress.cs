@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class IpAddress : Host, IParsable
+    public class IpAddress : ApiSdk.Models.Security.Host, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The details about the autonomous system to which this IP address belongs.</summary>
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Security
         public string Netblock { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IpAddress"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.IpAddress"/> and sets the default values.
         /// </summary>
         public IpAddress() : base()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IpAddress"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.IpAddress"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IpAddress CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.IpAddress CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IpAddress();
+            return new ApiSdk.Models.Security.IpAddress();
         }
         /// <summary>
         /// The deserialization information for the current model

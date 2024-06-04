@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>Users and groups of users that are excluded from being prompted to set up the authentication method.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ExcludeTarget>? ExcludeTargets { get; set; }
+        public List<ApiSdk.Models.ExcludeTarget>? ExcludeTargets { get; set; }
 #nullable restore
 #else
-        public List<ExcludeTarget> ExcludeTargets { get; set; }
+        public List<ApiSdk.Models.ExcludeTarget> ExcludeTargets { get; set; }
 #endif
         /// <summary>Users and groups of users that are prompted to set up the authentication method.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationMethodsRegistrationCampaignIncludeTarget>? IncludeTargets { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodsRegistrationCampaignIncludeTarget>? IncludeTargets { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationMethodsRegistrationCampaignIncludeTarget> IncludeTargets { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodsRegistrationCampaignIncludeTarget> IncludeTargets { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,9 +39,9 @@ namespace ApiSdk.Models
         /// <summary>Specifies the number of days that the user sees a prompt again if they select &apos;Not now&apos; and snoozes the prompt. Minimum: 0 days. Maximum: 14 days. If the value is &apos;0&apos;, the user is prompted during every MFA attempt.</summary>
         public int? SnoozeDurationInDays { get; set; }
         /// <summary>The state property</summary>
-        public AdvancedConfigState? State { get; set; }
+        public ApiSdk.Models.AdvancedConfigState? State { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationMethodsRegistrationCampaign"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AuthenticationMethodsRegistrationCampaign"/> and sets the default values.
         /// </summary>
         public AuthenticationMethodsRegistrationCampaign()
         {
@@ -50,12 +50,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationMethodsRegistrationCampaign"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationMethodsRegistrationCampaign"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AuthenticationMethodsRegistrationCampaign CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AuthenticationMethodsRegistrationCampaign CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthenticationMethodsRegistrationCampaign();
+            return new ApiSdk.Models.AuthenticationMethodsRegistrationCampaign();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,11 +65,11 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "excludeTargets", n => { ExcludeTargets = n.GetCollectionOfObjectValues<ExcludeTarget>(ExcludeTarget.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<AuthenticationMethodsRegistrationCampaignIncludeTarget>(AuthenticationMethodsRegistrationCampaignIncludeTarget.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "excludeTargets", n => { ExcludeTargets = n.GetCollectionOfObjectValues<ApiSdk.Models.ExcludeTarget>(ApiSdk.Models.ExcludeTarget.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<ApiSdk.Models.AuthenticationMethodsRegistrationCampaignIncludeTarget>(ApiSdk.Models.AuthenticationMethodsRegistrationCampaignIncludeTarget.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "snoozeDurationInDays", n => { SnoozeDurationInDays = n.GetIntValue(); } },
-                { "state", n => { State = n.GetEnumValue<AdvancedConfigState>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.AdvancedConfigState>(); } },
             };
         }
         /// <summary>
@@ -79,11 +79,11 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<ExcludeTarget>("excludeTargets", ExcludeTargets);
-            writer.WriteCollectionOfObjectValues<AuthenticationMethodsRegistrationCampaignIncludeTarget>("includeTargets", IncludeTargets);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExcludeTarget>("excludeTargets", ExcludeTargets);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuthenticationMethodsRegistrationCampaignIncludeTarget>("includeTargets", IncludeTargets);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("snoozeDurationInDays", SnoozeDurationInDays);
-            writer.WriteEnumValue<AdvancedConfigState>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.AdvancedConfigState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

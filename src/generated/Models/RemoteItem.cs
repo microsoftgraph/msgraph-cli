@@ -15,20 +15,20 @@ namespace ApiSdk.Models
         /// <summary>Identity of the user, device, and application which created the item. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? CreatedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet CreatedBy { get; set; }
 #endif
         /// <summary>Date and time of item creation. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>Indicates that the remote item is a file. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FileObject? File { get; set; }
+        public ApiSdk.Models.FileObject? File { get; set; }
 #nullable restore
 #else
-        public FileObject File { get; set; }
+        public ApiSdk.Models.FileObject File { get; set; }
 #endif
         /// <summary>Information about the remote item from the local file system. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,10 +65,10 @@ namespace ApiSdk.Models
         /// <summary>Identity of the user, device, and application which last modified the item. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet LastModifiedBy { get; set; }
 #endif
         /// <summary>Date and time the item was last modified. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
@@ -99,10 +99,10 @@ namespace ApiSdk.Models
         /// <summary>Properties of the parent of the remote item. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemReference? ParentReference { get; set; }
+        public ApiSdk.Models.ItemReference? ParentReference { get; set; }
 #nullable restore
 #else
-        public ItemReference ParentReference { get; set; }
+        public ApiSdk.Models.ItemReference ParentReference { get; set; }
 #endif
         /// <summary>Indicates that the item has been shared with others and provides information about the shared state of the item. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -155,7 +155,7 @@ namespace ApiSdk.Models
         public string WebUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RemoteItem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RemoteItem"/> and sets the default values.
         /// </summary>
         public RemoteItem()
         {
@@ -164,12 +164,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RemoteItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RemoteItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RemoteItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.RemoteItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RemoteItem();
+            return new ApiSdk.Models.RemoteItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -179,19 +179,19 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "file", n => { File = n.GetObjectValue<FileObject>(FileObject.CreateFromDiscriminatorValue); } },
+                { "file", n => { File = n.GetObjectValue<ApiSdk.Models.FileObject>(ApiSdk.Models.FileObject.CreateFromDiscriminatorValue); } },
                 { "fileSystemInfo", n => { FileSystemInfo = n.GetObjectValue<ApiSdk.Models.FileSystemInfo>(ApiSdk.Models.FileSystemInfo.CreateFromDiscriminatorValue); } },
                 { "folder", n => { Folder = n.GetObjectValue<ApiSdk.Models.Folder>(ApiSdk.Models.Folder.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "image", n => { Image = n.GetObjectValue<ApiSdk.Models.Image>(ApiSdk.Models.Image.CreateFromDiscriminatorValue); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "package", n => { Package = n.GetObjectValue<ApiSdk.Models.Package>(ApiSdk.Models.Package.CreateFromDiscriminatorValue); } },
-                { "parentReference", n => { ParentReference = n.GetObjectValue<ItemReference>(ItemReference.CreateFromDiscriminatorValue); } },
+                { "parentReference", n => { ParentReference = n.GetObjectValue<ApiSdk.Models.ItemReference>(ApiSdk.Models.ItemReference.CreateFromDiscriminatorValue); } },
                 { "shared", n => { Shared = n.GetObjectValue<ApiSdk.Models.Shared>(ApiSdk.Models.Shared.CreateFromDiscriminatorValue); } },
                 { "sharepointIds", n => { SharepointIds = n.GetObjectValue<ApiSdk.Models.SharepointIds>(ApiSdk.Models.SharepointIds.CreateFromDiscriminatorValue); } },
                 { "size", n => { Size = n.GetLongValue(); } },
@@ -208,19 +208,19 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<FileObject>("file", File);
+            writer.WriteObjectValue<ApiSdk.Models.FileObject>("file", File);
             writer.WriteObjectValue<ApiSdk.Models.FileSystemInfo>("fileSystemInfo", FileSystemInfo);
             writer.WriteObjectValue<ApiSdk.Models.Folder>("folder", Folder);
             writer.WriteStringValue("id", Id);
             writer.WriteObjectValue<ApiSdk.Models.Image>("image", Image);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<ApiSdk.Models.Package>("package", Package);
-            writer.WriteObjectValue<ItemReference>("parentReference", ParentReference);
+            writer.WriteObjectValue<ApiSdk.Models.ItemReference>("parentReference", ParentReference);
             writer.WriteObjectValue<ApiSdk.Models.Shared>("shared", Shared);
             writer.WriteObjectValue<ApiSdk.Models.SharepointIds>("sharepointIds", SharepointIds);
             writer.WriteLongValue("size", Size);

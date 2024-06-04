@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         /// <summary>Locks the tokenEncryptionKeyId property for modification on the service principal.</summary>
         public bool? TokenEncryptionKeyId { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ServicePrincipalLockConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ServicePrincipalLockConfiguration"/> and sets the default values.
         /// </summary>
         public ServicePrincipalLockConfiguration()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ServicePrincipalLockConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ServicePrincipalLockConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ServicePrincipalLockConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ServicePrincipalLockConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ServicePrincipalLockConfiguration();
+            return new ApiSdk.Models.ServicePrincipalLockConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model

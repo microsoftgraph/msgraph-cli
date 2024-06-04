@@ -50,14 +50,14 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.Unassign
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnassignUserFromDeviceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UnassignUserFromDevice.UnassignUserFromDeviceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnassignUserFromDeviceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}/unassignUserFromDevice", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnassignUserFromDeviceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UnassignUserFromDevice.UnassignUserFromDeviceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnassignUserFromDeviceRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}/unassignUserFromDevice", rawUrl)

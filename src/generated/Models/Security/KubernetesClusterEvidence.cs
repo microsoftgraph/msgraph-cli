@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class KubernetesClusterEvidence : AlertEvidence, IParsable
+    public class KubernetesClusterEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The cloud identifier of the cluster. Can be either an amazonResourceEvidence, azureResourceEvidence, or googleCloudResourceEvidence object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AlertEvidence? CloudResource { get; set; }
+        public ApiSdk.Models.Security.AlertEvidence? CloudResource { get; set; }
 #nullable restore
 #else
-        public AlertEvidence CloudResource { get; set; }
+        public ApiSdk.Models.Security.AlertEvidence CloudResource { get; set; }
 #endif
         /// <summary>The distribution type of the cluster.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -35,7 +35,7 @@ namespace ApiSdk.Models.Security
         public string Name { get; set; }
 #endif
         /// <summary>The platform the cluster runs on. Possible values are: unknown, aks, eks, gke, arc, unknownFutureValue.</summary>
-        public KubernetesPlatform? Platform { get; set; }
+        public ApiSdk.Models.Security.KubernetesPlatform? Platform { get; set; }
         /// <summary>The kubernetes version of the cluster.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -45,7 +45,7 @@ namespace ApiSdk.Models.Security
         public string Version { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="KubernetesClusterEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.KubernetesClusterEvidence"/> and sets the default values.
         /// </summary>
         public KubernetesClusterEvidence() : base()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="KubernetesClusterEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.KubernetesClusterEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new KubernetesClusterEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.KubernetesClusterEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new KubernetesClusterEvidence();
+            return new ApiSdk.Models.Security.KubernetesClusterEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,10 +69,10 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "cloudResource", n => { CloudResource = n.GetObjectValue<AlertEvidence>(AlertEvidence.CreateFromDiscriminatorValue); } },
+                { "cloudResource", n => { CloudResource = n.GetObjectValue<ApiSdk.Models.Security.AlertEvidence>(ApiSdk.Models.Security.AlertEvidence.CreateFromDiscriminatorValue); } },
                 { "distribution", n => { Distribution = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "platform", n => { Platform = n.GetEnumValue<KubernetesPlatform>(); } },
+                { "platform", n => { Platform = n.GetEnumValue<ApiSdk.Models.Security.KubernetesPlatform>(); } },
                 { "version", n => { Version = n.GetStringValue(); } },
             };
         }
@@ -84,10 +84,10 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<AlertEvidence>("cloudResource", CloudResource);
+            writer.WriteObjectValue<ApiSdk.Models.Security.AlertEvidence>("cloudResource", CloudResource);
             writer.WriteStringValue("distribution", Distribution);
             writer.WriteStringValue("name", Name);
-            writer.WriteEnumValue<KubernetesPlatform>("platform", Platform);
+            writer.WriteEnumValue<ApiSdk.Models.Security.KubernetesPlatform>("platform", Platform);
             writer.WriteStringValue("version", Version);
         }
     }

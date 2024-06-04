@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PinnedChatMessageInfo : Entity, IParsable
+    public class PinnedChatMessageInfo : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents details about the chat message that is pinned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ChatMessage? Message { get; set; }
+        public ApiSdk.Models.ChatMessage? Message { get; set; }
 #nullable restore
 #else
-        public ChatMessage Message { get; set; }
+        public ApiSdk.Models.ChatMessage Message { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PinnedChatMessageInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PinnedChatMessageInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PinnedChatMessageInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PinnedChatMessageInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PinnedChatMessageInfo();
+            return new ApiSdk.Models.PinnedChatMessageInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "message", n => { Message = n.GetObjectValue<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue); } },
+                { "message", n => { Message = n.GetObjectValue<ApiSdk.Models.ChatMessage>(ApiSdk.Models.ChatMessage.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<ChatMessage>("message", Message);
+            writer.WriteObjectValue<ApiSdk.Models.ChatMessage>("message", Message);
         }
     }
 }

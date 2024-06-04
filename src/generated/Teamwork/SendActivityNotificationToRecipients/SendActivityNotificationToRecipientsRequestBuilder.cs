@@ -39,7 +39,7 @@ namespace ApiSdk.Teamwork.SendActivityNotificationToRecipients
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SendActivityNotificationToRecipientsPostRequestBody>(SendActivityNotificationToRecipientsPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Teamwork.SendActivityNotificationToRecipients.SendActivityNotificationToRecipientsPostRequestBody>(ApiSdk.Teamwork.SendActivityNotificationToRecipients.SendActivityNotificationToRecipientsPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -57,14 +57,14 @@ namespace ApiSdk.Teamwork.SendActivityNotificationToRecipients
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SendActivityNotificationToRecipientsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.SendActivityNotificationToRecipients.SendActivityNotificationToRecipientsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SendActivityNotificationToRecipientsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/sendActivityNotificationToRecipients", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SendActivityNotificationToRecipientsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.SendActivityNotificationToRecipients.SendActivityNotificationToRecipientsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SendActivityNotificationToRecipientsRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/sendActivityNotificationToRecipients", rawUrl)
@@ -78,11 +78,11 @@ namespace ApiSdk.Teamwork.SendActivityNotificationToRecipients
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(SendActivityNotificationToRecipientsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Teamwork.SendActivityNotificationToRecipients.SendActivityNotificationToRecipientsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(SendActivityNotificationToRecipientsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Teamwork.SendActivityNotificationToRecipients.SendActivityNotificationToRecipientsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

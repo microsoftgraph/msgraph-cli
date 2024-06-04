@@ -21,7 +21,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.For
         public string Color { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SetSolidColorPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Format.Fill.SetSolidColor.SetSolidColorPostRequestBody"/> and sets the default values.
         /// </summary>
         public SetSolidColorPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.For
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SetSolidColorPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Format.Fill.SetSolidColor.SetSolidColorPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SetSolidColorPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Format.Fill.SetSolidColor.SetSolidColorPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SetSolidColorPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Format.Fill.SetSolidColor.SetSolidColorPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

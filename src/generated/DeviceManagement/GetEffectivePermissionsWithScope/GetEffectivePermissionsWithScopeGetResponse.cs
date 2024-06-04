@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope
 {
     #pragma warning disable CS1591
-    public class GetEffectivePermissionsWithScopeGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetEffectivePermissionsWithScopeGetResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RolePermission>? Value { get; set; }
+        public List<ApiSdk.Models.RolePermission>? Value { get; set; }
 #nullable restore
 #else
-        public List<RolePermission> Value { get; set; }
+        public List<ApiSdk.Models.RolePermission> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetEffectivePermissionsWithScopeGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope.GetEffectivePermissionsWithScopeGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetEffectivePermissionsWithScopeGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope.GetEffectivePermissionsWithScopeGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetEffectivePermissionsWithScopeGetResponse();
+            return new ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope.GetEffectivePermissionsWithScopeGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<RolePermission>(RolePermission.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.RolePermission>(ApiSdk.Models.RolePermission.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<RolePermission>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RolePermission>("value", Value);
         }
     }
 }

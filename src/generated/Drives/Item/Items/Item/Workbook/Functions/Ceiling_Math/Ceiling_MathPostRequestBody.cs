@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math
         /// <summary>The mode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Mode { get; set; }
+        public ApiSdk.Models.Json? Mode { get; set; }
 #nullable restore
 #else
-        public Json Mode { get; set; }
+        public ApiSdk.Models.Json Mode { get; set; }
 #endif
         /// <summary>The number property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Number { get; set; }
+        public ApiSdk.Models.Json? Number { get; set; }
 #nullable restore
 #else
-        public Json Number { get; set; }
+        public ApiSdk.Models.Json Number { get; set; }
 #endif
         /// <summary>The significance property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Significance { get; set; }
+        public ApiSdk.Models.Json? Significance { get; set; }
 #nullable restore
 #else
-        public Json Significance { get; set; }
+        public ApiSdk.Models.Json Significance { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Ceiling_MathPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math.Ceiling_MathPostRequestBody"/> and sets the default values.
         /// </summary>
         public Ceiling_MathPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Ceiling_MathPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math.Ceiling_MathPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Ceiling_MathPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math.Ceiling_MathPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Ceiling_MathPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math.Ceiling_MathPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "mode", n => { Mode = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "number", n => { Number = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "significance", n => { Significance = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "mode", n => { Mode = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "number", n => { Number = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "significance", n => { Significance = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("mode", Mode);
-            writer.WriteObjectValue<Json>("number", Number);
-            writer.WriteObjectValue<Json>("significance", Significance);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("mode", Mode);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("number", Number);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("significance", Significance);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

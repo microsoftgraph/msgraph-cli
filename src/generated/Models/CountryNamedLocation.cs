@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CountryNamedLocation : NamedLocation, IParsable
+    public class CountryNamedLocation : ApiSdk.Models.NamedLocation, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>List of countries and/or regions in two-letter format specified by ISO 3166-2. Required.</summary>
@@ -19,18 +19,18 @@ namespace ApiSdk.Models
         public List<string> CountriesAndRegions { get; set; }
 #endif
         /// <summary>Determines what method is used to decide which country the user is located in. Possible values are clientIpAddress(default) and authenticatorAppGps. Note: authenticatorAppGps is not yet supported in the Microsoft Cloud for US Government.</summary>
-        public CountryLookupMethodType? CountryLookupMethod { get; set; }
+        public ApiSdk.Models.CountryLookupMethodType? CountryLookupMethod { get; set; }
         /// <summary>true if IP addresses that don&apos;t map to a country or region should be included in the named location. Optional. Default value is false.</summary>
         public bool? IncludeUnknownCountriesAndRegions { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CountryNamedLocation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CountryNamedLocation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CountryNamedLocation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CountryNamedLocation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CountryNamedLocation();
+            return new ApiSdk.Models.CountryNamedLocation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -41,7 +41,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "countriesAndRegions", n => { CountriesAndRegions = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "countryLookupMethod", n => { CountryLookupMethod = n.GetEnumValue<CountryLookupMethodType>(); } },
+                { "countryLookupMethod", n => { CountryLookupMethod = n.GetEnumValue<ApiSdk.Models.CountryLookupMethodType>(); } },
                 { "includeUnknownCountriesAndRegions", n => { IncludeUnknownCountriesAndRegions = n.GetBoolValue(); } },
             };
         }
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfPrimitiveValues<string>("countriesAndRegions", CountriesAndRegions);
-            writer.WriteEnumValue<CountryLookupMethodType>("countryLookupMethod", CountryLookupMethod);
+            writer.WriteEnumValue<ApiSdk.Models.CountryLookupMethodType>("countryLookupMethod", CountryLookupMethod);
             writer.WriteBoolValue("includeUnknownCountriesAndRegions", IncludeUnknownCountriesAndRegions);
         }
     }

@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string Type { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessReviewInstanceDecisionItemResource"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessReviewInstanceDecisionItemResource"/> and sets the default values.
         /// </summary>
         public AccessReviewInstanceDecisionItemResource()
         {
@@ -54,18 +54,18 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessReviewInstanceDecisionItemResource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessReviewInstanceDecisionItemResource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AccessReviewInstanceDecisionItemResource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AccessReviewInstanceDecisionItemResource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.accessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource" => new AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource(),
-                "#microsoft.graph.accessReviewInstanceDecisionItemAzureRoleResource" => new AccessReviewInstanceDecisionItemAzureRoleResource(),
-                "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalResource" => new AccessReviewInstanceDecisionItemServicePrincipalResource(),
-                _ => new AccessReviewInstanceDecisionItemResource(),
+                "#microsoft.graph.accessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource" => new ApiSdk.Models.AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource(),
+                "#microsoft.graph.accessReviewInstanceDecisionItemAzureRoleResource" => new ApiSdk.Models.AccessReviewInstanceDecisionItemAzureRoleResource(),
+                "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalResource" => new ApiSdk.Models.AccessReviewInstanceDecisionItemServicePrincipalResource(),
+                _ => new ApiSdk.Models.AccessReviewInstanceDecisionItemResource(),
             };
         }
         /// <summary>

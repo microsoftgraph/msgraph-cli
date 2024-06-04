@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DelegatedAdminRelationship : Entity, IParsable
+    public class DelegatedAdminRelationship : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The access assignments associated with the delegated admin relationship.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DelegatedAdminAccessAssignment>? AccessAssignments { get; set; }
+        public List<ApiSdk.Models.DelegatedAdminAccessAssignment>? AccessAssignments { get; set; }
 #nullable restore
 #else
-        public List<DelegatedAdminAccessAssignment> AccessAssignments { get; set; }
+        public List<ApiSdk.Models.DelegatedAdminAccessAssignment> AccessAssignments { get; set; }
 #endif
         /// <summary>The accessDetails property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DelegatedAdminAccessDetails? AccessDetails { get; set; }
+        public ApiSdk.Models.DelegatedAdminAccessDetails? AccessDetails { get; set; }
 #nullable restore
 #else
-        public DelegatedAdminAccessDetails AccessDetails { get; set; }
+        public ApiSdk.Models.DelegatedAdminAccessDetails AccessDetails { get; set; }
 #endif
         /// <summary>The date and time in ISO 8601 format and in UTC time when the relationship became active. Read-only.</summary>
         public DateTimeOffset? ActivatedDateTime { get; set; }
@@ -35,10 +35,10 @@ namespace ApiSdk.Models
         /// <summary>The display name and unique identifier of the customer of the relationship. This is configured either by the partner at the time the relationship is created or by the system after the customer approves the relationship. Can&apos;t be changed by the customer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DelegatedAdminRelationshipCustomerParticipant? Customer { get; set; }
+        public ApiSdk.Models.DelegatedAdminRelationshipCustomerParticipant? Customer { get; set; }
 #nullable restore
 #else
-        public DelegatedAdminRelationshipCustomerParticipant Customer { get; set; }
+        public ApiSdk.Models.DelegatedAdminRelationshipCustomerParticipant Customer { get; set; }
 #endif
         /// <summary>The display name of the relationship used for ease of identification. Must be unique across all delegated admin relationships of the partner and is set by the partner only when the relationship is in the created status and can&apos;t be changed by the customer. Maximum length is 50 characters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,34 +57,34 @@ namespace ApiSdk.Models
         /// <summary>The long running operations associated with the delegated admin relationship.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DelegatedAdminRelationshipOperation>? Operations { get; set; }
+        public List<ApiSdk.Models.DelegatedAdminRelationshipOperation>? Operations { get; set; }
 #nullable restore
 #else
-        public List<DelegatedAdminRelationshipOperation> Operations { get; set; }
+        public List<ApiSdk.Models.DelegatedAdminRelationshipOperation> Operations { get; set; }
 #endif
         /// <summary>The requests associated with the delegated admin relationship.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DelegatedAdminRelationshipRequest>? Requests { get; set; }
+        public List<ApiSdk.Models.DelegatedAdminRelationshipRequest>? Requests { get; set; }
 #nullable restore
 #else
-        public List<DelegatedAdminRelationshipRequest> Requests { get; set; }
+        public List<ApiSdk.Models.DelegatedAdminRelationshipRequest> Requests { get; set; }
 #endif
         /// <summary>The status of the relationship. Read Only. The possible values are: activating, active, approvalPending, approved, created, expired, expiring, terminated, terminating, terminationRequested, unknownFutureValue. Supports $orderby.</summary>
-        public DelegatedAdminRelationshipStatus? Status { get; set; }
+        public ApiSdk.Models.DelegatedAdminRelationshipStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DelegatedAdminRelationship"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DelegatedAdminRelationship"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DelegatedAdminRelationship CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DelegatedAdminRelationship CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.resellerDelegatedAdminRelationship" => new ResellerDelegatedAdminRelationship(),
-                _ => new DelegatedAdminRelationship(),
+                "#microsoft.graph.resellerDelegatedAdminRelationship" => new ApiSdk.Models.ResellerDelegatedAdminRelationship(),
+                _ => new ApiSdk.Models.DelegatedAdminRelationship(),
             };
         }
         /// <summary>
@@ -95,19 +95,19 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "accessAssignments", n => { AccessAssignments = n.GetCollectionOfObjectValues<DelegatedAdminAccessAssignment>(DelegatedAdminAccessAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "accessDetails", n => { AccessDetails = n.GetObjectValue<DelegatedAdminAccessDetails>(DelegatedAdminAccessDetails.CreateFromDiscriminatorValue); } },
+                { "accessAssignments", n => { AccessAssignments = n.GetCollectionOfObjectValues<ApiSdk.Models.DelegatedAdminAccessAssignment>(ApiSdk.Models.DelegatedAdminAccessAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "accessDetails", n => { AccessDetails = n.GetObjectValue<ApiSdk.Models.DelegatedAdminAccessDetails>(ApiSdk.Models.DelegatedAdminAccessDetails.CreateFromDiscriminatorValue); } },
                 { "activatedDateTime", n => { ActivatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "autoExtendDuration", n => { AutoExtendDuration = n.GetTimeSpanValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "customer", n => { Customer = n.GetObjectValue<DelegatedAdminRelationshipCustomerParticipant>(DelegatedAdminRelationshipCustomerParticipant.CreateFromDiscriminatorValue); } },
+                { "customer", n => { Customer = n.GetObjectValue<ApiSdk.Models.DelegatedAdminRelationshipCustomerParticipant>(ApiSdk.Models.DelegatedAdminRelationshipCustomerParticipant.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "duration", n => { Duration = n.GetTimeSpanValue(); } },
                 { "endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "operations", n => { Operations = n.GetCollectionOfObjectValues<DelegatedAdminRelationshipOperation>(DelegatedAdminRelationshipOperation.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "requests", n => { Requests = n.GetCollectionOfObjectValues<DelegatedAdminRelationshipRequest>(DelegatedAdminRelationshipRequest.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "status", n => { Status = n.GetEnumValue<DelegatedAdminRelationshipStatus>(); } },
+                { "operations", n => { Operations = n.GetCollectionOfObjectValues<ApiSdk.Models.DelegatedAdminRelationshipOperation>(ApiSdk.Models.DelegatedAdminRelationshipOperation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "requests", n => { Requests = n.GetCollectionOfObjectValues<ApiSdk.Models.DelegatedAdminRelationshipRequest>(ApiSdk.Models.DelegatedAdminRelationshipRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.DelegatedAdminRelationshipStatus>(); } },
             };
         }
         /// <summary>
@@ -118,19 +118,19 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<DelegatedAdminAccessAssignment>("accessAssignments", AccessAssignments);
-            writer.WriteObjectValue<DelegatedAdminAccessDetails>("accessDetails", AccessDetails);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DelegatedAdminAccessAssignment>("accessAssignments", AccessAssignments);
+            writer.WriteObjectValue<ApiSdk.Models.DelegatedAdminAccessDetails>("accessDetails", AccessDetails);
             writer.WriteDateTimeOffsetValue("activatedDateTime", ActivatedDateTime);
             writer.WriteTimeSpanValue("autoExtendDuration", AutoExtendDuration);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteObjectValue<DelegatedAdminRelationshipCustomerParticipant>("customer", Customer);
+            writer.WriteObjectValue<ApiSdk.Models.DelegatedAdminRelationshipCustomerParticipant>("customer", Customer);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteTimeSpanValue("duration", Duration);
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteCollectionOfObjectValues<DelegatedAdminRelationshipOperation>("operations", Operations);
-            writer.WriteCollectionOfObjectValues<DelegatedAdminRelationshipRequest>("requests", Requests);
-            writer.WriteEnumValue<DelegatedAdminRelationshipStatus>("status", Status);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DelegatedAdminRelationshipOperation>("operations", Operations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DelegatedAdminRelationshipRequest>("requests", Requests);
+            writer.WriteEnumValue<ApiSdk.Models.DelegatedAdminRelationshipStatus>("status", Status);
         }
     }
 }

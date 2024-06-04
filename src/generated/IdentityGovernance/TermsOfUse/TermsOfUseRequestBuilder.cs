@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse
         {
             var command = new Command("agreement-acceptances");
             command.Description = "Provides operations to manage the agreementAcceptances property of the microsoft.graph.termsOfUseContainer entity.";
-            var builder = new AgreementAcceptancesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.TermsOfUse.AgreementAcceptances.AgreementAcceptancesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -58,7 +58,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse
         {
             var command = new Command("agreements");
             command.Description = "Provides operations to manage the agreements property of the microsoft.graph.termsOfUseContainer entity.";
-            var builder = new AgreementsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.TermsOfUse.Agreements.AgreementsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -178,7 +178,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<TermsOfUseContainer>(TermsOfUseContainer.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.TermsOfUseContainer>(ApiSdk.Models.TermsOfUseContainer.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -198,14 +198,14 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TermsOfUseRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.TermsOfUse.TermsOfUseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TermsOfUseRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/termsOfUse{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TermsOfUseRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.TermsOfUse.TermsOfUseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TermsOfUseRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/termsOfUse{?%24expand,%24select}", rawUrl)
@@ -237,11 +237,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TermsOfUseRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.TermsOfUse.TermsOfUseRequestBuilder.TermsOfUseRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TermsOfUseRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.TermsOfUse.TermsOfUseRequestBuilder.TermsOfUseRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -257,11 +257,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(TermsOfUseContainer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TermsOfUseContainer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(TermsOfUseContainer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TermsOfUseContainer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

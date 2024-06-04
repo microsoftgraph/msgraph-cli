@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Security
         /// <summary>Represents the type of query associated with an event. &apos;files&apos; for SPO and ODB and &apos;messages&apos; for EXO.The possible values are: files, messages, unknownFutureValue.</summary>
         public ApiSdk.Models.Security.QueryType? QueryType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="EventQuery"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.EventQuery"/> and sets the default values.
         /// </summary>
         public EventQuery()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EventQuery"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.EventQuery"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static EventQuery CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.EventQuery CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EventQuery();
+            return new ApiSdk.Models.Security.EventQuery();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,7 +57,7 @@ namespace ApiSdk.Models.Security
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "query", n => { Query = n.GetStringValue(); } },
-                { "queryType", n => { QueryType = n.GetEnumValue<QueryType>(); } },
+                { "queryType", n => { QueryType = n.GetEnumValue<ApiSdk.Models.Security.QueryType>(); } },
             };
         }
         /// <summary>
@@ -69,7 +69,7 @@ namespace ApiSdk.Models.Security
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("query", Query);
-            writer.WriteEnumValue<QueryType>("queryType", QueryType);
+            writer.WriteEnumValue<ApiSdk.Models.Security.QueryType>("queryType", QueryType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

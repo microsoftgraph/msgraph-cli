@@ -33,9 +33,9 @@ namespace ApiSdk.Models
         /// <summary>true if the parameter is required; otherwise false.</summary>
         public bool? Required { get; set; }
         /// <summary>The type property</summary>
-        public AttributeType? Type { get; set; }
+        public ApiSdk.Models.AttributeType? Type { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AttributeMappingParameterSchema"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AttributeMappingParameterSchema"/> and sets the default values.
         /// </summary>
         public AttributeMappingParameterSchema()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AttributeMappingParameterSchema"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AttributeMappingParameterSchema"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AttributeMappingParameterSchema CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AttributeMappingParameterSchema CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AttributeMappingParameterSchema();
+            return new ApiSdk.Models.AttributeMappingParameterSchema();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "required", n => { Required = n.GetBoolValue(); } },
-                { "type", n => { Type = n.GetEnumValue<AttributeType>(); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.AttributeType>(); } },
             };
         }
         /// <summary>
@@ -77,7 +77,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteBoolValue("required", Required);
-            writer.WriteEnumValue<AttributeType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.AttributeType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

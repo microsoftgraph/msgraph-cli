@@ -50,14 +50,14 @@ namespace ApiSdk.Communications.Calls.Item.KeepAlive
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="KeepAliveRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.KeepAlive.KeepAliveRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public KeepAliveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/keepAlive", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="KeepAliveRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.KeepAlive.KeepAliveRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public KeepAliveRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/keepAlive", rawUrl)

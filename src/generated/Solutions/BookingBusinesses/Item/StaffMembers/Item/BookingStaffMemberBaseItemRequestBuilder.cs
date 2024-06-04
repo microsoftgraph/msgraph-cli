@@ -159,7 +159,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<BookingStaffMemberBase>(BookingStaffMemberBase.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.BookingStaffMemberBase>(ApiSdk.Models.BookingStaffMemberBase.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -181,14 +181,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="BookingStaffMemberBaseItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item.BookingStaffMemberBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BookingStaffMemberBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/staffMembers/{bookingStaffMemberBase%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="BookingStaffMemberBaseItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item.BookingStaffMemberBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BookingStaffMemberBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/staffMembers/{bookingStaffMemberBase%2Did}{?%24expand,%24select}", rawUrl)
@@ -220,11 +220,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BookingStaffMemberBaseItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item.BookingStaffMemberBaseItemRequestBuilder.BookingStaffMemberBaseItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BookingStaffMemberBaseItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item.BookingStaffMemberBaseItemRequestBuilder.BookingStaffMemberBaseItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -240,11 +240,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(BookingStaffMemberBase body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.BookingStaffMemberBase body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(BookingStaffMemberBase body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.BookingStaffMemberBase body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

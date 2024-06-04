@@ -31,7 +31,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item
         {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the cloudCommunications entity.";
-            var builder = new ContentRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.Content.ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -149,7 +149,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item
         {
             var command = new Command("metadata-content");
             command.Description = "Provides operations to manage the media for the cloudCommunications entity.";
-            var builder = new MetadataContentRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.MetadataContent.MetadataContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -196,7 +196,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CallTranscript>(CallTranscript.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.CallTranscript>(ApiSdk.Models.CallTranscript.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -218,14 +218,14 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CallTranscriptItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.CallTranscriptItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CallTranscriptItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/transcripts/{callTranscript%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CallTranscriptItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.CallTranscriptItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CallTranscriptItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/transcripts/{callTranscript%2Did}{?%24expand,%24select}", rawUrl)
@@ -257,11 +257,11 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CallTranscriptItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.CallTranscriptItemRequestBuilder.CallTranscriptItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CallTranscriptItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.CallTranscriptItemRequestBuilder.CallTranscriptItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -277,11 +277,11 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(CallTranscript body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CallTranscript body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(CallTranscript body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CallTranscript body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

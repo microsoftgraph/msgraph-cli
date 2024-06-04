@@ -7,28 +7,28 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CustomExtensionStageSetting : Entity, IParsable
+    public class CustomExtensionStageSetting : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates the custom workflow extension that will be executed at this stage. Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CustomCalloutExtension? CustomExtension { get; set; }
+        public ApiSdk.Models.CustomCalloutExtension? CustomExtension { get; set; }
 #nullable restore
 #else
-        public CustomCalloutExtension CustomExtension { get; set; }
+        public ApiSdk.Models.CustomCalloutExtension CustomExtension { get; set; }
 #endif
         /// <summary>The stage property</summary>
-        public AccessPackageCustomExtensionStage? Stage { get; set; }
+        public ApiSdk.Models.AccessPackageCustomExtensionStage? Stage { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CustomExtensionStageSetting"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CustomExtensionStageSetting"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CustomExtensionStageSetting CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CustomExtensionStageSetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CustomExtensionStageSetting();
+            return new ApiSdk.Models.CustomExtensionStageSetting();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -38,8 +38,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "customExtension", n => { CustomExtension = n.GetObjectValue<CustomCalloutExtension>(CustomCalloutExtension.CreateFromDiscriminatorValue); } },
-                { "stage", n => { Stage = n.GetEnumValue<AccessPackageCustomExtensionStage>(); } },
+                { "customExtension", n => { CustomExtension = n.GetObjectValue<ApiSdk.Models.CustomCalloutExtension>(ApiSdk.Models.CustomCalloutExtension.CreateFromDiscriminatorValue); } },
+                { "stage", n => { Stage = n.GetEnumValue<ApiSdk.Models.AccessPackageCustomExtensionStage>(); } },
             };
         }
         /// <summary>
@@ -50,8 +50,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<CustomCalloutExtension>("customExtension", CustomExtension);
-            writer.WriteEnumValue<AccessPackageCustomExtensionStage>("stage", Stage);
+            writer.WriteObjectValue<ApiSdk.Models.CustomCalloutExtension>("customExtension", CustomExtension);
+            writer.WriteEnumValue<ApiSdk.Models.AccessPackageCustomExtensionStage>("stage", Stage);
         }
     }
 }

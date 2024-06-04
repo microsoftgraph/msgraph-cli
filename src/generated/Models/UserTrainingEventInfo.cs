@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string DisplayName { get; set; }
 #endif
         /// <summary>Latest status of the training assigned to the user. Possible values are: unknown, assigned, inProgress, completed, overdue, unknownFutureValue.</summary>
-        public TrainingStatus? LatestTrainingStatus { get; set; }
+        public ApiSdk.Models.TrainingStatus? LatestTrainingStatus { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -33,29 +33,29 @@ namespace ApiSdk.Models
         /// <summary>Event details of the training when it was assigned to the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserTrainingContentEventInfo? TrainingAssignedProperties { get; set; }
+        public ApiSdk.Models.UserTrainingContentEventInfo? TrainingAssignedProperties { get; set; }
 #nullable restore
 #else
-        public UserTrainingContentEventInfo TrainingAssignedProperties { get; set; }
+        public ApiSdk.Models.UserTrainingContentEventInfo TrainingAssignedProperties { get; set; }
 #endif
         /// <summary>Event details of the training when it was completed by the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserTrainingContentEventInfo? TrainingCompletedProperties { get; set; }
+        public ApiSdk.Models.UserTrainingContentEventInfo? TrainingCompletedProperties { get; set; }
 #nullable restore
 #else
-        public UserTrainingContentEventInfo TrainingCompletedProperties { get; set; }
+        public ApiSdk.Models.UserTrainingContentEventInfo TrainingCompletedProperties { get; set; }
 #endif
         /// <summary>Event details of the training when it was updated/in-progress by the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserTrainingContentEventInfo? TrainingUpdatedProperties { get; set; }
+        public ApiSdk.Models.UserTrainingContentEventInfo? TrainingUpdatedProperties { get; set; }
 #nullable restore
 #else
-        public UserTrainingContentEventInfo TrainingUpdatedProperties { get; set; }
+        public ApiSdk.Models.UserTrainingContentEventInfo TrainingUpdatedProperties { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UserTrainingEventInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UserTrainingEventInfo"/> and sets the default values.
         /// </summary>
         public UserTrainingEventInfo()
         {
@@ -64,12 +64,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserTrainingEventInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserTrainingEventInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UserTrainingEventInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UserTrainingEventInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserTrainingEventInfo();
+            return new ApiSdk.Models.UserTrainingEventInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -80,11 +80,11 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "latestTrainingStatus", n => { LatestTrainingStatus = n.GetEnumValue<TrainingStatus>(); } },
+                { "latestTrainingStatus", n => { LatestTrainingStatus = n.GetEnumValue<ApiSdk.Models.TrainingStatus>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "trainingAssignedProperties", n => { TrainingAssignedProperties = n.GetObjectValue<UserTrainingContentEventInfo>(UserTrainingContentEventInfo.CreateFromDiscriminatorValue); } },
-                { "trainingCompletedProperties", n => { TrainingCompletedProperties = n.GetObjectValue<UserTrainingContentEventInfo>(UserTrainingContentEventInfo.CreateFromDiscriminatorValue); } },
-                { "trainingUpdatedProperties", n => { TrainingUpdatedProperties = n.GetObjectValue<UserTrainingContentEventInfo>(UserTrainingContentEventInfo.CreateFromDiscriminatorValue); } },
+                { "trainingAssignedProperties", n => { TrainingAssignedProperties = n.GetObjectValue<ApiSdk.Models.UserTrainingContentEventInfo>(ApiSdk.Models.UserTrainingContentEventInfo.CreateFromDiscriminatorValue); } },
+                { "trainingCompletedProperties", n => { TrainingCompletedProperties = n.GetObjectValue<ApiSdk.Models.UserTrainingContentEventInfo>(ApiSdk.Models.UserTrainingContentEventInfo.CreateFromDiscriminatorValue); } },
+                { "trainingUpdatedProperties", n => { TrainingUpdatedProperties = n.GetObjectValue<ApiSdk.Models.UserTrainingContentEventInfo>(ApiSdk.Models.UserTrainingContentEventInfo.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -95,11 +95,11 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<TrainingStatus>("latestTrainingStatus", LatestTrainingStatus);
+            writer.WriteEnumValue<ApiSdk.Models.TrainingStatus>("latestTrainingStatus", LatestTrainingStatus);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<UserTrainingContentEventInfo>("trainingAssignedProperties", TrainingAssignedProperties);
-            writer.WriteObjectValue<UserTrainingContentEventInfo>("trainingCompletedProperties", TrainingCompletedProperties);
-            writer.WriteObjectValue<UserTrainingContentEventInfo>("trainingUpdatedProperties", TrainingUpdatedProperties);
+            writer.WriteObjectValue<ApiSdk.Models.UserTrainingContentEventInfo>("trainingAssignedProperties", TrainingAssignedProperties);
+            writer.WriteObjectValue<ApiSdk.Models.UserTrainingContentEventInfo>("trainingCompletedProperties", TrainingCompletedProperties);
+            writer.WriteObjectValue<ApiSdk.Models.UserTrainingContentEventInfo>("trainingUpdatedProperties", TrainingUpdatedProperties);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

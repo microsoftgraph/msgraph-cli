@@ -72,14 +72,14 @@ namespace ApiSdk.Users.Item.ExportDeviceAndAppManagementDataWithSkipWithTop
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.ExportDeviceAndAppManagementDataWithSkipWithTop.ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/exportDeviceAndAppManagementData(skip={skip},top={top})", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.ExportDeviceAndAppManagementDataWithSkipWithTop.ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/exportDeviceAndAppManagementData(skip={skip},top={top})", rawUrl)

@@ -124,7 +124,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item
         {
             var command = new Command("threads");
             command.Description = "Provides operations to manage the threads property of the microsoft.graph.conversation entity.";
-            var builder = new ThreadsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Conversations.Item.Threads.ThreadsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -144,14 +144,14 @@ namespace ApiSdk.Groups.Item.Conversations.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ConversationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Conversations.Item.ConversationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ConversationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}{?%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ConversationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Conversations.Item.ConversationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ConversationItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}{?%24select}", rawUrl)
@@ -183,11 +183,11 @@ namespace ApiSdk.Groups.Item.Conversations.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ConversationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Conversations.Item.ConversationItemRequestBuilder.ConversationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ConversationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Conversations.Item.ConversationItemRequestBuilder.ConversationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

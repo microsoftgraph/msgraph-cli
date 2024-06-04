@@ -16,42 +16,42 @@ namespace ApiSdk.Models
         /// <summary>Container for navigation properties for Microsoft Entra authentication methods resources.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AuthenticationMethodsRoot? AuthenticationMethods { get; set; }
+        public ApiSdk.Models.AuthenticationMethodsRoot? AuthenticationMethods { get; set; }
 #nullable restore
 #else
-        public AuthenticationMethodsRoot AuthenticationMethods { get; set; }
+        public ApiSdk.Models.AuthenticationMethodsRoot AuthenticationMethods { get; set; }
 #endif
         /// <summary>Retrieve a list of daily print usage summaries, grouped by printer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PrintUsageByPrinter>? DailyPrintUsageByPrinter { get; set; }
+        public List<ApiSdk.Models.PrintUsageByPrinter>? DailyPrintUsageByPrinter { get; set; }
 #nullable restore
 #else
-        public List<PrintUsageByPrinter> DailyPrintUsageByPrinter { get; set; }
+        public List<ApiSdk.Models.PrintUsageByPrinter> DailyPrintUsageByPrinter { get; set; }
 #endif
         /// <summary>Retrieve a list of daily print usage summaries, grouped by user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PrintUsageByUser>? DailyPrintUsageByUser { get; set; }
+        public List<ApiSdk.Models.PrintUsageByUser>? DailyPrintUsageByUser { get; set; }
 #nullable restore
 #else
-        public List<PrintUsageByUser> DailyPrintUsageByUser { get; set; }
+        public List<ApiSdk.Models.PrintUsageByUser> DailyPrintUsageByUser { get; set; }
 #endif
         /// <summary>Retrieve a list of monthly print usage summaries, grouped by printer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PrintUsageByPrinter>? MonthlyPrintUsageByPrinter { get; set; }
+        public List<ApiSdk.Models.PrintUsageByPrinter>? MonthlyPrintUsageByPrinter { get; set; }
 #nullable restore
 #else
-        public List<PrintUsageByPrinter> MonthlyPrintUsageByPrinter { get; set; }
+        public List<ApiSdk.Models.PrintUsageByPrinter> MonthlyPrintUsageByPrinter { get; set; }
 #endif
         /// <summary>Retrieve a list of monthly print usage summaries, grouped by user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PrintUsageByUser>? MonthlyPrintUsageByUser { get; set; }
+        public List<ApiSdk.Models.PrintUsageByUser>? MonthlyPrintUsageByUser { get; set; }
 #nullable restore
 #else
-        public List<PrintUsageByUser> MonthlyPrintUsageByUser { get; set; }
+        public List<ApiSdk.Models.PrintUsageByUser> MonthlyPrintUsageByUser { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -72,13 +72,13 @@ namespace ApiSdk.Models
         /// <summary>Represents an abstract type that contains resources for attack simulation and training reports.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SecurityReportsRoot? Security { get; set; }
+        public ApiSdk.Models.SecurityReportsRoot? Security { get; set; }
 #nullable restore
 #else
-        public SecurityReportsRoot Security { get; set; }
+        public ApiSdk.Models.SecurityReportsRoot Security { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ReportRoot"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ReportRoot"/> and sets the default values.
         /// </summary>
         public ReportRoot()
         {
@@ -87,12 +87,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ReportRoot"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ReportRoot"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ReportRoot CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ReportRoot CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ReportRoot();
+            return new ApiSdk.Models.ReportRoot();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -102,14 +102,14 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "authenticationMethods", n => { AuthenticationMethods = n.GetObjectValue<AuthenticationMethodsRoot>(AuthenticationMethodsRoot.CreateFromDiscriminatorValue); } },
-                { "dailyPrintUsageByPrinter", n => { DailyPrintUsageByPrinter = n.GetCollectionOfObjectValues<PrintUsageByPrinter>(PrintUsageByPrinter.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "dailyPrintUsageByUser", n => { DailyPrintUsageByUser = n.GetCollectionOfObjectValues<PrintUsageByUser>(PrintUsageByUser.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "monthlyPrintUsageByPrinter", n => { MonthlyPrintUsageByPrinter = n.GetCollectionOfObjectValues<PrintUsageByPrinter>(PrintUsageByPrinter.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "monthlyPrintUsageByUser", n => { MonthlyPrintUsageByUser = n.GetCollectionOfObjectValues<PrintUsageByUser>(PrintUsageByUser.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "authenticationMethods", n => { AuthenticationMethods = n.GetObjectValue<ApiSdk.Models.AuthenticationMethodsRoot>(ApiSdk.Models.AuthenticationMethodsRoot.CreateFromDiscriminatorValue); } },
+                { "dailyPrintUsageByPrinter", n => { DailyPrintUsageByPrinter = n.GetCollectionOfObjectValues<ApiSdk.Models.PrintUsageByPrinter>(ApiSdk.Models.PrintUsageByPrinter.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "dailyPrintUsageByUser", n => { DailyPrintUsageByUser = n.GetCollectionOfObjectValues<ApiSdk.Models.PrintUsageByUser>(ApiSdk.Models.PrintUsageByUser.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "monthlyPrintUsageByPrinter", n => { MonthlyPrintUsageByPrinter = n.GetCollectionOfObjectValues<ApiSdk.Models.PrintUsageByPrinter>(ApiSdk.Models.PrintUsageByPrinter.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "monthlyPrintUsageByUser", n => { MonthlyPrintUsageByUser = n.GetCollectionOfObjectValues<ApiSdk.Models.PrintUsageByUser>(ApiSdk.Models.PrintUsageByUser.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "partners", n => { Partners = n.GetObjectValue<ApiSdk.Models.Partners.Partners>(ApiSdk.Models.Partners.Partners.CreateFromDiscriminatorValue); } },
-                { "security", n => { Security = n.GetObjectValue<SecurityReportsRoot>(SecurityReportsRoot.CreateFromDiscriminatorValue); } },
+                { "security", n => { Security = n.GetObjectValue<ApiSdk.Models.SecurityReportsRoot>(ApiSdk.Models.SecurityReportsRoot.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -119,14 +119,14 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<AuthenticationMethodsRoot>("authenticationMethods", AuthenticationMethods);
-            writer.WriteCollectionOfObjectValues<PrintUsageByPrinter>("dailyPrintUsageByPrinter", DailyPrintUsageByPrinter);
-            writer.WriteCollectionOfObjectValues<PrintUsageByUser>("dailyPrintUsageByUser", DailyPrintUsageByUser);
-            writer.WriteCollectionOfObjectValues<PrintUsageByPrinter>("monthlyPrintUsageByPrinter", MonthlyPrintUsageByPrinter);
-            writer.WriteCollectionOfObjectValues<PrintUsageByUser>("monthlyPrintUsageByUser", MonthlyPrintUsageByUser);
+            writer.WriteObjectValue<ApiSdk.Models.AuthenticationMethodsRoot>("authenticationMethods", AuthenticationMethods);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PrintUsageByPrinter>("dailyPrintUsageByPrinter", DailyPrintUsageByPrinter);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PrintUsageByUser>("dailyPrintUsageByUser", DailyPrintUsageByUser);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PrintUsageByPrinter>("monthlyPrintUsageByPrinter", MonthlyPrintUsageByPrinter);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PrintUsageByUser>("monthlyPrintUsageByUser", MonthlyPrintUsageByUser);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<ApiSdk.Models.Partners.Partners>("partners", Partners);
-            writer.WriteObjectValue<SecurityReportsRoot>("security", Security);
+            writer.WriteObjectValue<ApiSdk.Models.SecurityReportsRoot>("security", Security);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

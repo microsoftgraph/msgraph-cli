@@ -53,9 +53,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The status of the request to the custom extension. The possible values are: calloutSent, callbackReceived, calloutFailed, callbackTimedOut, waitingForCallback, unknownFutureValue.</summary>
-        public CustomExtensionCalloutInstanceStatus? Status { get; set; }
+        public ApiSdk.Models.CustomExtensionCalloutInstanceStatus? Status { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CustomExtensionCalloutInstance"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CustomExtensionCalloutInstance"/> and sets the default values.
         /// </summary>
         public CustomExtensionCalloutInstance()
         {
@@ -64,12 +64,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CustomExtensionCalloutInstance"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CustomExtensionCalloutInstance"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CustomExtensionCalloutInstance CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CustomExtensionCalloutInstance CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CustomExtensionCalloutInstance();
+            return new ApiSdk.Models.CustomExtensionCalloutInstance();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,7 +84,7 @@ namespace ApiSdk.Models
                 { "externalCorrelationId", n => { ExternalCorrelationId = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<CustomExtensionCalloutInstanceStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.CustomExtensionCalloutInstanceStatus>(); } },
             };
         }
         /// <summary>
@@ -99,7 +99,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("externalCorrelationId", ExternalCorrelationId);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<CustomExtensionCalloutInstanceStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.CustomExtensionCalloutInstanceStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

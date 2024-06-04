@@ -73,7 +73,7 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>UTC time when the stream started. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. This field is only available for streams that use the SIP protocol.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>The streamDirection property</summary>
-        public MediaStreamDirection? StreamDirection { get; set; }
+        public ApiSdk.Models.CallRecords.MediaStreamDirection? StreamDirection { get; set; }
         /// <summary>Unique identifier for the stream.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -87,7 +87,7 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>True if the media stream bypassed the Mediation Server and went straight between client and PSTN Gateway/PBX, false otherwise.</summary>
         public bool? WasMediaBypassed { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MediaStream"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CallRecords.MediaStream"/> and sets the default values.
         /// </summary>
         public MediaStream()
         {
@@ -96,12 +96,12 @@ namespace ApiSdk.Models.CallRecords
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MediaStream"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallRecords.MediaStream"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MediaStream CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CallRecords.MediaStream CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MediaStream();
+            return new ApiSdk.Models.CallRecords.MediaStream();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -111,7 +111,7 @@ namespace ApiSdk.Models.CallRecords
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "audioCodec", n => { AudioCodec = n.GetEnumValue<AudioCodec>(); } },
+                { "audioCodec", n => { AudioCodec = n.GetEnumValue<ApiSdk.Models.CallRecords.AudioCodec>(); } },
                 { "averageAudioDegradation", n => { AverageAudioDegradation = n.GetFloatValue(); } },
                 { "averageAudioNetworkJitter", n => { AverageAudioNetworkJitter = n.GetTimeSpanValue(); } },
                 { "averageBandwidthEstimate", n => { AverageBandwidthEstimate = n.GetLongValue(); } },
@@ -138,9 +138,9 @@ namespace ApiSdk.Models.CallRecords
                 { "postForwardErrorCorrectionPacketLossRate", n => { PostForwardErrorCorrectionPacketLossRate = n.GetFloatValue(); } },
                 { "rmsFreezeDuration", n => { RmsFreezeDuration = n.GetTimeSpanValue(); } },
                 { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
-                { "streamDirection", n => { StreamDirection = n.GetEnumValue<MediaStreamDirection>(); } },
+                { "streamDirection", n => { StreamDirection = n.GetEnumValue<ApiSdk.Models.CallRecords.MediaStreamDirection>(); } },
                 { "streamId", n => { StreamId = n.GetStringValue(); } },
-                { "videoCodec", n => { VideoCodec = n.GetEnumValue<VideoCodec>(); } },
+                { "videoCodec", n => { VideoCodec = n.GetEnumValue<ApiSdk.Models.CallRecords.VideoCodec>(); } },
                 { "wasMediaBypassed", n => { WasMediaBypassed = n.GetBoolValue(); } },
             };
         }
@@ -151,7 +151,7 @@ namespace ApiSdk.Models.CallRecords
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<AudioCodec>("audioCodec", AudioCodec);
+            writer.WriteEnumValue<ApiSdk.Models.CallRecords.AudioCodec>("audioCodec", AudioCodec);
             writer.WriteFloatValue("averageAudioDegradation", AverageAudioDegradation);
             writer.WriteTimeSpanValue("averageAudioNetworkJitter", AverageAudioNetworkJitter);
             writer.WriteLongValue("averageBandwidthEstimate", AverageBandwidthEstimate);
@@ -178,9 +178,9 @@ namespace ApiSdk.Models.CallRecords
             writer.WriteFloatValue("postForwardErrorCorrectionPacketLossRate", PostForwardErrorCorrectionPacketLossRate);
             writer.WriteTimeSpanValue("rmsFreezeDuration", RmsFreezeDuration);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
-            writer.WriteEnumValue<MediaStreamDirection>("streamDirection", StreamDirection);
+            writer.WriteEnumValue<ApiSdk.Models.CallRecords.MediaStreamDirection>("streamDirection", StreamDirection);
             writer.WriteStringValue("streamId", StreamId);
-            writer.WriteEnumValue<VideoCodec>("videoCodec", VideoCodec);
+            writer.WriteEnumValue<ApiSdk.Models.CallRecords.VideoCodec>("videoCodec", VideoCodec);
             writer.WriteBoolValue("wasMediaBypassed", WasMediaBypassed);
             writer.WriteAdditionalData(AdditionalData);
         }

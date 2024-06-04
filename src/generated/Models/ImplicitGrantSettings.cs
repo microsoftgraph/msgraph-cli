@@ -25,7 +25,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ImplicitGrantSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ImplicitGrantSettings"/> and sets the default values.
         /// </summary>
         public ImplicitGrantSettings()
         {
@@ -34,12 +34,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ImplicitGrantSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ImplicitGrantSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ImplicitGrantSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ImplicitGrantSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ImplicitGrantSettings();
+            return new ApiSdk.Models.ImplicitGrantSettings();
         }
         /// <summary>
         /// The deserialization information for the current model

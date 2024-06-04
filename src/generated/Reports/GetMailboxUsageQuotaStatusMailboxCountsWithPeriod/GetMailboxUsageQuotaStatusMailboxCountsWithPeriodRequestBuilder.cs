@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetMailboxUsageQuotaStatusMailboxCountsWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetMailboxUsageQuotaStatusMailboxCountsWithPeriod.GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getMailboxUsageQuotaStatusMailboxCounts(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetMailboxUsageQuotaStatusMailboxCountsWithPeriod.GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getMailboxUsageQuotaStatusMailboxCounts(period='{period}')", rawUrl)

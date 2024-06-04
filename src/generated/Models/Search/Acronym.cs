@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Search
 {
     #pragma warning disable CS1591
-    public class Acronym : SearchAnswer, IParsable
+    public class Acronym : ApiSdk.Models.Search.SearchAnswer, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>What the acronym stands for.</summary>
@@ -19,16 +19,16 @@ namespace ApiSdk.Models.Search
         public string StandsFor { get; set; }
 #endif
         /// <summary>The state property</summary>
-        public AnswerState? State { get; set; }
+        public ApiSdk.Models.Search.AnswerState? State { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Acronym"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Search.Acronym"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Acronym CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Search.Acronym CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Acronym();
+            return new ApiSdk.Models.Search.Acronym();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Search
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "standsFor", n => { StandsFor = n.GetStringValue(); } },
-                { "state", n => { State = n.GetEnumValue<AnswerState>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.Search.AnswerState>(); } },
             };
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace ApiSdk.Models.Search
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("standsFor", StandsFor);
-            writer.WriteEnumValue<AnswerState>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.Search.AnswerState>("state", State);
         }
     }
 }

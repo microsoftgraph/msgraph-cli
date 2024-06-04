@@ -24,7 +24,7 @@ namespace ApiSdk.Models
         public string ExternalId { get; set; }
 #endif
         /// <summary>The possible values are: female, male, other, unknownFutureValue.</summary>
-        public EducationGender? Gender { get; set; }
+        public ApiSdk.Models.EducationGender? Gender { get; set; }
         /// <summary>Current grade level of the student.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -58,7 +58,7 @@ namespace ApiSdk.Models
         public string StudentNumber { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EducationStudent"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EducationStudent"/> and sets the default values.
         /// </summary>
         public EducationStudent()
         {
@@ -67,12 +67,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationStudent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationStudent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static EducationStudent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.EducationStudent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationStudent();
+            return new ApiSdk.Models.EducationStudent();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,7 +84,7 @@ namespace ApiSdk.Models
             {
                 { "birthDate", n => { BirthDate = n.GetDateValue(); } },
                 { "externalId", n => { ExternalId = n.GetStringValue(); } },
-                { "gender", n => { Gender = n.GetEnumValue<EducationGender>(); } },
+                { "gender", n => { Gender = n.GetEnumValue<ApiSdk.Models.EducationGender>(); } },
                 { "grade", n => { Grade = n.GetStringValue(); } },
                 { "graduationYear", n => { GraduationYear = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
@@ -100,7 +100,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateValue("birthDate", BirthDate);
             writer.WriteStringValue("externalId", ExternalId);
-            writer.WriteEnumValue<EducationGender>("gender", Gender);
+            writer.WriteEnumValue<ApiSdk.Models.EducationGender>("gender", Gender);
             writer.WriteStringValue("grade", Grade);
             writer.WriteStringValue("graduationYear", GraduationYear);
             writer.WriteStringValue("@odata.type", OdataType);

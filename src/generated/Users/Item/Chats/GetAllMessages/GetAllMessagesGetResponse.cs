@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.Users.Item.Chats.GetAllMessages
 {
     #pragma warning disable CS1591
-    public class GetAllMessagesGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetAllMessagesGetResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ChatMessage>? Value { get; set; }
+        public List<ApiSdk.Models.ChatMessage>? Value { get; set; }
 #nullable restore
 #else
-        public List<ChatMessage> Value { get; set; }
+        public List<ApiSdk.Models.ChatMessage> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetAllMessagesGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.Chats.GetAllMessages.GetAllMessagesGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetAllMessagesGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Users.Item.Chats.GetAllMessages.GetAllMessagesGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetAllMessagesGetResponse();
+            return new ApiSdk.Users.Item.Chats.GetAllMessages.GetAllMessagesGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Users.Item.Chats.GetAllMessages
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.ChatMessage>(ApiSdk.Models.ChatMessage.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Users.Item.Chats.GetAllMessages
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ChatMessage>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ChatMessage>("value", Value);
         }
     }
 }

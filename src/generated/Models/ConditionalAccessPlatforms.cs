@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ConditionalAccessDevicePlatform?>? ExcludePlatforms { get; set; }
+        public List<ApiSdk.Models.ConditionalAccessDevicePlatform?>? ExcludePlatforms { get; set; }
 #nullable restore
 #else
-        public List<ConditionalAccessDevicePlatform?> ExcludePlatforms { get; set; }
+        public List<ApiSdk.Models.ConditionalAccessDevicePlatform?> ExcludePlatforms { get; set; }
 #endif
         /// <summary>Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ConditionalAccessDevicePlatform?>? IncludePlatforms { get; set; }
+        public List<ApiSdk.Models.ConditionalAccessDevicePlatform?>? IncludePlatforms { get; set; }
 #nullable restore
 #else
-        public List<ConditionalAccessDevicePlatform?> IncludePlatforms { get; set; }
+        public List<ApiSdk.Models.ConditionalAccessDevicePlatform?> IncludePlatforms { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ConditionalAccessPlatforms"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ConditionalAccessPlatforms"/> and sets the default values.
         /// </summary>
         public ConditionalAccessPlatforms()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConditionalAccessPlatforms"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConditionalAccessPlatforms"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ConditionalAccessPlatforms CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ConditionalAccessPlatforms CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConditionalAccessPlatforms();
+            return new ApiSdk.Models.ConditionalAccessPlatforms();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,8 +61,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "excludePlatforms", n => { ExcludePlatforms = n.GetCollectionOfEnumValues<ConditionalAccessDevicePlatform>()?.ToList(); } },
-                { "includePlatforms", n => { IncludePlatforms = n.GetCollectionOfEnumValues<ConditionalAccessDevicePlatform>()?.ToList(); } },
+                { "excludePlatforms", n => { ExcludePlatforms = n.GetCollectionOfEnumValues<ApiSdk.Models.ConditionalAccessDevicePlatform>()?.ToList(); } },
+                { "includePlatforms", n => { IncludePlatforms = n.GetCollectionOfEnumValues<ApiSdk.Models.ConditionalAccessDevicePlatform>()?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -73,8 +73,8 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfEnumValues<ConditionalAccessDevicePlatform>("excludePlatforms", ExcludePlatforms);
-            writer.WriteCollectionOfEnumValues<ConditionalAccessDevicePlatform>("includePlatforms", IncludePlatforms);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.ConditionalAccessDevicePlatform>("excludePlatforms", ExcludePlatforms);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.ConditionalAccessDevicePlatform>("includePlatforms", IncludePlatforms);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

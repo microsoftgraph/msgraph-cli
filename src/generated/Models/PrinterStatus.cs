@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>The list of details describing why the printer is in the current state. Valid values are described in the following table. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PrinterProcessingStateDetail?>? Details { get; set; }
+        public List<ApiSdk.Models.PrinterProcessingStateDetail?>? Details { get; set; }
 #nullable restore
 #else
-        public List<PrinterProcessingStateDetail?> Details { get; set; }
+        public List<ApiSdk.Models.PrinterProcessingStateDetail?> Details { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,9 +37,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The state property</summary>
-        public PrinterProcessingState? State { get; set; }
+        public ApiSdk.Models.PrinterProcessingState? State { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="PrinterStatus"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PrinterStatus"/> and sets the default values.
         /// </summary>
         public PrinterStatus()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrinterStatus"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrinterStatus"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PrinterStatus CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PrinterStatus CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrinterStatus();
+            return new ApiSdk.Models.PrinterStatus();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,9 +64,9 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "details", n => { Details = n.GetCollectionOfEnumValues<PrinterProcessingStateDetail>()?.ToList(); } },
+                { "details", n => { Details = n.GetCollectionOfEnumValues<ApiSdk.Models.PrinterProcessingStateDetail>()?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "state", n => { State = n.GetEnumValue<PrinterProcessingState>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.PrinterProcessingState>(); } },
             };
         }
         /// <summary>
@@ -77,9 +77,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfEnumValues<PrinterProcessingStateDetail>("details", Details);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.PrinterProcessingStateDetail>("details", Details);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<PrinterProcessingState>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.PrinterProcessingState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage
 {
     #pragma warning disable CS1591
-    public class GetAttackSimulationTrainingUserCoverageGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetAttackSimulationTrainingUserCoverageGetResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AttackSimulationTrainingUserCoverage>? Value { get; set; }
+        public List<ApiSdk.Models.AttackSimulationTrainingUserCoverage>? Value { get; set; }
 #nullable restore
 #else
-        public List<AttackSimulationTrainingUserCoverage> Value { get; set; }
+        public List<ApiSdk.Models.AttackSimulationTrainingUserCoverage> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetAttackSimulationTrainingUserCoverageGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage.GetAttackSimulationTrainingUserCoverageGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetAttackSimulationTrainingUserCoverageGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage.GetAttackSimulationTrainingUserCoverageGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetAttackSimulationTrainingUserCoverageGetResponse();
+            return new ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage.GetAttackSimulationTrainingUserCoverageGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<AttackSimulationTrainingUserCoverage>(AttackSimulationTrainingUserCoverage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.AttackSimulationTrainingUserCoverage>(ApiSdk.Models.AttackSimulationTrainingUserCoverage.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AttackSimulationTrainingUserCoverage>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AttackSimulationTrainingUserCoverage>("value", Value);
         }
     }
 }

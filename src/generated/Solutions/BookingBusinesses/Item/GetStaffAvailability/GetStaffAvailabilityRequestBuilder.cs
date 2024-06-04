@@ -56,7 +56,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<GetStaffAvailabilityPostRequestBody>(GetStaffAvailabilityPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability.GetStaffAvailabilityPostRequestBody>(ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability.GetStaffAvailabilityPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -86,14 +86,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetStaffAvailabilityRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability.GetStaffAvailabilityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetStaffAvailabilityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/getStaffAvailability", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetStaffAvailabilityRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability.GetStaffAvailabilityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetStaffAvailabilityRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/getStaffAvailability", rawUrl)
@@ -107,11 +107,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(GetStaffAvailabilityPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability.GetStaffAvailabilityPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(GetStaffAvailabilityPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability.GetStaffAvailabilityPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

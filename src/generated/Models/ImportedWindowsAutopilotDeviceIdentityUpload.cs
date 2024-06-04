@@ -9,29 +9,29 @@ namespace ApiSdk.Models
     /// <summary>
     /// Import windows autopilot devices using upload.
     /// </summary>
-    public class ImportedWindowsAutopilotDeviceIdentityUpload : Entity, IParsable
+    public class ImportedWindowsAutopilotDeviceIdentityUpload : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>DateTime when the entity is created.</summary>
         public DateTimeOffset? CreatedDateTimeUtc { get; set; }
         /// <summary>Collection of all Autopilot devices as a part of this upload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ImportedWindowsAutopilotDeviceIdentity>? DeviceIdentities { get; set; }
+        public List<ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentity>? DeviceIdentities { get; set; }
 #nullable restore
 #else
-        public List<ImportedWindowsAutopilotDeviceIdentity> DeviceIdentities { get; set; }
+        public List<ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentity> DeviceIdentities { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public ImportedWindowsAutopilotDeviceIdentityUploadStatus? Status { get; set; }
+        public ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentityUploadStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ImportedWindowsAutopilotDeviceIdentityUpload"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentityUpload"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ImportedWindowsAutopilotDeviceIdentityUpload CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentityUpload CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ImportedWindowsAutopilotDeviceIdentityUpload();
+            return new ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentityUpload();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -42,8 +42,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "createdDateTimeUtc", n => { CreatedDateTimeUtc = n.GetDateTimeOffsetValue(); } },
-                { "deviceIdentities", n => { DeviceIdentities = n.GetCollectionOfObjectValues<ImportedWindowsAutopilotDeviceIdentity>(ImportedWindowsAutopilotDeviceIdentity.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "status", n => { Status = n.GetEnumValue<ImportedWindowsAutopilotDeviceIdentityUploadStatus>(); } },
+                { "deviceIdentities", n => { DeviceIdentities = n.GetCollectionOfObjectValues<ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentity>(ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentity.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentityUploadStatus>(); } },
             };
         }
         /// <summary>
@@ -55,8 +55,8 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("createdDateTimeUtc", CreatedDateTimeUtc);
-            writer.WriteCollectionOfObjectValues<ImportedWindowsAutopilotDeviceIdentity>("deviceIdentities", DeviceIdentities);
-            writer.WriteEnumValue<ImportedWindowsAutopilotDeviceIdentityUploadStatus>("status", Status);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentity>("deviceIdentities", DeviceIdentities);
+            writer.WriteEnumValue<ApiSdk.Models.ImportedWindowsAutopilotDeviceIdentityUploadStatus>("status", Status);
         }
     }
 }

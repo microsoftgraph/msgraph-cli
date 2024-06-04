@@ -27,13 +27,13 @@ namespace ApiSdk.Models
         /// <summary>If approval is required, the one, two or three elements of this collection define each of the stages of approval. An empty array is present if no approval is required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessPackageApprovalStage>? Stages { get; set; }
+        public List<ApiSdk.Models.AccessPackageApprovalStage>? Stages { get; set; }
 #nullable restore
 #else
-        public List<AccessPackageApprovalStage> Stages { get; set; }
+        public List<ApiSdk.Models.AccessPackageApprovalStage> Stages { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessPackageAssignmentApprovalSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessPackageAssignmentApprovalSettings"/> and sets the default values.
         /// </summary>
         public AccessPackageAssignmentApprovalSettings()
         {
@@ -42,12 +42,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageAssignmentApprovalSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageAssignmentApprovalSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AccessPackageAssignmentApprovalSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AccessPackageAssignmentApprovalSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageAssignmentApprovalSettings();
+            return new ApiSdk.Models.AccessPackageAssignmentApprovalSettings();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,7 +60,7 @@ namespace ApiSdk.Models
                 { "isApprovalRequiredForAdd", n => { IsApprovalRequiredForAdd = n.GetBoolValue(); } },
                 { "isApprovalRequiredForUpdate", n => { IsApprovalRequiredForUpdate = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "stages", n => { Stages = n.GetCollectionOfObjectValues<AccessPackageApprovalStage>(AccessPackageApprovalStage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "stages", n => { Stages = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessPackageApprovalStage>(ApiSdk.Models.AccessPackageApprovalStage.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -73,7 +73,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("isApprovalRequiredForAdd", IsApprovalRequiredForAdd);
             writer.WriteBoolValue("isApprovalRequiredForUpdate", IsApprovalRequiredForUpdate);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<AccessPackageApprovalStage>("stages", Stages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessPackageApprovalStage>("stages", Stages);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamworkTag : Entity, IParsable
+    public class TeamworkTag : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The description of the tag as it appears to the user in Microsoft Teams. A teamworkTag can&apos;t have more than 200 teamworkTagMembers.</summary>
@@ -31,13 +31,13 @@ namespace ApiSdk.Models
         /// <summary>Users assigned to the tag.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TeamworkTagMember>? Members { get; set; }
+        public List<ApiSdk.Models.TeamworkTagMember>? Members { get; set; }
 #nullable restore
 #else
-        public List<TeamworkTagMember> Members { get; set; }
+        public List<ApiSdk.Models.TeamworkTagMember> Members { get; set; }
 #endif
         /// <summary>The type of the tag. Default is standard.</summary>
-        public TeamworkTagType? TagType { get; set; }
+        public ApiSdk.Models.TeamworkTagType? TagType { get; set; }
         /// <summary>ID of the team in which the tag is defined.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,12 +49,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamworkTag"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamworkTag"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamworkTag CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamworkTag CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamworkTag();
+            return new ApiSdk.Models.TeamworkTag();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -67,8 +67,8 @@ namespace ApiSdk.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "memberCount", n => { MemberCount = n.GetIntValue(); } },
-                { "members", n => { Members = n.GetCollectionOfObjectValues<TeamworkTagMember>(TeamworkTagMember.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "tagType", n => { TagType = n.GetEnumValue<TeamworkTagType>(); } },
+                { "members", n => { Members = n.GetCollectionOfObjectValues<ApiSdk.Models.TeamworkTagMember>(ApiSdk.Models.TeamworkTagMember.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tagType", n => { TagType = n.GetEnumValue<ApiSdk.Models.TeamworkTagType>(); } },
                 { "teamId", n => { TeamId = n.GetStringValue(); } },
             };
         }
@@ -83,8 +83,8 @@ namespace ApiSdk.Models
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteIntValue("memberCount", MemberCount);
-            writer.WriteCollectionOfObjectValues<TeamworkTagMember>("members", Members);
-            writer.WriteEnumValue<TeamworkTagType>("tagType", TagType);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TeamworkTagMember>("members", Members);
+            writer.WriteEnumValue<ApiSdk.Models.TeamworkTagType>("tagType", TagType);
             writer.WriteStringValue("teamId", TeamId);
         }
     }

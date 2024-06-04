@@ -75,14 +75,14 @@ namespace ApiSdk.Contacts.Item.Manager
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagerRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Contacts.Item.Manager.ManagerRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ManagerRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/manager{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagerRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Contacts.Item.Manager.ManagerRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ManagerRequestBuilder(string rawUrl) : base("{+baseurl}/contacts/{orgContact%2Did}/manager{?%24expand,%24select}", rawUrl)
@@ -95,11 +95,11 @@ namespace ApiSdk.Contacts.Item.Manager
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagerRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Contacts.Item.Manager.ManagerRequestBuilder.ManagerRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagerRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Contacts.Item.Manager.ManagerRequestBuilder.ManagerRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

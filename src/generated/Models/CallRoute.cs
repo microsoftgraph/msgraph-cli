@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The final property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Final { get; set; }
+        public ApiSdk.Models.IdentitySet? Final { get; set; }
 #nullable restore
 #else
-        public IdentitySet Final { get; set; }
+        public ApiSdk.Models.IdentitySet Final { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,15 +31,15 @@ namespace ApiSdk.Models
         /// <summary>The original property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Original { get; set; }
+        public ApiSdk.Models.IdentitySet? Original { get; set; }
 #nullable restore
 #else
-        public IdentitySet Original { get; set; }
+        public ApiSdk.Models.IdentitySet Original { get; set; }
 #endif
         /// <summary>The routingType property</summary>
         public ApiSdk.Models.RoutingType? RoutingType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CallRoute"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CallRoute"/> and sets the default values.
         /// </summary>
         public CallRoute()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CallRoute"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CallRoute"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CallRoute CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CallRoute CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CallRoute();
+            return new ApiSdk.Models.CallRoute();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,10 +63,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "final", n => { Final = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "final", n => { Final = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "original", n => { Original = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                { "routingType", n => { RoutingType = n.GetEnumValue<RoutingType>(); } },
+                { "original", n => { Original = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
+                { "routingType", n => { RoutingType = n.GetEnumValue<ApiSdk.Models.RoutingType>(); } },
             };
         }
         /// <summary>
@@ -76,10 +76,10 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<IdentitySet>("final", Final);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("final", Final);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<IdentitySet>("original", Original);
-            writer.WriteEnumValue<RoutingType>("routingType", RoutingType);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("original", Original);
+            writer.WriteEnumValue<ApiSdk.Models.RoutingType>("routingType", RoutingType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

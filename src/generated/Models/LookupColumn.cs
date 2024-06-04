@@ -49,7 +49,7 @@ namespace ApiSdk.Models
         public string PrimaryLookupColumnId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="LookupColumn"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.LookupColumn"/> and sets the default values.
         /// </summary>
         public LookupColumn()
         {
@@ -58,12 +58,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LookupColumn"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.LookupColumn"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static LookupColumn CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.LookupColumn CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LookupColumn();
+            return new ApiSdk.Models.LookupColumn();
         }
         /// <summary>
         /// The deserialization information for the current model

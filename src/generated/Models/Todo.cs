@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Todo : Entity, IParsable
+    public class Todo : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The task lists in the users mailbox.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TodoTaskList>? Lists { get; set; }
+        public List<ApiSdk.Models.TodoTaskList>? Lists { get; set; }
 #nullable restore
 #else
-        public List<TodoTaskList> Lists { get; set; }
+        public List<ApiSdk.Models.TodoTaskList> Lists { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Todo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Todo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Todo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Todo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Todo();
+            return new ApiSdk.Models.Todo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "lists", n => { Lists = n.GetCollectionOfObjectValues<TodoTaskList>(TodoTaskList.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "lists", n => { Lists = n.GetCollectionOfObjectValues<ApiSdk.Models.TodoTaskList>(ApiSdk.Models.TodoTaskList.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<TodoTaskList>("lists", Lists);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TodoTaskList>("lists", Lists);
         }
     }
 }

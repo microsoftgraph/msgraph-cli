@@ -16,37 +16,37 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vlookup
         /// <summary>The colIndexNum property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? ColIndexNum { get; set; }
+        public ApiSdk.Models.Json? ColIndexNum { get; set; }
 #nullable restore
 #else
-        public Json ColIndexNum { get; set; }
+        public ApiSdk.Models.Json ColIndexNum { get; set; }
 #endif
         /// <summary>The lookupValue property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? LookupValue { get; set; }
+        public ApiSdk.Models.Json? LookupValue { get; set; }
 #nullable restore
 #else
-        public Json LookupValue { get; set; }
+        public ApiSdk.Models.Json LookupValue { get; set; }
 #endif
         /// <summary>The rangeLookup property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? RangeLookup { get; set; }
+        public ApiSdk.Models.Json? RangeLookup { get; set; }
 #nullable restore
 #else
-        public Json RangeLookup { get; set; }
+        public ApiSdk.Models.Json RangeLookup { get; set; }
 #endif
         /// <summary>The tableArray property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? TableArray { get; set; }
+        public ApiSdk.Models.Json? TableArray { get; set; }
 #nullable restore
 #else
-        public Json TableArray { get; set; }
+        public ApiSdk.Models.Json TableArray { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="VlookupPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vlookup.VlookupPostRequestBody"/> and sets the default values.
         /// </summary>
         public VlookupPostRequestBody()
         {
@@ -55,12 +55,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vlookup
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="VlookupPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vlookup.VlookupPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static VlookupPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vlookup.VlookupPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new VlookupPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vlookup.VlookupPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,10 +70,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vlookup
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "colIndexNum", n => { ColIndexNum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "lookupValue", n => { LookupValue = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "rangeLookup", n => { RangeLookup = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "tableArray", n => { TableArray = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "colIndexNum", n => { ColIndexNum = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "lookupValue", n => { LookupValue = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "rangeLookup", n => { RangeLookup = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "tableArray", n => { TableArray = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -83,10 +83,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vlookup
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("colIndexNum", ColIndexNum);
-            writer.WriteObjectValue<Json>("lookupValue", LookupValue);
-            writer.WriteObjectValue<Json>("rangeLookup", RangeLookup);
-            writer.WriteObjectValue<Json>("tableArray", TableArray);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("colIndexNum", ColIndexNum);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("lookupValue", LookupValue);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("rangeLookup", RangeLookup);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("tableArray", TableArray);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

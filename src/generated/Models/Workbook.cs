@@ -7,74 +7,74 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Workbook : Entity, IParsable
+    public class Workbook : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The application property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookApplication? Application { get; set; }
+        public ApiSdk.Models.WorkbookApplication? Application { get; set; }
 #nullable restore
 #else
-        public WorkbookApplication Application { get; set; }
+        public ApiSdk.Models.WorkbookApplication Application { get; set; }
 #endif
         /// <summary>Represents a collection of comments in a workbook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookComment>? Comments { get; set; }
+        public List<ApiSdk.Models.WorkbookComment>? Comments { get; set; }
 #nullable restore
 #else
-        public List<WorkbookComment> Comments { get; set; }
+        public List<ApiSdk.Models.WorkbookComment> Comments { get; set; }
 #endif
         /// <summary>The functions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookFunctions? Functions { get; set; }
+        public ApiSdk.Models.WorkbookFunctions? Functions { get; set; }
 #nullable restore
 #else
-        public WorkbookFunctions Functions { get; set; }
+        public ApiSdk.Models.WorkbookFunctions Functions { get; set; }
 #endif
         /// <summary>Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookNamedItem>? Names { get; set; }
+        public List<ApiSdk.Models.WorkbookNamedItem>? Names { get; set; }
 #nullable restore
 #else
-        public List<WorkbookNamedItem> Names { get; set; }
+        public List<ApiSdk.Models.WorkbookNamedItem> Names { get; set; }
 #endif
         /// <summary>The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookOperation>? Operations { get; set; }
+        public List<ApiSdk.Models.WorkbookOperation>? Operations { get; set; }
 #nullable restore
 #else
-        public List<WorkbookOperation> Operations { get; set; }
+        public List<ApiSdk.Models.WorkbookOperation> Operations { get; set; }
 #endif
         /// <summary>Represents a collection of tables associated with the workbook. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookTable>? Tables { get; set; }
+        public List<ApiSdk.Models.WorkbookTable>? Tables { get; set; }
 #nullable restore
 #else
-        public List<WorkbookTable> Tables { get; set; }
+        public List<ApiSdk.Models.WorkbookTable> Tables { get; set; }
 #endif
         /// <summary>Represents a collection of worksheets associated with the workbook. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookWorksheet>? Worksheets { get; set; }
+        public List<ApiSdk.Models.WorkbookWorksheet>? Worksheets { get; set; }
 #nullable restore
 #else
-        public List<WorkbookWorksheet> Worksheets { get; set; }
+        public List<ApiSdk.Models.WorkbookWorksheet> Worksheets { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Workbook"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Workbook"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Workbook CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Workbook CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Workbook();
+            return new ApiSdk.Models.Workbook();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,13 +84,13 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "application", n => { Application = n.GetObjectValue<WorkbookApplication>(WorkbookApplication.CreateFromDiscriminatorValue); } },
-                { "comments", n => { Comments = n.GetCollectionOfObjectValues<WorkbookComment>(WorkbookComment.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "functions", n => { Functions = n.GetObjectValue<WorkbookFunctions>(WorkbookFunctions.CreateFromDiscriminatorValue); } },
-                { "names", n => { Names = n.GetCollectionOfObjectValues<WorkbookNamedItem>(WorkbookNamedItem.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "operations", n => { Operations = n.GetCollectionOfObjectValues<WorkbookOperation>(WorkbookOperation.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "tables", n => { Tables = n.GetCollectionOfObjectValues<WorkbookTable>(WorkbookTable.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "worksheets", n => { Worksheets = n.GetCollectionOfObjectValues<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "application", n => { Application = n.GetObjectValue<ApiSdk.Models.WorkbookApplication>(ApiSdk.Models.WorkbookApplication.CreateFromDiscriminatorValue); } },
+                { "comments", n => { Comments = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookComment>(ApiSdk.Models.WorkbookComment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "functions", n => { Functions = n.GetObjectValue<ApiSdk.Models.WorkbookFunctions>(ApiSdk.Models.WorkbookFunctions.CreateFromDiscriminatorValue); } },
+                { "names", n => { Names = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookNamedItem>(ApiSdk.Models.WorkbookNamedItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "operations", n => { Operations = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookOperation>(ApiSdk.Models.WorkbookOperation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tables", n => { Tables = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookTable>(ApiSdk.Models.WorkbookTable.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "worksheets", n => { Worksheets = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookWorksheet>(ApiSdk.Models.WorkbookWorksheet.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -101,13 +101,13 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookApplication>("application", Application);
-            writer.WriteCollectionOfObjectValues<WorkbookComment>("comments", Comments);
-            writer.WriteObjectValue<WorkbookFunctions>("functions", Functions);
-            writer.WriteCollectionOfObjectValues<WorkbookNamedItem>("names", Names);
-            writer.WriteCollectionOfObjectValues<WorkbookOperation>("operations", Operations);
-            writer.WriteCollectionOfObjectValues<WorkbookTable>("tables", Tables);
-            writer.WriteCollectionOfObjectValues<WorkbookWorksheet>("worksheets", Worksheets);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookApplication>("application", Application);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookComment>("comments", Comments);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookFunctions>("functions", Functions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookNamedItem>("names", Names);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookOperation>("operations", Operations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookTable>("tables", Tables);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookWorksheet>("worksheets", Worksheets);
         }
     }
 }

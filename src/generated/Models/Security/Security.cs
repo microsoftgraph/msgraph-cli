@@ -21,10 +21,10 @@ namespace ApiSdk.Models.Security
         /// <summary>A collection of alerts in Microsoft 365 Defender.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Alert>? AlertsV2 { get; set; }
+        public List<ApiSdk.Models.Security.Alert>? AlertsV2 { get; set; }
 #nullable restore
 #else
-        public List<Alert> AlertsV2 { get; set; }
+        public List<ApiSdk.Models.Security.Alert> AlertsV2 { get; set; }
 #endif
         /// <summary>The attackSimulation property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,34 +37,34 @@ namespace ApiSdk.Models.Security
         /// <summary>The cases property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CasesRoot? Cases { get; set; }
+        public ApiSdk.Models.Security.CasesRoot? Cases { get; set; }
 #nullable restore
 #else
-        public CasesRoot Cases { get; set; }
+        public ApiSdk.Models.Security.CasesRoot Cases { get; set; }
 #endif
         /// <summary>The identities property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentityContainer? Identities { get; set; }
+        public ApiSdk.Models.Security.IdentityContainer? Identities { get; set; }
 #nullable restore
 #else
-        public IdentityContainer Identities { get; set; }
+        public ApiSdk.Models.Security.IdentityContainer Identities { get; set; }
 #endif
         /// <summary>A collection of incidents in Microsoft 365 Defender, each of which is a set of correlated alerts and associated metadata that reflects the story of an attack.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Incident>? Incidents { get; set; }
+        public List<ApiSdk.Models.Security.Incident>? Incidents { get; set; }
 #nullable restore
 #else
-        public List<Incident> Incidents { get; set; }
+        public List<ApiSdk.Models.Security.Incident> Incidents { get; set; }
 #endif
         /// <summary>The labels property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public LabelsRoot? Labels { get; set; }
+        public ApiSdk.Models.Security.LabelsRoot? Labels { get; set; }
 #nullable restore
 #else
-        public LabelsRoot Labels { get; set; }
+        public ApiSdk.Models.Security.LabelsRoot Labels { get; set; }
 #endif
         /// <summary>The secureScoreControlProfiles property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -101,28 +101,28 @@ namespace ApiSdk.Models.Security
         /// <summary>The triggers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TriggersRoot? Triggers { get; set; }
+        public ApiSdk.Models.Security.TriggersRoot? Triggers { get; set; }
 #nullable restore
 #else
-        public TriggersRoot Triggers { get; set; }
+        public ApiSdk.Models.Security.TriggersRoot Triggers { get; set; }
 #endif
         /// <summary>The triggerTypes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TriggerTypesRoot? TriggerTypes { get; set; }
+        public ApiSdk.Models.Security.TriggerTypesRoot? TriggerTypes { get; set; }
 #nullable restore
 #else
-        public TriggerTypesRoot TriggerTypes { get; set; }
+        public ApiSdk.Models.Security.TriggerTypesRoot TriggerTypes { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Security"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.Security"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Security CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.Security CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Security();
+            return new ApiSdk.Models.Security.Security();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -133,18 +133,18 @@ namespace ApiSdk.Models.Security
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "alerts", n => { Alerts = n.GetCollectionOfObjectValues<ApiSdk.Models.Alert>(ApiSdk.Models.Alert.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "alerts_v2", n => { AlertsV2 = n.GetCollectionOfObjectValues<Alert>(Alert.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "alerts_v2", n => { AlertsV2 = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.Alert>(ApiSdk.Models.Security.Alert.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "attackSimulation", n => { AttackSimulation = n.GetObjectValue<ApiSdk.Models.AttackSimulationRoot>(ApiSdk.Models.AttackSimulationRoot.CreateFromDiscriminatorValue); } },
-                { "cases", n => { Cases = n.GetObjectValue<CasesRoot>(CasesRoot.CreateFromDiscriminatorValue); } },
-                { "identities", n => { Identities = n.GetObjectValue<IdentityContainer>(IdentityContainer.CreateFromDiscriminatorValue); } },
-                { "incidents", n => { Incidents = n.GetCollectionOfObjectValues<Incident>(Incident.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "labels", n => { Labels = n.GetObjectValue<LabelsRoot>(LabelsRoot.CreateFromDiscriminatorValue); } },
+                { "cases", n => { Cases = n.GetObjectValue<ApiSdk.Models.Security.CasesRoot>(ApiSdk.Models.Security.CasesRoot.CreateFromDiscriminatorValue); } },
+                { "identities", n => { Identities = n.GetObjectValue<ApiSdk.Models.Security.IdentityContainer>(ApiSdk.Models.Security.IdentityContainer.CreateFromDiscriminatorValue); } },
+                { "incidents", n => { Incidents = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.Incident>(ApiSdk.Models.Security.Incident.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "labels", n => { Labels = n.GetObjectValue<ApiSdk.Models.Security.LabelsRoot>(ApiSdk.Models.Security.LabelsRoot.CreateFromDiscriminatorValue); } },
                 { "secureScoreControlProfiles", n => { SecureScoreControlProfiles = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlProfile>(ApiSdk.Models.SecureScoreControlProfile.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "secureScores", n => { SecureScores = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScore>(ApiSdk.Models.SecureScore.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "subjectRightsRequests", n => { SubjectRightsRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequest>(ApiSdk.Models.SubjectRightsRequest.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "threatIntelligence", n => { ThreatIntelligence = n.GetObjectValue<ApiSdk.Models.Security.ThreatIntelligence>(ApiSdk.Models.Security.ThreatIntelligence.CreateFromDiscriminatorValue); } },
-                { "triggerTypes", n => { TriggerTypes = n.GetObjectValue<TriggerTypesRoot>(TriggerTypesRoot.CreateFromDiscriminatorValue); } },
-                { "triggers", n => { Triggers = n.GetObjectValue<TriggersRoot>(TriggersRoot.CreateFromDiscriminatorValue); } },
+                { "triggerTypes", n => { TriggerTypes = n.GetObjectValue<ApiSdk.Models.Security.TriggerTypesRoot>(ApiSdk.Models.Security.TriggerTypesRoot.CreateFromDiscriminatorValue); } },
+                { "triggers", n => { Triggers = n.GetObjectValue<ApiSdk.Models.Security.TriggersRoot>(ApiSdk.Models.Security.TriggersRoot.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -156,18 +156,18 @@ namespace ApiSdk.Models.Security
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Alert>("alerts", Alerts);
-            writer.WriteCollectionOfObjectValues<Alert>("alerts_v2", AlertsV2);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.Alert>("alerts_v2", AlertsV2);
             writer.WriteObjectValue<ApiSdk.Models.AttackSimulationRoot>("attackSimulation", AttackSimulation);
-            writer.WriteObjectValue<CasesRoot>("cases", Cases);
-            writer.WriteObjectValue<IdentityContainer>("identities", Identities);
-            writer.WriteCollectionOfObjectValues<Incident>("incidents", Incidents);
-            writer.WriteObjectValue<LabelsRoot>("labels", Labels);
+            writer.WriteObjectValue<ApiSdk.Models.Security.CasesRoot>("cases", Cases);
+            writer.WriteObjectValue<ApiSdk.Models.Security.IdentityContainer>("identities", Identities);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.Incident>("incidents", Incidents);
+            writer.WriteObjectValue<ApiSdk.Models.Security.LabelsRoot>("labels", Labels);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlProfile>("secureScoreControlProfiles", SecureScoreControlProfiles);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.SecureScore>("secureScores", SecureScores);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequest>("subjectRightsRequests", SubjectRightsRequests);
             writer.WriteObjectValue<ApiSdk.Models.Security.ThreatIntelligence>("threatIntelligence", ThreatIntelligence);
-            writer.WriteObjectValue<TriggersRoot>("triggers", Triggers);
-            writer.WriteObjectValue<TriggerTypesRoot>("triggerTypes", TriggerTypes);
+            writer.WriteObjectValue<ApiSdk.Models.Security.TriggersRoot>("triggers", Triggers);
+            writer.WriteObjectValue<ApiSdk.Models.Security.TriggerTypesRoot>("triggerTypes", TriggerTypes);
         }
     }
 }

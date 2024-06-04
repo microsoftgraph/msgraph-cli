@@ -22,9 +22,9 @@ namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus
         public string ClientContext { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public RecordingStatus? Status { get; set; }
+        public ApiSdk.Models.RecordingStatus? Status { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="UpdateRecordingStatusPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.UpdateRecordingStatus.UpdateRecordingStatusPostRequestBody"/> and sets the default values.
         /// </summary>
         public UpdateRecordingStatusPostRequestBody()
         {
@@ -33,12 +33,12 @@ namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UpdateRecordingStatusPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.Calls.Item.UpdateRecordingStatus.UpdateRecordingStatusPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UpdateRecordingStatusPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.Calls.Item.UpdateRecordingStatus.UpdateRecordingStatusPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UpdateRecordingStatusPostRequestBody();
+            return new ApiSdk.Communications.Calls.Item.UpdateRecordingStatus.UpdateRecordingStatusPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,7 +49,7 @@ namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "clientContext", n => { ClientContext = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<RecordingStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.RecordingStatus>(); } },
             };
         }
         /// <summary>
@@ -60,7 +60,7 @@ namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("clientContext", ClientContext);
-            writer.WriteEnumValue<RecordingStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.RecordingStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

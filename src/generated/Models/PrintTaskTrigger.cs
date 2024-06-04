@@ -7,28 +7,28 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrintTaskTrigger : Entity, IParsable
+    public class PrintTaskTrigger : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The definition property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PrintTaskDefinition? Definition { get; set; }
+        public ApiSdk.Models.PrintTaskDefinition? Definition { get; set; }
 #nullable restore
 #else
-        public PrintTaskDefinition Definition { get; set; }
+        public ApiSdk.Models.PrintTaskDefinition Definition { get; set; }
 #endif
         /// <summary>The event property</summary>
-        public PrintEvent? Event { get; set; }
+        public ApiSdk.Models.PrintEvent? Event { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrintTaskTrigger"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrintTaskTrigger"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrintTaskTrigger CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrintTaskTrigger CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrintTaskTrigger();
+            return new ApiSdk.Models.PrintTaskTrigger();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -38,8 +38,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "definition", n => { Definition = n.GetObjectValue<PrintTaskDefinition>(PrintTaskDefinition.CreateFromDiscriminatorValue); } },
-                { "event", n => { Event = n.GetEnumValue<PrintEvent>(); } },
+                { "definition", n => { Definition = n.GetObjectValue<ApiSdk.Models.PrintTaskDefinition>(ApiSdk.Models.PrintTaskDefinition.CreateFromDiscriminatorValue); } },
+                { "event", n => { Event = n.GetEnumValue<ApiSdk.Models.PrintEvent>(); } },
             };
         }
         /// <summary>
@@ -50,8 +50,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<PrintTaskDefinition>("definition", Definition);
-            writer.WriteEnumValue<PrintEvent>("event", Event);
+            writer.WriteObjectValue<ApiSdk.Models.PrintTaskDefinition>("definition", Definition);
+            writer.WriteEnumValue<ApiSdk.Models.PrintEvent>("event", Event);
         }
     }
 }

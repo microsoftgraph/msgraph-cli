@@ -29,7 +29,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AuthorizationInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AuthorizationInfo"/> and sets the default values.
         /// </summary>
         public AuthorizationInfo()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthorizationInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthorizationInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AuthorizationInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AuthorizationInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthorizationInfo();
+            return new ApiSdk.Models.AuthorizationInfo();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class MeetingAttendanceReport : Entity, IParsable
+    public class MeetingAttendanceReport : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>List of attendance records of an attendance report. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AttendanceRecord>? AttendanceRecords { get; set; }
+        public List<ApiSdk.Models.AttendanceRecord>? AttendanceRecords { get; set; }
 #nullable restore
 #else
-        public List<AttendanceRecord> AttendanceRecords { get; set; }
+        public List<ApiSdk.Models.AttendanceRecord> AttendanceRecords { get; set; }
 #endif
         /// <summary>UTC time when the meeting ended. Read-only.</summary>
         public DateTimeOffset? MeetingEndDateTime { get; set; }
@@ -27,12 +27,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MeetingAttendanceReport"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MeetingAttendanceReport"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MeetingAttendanceReport CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MeetingAttendanceReport CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MeetingAttendanceReport();
+            return new ApiSdk.Models.MeetingAttendanceReport();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -42,7 +42,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "attendanceRecords", n => { AttendanceRecords = n.GetCollectionOfObjectValues<AttendanceRecord>(AttendanceRecord.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "attendanceRecords", n => { AttendanceRecords = n.GetCollectionOfObjectValues<ApiSdk.Models.AttendanceRecord>(ApiSdk.Models.AttendanceRecord.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "meetingEndDateTime", n => { MeetingEndDateTime = n.GetDateTimeOffsetValue(); } },
                 { "meetingStartDateTime", n => { MeetingStartDateTime = n.GetDateTimeOffsetValue(); } },
                 { "totalParticipantCount", n => { TotalParticipantCount = n.GetIntValue(); } },
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AttendanceRecord>("attendanceRecords", AttendanceRecords);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AttendanceRecord>("attendanceRecords", AttendanceRecords);
             writer.WriteDateTimeOffsetValue("meetingEndDateTime", MeetingEndDateTime);
             writer.WriteDateTimeOffsetValue("meetingStartDateTime", MeetingStartDateTime);
             writer.WriteIntValue("totalParticipantCount", TotalParticipantCount);

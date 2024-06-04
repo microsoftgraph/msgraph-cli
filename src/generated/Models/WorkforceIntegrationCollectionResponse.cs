@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkforceIntegrationCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class WorkforceIntegrationCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkforceIntegration>? Value { get; set; }
+        public List<ApiSdk.Models.WorkforceIntegration>? Value { get; set; }
 #nullable restore
 #else
-        public List<WorkforceIntegration> Value { get; set; }
+        public List<ApiSdk.Models.WorkforceIntegration> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkforceIntegrationCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkforceIntegrationCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkforceIntegrationCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkforceIntegrationCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkforceIntegrationCollectionResponse();
+            return new ApiSdk.Models.WorkforceIntegrationCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<WorkforceIntegration>(WorkforceIntegration.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkforceIntegration>(ApiSdk.Models.WorkforceIntegration.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<WorkforceIntegration>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkforceIntegration>("value", Value);
         }
     }
 }

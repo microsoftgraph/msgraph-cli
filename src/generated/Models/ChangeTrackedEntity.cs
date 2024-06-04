@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ChangeTrackedEntity : Entity, IParsable
+    public class ChangeTrackedEntity : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
@@ -15,37 +15,37 @@ namespace ApiSdk.Models
         /// <summary>Identity of the person who last modified the entity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; private set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedBy { get; private set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; private set; }
+        public ApiSdk.Models.IdentitySet LastModifiedBy { get; private set; }
 #endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? LastModifiedDateTime { get; private set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChangeTrackedEntity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ChangeTrackedEntity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ChangeTrackedEntity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ChangeTrackedEntity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.offerShiftRequest" => new OfferShiftRequest(),
-                "#microsoft.graph.openShift" => new OpenShift(),
-                "#microsoft.graph.openShiftChangeRequest" => new OpenShiftChangeRequest(),
-                "#microsoft.graph.scheduleChangeRequest" => new ScheduleChangeRequest(),
-                "#microsoft.graph.schedulingGroup" => new SchedulingGroup(),
-                "#microsoft.graph.shift" => new Shift(),
-                "#microsoft.graph.shiftPreferences" => new ShiftPreferences(),
-                "#microsoft.graph.swapShiftsChangeRequest" => new SwapShiftsChangeRequest(),
-                "#microsoft.graph.timeOff" => new TimeOff(),
-                "#microsoft.graph.timeOffReason" => new TimeOffReason(),
-                "#microsoft.graph.timeOffRequest" => new TimeOffRequest(),
-                "#microsoft.graph.workforceIntegration" => new WorkforceIntegration(),
-                _ => new ChangeTrackedEntity(),
+                "#microsoft.graph.offerShiftRequest" => new ApiSdk.Models.OfferShiftRequest(),
+                "#microsoft.graph.openShift" => new ApiSdk.Models.OpenShift(),
+                "#microsoft.graph.openShiftChangeRequest" => new ApiSdk.Models.OpenShiftChangeRequest(),
+                "#microsoft.graph.scheduleChangeRequest" => new ApiSdk.Models.ScheduleChangeRequest(),
+                "#microsoft.graph.schedulingGroup" => new ApiSdk.Models.SchedulingGroup(),
+                "#microsoft.graph.shift" => new ApiSdk.Models.Shift(),
+                "#microsoft.graph.shiftPreferences" => new ApiSdk.Models.ShiftPreferences(),
+                "#microsoft.graph.swapShiftsChangeRequest" => new ApiSdk.Models.SwapShiftsChangeRequest(),
+                "#microsoft.graph.timeOff" => new ApiSdk.Models.TimeOff(),
+                "#microsoft.graph.timeOffReason" => new ApiSdk.Models.TimeOffReason(),
+                "#microsoft.graph.timeOffRequest" => new ApiSdk.Models.TimeOffRequest(),
+                "#microsoft.graph.workforceIntegration" => new ApiSdk.Models.WorkforceIntegration(),
+                _ => new ApiSdk.Models.ChangeTrackedEntity(),
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }

@@ -188,7 +188,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item
         {
             var command = new Command("sets");
             command.Description = "Provides operations to manage the sets property of the microsoft.graph.termStore.group entity.";
-            var builder = new SetsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.SetsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -208,14 +208,14 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GroupItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.TermStore.Groups.Item.GroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GroupItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStore/groups/{group%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GroupItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.TermStore.Groups.Item.GroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStore/groups/{group%2Did}{?%24expand,%24select}", rawUrl)
@@ -247,11 +247,11 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GroupItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.TermStore.Groups.Item.GroupItemRequestBuilder.GroupItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GroupItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.TermStore.Groups.Item.GroupItemRequestBuilder.GroupItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

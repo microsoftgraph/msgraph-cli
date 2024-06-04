@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class OnlineMeetingBase : Entity, IParsable
+    public class OnlineMeetingBase : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Indicates whether attendees can turn on their camera.</summary>
@@ -15,9 +15,9 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether attendees can turn on their microphone.</summary>
         public bool? AllowAttendeeToEnableMic { get; set; }
         /// <summary>Specifies who can be a presenter in a meeting.</summary>
-        public OnlineMeetingPresenters? AllowedPresenters { get; set; }
+        public ApiSdk.Models.OnlineMeetingPresenters? AllowedPresenters { get; set; }
         /// <summary>Specifies the mode of the meeting chat.</summary>
-        public MeetingChatMode? AllowMeetingChat { get; set; }
+        public ApiSdk.Models.MeetingChatMode? AllowMeetingChat { get; set; }
         /// <summary>Specifies if participants are allowed to rename themselves in an instance of the meeting.</summary>
         public bool? AllowParticipantsToChangeName { get; set; }
         /// <summary>Indicates if Teams reactions are enabled for the meeting.</summary>
@@ -25,10 +25,10 @@ namespace ApiSdk.Models
         /// <summary>The attendance reports of an online meeting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MeetingAttendanceReport>? AttendanceReports { get; set; }
+        public List<ApiSdk.Models.MeetingAttendanceReport>? AttendanceReports { get; set; }
 #nullable restore
 #else
-        public List<MeetingAttendanceReport> AttendanceReports { get; set; }
+        public List<ApiSdk.Models.MeetingAttendanceReport> AttendanceReports { get; set; }
 #endif
         /// <summary>The phone access (dial-in) information for an online meeting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -51,10 +51,10 @@ namespace ApiSdk.Models
         /// <summary>The join information in the language and locale variant specified in &apos;Accept-Language&apos; request HTTP header. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemBody? JoinInformation { get; set; }
+        public ApiSdk.Models.ItemBody? JoinInformation { get; set; }
 #nullable restore
 #else
-        public ItemBody JoinInformation { get; set; }
+        public ApiSdk.Models.ItemBody JoinInformation { get; set; }
 #endif
         /// <summary>Specifies the joinMeetingId, the meeting passcode, and the requirement for the passcode. Once an onlineMeeting is created, the joinMeetingIdSettings can&apos;t be modified. To make any changes to this property, you must cancel this meeting and create a new one.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -83,7 +83,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether to record the meeting automatically.</summary>
         public bool? RecordAutomatically { get; set; }
         /// <summary>Specifies whether meeting chat history is shared with participants.  Possible values are: all, none, unknownFutureValue.</summary>
-        public MeetingChatHistoryDefaultMode? ShareMeetingChatHistoryDefault { get; set; }
+        public ApiSdk.Models.MeetingChatHistoryDefaultMode? ShareMeetingChatHistoryDefault { get; set; }
         /// <summary>The subject of the online meeting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -103,25 +103,25 @@ namespace ApiSdk.Models
         /// <summary>Specifies whether the client application should apply a watermark to a content type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WatermarkProtectionValues? WatermarkProtection { get; set; }
+        public ApiSdk.Models.WatermarkProtectionValues? WatermarkProtection { get; set; }
 #nullable restore
 #else
-        public WatermarkProtectionValues WatermarkProtection { get; set; }
+        public ApiSdk.Models.WatermarkProtectionValues WatermarkProtection { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnlineMeetingBase"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnlineMeetingBase"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OnlineMeetingBase CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OnlineMeetingBase CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.onlineMeeting" => new OnlineMeeting(),
-                "#microsoft.graph.virtualEventSession" => new VirtualEventSession(),
-                _ => new OnlineMeetingBase(),
+                "#microsoft.graph.onlineMeeting" => new ApiSdk.Models.OnlineMeeting(),
+                "#microsoft.graph.virtualEventSession" => new ApiSdk.Models.VirtualEventSession(),
+                _ => new ApiSdk.Models.OnlineMeetingBase(),
             };
         }
         /// <summary>
@@ -134,23 +134,23 @@ namespace ApiSdk.Models
             {
                 { "allowAttendeeToEnableCamera", n => { AllowAttendeeToEnableCamera = n.GetBoolValue(); } },
                 { "allowAttendeeToEnableMic", n => { AllowAttendeeToEnableMic = n.GetBoolValue(); } },
-                { "allowMeetingChat", n => { AllowMeetingChat = n.GetEnumValue<MeetingChatMode>(); } },
+                { "allowMeetingChat", n => { AllowMeetingChat = n.GetEnumValue<ApiSdk.Models.MeetingChatMode>(); } },
                 { "allowParticipantsToChangeName", n => { AllowParticipantsToChangeName = n.GetBoolValue(); } },
                 { "allowTeamworkReactions", n => { AllowTeamworkReactions = n.GetBoolValue(); } },
-                { "allowedPresenters", n => { AllowedPresenters = n.GetEnumValue<OnlineMeetingPresenters>(); } },
-                { "attendanceReports", n => { AttendanceReports = n.GetCollectionOfObjectValues<MeetingAttendanceReport>(MeetingAttendanceReport.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "allowedPresenters", n => { AllowedPresenters = n.GetEnumValue<ApiSdk.Models.OnlineMeetingPresenters>(); } },
+                { "attendanceReports", n => { AttendanceReports = n.GetCollectionOfObjectValues<ApiSdk.Models.MeetingAttendanceReport>(ApiSdk.Models.MeetingAttendanceReport.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "audioConferencing", n => { AudioConferencing = n.GetObjectValue<ApiSdk.Models.AudioConferencing>(ApiSdk.Models.AudioConferencing.CreateFromDiscriminatorValue); } },
                 { "chatInfo", n => { ChatInfo = n.GetObjectValue<ApiSdk.Models.ChatInfo>(ApiSdk.Models.ChatInfo.CreateFromDiscriminatorValue); } },
                 { "isEntryExitAnnounced", n => { IsEntryExitAnnounced = n.GetBoolValue(); } },
-                { "joinInformation", n => { JoinInformation = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                { "joinInformation", n => { JoinInformation = n.GetObjectValue<ApiSdk.Models.ItemBody>(ApiSdk.Models.ItemBody.CreateFromDiscriminatorValue); } },
                 { "joinMeetingIdSettings", n => { JoinMeetingIdSettings = n.GetObjectValue<ApiSdk.Models.JoinMeetingIdSettings>(ApiSdk.Models.JoinMeetingIdSettings.CreateFromDiscriminatorValue); } },
                 { "joinWebUrl", n => { JoinWebUrl = n.GetStringValue(); } },
                 { "lobbyBypassSettings", n => { LobbyBypassSettings = n.GetObjectValue<ApiSdk.Models.LobbyBypassSettings>(ApiSdk.Models.LobbyBypassSettings.CreateFromDiscriminatorValue); } },
                 { "recordAutomatically", n => { RecordAutomatically = n.GetBoolValue(); } },
-                { "shareMeetingChatHistoryDefault", n => { ShareMeetingChatHistoryDefault = n.GetEnumValue<MeetingChatHistoryDefaultMode>(); } },
+                { "shareMeetingChatHistoryDefault", n => { ShareMeetingChatHistoryDefault = n.GetEnumValue<ApiSdk.Models.MeetingChatHistoryDefaultMode>(); } },
                 { "subject", n => { Subject = n.GetStringValue(); } },
                 { "videoTeleconferenceId", n => { VideoTeleconferenceId = n.GetStringValue(); } },
-                { "watermarkProtection", n => { WatermarkProtection = n.GetObjectValue<WatermarkProtectionValues>(WatermarkProtectionValues.CreateFromDiscriminatorValue); } },
+                { "watermarkProtection", n => { WatermarkProtection = n.GetObjectValue<ApiSdk.Models.WatermarkProtectionValues>(ApiSdk.Models.WatermarkProtectionValues.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -163,23 +163,23 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteBoolValue("allowAttendeeToEnableCamera", AllowAttendeeToEnableCamera);
             writer.WriteBoolValue("allowAttendeeToEnableMic", AllowAttendeeToEnableMic);
-            writer.WriteEnumValue<OnlineMeetingPresenters>("allowedPresenters", AllowedPresenters);
-            writer.WriteEnumValue<MeetingChatMode>("allowMeetingChat", AllowMeetingChat);
+            writer.WriteEnumValue<ApiSdk.Models.OnlineMeetingPresenters>("allowedPresenters", AllowedPresenters);
+            writer.WriteEnumValue<ApiSdk.Models.MeetingChatMode>("allowMeetingChat", AllowMeetingChat);
             writer.WriteBoolValue("allowParticipantsToChangeName", AllowParticipantsToChangeName);
             writer.WriteBoolValue("allowTeamworkReactions", AllowTeamworkReactions);
-            writer.WriteCollectionOfObjectValues<MeetingAttendanceReport>("attendanceReports", AttendanceReports);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MeetingAttendanceReport>("attendanceReports", AttendanceReports);
             writer.WriteObjectValue<ApiSdk.Models.AudioConferencing>("audioConferencing", AudioConferencing);
             writer.WriteObjectValue<ApiSdk.Models.ChatInfo>("chatInfo", ChatInfo);
             writer.WriteBoolValue("isEntryExitAnnounced", IsEntryExitAnnounced);
-            writer.WriteObjectValue<ItemBody>("joinInformation", JoinInformation);
+            writer.WriteObjectValue<ApiSdk.Models.ItemBody>("joinInformation", JoinInformation);
             writer.WriteObjectValue<ApiSdk.Models.JoinMeetingIdSettings>("joinMeetingIdSettings", JoinMeetingIdSettings);
             writer.WriteStringValue("joinWebUrl", JoinWebUrl);
             writer.WriteObjectValue<ApiSdk.Models.LobbyBypassSettings>("lobbyBypassSettings", LobbyBypassSettings);
             writer.WriteBoolValue("recordAutomatically", RecordAutomatically);
-            writer.WriteEnumValue<MeetingChatHistoryDefaultMode>("shareMeetingChatHistoryDefault", ShareMeetingChatHistoryDefault);
+            writer.WriteEnumValue<ApiSdk.Models.MeetingChatHistoryDefaultMode>("shareMeetingChatHistoryDefault", ShareMeetingChatHistoryDefault);
             writer.WriteStringValue("subject", Subject);
             writer.WriteStringValue("videoTeleconferenceId", VideoTeleconferenceId);
-            writer.WriteObjectValue<WatermarkProtectionValues>("watermarkProtection", WatermarkProtection);
+            writer.WriteObjectValue<ApiSdk.Models.WatermarkProtectionValues>("watermarkProtection", WatermarkProtection);
         }
     }
 }

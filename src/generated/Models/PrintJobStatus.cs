@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>Additional details for print job state. Valid values are described in the following table. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PrintJobStateDetail?>? Details { get; set; }
+        public List<ApiSdk.Models.PrintJobStateDetail?>? Details { get; set; }
 #nullable restore
 #else
-        public List<PrintJobStateDetail?> Details { get; set; }
+        public List<ApiSdk.Models.PrintJobStateDetail?> Details { get; set; }
 #endif
         /// <summary>True if the job was acknowledged by a printer; false otherwise. Read-only.</summary>
         public bool? IsAcquiredByPrinter { get; set; }
@@ -39,9 +39,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The state property</summary>
-        public PrintJobProcessingState? State { get; set; }
+        public ApiSdk.Models.PrintJobProcessingState? State { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="PrintJobStatus"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PrintJobStatus"/> and sets the default values.
         /// </summary>
         public PrintJobStatus()
         {
@@ -50,12 +50,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrintJobStatus"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrintJobStatus"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PrintJobStatus CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PrintJobStatus CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrintJobStatus();
+            return new ApiSdk.Models.PrintJobStatus();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,10 +66,10 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "details", n => { Details = n.GetCollectionOfEnumValues<PrintJobStateDetail>()?.ToList(); } },
+                { "details", n => { Details = n.GetCollectionOfEnumValues<ApiSdk.Models.PrintJobStateDetail>()?.ToList(); } },
                 { "isAcquiredByPrinter", n => { IsAcquiredByPrinter = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "state", n => { State = n.GetEnumValue<PrintJobProcessingState>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.PrintJobProcessingState>(); } },
             };
         }
         /// <summary>
@@ -80,10 +80,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfEnumValues<PrintJobStateDetail>("details", Details);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.PrintJobStateDetail>("details", Details);
             writer.WriteBoolValue("isAcquiredByPrinter", IsAcquiredByPrinter);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<PrintJobProcessingState>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.PrintJobProcessingState>("state", State);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.IdentityGovernance
 {
     #pragma warning disable CS1591
-    public class TriggerAndScopeBasedConditions : WorkflowExecutionConditions, IParsable
+    public class TriggerAndScopeBasedConditions : ApiSdk.Models.IdentityGovernance.WorkflowExecutionConditions, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Defines who the workflow runs for.</summary>
@@ -21,13 +21,13 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>What triggers a workflow to run.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkflowExecutionTrigger? Trigger { get; set; }
+        public ApiSdk.Models.IdentityGovernance.WorkflowExecutionTrigger? Trigger { get; set; }
 #nullable restore
 #else
-        public WorkflowExecutionTrigger Trigger { get; set; }
+        public ApiSdk.Models.IdentityGovernance.WorkflowExecutionTrigger Trigger { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TriggerAndScopeBasedConditions"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityGovernance.TriggerAndScopeBasedConditions"/> and sets the default values.
         /// </summary>
         public TriggerAndScopeBasedConditions() : base()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TriggerAndScopeBasedConditions"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.TriggerAndScopeBasedConditions"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TriggerAndScopeBasedConditions CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.TriggerAndScopeBasedConditions CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TriggerAndScopeBasedConditions();
+            return new ApiSdk.Models.IdentityGovernance.TriggerAndScopeBasedConditions();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -52,7 +52,7 @@ namespace ApiSdk.Models.IdentityGovernance
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "scope", n => { Scope = n.GetObjectValue<ApiSdk.Models.SubjectSet>(ApiSdk.Models.SubjectSet.CreateFromDiscriminatorValue); } },
-                { "trigger", n => { Trigger = n.GetObjectValue<WorkflowExecutionTrigger>(WorkflowExecutionTrigger.CreateFromDiscriminatorValue); } },
+                { "trigger", n => { Trigger = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.WorkflowExecutionTrigger>(ApiSdk.Models.IdentityGovernance.WorkflowExecutionTrigger.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -64,7 +64,7 @@ namespace ApiSdk.Models.IdentityGovernance
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.SubjectSet>("scope", Scope);
-            writer.WriteObjectValue<WorkflowExecutionTrigger>("trigger", Trigger);
+            writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.WorkflowExecutionTrigger>("trigger", Trigger);
         }
     }
 }

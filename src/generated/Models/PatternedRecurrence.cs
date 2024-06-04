@@ -23,21 +23,21 @@ namespace ApiSdk.Models
         /// <summary>The frequency of an event.  For access reviews: Do not specify this property for a one-time access review.  Only interval, dayOfMonth, and type (weekly, absoluteMonthly) properties of recurrencePattern are supported.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RecurrencePattern? Pattern { get; set; }
+        public ApiSdk.Models.RecurrencePattern? Pattern { get; set; }
 #nullable restore
 #else
-        public RecurrencePattern Pattern { get; set; }
+        public ApiSdk.Models.RecurrencePattern Pattern { get; set; }
 #endif
         /// <summary>The duration of an event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RecurrenceRange? Range { get; set; }
+        public ApiSdk.Models.RecurrenceRange? Range { get; set; }
 #nullable restore
 #else
-        public RecurrenceRange Range { get; set; }
+        public ApiSdk.Models.RecurrenceRange Range { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PatternedRecurrence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PatternedRecurrence"/> and sets the default values.
         /// </summary>
         public PatternedRecurrence()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PatternedRecurrence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PatternedRecurrence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PatternedRecurrence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PatternedRecurrence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PatternedRecurrence();
+            return new ApiSdk.Models.PatternedRecurrence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,8 +62,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "pattern", n => { Pattern = n.GetObjectValue<RecurrencePattern>(RecurrencePattern.CreateFromDiscriminatorValue); } },
-                { "range", n => { Range = n.GetObjectValue<RecurrenceRange>(RecurrenceRange.CreateFromDiscriminatorValue); } },
+                { "pattern", n => { Pattern = n.GetObjectValue<ApiSdk.Models.RecurrencePattern>(ApiSdk.Models.RecurrencePattern.CreateFromDiscriminatorValue); } },
+                { "range", n => { Range = n.GetObjectValue<ApiSdk.Models.RecurrenceRange>(ApiSdk.Models.RecurrenceRange.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,8 +74,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<RecurrencePattern>("pattern", Pattern);
-            writer.WriteObjectValue<RecurrenceRange>("range", Range);
+            writer.WriteObjectValue<ApiSdk.Models.RecurrencePattern>("pattern", Pattern);
+            writer.WriteObjectValue<ApiSdk.Models.RecurrenceRange>("range", Range);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

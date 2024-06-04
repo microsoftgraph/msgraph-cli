@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DeletedTeam : Entity, IParsable
+    public class DeletedTeam : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The channels that are either shared with this deleted team or created in this deleted team.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Channel>? Channels { get; set; }
+        public List<ApiSdk.Models.Channel>? Channels { get; set; }
 #nullable restore
 #else
-        public List<Channel> Channels { get; set; }
+        public List<ApiSdk.Models.Channel> Channels { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeletedTeam"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeletedTeam"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeletedTeam CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeletedTeam CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeletedTeam();
+            return new ApiSdk.Models.DeletedTeam();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "channels", n => { Channels = n.GetCollectionOfObjectValues<Channel>(Channel.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "channels", n => { Channels = n.GetCollectionOfObjectValues<ApiSdk.Models.Channel>(ApiSdk.Models.Channel.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Channel>("channels", Channels);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Channel>("channels", Channels);
         }
     }
 }

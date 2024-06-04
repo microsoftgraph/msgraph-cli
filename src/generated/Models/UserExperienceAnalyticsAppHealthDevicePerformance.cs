@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// The user experience analytics device performance entity contains device performance details.
     /// </summary>
-    public class UserExperienceAnalyticsAppHealthDevicePerformance : Entity, IParsable
+    public class UserExperienceAnalyticsAppHealthDevicePerformance : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The number of application crashes for the device. Valid values 0 to 2147483647. Supports: $filter, $select, $OrderBy. Read-only. Valid values -2147483648 to 2147483647</summary>
         public int? AppCrashCount { get; set; }
@@ -52,7 +52,7 @@ namespace ApiSdk.Models
         public string DeviceModel { get; set; }
 #endif
         /// <summary>The healthStatus property</summary>
-        public UserExperienceAnalyticsHealthState? HealthStatus { get; set; }
+        public ApiSdk.Models.UserExperienceAnalyticsHealthState? HealthStatus { get; set; }
         /// <summary>The mean time to failure for the application in minutes. Valid values 0 to 2147483647. Supports: $filter, $select, $OrderBy. Read-only. Valid values -2147483648 to 2147483647</summary>
         public int? MeanTimeToFailureInMinutes { get; set; }
         /// <summary>The date and time when the statistics were last computed. The value cannot be modified and is automatically populated when the statistics are computed. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2022 would look like this: &apos;2022-01-01T00:00:00Z&apos;. Returned by default. Read-only.</summary>
@@ -60,12 +60,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsAppHealthDevicePerformance"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformance"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsAppHealthDevicePerformance CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformance CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsAppHealthDevicePerformance();
+            return new ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformance();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -83,7 +83,7 @@ namespace ApiSdk.Models
                 { "deviceId", n => { DeviceId = n.GetStringValue(); } },
                 { "deviceManufacturer", n => { DeviceManufacturer = n.GetStringValue(); } },
                 { "deviceModel", n => { DeviceModel = n.GetStringValue(); } },
-                { "healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
+                { "healthStatus", n => { HealthStatus = n.GetEnumValue<ApiSdk.Models.UserExperienceAnalyticsHealthState>(); } },
                 { "meanTimeToFailureInMinutes", n => { MeanTimeToFailureInMinutes = n.GetIntValue(); } },
                 { "processedDateTime", n => { ProcessedDateTime = n.GetDateTimeOffsetValue(); } },
             };
@@ -104,7 +104,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("deviceId", DeviceId);
             writer.WriteStringValue("deviceManufacturer", DeviceManufacturer);
             writer.WriteStringValue("deviceModel", DeviceModel);
-            writer.WriteEnumValue<UserExperienceAnalyticsHealthState>("healthStatus", HealthStatus);
+            writer.WriteEnumValue<ApiSdk.Models.UserExperienceAnalyticsHealthState>("healthStatus", HealthStatus);
             writer.WriteIntValue("meanTimeToFailureInMinutes", MeanTimeToFailureInMinutes);
             writer.WriteDateTimeOffsetValue("processedDateTime", ProcessedDateTime);
         }

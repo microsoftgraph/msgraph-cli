@@ -19,7 +19,7 @@ namespace ApiSdk.Models.IdentityGovernance
         public List<ApiSdk.Models.KeyValuePair> Arguments { get; set; }
 #endif
         /// <summary>The category property</summary>
-        public LifecycleTaskCategory? Category { get; set; }
+        public ApiSdk.Models.IdentityGovernance.LifecycleTaskCategory? Category { get; set; }
         /// <summary>A boolean value that specifies whether, if this task fails, the workflow stops, and subsequent tasks aren&apos;t run. Optional.</summary>
         public bool? ContinueOnError { get; set; }
         /// <summary>A string that describes the purpose of the task for administrative use. Optional.</summary>
@@ -53,20 +53,20 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>The result of processing the task.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TaskProcessingResult>? TaskProcessingResults { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.TaskProcessingResult>? TaskProcessingResults { get; set; }
 #nullable restore
 #else
-        public List<TaskProcessingResult> TaskProcessingResults { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.TaskProcessingResult> TaskProcessingResults { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TaskObject"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.TaskObject"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TaskObject CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.TaskObject CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TaskObject();
+            return new ApiSdk.Models.IdentityGovernance.TaskObject();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -77,14 +77,14 @@ namespace ApiSdk.Models.IdentityGovernance
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "arguments", n => { Arguments = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>(ApiSdk.Models.KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "category", n => { Category = n.GetEnumValue<LifecycleTaskCategory>(); } },
+                { "category", n => { Category = n.GetEnumValue<ApiSdk.Models.IdentityGovernance.LifecycleTaskCategory>(); } },
                 { "continueOnError", n => { ContinueOnError = n.GetBoolValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "executionSequence", n => { ExecutionSequence = n.GetIntValue(); } },
                 { "isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
                 { "taskDefinitionId", n => { TaskDefinitionId = n.GetStringValue(); } },
-                { "taskProcessingResults", n => { TaskProcessingResults = n.GetCollectionOfObjectValues<TaskProcessingResult>(TaskProcessingResult.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "taskProcessingResults", n => { TaskProcessingResults = n.GetCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.TaskProcessingResult>(ApiSdk.Models.IdentityGovernance.TaskProcessingResult.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -96,14 +96,14 @@ namespace ApiSdk.Models.IdentityGovernance
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>("arguments", Arguments);
-            writer.WriteEnumValue<LifecycleTaskCategory>("category", Category);
+            writer.WriteEnumValue<ApiSdk.Models.IdentityGovernance.LifecycleTaskCategory>("category", Category);
             writer.WriteBoolValue("continueOnError", ContinueOnError);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteIntValue("executionSequence", ExecutionSequence);
             writer.WriteBoolValue("isEnabled", IsEnabled);
             writer.WriteStringValue("taskDefinitionId", TaskDefinitionId);
-            writer.WriteCollectionOfObjectValues<TaskProcessingResult>("taskProcessingResults", TaskProcessingResults);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.TaskProcessingResult>("taskProcessingResults", TaskProcessingResults);
         }
     }
 }

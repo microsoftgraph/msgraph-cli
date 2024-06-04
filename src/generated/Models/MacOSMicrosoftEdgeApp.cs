@@ -9,12 +9,12 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties and inherited properties for the macOS Microsoft Edge App.
     /// </summary>
-    public class MacOSMicrosoftEdgeApp : MobileApp, IParsable
+    public class MacOSMicrosoftEdgeApp : ApiSdk.Models.MobileApp, IParsable
     {
         /// <summary>The enum to specify the channels for Microsoft Edge apps.</summary>
-        public MicrosoftEdgeChannel? Channel { get; set; }
+        public ApiSdk.Models.MicrosoftEdgeChannel? Channel { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MacOSMicrosoftEdgeApp"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MacOSMicrosoftEdgeApp"/> and sets the default values.
         /// </summary>
         public MacOSMicrosoftEdgeApp() : base()
         {
@@ -23,12 +23,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MacOSMicrosoftEdgeApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MacOSMicrosoftEdgeApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MacOSMicrosoftEdgeApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MacOSMicrosoftEdgeApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MacOSMicrosoftEdgeApp();
+            return new ApiSdk.Models.MacOSMicrosoftEdgeApp();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -38,7 +38,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "channel", n => { Channel = n.GetEnumValue<MicrosoftEdgeChannel>(); } },
+                { "channel", n => { Channel = n.GetEnumValue<ApiSdk.Models.MicrosoftEdgeChannel>(); } },
             };
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<MicrosoftEdgeChannel>("channel", Channel);
+            writer.WriteEnumValue<ApiSdk.Models.MicrosoftEdgeChannel>("channel", Channel);
         }
     }
 }

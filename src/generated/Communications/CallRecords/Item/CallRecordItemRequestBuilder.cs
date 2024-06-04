@@ -141,7 +141,7 @@ namespace ApiSdk.Communications.CallRecords.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CallRecord>(CallRecord.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.CallRecords.CallRecord>(ApiSdk.Models.CallRecords.CallRecord.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -169,7 +169,7 @@ namespace ApiSdk.Communications.CallRecords.Item
         {
             var command = new Command("sessions");
             command.Description = "Provides operations to manage the sessions property of the microsoft.graph.callRecords.callRecord entity.";
-            var builder = new SessionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.CallRecords.Item.Sessions.SessionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -189,14 +189,14 @@ namespace ApiSdk.Communications.CallRecords.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CallRecordItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.CallRecords.Item.CallRecordItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CallRecordItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/callRecords/{callRecord%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CallRecordItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.CallRecords.Item.CallRecordItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CallRecordItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/callRecords/{callRecord%2Did}{?%24expand,%24select}", rawUrl)
@@ -228,11 +228,11 @@ namespace ApiSdk.Communications.CallRecords.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CallRecordItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.CallRecords.Item.CallRecordItemRequestBuilder.CallRecordItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CallRecordItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.CallRecords.Item.CallRecordItemRequestBuilder.CallRecordItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -248,11 +248,11 @@ namespace ApiSdk.Communications.CallRecords.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(CallRecord body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CallRecords.CallRecord body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(CallRecord body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CallRecords.CallRecord body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

@@ -61,14 +61,14 @@ namespace ApiSdk.Education.Me.Assignments.Item.SetUpResourcesFolder
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetUpResourcesFolderRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Me.Assignments.Item.SetUpResourcesFolder.SetUpResourcesFolderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SetUpResourcesFolderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/setUpResourcesFolder", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetUpResourcesFolderRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Me.Assignments.Item.SetUpResourcesFolder.SetUpResourcesFolderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SetUpResourcesFolderRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/setUpResourcesFolder", rawUrl)

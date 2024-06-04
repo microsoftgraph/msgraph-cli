@@ -56,14 +56,14 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.CompleteMigration
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CompleteMigrationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Team.Channels.Item.CompleteMigration.CompleteMigrationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CompleteMigrationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/channels/{channel%2Did}/completeMigration", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CompleteMigrationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Team.Channels.Item.CompleteMigration.CompleteMigrationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CompleteMigrationRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/channels/{channel%2Did}/completeMigration", rawUrl)

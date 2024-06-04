@@ -16,13 +16,13 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
         /// <summary>The NewReminderTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? NewReminderTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? NewReminderTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone NewReminderTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone NewReminderTime { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SnoozeReminderPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder.SnoozeReminderPostRequestBody"/> and sets the default values.
         /// </summary>
         public SnoozeReminderPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SnoozeReminderPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder.SnoozeReminderPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SnoozeReminderPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder.SnoozeReminderPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SnoozeReminderPostRequestBody();
+            return new ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Instances.Item.SnoozeReminder.SnoozeReminderPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "NewReminderTime", n => { NewReminderTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "NewReminderTime", n => { NewReminderTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Insta
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<DateTimeTimeZone>("NewReminderTime", NewReminderTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("NewReminderTime", NewReminderTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

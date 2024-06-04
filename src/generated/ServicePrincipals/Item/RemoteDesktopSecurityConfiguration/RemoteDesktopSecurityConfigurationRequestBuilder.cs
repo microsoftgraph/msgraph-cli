@@ -171,7 +171,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration
         {
             var command = new Command("target-device-groups");
             command.Description = "Provides operations to manage the targetDeviceGroups property of the microsoft.graph.remoteDesktopSecurityConfiguration entity.";
-            var builder = new TargetDeviceGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.TargetDeviceGroups.TargetDeviceGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -191,14 +191,14 @@ namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RemoteDesktopSecurityConfigurationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.RemoteDesktopSecurityConfigurationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RemoteDesktopSecurityConfigurationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/remoteDesktopSecurityConfiguration{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RemoteDesktopSecurityConfigurationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.RemoteDesktopSecurityConfigurationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RemoteDesktopSecurityConfigurationRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/remoteDesktopSecurityConfiguration{?%24expand,%24select}", rawUrl)
@@ -230,11 +230,11 @@ namespace ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RemoteDesktopSecurityConfigurationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.RemoteDesktopSecurityConfigurationRequestBuilder.RemoteDesktopSecurityConfigurationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RemoteDesktopSecurityConfigurationRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration.RemoteDesktopSecurityConfigurationRequestBuilder.RemoteDesktopSecurityConfigurationRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

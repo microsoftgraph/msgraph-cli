@@ -24,21 +24,21 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.ParseExpress
         /// <summary>The targetAttributeDefinition property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AttributeDefinition? TargetAttributeDefinition { get; set; }
+        public ApiSdk.Models.AttributeDefinition? TargetAttributeDefinition { get; set; }
 #nullable restore
 #else
-        public AttributeDefinition TargetAttributeDefinition { get; set; }
+        public ApiSdk.Models.AttributeDefinition TargetAttributeDefinition { get; set; }
 #endif
         /// <summary>The testInputObject property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ExpressionInputObject? TestInputObject { get; set; }
+        public ApiSdk.Models.ExpressionInputObject? TestInputObject { get; set; }
 #nullable restore
 #else
-        public ExpressionInputObject TestInputObject { get; set; }
+        public ApiSdk.Models.ExpressionInputObject TestInputObject { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ParseExpressionPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.ParseExpression.ParseExpressionPostRequestBody"/> and sets the default values.
         /// </summary>
         public ParseExpressionPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.ParseExpress
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ParseExpressionPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.ParseExpression.ParseExpressionPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ParseExpressionPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.ParseExpression.ParseExpressionPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ParseExpressionPostRequestBody();
+            return new ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.ParseExpression.ParseExpressionPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,8 +63,8 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.ParseExpress
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "expression", n => { Expression = n.GetStringValue(); } },
-                { "targetAttributeDefinition", n => { TargetAttributeDefinition = n.GetObjectValue<AttributeDefinition>(AttributeDefinition.CreateFromDiscriminatorValue); } },
-                { "testInputObject", n => { TestInputObject = n.GetObjectValue<ExpressionInputObject>(ExpressionInputObject.CreateFromDiscriminatorValue); } },
+                { "targetAttributeDefinition", n => { TargetAttributeDefinition = n.GetObjectValue<ApiSdk.Models.AttributeDefinition>(ApiSdk.Models.AttributeDefinition.CreateFromDiscriminatorValue); } },
+                { "testInputObject", n => { TestInputObject = n.GetObjectValue<ApiSdk.Models.ExpressionInputObject>(ApiSdk.Models.ExpressionInputObject.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -75,8 +75,8 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.ParseExpress
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("expression", Expression);
-            writer.WriteObjectValue<AttributeDefinition>("targetAttributeDefinition", TargetAttributeDefinition);
-            writer.WriteObjectValue<ExpressionInputObject>("testInputObject", TestInputObject);
+            writer.WriteObjectValue<ApiSdk.Models.AttributeDefinition>("targetAttributeDefinition", TargetAttributeDefinition);
+            writer.WriteObjectValue<ApiSdk.Models.ExpressionInputObject>("testInputObject", TestInputObject);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

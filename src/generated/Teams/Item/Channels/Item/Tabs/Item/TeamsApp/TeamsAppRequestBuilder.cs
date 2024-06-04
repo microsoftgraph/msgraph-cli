@@ -86,14 +86,14 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TeamsAppRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.TeamsAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TeamsAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/channels/{channel%2Did}/tabs/{teamsTab%2Did}/teamsApp{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TeamsAppRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.TeamsAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TeamsAppRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/channels/{channel%2Did}/tabs/{teamsTab%2Did}/teamsApp{?%24expand,%24select}", rawUrl)
@@ -106,11 +106,11 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.TeamsAppRequestBuilder.TeamsAppRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp.TeamsAppRequestBuilder.TeamsAppRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamsAppInstallation : Entity, IParsable
+    public class TeamsAppInstallation : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The set of resource-specific permissions consented to while installing or upgrading the teamsApp.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamsAppPermissionSet? ConsentedPermissionSet { get; set; }
+        public ApiSdk.Models.TeamsAppPermissionSet? ConsentedPermissionSet { get; set; }
 #nullable restore
 #else
-        public TeamsAppPermissionSet ConsentedPermissionSet { get; set; }
+        public ApiSdk.Models.TeamsAppPermissionSet ConsentedPermissionSet { get; set; }
 #endif
         /// <summary>The app that is installed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,16 +37,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamsAppInstallation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamsAppInstallation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamsAppInstallation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamsAppInstallation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.userScopeTeamsAppInstallation" => new UserScopeTeamsAppInstallation(),
-                _ => new TeamsAppInstallation(),
+                "#microsoft.graph.userScopeTeamsAppInstallation" => new ApiSdk.Models.UserScopeTeamsAppInstallation(),
+                _ => new ApiSdk.Models.TeamsAppInstallation(),
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "consentedPermissionSet", n => { ConsentedPermissionSet = n.GetObjectValue<TeamsAppPermissionSet>(TeamsAppPermissionSet.CreateFromDiscriminatorValue); } },
+                { "consentedPermissionSet", n => { ConsentedPermissionSet = n.GetObjectValue<ApiSdk.Models.TeamsAppPermissionSet>(ApiSdk.Models.TeamsAppPermissionSet.CreateFromDiscriminatorValue); } },
                 { "teamsApp", n => { TeamsApp = n.GetObjectValue<ApiSdk.Models.TeamsApp>(ApiSdk.Models.TeamsApp.CreateFromDiscriminatorValue); } },
                 { "teamsAppDefinition", n => { TeamsAppDefinition = n.GetObjectValue<ApiSdk.Models.TeamsAppDefinition>(ApiSdk.Models.TeamsAppDefinition.CreateFromDiscriminatorValue); } },
             };
@@ -70,7 +70,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<TeamsAppPermissionSet>("consentedPermissionSet", ConsentedPermissionSet);
+            writer.WriteObjectValue<ApiSdk.Models.TeamsAppPermissionSet>("consentedPermissionSet", ConsentedPermissionSet);
             writer.WriteObjectValue<ApiSdk.Models.TeamsApp>("teamsApp", TeamsApp);
             writer.WriteObjectValue<ApiSdk.Models.TeamsAppDefinition>("teamsAppDefinition", TeamsAppDefinition);
         }

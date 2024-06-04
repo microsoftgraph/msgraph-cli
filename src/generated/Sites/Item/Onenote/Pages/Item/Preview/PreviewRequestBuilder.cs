@@ -66,14 +66,14 @@ namespace ApiSdk.Sites.Item.Onenote.Pages.Item.Preview
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PreviewRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Onenote.Pages.Item.Preview.PreviewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PreviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/onenote/pages/{onenotePage%2Did}/preview()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PreviewRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Onenote.Pages.Item.Preview.PreviewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PreviewRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/onenote/pages/{onenotePage%2Did}/preview()", rawUrl)

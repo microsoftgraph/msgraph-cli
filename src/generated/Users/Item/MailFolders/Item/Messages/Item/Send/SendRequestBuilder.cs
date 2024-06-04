@@ -62,14 +62,14 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SendRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send.SendRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SendRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messages/{message%2Did}/send", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SendRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send.SendRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SendRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messages/{message%2Did}/send", rawUrl)

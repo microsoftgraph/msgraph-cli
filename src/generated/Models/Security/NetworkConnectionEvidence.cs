@@ -7,33 +7,33 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class NetworkConnectionEvidence : AlertEvidence, IParsable
+    public class NetworkConnectionEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The destinationAddress property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IpEvidence? DestinationAddress { get; set; }
+        public ApiSdk.Models.Security.IpEvidence? DestinationAddress { get; set; }
 #nullable restore
 #else
-        public IpEvidence DestinationAddress { get; set; }
+        public ApiSdk.Models.Security.IpEvidence DestinationAddress { get; set; }
 #endif
         /// <summary>The destinationPort property</summary>
         public int? DestinationPort { get; set; }
         /// <summary>The protocol property</summary>
-        public ProtocolType? Protocol { get; set; }
+        public ApiSdk.Models.Security.ProtocolType? Protocol { get; set; }
         /// <summary>The sourceAddress property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IpEvidence? SourceAddress { get; set; }
+        public ApiSdk.Models.Security.IpEvidence? SourceAddress { get; set; }
 #nullable restore
 #else
-        public IpEvidence SourceAddress { get; set; }
+        public ApiSdk.Models.Security.IpEvidence SourceAddress { get; set; }
 #endif
         /// <summary>The sourcePort property</summary>
         public int? SourcePort { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="NetworkConnectionEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.NetworkConnectionEvidence"/> and sets the default values.
         /// </summary>
         public NetworkConnectionEvidence() : base()
         {
@@ -42,12 +42,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="NetworkConnectionEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.NetworkConnectionEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new NetworkConnectionEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.NetworkConnectionEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new NetworkConnectionEvidence();
+            return new ApiSdk.Models.Security.NetworkConnectionEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,10 +57,10 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "destinationAddress", n => { DestinationAddress = n.GetObjectValue<IpEvidence>(IpEvidence.CreateFromDiscriminatorValue); } },
+                { "destinationAddress", n => { DestinationAddress = n.GetObjectValue<ApiSdk.Models.Security.IpEvidence>(ApiSdk.Models.Security.IpEvidence.CreateFromDiscriminatorValue); } },
                 { "destinationPort", n => { DestinationPort = n.GetIntValue(); } },
-                { "protocol", n => { Protocol = n.GetEnumValue<ProtocolType>(); } },
-                { "sourceAddress", n => { SourceAddress = n.GetObjectValue<IpEvidence>(IpEvidence.CreateFromDiscriminatorValue); } },
+                { "protocol", n => { Protocol = n.GetEnumValue<ApiSdk.Models.Security.ProtocolType>(); } },
+                { "sourceAddress", n => { SourceAddress = n.GetObjectValue<ApiSdk.Models.Security.IpEvidence>(ApiSdk.Models.Security.IpEvidence.CreateFromDiscriminatorValue); } },
                 { "sourcePort", n => { SourcePort = n.GetIntValue(); } },
             };
         }
@@ -72,10 +72,10 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<IpEvidence>("destinationAddress", DestinationAddress);
+            writer.WriteObjectValue<ApiSdk.Models.Security.IpEvidence>("destinationAddress", DestinationAddress);
             writer.WriteIntValue("destinationPort", DestinationPort);
-            writer.WriteEnumValue<ProtocolType>("protocol", Protocol);
-            writer.WriteObjectValue<IpEvidence>("sourceAddress", SourceAddress);
+            writer.WriteEnumValue<ApiSdk.Models.Security.ProtocolType>("protocol", Protocol);
+            writer.WriteObjectValue<ApiSdk.Models.Security.IpEvidence>("sourceAddress", SourceAddress);
             writer.WriteIntValue("sourcePort", SourcePort);
         }
     }

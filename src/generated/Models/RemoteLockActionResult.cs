@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Lock action result with a pin to unlock
     /// </summary>
-    public class RemoteLockActionResult : DeviceActionResult, IParsable
+    public class RemoteLockActionResult : ApiSdk.Models.DeviceActionResult, IParsable
     {
         /// <summary>Pin to unlock the client</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RemoteLockActionResult"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RemoteLockActionResult"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RemoteLockActionResult CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.RemoteLockActionResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RemoteLockActionResult();
+            return new ApiSdk.Models.RemoteLockActionResult();
         }
         /// <summary>
         /// The deserialization information for the current model

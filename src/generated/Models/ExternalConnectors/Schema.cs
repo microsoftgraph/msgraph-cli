@@ -21,20 +21,20 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Property>? Properties { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.Property>? Properties { get; set; }
 #nullable restore
 #else
-        public List<Property> Properties { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.Property> Properties { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Schema"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.Schema"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Schema CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ExternalConnectors.Schema CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Schema();
+            return new ApiSdk.Models.ExternalConnectors.Schema();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -45,7 +45,7 @@ namespace ApiSdk.Models.ExternalConnectors
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "baseType", n => { BaseType = n.GetStringValue(); } },
-                { "properties", n => { Properties = n.GetCollectionOfObjectValues<Property>(Property.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "properties", n => { Properties = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.Property>(ApiSdk.Models.ExternalConnectors.Property.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Models.ExternalConnectors
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("baseType", BaseType);
-            writer.WriteCollectionOfObjectValues<Property>("properties", Properties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.Property>("properties", Properties);
         }
     }
 }

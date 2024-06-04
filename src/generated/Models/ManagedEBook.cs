@@ -9,15 +9,15 @@ namespace ApiSdk.Models
     /// <summary>
     /// An abstract class containing the base properties for Managed eBook.
     /// </summary>
-    public class ManagedEBook : Entity, IParsable
+    public class ManagedEBook : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The list of assignments for this eBook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ManagedEBookAssignment>? Assignments { get; set; }
+        public List<ApiSdk.Models.ManagedEBookAssignment>? Assignments { get; set; }
 #nullable restore
 #else
-        public List<ManagedEBookAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.ManagedEBookAssignment> Assignments { get; set; }
 #endif
         /// <summary>The date and time when the eBook file was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -32,10 +32,10 @@ namespace ApiSdk.Models
         /// <summary>The list of installation states for this eBook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DeviceInstallState>? DeviceStates { get; set; }
+        public List<ApiSdk.Models.DeviceInstallState>? DeviceStates { get; set; }
 #nullable restore
 #else
-        public List<DeviceInstallState> DeviceStates { get; set; }
+        public List<ApiSdk.Models.DeviceInstallState> DeviceStates { get; set; }
 #endif
         /// <summary>Name of the eBook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,18 +56,18 @@ namespace ApiSdk.Models
         /// <summary>Mobile App Install Summary.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EBookInstallSummary? InstallSummary { get; set; }
+        public ApiSdk.Models.EBookInstallSummary? InstallSummary { get; set; }
 #nullable restore
 #else
-        public EBookInstallSummary InstallSummary { get; set; }
+        public ApiSdk.Models.EBookInstallSummary InstallSummary { get; set; }
 #endif
         /// <summary>Book cover.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MimeContent? LargeCover { get; set; }
+        public ApiSdk.Models.MimeContent? LargeCover { get; set; }
 #nullable restore
 #else
-        public MimeContent LargeCover { get; set; }
+        public ApiSdk.Models.MimeContent LargeCover { get; set; }
 #endif
         /// <summary>The date and time when the eBook was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
@@ -92,24 +92,24 @@ namespace ApiSdk.Models
         /// <summary>The list of installation states for this eBook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserInstallStateSummary>? UserStateSummary { get; set; }
+        public List<ApiSdk.Models.UserInstallStateSummary>? UserStateSummary { get; set; }
 #nullable restore
 #else
-        public List<UserInstallStateSummary> UserStateSummary { get; set; }
+        public List<ApiSdk.Models.UserInstallStateSummary> UserStateSummary { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ManagedEBook"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ManagedEBook"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ManagedEBook CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ManagedEBook CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.iosVppEBook" => new IosVppEBook(),
-                _ => new ManagedEBook(),
+                "#microsoft.graph.iosVppEBook" => new ApiSdk.Models.IosVppEBook(),
+                _ => new ApiSdk.Models.ManagedEBook(),
             };
         }
         /// <summary>
@@ -120,19 +120,19 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<ManagedEBookAssignment>(ManagedEBookAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.ManagedEBookAssignment>(ApiSdk.Models.ManagedEBookAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "deviceStates", n => { DeviceStates = n.GetCollectionOfObjectValues<DeviceInstallState>(DeviceInstallState.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "deviceStates", n => { DeviceStates = n.GetCollectionOfObjectValues<ApiSdk.Models.DeviceInstallState>(ApiSdk.Models.DeviceInstallState.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "informationUrl", n => { InformationUrl = n.GetStringValue(); } },
-                { "installSummary", n => { InstallSummary = n.GetObjectValue<EBookInstallSummary>(EBookInstallSummary.CreateFromDiscriminatorValue); } },
-                { "largeCover", n => { LargeCover = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
+                { "installSummary", n => { InstallSummary = n.GetObjectValue<ApiSdk.Models.EBookInstallSummary>(ApiSdk.Models.EBookInstallSummary.CreateFromDiscriminatorValue); } },
+                { "largeCover", n => { LargeCover = n.GetObjectValue<ApiSdk.Models.MimeContent>(ApiSdk.Models.MimeContent.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "privacyInformationUrl", n => { PrivacyInformationUrl = n.GetStringValue(); } },
                 { "publishedDateTime", n => { PublishedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "publisher", n => { Publisher = n.GetStringValue(); } },
-                { "userStateSummary", n => { UserStateSummary = n.GetCollectionOfObjectValues<UserInstallStateSummary>(UserInstallStateSummary.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "userStateSummary", n => { UserStateSummary = n.GetCollectionOfObjectValues<ApiSdk.Models.UserInstallStateSummary>(ApiSdk.Models.UserInstallStateSummary.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -143,19 +143,19 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ManagedEBookAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ManagedEBookAssignment>("assignments", Assignments);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
-            writer.WriteCollectionOfObjectValues<DeviceInstallState>("deviceStates", DeviceStates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DeviceInstallState>("deviceStates", DeviceStates);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("informationUrl", InformationUrl);
-            writer.WriteObjectValue<EBookInstallSummary>("installSummary", InstallSummary);
-            writer.WriteObjectValue<MimeContent>("largeCover", LargeCover);
+            writer.WriteObjectValue<ApiSdk.Models.EBookInstallSummary>("installSummary", InstallSummary);
+            writer.WriteObjectValue<ApiSdk.Models.MimeContent>("largeCover", LargeCover);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("privacyInformationUrl", PrivacyInformationUrl);
             writer.WriteDateTimeOffsetValue("publishedDateTime", PublishedDateTime);
             writer.WriteStringValue("publisher", Publisher);
-            writer.WriteCollectionOfObjectValues<UserInstallStateSummary>("userStateSummary", UserStateSummary);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserInstallStateSummary>("userStateSummary", UserStateSummary);
         }
     }
 }

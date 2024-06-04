@@ -31,7 +31,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo
         public Tuple<List<Command>, List<Command>> BuildCommand()
         {
             var commands = new List<Command>();
-            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item.DirectoryObjectItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildRefByIdNavCommand());
             return new(new(0), commands);
         }
@@ -43,7 +43,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -84,7 +84,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -214,7 +214,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo
         {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of policyRoot entities.";
-            var builder = new RefRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref.RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -226,14 +226,14 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AppliesToRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.AppliesToRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AppliesToRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}/appliesTo{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AppliesToRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.AppliesToRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AppliesToRequestBuilder(string rawUrl) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}/appliesTo{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -246,11 +246,11 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AppliesToRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.AppliesToRequestBuilder.AppliesToRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AppliesToRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.AppliesToRequestBuilder.AppliesToRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -266,11 +266,11 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(DirectoryObject body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DirectoryObject body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(DirectoryObject body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DirectoryObject body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

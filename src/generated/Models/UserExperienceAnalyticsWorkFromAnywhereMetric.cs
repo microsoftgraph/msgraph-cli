@@ -9,25 +9,25 @@ namespace ApiSdk.Models
     /// <summary>
     /// The user experience analytics metric for work from anywhere report.
     /// </summary>
-    public class UserExperienceAnalyticsWorkFromAnywhereMetric : Entity, IParsable
+    public class UserExperienceAnalyticsWorkFromAnywhereMetric : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The work from anywhere metric devices. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserExperienceAnalyticsWorkFromAnywhereDevice>? MetricDevices { get; set; }
+        public List<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereDevice>? MetricDevices { get; set; }
 #nullable restore
 #else
-        public List<UserExperienceAnalyticsWorkFromAnywhereDevice> MetricDevices { get; set; }
+        public List<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereDevice> MetricDevices { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsWorkFromAnywhereMetric"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereMetric"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsWorkFromAnywhereMetric CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereMetric CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsWorkFromAnywhereMetric();
+            return new ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereMetric();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "metricDevices", n => { MetricDevices = n.GetCollectionOfObjectValues<UserExperienceAnalyticsWorkFromAnywhereDevice>(UserExperienceAnalyticsWorkFromAnywhereDevice.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "metricDevices", n => { MetricDevices = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereDevice>(ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereDevice.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsWorkFromAnywhereDevice>("metricDevices", MetricDevices);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereDevice>("metricDevices", MetricDevices);
         }
     }
 }

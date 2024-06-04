@@ -75,14 +75,14 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="BitlockerRecoveryKeyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item.BitlockerRecoveryKeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BitlockerRecoveryKeyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection/bitlocker/recoveryKeys/{bitlockerRecoveryKey%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="BitlockerRecoveryKeyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item.BitlockerRecoveryKeyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BitlockerRecoveryKeyItemRequestBuilder(string rawUrl) : base("{+baseurl}/informationProtection/bitlocker/recoveryKeys/{bitlockerRecoveryKey%2Did}{?%24expand,%24select}", rawUrl)
@@ -95,11 +95,11 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BitlockerRecoveryKeyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item.BitlockerRecoveryKeyItemRequestBuilder.BitlockerRecoveryKeyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BitlockerRecoveryKeyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item.BitlockerRecoveryKeyItemRequestBuilder.BitlockerRecoveryKeyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

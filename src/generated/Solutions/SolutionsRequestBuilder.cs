@@ -32,7 +32,7 @@ namespace ApiSdk.Solutions
         {
             var command = new Command("booking-businesses");
             command.Description = "Provides operations to manage the bookingBusinesses property of the microsoft.graph.solutionsRoot entity.";
-            var builder = new BookingBusinessesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Solutions.BookingBusinesses.BookingBusinessesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -59,7 +59,7 @@ namespace ApiSdk.Solutions
         {
             var command = new Command("booking-currencies");
             command.Description = "Provides operations to manage the bookingCurrencies property of the microsoft.graph.solutionsRoot entity.";
-            var builder = new BookingCurrenciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Solutions.BookingCurrencies.BookingCurrenciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -150,7 +150,7 @@ namespace ApiSdk.Solutions
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SolutionsRoot>(SolutionsRoot.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.SolutionsRoot>(ApiSdk.Models.SolutionsRoot.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -177,7 +177,7 @@ namespace ApiSdk.Solutions
         {
             var command = new Command("virtual-events");
             command.Description = "Provides operations to manage the virtualEvents property of the microsoft.graph.solutionsRoot entity.";
-            var builder = new VirtualEventsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Solutions.VirtualEvents.VirtualEventsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -196,14 +196,14 @@ namespace ApiSdk.Solutions
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SolutionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Solutions.SolutionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SolutionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SolutionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Solutions.SolutionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SolutionsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions{?%24expand,%24select}", rawUrl)
@@ -216,11 +216,11 @@ namespace ApiSdk.Solutions
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SolutionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Solutions.SolutionsRequestBuilder.SolutionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SolutionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Solutions.SolutionsRequestBuilder.SolutionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -236,11 +236,11 @@ namespace ApiSdk.Solutions
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(SolutionsRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SolutionsRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(SolutionsRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SolutionsRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

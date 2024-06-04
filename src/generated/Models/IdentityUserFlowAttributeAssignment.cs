@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class IdentityUserFlowAttributeAssignment : Entity, IParsable
+    public class IdentityUserFlowAttributeAssignment : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The display name of the identityUserFlowAttribute within a user flow.</summary>
@@ -25,30 +25,30 @@ namespace ApiSdk.Models
         /// <summary>The user attribute that you want to add to your user flow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentityUserFlowAttribute? UserAttribute { get; set; }
+        public ApiSdk.Models.IdentityUserFlowAttribute? UserAttribute { get; set; }
 #nullable restore
 #else
-        public IdentityUserFlowAttribute UserAttribute { get; set; }
+        public ApiSdk.Models.IdentityUserFlowAttribute UserAttribute { get; set; }
 #endif
         /// <summary>The input options for the user flow attribute. Only applicable when the userInputType is radioSingleSelect, dropdownSingleSelect, or checkboxMultiSelect.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserAttributeValuesItem>? UserAttributeValues { get; set; }
+        public List<ApiSdk.Models.UserAttributeValuesItem>? UserAttributeValues { get; set; }
 #nullable restore
 #else
-        public List<UserAttributeValuesItem> UserAttributeValues { get; set; }
+        public List<ApiSdk.Models.UserAttributeValuesItem> UserAttributeValues { get; set; }
 #endif
         /// <summary>The userInputType property</summary>
-        public IdentityUserFlowAttributeInputType? UserInputType { get; set; }
+        public ApiSdk.Models.IdentityUserFlowAttributeInputType? UserInputType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IdentityUserFlowAttributeAssignment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityUserFlowAttributeAssignment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IdentityUserFlowAttributeAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityUserFlowAttributeAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IdentityUserFlowAttributeAssignment();
+            return new ApiSdk.Models.IdentityUserFlowAttributeAssignment();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,9 +61,9 @@ namespace ApiSdk.Models
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "isOptional", n => { IsOptional = n.GetBoolValue(); } },
                 { "requiresVerification", n => { RequiresVerification = n.GetBoolValue(); } },
-                { "userAttribute", n => { UserAttribute = n.GetObjectValue<IdentityUserFlowAttribute>(IdentityUserFlowAttribute.CreateFromDiscriminatorValue); } },
-                { "userAttributeValues", n => { UserAttributeValues = n.GetCollectionOfObjectValues<UserAttributeValuesItem>(UserAttributeValuesItem.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "userInputType", n => { UserInputType = n.GetEnumValue<IdentityUserFlowAttributeInputType>(); } },
+                { "userAttribute", n => { UserAttribute = n.GetObjectValue<ApiSdk.Models.IdentityUserFlowAttribute>(ApiSdk.Models.IdentityUserFlowAttribute.CreateFromDiscriminatorValue); } },
+                { "userAttributeValues", n => { UserAttributeValues = n.GetCollectionOfObjectValues<ApiSdk.Models.UserAttributeValuesItem>(ApiSdk.Models.UserAttributeValuesItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "userInputType", n => { UserInputType = n.GetEnumValue<ApiSdk.Models.IdentityUserFlowAttributeInputType>(); } },
             };
         }
         /// <summary>
@@ -77,9 +77,9 @@ namespace ApiSdk.Models
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("isOptional", IsOptional);
             writer.WriteBoolValue("requiresVerification", RequiresVerification);
-            writer.WriteObjectValue<IdentityUserFlowAttribute>("userAttribute", UserAttribute);
-            writer.WriteCollectionOfObjectValues<UserAttributeValuesItem>("userAttributeValues", UserAttributeValues);
-            writer.WriteEnumValue<IdentityUserFlowAttributeInputType>("userInputType", UserInputType);
+            writer.WriteObjectValue<ApiSdk.Models.IdentityUserFlowAttribute>("userAttribute", UserAttribute);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserAttributeValuesItem>("userAttributeValues", UserAttributeValues);
+            writer.WriteEnumValue<ApiSdk.Models.IdentityUserFlowAttributeInputType>("userInputType", UserInputType);
         }
     }
 }

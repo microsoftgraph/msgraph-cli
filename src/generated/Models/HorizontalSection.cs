@@ -7,30 +7,30 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class HorizontalSection : Entity, IParsable
+    public class HorizontalSection : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The set of vertical columns in this section.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HorizontalSectionColumn>? Columns { get; set; }
+        public List<ApiSdk.Models.HorizontalSectionColumn>? Columns { get; set; }
 #nullable restore
 #else
-        public List<HorizontalSectionColumn> Columns { get; set; }
+        public List<ApiSdk.Models.HorizontalSectionColumn> Columns { get; set; }
 #endif
         /// <summary>Enumeration value that indicates the emphasis of the section background. The possible values are: none, netural, soft, strong, unknownFutureValue.</summary>
-        public SectionEmphasisType? Emphasis { get; set; }
+        public ApiSdk.Models.SectionEmphasisType? Emphasis { get; set; }
         /// <summary>Layout type of the section. The possible values are: none, oneColumn, twoColumns, threeColumns, oneThirdLeftColumn, oneThirdRightColumn, fullWidth, unknownFutureValue.</summary>
-        public HorizontalSectionLayoutType? Layout { get; set; }
+        public ApiSdk.Models.HorizontalSectionLayoutType? Layout { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HorizontalSection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.HorizontalSection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new HorizontalSection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.HorizontalSection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HorizontalSection();
+            return new ApiSdk.Models.HorizontalSection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,9 +40,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "columns", n => { Columns = n.GetCollectionOfObjectValues<HorizontalSectionColumn>(HorizontalSectionColumn.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "emphasis", n => { Emphasis = n.GetEnumValue<SectionEmphasisType>(); } },
-                { "layout", n => { Layout = n.GetEnumValue<HorizontalSectionLayoutType>(); } },
+                { "columns", n => { Columns = n.GetCollectionOfObjectValues<ApiSdk.Models.HorizontalSectionColumn>(ApiSdk.Models.HorizontalSectionColumn.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "emphasis", n => { Emphasis = n.GetEnumValue<ApiSdk.Models.SectionEmphasisType>(); } },
+                { "layout", n => { Layout = n.GetEnumValue<ApiSdk.Models.HorizontalSectionLayoutType>(); } },
             };
         }
         /// <summary>
@@ -53,9 +53,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<HorizontalSectionColumn>("columns", Columns);
-            writer.WriteEnumValue<SectionEmphasisType>("emphasis", Emphasis);
-            writer.WriteEnumValue<HorizontalSectionLayoutType>("layout", Layout);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.HorizontalSectionColumn>("columns", Columns);
+            writer.WriteEnumValue<ApiSdk.Models.SectionEmphasisType>("emphasis", Emphasis);
+            writer.WriteEnumValue<ApiSdk.Models.HorizontalSectionLayoutType>("layout", Layout);
         }
     }
 }

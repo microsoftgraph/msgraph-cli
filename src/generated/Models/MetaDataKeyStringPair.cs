@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MetaDataKeyStringPair"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MetaDataKeyStringPair"/> and sets the default values.
         /// </summary>
         public MetaDataKeyStringPair()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MetaDataKeyStringPair"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MetaDataKeyStringPair"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MetaDataKeyStringPair CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MetaDataKeyStringPair CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MetaDataKeyStringPair();
+            return new ApiSdk.Models.MetaDataKeyStringPair();
         }
         /// <summary>
         /// The deserialization information for the current model

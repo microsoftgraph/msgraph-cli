@@ -37,7 +37,7 @@ namespace ApiSdk.Organization.Item.Branding
         {
             var command = new Command("background-image");
             command.Description = "Provides operations to manage the media for the organization entity.";
-            var builder = new BackgroundImageRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.Branding.BackgroundImage.BackgroundImageRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -56,7 +56,7 @@ namespace ApiSdk.Organization.Item.Branding
         {
             var command = new Command("banner-logo");
             command.Description = "Provides operations to manage the media for the organization entity.";
-            var builder = new BannerLogoRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.Branding.BannerLogo.BannerLogoRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -75,7 +75,7 @@ namespace ApiSdk.Organization.Item.Branding
         {
             var command = new Command("custom-c-s-s");
             command.Description = "Provides operations to manage the media for the organization entity.";
-            var builder = new CustomCSSRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.Branding.CustomCSS.CustomCSSRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -130,7 +130,7 @@ namespace ApiSdk.Organization.Item.Branding
         {
             var command = new Command("favicon");
             command.Description = "Provides operations to manage the media for the organization entity.";
-            var builder = new FaviconRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.Branding.Favicon.FaviconRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -202,7 +202,7 @@ namespace ApiSdk.Organization.Item.Branding
         {
             var command = new Command("header-logo");
             command.Description = "Provides operations to manage the media for the organization entity.";
-            var builder = new HeaderLogoRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.Branding.HeaderLogo.HeaderLogoRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -221,7 +221,7 @@ namespace ApiSdk.Organization.Item.Branding
         {
             var command = new Command("localizations");
             command.Description = "Provides operations to manage the localizations property of the microsoft.graph.organizationalBranding entity.";
-            var builder = new LocalizationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.Branding.Localizations.LocalizationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -272,7 +272,7 @@ namespace ApiSdk.Organization.Item.Branding
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<OrganizationalBranding>(OrganizationalBranding.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.OrganizationalBranding>(ApiSdk.Models.OrganizationalBranding.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -300,7 +300,7 @@ namespace ApiSdk.Organization.Item.Branding
         {
             var command = new Command("square-logo-dark");
             command.Description = "Provides operations to manage the media for the organization entity.";
-            var builder = new SquareLogoDarkRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.Branding.SquareLogoDark.SquareLogoDarkRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -319,7 +319,7 @@ namespace ApiSdk.Organization.Item.Branding
         {
             var command = new Command("square-logo");
             command.Description = "Provides operations to manage the media for the organization entity.";
-            var builder = new SquareLogoRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Organization.Item.Branding.SquareLogo.SquareLogoRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -331,14 +331,14 @@ namespace ApiSdk.Organization.Item.Branding
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="BrandingRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.BrandingRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BrandingRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="BrandingRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.BrandingRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BrandingRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding{?%24expand,%24select}", rawUrl)
@@ -370,11 +370,11 @@ namespace ApiSdk.Organization.Item.Branding
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BrandingRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Organization.Item.Branding.BrandingRequestBuilder.BrandingRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BrandingRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Organization.Item.Branding.BrandingRequestBuilder.BrandingRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -390,11 +390,11 @@ namespace ApiSdk.Organization.Item.Branding
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(OrganizationalBranding body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.OrganizationalBranding body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(OrganizationalBranding body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.OrganizationalBranding body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

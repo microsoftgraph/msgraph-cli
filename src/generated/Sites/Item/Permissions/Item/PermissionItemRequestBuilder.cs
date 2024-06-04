@@ -131,7 +131,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item
         {
             var command = new Command("grant");
             command.Description = "Provides operations to call the grant method.";
-            var builder = new GrantRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Permissions.Item.Grant.GrantRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -199,14 +199,14 @@ namespace ApiSdk.Sites.Item.Permissions.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PermissionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Permissions.Item.PermissionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PermissionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/permissions/{permission%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PermissionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Permissions.Item.PermissionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PermissionItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/permissions/{permission%2Did}{?%24expand,%24select}", rawUrl)
@@ -238,11 +238,11 @@ namespace ApiSdk.Sites.Item.Permissions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PermissionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Permissions.Item.PermissionItemRequestBuilder.PermissionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PermissionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Permissions.Item.PermissionItemRequestBuilder.PermissionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

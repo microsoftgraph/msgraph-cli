@@ -32,10 +32,10 @@ namespace ApiSdk.Models
         /// <summary>List of modified properties.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuditProperty>? ModifiedProperties { get; set; }
+        public List<ApiSdk.Models.AuditProperty>? ModifiedProperties { get; set; }
 #nullable restore
 #else
-        public List<AuditProperty> ModifiedProperties { get; set; }
+        public List<ApiSdk.Models.AuditProperty> ModifiedProperties { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
         public string ResourceId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AuditResource"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AuditResource"/> and sets the default values.
         /// </summary>
         public AuditResource()
         {
@@ -63,12 +63,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuditResource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuditResource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AuditResource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AuditResource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuditResource();
+            return new ApiSdk.Models.AuditResource();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -80,7 +80,7 @@ namespace ApiSdk.Models
             {
                 { "auditResourceType", n => { AuditResourceType = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "modifiedProperties", n => { ModifiedProperties = n.GetCollectionOfObjectValues<AuditProperty>(AuditProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "modifiedProperties", n => { ModifiedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.AuditProperty>(ApiSdk.Models.AuditProperty.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "resourceId", n => { ResourceId = n.GetStringValue(); } },
             };
@@ -94,7 +94,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("auditResourceType", AuditResourceType);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<AuditProperty>("modifiedProperties", ModifiedProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuditProperty>("modifiedProperties", ModifiedProperties);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("resourceId", ResourceId);
             writer.WriteAdditionalData(AdditionalData);

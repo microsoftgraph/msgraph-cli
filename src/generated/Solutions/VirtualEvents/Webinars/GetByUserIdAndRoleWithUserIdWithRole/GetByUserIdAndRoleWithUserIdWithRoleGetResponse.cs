@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserIdAndRoleWithUserIdWithRole
 {
     #pragma warning disable CS1591
-    public class GetByUserIdAndRoleWithUserIdWithRoleGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class GetByUserIdAndRoleWithUserIdWithRoleGetResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<VirtualEventWebinar>? Value { get; set; }
+        public List<ApiSdk.Models.VirtualEventWebinar>? Value { get; set; }
 #nullable restore
 #else
-        public List<VirtualEventWebinar> Value { get; set; }
+        public List<ApiSdk.Models.VirtualEventWebinar> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetByUserIdAndRoleWithUserIdWithRoleGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserIdAndRoleWithUserIdWithRole.GetByUserIdAndRoleWithUserIdWithRoleGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GetByUserIdAndRoleWithUserIdWithRoleGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserIdAndRoleWithUserIdWithRole.GetByUserIdAndRoleWithUserIdWithRoleGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetByUserIdAndRoleWithUserIdWithRoleGetResponse();
+            return new ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserIdAndRoleWithUserIdWithRole.GetByUserIdAndRoleWithUserIdWithRoleGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserIdAndRoleWithUserIdWi
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<VirtualEventWebinar>(VirtualEventWebinar.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.VirtualEventWebinar>(ApiSdk.Models.VirtualEventWebinar.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserIdAndRoleWithUserIdWi
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<VirtualEventWebinar>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.VirtualEventWebinar>("value", Value);
         }
     }
 }

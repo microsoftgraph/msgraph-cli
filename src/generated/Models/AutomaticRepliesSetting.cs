@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The set of audience external to the signed-in user&apos;s organization who will receive the ExternalReplyMessage, if Status is AlwaysEnabled or Scheduled. The possible values are: none, contactsOnly, all.</summary>
-        public ExternalAudienceScope? ExternalAudience { get; set; }
+        public ApiSdk.Models.ExternalAudienceScope? ExternalAudience { get; set; }
         /// <summary>The automatic reply to send to the specified external audience, if Status is AlwaysEnabled or Scheduled.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,23 +41,23 @@ namespace ApiSdk.Models
         /// <summary>The date and time that automatic replies are set to end, if Status is set to Scheduled.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? ScheduledEndDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? ScheduledEndDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone ScheduledEndDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone ScheduledEndDateTime { get; set; }
 #endif
         /// <summary>The date and time that automatic replies are set to begin, if Status is set to Scheduled.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? ScheduledStartDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? ScheduledStartDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone ScheduledStartDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone ScheduledStartDateTime { get; set; }
 #endif
         /// <summary>Configurations status for automatic replies. The possible values are: disabled, alwaysEnabled, scheduled.</summary>
-        public AutomaticRepliesStatus? Status { get; set; }
+        public ApiSdk.Models.AutomaticRepliesStatus? Status { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AutomaticRepliesSetting"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AutomaticRepliesSetting"/> and sets the default values.
         /// </summary>
         public AutomaticRepliesSetting()
         {
@@ -66,12 +66,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AutomaticRepliesSetting"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AutomaticRepliesSetting"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AutomaticRepliesSetting CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AutomaticRepliesSetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AutomaticRepliesSetting();
+            return new ApiSdk.Models.AutomaticRepliesSetting();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -81,13 +81,13 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "externalAudience", n => { ExternalAudience = n.GetEnumValue<ExternalAudienceScope>(); } },
+                { "externalAudience", n => { ExternalAudience = n.GetEnumValue<ApiSdk.Models.ExternalAudienceScope>(); } },
                 { "externalReplyMessage", n => { ExternalReplyMessage = n.GetStringValue(); } },
                 { "internalReplyMessage", n => { InternalReplyMessage = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "scheduledEndDateTime", n => { ScheduledEndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "scheduledStartDateTime", n => { ScheduledStartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetEnumValue<AutomaticRepliesStatus>(); } },
+                { "scheduledEndDateTime", n => { ScheduledEndDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "scheduledStartDateTime", n => { ScheduledStartDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.AutomaticRepliesStatus>(); } },
             };
         }
         /// <summary>
@@ -97,13 +97,13 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<ExternalAudienceScope>("externalAudience", ExternalAudience);
+            writer.WriteEnumValue<ApiSdk.Models.ExternalAudienceScope>("externalAudience", ExternalAudience);
             writer.WriteStringValue("externalReplyMessage", ExternalReplyMessage);
             writer.WriteStringValue("internalReplyMessage", InternalReplyMessage);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<DateTimeTimeZone>("scheduledEndDateTime", ScheduledEndDateTime);
-            writer.WriteObjectValue<DateTimeTimeZone>("scheduledStartDateTime", ScheduledStartDateTime);
-            writer.WriteEnumValue<AutomaticRepliesStatus>("status", Status);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("scheduledEndDateTime", ScheduledEndDateTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("scheduledStartDateTime", ScheduledStartDateTime);
+            writer.WriteEnumValue<ApiSdk.Models.AutomaticRepliesStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

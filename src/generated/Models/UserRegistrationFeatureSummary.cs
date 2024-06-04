@@ -25,17 +25,17 @@ namespace ApiSdk.Models
         /// <summary>Number of users registered or capable for multi-factor authentication, self-service password reset, and passwordless authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserRegistrationFeatureCount>? UserRegistrationFeatureCounts { get; set; }
+        public List<ApiSdk.Models.UserRegistrationFeatureCount>? UserRegistrationFeatureCounts { get; set; }
 #nullable restore
 #else
-        public List<UserRegistrationFeatureCount> UserRegistrationFeatureCounts { get; set; }
+        public List<ApiSdk.Models.UserRegistrationFeatureCount> UserRegistrationFeatureCounts { get; set; }
 #endif
         /// <summary>The role type of the user. Possible values are: all, privilegedAdmin, admin, user, unknownFutureValue.</summary>
-        public IncludedUserRoles? UserRoles { get; set; }
+        public ApiSdk.Models.IncludedUserRoles? UserRoles { get; set; }
         /// <summary>User type. Possible values are: all, member, guest, unknownFutureValue.</summary>
-        public IncludedUserTypes? UserTypes { get; set; }
+        public ApiSdk.Models.IncludedUserTypes? UserTypes { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="UserRegistrationFeatureSummary"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UserRegistrationFeatureSummary"/> and sets the default values.
         /// </summary>
         public UserRegistrationFeatureSummary()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserRegistrationFeatureSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserRegistrationFeatureSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UserRegistrationFeatureSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UserRegistrationFeatureSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserRegistrationFeatureSummary();
+            return new ApiSdk.Models.UserRegistrationFeatureSummary();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,9 +61,9 @@ namespace ApiSdk.Models
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "totalUserCount", n => { TotalUserCount = n.GetLongValue(); } },
-                { "userRegistrationFeatureCounts", n => { UserRegistrationFeatureCounts = n.GetCollectionOfObjectValues<UserRegistrationFeatureCount>(UserRegistrationFeatureCount.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "userRoles", n => { UserRoles = n.GetEnumValue<IncludedUserRoles>(); } },
-                { "userTypes", n => { UserTypes = n.GetEnumValue<IncludedUserTypes>(); } },
+                { "userRegistrationFeatureCounts", n => { UserRegistrationFeatureCounts = n.GetCollectionOfObjectValues<ApiSdk.Models.UserRegistrationFeatureCount>(ApiSdk.Models.UserRegistrationFeatureCount.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "userRoles", n => { UserRoles = n.GetEnumValue<ApiSdk.Models.IncludedUserRoles>(); } },
+                { "userTypes", n => { UserTypes = n.GetEnumValue<ApiSdk.Models.IncludedUserTypes>(); } },
             };
         }
         /// <summary>
@@ -75,9 +75,9 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteLongValue("totalUserCount", TotalUserCount);
-            writer.WriteCollectionOfObjectValues<UserRegistrationFeatureCount>("userRegistrationFeatureCounts", UserRegistrationFeatureCounts);
-            writer.WriteEnumValue<IncludedUserRoles>("userRoles", UserRoles);
-            writer.WriteEnumValue<IncludedUserTypes>("userTypes", UserTypes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserRegistrationFeatureCount>("userRegistrationFeatureCounts", UserRegistrationFeatureCounts);
+            writer.WriteEnumValue<ApiSdk.Models.IncludedUserRoles>("userRoles", UserRoles);
+            writer.WriteEnumValue<ApiSdk.Models.IncludedUserTypes>("userTypes", UserTypes);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

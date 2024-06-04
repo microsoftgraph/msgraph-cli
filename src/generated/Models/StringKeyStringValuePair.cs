@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="StringKeyStringValuePair"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.StringKeyStringValuePair"/> and sets the default values.
         /// </summary>
         public StringKeyStringValuePair()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="StringKeyStringValuePair"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.StringKeyStringValuePair"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static StringKeyStringValuePair CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.StringKeyStringValuePair CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new StringKeyStringValuePair();
+            return new ApiSdk.Models.StringKeyStringValuePair();
         }
         /// <summary>
         /// The deserialization information for the current model

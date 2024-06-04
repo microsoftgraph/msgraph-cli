@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.ServicePrincipal ServicePrincipal { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ApplicationServicePrincipal"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ApplicationServicePrincipal"/> and sets the default values.
         /// </summary>
         public ApplicationServicePrincipal()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ApplicationServicePrincipal"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ApplicationServicePrincipal"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ApplicationServicePrincipal CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ApplicationServicePrincipal CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ApplicationServicePrincipal();
+            return new ApiSdk.Models.ApplicationServicePrincipal();
         }
         /// <summary>
         /// The deserialization information for the current model

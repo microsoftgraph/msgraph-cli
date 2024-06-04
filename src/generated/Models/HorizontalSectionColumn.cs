@@ -7,28 +7,28 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class HorizontalSectionColumn : Entity, IParsable
+    public class HorizontalSectionColumn : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The collection of WebParts in this column.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WebPart>? Webparts { get; set; }
+        public List<ApiSdk.Models.WebPart>? Webparts { get; set; }
 #nullable restore
 #else
-        public List<WebPart> Webparts { get; set; }
+        public List<ApiSdk.Models.WebPart> Webparts { get; set; }
 #endif
         /// <summary>Width of the column. A horizontal section is divided into 12 grids. A column should have a value of 1-12 to represent its range spans. For example, there can be two columns both have a width of 6 in a section.</summary>
         public int? Width { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HorizontalSectionColumn"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.HorizontalSectionColumn"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new HorizontalSectionColumn CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.HorizontalSectionColumn CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HorizontalSectionColumn();
+            return new ApiSdk.Models.HorizontalSectionColumn();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -38,7 +38,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "webparts", n => { Webparts = n.GetCollectionOfObjectValues<WebPart>(WebPart.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "webparts", n => { Webparts = n.GetCollectionOfObjectValues<ApiSdk.Models.WebPart>(ApiSdk.Models.WebPart.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "width", n => { Width = n.GetIntValue(); } },
             };
         }
@@ -50,7 +50,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<WebPart>("webparts", Webparts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WebPart>("webparts", Webparts);
             writer.WriteIntValue("width", Width);
         }
     }

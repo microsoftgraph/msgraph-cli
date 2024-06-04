@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class OnenoteEntitySchemaObjectModel : OnenoteEntityBaseModel, IParsable
+    public class OnenoteEntitySchemaObjectModel : ApiSdk.Models.OnenoteEntityBaseModel, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The date and time when the page was created. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="OnenoteEntitySchemaObjectModel"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OnenoteEntitySchemaObjectModel"/> and sets the default values.
         /// </summary>
         public OnenoteEntitySchemaObjectModel() : base()
         {
@@ -22,20 +22,20 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnenoteEntitySchemaObjectModel"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnenoteEntitySchemaObjectModel"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OnenoteEntitySchemaObjectModel CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OnenoteEntitySchemaObjectModel CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.notebook" => new Notebook(),
-                "#microsoft.graph.onenoteEntityHierarchyModel" => new OnenoteEntityHierarchyModel(),
-                "#microsoft.graph.onenotePage" => new OnenotePage(),
-                "#microsoft.graph.onenoteSection" => new OnenoteSection(),
-                "#microsoft.graph.sectionGroup" => new SectionGroup(),
-                _ => new OnenoteEntitySchemaObjectModel(),
+                "#microsoft.graph.notebook" => new ApiSdk.Models.Notebook(),
+                "#microsoft.graph.onenoteEntityHierarchyModel" => new ApiSdk.Models.OnenoteEntityHierarchyModel(),
+                "#microsoft.graph.onenotePage" => new ApiSdk.Models.OnenotePage(),
+                "#microsoft.graph.onenoteSection" => new ApiSdk.Models.OnenoteSection(),
+                "#microsoft.graph.sectionGroup" => new ApiSdk.Models.SectionGroup(),
+                _ => new ApiSdk.Models.OnenoteEntitySchemaObjectModel(),
             };
         }
         /// <summary>

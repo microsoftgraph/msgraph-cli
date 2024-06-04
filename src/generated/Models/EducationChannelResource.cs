@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationChannelResource : EducationResource, IParsable
+    public class EducationChannelResource : ApiSdk.Models.EducationResource, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>URL of the channel resource.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string Url { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EducationChannelResource"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EducationChannelResource"/> and sets the default values.
         /// </summary>
         public EducationChannelResource() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationChannelResource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationChannelResource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationChannelResource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationChannelResource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationChannelResource();
+            return new ApiSdk.Models.EducationChannelResource();
         }
         /// <summary>
         /// The deserialization information for the current model

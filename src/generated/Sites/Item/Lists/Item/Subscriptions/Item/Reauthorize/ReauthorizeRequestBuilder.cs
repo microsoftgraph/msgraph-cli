@@ -62,14 +62,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item.Reauthorize
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ReauthorizeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item.Reauthorize.ReauthorizeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ReauthorizeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/subscriptions/{subscription%2Did}/reauthorize", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ReauthorizeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item.Reauthorize.ReauthorizeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ReauthorizeRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/subscriptions/{subscription%2Did}/reauthorize", rawUrl)

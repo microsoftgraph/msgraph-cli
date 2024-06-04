@@ -24,7 +24,7 @@ namespace ApiSdk.Models
         /// <summary>The count of Windows 10 devices that have unsupported OS versions. Read-only.</summary>
         public int? UnsupportedOSversionDeviceCount { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="UserExperienceAnalyticsWindows10DevicesSummary"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UserExperienceAnalyticsWindows10DevicesSummary"/> and sets the default values.
         /// </summary>
         public UserExperienceAnalyticsWindows10DevicesSummary()
         {
@@ -33,12 +33,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsWindows10DevicesSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsWindows10DevicesSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UserExperienceAnalyticsWindows10DevicesSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UserExperienceAnalyticsWindows10DevicesSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsWindows10DevicesSummary();
+            return new ApiSdk.Models.UserExperienceAnalyticsWindows10DevicesSummary();
         }
         /// <summary>
         /// The deserialization information for the current model

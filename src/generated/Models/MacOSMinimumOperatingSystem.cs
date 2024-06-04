@@ -46,7 +46,7 @@ namespace ApiSdk.Models
         /// <summary>When TRUE, indicates macOS 13.0 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
         public bool? V130 { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MacOSMinimumOperatingSystem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MacOSMinimumOperatingSystem"/> and sets the default values.
         /// </summary>
         public MacOSMinimumOperatingSystem()
         {
@@ -55,12 +55,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MacOSMinimumOperatingSystem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MacOSMinimumOperatingSystem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MacOSMinimumOperatingSystem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MacOSMinimumOperatingSystem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MacOSMinimumOperatingSystem();
+            return new ApiSdk.Models.MacOSMinimumOperatingSystem();
         }
         /// <summary>
         /// The deserialization information for the current model

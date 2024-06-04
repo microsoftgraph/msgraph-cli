@@ -35,7 +35,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers
         public Tuple<List<Command>, List<Command>> BuildCommand()
         {
             var commands = new List<Command>();
-            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.RegisteredUsers.Item.DirectoryObjectItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildGraphAppRoleAssignmentByIdNavCommand());
             commands.Add(builder.BuildGraphEndpointByIdNavCommand());
             commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
@@ -51,7 +51,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.RegisteredUsers.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -68,7 +68,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers
         {
             var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.RegisteredUsers.GraphAppRoleAssignment.GraphAppRoleAssignmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -91,7 +91,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers
         {
             var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
-            var builder = new GraphEndpointRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.RegisteredUsers.GraphEndpoint.GraphEndpointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -114,7 +114,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers
         {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.RegisteredUsers.GraphServicePrincipal.GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -137,7 +137,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers
         {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
-            var builder = new GraphUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.RegisteredUsers.GraphUser.GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -270,7 +270,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers
         {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of device entities.";
-            var builder = new RefRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Devices.Item.RegisteredUsers.Ref.RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -282,14 +282,14 @@ namespace ApiSdk.Devices.Item.RegisteredUsers
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RegisteredUsersRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Devices.Item.RegisteredUsers.RegisteredUsersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RegisteredUsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredUsers{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RegisteredUsersRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Devices.Item.RegisteredUsers.RegisteredUsersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RegisteredUsersRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredUsers{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -302,11 +302,11 @@ namespace ApiSdk.Devices.Item.RegisteredUsers
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RegisteredUsersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Devices.Item.RegisteredUsers.RegisteredUsersRequestBuilder.RegisteredUsersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RegisteredUsersRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Devices.Item.RegisteredUsers.RegisteredUsersRequestBuilder.RegisteredUsersRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

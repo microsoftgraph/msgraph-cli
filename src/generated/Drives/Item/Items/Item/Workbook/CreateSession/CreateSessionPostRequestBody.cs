@@ -15,7 +15,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.CreateSession
         /// <summary>The persistChanges property</summary>
         public bool? PersistChanges { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CreateSessionPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.CreateSession.CreateSessionPostRequestBody"/> and sets the default values.
         /// </summary>
         public CreateSessionPostRequestBody()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.CreateSession
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CreateSessionPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.CreateSession.CreateSessionPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CreateSessionPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.CreateSession.CreateSessionPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CreateSessionPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.CreateSession.CreateSessionPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

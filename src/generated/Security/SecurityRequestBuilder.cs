@@ -43,7 +43,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("alerts_v2");
             command.Description = "Provides operations to manage the alerts_v2 property of the microsoft.graph.security entity.";
-            var builder = new Alerts_v2RequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Alerts_v2.Alerts_v2RequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -70,7 +70,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("alerts");
             command.Description = "Provides operations to manage the alerts property of the microsoft.graph.security entity.";
-            var builder = new AlertsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Alerts.AlertsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -97,7 +97,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("attack-simulation");
             command.Description = "Provides operations to manage the attackSimulation property of the microsoft.graph.security entity.";
-            var builder = new AttackSimulationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.AttackSimulation.AttackSimulationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -129,7 +129,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("cases");
             command.Description = "Provides operations to manage the cases property of the microsoft.graph.security entity.";
-            var builder = new CasesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Cases.CasesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -200,7 +200,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("identities");
             command.Description = "Provides operations to manage the identities property of the microsoft.graph.security entity.";
-            var builder = new IdentitiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Identities.IdentitiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -225,7 +225,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("incidents");
             command.Description = "Provides operations to manage the incidents property of the microsoft.graph.security entity.";
-            var builder = new IncidentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Incidents.IncidentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -252,7 +252,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("labels");
             command.Description = "Provides operations to manage the labels property of the microsoft.graph.security entity.";
-            var builder = new LabelsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Labels.LabelsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAuthoritiesNavCommand());
@@ -282,7 +282,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("microsoft-graph-security-run-hunting-query");
             command.Description = "Provides operations to call the runHuntingQuery method.";
-            var builder = new MicrosoftGraphSecurityRunHuntingQueryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.MicrosoftGraphSecurityRunHuntingQuery.MicrosoftGraphSecurityRunHuntingQueryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -344,7 +344,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("secure-score-control-profiles");
             command.Description = "Provides operations to manage the secureScoreControlProfiles property of the microsoft.graph.security entity.";
-            var builder = new SecureScoreControlProfilesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.SecureScoreControlProfiles.SecureScoreControlProfilesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -371,7 +371,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("secure-scores");
             command.Description = "Provides operations to manage the secureScores property of the microsoft.graph.security entity.";
-            var builder = new SecureScoresRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.SecureScores.SecureScoresRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -398,7 +398,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("subject-rights-requests");
             command.Description = "Provides operations to manage the subjectRightsRequests property of the microsoft.graph.security entity.";
-            var builder = new SubjectRightsRequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.SubjectRightsRequests.SubjectRightsRequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -425,7 +425,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("threat-intelligence");
             command.Description = "Provides operations to manage the threatIntelligence property of the microsoft.graph.security entity.";
-            var builder = new ThreatIntelligenceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.ThreatIntelligenceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildArticleIndicatorsNavCommand());
@@ -466,7 +466,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("triggers");
             command.Description = "Provides operations to manage the triggers property of the microsoft.graph.security entity.";
-            var builder = new TriggersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Triggers.TriggersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -491,7 +491,7 @@ namespace ApiSdk.Security
         {
             var command = new Command("trigger-types");
             command.Description = "Provides operations to manage the triggerTypes property of the microsoft.graph.security entity.";
-            var builder = new TriggerTypesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.TriggerTypes.TriggerTypesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -509,14 +509,14 @@ namespace ApiSdk.Security
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SecurityRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.SecurityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SecurityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SecurityRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.SecurityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SecurityRequestBuilder(string rawUrl) : base("{+baseurl}/security{?%24expand,%24select}", rawUrl)
@@ -529,11 +529,11 @@ namespace ApiSdk.Security
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SecurityRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.SecurityRequestBuilder.SecurityRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SecurityRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.SecurityRequestBuilder.SecurityRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

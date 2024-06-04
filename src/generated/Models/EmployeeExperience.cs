@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>The learningCourseActivities property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LearningCourseActivity>? LearningCourseActivities { get; set; }
+        public List<ApiSdk.Models.LearningCourseActivity>? LearningCourseActivities { get; set; }
 #nullable restore
 #else
-        public List<LearningCourseActivity> LearningCourseActivities { get; set; }
+        public List<ApiSdk.Models.LearningCourseActivity> LearningCourseActivities { get; set; }
 #endif
         /// <summary>A collection of learning providers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LearningProvider>? LearningProviders { get; set; }
+        public List<ApiSdk.Models.LearningProvider>? LearningProviders { get; set; }
 #nullable restore
 #else
-        public List<LearningProvider> LearningProviders { get; set; }
+        public List<ApiSdk.Models.LearningProvider> LearningProviders { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EmployeeExperience"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EmployeeExperience"/> and sets the default values.
         /// </summary>
         public EmployeeExperience()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EmployeeExperience"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EmployeeExperience"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static EmployeeExperience CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.EmployeeExperience CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EmployeeExperience();
+            return new ApiSdk.Models.EmployeeExperience();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,8 +61,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "learningCourseActivities", n => { LearningCourseActivities = n.GetCollectionOfObjectValues<LearningCourseActivity>(LearningCourseActivity.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "learningProviders", n => { LearningProviders = n.GetCollectionOfObjectValues<LearningProvider>(LearningProvider.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "learningCourseActivities", n => { LearningCourseActivities = n.GetCollectionOfObjectValues<ApiSdk.Models.LearningCourseActivity>(ApiSdk.Models.LearningCourseActivity.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "learningProviders", n => { LearningProviders = n.GetCollectionOfObjectValues<ApiSdk.Models.LearningProvider>(ApiSdk.Models.LearningProvider.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -73,8 +73,8 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<LearningCourseActivity>("learningCourseActivities", LearningCourseActivities);
-            writer.WriteCollectionOfObjectValues<LearningProvider>("learningProviders", LearningProviders);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.LearningCourseActivity>("learningCourseActivities", LearningCourseActivities);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.LearningProvider>("learningProviders", LearningProviders);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

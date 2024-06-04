@@ -16,21 +16,21 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The xNum property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? XNum { get; set; }
+        public ApiSdk.Models.Json? XNum { get; set; }
 #nullable restore
 #else
-        public Json XNum { get; set; }
+        public ApiSdk.Models.Json XNum { get; set; }
 #endif
         /// <summary>The yNum property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? YNum { get; set; }
+        public ApiSdk.Models.Json? YNum { get; set; }
 #nullable restore
 #else
-        public Json YNum { get; set; }
+        public ApiSdk.Models.Json YNum { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Atan2PostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Atan2.Atan2PostRequestBody"/> and sets the default values.
         /// </summary>
         public Atan2PostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Atan2PostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Atan2.Atan2PostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Atan2PostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Atan2.Atan2PostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Atan2PostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Atan2.Atan2PostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "xNum", n => { XNum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "yNum", n => { YNum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "xNum", n => { XNum = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "yNum", n => { YNum = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("xNum", XNum);
-            writer.WriteObjectValue<Json>("yNum", YNum);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("xNum", XNum);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("yNum", YNum);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

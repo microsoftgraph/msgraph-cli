@@ -15,7 +15,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item.RemoveGroup
         /// <summary>The value property</summary>
         public bool? Value { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="RemoveGroupPostResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.GroupLifecyclePolicies.Item.RemoveGroup.RemoveGroupPostResponse"/> and sets the default values.
         /// </summary>
         public RemoveGroupPostResponse()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item.RemoveGroup
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RemoveGroupPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.GroupLifecyclePolicies.Item.RemoveGroup.RemoveGroupPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RemoveGroupPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.GroupLifecyclePolicies.Item.RemoveGroup.RemoveGroupPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RemoveGroupPostResponse();
+            return new ApiSdk.Groups.Item.GroupLifecyclePolicies.Item.RemoveGroup.RemoveGroupPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

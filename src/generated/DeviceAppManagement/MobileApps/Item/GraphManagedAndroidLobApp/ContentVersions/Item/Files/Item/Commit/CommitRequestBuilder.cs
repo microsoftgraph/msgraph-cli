@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.C
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CommitPostRequestBody>(CommitPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.ContentVersions.Item.Files.Item.Commit.CommitPostRequestBody>(ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.ContentVersions.Item.Files.Item.Commit.CommitPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -74,14 +74,14 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.C
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CommitRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.ContentVersions.Item.Files.Item.Commit.CommitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CommitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedAndroidLobApp/contentVersions/{mobileAppContent%2Did}/files/{mobileAppContentFile%2Did}/commit", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CommitRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.ContentVersions.Item.Files.Item.Commit.CommitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CommitRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedAndroidLobApp/contentVersions/{mobileAppContent%2Did}/files/{mobileAppContentFile%2Did}/commit", rawUrl)
@@ -95,11 +95,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.C
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(CommitPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.ContentVersions.Item.Files.Item.Commit.CommitPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(CommitPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp.ContentVersions.Item.Files.Item.Commit.CommitPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

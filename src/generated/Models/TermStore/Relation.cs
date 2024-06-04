@@ -13,13 +13,13 @@ namespace ApiSdk.Models.TermStore
         /// <summary>The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Term? FromTerm { get; set; }
+        public ApiSdk.Models.TermStore.Term? FromTerm { get; set; }
 #nullable restore
 #else
-        public Term FromTerm { get; set; }
+        public ApiSdk.Models.TermStore.Term FromTerm { get; set; }
 #endif
         /// <summary>The type of relation. Possible values are: pin, reuse.</summary>
-        public RelationType? Relationship { get; set; }
+        public ApiSdk.Models.TermStore.RelationType? Relationship { get; set; }
         /// <summary>The [set] in which the relation is relevant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,20 +31,20 @@ namespace ApiSdk.Models.TermStore
         /// <summary>The to [term] of the relation. The term to which the relationship is defined.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Term? ToTerm { get; set; }
+        public ApiSdk.Models.TermStore.Term? ToTerm { get; set; }
 #nullable restore
 #else
-        public Term ToTerm { get; set; }
+        public ApiSdk.Models.TermStore.Term ToTerm { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Relation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermStore.Relation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Relation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TermStore.Relation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Relation();
+            return new ApiSdk.Models.TermStore.Relation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,10 +54,10 @@ namespace ApiSdk.Models.TermStore
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "fromTerm", n => { FromTerm = n.GetObjectValue<Term>(Term.CreateFromDiscriminatorValue); } },
-                { "relationship", n => { Relationship = n.GetEnumValue<RelationType>(); } },
+                { "fromTerm", n => { FromTerm = n.GetObjectValue<ApiSdk.Models.TermStore.Term>(ApiSdk.Models.TermStore.Term.CreateFromDiscriminatorValue); } },
+                { "relationship", n => { Relationship = n.GetEnumValue<ApiSdk.Models.TermStore.RelationType>(); } },
                 { "set", n => { Set = n.GetObjectValue<ApiSdk.Models.TermStore.Set>(ApiSdk.Models.TermStore.Set.CreateFromDiscriminatorValue); } },
-                { "toTerm", n => { ToTerm = n.GetObjectValue<Term>(Term.CreateFromDiscriminatorValue); } },
+                { "toTerm", n => { ToTerm = n.GetObjectValue<ApiSdk.Models.TermStore.Term>(ApiSdk.Models.TermStore.Term.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -68,10 +68,10 @@ namespace ApiSdk.Models.TermStore
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<Term>("fromTerm", FromTerm);
-            writer.WriteEnumValue<RelationType>("relationship", Relationship);
+            writer.WriteObjectValue<ApiSdk.Models.TermStore.Term>("fromTerm", FromTerm);
+            writer.WriteEnumValue<ApiSdk.Models.TermStore.RelationType>("relationship", Relationship);
             writer.WriteObjectValue<ApiSdk.Models.TermStore.Set>("set", Set);
-            writer.WriteObjectValue<Term>("toTerm", ToTerm);
+            writer.WriteObjectValue<ApiSdk.Models.TermStore.Term>("toTerm", ToTerm);
         }
     }
 }

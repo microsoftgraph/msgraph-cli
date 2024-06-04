@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessReviewInstanceDecisionItem : Entity, IParsable
+    public class AccessReviewInstanceDecisionItem : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The identifier of the accessReviewInstance parent. Supports $select. Read-only.</summary>
@@ -21,10 +21,10 @@ namespace ApiSdk.Models
         /// <summary>The identifier of the user who applied the decision. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserIdentity? AppliedBy { get; set; }
+        public ApiSdk.Models.UserIdentity? AppliedBy { get; set; }
 #nullable restore
 #else
-        public UserIdentity AppliedBy { get; set; }
+        public ApiSdk.Models.UserIdentity AppliedBy { get; set; }
 #endif
         /// <summary>The timestamp when the approval decision was applied.00000000-0000-0000-0000-000000000000 if the assigned reviewer hasn&apos;t applied the decision or it was automatically applied. The DatetimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  Supports $select. Read-only.</summary>
         public DateTimeOffset? AppliedDateTime { get; set; }
@@ -47,10 +47,10 @@ namespace ApiSdk.Models
         /// <summary>Insights are recommendations to reviewers on whether to approve or deny a decision. There can be multiple insights associated with an accessReviewInstanceDecisionItem.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<GovernanceInsight>? Insights { get; set; }
+        public List<ApiSdk.Models.GovernanceInsight>? Insights { get; set; }
 #nullable restore
 #else
-        public List<GovernanceInsight> Insights { get; set; }
+        public List<ApiSdk.Models.GovernanceInsight> Insights { get; set; }
 #endif
         /// <summary>Justification left by the reviewer when they made the decision.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -63,10 +63,10 @@ namespace ApiSdk.Models
         /// <summary>Every decision item in an access review represents a principal&apos;s access to a resource. This property represents details of the principal. For example, if a decision item represents access of User &apos;Bob&apos; to Group &apos;Sales&apos; - The principal is &apos;Bob&apos; and the resource is &apos;Sales&apos;. Principals can be of two types - userIdentity and servicePrincipalIdentity. Supports $select. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Identity? Principal { get; set; }
+        public ApiSdk.Models.Identity? Principal { get; set; }
 #nullable restore
 #else
-        public Identity Principal { get; set; }
+        public ApiSdk.Models.Identity Principal { get; set; }
 #endif
         /// <summary>A link to the principal object. For example, https://graph.microsoft.com/v1.0/users/a6c7aecb-cbfd-4763-87ef-e91b4bd509d9. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -87,10 +87,10 @@ namespace ApiSdk.Models
         /// <summary>Every decision item in an access review represents a principal&apos;s access to a resource. This property represents details of the resource. For example, if a decision item represents access of User &apos;Bob&apos; to Group &apos;Sales&apos; - The principal is Bob and the resource is &apos;Sales&apos;. Resources can be of multiple types. See accessReviewInstanceDecisionItemResource. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessReviewInstanceDecisionItemResource? Resource { get; set; }
+        public ApiSdk.Models.AccessReviewInstanceDecisionItemResource? Resource { get; set; }
 #nullable restore
 #else
-        public AccessReviewInstanceDecisionItemResource Resource { get; set; }
+        public ApiSdk.Models.AccessReviewInstanceDecisionItemResource Resource { get; set; }
 #endif
         /// <summary>A link to the resource. For example, https://graph.microsoft.com/v1.0/servicePrincipals/c86300f3-8695-4320-9f6e-32a2555f5ff8. Supports $select. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -103,22 +103,22 @@ namespace ApiSdk.Models
         /// <summary>The identifier of the reviewer.00000000-0000-0000-0000-000000000000 if the assigned reviewer hasn&apos;t reviewed. Supports $select. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserIdentity? ReviewedBy { get; set; }
+        public ApiSdk.Models.UserIdentity? ReviewedBy { get; set; }
 #nullable restore
 #else
-        public UserIdentity ReviewedBy { get; set; }
+        public ApiSdk.Models.UserIdentity ReviewedBy { get; set; }
 #endif
         /// <summary>The timestamp when the review decision occurred. Supports $select. Read-only.</summary>
         public DateTimeOffset? ReviewedDateTime { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessReviewInstanceDecisionItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessReviewInstanceDecisionItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessReviewInstanceDecisionItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessReviewInstanceDecisionItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessReviewInstanceDecisionItem();
+            return new ApiSdk.Models.AccessReviewInstanceDecisionItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -129,18 +129,18 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "accessReviewId", n => { AccessReviewId = n.GetStringValue(); } },
-                { "appliedBy", n => { AppliedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
+                { "appliedBy", n => { AppliedBy = n.GetObjectValue<ApiSdk.Models.UserIdentity>(ApiSdk.Models.UserIdentity.CreateFromDiscriminatorValue); } },
                 { "appliedDateTime", n => { AppliedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "applyResult", n => { ApplyResult = n.GetStringValue(); } },
                 { "decision", n => { Decision = n.GetStringValue(); } },
-                { "insights", n => { Insights = n.GetCollectionOfObjectValues<GovernanceInsight>(GovernanceInsight.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "insights", n => { Insights = n.GetCollectionOfObjectValues<ApiSdk.Models.GovernanceInsight>(ApiSdk.Models.GovernanceInsight.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "justification", n => { Justification = n.GetStringValue(); } },
-                { "principal", n => { Principal = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                { "principal", n => { Principal = n.GetObjectValue<ApiSdk.Models.Identity>(ApiSdk.Models.Identity.CreateFromDiscriminatorValue); } },
                 { "principalLink", n => { PrincipalLink = n.GetStringValue(); } },
                 { "recommendation", n => { Recommendation = n.GetStringValue(); } },
-                { "resource", n => { Resource = n.GetObjectValue<AccessReviewInstanceDecisionItemResource>(AccessReviewInstanceDecisionItemResource.CreateFromDiscriminatorValue); } },
+                { "resource", n => { Resource = n.GetObjectValue<ApiSdk.Models.AccessReviewInstanceDecisionItemResource>(ApiSdk.Models.AccessReviewInstanceDecisionItemResource.CreateFromDiscriminatorValue); } },
                 { "resourceLink", n => { ResourceLink = n.GetStringValue(); } },
-                { "reviewedBy", n => { ReviewedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
+                { "reviewedBy", n => { ReviewedBy = n.GetObjectValue<ApiSdk.Models.UserIdentity>(ApiSdk.Models.UserIdentity.CreateFromDiscriminatorValue); } },
                 { "reviewedDateTime", n => { ReviewedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -153,18 +153,18 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("accessReviewId", AccessReviewId);
-            writer.WriteObjectValue<UserIdentity>("appliedBy", AppliedBy);
+            writer.WriteObjectValue<ApiSdk.Models.UserIdentity>("appliedBy", AppliedBy);
             writer.WriteDateTimeOffsetValue("appliedDateTime", AppliedDateTime);
             writer.WriteStringValue("applyResult", ApplyResult);
             writer.WriteStringValue("decision", Decision);
-            writer.WriteCollectionOfObjectValues<GovernanceInsight>("insights", Insights);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.GovernanceInsight>("insights", Insights);
             writer.WriteStringValue("justification", Justification);
-            writer.WriteObjectValue<Identity>("principal", Principal);
+            writer.WriteObjectValue<ApiSdk.Models.Identity>("principal", Principal);
             writer.WriteStringValue("principalLink", PrincipalLink);
             writer.WriteStringValue("recommendation", Recommendation);
-            writer.WriteObjectValue<AccessReviewInstanceDecisionItemResource>("resource", Resource);
+            writer.WriteObjectValue<ApiSdk.Models.AccessReviewInstanceDecisionItemResource>("resource", Resource);
             writer.WriteStringValue("resourceLink", ResourceLink);
-            writer.WriteObjectValue<UserIdentity>("reviewedBy", ReviewedBy);
+            writer.WriteObjectValue<ApiSdk.Models.UserIdentity>("reviewedBy", ReviewedBy);
             writer.WriteDateTimeOffsetValue("reviewedDateTime", ReviewedDateTime);
         }
     }

@@ -67,14 +67,14 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CreateDownloadUrlRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogCollectionRequests.Item.CreateDownloadUrl.CreateDownloadUrlRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CreateDownloadUrlRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/mobileAppTroubleshootingEvents/{mobileAppTroubleshootingEvent%2Did}/appLogCollectionRequests/{appLogCollectionRequest%2Did}/createDownloadUrl", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CreateDownloadUrlRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogCollectionRequests.Item.CreateDownloadUrl.CreateDownloadUrlRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CreateDownloadUrlRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/mobileAppTroubleshootingEvents/{mobileAppTroubleshootingEvent%2Did}/appLogCollectionRequests/{appLogCollectionRequest%2Did}/createDownloadUrl", rawUrl)

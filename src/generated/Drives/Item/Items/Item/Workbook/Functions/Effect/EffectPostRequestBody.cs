@@ -16,21 +16,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect
         /// <summary>The nominalRate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? NominalRate { get; set; }
+        public ApiSdk.Models.Json? NominalRate { get; set; }
 #nullable restore
 #else
-        public Json NominalRate { get; set; }
+        public ApiSdk.Models.Json NominalRate { get; set; }
 #endif
         /// <summary>The npery property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Npery { get; set; }
+        public ApiSdk.Models.Json? Npery { get; set; }
 #nullable restore
 #else
-        public Json Npery { get; set; }
+        public ApiSdk.Models.Json Npery { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EffectPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect.EffectPostRequestBody"/> and sets the default values.
         /// </summary>
         public EffectPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EffectPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect.EffectPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static EffectPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect.EffectPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EffectPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect.EffectPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "nominalRate", n => { NominalRate = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "npery", n => { Npery = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "nominalRate", n => { NominalRate = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "npery", n => { Npery = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("nominalRate", NominalRate);
-            writer.WriteObjectValue<Json>("npery", Npery);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("nominalRate", NominalRate);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("npery", Npery);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

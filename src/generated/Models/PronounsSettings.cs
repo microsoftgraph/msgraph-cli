@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PronounsSettings : Entity, IParsable
+    public class PronounsSettings : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>true to enable pronouns in the organization; otherwise, false. The default value is false, and pronouns are disabled.</summary>
@@ -15,12 +15,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PronounsSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PronounsSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PronounsSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PronounsSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PronounsSettings();
+            return new ApiSdk.Models.PronounsSettings();
         }
         /// <summary>
         /// The deserialization information for the current model

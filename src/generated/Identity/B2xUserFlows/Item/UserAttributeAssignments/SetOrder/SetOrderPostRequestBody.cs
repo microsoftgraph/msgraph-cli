@@ -16,13 +16,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder
         /// <summary>The newAssignmentOrder property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AssignmentOrder? NewAssignmentOrder { get; set; }
+        public ApiSdk.Models.AssignmentOrder? NewAssignmentOrder { get; set; }
 #nullable restore
 #else
-        public AssignmentOrder NewAssignmentOrder { get; set; }
+        public ApiSdk.Models.AssignmentOrder NewAssignmentOrder { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SetOrderPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder.SetOrderPostRequestBody"/> and sets the default values.
         /// </summary>
         public SetOrderPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SetOrderPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder.SetOrderPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SetOrderPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder.SetOrderPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SetOrderPostRequestBody();
+            return new ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder.SetOrderPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "newAssignmentOrder", n => { NewAssignmentOrder = n.GetObjectValue<AssignmentOrder>(AssignmentOrder.CreateFromDiscriminatorValue); } },
+                { "newAssignmentOrder", n => { NewAssignmentOrder = n.GetObjectValue<ApiSdk.Models.AssignmentOrder>(ApiSdk.Models.AssignmentOrder.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<AssignmentOrder>("newAssignmentOrder", NewAssignmentOrder);
+            writer.WriteObjectValue<ApiSdk.Models.AssignmentOrder>("newAssignmentOrder", NewAssignmentOrder);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class StandardWebPart : WebPart, IParsable
+    public class StandardWebPart : ApiSdk.Models.WebPart, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The instance identifier of the container text webPart. It only works for inline standard webPart in rich text webParts.</summary>
@@ -21,10 +21,10 @@ namespace ApiSdk.Models
         /// <summary>Data of the webPart.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WebPartData? Data { get; set; }
+        public ApiSdk.Models.WebPartData? Data { get; set; }
 #nullable restore
 #else
-        public WebPartData Data { get; set; }
+        public ApiSdk.Models.WebPartData Data { get; set; }
 #endif
         /// <summary>A Guid that indicates the webPart type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -35,7 +35,7 @@ namespace ApiSdk.Models
         public string WebPartType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="StandardWebPart"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.StandardWebPart"/> and sets the default values.
         /// </summary>
         public StandardWebPart() : base()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="StandardWebPart"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.StandardWebPart"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new StandardWebPart CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.StandardWebPart CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new StandardWebPart();
+            return new ApiSdk.Models.StandardWebPart();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,7 +60,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "containerTextWebPartId", n => { ContainerTextWebPartId = n.GetStringValue(); } },
-                { "data", n => { Data = n.GetObjectValue<WebPartData>(WebPartData.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<ApiSdk.Models.WebPartData>(ApiSdk.Models.WebPartData.CreateFromDiscriminatorValue); } },
                 { "webPartType", n => { WebPartType = n.GetStringValue(); } },
             };
         }
@@ -73,7 +73,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("containerTextWebPartId", ContainerTextWebPartId);
-            writer.WriteObjectValue<WebPartData>("data", Data);
+            writer.WriteObjectValue<ApiSdk.Models.WebPartData>("data", Data);
             writer.WriteStringValue("webPartType", WebPartType);
         }
     }

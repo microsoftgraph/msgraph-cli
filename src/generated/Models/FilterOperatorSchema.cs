@@ -7,30 +7,30 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class FilterOperatorSchema : Entity, IParsable
+    public class FilterOperatorSchema : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The arity property</summary>
-        public ScopeOperatorType? Arity { get; set; }
+        public ApiSdk.Models.ScopeOperatorType? Arity { get; set; }
         /// <summary>The multivaluedComparisonType property</summary>
-        public ScopeOperatorMultiValuedComparisonType? MultivaluedComparisonType { get; set; }
+        public ApiSdk.Models.ScopeOperatorMultiValuedComparisonType? MultivaluedComparisonType { get; set; }
         /// <summary>Attribute types supported by the operator. Possible values are: Boolean, Binary, Reference, Integer, String.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AttributeType?>? SupportedAttributeTypes { get; set; }
+        public List<ApiSdk.Models.AttributeType?>? SupportedAttributeTypes { get; set; }
 #nullable restore
 #else
-        public List<AttributeType?> SupportedAttributeTypes { get; set; }
+        public List<ApiSdk.Models.AttributeType?> SupportedAttributeTypes { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FilterOperatorSchema"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.FilterOperatorSchema"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FilterOperatorSchema CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.FilterOperatorSchema CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FilterOperatorSchema();
+            return new ApiSdk.Models.FilterOperatorSchema();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,9 +40,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "arity", n => { Arity = n.GetEnumValue<ScopeOperatorType>(); } },
-                { "multivaluedComparisonType", n => { MultivaluedComparisonType = n.GetEnumValue<ScopeOperatorMultiValuedComparisonType>(); } },
-                { "supportedAttributeTypes", n => { SupportedAttributeTypes = n.GetCollectionOfEnumValues<AttributeType>()?.ToList(); } },
+                { "arity", n => { Arity = n.GetEnumValue<ApiSdk.Models.ScopeOperatorType>(); } },
+                { "multivaluedComparisonType", n => { MultivaluedComparisonType = n.GetEnumValue<ApiSdk.Models.ScopeOperatorMultiValuedComparisonType>(); } },
+                { "supportedAttributeTypes", n => { SupportedAttributeTypes = n.GetCollectionOfEnumValues<ApiSdk.Models.AttributeType>()?.ToList(); } },
             };
         }
         /// <summary>
@@ -53,9 +53,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<ScopeOperatorType>("arity", Arity);
-            writer.WriteEnumValue<ScopeOperatorMultiValuedComparisonType>("multivaluedComparisonType", MultivaluedComparisonType);
-            writer.WriteCollectionOfEnumValues<AttributeType>("supportedAttributeTypes", SupportedAttributeTypes);
+            writer.WriteEnumValue<ApiSdk.Models.ScopeOperatorType>("arity", Arity);
+            writer.WriteEnumValue<ApiSdk.Models.ScopeOperatorMultiValuedComparisonType>("multivaluedComparisonType", MultivaluedComparisonType);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.AttributeType>("supportedAttributeTypes", SupportedAttributeTypes);
         }
     }
 }

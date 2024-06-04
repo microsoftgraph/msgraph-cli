@@ -30,7 +30,7 @@ namespace ApiSdk.Drives
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new DriveItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Drives.Item.DriveItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildBundlesNavCommand());
             commands.Add(builder.BuildCreatedByUserNavCommand());
             executables.Add(builder.BuildDeleteCommand());
@@ -97,7 +97,7 @@ namespace ApiSdk.Drives
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
-            var driveIndexer = new DriveItemRequestBuilder(PathParameters);
+            var driveIndexer = new ApiSdk.Drives.Item.DriveItemRequestBuilder(PathParameters);
             var command = driveIndexer.BuildListNavCommand();
             command.Description = "Get entities from drives";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -183,14 +183,14 @@ namespace ApiSdk.Drives
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DrivesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.DrivesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DrivesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives{?%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DrivesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.DrivesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DrivesRequestBuilder(string rawUrl) : base("{+baseurl}/drives{?%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -203,11 +203,11 @@ namespace ApiSdk.Drives
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DrivesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.DrivesRequestBuilder.DrivesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DrivesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Drives.DrivesRequestBuilder.DrivesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

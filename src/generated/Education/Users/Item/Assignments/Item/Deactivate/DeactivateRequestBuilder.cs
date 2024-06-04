@@ -67,14 +67,14 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Deactivate
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeactivateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Users.Item.Assignments.Item.Deactivate.DeactivateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeactivateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/deactivate", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeactivateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Users.Item.Assignments.Item.Deactivate.DeactivateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeactivateRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/deactivate", rawUrl)

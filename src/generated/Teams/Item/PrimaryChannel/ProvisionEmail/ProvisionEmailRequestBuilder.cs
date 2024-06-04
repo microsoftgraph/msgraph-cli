@@ -61,14 +61,14 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ProvisionEmailRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail.ProvisionEmailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ProvisionEmailRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/provisionEmail", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ProvisionEmailRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail.ProvisionEmailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ProvisionEmailRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/provisionEmail", rawUrl)

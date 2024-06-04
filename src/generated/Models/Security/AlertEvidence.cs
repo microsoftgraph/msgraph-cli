@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Security
         public string OdataType { get; set; }
 #endif
         /// <summary>The remediationStatus property</summary>
-        public EvidenceRemediationStatus? RemediationStatus { get; set; }
+        public ApiSdk.Models.Security.EvidenceRemediationStatus? RemediationStatus { get; set; }
         /// <summary>Details about the remediation status.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -43,10 +43,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The role/s that an evidence entity represents in an alert, for example, an IP address that is associated with an attacker has the evidence role Attacker.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EvidenceRole?>? Roles { get; set; }
+        public List<ApiSdk.Models.Security.EvidenceRole?>? Roles { get; set; }
 #nullable restore
 #else
-        public List<EvidenceRole?> Roles { get; set; }
+        public List<ApiSdk.Models.Security.EvidenceRole?> Roles { get; set; }
 #endif
         /// <summary>Array of custom tags associated with an evidence instance, for example, to denote a group of devices, high-value assets, etc.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,9 +57,9 @@ namespace ApiSdk.Models.Security
         public List<string> Tags { get; set; }
 #endif
         /// <summary>The verdict property</summary>
-        public EvidenceVerdict? Verdict { get; set; }
+        public ApiSdk.Models.Security.EvidenceVerdict? Verdict { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AlertEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.AlertEvidence"/> and sets the default values.
         /// </summary>
         public AlertEvidence()
         {
@@ -68,58 +68,58 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AlertEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.AlertEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AlertEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.AlertEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.amazonResourceEvidence" => new AmazonResourceEvidence(),
-                "#microsoft.graph.security.analyzedMessageEvidence" => new AnalyzedMessageEvidence(),
-                "#microsoft.graph.security.azureResourceEvidence" => new AzureResourceEvidence(),
-                "#microsoft.graph.security.blobContainerEvidence" => new BlobContainerEvidence(),
-                "#microsoft.graph.security.blobEvidence" => new BlobEvidence(),
-                "#microsoft.graph.security.cloudApplicationEvidence" => new CloudApplicationEvidence(),
-                "#microsoft.graph.security.containerEvidence" => new ContainerEvidence(),
-                "#microsoft.graph.security.containerImageEvidence" => new ContainerImageEvidence(),
-                "#microsoft.graph.security.containerRegistryEvidence" => new ContainerRegistryEvidence(),
-                "#microsoft.graph.security.deviceEvidence" => new DeviceEvidence(),
-                "#microsoft.graph.security.dnsEvidence" => new DnsEvidence(),
-                "#microsoft.graph.security.fileEvidence" => new FileEvidence(),
-                "#microsoft.graph.security.fileHashEvidence" => new FileHashEvidence(),
-                "#microsoft.graph.security.gitHubOrganizationEvidence" => new GitHubOrganizationEvidence(),
-                "#microsoft.graph.security.gitHubRepoEvidence" => new GitHubRepoEvidence(),
-                "#microsoft.graph.security.gitHubUserEvidence" => new GitHubUserEvidence(),
-                "#microsoft.graph.security.googleCloudResourceEvidence" => new GoogleCloudResourceEvidence(),
-                "#microsoft.graph.security.hostLogonSessionEvidence" => new HostLogonSessionEvidence(),
-                "#microsoft.graph.security.ioTDeviceEvidence" => new IoTDeviceEvidence(),
-                "#microsoft.graph.security.ipEvidence" => new IpEvidence(),
-                "#microsoft.graph.security.kubernetesClusterEvidence" => new KubernetesClusterEvidence(),
-                "#microsoft.graph.security.kubernetesControllerEvidence" => new KubernetesControllerEvidence(),
-                "#microsoft.graph.security.kubernetesNamespaceEvidence" => new KubernetesNamespaceEvidence(),
-                "#microsoft.graph.security.kubernetesPodEvidence" => new KubernetesPodEvidence(),
-                "#microsoft.graph.security.kubernetesSecretEvidence" => new KubernetesSecretEvidence(),
-                "#microsoft.graph.security.kubernetesServiceAccountEvidence" => new KubernetesServiceAccountEvidence(),
-                "#microsoft.graph.security.kubernetesServiceEvidence" => new KubernetesServiceEvidence(),
-                "#microsoft.graph.security.mailboxConfigurationEvidence" => new MailboxConfigurationEvidence(),
-                "#microsoft.graph.security.mailboxEvidence" => new MailboxEvidence(),
-                "#microsoft.graph.security.mailClusterEvidence" => new MailClusterEvidence(),
-                "#microsoft.graph.security.malwareEvidence" => new MalwareEvidence(),
-                "#microsoft.graph.security.networkConnectionEvidence" => new NetworkConnectionEvidence(),
-                "#microsoft.graph.security.nicEvidence" => new NicEvidence(),
-                "#microsoft.graph.security.oauthApplicationEvidence" => new OauthApplicationEvidence(),
-                "#microsoft.graph.security.processEvidence" => new ProcessEvidence(),
-                "#microsoft.graph.security.registryKeyEvidence" => new RegistryKeyEvidence(),
-                "#microsoft.graph.security.registryValueEvidence" => new RegistryValueEvidence(),
-                "#microsoft.graph.security.sasTokenEvidence" => new SasTokenEvidence(),
-                "#microsoft.graph.security.securityGroupEvidence" => new SecurityGroupEvidence(),
-                "#microsoft.graph.security.servicePrincipalEvidence" => new ServicePrincipalEvidence(),
-                "#microsoft.graph.security.submissionMailEvidence" => new SubmissionMailEvidence(),
-                "#microsoft.graph.security.urlEvidence" => new UrlEvidence(),
-                "#microsoft.graph.security.userEvidence" => new UserEvidence(),
-                _ => new AlertEvidence(),
+                "#microsoft.graph.security.amazonResourceEvidence" => new ApiSdk.Models.Security.AmazonResourceEvidence(),
+                "#microsoft.graph.security.analyzedMessageEvidence" => new ApiSdk.Models.Security.AnalyzedMessageEvidence(),
+                "#microsoft.graph.security.azureResourceEvidence" => new ApiSdk.Models.Security.AzureResourceEvidence(),
+                "#microsoft.graph.security.blobContainerEvidence" => new ApiSdk.Models.Security.BlobContainerEvidence(),
+                "#microsoft.graph.security.blobEvidence" => new ApiSdk.Models.Security.BlobEvidence(),
+                "#microsoft.graph.security.cloudApplicationEvidence" => new ApiSdk.Models.Security.CloudApplicationEvidence(),
+                "#microsoft.graph.security.containerEvidence" => new ApiSdk.Models.Security.ContainerEvidence(),
+                "#microsoft.graph.security.containerImageEvidence" => new ApiSdk.Models.Security.ContainerImageEvidence(),
+                "#microsoft.graph.security.containerRegistryEvidence" => new ApiSdk.Models.Security.ContainerRegistryEvidence(),
+                "#microsoft.graph.security.deviceEvidence" => new ApiSdk.Models.Security.DeviceEvidence(),
+                "#microsoft.graph.security.dnsEvidence" => new ApiSdk.Models.Security.DnsEvidence(),
+                "#microsoft.graph.security.fileEvidence" => new ApiSdk.Models.Security.FileEvidence(),
+                "#microsoft.graph.security.fileHashEvidence" => new ApiSdk.Models.Security.FileHashEvidence(),
+                "#microsoft.graph.security.gitHubOrganizationEvidence" => new ApiSdk.Models.Security.GitHubOrganizationEvidence(),
+                "#microsoft.graph.security.gitHubRepoEvidence" => new ApiSdk.Models.Security.GitHubRepoEvidence(),
+                "#microsoft.graph.security.gitHubUserEvidence" => new ApiSdk.Models.Security.GitHubUserEvidence(),
+                "#microsoft.graph.security.googleCloudResourceEvidence" => new ApiSdk.Models.Security.GoogleCloudResourceEvidence(),
+                "#microsoft.graph.security.hostLogonSessionEvidence" => new ApiSdk.Models.Security.HostLogonSessionEvidence(),
+                "#microsoft.graph.security.ioTDeviceEvidence" => new ApiSdk.Models.Security.IoTDeviceEvidence(),
+                "#microsoft.graph.security.ipEvidence" => new ApiSdk.Models.Security.IpEvidence(),
+                "#microsoft.graph.security.kubernetesClusterEvidence" => new ApiSdk.Models.Security.KubernetesClusterEvidence(),
+                "#microsoft.graph.security.kubernetesControllerEvidence" => new ApiSdk.Models.Security.KubernetesControllerEvidence(),
+                "#microsoft.graph.security.kubernetesNamespaceEvidence" => new ApiSdk.Models.Security.KubernetesNamespaceEvidence(),
+                "#microsoft.graph.security.kubernetesPodEvidence" => new ApiSdk.Models.Security.KubernetesPodEvidence(),
+                "#microsoft.graph.security.kubernetesSecretEvidence" => new ApiSdk.Models.Security.KubernetesSecretEvidence(),
+                "#microsoft.graph.security.kubernetesServiceAccountEvidence" => new ApiSdk.Models.Security.KubernetesServiceAccountEvidence(),
+                "#microsoft.graph.security.kubernetesServiceEvidence" => new ApiSdk.Models.Security.KubernetesServiceEvidence(),
+                "#microsoft.graph.security.mailboxConfigurationEvidence" => new ApiSdk.Models.Security.MailboxConfigurationEvidence(),
+                "#microsoft.graph.security.mailboxEvidence" => new ApiSdk.Models.Security.MailboxEvidence(),
+                "#microsoft.graph.security.mailClusterEvidence" => new ApiSdk.Models.Security.MailClusterEvidence(),
+                "#microsoft.graph.security.malwareEvidence" => new ApiSdk.Models.Security.MalwareEvidence(),
+                "#microsoft.graph.security.networkConnectionEvidence" => new ApiSdk.Models.Security.NetworkConnectionEvidence(),
+                "#microsoft.graph.security.nicEvidence" => new ApiSdk.Models.Security.NicEvidence(),
+                "#microsoft.graph.security.oauthApplicationEvidence" => new ApiSdk.Models.Security.OauthApplicationEvidence(),
+                "#microsoft.graph.security.processEvidence" => new ApiSdk.Models.Security.ProcessEvidence(),
+                "#microsoft.graph.security.registryKeyEvidence" => new ApiSdk.Models.Security.RegistryKeyEvidence(),
+                "#microsoft.graph.security.registryValueEvidence" => new ApiSdk.Models.Security.RegistryValueEvidence(),
+                "#microsoft.graph.security.sasTokenEvidence" => new ApiSdk.Models.Security.SasTokenEvidence(),
+                "#microsoft.graph.security.securityGroupEvidence" => new ApiSdk.Models.Security.SecurityGroupEvidence(),
+                "#microsoft.graph.security.servicePrincipalEvidence" => new ApiSdk.Models.Security.ServicePrincipalEvidence(),
+                "#microsoft.graph.security.submissionMailEvidence" => new ApiSdk.Models.Security.SubmissionMailEvidence(),
+                "#microsoft.graph.security.urlEvidence" => new ApiSdk.Models.Security.UrlEvidence(),
+                "#microsoft.graph.security.userEvidence" => new ApiSdk.Models.Security.UserEvidence(),
+                _ => new ApiSdk.Models.Security.AlertEvidence(),
             };
         }
         /// <summary>
@@ -133,11 +133,11 @@ namespace ApiSdk.Models.Security
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "detailedRoles", n => { DetailedRoles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "remediationStatus", n => { RemediationStatus = n.GetEnumValue<EvidenceRemediationStatus>(); } },
+                { "remediationStatus", n => { RemediationStatus = n.GetEnumValue<ApiSdk.Models.Security.EvidenceRemediationStatus>(); } },
                 { "remediationStatusDetails", n => { RemediationStatusDetails = n.GetStringValue(); } },
-                { "roles", n => { Roles = n.GetCollectionOfEnumValues<EvidenceRole>()?.ToList(); } },
+                { "roles", n => { Roles = n.GetCollectionOfEnumValues<ApiSdk.Models.Security.EvidenceRole>()?.ToList(); } },
                 { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "verdict", n => { Verdict = n.GetEnumValue<EvidenceVerdict>(); } },
+                { "verdict", n => { Verdict = n.GetEnumValue<ApiSdk.Models.Security.EvidenceVerdict>(); } },
             };
         }
         /// <summary>
@@ -150,11 +150,11 @@ namespace ApiSdk.Models.Security
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("detailedRoles", DetailedRoles);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<EvidenceRemediationStatus>("remediationStatus", RemediationStatus);
+            writer.WriteEnumValue<ApiSdk.Models.Security.EvidenceRemediationStatus>("remediationStatus", RemediationStatus);
             writer.WriteStringValue("remediationStatusDetails", RemediationStatusDetails);
-            writer.WriteCollectionOfEnumValues<EvidenceRole>("roles", Roles);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.Security.EvidenceRole>("roles", Roles);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
-            writer.WriteEnumValue<EvidenceVerdict>("verdict", Verdict);
+            writer.WriteEnumValue<ApiSdk.Models.Security.EvidenceVerdict>("verdict", Verdict);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

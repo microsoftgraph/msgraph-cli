@@ -21,7 +21,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DownloadApplePushNotificationCertificateSigningRequestGetResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApplePushNotificationCertificateSigningRequest.DownloadApplePushNotificationCertificateSigningRequestGetResponse"/> and sets the default values.
         /// </summary>
         public DownloadApplePushNotificationCertificateSigningRequestGetResponse()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DownloadApplePushNotificationCertificateSigningRequestGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApplePushNotificationCertificateSigningRequest.DownloadApplePushNotificationCertificateSigningRequestGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DownloadApplePushNotificationCertificateSigningRequestGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApplePushNotificationCertificateSigningRequest.DownloadApplePushNotificationCertificateSigningRequestGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DownloadApplePushNotificationCertificateSigningRequestGetResponse();
+            return new ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApplePushNotificationCertificateSigningRequest.DownloadApplePushNotificationCertificateSigningRequestGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

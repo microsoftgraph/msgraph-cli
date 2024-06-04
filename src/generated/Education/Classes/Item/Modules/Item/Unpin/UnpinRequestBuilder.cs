@@ -67,14 +67,14 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Unpin
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnpinRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Classes.Item.Modules.Item.Unpin.UnpinRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnpinRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/unpin", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnpinRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Classes.Item.Modules.Item.Unpin.UnpinRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnpinRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/unpin", rawUrl)

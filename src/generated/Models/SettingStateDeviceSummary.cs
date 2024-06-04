@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Device Compilance Policy and Configuration for a Setting State summary
     /// </summary>
-    public class SettingStateDeviceSummary : Entity, IParsable
+    public class SettingStateDeviceSummary : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Device Compliant count for the setting</summary>
         public int? CompliantDeviceCount { get; set; }
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SettingStateDeviceSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SettingStateDeviceSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SettingStateDeviceSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SettingStateDeviceSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SettingStateDeviceSummary();
+            return new ApiSdk.Models.SettingStateDeviceSummary();
         }
         /// <summary>
         /// The deserialization information for the current model

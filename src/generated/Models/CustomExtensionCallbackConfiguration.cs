@@ -24,7 +24,7 @@ namespace ApiSdk.Models
         /// <summary>The maximum duration in ISO 8601 format that Microsoft Entra ID will wait for a resume action for the callout it sent to the logic app. The valid range for custom extensions in lifecycle workflows is five minutes to three hours. The valid range for custom extensions in entitlement management is between 5 minutes and 14 days. For example, PT3H refers to three hours, P3D refers to three days, PT10M refers to ten minutes.</summary>
         public TimeSpan? TimeoutDuration { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CustomExtensionCallbackConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CustomExtensionCallbackConfiguration"/> and sets the default values.
         /// </summary>
         public CustomExtensionCallbackConfiguration()
         {
@@ -33,16 +33,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CustomExtensionCallbackConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CustomExtensionCallbackConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CustomExtensionCallbackConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CustomExtensionCallbackConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.identityGovernance.customTaskExtensionCallbackConfiguration" => new CustomTaskExtensionCallbackConfiguration(),
-                _ => new CustomExtensionCallbackConfiguration(),
+                "#microsoft.graph.identityGovernance.customTaskExtensionCallbackConfiguration" => new ApiSdk.Models.IdentityGovernance.CustomTaskExtensionCallbackConfiguration(),
+                _ => new ApiSdk.Models.CustomExtensionCallbackConfiguration(),
             };
         }
         /// <summary>

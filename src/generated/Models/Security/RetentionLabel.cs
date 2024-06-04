@@ -45,10 +45,10 @@ namespace ApiSdk.Models.Security
         /// <summary>Represents out-of-the-box values that provide more options to improve the manageability and organization of the content you need to label.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FilePlanDescriptor? Descriptors { get; set; }
+        public ApiSdk.Models.Security.FilePlanDescriptor? Descriptors { get; set; }
 #nullable restore
 #else
-        public FilePlanDescriptor Descriptors { get; set; }
+        public ApiSdk.Models.Security.FilePlanDescriptor Descriptors { get; set; }
 #endif
         /// <summary>Unique string that defines a label name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -61,10 +61,10 @@ namespace ApiSdk.Models.Security
         /// <summary>When action at the end of retention is chosen as &apos;dispositionReview&apos;, dispositionReviewStages specifies a sequential set of stages with at least one reviewer in each stage.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DispositionReviewStage>? DispositionReviewStages { get; set; }
+        public List<ApiSdk.Models.Security.DispositionReviewStage>? DispositionReviewStages { get; set; }
 #nullable restore
 #else
-        public List<DispositionReviewStage> DispositionReviewStages { get; set; }
+        public List<ApiSdk.Models.Security.DispositionReviewStage> DispositionReviewStages { get; set; }
 #endif
         /// <summary>Specifies whether the label is currently being used.</summary>
         public bool? IsInUse { get; set; }
@@ -107,12 +107,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RetentionLabel"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.RetentionLabel"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RetentionLabel CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.RetentionLabel CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RetentionLabel();
+            return new ApiSdk.Models.Security.RetentionLabel();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -122,23 +122,23 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "actionAfterRetentionPeriod", n => { ActionAfterRetentionPeriod = n.GetEnumValue<ActionAfterRetentionPeriod>(); } },
-                { "behaviorDuringRetentionPeriod", n => { BehaviorDuringRetentionPeriod = n.GetEnumValue<BehaviorDuringRetentionPeriod>(); } },
+                { "actionAfterRetentionPeriod", n => { ActionAfterRetentionPeriod = n.GetEnumValue<ApiSdk.Models.Security.ActionAfterRetentionPeriod>(); } },
+                { "behaviorDuringRetentionPeriod", n => { BehaviorDuringRetentionPeriod = n.GetEnumValue<ApiSdk.Models.Security.BehaviorDuringRetentionPeriod>(); } },
                 { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "defaultRecordBehavior", n => { DefaultRecordBehavior = n.GetEnumValue<DefaultRecordBehavior>(); } },
+                { "defaultRecordBehavior", n => { DefaultRecordBehavior = n.GetEnumValue<ApiSdk.Models.Security.DefaultRecordBehavior>(); } },
                 { "descriptionForAdmins", n => { DescriptionForAdmins = n.GetStringValue(); } },
                 { "descriptionForUsers", n => { DescriptionForUsers = n.GetStringValue(); } },
-                { "descriptors", n => { Descriptors = n.GetObjectValue<FilePlanDescriptor>(FilePlanDescriptor.CreateFromDiscriminatorValue); } },
+                { "descriptors", n => { Descriptors = n.GetObjectValue<ApiSdk.Models.Security.FilePlanDescriptor>(ApiSdk.Models.Security.FilePlanDescriptor.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "dispositionReviewStages", n => { DispositionReviewStages = n.GetCollectionOfObjectValues<DispositionReviewStage>(DispositionReviewStage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "dispositionReviewStages", n => { DispositionReviewStages = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.DispositionReviewStage>(ApiSdk.Models.Security.DispositionReviewStage.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isInUse", n => { IsInUse = n.GetBoolValue(); } },
                 { "labelToBeApplied", n => { LabelToBeApplied = n.GetStringValue(); } },
                 { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "retentionDuration", n => { RetentionDuration = n.GetObjectValue<ApiSdk.Models.Security.RetentionDuration>(ApiSdk.Models.Security.RetentionDuration.CreateFromDiscriminatorValue); } },
                 { "retentionEventType", n => { RetentionEventType = n.GetObjectValue<ApiSdk.Models.Security.RetentionEventType>(ApiSdk.Models.Security.RetentionEventType.CreateFromDiscriminatorValue); } },
-                { "retentionTrigger", n => { RetentionTrigger = n.GetEnumValue<RetentionTrigger>(); } },
+                { "retentionTrigger", n => { RetentionTrigger = n.GetEnumValue<ApiSdk.Models.Security.RetentionTrigger>(); } },
             };
         }
         /// <summary>
@@ -149,23 +149,23 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<ActionAfterRetentionPeriod>("actionAfterRetentionPeriod", ActionAfterRetentionPeriod);
-            writer.WriteEnumValue<BehaviorDuringRetentionPeriod>("behaviorDuringRetentionPeriod", BehaviorDuringRetentionPeriod);
+            writer.WriteEnumValue<ApiSdk.Models.Security.ActionAfterRetentionPeriod>("actionAfterRetentionPeriod", ActionAfterRetentionPeriod);
+            writer.WriteEnumValue<ApiSdk.Models.Security.BehaviorDuringRetentionPeriod>("behaviorDuringRetentionPeriod", BehaviorDuringRetentionPeriod);
             writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteEnumValue<DefaultRecordBehavior>("defaultRecordBehavior", DefaultRecordBehavior);
+            writer.WriteEnumValue<ApiSdk.Models.Security.DefaultRecordBehavior>("defaultRecordBehavior", DefaultRecordBehavior);
             writer.WriteStringValue("descriptionForAdmins", DescriptionForAdmins);
             writer.WriteStringValue("descriptionForUsers", DescriptionForUsers);
-            writer.WriteObjectValue<FilePlanDescriptor>("descriptors", Descriptors);
+            writer.WriteObjectValue<ApiSdk.Models.Security.FilePlanDescriptor>("descriptors", Descriptors);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<DispositionReviewStage>("dispositionReviewStages", DispositionReviewStages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.DispositionReviewStage>("dispositionReviewStages", DispositionReviewStages);
             writer.WriteBoolValue("isInUse", IsInUse);
             writer.WriteStringValue("labelToBeApplied", LabelToBeApplied);
             writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteObjectValue<ApiSdk.Models.Security.RetentionDuration>("retentionDuration", RetentionDuration);
             writer.WriteObjectValue<ApiSdk.Models.Security.RetentionEventType>("retentionEventType", RetentionEventType);
-            writer.WriteEnumValue<RetentionTrigger>("retentionTrigger", RetentionTrigger);
+            writer.WriteEnumValue<ApiSdk.Models.Security.RetentionTrigger>("retentionTrigger", RetentionTrigger);
         }
     }
 }

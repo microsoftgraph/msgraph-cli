@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Entity for AppLogCollectionRequest contains all logs values.
     /// </summary>
-    public class AppLogCollectionRequest : Entity, IParsable
+    public class AppLogCollectionRequest : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Time at which the upload log request reached a completed state if not completed yet NULL will be returned.</summary>
         public DateTimeOffset? CompletedDateTime { get; set; }
@@ -30,16 +30,16 @@ namespace ApiSdk.Models
         public string ErrorMessage { get; set; }
 #endif
         /// <summary>AppLogUploadStatus</summary>
-        public AppLogUploadState? Status { get; set; }
+        public ApiSdk.Models.AppLogUploadState? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AppLogCollectionRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AppLogCollectionRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AppLogCollectionRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AppLogCollectionRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AppLogCollectionRequest();
+            return new ApiSdk.Models.AppLogCollectionRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -52,7 +52,7 @@ namespace ApiSdk.Models
                 { "completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "customLogFolders", n => { CustomLogFolders = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "errorMessage", n => { ErrorMessage = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<AppLogUploadState>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.AppLogUploadState>(); } },
             };
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("completedDateTime", CompletedDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("customLogFolders", CustomLogFolders);
             writer.WriteStringValue("errorMessage", ErrorMessage);
-            writer.WriteEnumValue<AppLogUploadState>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.AppLogUploadState>("status", Status);
         }
     }
 }

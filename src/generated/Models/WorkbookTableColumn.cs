@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookTableColumn : Entity, IParsable
+    public class WorkbookTableColumn : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Retrieve the filter applied to the column. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookFilter? Filter { get; set; }
+        public ApiSdk.Models.WorkbookFilter? Filter { get; set; }
 #nullable restore
 #else
-        public WorkbookFilter Filter { get; set; }
+        public ApiSdk.Models.WorkbookFilter Filter { get; set; }
 #endif
         /// <summary>Returns the index number of the column within the columns collection of the table. Zero-indexed. Read-only.</summary>
         public int? Index { get; set; }
@@ -31,20 +31,20 @@ namespace ApiSdk.Models
         /// <summary>Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Values { get; set; }
+        public ApiSdk.Models.Json? Values { get; set; }
 #nullable restore
 #else
-        public Json Values { get; set; }
+        public ApiSdk.Models.Json Values { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookTableColumn"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookTableColumn"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookTableColumn CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookTableColumn CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookTableColumn();
+            return new ApiSdk.Models.WorkbookTableColumn();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,10 +54,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "filter", n => { Filter = n.GetObjectValue<WorkbookFilter>(WorkbookFilter.CreateFromDiscriminatorValue); } },
+                { "filter", n => { Filter = n.GetObjectValue<ApiSdk.Models.WorkbookFilter>(ApiSdk.Models.WorkbookFilter.CreateFromDiscriminatorValue); } },
                 { "index", n => { Index = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "values", n => { Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "values", n => { Values = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -68,10 +68,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<WorkbookFilter>("filter", Filter);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookFilter>("filter", Filter);
             writer.WriteIntValue("index", Index);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<Json>("values", Values);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("values", Values);
         }
     }
 }

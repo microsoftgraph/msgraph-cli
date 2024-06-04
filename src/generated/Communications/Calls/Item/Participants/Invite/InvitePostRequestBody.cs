@@ -24,13 +24,13 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Invite
         /// <summary>The participants property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<InvitationParticipantInfo>? Participants { get; set; }
+        public List<ApiSdk.Models.InvitationParticipantInfo>? Participants { get; set; }
 #nullable restore
 #else
-        public List<InvitationParticipantInfo> Participants { get; set; }
+        public List<ApiSdk.Models.InvitationParticipantInfo> Participants { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="InvitePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.Participants.Invite.InvitePostRequestBody"/> and sets the default values.
         /// </summary>
         public InvitePostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Invite
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="InvitePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Communications.Calls.Item.Participants.Invite.InvitePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static InvitePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Communications.Calls.Item.Participants.Invite.InvitePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new InvitePostRequestBody();
+            return new ApiSdk.Communications.Calls.Item.Participants.Invite.InvitePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Invite
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "clientContext", n => { ClientContext = n.GetStringValue(); } },
-                { "participants", n => { Participants = n.GetCollectionOfObjectValues<InvitationParticipantInfo>(InvitationParticipantInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "participants", n => { Participants = n.GetCollectionOfObjectValues<ApiSdk.Models.InvitationParticipantInfo>(ApiSdk.Models.InvitationParticipantInfo.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Invite
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("clientContext", ClientContext);
-            writer.WriteCollectionOfObjectValues<InvitationParticipantInfo>("participants", Participants);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.InvitationParticipantInfo>("participants", Participants);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

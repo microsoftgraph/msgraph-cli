@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// This topic provides descriptions of the declared methods, properties and relationships exposed by the windowsPhone81GeneralConfiguration resource.
     /// </summary>
-    public class WindowsPhone81GeneralConfiguration : DeviceConfiguration, IParsable
+    public class WindowsPhone81GeneralConfiguration : ApiSdk.Models.DeviceConfiguration, IParsable
     {
         /// <summary>Value indicating whether this policy only applies to Windows Phone 8.1. This property is read-only.</summary>
         public bool? ApplyOnlyToWindowsPhone81 { get; private set; }
@@ -22,14 +22,14 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether or not to block Wi-Fi tethering. Has no impact if Wi-Fi is blocked.</summary>
         public bool? CellularBlockWifiTethering { get; set; }
         /// <summary>Possible values of the compliance app list.</summary>
-        public AppListType? CompliantAppListType { get; set; }
+        public ApiSdk.Models.AppListType? CompliantAppListType { get; set; }
         /// <summary>List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppListItem>? CompliantAppsList { get; set; }
+        public List<ApiSdk.Models.AppListItem>? CompliantAppsList { get; set; }
 #nullable restore
 #else
-        public List<AppListItem> CompliantAppsList { get; set; }
+        public List<ApiSdk.Models.AppListItem> CompliantAppsList { get; set; }
 #endif
         /// <summary>Indicates whether or not to block diagnostic data submission.</summary>
         public bool? DiagnosticDataBlockSubmission { get; set; }
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether or not to require a password.</summary>
         public bool? PasswordRequired { get; set; }
         /// <summary>Possible values of required passwords.</summary>
-        public RequiredPasswordType? PasswordRequiredType { get; set; }
+        public ApiSdk.Models.RequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Number of sign in failures allowed before factory reset.</summary>
         public int? PasswordSignInFailureCountBeforeFactoryReset { get; set; }
         /// <summary>Indicates whether or not to block screenshots.</summary>
@@ -76,7 +76,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether or not to block the Windows Store.</summary>
         public bool? WindowsStoreBlocked { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="WindowsPhone81GeneralConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WindowsPhone81GeneralConfiguration"/> and sets the default values.
         /// </summary>
         public WindowsPhone81GeneralConfiguration() : base()
         {
@@ -85,12 +85,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsPhone81GeneralConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsPhone81GeneralConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WindowsPhone81GeneralConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WindowsPhone81GeneralConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsPhone81GeneralConfiguration();
+            return new ApiSdk.Models.WindowsPhone81GeneralConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -105,8 +105,8 @@ namespace ApiSdk.Models
                 { "bluetoothBlocked", n => { BluetoothBlocked = n.GetBoolValue(); } },
                 { "cameraBlocked", n => { CameraBlocked = n.GetBoolValue(); } },
                 { "cellularBlockWifiTethering", n => { CellularBlockWifiTethering = n.GetBoolValue(); } },
-                { "compliantAppListType", n => { CompliantAppListType = n.GetEnumValue<AppListType>(); } },
-                { "compliantAppsList", n => { CompliantAppsList = n.GetCollectionOfObjectValues<AppListItem>(AppListItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "compliantAppListType", n => { CompliantAppListType = n.GetEnumValue<ApiSdk.Models.AppListType>(); } },
+                { "compliantAppsList", n => { CompliantAppsList = n.GetCollectionOfObjectValues<ApiSdk.Models.AppListItem>(ApiSdk.Models.AppListItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "diagnosticDataBlockSubmission", n => { DiagnosticDataBlockSubmission = n.GetBoolValue(); } },
                 { "emailBlockAddingAccounts", n => { EmailBlockAddingAccounts = n.GetBoolValue(); } },
                 { "locationServicesBlocked", n => { LocationServicesBlocked = n.GetBoolValue(); } },
@@ -119,7 +119,7 @@ namespace ApiSdk.Models
                 { "passwordMinutesOfInactivityBeforeScreenTimeout", n => { PasswordMinutesOfInactivityBeforeScreenTimeout = n.GetIntValue(); } },
                 { "passwordPreviousPasswordBlockCount", n => { PasswordPreviousPasswordBlockCount = n.GetIntValue(); } },
                 { "passwordRequired", n => { PasswordRequired = n.GetBoolValue(); } },
-                { "passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<RequiredPasswordType>(); } },
+                { "passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<ApiSdk.Models.RequiredPasswordType>(); } },
                 { "passwordSignInFailureCountBeforeFactoryReset", n => { PasswordSignInFailureCountBeforeFactoryReset = n.GetIntValue(); } },
                 { "screenCaptureBlocked", n => { ScreenCaptureBlocked = n.GetBoolValue(); } },
                 { "storageBlockRemovableStorage", n => { StorageBlockRemovableStorage = n.GetBoolValue(); } },
@@ -143,8 +143,8 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("bluetoothBlocked", BluetoothBlocked);
             writer.WriteBoolValue("cameraBlocked", CameraBlocked);
             writer.WriteBoolValue("cellularBlockWifiTethering", CellularBlockWifiTethering);
-            writer.WriteEnumValue<AppListType>("compliantAppListType", CompliantAppListType);
-            writer.WriteCollectionOfObjectValues<AppListItem>("compliantAppsList", CompliantAppsList);
+            writer.WriteEnumValue<ApiSdk.Models.AppListType>("compliantAppListType", CompliantAppListType);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppListItem>("compliantAppsList", CompliantAppsList);
             writer.WriteBoolValue("diagnosticDataBlockSubmission", DiagnosticDataBlockSubmission);
             writer.WriteBoolValue("emailBlockAddingAccounts", EmailBlockAddingAccounts);
             writer.WriteBoolValue("locationServicesBlocked", LocationServicesBlocked);
@@ -157,7 +157,7 @@ namespace ApiSdk.Models
             writer.WriteIntValue("passwordMinutesOfInactivityBeforeScreenTimeout", PasswordMinutesOfInactivityBeforeScreenTimeout);
             writer.WriteIntValue("passwordPreviousPasswordBlockCount", PasswordPreviousPasswordBlockCount);
             writer.WriteBoolValue("passwordRequired", PasswordRequired);
-            writer.WriteEnumValue<RequiredPasswordType>("passwordRequiredType", PasswordRequiredType);
+            writer.WriteEnumValue<ApiSdk.Models.RequiredPasswordType>("passwordRequiredType", PasswordRequiredType);
             writer.WriteIntValue("passwordSignInFailureCountBeforeFactoryReset", PasswordSignInFailureCountBeforeFactoryReset);
             writer.WriteBoolValue("screenCaptureBlocked", ScreenCaptureBlocked);
             writer.WriteBoolValue("storageBlockRemovableStorage", StorageBlockRemovableStorage);

@@ -7,35 +7,35 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SharePointIdentitySet : IdentitySet, IParsable
+    public class SharePointIdentitySet : ApiSdk.Models.IdentitySet, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The group associated with this action. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Identity? Group { get; set; }
+        public ApiSdk.Models.Identity? Group { get; set; }
 #nullable restore
 #else
-        public Identity Group { get; set; }
+        public ApiSdk.Models.Identity Group { get; set; }
 #endif
         /// <summary>The SharePoint group associated with this action. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SharePointIdentity? SiteGroup { get; set; }
+        public ApiSdk.Models.SharePointIdentity? SiteGroup { get; set; }
 #nullable restore
 #else
-        public SharePointIdentity SiteGroup { get; set; }
+        public ApiSdk.Models.SharePointIdentity SiteGroup { get; set; }
 #endif
         /// <summary>The SharePoint user associated with this action. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SharePointIdentity? SiteUser { get; set; }
+        public ApiSdk.Models.SharePointIdentity? SiteUser { get; set; }
 #nullable restore
 #else
-        public SharePointIdentity SiteUser { get; set; }
+        public ApiSdk.Models.SharePointIdentity SiteUser { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SharePointIdentitySet"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SharePointIdentitySet"/> and sets the default values.
         /// </summary>
         public SharePointIdentitySet() : base()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SharePointIdentitySet"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SharePointIdentitySet"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SharePointIdentitySet CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SharePointIdentitySet CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SharePointIdentitySet();
+            return new ApiSdk.Models.SharePointIdentitySet();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,9 +59,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "group", n => { Group = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
-                { "siteGroup", n => { SiteGroup = n.GetObjectValue<SharePointIdentity>(SharePointIdentity.CreateFromDiscriminatorValue); } },
-                { "siteUser", n => { SiteUser = n.GetObjectValue<SharePointIdentity>(SharePointIdentity.CreateFromDiscriminatorValue); } },
+                { "group", n => { Group = n.GetObjectValue<ApiSdk.Models.Identity>(ApiSdk.Models.Identity.CreateFromDiscriminatorValue); } },
+                { "siteGroup", n => { SiteGroup = n.GetObjectValue<ApiSdk.Models.SharePointIdentity>(ApiSdk.Models.SharePointIdentity.CreateFromDiscriminatorValue); } },
+                { "siteUser", n => { SiteUser = n.GetObjectValue<ApiSdk.Models.SharePointIdentity>(ApiSdk.Models.SharePointIdentity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -72,9 +72,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<Identity>("group", Group);
-            writer.WriteObjectValue<SharePointIdentity>("siteGroup", SiteGroup);
-            writer.WriteObjectValue<SharePointIdentity>("siteUser", SiteUser);
+            writer.WriteObjectValue<ApiSdk.Models.Identity>("group", Group);
+            writer.WriteObjectValue<ApiSdk.Models.SharePointIdentity>("siteGroup", SiteGroup);
+            writer.WriteObjectValue<ApiSdk.Models.SharePointIdentity>("siteUser", SiteUser);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace ApiSdk.Users.Item.Calendar
         {
             var command = new Command("allowed-calendar-sharing-roles-with-user");
             command.Description = "Provides operations to call the allowedCalendarSharingRoles method.";
-            var builder = new AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Calendar.AllowedCalendarSharingRolesWithUser.AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -51,7 +51,7 @@ namespace ApiSdk.Users.Item.Calendar
         {
             var command = new Command("calendar-permissions");
             command.Description = "Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.";
-            var builder = new CalendarPermissionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Calendar.CalendarPermissions.CalendarPermissionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -78,7 +78,7 @@ namespace ApiSdk.Users.Item.Calendar
         {
             var command = new Command("calendar-view");
             command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.";
-            var builder = new CalendarViewRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Calendar.CalendarView.CalendarViewRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -105,7 +105,7 @@ namespace ApiSdk.Users.Item.Calendar
         {
             var command = new Command("events");
             command.Description = "Provides operations to manage the events property of the microsoft.graph.calendar entity.";
-            var builder = new EventsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Calendar.Events.EventsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -178,7 +178,7 @@ namespace ApiSdk.Users.Item.Calendar
         {
             var command = new Command("get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
-            var builder = new GetScheduleRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Calendar.GetSchedule.GetScheduleRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -239,14 +239,14 @@ namespace ApiSdk.Users.Item.Calendar
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CalendarRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Calendar.CalendarRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar{?%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CalendarRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Calendar.CalendarRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CalendarRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendar{?%24select}", rawUrl)
@@ -259,11 +259,11 @@ namespace ApiSdk.Users.Item.Calendar
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CalendarRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Calendar.CalendarRequestBuilder.CalendarRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CalendarRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Calendar.CalendarRequestBuilder.CalendarRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

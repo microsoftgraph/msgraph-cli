@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Chat : Entity, IParsable
+    public class Chat : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The chatType property</summary>
@@ -17,68 +17,68 @@ namespace ApiSdk.Models
         /// <summary>A collection of all the apps in the chat. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TeamsAppInstallation>? InstalledApps { get; set; }
+        public List<ApiSdk.Models.TeamsAppInstallation>? InstalledApps { get; set; }
 #nullable restore
 #else
-        public List<TeamsAppInstallation> InstalledApps { get; set; }
+        public List<ApiSdk.Models.TeamsAppInstallation> InstalledApps { get; set; }
 #endif
         /// <summary>Preview of the last message sent in the chat. Null if no messages were sent in the chat. Currently, only the list chats operation supports this property.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ChatMessageInfo? LastMessagePreview { get; set; }
+        public ApiSdk.Models.ChatMessageInfo? LastMessagePreview { get; set; }
 #nullable restore
 #else
-        public ChatMessageInfo LastMessagePreview { get; set; }
+        public ApiSdk.Models.ChatMessageInfo LastMessagePreview { get; set; }
 #endif
         /// <summary>Date and time at which the chat was renamed or the list of members was last changed. Read-only.</summary>
         public DateTimeOffset? LastUpdatedDateTime { get; set; }
         /// <summary>A collection of all the members in the chat. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ConversationMember>? Members { get; set; }
+        public List<ApiSdk.Models.ConversationMember>? Members { get; set; }
 #nullable restore
 #else
-        public List<ConversationMember> Members { get; set; }
+        public List<ApiSdk.Models.ConversationMember> Members { get; set; }
 #endif
         /// <summary>A collection of all the messages in the chat. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ChatMessage>? Messages { get; set; }
+        public List<ApiSdk.Models.ChatMessage>? Messages { get; set; }
 #nullable restore
 #else
-        public List<ChatMessage> Messages { get; set; }
+        public List<ApiSdk.Models.ChatMessage> Messages { get; set; }
 #endif
         /// <summary>Represents details about an online meeting. If the chat isn&apos;t associated with an online meeting, the property is empty. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamworkOnlineMeetingInfo? OnlineMeetingInfo { get; set; }
+        public ApiSdk.Models.TeamworkOnlineMeetingInfo? OnlineMeetingInfo { get; set; }
 #nullable restore
 #else
-        public TeamworkOnlineMeetingInfo OnlineMeetingInfo { get; set; }
+        public ApiSdk.Models.TeamworkOnlineMeetingInfo OnlineMeetingInfo { get; set; }
 #endif
         /// <summary>A collection of permissions granted to apps for the chat.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ResourceSpecificPermissionGrant>? PermissionGrants { get; set; }
+        public List<ApiSdk.Models.ResourceSpecificPermissionGrant>? PermissionGrants { get; set; }
 #nullable restore
 #else
-        public List<ResourceSpecificPermissionGrant> PermissionGrants { get; set; }
+        public List<ApiSdk.Models.ResourceSpecificPermissionGrant> PermissionGrants { get; set; }
 #endif
         /// <summary>A collection of all the pinned messages in the chat. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PinnedChatMessageInfo>? PinnedMessages { get; set; }
+        public List<ApiSdk.Models.PinnedChatMessageInfo>? PinnedMessages { get; set; }
 #nullable restore
 #else
-        public List<PinnedChatMessageInfo> PinnedMessages { get; set; }
+        public List<ApiSdk.Models.PinnedChatMessageInfo> PinnedMessages { get; set; }
 #endif
         /// <summary>A collection of all the tabs in the chat. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TeamsTab>? Tabs { get; set; }
+        public List<ApiSdk.Models.TeamsTab>? Tabs { get; set; }
 #nullable restore
 #else
-        public List<TeamsTab> Tabs { get; set; }
+        public List<ApiSdk.Models.TeamsTab> Tabs { get; set; }
 #endif
         /// <summary>The identifier of the tenant in which the chat was created. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -99,10 +99,10 @@ namespace ApiSdk.Models
         /// <summary>Represents caller-specific information about the chat, such as the last message read date and time. This property is populated only when the request is made in a delegated context.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ChatViewpoint? Viewpoint { get; set; }
+        public ApiSdk.Models.ChatViewpoint? Viewpoint { get; set; }
 #nullable restore
 #else
-        public ChatViewpoint Viewpoint { get; set; }
+        public ApiSdk.Models.ChatViewpoint Viewpoint { get; set; }
 #endif
         /// <summary>The URL for the chat in Microsoft Teams. The URL should be treated as an opaque blob, and not parsed. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -115,12 +115,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Chat"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Chat"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Chat CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Chat CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Chat();
+            return new ApiSdk.Models.Chat();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -130,20 +130,20 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "chatType", n => { ChatType = n.GetEnumValue<ChatType>(); } },
+                { "chatType", n => { ChatType = n.GetEnumValue<ApiSdk.Models.ChatType>(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "installedApps", n => { InstalledApps = n.GetCollectionOfObjectValues<TeamsAppInstallation>(TeamsAppInstallation.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "lastMessagePreview", n => { LastMessagePreview = n.GetObjectValue<ChatMessageInfo>(ChatMessageInfo.CreateFromDiscriminatorValue); } },
+                { "installedApps", n => { InstalledApps = n.GetCollectionOfObjectValues<ApiSdk.Models.TeamsAppInstallation>(ApiSdk.Models.TeamsAppInstallation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "lastMessagePreview", n => { LastMessagePreview = n.GetObjectValue<ApiSdk.Models.ChatMessageInfo>(ApiSdk.Models.ChatMessageInfo.CreateFromDiscriminatorValue); } },
                 { "lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "members", n => { Members = n.GetCollectionOfObjectValues<ConversationMember>(ConversationMember.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "messages", n => { Messages = n.GetCollectionOfObjectValues<ChatMessage>(ChatMessage.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "onlineMeetingInfo", n => { OnlineMeetingInfo = n.GetObjectValue<TeamworkOnlineMeetingInfo>(TeamworkOnlineMeetingInfo.CreateFromDiscriminatorValue); } },
-                { "permissionGrants", n => { PermissionGrants = n.GetCollectionOfObjectValues<ResourceSpecificPermissionGrant>(ResourceSpecificPermissionGrant.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "pinnedMessages", n => { PinnedMessages = n.GetCollectionOfObjectValues<PinnedChatMessageInfo>(PinnedChatMessageInfo.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "tabs", n => { Tabs = n.GetCollectionOfObjectValues<TeamsTab>(TeamsTab.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "members", n => { Members = n.GetCollectionOfObjectValues<ApiSdk.Models.ConversationMember>(ApiSdk.Models.ConversationMember.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "messages", n => { Messages = n.GetCollectionOfObjectValues<ApiSdk.Models.ChatMessage>(ApiSdk.Models.ChatMessage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "onlineMeetingInfo", n => { OnlineMeetingInfo = n.GetObjectValue<ApiSdk.Models.TeamworkOnlineMeetingInfo>(ApiSdk.Models.TeamworkOnlineMeetingInfo.CreateFromDiscriminatorValue); } },
+                { "permissionGrants", n => { PermissionGrants = n.GetCollectionOfObjectValues<ApiSdk.Models.ResourceSpecificPermissionGrant>(ApiSdk.Models.ResourceSpecificPermissionGrant.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "pinnedMessages", n => { PinnedMessages = n.GetCollectionOfObjectValues<ApiSdk.Models.PinnedChatMessageInfo>(ApiSdk.Models.PinnedChatMessageInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "tabs", n => { Tabs = n.GetCollectionOfObjectValues<ApiSdk.Models.TeamsTab>(ApiSdk.Models.TeamsTab.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "tenantId", n => { TenantId = n.GetStringValue(); } },
                 { "topic", n => { Topic = n.GetStringValue(); } },
-                { "viewpoint", n => { Viewpoint = n.GetObjectValue<ChatViewpoint>(ChatViewpoint.CreateFromDiscriminatorValue); } },
+                { "viewpoint", n => { Viewpoint = n.GetObjectValue<ApiSdk.Models.ChatViewpoint>(ApiSdk.Models.ChatViewpoint.CreateFromDiscriminatorValue); } },
                 { "webUrl", n => { WebUrl = n.GetStringValue(); } },
             };
         }
@@ -155,20 +155,20 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<ChatType>("chatType", ChatType);
+            writer.WriteEnumValue<ApiSdk.Models.ChatType>("chatType", ChatType);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteCollectionOfObjectValues<TeamsAppInstallation>("installedApps", InstalledApps);
-            writer.WriteObjectValue<ChatMessageInfo>("lastMessagePreview", LastMessagePreview);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TeamsAppInstallation>("installedApps", InstalledApps);
+            writer.WriteObjectValue<ApiSdk.Models.ChatMessageInfo>("lastMessagePreview", LastMessagePreview);
             writer.WriteDateTimeOffsetValue("lastUpdatedDateTime", LastUpdatedDateTime);
-            writer.WriteCollectionOfObjectValues<ConversationMember>("members", Members);
-            writer.WriteCollectionOfObjectValues<ChatMessage>("messages", Messages);
-            writer.WriteObjectValue<TeamworkOnlineMeetingInfo>("onlineMeetingInfo", OnlineMeetingInfo);
-            writer.WriteCollectionOfObjectValues<ResourceSpecificPermissionGrant>("permissionGrants", PermissionGrants);
-            writer.WriteCollectionOfObjectValues<PinnedChatMessageInfo>("pinnedMessages", PinnedMessages);
-            writer.WriteCollectionOfObjectValues<TeamsTab>("tabs", Tabs);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ConversationMember>("members", Members);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ChatMessage>("messages", Messages);
+            writer.WriteObjectValue<ApiSdk.Models.TeamworkOnlineMeetingInfo>("onlineMeetingInfo", OnlineMeetingInfo);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ResourceSpecificPermissionGrant>("permissionGrants", PermissionGrants);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PinnedChatMessageInfo>("pinnedMessages", PinnedMessages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TeamsTab>("tabs", Tabs);
             writer.WriteStringValue("tenantId", TenantId);
             writer.WriteStringValue("topic", Topic);
-            writer.WriteObjectValue<ChatViewpoint>("viewpoint", Viewpoint);
+            writer.WriteObjectValue<ApiSdk.Models.ChatViewpoint>("viewpoint", Viewpoint);
             writer.WriteStringValue("webUrl", WebUrl);
         }
     }

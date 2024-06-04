@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrivilegedAccessScheduleRequest : Request, IParsable
+    public class PrivilegedAccessScheduleRequest : ApiSdk.Models.Request, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Represents the type of operation on the group membership or ownership assignment request. The possible values are: adminAssign, adminUpdate, adminRemove, selfActivate, selfDeactivate, adminExtend, adminRenew. adminAssign: For administrators to assign group membership or ownership to principals.adminRemove: For administrators to remove principals from group membership or ownership. adminUpdate: For administrators to change existing group membership or ownership assignments.adminExtend: For administrators to extend expiring assignments.adminRenew: For administrators to renew expired assignments.selfActivate: For principals to activate their assignments.selfDeactivate: For principals to deactivate their active assignments.</summary>
-        public ScheduleRequestActions? Action { get; set; }
+        public ApiSdk.Models.ScheduleRequestActions? Action { get; set; }
         /// <summary>Determines whether the call is a validation or an actual call. Only set this property if you want to check whether an activation is subject to additional rules like MFA before actually submitting the request.</summary>
         public bool? IsValidationOnly { get; set; }
         /// <summary>A message provided by users and administrators when create they create the privilegedAccessGroupAssignmentScheduleRequest object.</summary>
@@ -25,10 +25,10 @@ namespace ApiSdk.Models
         /// <summary>The period of the group membership or ownership assignment. Recurring schedules are currently unsupported.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestSchedule? ScheduleInfo { get; set; }
+        public ApiSdk.Models.RequestSchedule? ScheduleInfo { get; set; }
 #nullable restore
 #else
-        public RequestSchedule ScheduleInfo { get; set; }
+        public ApiSdk.Models.RequestSchedule ScheduleInfo { get; set; }
 #endif
         /// <summary>Ticket details linked to the group membership or ownership assignment request including details of the ticket number and ticket system.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,17 +41,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrivilegedAccessScheduleRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrivilegedAccessScheduleRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrivilegedAccessScheduleRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrivilegedAccessScheduleRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest" => new PrivilegedAccessGroupAssignmentScheduleRequest(),
-                "#microsoft.graph.privilegedAccessGroupEligibilityScheduleRequest" => new PrivilegedAccessGroupEligibilityScheduleRequest(),
-                _ => new PrivilegedAccessScheduleRequest(),
+                "#microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest" => new ApiSdk.Models.PrivilegedAccessGroupAssignmentScheduleRequest(),
+                "#microsoft.graph.privilegedAccessGroupEligibilityScheduleRequest" => new ApiSdk.Models.PrivilegedAccessGroupEligibilityScheduleRequest(),
+                _ => new ApiSdk.Models.PrivilegedAccessScheduleRequest(),
             };
         }
         /// <summary>
@@ -62,10 +62,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "action", n => { Action = n.GetEnumValue<ScheduleRequestActions>(); } },
+                { "action", n => { Action = n.GetEnumValue<ApiSdk.Models.ScheduleRequestActions>(); } },
                 { "isValidationOnly", n => { IsValidationOnly = n.GetBoolValue(); } },
                 { "justification", n => { Justification = n.GetStringValue(); } },
-                { "scheduleInfo", n => { ScheduleInfo = n.GetObjectValue<RequestSchedule>(RequestSchedule.CreateFromDiscriminatorValue); } },
+                { "scheduleInfo", n => { ScheduleInfo = n.GetObjectValue<ApiSdk.Models.RequestSchedule>(ApiSdk.Models.RequestSchedule.CreateFromDiscriminatorValue); } },
                 { "ticketInfo", n => { TicketInfo = n.GetObjectValue<ApiSdk.Models.TicketInfo>(ApiSdk.Models.TicketInfo.CreateFromDiscriminatorValue); } },
             };
         }
@@ -77,10 +77,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<ScheduleRequestActions>("action", Action);
+            writer.WriteEnumValue<ApiSdk.Models.ScheduleRequestActions>("action", Action);
             writer.WriteBoolValue("isValidationOnly", IsValidationOnly);
             writer.WriteStringValue("justification", Justification);
-            writer.WriteObjectValue<RequestSchedule>("scheduleInfo", ScheduleInfo);
+            writer.WriteObjectValue<ApiSdk.Models.RequestSchedule>("scheduleInfo", ScheduleInfo);
             writer.WriteObjectValue<ApiSdk.Models.TicketInfo>("ticketInfo", TicketInfo);
         }
     }

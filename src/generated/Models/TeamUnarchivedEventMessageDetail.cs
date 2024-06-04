@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TeamUnarchivedEventMessageDetail : EventMessageDetail, IParsable
+    public class TeamUnarchivedEventMessageDetail : ApiSdk.Models.EventMessageDetail, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Initiator of the event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet? Initiator { get; set; }
 #nullable restore
 #else
-        public IdentitySet Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet Initiator { get; set; }
 #endif
         /// <summary>Unique identifier of the team.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -27,7 +27,7 @@ namespace ApiSdk.Models
         public string TeamId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TeamUnarchivedEventMessageDetail"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TeamUnarchivedEventMessageDetail"/> and sets the default values.
         /// </summary>
         public TeamUnarchivedEventMessageDetail() : base()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamUnarchivedEventMessageDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamUnarchivedEventMessageDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TeamUnarchivedEventMessageDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TeamUnarchivedEventMessageDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamUnarchivedEventMessageDetail();
+            return new ApiSdk.Models.TeamUnarchivedEventMessageDetail();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -51,7 +51,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "initiator", n => { Initiator = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "teamId", n => { TeamId = n.GetStringValue(); } },
             };
         }
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<IdentitySet>("initiator", Initiator);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("initiator", Initiator);
             writer.WriteStringValue("teamId", TeamId);
         }
     }

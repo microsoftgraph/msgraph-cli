@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>Localized messages that explain what is needed for this column&apos;s value to be considered valid. User will be prompted with this message if validation fails.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DisplayNameLocalization>? Descriptions { get; set; }
+        public List<ApiSdk.Models.DisplayNameLocalization>? Descriptions { get; set; }
 #nullable restore
 #else
-        public List<DisplayNameLocalization> Descriptions { get; set; }
+        public List<ApiSdk.Models.DisplayNameLocalization> Descriptions { get; set; }
 #endif
         /// <summary>The formula to validate column value. For examples, see Examples of common formulas in lists.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ColumnValidation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ColumnValidation"/> and sets the default values.
         /// </summary>
         public ColumnValidation()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ColumnValidation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ColumnValidation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ColumnValidation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ColumnValidation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ColumnValidation();
+            return new ApiSdk.Models.ColumnValidation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,7 +70,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "defaultLanguage", n => { DefaultLanguage = n.GetStringValue(); } },
-                { "descriptions", n => { Descriptions = n.GetCollectionOfObjectValues<DisplayNameLocalization>(DisplayNameLocalization.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "descriptions", n => { Descriptions = n.GetCollectionOfObjectValues<ApiSdk.Models.DisplayNameLocalization>(ApiSdk.Models.DisplayNameLocalization.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "formula", n => { Formula = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -83,7 +83,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("defaultLanguage", DefaultLanguage);
-            writer.WriteCollectionOfObjectValues<DisplayNameLocalization>("descriptions", Descriptions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DisplayNameLocalization>("descriptions", Descriptions);
             writer.WriteStringValue("formula", Formula);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

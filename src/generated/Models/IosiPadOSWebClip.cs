@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties and inherited properties for iOS web apps.
     /// </summary>
-    public class IosiPadOSWebClip : MobileApp, IParsable
+    public class IosiPadOSWebClip : ApiSdk.Models.MobileApp, IParsable
     {
         /// <summary>Indicates iOS/iPadOS web clip app URL. Example: &apos;https://www.contoso.com&apos;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,7 +22,7 @@ namespace ApiSdk.Models
         /// <summary>Whether or not to use managed browser. When TRUE, the app will be required to be opened in Microsoft Edge. When FALSE, the app will not be required to be opened in Microsoft Edge. By default, this property is set to FALSE.</summary>
         public bool? UseManagedBrowser { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="IosiPadOSWebClip"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IosiPadOSWebClip"/> and sets the default values.
         /// </summary>
         public IosiPadOSWebClip() : base()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosiPadOSWebClip"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosiPadOSWebClip"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IosiPadOSWebClip CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IosiPadOSWebClip CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IosiPadOSWebClip();
+            return new ApiSdk.Models.IosiPadOSWebClip();
         }
         /// <summary>
         /// The deserialization information for the current model

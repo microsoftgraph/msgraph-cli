@@ -39,13 +39,13 @@ namespace ApiSdk.Models
         /// <summary>Values that the source operand will be tested against.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FilterOperand? TargetOperand { get; set; }
+        public ApiSdk.Models.FilterOperand? TargetOperand { get; set; }
 #nullable restore
 #else
-        public FilterOperand TargetOperand { get; set; }
+        public ApiSdk.Models.FilterOperand TargetOperand { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="FilterClause"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.FilterClause"/> and sets the default values.
         /// </summary>
         public FilterClause()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FilterClause"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.FilterClause"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static FilterClause CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.FilterClause CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FilterClause();
+            return new ApiSdk.Models.FilterClause();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "operatorName", n => { OperatorName = n.GetStringValue(); } },
                 { "sourceOperandName", n => { SourceOperandName = n.GetStringValue(); } },
-                { "targetOperand", n => { TargetOperand = n.GetObjectValue<FilterOperand>(FilterOperand.CreateFromDiscriminatorValue); } },
+                { "targetOperand", n => { TargetOperand = n.GetObjectValue<ApiSdk.Models.FilterOperand>(ApiSdk.Models.FilterOperand.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("operatorName", OperatorName);
             writer.WriteStringValue("sourceOperandName", SourceOperandName);
-            writer.WriteObjectValue<FilterOperand>("targetOperand", TargetOperand);
+            writer.WriteObjectValue<ApiSdk.Models.FilterOperand>("targetOperand", TargetOperand);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

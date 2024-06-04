@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// This class contains compliance settings for Windows 8.1 Mobile.
     /// </summary>
-    public class WindowsPhone81CompliancePolicy : DeviceCompliancePolicy, IParsable
+    public class WindowsPhone81CompliancePolicy : ApiSdk.Models.DeviceCompliancePolicy, IParsable
     {
         /// <summary>Maximum Windows Phone version.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,11 +42,11 @@ namespace ApiSdk.Models
         /// <summary>Whether or not to require a password.</summary>
         public bool? PasswordRequired { get; set; }
         /// <summary>Possible values of required passwords.</summary>
-        public RequiredPasswordType? PasswordRequiredType { get; set; }
+        public ApiSdk.Models.RequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Require encryption on windows phone devices.</summary>
         public bool? StorageRequireEncryption { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="WindowsPhone81CompliancePolicy"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WindowsPhone81CompliancePolicy"/> and sets the default values.
         /// </summary>
         public WindowsPhone81CompliancePolicy() : base()
         {
@@ -55,12 +55,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsPhone81CompliancePolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsPhone81CompliancePolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WindowsPhone81CompliancePolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WindowsPhone81CompliancePolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsPhone81CompliancePolicy();
+            return new ApiSdk.Models.WindowsPhone81CompliancePolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,7 +79,7 @@ namespace ApiSdk.Models
                 { "passwordMinutesOfInactivityBeforeLock", n => { PasswordMinutesOfInactivityBeforeLock = n.GetIntValue(); } },
                 { "passwordPreviousPasswordBlockCount", n => { PasswordPreviousPasswordBlockCount = n.GetIntValue(); } },
                 { "passwordRequired", n => { PasswordRequired = n.GetBoolValue(); } },
-                { "passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<RequiredPasswordType>(); } },
+                { "passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<ApiSdk.Models.RequiredPasswordType>(); } },
                 { "storageRequireEncryption", n => { StorageRequireEncryption = n.GetBoolValue(); } },
             };
         }
@@ -100,7 +100,7 @@ namespace ApiSdk.Models
             writer.WriteIntValue("passwordMinutesOfInactivityBeforeLock", PasswordMinutesOfInactivityBeforeLock);
             writer.WriteIntValue("passwordPreviousPasswordBlockCount", PasswordPreviousPasswordBlockCount);
             writer.WriteBoolValue("passwordRequired", PasswordRequired);
-            writer.WriteEnumValue<RequiredPasswordType>("passwordRequiredType", PasswordRequiredType);
+            writer.WriteEnumValue<ApiSdk.Models.RequiredPasswordType>("passwordRequiredType", PasswordRequiredType);
             writer.WriteBoolValue("storageRequireEncryption", StorageRequireEncryption);
         }
     }

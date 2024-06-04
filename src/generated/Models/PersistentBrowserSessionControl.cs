@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PersistentBrowserSessionControl : ConditionalAccessSessionControl, IParsable
+    public class PersistentBrowserSessionControl : ApiSdk.Models.ConditionalAccessSessionControl, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Possible values are: always, never.</summary>
-        public PersistentBrowserSessionMode? Mode { get; set; }
+        public ApiSdk.Models.PersistentBrowserSessionMode? Mode { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="PersistentBrowserSessionControl"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PersistentBrowserSessionControl"/> and sets the default values.
         /// </summary>
         public PersistentBrowserSessionControl() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PersistentBrowserSessionControl"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PersistentBrowserSessionControl"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PersistentBrowserSessionControl CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PersistentBrowserSessionControl CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PersistentBrowserSessionControl();
+            return new ApiSdk.Models.PersistentBrowserSessionControl();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "mode", n => { Mode = n.GetEnumValue<PersistentBrowserSessionMode>(); } },
+                { "mode", n => { Mode = n.GetEnumValue<ApiSdk.Models.PersistentBrowserSessionMode>(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<PersistentBrowserSessionMode>("mode", Mode);
+            writer.WriteEnumValue<ApiSdk.Models.PersistentBrowserSessionMode>("mode", Mode);
         }
     }
 }

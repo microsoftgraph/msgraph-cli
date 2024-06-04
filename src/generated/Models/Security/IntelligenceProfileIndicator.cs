@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class IntelligenceProfileIndicator : Indicator, IParsable
+    public class IntelligenceProfileIndicator : ApiSdk.Models.Security.Indicator, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Designate when an artifact was first used actively in an attack, when a particular sample was compiled, or if neither of those could be ascertained when the file was first seen in public repositories (for example, VirusTotal, ANY.RUN, Hybrid Analysis) or reported publicly.</summary>
@@ -15,7 +15,7 @@ namespace ApiSdk.Models.Security
         /// <summary>Designate when an artifact was most recently used actively in an attack, when a particular sample was compiled, or if neither of those could be ascertained when the file was first seen in public repositories (for example, VirusTotal, ANY.RUN, Hybrid Analysis) or reported publicly.</summary>
         public DateTimeOffset? LastSeenDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="IntelligenceProfileIndicator"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.IntelligenceProfileIndicator"/> and sets the default values.
         /// </summary>
         public IntelligenceProfileIndicator() : base()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IntelligenceProfileIndicator"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.IntelligenceProfileIndicator"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IntelligenceProfileIndicator CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.IntelligenceProfileIndicator CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IntelligenceProfileIndicator();
+            return new ApiSdk.Models.Security.IntelligenceProfileIndicator();
         }
         /// <summary>
         /// The deserialization information for the current model

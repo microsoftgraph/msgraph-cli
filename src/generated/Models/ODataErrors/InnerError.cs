@@ -39,7 +39,7 @@ namespace ApiSdk.Models.ODataErrors
         public string RequestId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="InnerError"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ODataErrors.InnerError"/> and sets the default values.
         /// </summary>
         public InnerError()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models.ODataErrors
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="InnerError"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ODataErrors.InnerError"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static InnerError CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ODataErrors.InnerError CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new InnerError();
+            return new ApiSdk.Models.ODataErrors.InnerError();
         }
         /// <summary>
         /// The deserialization information for the current model

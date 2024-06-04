@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>User who created the feedback.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? FeedbackBy { get; set; }
+        public ApiSdk.Models.IdentitySet? FeedbackBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet FeedbackBy { get; set; }
+        public ApiSdk.Models.IdentitySet FeedbackBy { get; set; }
 #endif
         /// <summary>Moment in time when the feedback was given. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? FeedbackDateTime { get; set; }
@@ -33,13 +33,13 @@ namespace ApiSdk.Models
         /// <summary>Feedback.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EducationItemBody? Text { get; set; }
+        public ApiSdk.Models.EducationItemBody? Text { get; set; }
 #nullable restore
 #else
-        public EducationItemBody Text { get; set; }
+        public ApiSdk.Models.EducationItemBody Text { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EducationFeedback"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EducationFeedback"/> and sets the default values.
         /// </summary>
         public EducationFeedback()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationFeedback"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationFeedback"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static EducationFeedback CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.EducationFeedback CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationFeedback();
+            return new ApiSdk.Models.EducationFeedback();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,10 +63,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "feedbackBy", n => { FeedbackBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "feedbackBy", n => { FeedbackBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "feedbackDateTime", n => { FeedbackDateTime = n.GetDateTimeOffsetValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "text", n => { Text = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
+                { "text", n => { Text = n.GetObjectValue<ApiSdk.Models.EducationItemBody>(ApiSdk.Models.EducationItemBody.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -76,10 +76,10 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<IdentitySet>("feedbackBy", FeedbackBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("feedbackBy", FeedbackBy);
             writer.WriteDateTimeOffsetValue("feedbackDateTime", FeedbackDateTime);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<EducationItemBody>("text", Text);
+            writer.WriteObjectValue<ApiSdk.Models.EducationItemBody>("text", Text);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

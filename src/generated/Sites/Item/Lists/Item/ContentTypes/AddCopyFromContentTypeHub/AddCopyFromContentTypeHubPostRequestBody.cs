@@ -21,7 +21,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub
         public string ContentTypeId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AddCopyFromContentTypeHubPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub.AddCopyFromContentTypeHubPostRequestBody"/> and sets the default values.
         /// </summary>
         public AddCopyFromContentTypeHubPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddCopyFromContentTypeHubPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub.AddCopyFromContentTypeHubPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AddCopyFromContentTypeHubPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub.AddCopyFromContentTypeHubPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddCopyFromContentTypeHubPostRequestBody();
+            return new ApiSdk.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub.AddCopyFromContentTypeHubPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationSchool : EducationOrganization, IParsable
+    public class EducationSchool : ApiSdk.Models.EducationOrganization, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Address of the school.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PhysicalAddress? Address { get; set; }
+        public ApiSdk.Models.PhysicalAddress? Address { get; set; }
 #nullable restore
 #else
-        public PhysicalAddress Address { get; set; }
+        public ApiSdk.Models.PhysicalAddress Address { get; set; }
 #endif
         /// <summary>The underlying administrativeUnit for this school.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,18 +29,18 @@ namespace ApiSdk.Models
         /// <summary>Classes taught at the school. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationClass>? Classes { get; set; }
+        public List<ApiSdk.Models.EducationClass>? Classes { get; set; }
 #nullable restore
 #else
-        public List<EducationClass> Classes { get; set; }
+        public List<ApiSdk.Models.EducationClass> Classes { get; set; }
 #endif
         /// <summary>Entity who created the school.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? CreatedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet CreatedBy { get; set; }
 #endif
         /// <summary>ID of school in syncing system.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -117,13 +117,13 @@ namespace ApiSdk.Models
         /// <summary>Users in the school. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationUser>? Users { get; set; }
+        public List<ApiSdk.Models.EducationUser>? Users { get; set; }
 #nullable restore
 #else
-        public List<EducationUser> Users { get; set; }
+        public List<ApiSdk.Models.EducationUser> Users { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EducationSchool"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EducationSchool"/> and sets the default values.
         /// </summary>
         public EducationSchool() : base()
         {
@@ -132,12 +132,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationSchool"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationSchool"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationSchool CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationSchool CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationSchool();
+            return new ApiSdk.Models.EducationSchool();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -147,10 +147,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "address", n => { Address = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "address", n => { Address = n.GetObjectValue<ApiSdk.Models.PhysicalAddress>(ApiSdk.Models.PhysicalAddress.CreateFromDiscriminatorValue); } },
                 { "administrativeUnit", n => { AdministrativeUnit = n.GetObjectValue<ApiSdk.Models.AdministrativeUnit>(ApiSdk.Models.AdministrativeUnit.CreateFromDiscriminatorValue); } },
-                { "classes", n => { Classes = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "classes", n => { Classes = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationClass>(ApiSdk.Models.EducationClass.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "externalId", n => { ExternalId = n.GetStringValue(); } },
                 { "externalPrincipalId", n => { ExternalPrincipalId = n.GetStringValue(); } },
                 { "fax", n => { Fax = n.GetStringValue(); } },
@@ -160,7 +160,7 @@ namespace ApiSdk.Models
                 { "principalEmail", n => { PrincipalEmail = n.GetStringValue(); } },
                 { "principalName", n => { PrincipalName = n.GetStringValue(); } },
                 { "schoolNumber", n => { SchoolNumber = n.GetStringValue(); } },
-                { "users", n => { Users = n.GetCollectionOfObjectValues<EducationUser>(EducationUser.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "users", n => { Users = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationUser>(ApiSdk.Models.EducationUser.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -171,10 +171,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<PhysicalAddress>("address", Address);
+            writer.WriteObjectValue<ApiSdk.Models.PhysicalAddress>("address", Address);
             writer.WriteObjectValue<ApiSdk.Models.AdministrativeUnit>("administrativeUnit", AdministrativeUnit);
-            writer.WriteCollectionOfObjectValues<EducationClass>("classes", Classes);
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationClass>("classes", Classes);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("createdBy", CreatedBy);
             writer.WriteStringValue("externalId", ExternalId);
             writer.WriteStringValue("externalPrincipalId", ExternalPrincipalId);
             writer.WriteStringValue("fax", Fax);
@@ -184,7 +184,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("principalEmail", PrincipalEmail);
             writer.WriteStringValue("principalName", PrincipalName);
             writer.WriteStringValue("schoolNumber", SchoolNumber);
-            writer.WriteCollectionOfObjectValues<EducationUser>("users", Users);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationUser>("users", Users);
         }
     }
 }

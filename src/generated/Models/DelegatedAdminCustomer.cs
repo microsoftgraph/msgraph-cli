@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DelegatedAdminCustomer : Entity, IParsable
+    public class DelegatedAdminCustomer : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The Microsoft Entra ID display name of the customer tenant. Read-only. Supports $orderby.</summary>
@@ -21,10 +21,10 @@ namespace ApiSdk.Models
         /// <summary>Contains the management details of a service in the customer tenant that&apos;s managed by delegated administration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DelegatedAdminServiceManagementDetail>? ServiceManagementDetails { get; set; }
+        public List<ApiSdk.Models.DelegatedAdminServiceManagementDetail>? ServiceManagementDetails { get; set; }
 #nullable restore
 #else
-        public List<DelegatedAdminServiceManagementDetail> ServiceManagementDetails { get; set; }
+        public List<ApiSdk.Models.DelegatedAdminServiceManagementDetail> ServiceManagementDetails { get; set; }
 #endif
         /// <summary>The Microsoft Entra ID-assigned tenant ID of the customer. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,12 +37,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DelegatedAdminCustomer"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DelegatedAdminCustomer"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DelegatedAdminCustomer CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DelegatedAdminCustomer CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DelegatedAdminCustomer();
+            return new ApiSdk.Models.DelegatedAdminCustomer();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -53,7 +53,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "serviceManagementDetails", n => { ServiceManagementDetails = n.GetCollectionOfObjectValues<DelegatedAdminServiceManagementDetail>(DelegatedAdminServiceManagementDetail.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "serviceManagementDetails", n => { ServiceManagementDetails = n.GetCollectionOfObjectValues<ApiSdk.Models.DelegatedAdminServiceManagementDetail>(ApiSdk.Models.DelegatedAdminServiceManagementDetail.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "tenantId", n => { TenantId = n.GetStringValue(); } },
             };
         }
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<DelegatedAdminServiceManagementDetail>("serviceManagementDetails", ServiceManagementDetails);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DelegatedAdminServiceManagementDetail>("serviceManagementDetails", ServiceManagementDetails);
             writer.WriteStringValue("tenantId", TenantId);
         }
     }

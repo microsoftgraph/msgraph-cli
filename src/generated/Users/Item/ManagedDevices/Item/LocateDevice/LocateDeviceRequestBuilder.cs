@@ -56,14 +56,14 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LocateDevice
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="LocateDeviceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.ManagedDevices.Item.LocateDevice.LocateDeviceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LocateDeviceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/locateDevice", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="LocateDeviceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.ManagedDevices.Item.LocateDevice.LocateDeviceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LocateDeviceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/locateDevice", rawUrl)

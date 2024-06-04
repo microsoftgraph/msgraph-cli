@@ -9,12 +9,12 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties used to assign an Microsoft Store for Business mobile app to a group.
     /// </summary>
-    public class MicrosoftStoreForBusinessAppAssignmentSettings : MobileAppAssignmentSettings, IParsable
+    public class MicrosoftStoreForBusinessAppAssignmentSettings : ApiSdk.Models.MobileAppAssignmentSettings, IParsable
     {
         /// <summary>Whether or not to use device execution context for Microsoft Store for Business mobile app.</summary>
         public bool? UseDeviceContext { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftStoreForBusinessAppAssignmentSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MicrosoftStoreForBusinessAppAssignmentSettings"/> and sets the default values.
         /// </summary>
         public MicrosoftStoreForBusinessAppAssignmentSettings() : base()
         {
@@ -23,12 +23,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MicrosoftStoreForBusinessAppAssignmentSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MicrosoftStoreForBusinessAppAssignmentSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MicrosoftStoreForBusinessAppAssignmentSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MicrosoftStoreForBusinessAppAssignmentSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MicrosoftStoreForBusinessAppAssignmentSettings();
+            return new ApiSdk.Models.MicrosoftStoreForBusinessAppAssignmentSettings();
         }
         /// <summary>
         /// The deserialization information for the current model

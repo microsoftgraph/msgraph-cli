@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class HostSslCertificate : Artifact, IParsable
+    public class HostSslCertificate : ApiSdk.Models.Security.Artifact, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The first date and time when this hostSslCertificate was observed. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
@@ -25,10 +25,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The ports related with this hostSslCertificate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostSslCertificatePort>? Ports { get; set; }
+        public List<ApiSdk.Models.Security.HostSslCertificatePort>? Ports { get; set; }
 #nullable restore
 #else
-        public List<HostSslCertificatePort> Ports { get; set; }
+        public List<ApiSdk.Models.Security.HostSslCertificatePort> Ports { get; set; }
 #endif
         /// <summary>The sslCertificate for this hostSslCertificate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Security
         public ApiSdk.Models.Security.SslCertificate SslCertificate { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="HostSslCertificate"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.HostSslCertificate"/> and sets the default values.
         /// </summary>
         public HostSslCertificate() : base()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HostSslCertificate"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.HostSslCertificate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new HostSslCertificate CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.HostSslCertificate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HostSslCertificate();
+            return new ApiSdk.Models.Security.HostSslCertificate();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,7 +66,7 @@ namespace ApiSdk.Models.Security
                 { "firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
                 { "host", n => { Host = n.GetObjectValue<ApiSdk.Models.Security.Host>(ApiSdk.Models.Security.Host.CreateFromDiscriminatorValue); } },
                 { "lastSeenDateTime", n => { LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
-                { "ports", n => { Ports = n.GetCollectionOfObjectValues<HostSslCertificatePort>(HostSslCertificatePort.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "ports", n => { Ports = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostSslCertificatePort>(ApiSdk.Models.Security.HostSslCertificatePort.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "sslCertificate", n => { SslCertificate = n.GetObjectValue<ApiSdk.Models.Security.SslCertificate>(ApiSdk.Models.Security.SslCertificate.CreateFromDiscriminatorValue); } },
             };
         }
@@ -81,7 +81,7 @@ namespace ApiSdk.Models.Security
             writer.WriteDateTimeOffsetValue("firstSeenDateTime", FirstSeenDateTime);
             writer.WriteObjectValue<ApiSdk.Models.Security.Host>("host", Host);
             writer.WriteDateTimeOffsetValue("lastSeenDateTime", LastSeenDateTime);
-            writer.WriteCollectionOfObjectValues<HostSslCertificatePort>("ports", Ports);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostSslCertificatePort>("ports", Ports);
             writer.WriteObjectValue<ApiSdk.Models.Security.SslCertificate>("sslCertificate", SslCertificate);
         }
     }

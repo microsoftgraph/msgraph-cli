@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ApiAuthenticationConfigurationBase"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ApiAuthenticationConfigurationBase"/> and sets the default values.
         /// </summary>
         public ApiAuthenticationConfigurationBase()
         {
@@ -30,18 +30,18 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ApiAuthenticationConfigurationBase"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ApiAuthenticationConfigurationBase"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ApiAuthenticationConfigurationBase CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ApiAuthenticationConfigurationBase CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.basicAuthentication" => new BasicAuthentication(),
-                "#microsoft.graph.clientCertificateAuthentication" => new ClientCertificateAuthentication(),
-                "#microsoft.graph.pkcs12Certificate" => new Pkcs12Certificate(),
-                _ => new ApiAuthenticationConfigurationBase(),
+                "#microsoft.graph.basicAuthentication" => new ApiSdk.Models.BasicAuthentication(),
+                "#microsoft.graph.clientCertificateAuthentication" => new ApiSdk.Models.ClientCertificateAuthentication(),
+                "#microsoft.graph.pkcs12Certificate" => new ApiSdk.Models.Pkcs12Certificate(),
+                _ => new ApiSdk.Models.ApiAuthenticationConfigurationBase(),
             };
         }
         /// <summary>

@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Identity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Identity"/> and sets the default values.
         /// </summary>
         public Identity()
         {
@@ -46,34 +46,34 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Identity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Identity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Identity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Identity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.azureCommunicationServicesUserIdentity" => new AzureCommunicationServicesUserIdentity(),
-                "#microsoft.graph.communicationsApplicationIdentity" => new CommunicationsApplicationIdentity(),
-                "#microsoft.graph.communicationsApplicationInstanceIdentity" => new CommunicationsApplicationInstanceIdentity(),
-                "#microsoft.graph.communicationsEncryptedIdentity" => new CommunicationsEncryptedIdentity(),
-                "#microsoft.graph.communicationsGuestIdentity" => new CommunicationsGuestIdentity(),
-                "#microsoft.graph.communicationsPhoneIdentity" => new CommunicationsPhoneIdentity(),
-                "#microsoft.graph.communicationsUserIdentity" => new CommunicationsUserIdentity(),
-                "#microsoft.graph.emailIdentity" => new EmailIdentity(),
-                "#microsoft.graph.initiator" => new Initiator(),
-                "#microsoft.graph.provisionedIdentity" => new ProvisionedIdentity(),
-                "#microsoft.graph.provisioningServicePrincipal" => new ProvisioningServicePrincipal(),
-                "#microsoft.graph.provisioningSystem" => new ProvisioningSystem(),
-                "#microsoft.graph.servicePrincipalIdentity" => new ServicePrincipalIdentity(),
-                "#microsoft.graph.sharePointIdentity" => new SharePointIdentity(),
-                "#microsoft.graph.teamworkApplicationIdentity" => new TeamworkApplicationIdentity(),
-                "#microsoft.graph.teamworkConversationIdentity" => new TeamworkConversationIdentity(),
-                "#microsoft.graph.teamworkTagIdentity" => new TeamworkTagIdentity(),
-                "#microsoft.graph.teamworkUserIdentity" => new TeamworkUserIdentity(),
-                "#microsoft.graph.userIdentity" => new UserIdentity(),
-                _ => new Identity(),
+                "#microsoft.graph.azureCommunicationServicesUserIdentity" => new ApiSdk.Models.AzureCommunicationServicesUserIdentity(),
+                "#microsoft.graph.communicationsApplicationIdentity" => new ApiSdk.Models.CommunicationsApplicationIdentity(),
+                "#microsoft.graph.communicationsApplicationInstanceIdentity" => new ApiSdk.Models.CommunicationsApplicationInstanceIdentity(),
+                "#microsoft.graph.communicationsEncryptedIdentity" => new ApiSdk.Models.CommunicationsEncryptedIdentity(),
+                "#microsoft.graph.communicationsGuestIdentity" => new ApiSdk.Models.CommunicationsGuestIdentity(),
+                "#microsoft.graph.communicationsPhoneIdentity" => new ApiSdk.Models.CommunicationsPhoneIdentity(),
+                "#microsoft.graph.communicationsUserIdentity" => new ApiSdk.Models.CommunicationsUserIdentity(),
+                "#microsoft.graph.emailIdentity" => new ApiSdk.Models.EmailIdentity(),
+                "#microsoft.graph.initiator" => new ApiSdk.Models.Initiator(),
+                "#microsoft.graph.provisionedIdentity" => new ApiSdk.Models.ProvisionedIdentity(),
+                "#microsoft.graph.provisioningServicePrincipal" => new ApiSdk.Models.ProvisioningServicePrincipal(),
+                "#microsoft.graph.provisioningSystem" => new ApiSdk.Models.ProvisioningSystem(),
+                "#microsoft.graph.servicePrincipalIdentity" => new ApiSdk.Models.ServicePrincipalIdentity(),
+                "#microsoft.graph.sharePointIdentity" => new ApiSdk.Models.SharePointIdentity(),
+                "#microsoft.graph.teamworkApplicationIdentity" => new ApiSdk.Models.TeamworkApplicationIdentity(),
+                "#microsoft.graph.teamworkConversationIdentity" => new ApiSdk.Models.TeamworkConversationIdentity(),
+                "#microsoft.graph.teamworkTagIdentity" => new ApiSdk.Models.TeamworkTagIdentity(),
+                "#microsoft.graph.teamworkUserIdentity" => new ApiSdk.Models.TeamworkUserIdentity(),
+                "#microsoft.graph.userIdentity" => new ApiSdk.Models.UserIdentity(),
+                _ => new ApiSdk.Models.Identity(),
             };
         }
         /// <summary>

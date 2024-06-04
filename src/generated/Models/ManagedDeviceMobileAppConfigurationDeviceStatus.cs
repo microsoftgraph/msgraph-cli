@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties, inherited properties and actions for an MDM mobile app configuration status for a device.
     /// </summary>
-    public class ManagedDeviceMobileAppConfigurationDeviceStatus : Entity, IParsable
+    public class ManagedDeviceMobileAppConfigurationDeviceStatus : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The DateTime when device compliance grace period expires</summary>
         public DateTimeOffset? ComplianceGracePeriodExpirationDateTime { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models
         /// <summary>Last modified date time of the policy report.</summary>
         public DateTimeOffset? LastReportedDateTime { get; set; }
         /// <summary>The status property</summary>
-        public ComplianceStatus? Status { get; set; }
+        public ApiSdk.Models.ComplianceStatus? Status { get; set; }
         /// <summary>The User Name that is being reported</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,12 +52,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ManagedDeviceMobileAppConfigurationDeviceStatus"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceStatus"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ManagedDeviceMobileAppConfigurationDeviceStatus CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceStatus CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedDeviceMobileAppConfigurationDeviceStatus();
+            return new ApiSdk.Models.ManagedDeviceMobileAppConfigurationDeviceStatus();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,7 +71,7 @@ namespace ApiSdk.Models
                 { "deviceDisplayName", n => { DeviceDisplayName = n.GetStringValue(); } },
                 { "deviceModel", n => { DeviceModel = n.GetStringValue(); } },
                 { "lastReportedDateTime", n => { LastReportedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<ComplianceStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.ComplianceStatus>(); } },
                 { "userName", n => { UserName = n.GetStringValue(); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
@@ -88,7 +88,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("deviceDisplayName", DeviceDisplayName);
             writer.WriteStringValue("deviceModel", DeviceModel);
             writer.WriteDateTimeOffsetValue("lastReportedDateTime", LastReportedDateTime);
-            writer.WriteEnumValue<ComplianceStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.ComplianceStatus>("status", Status);
             writer.WriteStringValue("userName", UserName);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);
         }

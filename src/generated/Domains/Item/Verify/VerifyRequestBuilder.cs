@@ -61,14 +61,14 @@ namespace ApiSdk.Domains.Item.Verify
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="VerifyRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Domains.Item.Verify.VerifyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public VerifyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/verify", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="VerifyRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Domains.Item.Verify.VerifyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public VerifyRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/verify", rawUrl)

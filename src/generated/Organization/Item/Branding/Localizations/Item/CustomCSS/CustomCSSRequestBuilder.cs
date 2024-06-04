@@ -169,14 +169,14 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.CustomCSS
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CustomCSSRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.Localizations.Item.CustomCSS.CustomCSSRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CustomCSSRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/customCSS", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CustomCSSRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.Localizations.Item.CustomCSS.CustomCSSRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CustomCSSRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/customCSS", rawUrl)

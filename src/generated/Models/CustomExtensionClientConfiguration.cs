@@ -25,7 +25,7 @@ namespace ApiSdk.Models
         /// <summary>The max duration in milliseconds that Microsoft Entra ID waits for a response from the external app before it shuts down the connection. The valid range is between 200 and 2000 milliseconds. Default duration is 1000.</summary>
         public int? TimeoutInMilliseconds { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CustomExtensionClientConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CustomExtensionClientConfiguration"/> and sets the default values.
         /// </summary>
         public CustomExtensionClientConfiguration()
         {
@@ -34,12 +34,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CustomExtensionClientConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CustomExtensionClientConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CustomExtensionClientConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CustomExtensionClientConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CustomExtensionClientConfiguration();
+            return new ApiSdk.Models.CustomExtensionClientConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model

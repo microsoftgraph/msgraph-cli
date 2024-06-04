@@ -35,7 +35,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item
         {
             var command = new Command("approvers");
             command.Description = "Provides operations to manage the approvers property of the microsoft.graph.subjectRightsRequest entity.";
-            var builder = new ApproversRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.SubjectRightsRequests.Item.Approvers.ApproversRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -61,7 +61,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item
         {
             var command = new Command("collaborators");
             command.Description = "Provides operations to manage the collaborators property of the microsoft.graph.subjectRightsRequest entity.";
-            var builder = new CollaboratorsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.SubjectRightsRequests.Item.Collaborators.CollaboratorsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -174,7 +174,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item
         {
             var command = new Command("get-final-attachment");
             command.Description = "Provides operations to call the getFinalAttachment method.";
-            var builder = new GetFinalAttachmentRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.SubjectRightsRequests.Item.GetFinalAttachment.GetFinalAttachmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -191,7 +191,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item
         {
             var command = new Command("get-final-report");
             command.Description = "Provides operations to call the getFinalReport method.";
-            var builder = new GetFinalReportRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.SubjectRightsRequests.Item.GetFinalReport.GetFinalReportRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -208,7 +208,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item
         {
             var command = new Command("notes");
             command.Description = "Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.";
-            var builder = new NotesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.SubjectRightsRequests.Item.Notes.NotesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -258,7 +258,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SubjectRightsRequest>(SubjectRightsRequest.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.SubjectRightsRequest>(ApiSdk.Models.SubjectRightsRequest.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -286,7 +286,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item
         {
             var command = new Command("team");
             command.Description = "Provides operations to manage the team property of the microsoft.graph.subjectRightsRequest entity.";
-            var builder = new TeamRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.SubjectRightsRequests.Item.Team.TeamRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -296,14 +296,14 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SubjectRightsRequestItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.SubjectRightsRequests.Item.SubjectRightsRequestItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SubjectRightsRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SubjectRightsRequestItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.SubjectRightsRequests.Item.SubjectRightsRequestItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SubjectRightsRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}{?%24expand,%24select}", rawUrl)
@@ -335,11 +335,11 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SubjectRightsRequestItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.SubjectRightsRequests.Item.SubjectRightsRequestItemRequestBuilder.SubjectRightsRequestItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SubjectRightsRequestItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.SubjectRightsRequests.Item.SubjectRightsRequestItemRequestBuilder.SubjectRightsRequestItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -355,11 +355,11 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(SubjectRightsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SubjectRightsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(SubjectRightsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SubjectRightsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

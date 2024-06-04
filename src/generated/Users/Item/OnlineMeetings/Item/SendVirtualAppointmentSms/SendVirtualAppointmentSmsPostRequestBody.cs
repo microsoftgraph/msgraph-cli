@@ -16,15 +16,15 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentSms
         /// <summary>The attendees property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AttendeeNotificationInfo>? Attendees { get; set; }
+        public List<ApiSdk.Models.AttendeeNotificationInfo>? Attendees { get; set; }
 #nullable restore
 #else
-        public List<AttendeeNotificationInfo> Attendees { get; set; }
+        public List<ApiSdk.Models.AttendeeNotificationInfo> Attendees { get; set; }
 #endif
         /// <summary>The messageType property</summary>
-        public VirtualAppointmentMessageType? MessageType { get; set; }
+        public ApiSdk.Models.VirtualAppointmentMessageType? MessageType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SendVirtualAppointmentSmsPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentSms.SendVirtualAppointmentSmsPostRequestBody"/> and sets the default values.
         /// </summary>
         public SendVirtualAppointmentSmsPostRequestBody()
         {
@@ -33,12 +33,12 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentSms
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SendVirtualAppointmentSmsPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentSms.SendVirtualAppointmentSmsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SendVirtualAppointmentSmsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentSms.SendVirtualAppointmentSmsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SendVirtualAppointmentSmsPostRequestBody();
+            return new ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentSms.SendVirtualAppointmentSmsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,8 +48,8 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentSms
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "attendees", n => { Attendees = n.GetCollectionOfObjectValues<AttendeeNotificationInfo>(AttendeeNotificationInfo.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "messageType", n => { MessageType = n.GetEnumValue<VirtualAppointmentMessageType>(); } },
+                { "attendees", n => { Attendees = n.GetCollectionOfObjectValues<ApiSdk.Models.AttendeeNotificationInfo>(ApiSdk.Models.AttendeeNotificationInfo.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "messageType", n => { MessageType = n.GetEnumValue<ApiSdk.Models.VirtualAppointmentMessageType>(); } },
             };
         }
         /// <summary>
@@ -59,8 +59,8 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.SendVirtualAppointmentSms
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<AttendeeNotificationInfo>("attendees", Attendees);
-            writer.WriteEnumValue<VirtualAppointmentMessageType>("messageType", MessageType);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AttendeeNotificationInfo>("attendees", Attendees);
+            writer.WriteEnumValue<ApiSdk.Models.VirtualAppointmentMessageType>("messageType", MessageType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

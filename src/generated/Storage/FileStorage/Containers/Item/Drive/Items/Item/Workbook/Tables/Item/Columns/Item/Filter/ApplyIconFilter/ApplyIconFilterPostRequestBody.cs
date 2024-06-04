@@ -16,13 +16,13 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         /// <summary>The icon property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookIcon? Icon { get; set; }
+        public ApiSdk.Models.WorkbookIcon? Icon { get; set; }
 #nullable restore
 #else
-        public WorkbookIcon Icon { get; set; }
+        public ApiSdk.Models.WorkbookIcon Icon { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ApplyIconFilterPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyIconFilter.ApplyIconFilterPostRequestBody"/> and sets the default values.
         /// </summary>
         public ApplyIconFilterPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ApplyIconFilterPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyIconFilter.ApplyIconFilterPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ApplyIconFilterPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyIconFilter.ApplyIconFilterPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ApplyIconFilterPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyIconFilter.ApplyIconFilterPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "icon", n => { Icon = n.GetObjectValue<WorkbookIcon>(WorkbookIcon.CreateFromDiscriminatorValue); } },
+                { "icon", n => { Icon = n.GetObjectValue<ApiSdk.Models.WorkbookIcon>(ApiSdk.Models.WorkbookIcon.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<WorkbookIcon>("icon", Icon);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookIcon>("icon", Icon);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

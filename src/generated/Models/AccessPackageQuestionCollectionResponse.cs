@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageQuestionCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class AccessPackageQuestionCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessPackageQuestion>? Value { get; set; }
+        public List<ApiSdk.Models.AccessPackageQuestion>? Value { get; set; }
 #nullable restore
 #else
-        public List<AccessPackageQuestion> Value { get; set; }
+        public List<ApiSdk.Models.AccessPackageQuestion> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageQuestionCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageQuestionCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageQuestionCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageQuestionCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageQuestionCollectionResponse();
+            return new ApiSdk.Models.AccessPackageQuestionCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<AccessPackageQuestion>(AccessPackageQuestion.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessPackageQuestion>(ApiSdk.Models.AccessPackageQuestion.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AccessPackageQuestion>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessPackageQuestion>("value", Value);
         }
     }
 }

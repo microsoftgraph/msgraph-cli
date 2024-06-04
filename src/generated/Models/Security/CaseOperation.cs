@@ -11,7 +11,7 @@ namespace ApiSdk.Models.Security
     #pragma warning restore CS1591
     {
         /// <summary>The type of action the operation represents. Possible values are: addToReviewSet,applyTags,contentExport,convertToPdf,estimateStatistics, purgeData</summary>
-        public CaseAction? Action { get; set; }
+        public ApiSdk.Models.Security.CaseAction? Action { get; set; }
         /// <summary>The date and time the operation was completed.</summary>
         public DateTimeOffset? CompletedDateTime { get; set; }
         /// <summary>The user that created the operation.</summary>
@@ -35,26 +35,26 @@ namespace ApiSdk.Models.Security
         public ApiSdk.Models.ResultInfo ResultInfo { get; set; }
 #endif
         /// <summary>The status of the case operation. Possible values are: notStarted, submissionFailed, running, succeeded, partiallySucceeded, failed.</summary>
-        public CaseOperationStatus? Status { get; set; }
+        public ApiSdk.Models.Security.CaseOperationStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CaseOperation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.CaseOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CaseOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.CaseOperation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.ediscoveryAddToReviewSetOperation" => new EdiscoveryAddToReviewSetOperation(),
-                "#microsoft.graph.security.ediscoveryEstimateOperation" => new EdiscoveryEstimateOperation(),
-                "#microsoft.graph.security.ediscoveryExportOperation" => new EdiscoveryExportOperation(),
-                "#microsoft.graph.security.ediscoveryHoldOperation" => new EdiscoveryHoldOperation(),
-                "#microsoft.graph.security.ediscoveryIndexOperation" => new EdiscoveryIndexOperation(),
-                "#microsoft.graph.security.ediscoveryPurgeDataOperation" => new EdiscoveryPurgeDataOperation(),
-                "#microsoft.graph.security.ediscoveryTagOperation" => new EdiscoveryTagOperation(),
-                _ => new CaseOperation(),
+                "#microsoft.graph.security.ediscoveryAddToReviewSetOperation" => new ApiSdk.Models.Security.EdiscoveryAddToReviewSetOperation(),
+                "#microsoft.graph.security.ediscoveryEstimateOperation" => new ApiSdk.Models.Security.EdiscoveryEstimateOperation(),
+                "#microsoft.graph.security.ediscoveryExportOperation" => new ApiSdk.Models.Security.EdiscoveryExportOperation(),
+                "#microsoft.graph.security.ediscoveryHoldOperation" => new ApiSdk.Models.Security.EdiscoveryHoldOperation(),
+                "#microsoft.graph.security.ediscoveryIndexOperation" => new ApiSdk.Models.Security.EdiscoveryIndexOperation(),
+                "#microsoft.graph.security.ediscoveryPurgeDataOperation" => new ApiSdk.Models.Security.EdiscoveryPurgeDataOperation(),
+                "#microsoft.graph.security.ediscoveryTagOperation" => new ApiSdk.Models.Security.EdiscoveryTagOperation(),
+                _ => new ApiSdk.Models.Security.CaseOperation(),
             };
         }
         /// <summary>
@@ -65,13 +65,13 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "action", n => { Action = n.GetEnumValue<CaseAction>(); } },
+                { "action", n => { Action = n.GetEnumValue<ApiSdk.Models.Security.CaseAction>(); } },
                 { "completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "percentProgress", n => { PercentProgress = n.GetIntValue(); } },
                 { "resultInfo", n => { ResultInfo = n.GetObjectValue<ApiSdk.Models.ResultInfo>(ApiSdk.Models.ResultInfo.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetEnumValue<CaseOperationStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.Security.CaseOperationStatus>(); } },
             };
         }
         /// <summary>
@@ -82,13 +82,13 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<CaseAction>("action", Action);
+            writer.WriteEnumValue<ApiSdk.Models.Security.CaseAction>("action", Action);
             writer.WriteDateTimeOffsetValue("completedDateTime", CompletedDateTime);
             writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteIntValue("percentProgress", PercentProgress);
             writer.WriteObjectValue<ApiSdk.Models.ResultInfo>("resultInfo", ResultInfo);
-            writer.WriteEnumValue<CaseOperationStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.Security.CaseOperationStatus>("status", Status);
         }
     }
 }

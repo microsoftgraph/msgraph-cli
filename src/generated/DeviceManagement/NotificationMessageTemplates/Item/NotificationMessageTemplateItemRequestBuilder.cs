@@ -120,7 +120,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item
         {
             var command = new Command("localized-notification-messages");
             command.Description = "Provides operations to manage the localizedNotificationMessages property of the microsoft.graph.notificationMessageTemplate entity.";
-            var builder = new LocalizedNotificationMessagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNotificationMessages.LocalizedNotificationMessagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -171,7 +171,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<NotificationMessageTemplate>(NotificationMessageTemplate.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.NotificationMessageTemplate>(ApiSdk.Models.NotificationMessageTemplate.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -199,7 +199,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item
         {
             var command = new Command("send-test-message");
             command.Description = "Provides operations to call the sendTestMessage method.";
-            var builder = new SendTestMessageRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMessage.SendTestMessageRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -209,14 +209,14 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="NotificationMessageTemplateItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.NotificationMessageTemplateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public NotificationMessageTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="NotificationMessageTemplateItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.NotificationMessageTemplateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public NotificationMessageTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}{?%24expand,%24select}", rawUrl)
@@ -248,11 +248,11 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotificationMessageTemplateItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.NotificationMessageTemplateItemRequestBuilder.NotificationMessageTemplateItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotificationMessageTemplateItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.NotificationMessageTemplateItemRequestBuilder.NotificationMessageTemplateItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -268,11 +268,11 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(NotificationMessageTemplate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.NotificationMessageTemplate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(NotificationMessageTemplate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.NotificationMessageTemplate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

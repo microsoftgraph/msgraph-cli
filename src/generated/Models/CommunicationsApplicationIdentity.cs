@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CommunicationsApplicationIdentity : Identity, IParsable
+    public class CommunicationsApplicationIdentity : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>First-party Microsoft application that presents this identity.</summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         /// <summary>True if the participant shouldn&apos;t be shown in other participants&apos; rosters.</summary>
         public bool? Hidden { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CommunicationsApplicationIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CommunicationsApplicationIdentity"/> and sets the default values.
         /// </summary>
         public CommunicationsApplicationIdentity() : base()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CommunicationsApplicationIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CommunicationsApplicationIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CommunicationsApplicationIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CommunicationsApplicationIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CommunicationsApplicationIdentity();
+            return new ApiSdk.Models.CommunicationsApplicationIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model

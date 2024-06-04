@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// OMA Settings String definition.
     /// </summary>
-    public class OmaSettingString : OmaSetting, IParsable
+    public class OmaSettingString : ApiSdk.Models.OmaSetting, IParsable
     {
         /// <summary>Value.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -20,7 +20,7 @@ namespace ApiSdk.Models
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OmaSettingString"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OmaSettingString"/> and sets the default values.
         /// </summary>
         public OmaSettingString() : base()
         {
@@ -29,12 +29,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OmaSettingString"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OmaSettingString"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OmaSettingString CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OmaSettingString CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OmaSettingString();
+            return new ApiSdk.Models.OmaSettingString();
         }
         /// <summary>
         /// The deserialization information for the current model

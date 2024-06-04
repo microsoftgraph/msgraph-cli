@@ -16,29 +16,29 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The day property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Day { get; set; }
+        public ApiSdk.Models.Json? Day { get; set; }
 #nullable restore
 #else
-        public Json Day { get; set; }
+        public ApiSdk.Models.Json Day { get; set; }
 #endif
         /// <summary>The month property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Month { get; set; }
+        public ApiSdk.Models.Json? Month { get; set; }
 #nullable restore
 #else
-        public Json Month { get; set; }
+        public ApiSdk.Models.Json Month { get; set; }
 #endif
         /// <summary>The year property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Year { get; set; }
+        public ApiSdk.Models.Json? Year { get; set; }
 #nullable restore
 #else
-        public Json Year { get; set; }
+        public ApiSdk.Models.Json Year { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DatePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DateNamespace.DatePostRequestBody"/> and sets the default values.
         /// </summary>
         public DatePostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DatePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DateNamespace.DatePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DateNamespace.DatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DatePostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.DateNamespace.DatePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "day", n => { Day = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "month", n => { Month = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "year", n => { Year = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "day", n => { Day = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "month", n => { Month = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "year", n => { Year = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("day", Day);
-            writer.WriteObjectValue<Json>("month", Month);
-            writer.WriteObjectValue<Json>("year", Year);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("day", Day);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("month", Month);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("year", Year);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -44,7 +44,7 @@ namespace ApiSdk.Groups.Item.Team.SendActivityNotification
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SendActivityNotificationPostRequestBody>(SendActivityNotificationPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Groups.Item.Team.SendActivityNotification.SendActivityNotificationPostRequestBody>(ApiSdk.Groups.Item.Team.SendActivityNotification.SendActivityNotificationPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -63,14 +63,14 @@ namespace ApiSdk.Groups.Item.Team.SendActivityNotification
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SendActivityNotificationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Team.SendActivityNotification.SendActivityNotificationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SendActivityNotificationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/sendActivityNotification", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SendActivityNotificationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Team.SendActivityNotification.SendActivityNotificationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SendActivityNotificationRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/sendActivityNotification", rawUrl)
@@ -84,11 +84,11 @@ namespace ApiSdk.Groups.Item.Team.SendActivityNotification
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(SendActivityNotificationPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Groups.Item.Team.SendActivityNotification.SendActivityNotificationPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(SendActivityNotificationPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Groups.Item.Team.SendActivityNotification.SendActivityNotificationPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

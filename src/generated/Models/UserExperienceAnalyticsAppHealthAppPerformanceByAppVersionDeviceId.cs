@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// The user experience analytics application performance entity contains application performance by application version device id.
     /// </summary>
-    public class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId : Entity, IParsable
+    public class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The number of crashes for the app. Valid values -2147483648 to 2147483647</summary>
         public int? AppCrashCount { get; set; }
@@ -66,12 +66,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId();
+            return new ApiSdk.Models.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId();
         }
         /// <summary>
         /// The deserialization information for the current model

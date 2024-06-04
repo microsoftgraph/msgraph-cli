@@ -9,12 +9,12 @@ namespace ApiSdk.Models
     /// <summary>
     /// This class contains compliance settings for Android Work Profile.
     /// </summary>
-    public class AndroidWorkProfileCompliancePolicy : DeviceCompliancePolicy, IParsable
+    public class AndroidWorkProfileCompliancePolicy : ApiSdk.Models.DeviceCompliancePolicy, IParsable
     {
         /// <summary>Require that devices have enabled device threat protection.</summary>
         public bool? DeviceThreatProtectionEnabled { get; set; }
         /// <summary>Device threat protection levels for the Device Threat Protection API.</summary>
-        public DeviceThreatProtectionLevel? DeviceThreatProtectionRequiredSecurityLevel { get; set; }
+        public ApiSdk.Models.DeviceThreatProtectionLevel? DeviceThreatProtectionRequiredSecurityLevel { get; set; }
         /// <summary>Minimum Android security patch level.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -50,7 +50,7 @@ namespace ApiSdk.Models
         /// <summary>Require a password to unlock device.</summary>
         public bool? PasswordRequired { get; set; }
         /// <summary>Android required password type.</summary>
-        public AndroidRequiredPasswordType? PasswordRequiredType { get; set; }
+        public ApiSdk.Models.AndroidRequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>Devices must not be jailbroken or rooted.</summary>
         public bool? SecurityBlockJailbrokenDevices { get; set; }
         /// <summary>Disable USB debugging on Android devices.</summary>
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
         /// <summary>Require encryption on Android devices.</summary>
         public bool? StorageRequireEncryption { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AndroidWorkProfileCompliancePolicy"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AndroidWorkProfileCompliancePolicy"/> and sets the default values.
         /// </summary>
         public AndroidWorkProfileCompliancePolicy() : base()
         {
@@ -81,12 +81,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AndroidWorkProfileCompliancePolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AndroidWorkProfileCompliancePolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AndroidWorkProfileCompliancePolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AndroidWorkProfileCompliancePolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AndroidWorkProfileCompliancePolicy();
+            return new ApiSdk.Models.AndroidWorkProfileCompliancePolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -97,7 +97,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "deviceThreatProtectionEnabled", n => { DeviceThreatProtectionEnabled = n.GetBoolValue(); } },
-                { "deviceThreatProtectionRequiredSecurityLevel", n => { DeviceThreatProtectionRequiredSecurityLevel = n.GetEnumValue<DeviceThreatProtectionLevel>(); } },
+                { "deviceThreatProtectionRequiredSecurityLevel", n => { DeviceThreatProtectionRequiredSecurityLevel = n.GetEnumValue<ApiSdk.Models.DeviceThreatProtectionLevel>(); } },
                 { "minAndroidSecurityPatchLevel", n => { MinAndroidSecurityPatchLevel = n.GetStringValue(); } },
                 { "osMaximumVersion", n => { OsMaximumVersion = n.GetStringValue(); } },
                 { "osMinimumVersion", n => { OsMinimumVersion = n.GetStringValue(); } },
@@ -106,7 +106,7 @@ namespace ApiSdk.Models
                 { "passwordMinutesOfInactivityBeforeLock", n => { PasswordMinutesOfInactivityBeforeLock = n.GetIntValue(); } },
                 { "passwordPreviousPasswordBlockCount", n => { PasswordPreviousPasswordBlockCount = n.GetIntValue(); } },
                 { "passwordRequired", n => { PasswordRequired = n.GetBoolValue(); } },
-                { "passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<AndroidRequiredPasswordType>(); } },
+                { "passwordRequiredType", n => { PasswordRequiredType = n.GetEnumValue<ApiSdk.Models.AndroidRequiredPasswordType>(); } },
                 { "securityBlockJailbrokenDevices", n => { SecurityBlockJailbrokenDevices = n.GetBoolValue(); } },
                 { "securityDisableUsbDebugging", n => { SecurityDisableUsbDebugging = n.GetBoolValue(); } },
                 { "securityPreventInstallAppsFromUnknownSources", n => { SecurityPreventInstallAppsFromUnknownSources = n.GetBoolValue(); } },
@@ -128,7 +128,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("deviceThreatProtectionEnabled", DeviceThreatProtectionEnabled);
-            writer.WriteEnumValue<DeviceThreatProtectionLevel>("deviceThreatProtectionRequiredSecurityLevel", DeviceThreatProtectionRequiredSecurityLevel);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceThreatProtectionLevel>("deviceThreatProtectionRequiredSecurityLevel", DeviceThreatProtectionRequiredSecurityLevel);
             writer.WriteStringValue("minAndroidSecurityPatchLevel", MinAndroidSecurityPatchLevel);
             writer.WriteStringValue("osMaximumVersion", OsMaximumVersion);
             writer.WriteStringValue("osMinimumVersion", OsMinimumVersion);
@@ -137,7 +137,7 @@ namespace ApiSdk.Models
             writer.WriteIntValue("passwordMinutesOfInactivityBeforeLock", PasswordMinutesOfInactivityBeforeLock);
             writer.WriteIntValue("passwordPreviousPasswordBlockCount", PasswordPreviousPasswordBlockCount);
             writer.WriteBoolValue("passwordRequired", PasswordRequired);
-            writer.WriteEnumValue<AndroidRequiredPasswordType>("passwordRequiredType", PasswordRequiredType);
+            writer.WriteEnumValue<ApiSdk.Models.AndroidRequiredPasswordType>("passwordRequiredType", PasswordRequiredType);
             writer.WriteBoolValue("securityBlockJailbrokenDevices", SecurityBlockJailbrokenDevices);
             writer.WriteBoolValue("securityDisableUsbDebugging", SecurityDisableUsbDebugging);
             writer.WriteBoolValue("securityPreventInstallAppsFromUnknownSources", SecurityPreventInstallAppsFromUnknownSources);

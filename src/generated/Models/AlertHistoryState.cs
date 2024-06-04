@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public List<string> Comments { get; set; }
 #endif
         /// <summary>The feedback property</summary>
-        public AlertFeedback? Feedback { get; set; }
+        public ApiSdk.Models.AlertFeedback? Feedback { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public AlertStatus? Status { get; set; }
+        public ApiSdk.Models.AlertStatus? Status { get; set; }
         /// <summary>The updatedDateTime property</summary>
         public DateTimeOffset? UpdatedDateTime { get; set; }
         /// <summary>The user property</summary>
@@ -59,7 +59,7 @@ namespace ApiSdk.Models
         public string User { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AlertHistoryState"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AlertHistoryState"/> and sets the default values.
         /// </summary>
         public AlertHistoryState()
         {
@@ -68,12 +68,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AlertHistoryState"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AlertHistoryState"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AlertHistoryState CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AlertHistoryState CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AlertHistoryState();
+            return new ApiSdk.Models.AlertHistoryState();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -86,9 +86,9 @@ namespace ApiSdk.Models
                 { "appId", n => { AppId = n.GetStringValue(); } },
                 { "assignedTo", n => { AssignedTo = n.GetStringValue(); } },
                 { "comments", n => { Comments = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "feedback", n => { Feedback = n.GetEnumValue<AlertFeedback>(); } },
+                { "feedback", n => { Feedback = n.GetEnumValue<ApiSdk.Models.AlertFeedback>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<AlertStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.AlertStatus>(); } },
                 { "updatedDateTime", n => { UpdatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "user", n => { User = n.GetStringValue(); } },
             };
@@ -103,9 +103,9 @@ namespace ApiSdk.Models
             writer.WriteStringValue("appId", AppId);
             writer.WriteStringValue("assignedTo", AssignedTo);
             writer.WriteCollectionOfPrimitiveValues<string>("comments", Comments);
-            writer.WriteEnumValue<AlertFeedback>("feedback", Feedback);
+            writer.WriteEnumValue<ApiSdk.Models.AlertFeedback>("feedback", Feedback);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<AlertStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.AlertStatus>("status", Status);
             writer.WriteDateTimeOffsetValue("updatedDateTime", UpdatedDateTime);
             writer.WriteStringValue("user", User);
             writer.WriteAdditionalData(AdditionalData);

@@ -30,7 +30,7 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions
         {
             var command = new Command("applications");
             command.Description = "The applications property";
-            var builder = new ApplicationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions.Applications.ApplicationsRequestBuilder(PathParameters);
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildIncludeApplicationsNavCommand());
             foreach (var cmd in nonExecCommands)
@@ -92,14 +92,14 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ConditionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions.ConditionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ConditionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/authenticationEventsFlows/{authenticationEventsFlow%2Did}/conditions{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ConditionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions.ConditionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ConditionsRequestBuilder(string rawUrl) : base("{+baseurl}/identity/authenticationEventsFlows/{authenticationEventsFlow%2Did}/conditions{?%24expand,%24select}", rawUrl)
@@ -112,11 +112,11 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ConditionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions.ConditionsRequestBuilder.ConditionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ConditionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions.ConditionsRequestBuilder.ConditionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

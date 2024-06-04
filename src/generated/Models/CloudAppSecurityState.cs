@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string RiskScore { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CloudAppSecurityState"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CloudAppSecurityState"/> and sets the default values.
         /// </summary>
         public CloudAppSecurityState()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudAppSecurityState"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudAppSecurityState"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CloudAppSecurityState CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.CloudAppSecurityState CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudAppSecurityState();
+            return new ApiSdk.Models.CloudAppSecurityState();
         }
         /// <summary>
         /// The deserialization information for the current model

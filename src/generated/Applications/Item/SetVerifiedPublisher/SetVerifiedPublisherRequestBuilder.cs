@@ -44,7 +44,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SetVerifiedPublisherPostRequestBody>(SetVerifiedPublisherPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Applications.Item.SetVerifiedPublisher.SetVerifiedPublisherPostRequestBody>(ApiSdk.Applications.Item.SetVerifiedPublisher.SetVerifiedPublisherPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -63,14 +63,14 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetVerifiedPublisherRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.SetVerifiedPublisher.SetVerifiedPublisherRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SetVerifiedPublisherRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/setVerifiedPublisher", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetVerifiedPublisherRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.SetVerifiedPublisher.SetVerifiedPublisherRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SetVerifiedPublisherRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/setVerifiedPublisher", rawUrl)
@@ -84,11 +84,11 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(SetVerifiedPublisherPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Applications.Item.SetVerifiedPublisher.SetVerifiedPublisherPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(SetVerifiedPublisherPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Applications.Item.SetVerifiedPublisher.SetVerifiedPublisherPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

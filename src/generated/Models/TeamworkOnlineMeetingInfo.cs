@@ -39,13 +39,13 @@ namespace ApiSdk.Models
         /// <summary>The organizer of the meeting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamworkUserIdentity? Organizer { get; set; }
+        public ApiSdk.Models.TeamworkUserIdentity? Organizer { get; set; }
 #nullable restore
 #else
-        public TeamworkUserIdentity Organizer { get; set; }
+        public ApiSdk.Models.TeamworkUserIdentity Organizer { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TeamworkOnlineMeetingInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TeamworkOnlineMeetingInfo"/> and sets the default values.
         /// </summary>
         public TeamworkOnlineMeetingInfo()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamworkOnlineMeetingInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamworkOnlineMeetingInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TeamworkOnlineMeetingInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TeamworkOnlineMeetingInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamworkOnlineMeetingInfo();
+            return new ApiSdk.Models.TeamworkOnlineMeetingInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
                 { "calendarEventId", n => { CalendarEventId = n.GetStringValue(); } },
                 { "joinWebUrl", n => { JoinWebUrl = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "organizer", n => { Organizer = n.GetObjectValue<TeamworkUserIdentity>(TeamworkUserIdentity.CreateFromDiscriminatorValue); } },
+                { "organizer", n => { Organizer = n.GetObjectValue<ApiSdk.Models.TeamworkUserIdentity>(ApiSdk.Models.TeamworkUserIdentity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("calendarEventId", CalendarEventId);
             writer.WriteStringValue("joinWebUrl", JoinWebUrl);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<TeamworkUserIdentity>("organizer", Organizer);
+            writer.WriteObjectValue<ApiSdk.Models.TeamworkUserIdentity>("organizer", Organizer);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

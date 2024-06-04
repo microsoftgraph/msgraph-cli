@@ -13,20 +13,20 @@ namespace ApiSdk.Models.Security
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UnifiedGroupSource>? Value { get; set; }
+        public List<ApiSdk.Models.Security.UnifiedGroupSource>? Value { get; set; }
 #nullable restore
 #else
-        public List<UnifiedGroupSource> Value { get; set; }
+        public List<ApiSdk.Models.Security.UnifiedGroupSource> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedGroupSourceCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.UnifiedGroupSourceCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UnifiedGroupSourceCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.UnifiedGroupSourceCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedGroupSourceCollectionResponse();
+            return new ApiSdk.Models.Security.UnifiedGroupSourceCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<UnifiedGroupSource>(UnifiedGroupSource.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.UnifiedGroupSource>(ApiSdk.Models.Security.UnifiedGroupSource.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<UnifiedGroupSource>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.UnifiedGroupSource>("value", Value);
         }
     }
 }

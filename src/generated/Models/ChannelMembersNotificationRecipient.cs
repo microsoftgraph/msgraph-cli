@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ChannelMembersNotificationRecipient : TeamworkNotificationRecipient, IParsable
+    public class ChannelMembersNotificationRecipient : ApiSdk.Models.TeamworkNotificationRecipient, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The unique identifier for the channel whose members should receive the notification.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models
         public string TeamId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ChannelMembersNotificationRecipient"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ChannelMembersNotificationRecipient"/> and sets the default values.
         /// </summary>
         public ChannelMembersNotificationRecipient() : base()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChannelMembersNotificationRecipient"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ChannelMembersNotificationRecipient"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ChannelMembersNotificationRecipient CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ChannelMembersNotificationRecipient CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChannelMembersNotificationRecipient();
+            return new ApiSdk.Models.ChannelMembersNotificationRecipient();
         }
         /// <summary>
         /// The deserialization information for the current model

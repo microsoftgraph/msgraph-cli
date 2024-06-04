@@ -44,7 +44,7 @@ namespace ApiSdk.Domains.Item.ForceDelete
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ForceDeletePostRequestBody>(ForceDeletePostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Domains.Item.ForceDelete.ForceDeletePostRequestBody>(ApiSdk.Domains.Item.ForceDelete.ForceDeletePostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -63,14 +63,14 @@ namespace ApiSdk.Domains.Item.ForceDelete
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ForceDeleteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Domains.Item.ForceDelete.ForceDeleteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ForceDeleteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/forceDelete", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ForceDeleteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Domains.Item.ForceDelete.ForceDeleteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ForceDeleteRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/forceDelete", rawUrl)
@@ -84,11 +84,11 @@ namespace ApiSdk.Domains.Item.ForceDelete
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ForceDeletePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Domains.Item.ForceDelete.ForceDeletePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ForceDeletePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Domains.Item.ForceDelete.ForceDeletePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

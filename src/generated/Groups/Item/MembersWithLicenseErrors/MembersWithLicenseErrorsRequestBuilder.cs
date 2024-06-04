@@ -37,7 +37,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.DirectoryObjectItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildGraphApplicationByIdNavCommand());
             commands.Add(builder.BuildGraphDeviceByIdNavCommand());
@@ -55,7 +55,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -72,7 +72,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors
         {
             var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
-            var builder = new GraphApplicationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphApplication.GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -95,7 +95,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors
         {
             var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
-            var builder = new GraphDeviceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphDevice.GraphDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -118,7 +118,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors
         {
             var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
-            var builder = new GraphGroupRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphGroup.GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -141,7 +141,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors
         {
             var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
-            var builder = new GraphOrgContactRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphOrgContact.GraphOrgContactRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -164,7 +164,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors
         {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphServicePrincipal.GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -187,7 +187,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors
         {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
-            var builder = new GraphUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphUser.GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -312,14 +312,14 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MembersWithLicenseErrorsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.MembersWithLicenseErrors.MembersWithLicenseErrorsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MembersWithLicenseErrorsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MembersWithLicenseErrorsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.MembersWithLicenseErrors.MembersWithLicenseErrorsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MembersWithLicenseErrorsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -332,11 +332,11 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MembersWithLicenseErrorsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.MembersWithLicenseErrors.MembersWithLicenseErrorsRequestBuilder.MembersWithLicenseErrorsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MembersWithLicenseErrorsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.MembersWithLicenseErrors.MembersWithLicenseErrorsRequestBuilder.MembersWithLicenseErrorsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

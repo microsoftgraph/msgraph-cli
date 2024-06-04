@@ -37,7 +37,7 @@ namespace ApiSdk.Models.Search
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Identity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Search.Identity"/> and sets the default values.
         /// </summary>
         public Identity()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models.Search
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Identity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Search.Identity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Identity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Search.Identity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Identity();
+            return new ApiSdk.Models.Search.Identity();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -7,19 +7,19 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class OnTokenIssuanceStartCustomExtension : CustomAuthenticationExtension, IParsable
+    public class OnTokenIssuanceStartCustomExtension : ApiSdk.Models.CustomAuthenticationExtension, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Collection of claims to be returned by the API called by this custom authentication extension. Used to populate claims mapping experience in Microsoft Entra admin center. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OnTokenIssuanceStartReturnClaim>? ClaimsForTokenConfiguration { get; set; }
+        public List<ApiSdk.Models.OnTokenIssuanceStartReturnClaim>? ClaimsForTokenConfiguration { get; set; }
 #nullable restore
 #else
-        public List<OnTokenIssuanceStartReturnClaim> ClaimsForTokenConfiguration { get; set; }
+        public List<ApiSdk.Models.OnTokenIssuanceStartReturnClaim> ClaimsForTokenConfiguration { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OnTokenIssuanceStartCustomExtension"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OnTokenIssuanceStartCustomExtension"/> and sets the default values.
         /// </summary>
         public OnTokenIssuanceStartCustomExtension() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnTokenIssuanceStartCustomExtension"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnTokenIssuanceStartCustomExtension"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OnTokenIssuanceStartCustomExtension CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OnTokenIssuanceStartCustomExtension CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnTokenIssuanceStartCustomExtension();
+            return new ApiSdk.Models.OnTokenIssuanceStartCustomExtension();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -43,7 +43,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "claimsForTokenConfiguration", n => { ClaimsForTokenConfiguration = n.GetCollectionOfObjectValues<OnTokenIssuanceStartReturnClaim>(OnTokenIssuanceStartReturnClaim.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "claimsForTokenConfiguration", n => { ClaimsForTokenConfiguration = n.GetCollectionOfObjectValues<ApiSdk.Models.OnTokenIssuanceStartReturnClaim>(ApiSdk.Models.OnTokenIssuanceStartReturnClaim.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<OnTokenIssuanceStartReturnClaim>("claimsForTokenConfiguration", ClaimsForTokenConfiguration);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OnTokenIssuanceStartReturnClaim>("claimsForTokenConfiguration", ClaimsForTokenConfiguration);
         }
     }
 }

@@ -66,7 +66,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item
         {
             var command = new Command("effective-rules");
             command.Description = "Provides operations to manage the effectiveRules property of the microsoft.graph.unifiedRoleManagementPolicy entity.";
-            var builder = new EffectiveRulesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.EffectiveRulesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -169,7 +169,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<UnifiedRoleManagementPolicy>(UnifiedRoleManagementPolicy.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.UnifiedRoleManagementPolicy>(ApiSdk.Models.UnifiedRoleManagementPolicy.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -197,7 +197,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item
         {
             var command = new Command("rules");
             command.Description = "Provides operations to manage the rules property of the microsoft.graph.unifiedRoleManagementPolicy entity.";
-            var builder = new RulesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.RoleManagementPolicies.Item.Rules.RulesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -217,14 +217,14 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnifiedRoleManagementPolicyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.RoleManagementPolicies.Item.UnifiedRoleManagementPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnifiedRoleManagementPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/roleManagementPolicies/{unifiedRoleManagementPolicy%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UnifiedRoleManagementPolicyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.RoleManagementPolicies.Item.UnifiedRoleManagementPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnifiedRoleManagementPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/roleManagementPolicies/{unifiedRoleManagementPolicy%2Did}{?%24expand,%24select}", rawUrl)
@@ -256,11 +256,11 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRoleManagementPolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.RoleManagementPolicies.Item.UnifiedRoleManagementPolicyItemRequestBuilder.UnifiedRoleManagementPolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRoleManagementPolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.RoleManagementPolicies.Item.UnifiedRoleManagementPolicyItemRequestBuilder.UnifiedRoleManagementPolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -276,11 +276,11 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UnifiedRoleManagementPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UnifiedRoleManagementPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UnifiedRoleManagementPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UnifiedRoleManagementPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

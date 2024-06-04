@@ -61,14 +61,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOrderRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder.GetOrderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOrderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/getOrder()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOrderRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder.GetOrderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOrderRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/getOrder()", rawUrl)

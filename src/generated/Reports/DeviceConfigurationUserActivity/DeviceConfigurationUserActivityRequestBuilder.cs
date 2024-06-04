@@ -55,14 +55,14 @@ namespace ApiSdk.Reports.DeviceConfigurationUserActivity
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceConfigurationUserActivityRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.DeviceConfigurationUserActivity.DeviceConfigurationUserActivityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceConfigurationUserActivityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/deviceConfigurationUserActivity()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceConfigurationUserActivityRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.DeviceConfigurationUserActivity.DeviceConfigurationUserActivityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeviceConfigurationUserActivityRequestBuilder(string rawUrl) : base("{+baseurl}/reports/deviceConfigurationUserActivity()", rawUrl)

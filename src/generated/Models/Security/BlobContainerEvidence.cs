@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class BlobContainerEvidence : AlertEvidence, IParsable
+    public class BlobContainerEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The name of the blob container.</summary>
@@ -21,10 +21,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The storage which the blob container belongs to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AzureResourceEvidence? StorageResource { get; set; }
+        public ApiSdk.Models.Security.AzureResourceEvidence? StorageResource { get; set; }
 #nullable restore
 #else
-        public AzureResourceEvidence StorageResource { get; set; }
+        public ApiSdk.Models.Security.AzureResourceEvidence StorageResource { get; set; }
 #endif
         /// <summary>The full URL representation of the blob container.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -35,7 +35,7 @@ namespace ApiSdk.Models.Security
         public string Url { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="BlobContainerEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.BlobContainerEvidence"/> and sets the default values.
         /// </summary>
         public BlobContainerEvidence() : base()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BlobContainerEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.BlobContainerEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new BlobContainerEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.BlobContainerEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BlobContainerEvidence();
+            return new ApiSdk.Models.Security.BlobContainerEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,7 +60,7 @@ namespace ApiSdk.Models.Security
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "storageResource", n => { StorageResource = n.GetObjectValue<AzureResourceEvidence>(AzureResourceEvidence.CreateFromDiscriminatorValue); } },
+                { "storageResource", n => { StorageResource = n.GetObjectValue<ApiSdk.Models.Security.AzureResourceEvidence>(ApiSdk.Models.Security.AzureResourceEvidence.CreateFromDiscriminatorValue); } },
                 { "url", n => { Url = n.GetStringValue(); } },
             };
         }
@@ -73,7 +73,7 @@ namespace ApiSdk.Models.Security
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<AzureResourceEvidence>("storageResource", StorageResource);
+            writer.WriteObjectValue<ApiSdk.Models.Security.AzureResourceEvidence>("storageResource", StorageResource);
             writer.WriteStringValue("url", Url);
         }
     }

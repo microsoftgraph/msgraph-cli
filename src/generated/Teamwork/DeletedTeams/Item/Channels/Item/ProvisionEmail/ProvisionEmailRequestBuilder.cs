@@ -67,14 +67,14 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.ProvisionEmail
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ProvisionEmailRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.ProvisionEmail.ProvisionEmailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ProvisionEmailRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}/provisionEmail", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ProvisionEmailRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.ProvisionEmail.ProvisionEmailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ProvisionEmailRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}/provisionEmail", rawUrl)

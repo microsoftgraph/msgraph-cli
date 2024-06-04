@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class LinkedResource : Entity, IParsable
+    public class LinkedResource : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The app name of the source that sends the linkedResource.</summary>
@@ -45,12 +45,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LinkedResource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.LinkedResource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new LinkedResource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.LinkedResource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LinkedResource();
+            return new ApiSdk.Models.LinkedResource();
         }
         /// <summary>
         /// The deserialization information for the current model

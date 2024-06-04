@@ -33,7 +33,7 @@ namespace ApiSdk.Models
         /// <summary>Whether the attribute is displayed to the end user.</summary>
         public bool? Hidden { get; set; }
         /// <summary>The inputType property</summary>
-        public AuthenticationAttributeCollectionInputType? InputType { get; set; }
+        public ApiSdk.Models.AuthenticationAttributeCollectionInputType? InputType { get; set; }
         /// <summary>The label of the attribute field that is displayed to end user, unless overridden.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -53,10 +53,10 @@ namespace ApiSdk.Models
         /// <summary>The option values for certain multiple-option input types.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationAttributeCollectionOptionConfiguration>? Options { get; set; }
+        public List<ApiSdk.Models.AuthenticationAttributeCollectionOptionConfiguration>? Options { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationAttributeCollectionOptionConfiguration> Options { get; set; }
+        public List<ApiSdk.Models.AuthenticationAttributeCollectionOptionConfiguration> Options { get; set; }
 #endif
         /// <summary>Whether the field is required.</summary>
         public bool? Required { get; set; }
@@ -71,7 +71,7 @@ namespace ApiSdk.Models
         /// <summary>Whether the value collected is stored.</summary>
         public bool? WriteToDirectory { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationAttributeCollectionInputConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AuthenticationAttributeCollectionInputConfiguration"/> and sets the default values.
         /// </summary>
         public AuthenticationAttributeCollectionInputConfiguration()
         {
@@ -80,12 +80,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationAttributeCollectionInputConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationAttributeCollectionInputConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AuthenticationAttributeCollectionInputConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AuthenticationAttributeCollectionInputConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthenticationAttributeCollectionInputConfiguration();
+            return new ApiSdk.Models.AuthenticationAttributeCollectionInputConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -99,10 +99,10 @@ namespace ApiSdk.Models
                 { "defaultValue", n => { DefaultValue = n.GetStringValue(); } },
                 { "editable", n => { Editable = n.GetBoolValue(); } },
                 { "hidden", n => { Hidden = n.GetBoolValue(); } },
-                { "inputType", n => { InputType = n.GetEnumValue<AuthenticationAttributeCollectionInputType>(); } },
+                { "inputType", n => { InputType = n.GetEnumValue<ApiSdk.Models.AuthenticationAttributeCollectionInputType>(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "options", n => { Options = n.GetCollectionOfObjectValues<AuthenticationAttributeCollectionOptionConfiguration>(AuthenticationAttributeCollectionOptionConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "options", n => { Options = n.GetCollectionOfObjectValues<ApiSdk.Models.AuthenticationAttributeCollectionOptionConfiguration>(ApiSdk.Models.AuthenticationAttributeCollectionOptionConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "required", n => { Required = n.GetBoolValue(); } },
                 { "validationRegEx", n => { ValidationRegEx = n.GetStringValue(); } },
                 { "writeToDirectory", n => { WriteToDirectory = n.GetBoolValue(); } },
@@ -119,10 +119,10 @@ namespace ApiSdk.Models
             writer.WriteStringValue("defaultValue", DefaultValue);
             writer.WriteBoolValue("editable", Editable);
             writer.WriteBoolValue("hidden", Hidden);
-            writer.WriteEnumValue<AuthenticationAttributeCollectionInputType>("inputType", InputType);
+            writer.WriteEnumValue<ApiSdk.Models.AuthenticationAttributeCollectionInputType>("inputType", InputType);
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<AuthenticationAttributeCollectionOptionConfiguration>("options", Options);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuthenticationAttributeCollectionOptionConfiguration>("options", Options);
             writer.WriteBoolValue("required", Required);
             writer.WriteStringValue("validationRegEx", ValidationRegEx);
             writer.WriteBoolValue("writeToDirectory", WriteToDirectory);

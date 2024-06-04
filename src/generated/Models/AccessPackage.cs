@@ -7,32 +7,32 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackage : Entity, IParsable
+    public class AccessPackage : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The access packages that are incompatible with this package. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessPackage>? AccessPackagesIncompatibleWith { get; set; }
+        public List<ApiSdk.Models.AccessPackage>? AccessPackagesIncompatibleWith { get; set; }
 #nullable restore
 #else
-        public List<AccessPackage> AccessPackagesIncompatibleWith { get; set; }
+        public List<ApiSdk.Models.AccessPackage> AccessPackagesIncompatibleWith { get; set; }
 #endif
         /// <summary>Read-only. Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessPackageAssignmentPolicy>? AssignmentPolicies { get; set; }
+        public List<ApiSdk.Models.AccessPackageAssignmentPolicy>? AssignmentPolicies { get; set; }
 #nullable restore
 #else
-        public List<AccessPackageAssignmentPolicy> AssignmentPolicies { get; set; }
+        public List<ApiSdk.Models.AccessPackageAssignmentPolicy> AssignmentPolicies { get; set; }
 #endif
         /// <summary>Required when creating the access package. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageCatalog? Catalog { get; set; }
+        public ApiSdk.Models.AccessPackageCatalog? Catalog { get; set; }
 #nullable restore
 #else
-        public AccessPackageCatalog Catalog { get; set; }
+        public ApiSdk.Models.AccessPackageCatalog Catalog { get; set; }
 #endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -55,18 +55,18 @@ namespace ApiSdk.Models
         /// <summary>The access packages whose assigned users are ineligible to be assigned this access package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessPackage>? IncompatibleAccessPackages { get; set; }
+        public List<ApiSdk.Models.AccessPackage>? IncompatibleAccessPackages { get; set; }
 #nullable restore
 #else
-        public List<AccessPackage> IncompatibleAccessPackages { get; set; }
+        public List<ApiSdk.Models.AccessPackage> IncompatibleAccessPackages { get; set; }
 #endif
         /// <summary>The groups whose members are ineligible to be assigned this access package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Group>? IncompatibleGroups { get; set; }
+        public List<ApiSdk.Models.Group>? IncompatibleGroups { get; set; }
 #nullable restore
 #else
-        public List<Group> IncompatibleGroups { get; set; }
+        public List<ApiSdk.Models.Group> IncompatibleGroups { get; set; }
 #endif
         /// <summary>Whether the access package is hidden from the requestor.</summary>
         public bool? IsHidden { get; set; }
@@ -75,20 +75,20 @@ namespace ApiSdk.Models
         /// <summary>The resource roles and scopes in this access package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessPackageResourceRoleScope>? ResourceRoleScopes { get; set; }
+        public List<ApiSdk.Models.AccessPackageResourceRoleScope>? ResourceRoleScopes { get; set; }
 #nullable restore
 #else
-        public List<AccessPackageResourceRoleScope> ResourceRoleScopes { get; set; }
+        public List<ApiSdk.Models.AccessPackageResourceRoleScope> ResourceRoleScopes { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackage();
+            return new ApiSdk.Models.AccessPackage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -98,17 +98,17 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "accessPackagesIncompatibleWith", n => { AccessPackagesIncompatibleWith = n.GetCollectionOfObjectValues<AccessPackage>(AccessPackage.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "assignmentPolicies", n => { AssignmentPolicies = n.GetCollectionOfObjectValues<AccessPackageAssignmentPolicy>(AccessPackageAssignmentPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "catalog", n => { Catalog = n.GetObjectValue<AccessPackageCatalog>(AccessPackageCatalog.CreateFromDiscriminatorValue); } },
+                { "accessPackagesIncompatibleWith", n => { AccessPackagesIncompatibleWith = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessPackage>(ApiSdk.Models.AccessPackage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignmentPolicies", n => { AssignmentPolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessPackageAssignmentPolicy>(ApiSdk.Models.AccessPackageAssignmentPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "catalog", n => { Catalog = n.GetObjectValue<ApiSdk.Models.AccessPackageCatalog>(ApiSdk.Models.AccessPackageCatalog.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "incompatibleAccessPackages", n => { IncompatibleAccessPackages = n.GetCollectionOfObjectValues<AccessPackage>(AccessPackage.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "incompatibleGroups", n => { IncompatibleGroups = n.GetCollectionOfObjectValues<Group>(Group.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "incompatibleAccessPackages", n => { IncompatibleAccessPackages = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessPackage>(ApiSdk.Models.AccessPackage.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "incompatibleGroups", n => { IncompatibleGroups = n.GetCollectionOfObjectValues<ApiSdk.Models.Group>(ApiSdk.Models.Group.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isHidden", n => { IsHidden = n.GetBoolValue(); } },
                 { "modifiedDateTime", n => { ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "resourceRoleScopes", n => { ResourceRoleScopes = n.GetCollectionOfObjectValues<AccessPackageResourceRoleScope>(AccessPackageResourceRoleScope.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "resourceRoleScopes", n => { ResourceRoleScopes = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessPackageResourceRoleScope>(ApiSdk.Models.AccessPackageResourceRoleScope.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -119,17 +119,17 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AccessPackage>("accessPackagesIncompatibleWith", AccessPackagesIncompatibleWith);
-            writer.WriteCollectionOfObjectValues<AccessPackageAssignmentPolicy>("assignmentPolicies", AssignmentPolicies);
-            writer.WriteObjectValue<AccessPackageCatalog>("catalog", Catalog);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessPackage>("accessPackagesIncompatibleWith", AccessPackagesIncompatibleWith);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessPackageAssignmentPolicy>("assignmentPolicies", AssignmentPolicies);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageCatalog>("catalog", Catalog);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<AccessPackage>("incompatibleAccessPackages", IncompatibleAccessPackages);
-            writer.WriteCollectionOfObjectValues<Group>("incompatibleGroups", IncompatibleGroups);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessPackage>("incompatibleAccessPackages", IncompatibleAccessPackages);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Group>("incompatibleGroups", IncompatibleGroups);
             writer.WriteBoolValue("isHidden", IsHidden);
             writer.WriteDateTimeOffsetValue("modifiedDateTime", ModifiedDateTime);
-            writer.WriteCollectionOfObjectValues<AccessPackageResourceRoleScope>("resourceRoleScopes", ResourceRoleScopes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessPackageResourceRoleScope>("resourceRoleScopes", ResourceRoleScopes);
         }
     }
 }

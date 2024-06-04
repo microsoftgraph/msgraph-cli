@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CloudPcOnPremisesConnection : Entity, IParsable
+    public class CloudPcOnPremisesConnection : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The fully qualified domain name (FQDN) of the Active Directory domain you want to join. Maximum length is 255. Optional.</summary>
@@ -43,7 +43,7 @@ namespace ApiSdk.Models
         public string AlternateResourceUrl { get; set; }
 #endif
         /// <summary>Specifies how the provisioned Cloud PC joins to Microsoft Entra. It includes different types, one is Microsoft Entra ID join, which means there&apos;s no on-premises Active Directory (AD) in the current tenant, and the Cloud PC device is joined by Microsoft Entra. Another one is hybridAzureADJoin, which means there&apos;s also an on-premises Active Directory (AD) in the current tenant and the Cloud PC device joins to on-premises Active Directory (AD) and Microsoft Entra. The type also determines which types of users can be assigned and can sign into a Cloud PC. The azureADJoin type indicates that cloud-only and hybrid users can be assigned and signed into the Cloud PC. hybridAzureADJoin indicates only hybrid users can be assigned and signed into the Cloud PC. The default value is hybridAzureADJoin.</summary>
-        public CloudPcOnPremisesConnectionType? ConnectionType { get; set; }
+        public ApiSdk.Models.CloudPcOnPremisesConnectionType? ConnectionType { get; set; }
         /// <summary>The display name for the Azure network connection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -53,14 +53,14 @@ namespace ApiSdk.Models
         public string DisplayName { get; set; }
 #endif
         /// <summary>The healthCheckStatus property</summary>
-        public CloudPcOnPremisesConnectionStatus? HealthCheckStatus { get; set; }
+        public ApiSdk.Models.CloudPcOnPremisesConnectionStatus? HealthCheckStatus { get; set; }
         /// <summary>Indicates the results of health checks performed on the on-premises connection. Read-only. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetail. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public CloudPcOnPremisesConnectionStatusDetail? HealthCheckStatusDetail { get; set; }
+        public ApiSdk.Models.CloudPcOnPremisesConnectionStatusDetail? HealthCheckStatusDetail { get; set; }
 #nullable restore
 #else
-        public CloudPcOnPremisesConnectionStatusDetail HealthCheckStatusDetail { get; set; }
+        public ApiSdk.Models.CloudPcOnPremisesConnectionStatusDetail HealthCheckStatusDetail { get; set; }
 #endif
         /// <summary>When true, the Azure network connection is in use. When false, the connection isn&apos;t in use. You can&apos;t delete a connection that’s in use. Returned only on $select. For an example that shows how to get the inUse property, see Example 2: Get the selected properties of an Azure network connection, including healthCheckStatusDetail. Read-only.</summary>
         public bool? InUse { get; set; }
@@ -123,12 +123,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CloudPcOnPremisesConnection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CloudPcOnPremisesConnection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CloudPcOnPremisesConnection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CloudPcOnPremisesConnection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CloudPcOnPremisesConnection();
+            return new ApiSdk.Models.CloudPcOnPremisesConnection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -142,10 +142,10 @@ namespace ApiSdk.Models
                 { "adDomainPassword", n => { AdDomainPassword = n.GetStringValue(); } },
                 { "adDomainUsername", n => { AdDomainUsername = n.GetStringValue(); } },
                 { "alternateResourceUrl", n => { AlternateResourceUrl = n.GetStringValue(); } },
-                { "connectionType", n => { ConnectionType = n.GetEnumValue<CloudPcOnPremisesConnectionType>(); } },
+                { "connectionType", n => { ConnectionType = n.GetEnumValue<ApiSdk.Models.CloudPcOnPremisesConnectionType>(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "healthCheckStatus", n => { HealthCheckStatus = n.GetEnumValue<CloudPcOnPremisesConnectionStatus>(); } },
-                { "healthCheckStatusDetail", n => { HealthCheckStatusDetail = n.GetObjectValue<CloudPcOnPremisesConnectionStatusDetail>(CloudPcOnPremisesConnectionStatusDetail.CreateFromDiscriminatorValue); } },
+                { "healthCheckStatus", n => { HealthCheckStatus = n.GetEnumValue<ApiSdk.Models.CloudPcOnPremisesConnectionStatus>(); } },
+                { "healthCheckStatusDetail", n => { HealthCheckStatusDetail = n.GetObjectValue<ApiSdk.Models.CloudPcOnPremisesConnectionStatusDetail>(ApiSdk.Models.CloudPcOnPremisesConnectionStatusDetail.CreateFromDiscriminatorValue); } },
                 { "inUse", n => { InUse = n.GetBoolValue(); } },
                 { "organizationalUnit", n => { OrganizationalUnit = n.GetStringValue(); } },
                 { "resourceGroupId", n => { ResourceGroupId = n.GetStringValue(); } },
@@ -168,10 +168,10 @@ namespace ApiSdk.Models
             writer.WriteStringValue("adDomainPassword", AdDomainPassword);
             writer.WriteStringValue("adDomainUsername", AdDomainUsername);
             writer.WriteStringValue("alternateResourceUrl", AlternateResourceUrl);
-            writer.WriteEnumValue<CloudPcOnPremisesConnectionType>("connectionType", ConnectionType);
+            writer.WriteEnumValue<ApiSdk.Models.CloudPcOnPremisesConnectionType>("connectionType", ConnectionType);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<CloudPcOnPremisesConnectionStatus>("healthCheckStatus", HealthCheckStatus);
-            writer.WriteObjectValue<CloudPcOnPremisesConnectionStatusDetail>("healthCheckStatusDetail", HealthCheckStatusDetail);
+            writer.WriteEnumValue<ApiSdk.Models.CloudPcOnPremisesConnectionStatus>("healthCheckStatus", HealthCheckStatus);
+            writer.WriteObjectValue<ApiSdk.Models.CloudPcOnPremisesConnectionStatusDetail>("healthCheckStatusDetail", HealthCheckStatusDetail);
             writer.WriteBoolValue("inUse", InUse);
             writer.WriteStringValue("organizationalUnit", OrganizationalUnit);
             writer.WriteStringValue("resourceGroupId", ResourceGroupId);

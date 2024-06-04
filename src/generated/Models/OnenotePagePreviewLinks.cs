@@ -23,13 +23,13 @@ namespace ApiSdk.Models
         /// <summary>The previewImageUrl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ExternalLink? PreviewImageUrl { get; set; }
+        public ApiSdk.Models.ExternalLink? PreviewImageUrl { get; set; }
 #nullable restore
 #else
-        public ExternalLink PreviewImageUrl { get; set; }
+        public ApiSdk.Models.ExternalLink PreviewImageUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OnenotePagePreviewLinks"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OnenotePagePreviewLinks"/> and sets the default values.
         /// </summary>
         public OnenotePagePreviewLinks()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnenotePagePreviewLinks"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnenotePagePreviewLinks"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static OnenotePagePreviewLinks CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.OnenotePagePreviewLinks CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnenotePagePreviewLinks();
+            return new ApiSdk.Models.OnenotePagePreviewLinks();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "previewImageUrl", n => { PreviewImageUrl = n.GetObjectValue<ExternalLink>(ExternalLink.CreateFromDiscriminatorValue); } },
+                { "previewImageUrl", n => { PreviewImageUrl = n.GetObjectValue<ApiSdk.Models.ExternalLink>(ApiSdk.Models.ExternalLink.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<ExternalLink>("previewImageUrl", PreviewImageUrl);
+            writer.WriteObjectValue<ApiSdk.Models.ExternalLink>("previewImageUrl", PreviewImageUrl);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

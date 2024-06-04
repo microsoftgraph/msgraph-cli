@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class MediaPrompt : Prompt, IParsable
+    public class MediaPrompt : ApiSdk.Models.Prompt, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The mediaInfo property</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.MediaInfo MediaInfo { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="MediaPrompt"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MediaPrompt"/> and sets the default values.
         /// </summary>
         public MediaPrompt() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MediaPrompt"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MediaPrompt"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MediaPrompt CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MediaPrompt CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MediaPrompt();
+            return new ApiSdk.Models.MediaPrompt();
         }
         /// <summary>
         /// The deserialization information for the current model

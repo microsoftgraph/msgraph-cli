@@ -42,7 +42,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetCachedReport
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<GetCachedReportPostRequestBody>(GetCachedReportPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.DeviceManagement.Reports.GetCachedReport.GetCachedReportPostRequestBody>(ApiSdk.DeviceManagement.Reports.GetCachedReport.GetCachedReportPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -69,14 +69,14 @@ namespace ApiSdk.DeviceManagement.Reports.GetCachedReport
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetCachedReportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.Reports.GetCachedReport.GetCachedReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetCachedReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/reports/getCachedReport", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetCachedReportRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.Reports.GetCachedReport.GetCachedReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetCachedReportRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/reports/getCachedReport", rawUrl)
@@ -90,11 +90,11 @@ namespace ApiSdk.DeviceManagement.Reports.GetCachedReport
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(GetCachedReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DeviceManagement.Reports.GetCachedReport.GetCachedReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(GetCachedReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.DeviceManagement.Reports.GetCachedReport.GetCachedReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

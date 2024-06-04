@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string TeacherNumber { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EducationTeacher"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EducationTeacher"/> and sets the default values.
         /// </summary>
         public EducationTeacher()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationTeacher"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationTeacher"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static EducationTeacher CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.EducationTeacher CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationTeacher();
+            return new ApiSdk.Models.EducationTeacher();
         }
         /// <summary>
         /// The deserialization information for the current model

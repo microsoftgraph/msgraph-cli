@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SocialIdentitySource : IdentitySource, IParsable
+    public class SocialIdentitySource : ApiSdk.Models.IdentitySource, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The displayName property</summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         /// <summary>The socialIdentitySourceType property</summary>
         public ApiSdk.Models.SocialIdentitySourceType? SocialIdentitySourceType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SocialIdentitySource"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SocialIdentitySource"/> and sets the default values.
         /// </summary>
         public SocialIdentitySource() : base()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SocialIdentitySource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SocialIdentitySource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SocialIdentitySource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SocialIdentitySource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SocialIdentitySource();
+            return new ApiSdk.Models.SocialIdentitySource();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "socialIdentitySourceType", n => { SocialIdentitySourceType = n.GetEnumValue<SocialIdentitySourceType>(); } },
+                { "socialIdentitySourceType", n => { SocialIdentitySourceType = n.GetEnumValue<ApiSdk.Models.SocialIdentitySourceType>(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<SocialIdentitySourceType>("socialIdentitySourceType", SocialIdentitySourceType);
+            writer.WriteEnumValue<ApiSdk.Models.SocialIdentitySourceType>("socialIdentitySourceType", SocialIdentitySourceType);
         }
     }
 }

@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.Education.Schools.Delta
 {
     #pragma warning disable CS1591
-    public class DeltaGetResponse : BaseDeltaFunctionResponse, IParsable
+    public class DeltaGetResponse : ApiSdk.Models.BaseDeltaFunctionResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationSchool>? Value { get; set; }
+        public List<ApiSdk.Models.EducationSchool>? Value { get; set; }
 #nullable restore
 #else
-        public List<EducationSchool> Value { get; set; }
+        public List<ApiSdk.Models.EducationSchool> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeltaGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Education.Schools.Delta.DeltaGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeltaGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Education.Schools.Delta.DeltaGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeltaGetResponse();
+            return new ApiSdk.Education.Schools.Delta.DeltaGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Education.Schools.Delta
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<EducationSchool>(EducationSchool.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationSchool>(ApiSdk.Models.EducationSchool.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Education.Schools.Delta
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<EducationSchool>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationSchool>("value", Value);
         }
     }
 }

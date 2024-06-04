@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class GroupSettingTemplate : DirectoryObject, IParsable
+    public class GroupSettingTemplate : ApiSdk.Models.DirectoryObject, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Description of the template.</summary>
@@ -29,13 +29,13 @@ namespace ApiSdk.Models
         /// <summary>Collection of settingTemplateValues that list the set of available settings, defaults and types that make up this template.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SettingTemplateValue>? Values { get; set; }
+        public List<ApiSdk.Models.SettingTemplateValue>? Values { get; set; }
 #nullable restore
 #else
-        public List<SettingTemplateValue> Values { get; set; }
+        public List<ApiSdk.Models.SettingTemplateValue> Values { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="GroupSettingTemplate"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.GroupSettingTemplate"/> and sets the default values.
         /// </summary>
         public GroupSettingTemplate() : base()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GroupSettingTemplate"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.GroupSettingTemplate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new GroupSettingTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.GroupSettingTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GroupSettingTemplate();
+            return new ApiSdk.Models.GroupSettingTemplate();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "values", n => { Values = n.GetCollectionOfObjectValues<SettingTemplateValue>(SettingTemplateValue.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "values", n => { Values = n.GetCollectionOfObjectValues<ApiSdk.Models.SettingTemplateValue>(ApiSdk.Models.SettingTemplateValue.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -74,7 +74,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<SettingTemplateValue>("values", Values);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SettingTemplateValue>("values", Values);
         }
     }
 }

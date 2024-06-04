@@ -145,7 +145,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<BrowserSiteList>(BrowserSiteList.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.BrowserSiteList>(ApiSdk.Models.BrowserSiteList.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -173,7 +173,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item
         {
             var command = new Command("publish");
             command.Description = "Provides operations to call the publish method.";
-            var builder = new PublishRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish.PublishRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -190,7 +190,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item
         {
             var command = new Command("shared-cookies");
             command.Description = "Provides operations to manage the sharedCookies property of the microsoft.graph.browserSiteList entity.";
-            var builder = new SharedCookiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.SharedCookies.SharedCookiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -217,7 +217,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item
         {
             var command = new Command("sites");
             command.Description = "Provides operations to manage the sites property of the microsoft.graph.browserSiteList entity.";
-            var builder = new SitesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites.SitesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -237,14 +237,14 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="BrowserSiteListItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.BrowserSiteListItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BrowserSiteListItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/edge/internetExplorerMode/siteLists/{browserSiteList%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="BrowserSiteListItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.BrowserSiteListItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BrowserSiteListItemRequestBuilder(string rawUrl) : base("{+baseurl}/admin/edge/internetExplorerMode/siteLists/{browserSiteList%2Did}{?%24expand,%24select}", rawUrl)
@@ -276,11 +276,11 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BrowserSiteListItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.BrowserSiteListItemRequestBuilder.BrowserSiteListItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BrowserSiteListItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.BrowserSiteListItemRequestBuilder.BrowserSiteListItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -296,11 +296,11 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(BrowserSiteList body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.BrowserSiteList body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(BrowserSiteList body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.BrowserSiteList body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

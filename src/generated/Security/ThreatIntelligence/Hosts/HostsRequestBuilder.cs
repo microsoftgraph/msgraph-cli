@@ -31,7 +31,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new HostItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Item.HostItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildChildHostPairsNavCommand());
             commands.Add(builder.BuildComponentsNavCommand());
             commands.Add(builder.BuildCookiesNavCommand());
@@ -58,7 +58,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.ThreatIntelligence.Hosts.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -209,14 +209,14 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="HostsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.ThreatIntelligence.Hosts.HostsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public HostsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="HostsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.ThreatIntelligence.Hosts.HostsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public HostsRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -229,11 +229,11 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.ThreatIntelligence.Hosts.HostsRequestBuilder.HostsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.ThreatIntelligence.Hosts.HostsRequestBuilder.HostsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

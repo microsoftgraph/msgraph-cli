@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageResourceEnvironment : Entity, IParsable
+    public class AccessPackageResourceEnvironment : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Connection information of an environment used to connect to a resource.</summary>
@@ -59,20 +59,20 @@ namespace ApiSdk.Models
         /// <summary>Read-only. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessPackageResource>? Resources { get; set; }
+        public List<ApiSdk.Models.AccessPackageResource>? Resources { get; set; }
 #nullable restore
 #else
-        public List<AccessPackageResource> Resources { get; set; }
+        public List<ApiSdk.Models.AccessPackageResource> Resources { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageResourceEnvironment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageResourceEnvironment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageResourceEnvironment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageResourceEnvironment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageResourceEnvironment();
+            return new ApiSdk.Models.AccessPackageResourceEnvironment();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -90,7 +90,7 @@ namespace ApiSdk.Models
                 { "modifiedDateTime", n => { ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "originId", n => { OriginId = n.GetStringValue(); } },
                 { "originSystem", n => { OriginSystem = n.GetStringValue(); } },
-                { "resources", n => { Resources = n.GetCollectionOfObjectValues<AccessPackageResource>(AccessPackageResource.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "resources", n => { Resources = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessPackageResource>(ApiSdk.Models.AccessPackageResource.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -109,7 +109,7 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("modifiedDateTime", ModifiedDateTime);
             writer.WriteStringValue("originId", OriginId);
             writer.WriteStringValue("originSystem", OriginSystem);
-            writer.WriteCollectionOfObjectValues<AccessPackageResource>("resources", Resources);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessPackageResource>("resources", Resources);
         }
     }
 }

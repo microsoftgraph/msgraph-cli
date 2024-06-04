@@ -24,15 +24,15 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.TentativelyAccept
         /// <summary>The ProposedNewTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TimeSlot? ProposedNewTime { get; set; }
+        public ApiSdk.Models.TimeSlot? ProposedNewTime { get; set; }
 #nullable restore
 #else
-        public TimeSlot ProposedNewTime { get; set; }
+        public ApiSdk.Models.TimeSlot ProposedNewTime { get; set; }
 #endif
         /// <summary>The SendResponse property</summary>
         public bool? SendResponse { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TentativelyAcceptPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.TentativelyAccept.TentativelyAcceptPostRequestBody"/> and sets the default values.
         /// </summary>
         public TentativelyAcceptPostRequestBody()
         {
@@ -41,12 +41,12 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.TentativelyAccept
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TentativelyAcceptPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.TentativelyAccept.TentativelyAcceptPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TentativelyAcceptPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.TentativelyAccept.TentativelyAcceptPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TentativelyAcceptPostRequestBody();
+            return new ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.TentativelyAccept.TentativelyAcceptPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,7 +57,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.TentativelyAccept
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "Comment", n => { Comment = n.GetStringValue(); } },
-                { "ProposedNewTime", n => { ProposedNewTime = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
+                { "ProposedNewTime", n => { ProposedNewTime = n.GetObjectValue<ApiSdk.Models.TimeSlot>(ApiSdk.Models.TimeSlot.CreateFromDiscriminatorValue); } },
                 { "SendResponse", n => { SendResponse = n.GetBoolValue(); } },
             };
         }
@@ -69,7 +69,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.TentativelyAccept
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("Comment", Comment);
-            writer.WriteObjectValue<TimeSlot>("ProposedNewTime", ProposedNewTime);
+            writer.WriteObjectValue<ApiSdk.Models.TimeSlot>("ProposedNewTime", ProposedNewTime);
             writer.WriteBoolValue("SendResponse", SendResponse);
             writer.WriteAdditionalData(AdditionalData);
         }

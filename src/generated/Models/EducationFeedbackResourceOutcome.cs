@@ -7,21 +7,21 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationFeedbackResourceOutcome : EducationOutcome, IParsable
+    public class EducationFeedbackResourceOutcome : ApiSdk.Models.EducationOutcome, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The actual feedback resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EducationResource? FeedbackResource { get; set; }
+        public ApiSdk.Models.EducationResource? FeedbackResource { get; set; }
 #nullable restore
 #else
-        public EducationResource FeedbackResource { get; set; }
+        public ApiSdk.Models.EducationResource FeedbackResource { get; set; }
 #endif
         /// <summary>The status of the feedback resource. The possible values are: notPublished, pendingPublish, published, failedPublish, unknownFutureValue.</summary>
-        public EducationFeedbackResourceOutcomeStatus? ResourceStatus { get; set; }
+        public ApiSdk.Models.EducationFeedbackResourceOutcomeStatus? ResourceStatus { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="EducationFeedbackResourceOutcome"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EducationFeedbackResourceOutcome"/> and sets the default values.
         /// </summary>
         public EducationFeedbackResourceOutcome() : base()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationFeedbackResourceOutcome"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationFeedbackResourceOutcome"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationFeedbackResourceOutcome CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationFeedbackResourceOutcome CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationFeedbackResourceOutcome();
+            return new ApiSdk.Models.EducationFeedbackResourceOutcome();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -45,8 +45,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "feedbackResource", n => { FeedbackResource = n.GetObjectValue<EducationResource>(EducationResource.CreateFromDiscriminatorValue); } },
-                { "resourceStatus", n => { ResourceStatus = n.GetEnumValue<EducationFeedbackResourceOutcomeStatus>(); } },
+                { "feedbackResource", n => { FeedbackResource = n.GetObjectValue<ApiSdk.Models.EducationResource>(ApiSdk.Models.EducationResource.CreateFromDiscriminatorValue); } },
+                { "resourceStatus", n => { ResourceStatus = n.GetEnumValue<ApiSdk.Models.EducationFeedbackResourceOutcomeStatus>(); } },
             };
         }
         /// <summary>
@@ -57,8 +57,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<EducationResource>("feedbackResource", FeedbackResource);
-            writer.WriteEnumValue<EducationFeedbackResourceOutcomeStatus>("resourceStatus", ResourceStatus);
+            writer.WriteObjectValue<ApiSdk.Models.EducationResource>("feedbackResource", FeedbackResource);
+            writer.WriteEnumValue<ApiSdk.Models.EducationFeedbackResourceOutcomeStatus>("resourceStatus", ResourceStatus);
         }
     }
 }

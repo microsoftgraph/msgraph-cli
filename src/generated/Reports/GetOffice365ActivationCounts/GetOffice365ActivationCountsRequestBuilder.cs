@@ -56,14 +56,14 @@ namespace ApiSdk.Reports.GetOffice365ActivationCounts
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOffice365ActivationCountsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOffice365ActivationCounts.GetOffice365ActivationCountsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOffice365ActivationCountsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365ActivationCounts()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOffice365ActivationCountsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOffice365ActivationCounts.GetOffice365ActivationCountsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOffice365ActivationCountsRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOffice365ActivationCounts()", rawUrl)

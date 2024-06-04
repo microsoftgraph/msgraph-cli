@@ -7,40 +7,40 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageResourceRequest : Entity, IParsable
+    public class AccessPackageResourceRequest : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The catalog property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageCatalog? Catalog { get; set; }
+        public ApiSdk.Models.AccessPackageCatalog? Catalog { get; set; }
 #nullable restore
 #else
-        public AccessPackageCatalog Catalog { get; set; }
+        public ApiSdk.Models.AccessPackageCatalog Catalog { get; set; }
 #endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The type of the request. Use adminAdd to add a resource, if the caller is an administrator or resource owner, adminUpdate to update a resource, or adminRemove to remove a resource.</summary>
-        public AccessPackageRequestType? RequestType { get; set; }
+        public ApiSdk.Models.AccessPackageRequestType? RequestType { get; set; }
         /// <summary>The resource property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessPackageResource? Resource { get; set; }
+        public ApiSdk.Models.AccessPackageResource? Resource { get; set; }
 #nullable restore
 #else
-        public AccessPackageResource Resource { get; set; }
+        public ApiSdk.Models.AccessPackageResource Resource { get; set; }
 #endif
         /// <summary>The outcome of whether the service was able to add the resource to the catalog. The value is delivered if the resource was added or removed, and deliveryFailed if it couldn&apos;t be added or removed. Read-only.</summary>
-        public AccessPackageRequestState? State { get; set; }
+        public ApiSdk.Models.AccessPackageRequestState? State { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageResourceRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageResourceRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageResourceRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageResourceRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageResourceRequest();
+            return new ApiSdk.Models.AccessPackageResourceRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -50,11 +50,11 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "catalog", n => { Catalog = n.GetObjectValue<AccessPackageCatalog>(AccessPackageCatalog.CreateFromDiscriminatorValue); } },
+                { "catalog", n => { Catalog = n.GetObjectValue<ApiSdk.Models.AccessPackageCatalog>(ApiSdk.Models.AccessPackageCatalog.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "requestType", n => { RequestType = n.GetEnumValue<AccessPackageRequestType>(); } },
-                { "resource", n => { Resource = n.GetObjectValue<AccessPackageResource>(AccessPackageResource.CreateFromDiscriminatorValue); } },
-                { "state", n => { State = n.GetEnumValue<AccessPackageRequestState>(); } },
+                { "requestType", n => { RequestType = n.GetEnumValue<ApiSdk.Models.AccessPackageRequestType>(); } },
+                { "resource", n => { Resource = n.GetObjectValue<ApiSdk.Models.AccessPackageResource>(ApiSdk.Models.AccessPackageResource.CreateFromDiscriminatorValue); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.AccessPackageRequestState>(); } },
             };
         }
         /// <summary>
@@ -65,11 +65,11 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<AccessPackageCatalog>("catalog", Catalog);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageCatalog>("catalog", Catalog);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteEnumValue<AccessPackageRequestType>("requestType", RequestType);
-            writer.WriteObjectValue<AccessPackageResource>("resource", Resource);
-            writer.WriteEnumValue<AccessPackageRequestState>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.AccessPackageRequestType>("requestType", RequestType);
+            writer.WriteObjectValue<ApiSdk.Models.AccessPackageResource>("resource", Resource);
+            writer.WriteEnumValue<ApiSdk.Models.AccessPackageRequestState>("state", State);
         }
     }
 }

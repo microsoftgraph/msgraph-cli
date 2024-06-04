@@ -61,14 +61,14 @@ namespace ApiSdk.Devices.Item.Restore
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RestoreRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Devices.Item.Restore.RestoreRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RestoreRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/restore", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RestoreRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Devices.Item.Restore.RestoreRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RestoreRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/restore", rawUrl)

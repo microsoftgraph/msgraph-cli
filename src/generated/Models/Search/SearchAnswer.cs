@@ -29,10 +29,10 @@ namespace ApiSdk.Models.Search
         /// <summary>Details of the user who created or last modified the search answer. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; set; }
+        public ApiSdk.Models.Search.IdentitySet? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; set; }
+        public ApiSdk.Models.Search.IdentitySet LastModifiedBy { get; set; }
 #endif
         /// <summary>Date and time when the search answer was created or last edited. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
@@ -47,18 +47,18 @@ namespace ApiSdk.Models.Search
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SearchAnswer"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Search.SearchAnswer"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SearchAnswer CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Search.SearchAnswer CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.search.acronym" => new Acronym(),
-                "#microsoft.graph.search.bookmark" => new Bookmark(),
-                "#microsoft.graph.search.qna" => new Qna(),
-                _ => new SearchAnswer(),
+                "#microsoft.graph.search.acronym" => new ApiSdk.Models.Search.Acronym(),
+                "#microsoft.graph.search.bookmark" => new ApiSdk.Models.Search.Bookmark(),
+                "#microsoft.graph.search.qna" => new ApiSdk.Models.Search.Qna(),
+                _ => new ApiSdk.Models.Search.SearchAnswer(),
             };
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace ApiSdk.Models.Search
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.Search.IdentitySet>(ApiSdk.Models.Search.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "webUrl", n => { WebUrl = n.GetStringValue(); } },
             };
@@ -86,7 +86,7 @@ namespace ApiSdk.Models.Search
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.Search.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("webUrl", WebUrl);
         }

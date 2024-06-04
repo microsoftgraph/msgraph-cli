@@ -86,14 +86,14 @@ namespace ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.TeamsAppDefinition
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TeamsAppDefinitionRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.TeamsAppDefinition.TeamsAppDefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TeamsAppDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TeamsAppDefinitionRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.TeamsAppDefinition.TeamsAppDefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TeamsAppDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24expand,%24select}", rawUrl)
@@ -106,11 +106,11 @@ namespace ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.TeamsAppDefinition
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppDefinitionRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.TeamsAppDefinition.TeamsAppDefinitionRequestBuilder.TeamsAppDefinitionRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppDefinitionRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.TeamsAppDefinition.TeamsAppDefinitionRequestBuilder.TeamsAppDefinitionRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

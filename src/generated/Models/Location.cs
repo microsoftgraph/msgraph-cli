@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>The street address of the location.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PhysicalAddress? Address { get; set; }
+        public ApiSdk.Models.PhysicalAddress? Address { get; set; }
 #nullable restore
 #else
-        public PhysicalAddress Address { get; set; }
+        public ApiSdk.Models.PhysicalAddress Address { get; set; }
 #endif
         /// <summary>The geographic coordinates and elevation of the location.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public OutlookGeoCoordinates? Coordinates { get; set; }
+        public ApiSdk.Models.OutlookGeoCoordinates? Coordinates { get; set; }
 #nullable restore
 #else
-        public OutlookGeoCoordinates Coordinates { get; set; }
+        public ApiSdk.Models.OutlookGeoCoordinates Coordinates { get; set; }
 #endif
         /// <summary>The name associated with the location.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,9 +71,9 @@ namespace ApiSdk.Models
         public string UniqueId { get; set; }
 #endif
         /// <summary>For internal use only.</summary>
-        public LocationUniqueIdType? UniqueIdType { get; set; }
+        public ApiSdk.Models.LocationUniqueIdType? UniqueIdType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Location"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Location"/> and sets the default values.
         /// </summary>
         public Location()
         {
@@ -82,16 +82,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Location"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Location"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Location CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Location CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.locationConstraintItem" => new LocationConstraintItem(),
-                _ => new Location(),
+                "#microsoft.graph.locationConstraintItem" => new ApiSdk.Models.LocationConstraintItem(),
+                _ => new ApiSdk.Models.Location(),
             };
         }
         /// <summary>
@@ -102,15 +102,15 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "address", n => { Address = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
-                { "coordinates", n => { Coordinates = n.GetObjectValue<OutlookGeoCoordinates>(OutlookGeoCoordinates.CreateFromDiscriminatorValue); } },
+                { "address", n => { Address = n.GetObjectValue<ApiSdk.Models.PhysicalAddress>(ApiSdk.Models.PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "coordinates", n => { Coordinates = n.GetObjectValue<ApiSdk.Models.OutlookGeoCoordinates>(ApiSdk.Models.OutlookGeoCoordinates.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "locationEmailAddress", n => { LocationEmailAddress = n.GetStringValue(); } },
-                { "locationType", n => { LocationType = n.GetEnumValue<LocationType>(); } },
+                { "locationType", n => { LocationType = n.GetEnumValue<ApiSdk.Models.LocationType>(); } },
                 { "locationUri", n => { LocationUri = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "uniqueId", n => { UniqueId = n.GetStringValue(); } },
-                { "uniqueIdType", n => { UniqueIdType = n.GetEnumValue<LocationUniqueIdType>(); } },
+                { "uniqueIdType", n => { UniqueIdType = n.GetEnumValue<ApiSdk.Models.LocationUniqueIdType>(); } },
             };
         }
         /// <summary>
@@ -120,15 +120,15 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<PhysicalAddress>("address", Address);
-            writer.WriteObjectValue<OutlookGeoCoordinates>("coordinates", Coordinates);
+            writer.WriteObjectValue<ApiSdk.Models.PhysicalAddress>("address", Address);
+            writer.WriteObjectValue<ApiSdk.Models.OutlookGeoCoordinates>("coordinates", Coordinates);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("locationEmailAddress", LocationEmailAddress);
-            writer.WriteEnumValue<LocationType>("locationType", LocationType);
+            writer.WriteEnumValue<ApiSdk.Models.LocationType>("locationType", LocationType);
             writer.WriteStringValue("locationUri", LocationUri);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("uniqueId", UniqueId);
-            writer.WriteEnumValue<LocationUniqueIdType>("uniqueIdType", UniqueIdType);
+            writer.WriteEnumValue<ApiSdk.Models.LocationUniqueIdType>("uniqueIdType", UniqueIdType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

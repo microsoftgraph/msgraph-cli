@@ -31,7 +31,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new DocumentSetVersionItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.Item.DocumentSetVersionItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildFieldsNavCommand());
             executables.Add(builder.BuildGetCommand());
@@ -47,7 +47,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -92,7 +92,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<DocumentSetVersion>(DocumentSetVersion.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.DocumentSetVersion>(ApiSdk.Models.DocumentSetVersion.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -222,14 +222,14 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DocumentSetVersionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.DocumentSetVersionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DocumentSetVersionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/items/{listItem%2Did}/documentSetVersions{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DocumentSetVersionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.DocumentSetVersionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DocumentSetVersionsRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/items/{listItem%2Did}/documentSetVersions{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -242,11 +242,11 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DocumentSetVersionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.DocumentSetVersionsRequestBuilder.DocumentSetVersionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DocumentSetVersionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.DocumentSetVersionsRequestBuilder.DocumentSetVersionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -262,11 +262,11 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(DocumentSetVersion body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DocumentSetVersion body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(DocumentSetVersion body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DocumentSetVersion body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

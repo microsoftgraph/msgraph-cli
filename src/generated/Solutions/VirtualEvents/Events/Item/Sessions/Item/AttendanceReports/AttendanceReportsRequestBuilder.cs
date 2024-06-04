@@ -31,7 +31,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new MeetingAttendanceReportItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceReports.Item.MeetingAttendanceReportItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildAttendanceRecordsNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
@@ -46,7 +46,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceReports.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -91,7 +91,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<MeetingAttendanceReport>(MeetingAttendanceReport.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.MeetingAttendanceReport>(ApiSdk.Models.MeetingAttendanceReport.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -221,14 +221,14 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttendanceReportsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceReports.AttendanceReportsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AttendanceReportsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}/sessions/{virtualEventSession%2Did}/attendanceReports{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttendanceReportsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceReports.AttendanceReportsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AttendanceReportsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}/sessions/{virtualEventSession%2Did}/attendanceReports{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -241,11 +241,11 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttendanceReportsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceReports.AttendanceReportsRequestBuilder.AttendanceReportsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttendanceReportsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceReports.AttendanceReportsRequestBuilder.AttendanceReportsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -261,11 +261,11 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(MeetingAttendanceReport body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.MeetingAttendanceReport body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(MeetingAttendanceReport body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.MeetingAttendanceReport body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

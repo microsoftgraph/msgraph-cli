@@ -15,7 +15,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread
         /// <summary>The value property</summary>
         public bool? Value { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MarkUnreadPostResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread.MarkUnreadPostResponse"/> and sets the default values.
         /// </summary>
         public MarkUnreadPostResponse()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MarkUnreadPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread.MarkUnreadPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MarkUnreadPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread.MarkUnreadPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MarkUnreadPostResponse();
+            return new ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread.MarkUnreadPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -39,10 +39,10 @@ namespace ApiSdk.Models
         /// <summary>All of the phone numbers associated with this conference.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Phone>? Phones { get; set; }
+        public List<ApiSdk.Models.Phone>? Phones { get; set; }
 #nullable restore
 #else
-        public List<Phone> Phones { get; set; }
+        public List<ApiSdk.Models.Phone> Phones { get; set; }
 #endif
         /// <summary>The preformatted quick dial for this call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
         public string TollNumber { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OnlineMeetingInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OnlineMeetingInfo"/> and sets the default values.
         /// </summary>
         public OnlineMeetingInfo()
         {
@@ -78,12 +78,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnlineMeetingInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnlineMeetingInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static OnlineMeetingInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.OnlineMeetingInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnlineMeetingInfo();
+            return new ApiSdk.Models.OnlineMeetingInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -96,7 +96,7 @@ namespace ApiSdk.Models
                 { "conferenceId", n => { ConferenceId = n.GetStringValue(); } },
                 { "joinUrl", n => { JoinUrl = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "phones", n => { Phones = n.GetCollectionOfObjectValues<Phone>(Phone.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "phones", n => { Phones = n.GetCollectionOfObjectValues<ApiSdk.Models.Phone>(ApiSdk.Models.Phone.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "quickDial", n => { QuickDial = n.GetStringValue(); } },
                 { "tollFreeNumbers", n => { TollFreeNumbers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "tollNumber", n => { TollNumber = n.GetStringValue(); } },
@@ -112,7 +112,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("conferenceId", ConferenceId);
             writer.WriteStringValue("joinUrl", JoinUrl);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<Phone>("phones", Phones);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Phone>("phones", Phones);
             writer.WriteStringValue("quickDial", QuickDial);
             writer.WriteCollectionOfPrimitiveValues<string>("tollFreeNumbers", TollFreeNumbers);
             writer.WriteStringValue("tollNumber", TollNumber);

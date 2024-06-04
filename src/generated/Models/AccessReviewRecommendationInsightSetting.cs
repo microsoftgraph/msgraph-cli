@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessReviewRecommendationInsightSetting"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessReviewRecommendationInsightSetting"/> and sets the default values.
         /// </summary>
         public AccessReviewRecommendationInsightSetting()
         {
@@ -30,17 +30,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessReviewRecommendationInsightSetting"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessReviewRecommendationInsightSetting"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AccessReviewRecommendationInsightSetting CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AccessReviewRecommendationInsightSetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.groupPeerOutlierRecommendationInsightSettings" => new GroupPeerOutlierRecommendationInsightSettings(),
-                "#microsoft.graph.userLastSignInRecommendationInsightSetting" => new UserLastSignInRecommendationInsightSetting(),
-                _ => new AccessReviewRecommendationInsightSetting(),
+                "#microsoft.graph.groupPeerOutlierRecommendationInsightSettings" => new ApiSdk.Models.GroupPeerOutlierRecommendationInsightSettings(),
+                "#microsoft.graph.userLastSignInRecommendationInsightSetting" => new ApiSdk.Models.UserLastSignInRecommendationInsightSetting(),
+                _ => new ApiSdk.Models.AccessReviewRecommendationInsightSetting(),
             };
         }
         /// <summary>

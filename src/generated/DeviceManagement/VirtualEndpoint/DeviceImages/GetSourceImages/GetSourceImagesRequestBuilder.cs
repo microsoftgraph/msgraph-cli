@@ -97,14 +97,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.GetSourceImages
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSourceImagesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.GetSourceImages.GetSourceImagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetSourceImagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/virtualEndpoint/deviceImages/getSourceImages(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSourceImagesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.GetSourceImages.GetSourceImagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetSourceImagesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/virtualEndpoint/deviceImages/getSourceImages(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
@@ -117,11 +117,11 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.GetSourceImages
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetSourceImagesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.GetSourceImages.GetSourceImagesRequestBuilder.GetSourceImagesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetSourceImagesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.GetSourceImages.GetSourceImagesRequestBuilder.GetSourceImagesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

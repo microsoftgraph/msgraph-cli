@@ -47,7 +47,7 @@ namespace ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationC
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ValidateAuthenticationConfigurationPostRequestBody>(ValidateAuthenticationConfigurationPostRequestBody.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationConfiguration.ValidateAuthenticationConfigurationPostRequestBody>(ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationConfiguration.ValidateAuthenticationConfigurationPostRequestBody.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -67,14 +67,14 @@ namespace ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationC
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ValidateAuthenticationConfigurationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationConfiguration.ValidateAuthenticationConfigurationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ValidateAuthenticationConfigurationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/customAuthenticationExtensions/validateAuthenticationConfiguration", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ValidateAuthenticationConfigurationRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationConfiguration.ValidateAuthenticationConfigurationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ValidateAuthenticationConfigurationRequestBuilder(string rawUrl) : base("{+baseurl}/identity/customAuthenticationExtensions/validateAuthenticationConfiguration", rawUrl)
@@ -88,11 +88,11 @@ namespace ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationC
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ValidateAuthenticationConfigurationPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationConfiguration.ValidateAuthenticationConfigurationPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ValidateAuthenticationConfigurationPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(ApiSdk.Identity.CustomAuthenticationExtensions.ValidateAuthenticationConfiguration.ValidateAuthenticationConfigurationPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

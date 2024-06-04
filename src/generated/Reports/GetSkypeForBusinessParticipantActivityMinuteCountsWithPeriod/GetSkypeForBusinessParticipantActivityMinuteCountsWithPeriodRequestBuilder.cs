@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetSkypeForBusinessParticipantActivityMinuteCountsWithP
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriod.GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSkypeForBusinessParticipantActivityMinuteCounts(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriod.GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSkypeForBusinessParticipantActivityMinuteCounts(period='{period}')", rawUrl)

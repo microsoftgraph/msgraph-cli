@@ -7,35 +7,35 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class X509CertificateAuthenticationMethodConfiguration : AuthenticationMethodConfiguration, IParsable
+    public class X509CertificateAuthenticationMethodConfiguration : ApiSdk.Models.AuthenticationMethodConfiguration, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Defines strong authentication configurations. This configuration includes the default authentication mode and the different rules for strong authentication bindings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public X509CertificateAuthenticationModeConfiguration? AuthenticationModeConfiguration { get; set; }
+        public ApiSdk.Models.X509CertificateAuthenticationModeConfiguration? AuthenticationModeConfiguration { get; set; }
 #nullable restore
 #else
-        public X509CertificateAuthenticationModeConfiguration AuthenticationModeConfiguration { get; set; }
+        public ApiSdk.Models.X509CertificateAuthenticationModeConfiguration AuthenticationModeConfiguration { get; set; }
 #endif
         /// <summary>Defines fields in the X.509 certificate that map to attributes of the Microsoft Entra user object in order to bind the certificate to the user. The priority of the object determines the order in which the binding is carried out. The first binding that matches will be used and the rest ignored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<X509CertificateUserBinding>? CertificateUserBindings { get; set; }
+        public List<ApiSdk.Models.X509CertificateUserBinding>? CertificateUserBindings { get; set; }
 #nullable restore
 #else
-        public List<X509CertificateUserBinding> CertificateUserBindings { get; set; }
+        public List<ApiSdk.Models.X509CertificateUserBinding> CertificateUserBindings { get; set; }
 #endif
         /// <summary>A collection of groups that are enabled to use the authentication method.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationMethodTarget>? IncludeTargets { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodTarget>? IncludeTargets { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationMethodTarget> IncludeTargets { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodTarget> IncludeTargets { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="X509CertificateAuthenticationMethodConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.X509CertificateAuthenticationMethodConfiguration"/> and sets the default values.
         /// </summary>
         public X509CertificateAuthenticationMethodConfiguration() : base()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="X509CertificateAuthenticationMethodConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.X509CertificateAuthenticationMethodConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new X509CertificateAuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.X509CertificateAuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new X509CertificateAuthenticationMethodConfiguration();
+            return new ApiSdk.Models.X509CertificateAuthenticationMethodConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,9 +59,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "authenticationModeConfiguration", n => { AuthenticationModeConfiguration = n.GetObjectValue<X509CertificateAuthenticationModeConfiguration>(X509CertificateAuthenticationModeConfiguration.CreateFromDiscriminatorValue); } },
-                { "certificateUserBindings", n => { CertificateUserBindings = n.GetCollectionOfObjectValues<X509CertificateUserBinding>(X509CertificateUserBinding.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<AuthenticationMethodTarget>(AuthenticationMethodTarget.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "authenticationModeConfiguration", n => { AuthenticationModeConfiguration = n.GetObjectValue<ApiSdk.Models.X509CertificateAuthenticationModeConfiguration>(ApiSdk.Models.X509CertificateAuthenticationModeConfiguration.CreateFromDiscriminatorValue); } },
+                { "certificateUserBindings", n => { CertificateUserBindings = n.GetCollectionOfObjectValues<ApiSdk.Models.X509CertificateUserBinding>(ApiSdk.Models.X509CertificateUserBinding.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<ApiSdk.Models.AuthenticationMethodTarget>(ApiSdk.Models.AuthenticationMethodTarget.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -72,9 +72,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<X509CertificateAuthenticationModeConfiguration>("authenticationModeConfiguration", AuthenticationModeConfiguration);
-            writer.WriteCollectionOfObjectValues<X509CertificateUserBinding>("certificateUserBindings", CertificateUserBindings);
-            writer.WriteCollectionOfObjectValues<AuthenticationMethodTarget>("includeTargets", IncludeTargets);
+            writer.WriteObjectValue<ApiSdk.Models.X509CertificateAuthenticationModeConfiguration>("authenticationModeConfiguration", AuthenticationModeConfiguration);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.X509CertificateUserBinding>("certificateUserBindings", CertificateUserBindings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuthenticationMethodTarget>("includeTargets", IncludeTargets);
         }
     }
 }

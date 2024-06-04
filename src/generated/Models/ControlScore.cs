@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         /// <summary>Tenant achieved score for the control (it varies day by day depending on tenant operations on the control).</summary>
         public double? Score { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ControlScore"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ControlScore"/> and sets the default values.
         /// </summary>
         public ControlScore()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ControlScore"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ControlScore"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ControlScore CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ControlScore CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ControlScore();
+            return new ApiSdk.Models.ControlScore();
         }
         /// <summary>
         /// The deserialization information for the current model

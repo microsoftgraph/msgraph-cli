@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AddressBookAccountTargetContent : AccountTargetContent, IParsable
+    public class AddressBookAccountTargetContent : ApiSdk.Models.AccountTargetContent, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>List of user emails targeted for an attack simulation training campaign.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public List<string> AccountTargetEmails { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AddressBookAccountTargetContent"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AddressBookAccountTargetContent"/> and sets the default values.
         /// </summary>
         public AddressBookAccountTargetContent() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddressBookAccountTargetContent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AddressBookAccountTargetContent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AddressBookAccountTargetContent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AddressBookAccountTargetContent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddressBookAccountTargetContent();
+            return new ApiSdk.Models.AddressBookAccountTargetContent();
         }
         /// <summary>
         /// The deserialization information for the current model

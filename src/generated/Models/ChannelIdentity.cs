@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string TeamId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ChannelIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ChannelIdentity"/> and sets the default values.
         /// </summary>
         public ChannelIdentity()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChannelIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ChannelIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ChannelIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ChannelIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChannelIdentity();
+            return new ApiSdk.Models.ChannelIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model

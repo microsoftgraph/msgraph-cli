@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class MessageRule : Entity, IParsable
+    public class MessageRule : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Actions to be taken on a message when the corresponding conditions are fulfilled.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MessageRuleActions? Actions { get; set; }
+        public ApiSdk.Models.MessageRuleActions? Actions { get; set; }
 #nullable restore
 #else
-        public MessageRuleActions Actions { get; set; }
+        public ApiSdk.Models.MessageRuleActions Actions { get; set; }
 #endif
         /// <summary>Conditions that when fulfilled trigger the corresponding actions for that rule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MessageRulePredicates? Conditions { get; set; }
+        public ApiSdk.Models.MessageRulePredicates? Conditions { get; set; }
 #nullable restore
 #else
-        public MessageRulePredicates Conditions { get; set; }
+        public ApiSdk.Models.MessageRulePredicates Conditions { get; set; }
 #endif
         /// <summary>The display name of the rule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,10 +37,10 @@ namespace ApiSdk.Models
         /// <summary>Exception conditions for the rule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MessageRulePredicates? Exceptions { get; set; }
+        public ApiSdk.Models.MessageRulePredicates? Exceptions { get; set; }
 #nullable restore
 #else
-        public MessageRulePredicates Exceptions { get; set; }
+        public ApiSdk.Models.MessageRulePredicates Exceptions { get; set; }
 #endif
         /// <summary>Indicates whether the rule is in an error condition. Read-only.</summary>
         public bool? HasError { get; set; }
@@ -53,12 +53,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MessageRule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MessageRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MessageRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MessageRule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MessageRule();
+            return new ApiSdk.Models.MessageRule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,10 +68,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "actions", n => { Actions = n.GetObjectValue<MessageRuleActions>(MessageRuleActions.CreateFromDiscriminatorValue); } },
-                { "conditions", n => { Conditions = n.GetObjectValue<MessageRulePredicates>(MessageRulePredicates.CreateFromDiscriminatorValue); } },
+                { "actions", n => { Actions = n.GetObjectValue<ApiSdk.Models.MessageRuleActions>(ApiSdk.Models.MessageRuleActions.CreateFromDiscriminatorValue); } },
+                { "conditions", n => { Conditions = n.GetObjectValue<ApiSdk.Models.MessageRulePredicates>(ApiSdk.Models.MessageRulePredicates.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "exceptions", n => { Exceptions = n.GetObjectValue<MessageRulePredicates>(MessageRulePredicates.CreateFromDiscriminatorValue); } },
+                { "exceptions", n => { Exceptions = n.GetObjectValue<ApiSdk.Models.MessageRulePredicates>(ApiSdk.Models.MessageRulePredicates.CreateFromDiscriminatorValue); } },
                 { "hasError", n => { HasError = n.GetBoolValue(); } },
                 { "isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
                 { "isReadOnly", n => { IsReadOnly = n.GetBoolValue(); } },
@@ -86,10 +86,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<MessageRuleActions>("actions", Actions);
-            writer.WriteObjectValue<MessageRulePredicates>("conditions", Conditions);
+            writer.WriteObjectValue<ApiSdk.Models.MessageRuleActions>("actions", Actions);
+            writer.WriteObjectValue<ApiSdk.Models.MessageRulePredicates>("conditions", Conditions);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<MessageRulePredicates>("exceptions", Exceptions);
+            writer.WriteObjectValue<ApiSdk.Models.MessageRulePredicates>("exceptions", Exceptions);
             writer.WriteBoolValue("hasError", HasError);
             writer.WriteBoolValue("isEnabled", IsEnabled);
             writer.WriteBoolValue("isReadOnly", IsReadOnly);

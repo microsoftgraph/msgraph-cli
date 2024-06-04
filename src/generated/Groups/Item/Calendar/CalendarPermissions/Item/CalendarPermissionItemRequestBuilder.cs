@@ -149,7 +149,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<CalendarPermission>(CalendarPermission.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.CalendarPermission>(ApiSdk.Models.CalendarPermission.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -171,14 +171,14 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CalendarPermissionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item.CalendarPermissionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CalendarPermissionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendar/calendarPermissions/{calendarPermission%2Did}{?%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CalendarPermissionItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item.CalendarPermissionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CalendarPermissionItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendar/calendarPermissions/{calendarPermission%2Did}{?%24select}", rawUrl)
@@ -210,11 +210,11 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CalendarPermissionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item.CalendarPermissionItemRequestBuilder.CalendarPermissionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CalendarPermissionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item.CalendarPermissionItemRequestBuilder.CalendarPermissionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -230,11 +230,11 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(CalendarPermission body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CalendarPermission body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(CalendarPermission body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.CalendarPermission body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

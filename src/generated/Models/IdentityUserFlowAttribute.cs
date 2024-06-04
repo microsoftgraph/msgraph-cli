@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class IdentityUserFlowAttribute : Entity, IParsable
+    public class IdentityUserFlowAttribute : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The dataType property</summary>
-        public IdentityUserFlowAttributeDataType? DataType { get; set; }
+        public ApiSdk.Models.IdentityUserFlowAttributeDataType? DataType { get; set; }
         /// <summary>The description of the user flow attribute that&apos;s shown to the user at the time of sign up.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -29,21 +29,21 @@ namespace ApiSdk.Models
         public string DisplayName { get; set; }
 #endif
         /// <summary>The userFlowAttributeType property</summary>
-        public IdentityUserFlowAttributeType? UserFlowAttributeType { get; set; }
+        public ApiSdk.Models.IdentityUserFlowAttributeType? UserFlowAttributeType { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IdentityUserFlowAttribute"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityUserFlowAttribute"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IdentityUserFlowAttribute CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityUserFlowAttribute CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.identityBuiltInUserFlowAttribute" => new IdentityBuiltInUserFlowAttribute(),
-                "#microsoft.graph.identityCustomUserFlowAttribute" => new IdentityCustomUserFlowAttribute(),
-                _ => new IdentityUserFlowAttribute(),
+                "#microsoft.graph.identityBuiltInUserFlowAttribute" => new ApiSdk.Models.IdentityBuiltInUserFlowAttribute(),
+                "#microsoft.graph.identityCustomUserFlowAttribute" => new ApiSdk.Models.IdentityCustomUserFlowAttribute(),
+                _ => new ApiSdk.Models.IdentityUserFlowAttribute(),
             };
         }
         /// <summary>
@@ -54,10 +54,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "dataType", n => { DataType = n.GetEnumValue<IdentityUserFlowAttributeDataType>(); } },
+                { "dataType", n => { DataType = n.GetEnumValue<ApiSdk.Models.IdentityUserFlowAttributeDataType>(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "userFlowAttributeType", n => { UserFlowAttributeType = n.GetEnumValue<IdentityUserFlowAttributeType>(); } },
+                { "userFlowAttributeType", n => { UserFlowAttributeType = n.GetEnumValue<ApiSdk.Models.IdentityUserFlowAttributeType>(); } },
             };
         }
         /// <summary>
@@ -68,10 +68,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<IdentityUserFlowAttributeDataType>("dataType", DataType);
+            writer.WriteEnumValue<ApiSdk.Models.IdentityUserFlowAttributeDataType>("dataType", DataType);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<IdentityUserFlowAttributeType>("userFlowAttributeType", UserFlowAttributeType);
+            writer.WriteEnumValue<ApiSdk.Models.IdentityUserFlowAttributeType>("userFlowAttributeType", UserFlowAttributeType);
         }
     }
 }

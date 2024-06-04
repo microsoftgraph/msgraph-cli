@@ -16,21 +16,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rightb
         /// <summary>The numBytes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? NumBytes { get; set; }
+        public ApiSdk.Models.Json? NumBytes { get; set; }
 #nullable restore
 #else
-        public Json NumBytes { get; set; }
+        public ApiSdk.Models.Json NumBytes { get; set; }
 #endif
         /// <summary>The text property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Text { get; set; }
+        public ApiSdk.Models.Json? Text { get; set; }
 #nullable restore
 #else
-        public Json Text { get; set; }
+        public ApiSdk.Models.Json Text { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RightbPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rightb.RightbPostRequestBody"/> and sets the default values.
         /// </summary>
         public RightbPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rightb
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RightbPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rightb.RightbPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RightbPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rightb.RightbPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RightbPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rightb.RightbPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rightb
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "numBytes", n => { NumBytes = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "text", n => { Text = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "numBytes", n => { NumBytes = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "text", n => { Text = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rightb
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("numBytes", NumBytes);
-            writer.WriteObjectValue<Json>("text", Text);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("numBytes", NumBytes);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("text", Text);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

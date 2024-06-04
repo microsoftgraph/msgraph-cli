@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class LearningAssignment : LearningCourseActivity, IParsable
+    public class LearningAssignment : ApiSdk.Models.LearningCourseActivity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Assigned date for the course activity. Optional.</summary>
@@ -25,28 +25,28 @@ namespace ApiSdk.Models
         /// <summary>Due date for the course activity. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? DueDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? DueDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone DueDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone DueDateTime { get; set; }
 #endif
         /// <summary>Notes for the course activity. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemBody? Notes { get; set; }
+        public ApiSdk.Models.ItemBody? Notes { get; set; }
 #nullable restore
 #else
-        public ItemBody Notes { get; set; }
+        public ApiSdk.Models.ItemBody Notes { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LearningAssignment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.LearningAssignment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new LearningAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.LearningAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LearningAssignment();
+            return new ApiSdk.Models.LearningAssignment();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,9 +58,9 @@ namespace ApiSdk.Models
             {
                 { "assignedDateTime", n => { AssignedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "assignerUserId", n => { AssignerUserId = n.GetStringValue(); } },
-                { "assignmentType", n => { AssignmentType = n.GetEnumValue<AssignmentType>(); } },
-                { "dueDateTime", n => { DueDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "notes", n => { Notes = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                { "assignmentType", n => { AssignmentType = n.GetEnumValue<ApiSdk.Models.AssignmentType>(); } },
+                { "dueDateTime", n => { DueDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "notes", n => { Notes = n.GetObjectValue<ApiSdk.Models.ItemBody>(ApiSdk.Models.ItemBody.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -73,9 +73,9 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("assignedDateTime", AssignedDateTime);
             writer.WriteStringValue("assignerUserId", AssignerUserId);
-            writer.WriteEnumValue<AssignmentType>("assignmentType", AssignmentType);
-            writer.WriteObjectValue<DateTimeTimeZone>("dueDateTime", DueDateTime);
-            writer.WriteObjectValue<ItemBody>("notes", Notes);
+            writer.WriteEnumValue<ApiSdk.Models.AssignmentType>("assignmentType", AssignmentType);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("dueDateTime", DueDateTime);
+            writer.WriteObjectValue<ApiSdk.Models.ItemBody>("notes", Notes);
         }
     }
 }

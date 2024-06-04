@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AuthenticationFlowsPolicy : Entity, IParsable
+    public class AuthenticationFlowsPolicy : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Inherited property. A description of the policy. Optional. Read-only.</summary>
@@ -29,20 +29,20 @@ namespace ApiSdk.Models
         /// <summary>Contains selfServiceSignUpAuthenticationFlowConfiguration settings that convey whether self-service sign-up is enabled or disabled. Optional. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SelfServiceSignUpAuthenticationFlowConfiguration? SelfServiceSignUp { get; set; }
+        public ApiSdk.Models.SelfServiceSignUpAuthenticationFlowConfiguration? SelfServiceSignUp { get; set; }
 #nullable restore
 #else
-        public SelfServiceSignUpAuthenticationFlowConfiguration SelfServiceSignUp { get; set; }
+        public ApiSdk.Models.SelfServiceSignUpAuthenticationFlowConfiguration SelfServiceSignUp { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationFlowsPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationFlowsPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AuthenticationFlowsPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AuthenticationFlowsPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthenticationFlowsPolicy();
+            return new ApiSdk.Models.AuthenticationFlowsPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "selfServiceSignUp", n => { SelfServiceSignUp = n.GetObjectValue<SelfServiceSignUpAuthenticationFlowConfiguration>(SelfServiceSignUpAuthenticationFlowConfiguration.CreateFromDiscriminatorValue); } },
+                { "selfServiceSignUp", n => { SelfServiceSignUp = n.GetObjectValue<ApiSdk.Models.SelfServiceSignUpAuthenticationFlowConfiguration>(ApiSdk.Models.SelfServiceSignUpAuthenticationFlowConfiguration.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<SelfServiceSignUpAuthenticationFlowConfiguration>("selfServiceSignUp", SelfServiceSignUp);
+            writer.WriteObjectValue<ApiSdk.Models.SelfServiceSignUpAuthenticationFlowConfiguration>("selfServiceSignUp", SelfServiceSignUp);
         }
     }
 }

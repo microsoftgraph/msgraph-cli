@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// A termsAndConditions entity represents the metadata and contents of a given Terms and Conditions (T&amp;C) policy. T&amp;C policies’ contents are presented to users upon their first attempt to enroll into Intune and subsequently upon edits where an administrator has required re-acceptance. They enable administrators to communicate the provisions to which a user must agree in order to have devices enrolled into Intune.
     /// </summary>
-    public class TermsAndConditions : Entity, IParsable
+    public class TermsAndConditions : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Administrator-supplied explanation of the terms and conditions, typically describing what it means to accept the terms and conditions set out in the T&amp;C policy. This is shown to the user on prompts to accept the T&amp;C policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,18 +22,18 @@ namespace ApiSdk.Models
         /// <summary>The list of acceptance statuses for this T&amp;C policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TermsAndConditionsAcceptanceStatus>? AcceptanceStatuses { get; set; }
+        public List<ApiSdk.Models.TermsAndConditionsAcceptanceStatus>? AcceptanceStatuses { get; set; }
 #nullable restore
 #else
-        public List<TermsAndConditionsAcceptanceStatus> AcceptanceStatuses { get; set; }
+        public List<ApiSdk.Models.TermsAndConditionsAcceptanceStatus> AcceptanceStatuses { get; set; }
 #endif
         /// <summary>The list of assignments for this T&amp;C policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TermsAndConditionsAssignment>? Assignments { get; set; }
+        public List<ApiSdk.Models.TermsAndConditionsAssignment>? Assignments { get; set; }
 #nullable restore
 #else
-        public List<TermsAndConditionsAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.TermsAndConditionsAssignment> Assignments { get; set; }
 #endif
         /// <summary>Administrator-supplied body text of the terms and conditions, typically the terms themselves. This is shown to the user on prompts to accept the T&amp;C policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -76,12 +76,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TermsAndConditions"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermsAndConditions"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TermsAndConditions CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TermsAndConditions CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TermsAndConditions();
+            return new ApiSdk.Models.TermsAndConditions();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -92,8 +92,8 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "acceptanceStatement", n => { AcceptanceStatement = n.GetStringValue(); } },
-                { "acceptanceStatuses", n => { AcceptanceStatuses = n.GetCollectionOfObjectValues<TermsAndConditionsAcceptanceStatus>(TermsAndConditionsAcceptanceStatus.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<TermsAndConditionsAssignment>(TermsAndConditionsAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "acceptanceStatuses", n => { AcceptanceStatuses = n.GetCollectionOfObjectValues<ApiSdk.Models.TermsAndConditionsAcceptanceStatus>(ApiSdk.Models.TermsAndConditionsAcceptanceStatus.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.TermsAndConditionsAssignment>(ApiSdk.Models.TermsAndConditionsAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "bodyText", n => { BodyText = n.GetStringValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
@@ -112,8 +112,8 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("acceptanceStatement", AcceptanceStatement);
-            writer.WriteCollectionOfObjectValues<TermsAndConditionsAcceptanceStatus>("acceptanceStatuses", AcceptanceStatuses);
-            writer.WriteCollectionOfObjectValues<TermsAndConditionsAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermsAndConditionsAcceptanceStatus>("acceptanceStatuses", AcceptanceStatuses);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermsAndConditionsAssignment>("assignments", Assignments);
             writer.WriteStringValue("bodyText", BodyText);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);

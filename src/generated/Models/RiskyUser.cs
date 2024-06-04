@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class RiskyUser : Entity, IParsable
+    public class RiskyUser : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The activity related to user risk level change</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RiskyUserHistoryItem>? History { get; set; }
+        public List<ApiSdk.Models.RiskyUserHistoryItem>? History { get; set; }
 #nullable restore
 #else
-        public List<RiskyUserHistoryItem> History { get; set; }
+        public List<ApiSdk.Models.RiskyUserHistoryItem> History { get; set; }
 #endif
         /// <summary>Indicates whether the user is deleted. Possible values are: true, false.</summary>
         public bool? IsDeleted { get; set; }
@@ -49,16 +49,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RiskyUser"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RiskyUser"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RiskyUser CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.RiskyUser CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.riskyUserHistoryItem" => new RiskyUserHistoryItem(),
-                _ => new RiskyUser(),
+                "#microsoft.graph.riskyUserHistoryItem" => new ApiSdk.Models.RiskyUserHistoryItem(),
+                _ => new ApiSdk.Models.RiskyUser(),
             };
         }
         /// <summary>
@@ -69,13 +69,13 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "history", n => { History = n.GetCollectionOfObjectValues<RiskyUserHistoryItem>(RiskyUserHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "history", n => { History = n.GetCollectionOfObjectValues<ApiSdk.Models.RiskyUserHistoryItem>(ApiSdk.Models.RiskyUserHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isDeleted", n => { IsDeleted = n.GetBoolValue(); } },
                 { "isProcessing", n => { IsProcessing = n.GetBoolValue(); } },
-                { "riskDetail", n => { RiskDetail = n.GetEnumValue<RiskDetail>(); } },
+                { "riskDetail", n => { RiskDetail = n.GetEnumValue<ApiSdk.Models.RiskDetail>(); } },
                 { "riskLastUpdatedDateTime", n => { RiskLastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "riskLevel", n => { RiskLevel = n.GetEnumValue<RiskLevel>(); } },
-                { "riskState", n => { RiskState = n.GetEnumValue<RiskState>(); } },
+                { "riskLevel", n => { RiskLevel = n.GetEnumValue<ApiSdk.Models.RiskLevel>(); } },
+                { "riskState", n => { RiskState = n.GetEnumValue<ApiSdk.Models.RiskState>(); } },
                 { "userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
@@ -88,13 +88,13 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<RiskyUserHistoryItem>("history", History);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RiskyUserHistoryItem>("history", History);
             writer.WriteBoolValue("isDeleted", IsDeleted);
             writer.WriteBoolValue("isProcessing", IsProcessing);
-            writer.WriteEnumValue<RiskDetail>("riskDetail", RiskDetail);
+            writer.WriteEnumValue<ApiSdk.Models.RiskDetail>("riskDetail", RiskDetail);
             writer.WriteDateTimeOffsetValue("riskLastUpdatedDateTime", RiskLastUpdatedDateTime);
-            writer.WriteEnumValue<RiskLevel>("riskLevel", RiskLevel);
-            writer.WriteEnumValue<RiskState>("riskState", RiskState);
+            writer.WriteEnumValue<ApiSdk.Models.RiskLevel>("riskLevel", RiskLevel);
+            writer.WriteEnumValue<ApiSdk.Models.RiskState>("riskState", RiskState);
             writer.WriteStringValue("userDisplayName", UserDisplayName);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);
         }

@@ -38,7 +38,7 @@ namespace ApiSdk.Models
         /// <summary>When TRUE, only Version 9.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
         public bool? V90 { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="IosMinimumOperatingSystem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IosMinimumOperatingSystem"/> and sets the default values.
         /// </summary>
         public IosMinimumOperatingSystem()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosMinimumOperatingSystem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosMinimumOperatingSystem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IosMinimumOperatingSystem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IosMinimumOperatingSystem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IosMinimumOperatingSystem();
+            return new ApiSdk.Models.IosMinimumOperatingSystem();
         }
         /// <summary>
         /// The deserialization information for the current model

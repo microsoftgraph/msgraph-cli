@@ -133,7 +133,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item
         {
             var command = new Command("mute");
             command.Description = "Provides operations to call the mute method.";
-            var builder = new MuteRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.Participants.Item.Mute.MuteRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -178,7 +178,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<Participant>(Participant.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Participant>(ApiSdk.Models.Participant.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -207,7 +207,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item
         {
             var command = new Command("start-hold-music");
             command.Description = "Provides operations to call the startHoldMusic method.";
-            var builder = new StartHoldMusicRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic.StartHoldMusicRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -224,7 +224,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item
         {
             var command = new Command("stop-hold-music");
             command.Description = "Provides operations to call the stopHoldMusic method.";
-            var builder = new StopHoldMusicRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic.StopHoldMusicRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -234,14 +234,14 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ParticipantItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.Participants.Item.ParticipantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ParticipantItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ParticipantItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Calls.Item.Participants.Item.ParticipantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ParticipantItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}{?%24expand,%24select}", rawUrl)
@@ -273,11 +273,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParticipantItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.Calls.Item.Participants.Item.ParticipantItemRequestBuilder.ParticipantItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParticipantItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.Calls.Item.Participants.Item.ParticipantItemRequestBuilder.ParticipantItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -293,11 +293,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Participant body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Participant body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Participant body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Participant body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

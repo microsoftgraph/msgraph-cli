@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string ImageWebUrl { get; set; }
 #endif
         /// <summary>Enumeration value that indicates the layout of the title area. The possible values are: imageAndTitle, plain, colorBlock, overlap, unknownFutureValue.</summary>
-        public TitleAreaLayoutType? Layout { get; set; }
+        public ApiSdk.Models.TitleAreaLayoutType? Layout { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -63,9 +63,9 @@ namespace ApiSdk.Models
         public string TextAboveTitle { get; set; }
 #endif
         /// <summary>Enumeration value that indicates the text alignment of the title area. The possible values are: left, center, unknownFutureValue.</summary>
-        public TitleAreaTextAlignmentType? TextAlignment { get; set; }
+        public ApiSdk.Models.TitleAreaTextAlignmentType? TextAlignment { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TitleArea"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TitleArea"/> and sets the default values.
         /// </summary>
         public TitleArea()
         {
@@ -74,12 +74,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TitleArea"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TitleArea"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TitleArea CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TitleArea CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TitleArea();
+            return new ApiSdk.Models.TitleArea();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -92,14 +92,14 @@ namespace ApiSdk.Models
                 { "alternativeText", n => { AlternativeText = n.GetStringValue(); } },
                 { "enableGradientEffect", n => { EnableGradientEffect = n.GetBoolValue(); } },
                 { "imageWebUrl", n => { ImageWebUrl = n.GetStringValue(); } },
-                { "layout", n => { Layout = n.GetEnumValue<TitleAreaLayoutType>(); } },
+                { "layout", n => { Layout = n.GetEnumValue<ApiSdk.Models.TitleAreaLayoutType>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "serverProcessedContent", n => { ServerProcessedContent = n.GetObjectValue<ApiSdk.Models.ServerProcessedContent>(ApiSdk.Models.ServerProcessedContent.CreateFromDiscriminatorValue); } },
                 { "showAuthor", n => { ShowAuthor = n.GetBoolValue(); } },
                 { "showPublishedDate", n => { ShowPublishedDate = n.GetBoolValue(); } },
                 { "showTextBlockAboveTitle", n => { ShowTextBlockAboveTitle = n.GetBoolValue(); } },
                 { "textAboveTitle", n => { TextAboveTitle = n.GetStringValue(); } },
-                { "textAlignment", n => { TextAlignment = n.GetEnumValue<TitleAreaTextAlignmentType>(); } },
+                { "textAlignment", n => { TextAlignment = n.GetEnumValue<ApiSdk.Models.TitleAreaTextAlignmentType>(); } },
             };
         }
         /// <summary>
@@ -112,14 +112,14 @@ namespace ApiSdk.Models
             writer.WriteStringValue("alternativeText", AlternativeText);
             writer.WriteBoolValue("enableGradientEffect", EnableGradientEffect);
             writer.WriteStringValue("imageWebUrl", ImageWebUrl);
-            writer.WriteEnumValue<TitleAreaLayoutType>("layout", Layout);
+            writer.WriteEnumValue<ApiSdk.Models.TitleAreaLayoutType>("layout", Layout);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<ApiSdk.Models.ServerProcessedContent>("serverProcessedContent", ServerProcessedContent);
             writer.WriteBoolValue("showAuthor", ShowAuthor);
             writer.WriteBoolValue("showPublishedDate", ShowPublishedDate);
             writer.WriteBoolValue("showTextBlockAboveTitle", ShowTextBlockAboveTitle);
             writer.WriteStringValue("textAboveTitle", TextAboveTitle);
-            writer.WriteEnumValue<TitleAreaTextAlignmentType>("textAlignment", TextAlignment);
+            writer.WriteEnumValue<ApiSdk.Models.TitleAreaTextAlignmentType>("textAlignment", TextAlignment);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

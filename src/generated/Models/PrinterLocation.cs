@@ -139,7 +139,7 @@ namespace ApiSdk.Models
         public List<string> Subunit { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PrinterLocation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PrinterLocation"/> and sets the default values.
         /// </summary>
         public PrinterLocation()
         {
@@ -148,12 +148,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrinterLocation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrinterLocation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PrinterLocation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PrinterLocation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrinterLocation();
+            return new ApiSdk.Models.PrinterLocation();
         }
         /// <summary>
         /// The deserialization information for the current model

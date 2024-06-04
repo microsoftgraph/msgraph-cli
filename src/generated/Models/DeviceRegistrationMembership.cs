@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DeviceRegistrationMembership"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DeviceRegistrationMembership"/> and sets the default values.
         /// </summary>
         public DeviceRegistrationMembership()
         {
@@ -30,18 +30,18 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceRegistrationMembership"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceRegistrationMembership"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DeviceRegistrationMembership CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.DeviceRegistrationMembership CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.allDeviceRegistrationMembership" => new AllDeviceRegistrationMembership(),
-                "#microsoft.graph.enumeratedDeviceRegistrationMembership" => new EnumeratedDeviceRegistrationMembership(),
-                "#microsoft.graph.noDeviceRegistrationMembership" => new NoDeviceRegistrationMembership(),
-                _ => new DeviceRegistrationMembership(),
+                "#microsoft.graph.allDeviceRegistrationMembership" => new ApiSdk.Models.AllDeviceRegistrationMembership(),
+                "#microsoft.graph.enumeratedDeviceRegistrationMembership" => new ApiSdk.Models.EnumeratedDeviceRegistrationMembership(),
+                "#microsoft.graph.noDeviceRegistrationMembership" => new ApiSdk.Models.NoDeviceRegistrationMembership(),
+                _ => new ApiSdk.Models.DeviceRegistrationMembership(),
             };
         }
         /// <summary>

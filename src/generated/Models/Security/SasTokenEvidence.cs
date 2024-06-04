@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class SasTokenEvidence : AlertEvidence, IParsable
+    public class SasTokenEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The allowedIpAddresses property</summary>
@@ -73,13 +73,13 @@ namespace ApiSdk.Models.Security
         /// <summary>The storageResource property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AzureResourceEvidence? StorageResource { get; set; }
+        public ApiSdk.Models.Security.AzureResourceEvidence? StorageResource { get; set; }
 #nullable restore
 #else
-        public AzureResourceEvidence StorageResource { get; set; }
+        public ApiSdk.Models.Security.AzureResourceEvidence StorageResource { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SasTokenEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.SasTokenEvidence"/> and sets the default values.
         /// </summary>
         public SasTokenEvidence() : base()
         {
@@ -88,12 +88,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SasTokenEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.SasTokenEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SasTokenEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.SasTokenEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SasTokenEvidence();
+            return new ApiSdk.Models.Security.SasTokenEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -112,7 +112,7 @@ namespace ApiSdk.Models.Security
                 { "signatureHash", n => { SignatureHash = n.GetStringValue(); } },
                 { "signedWith", n => { SignedWith = n.GetStringValue(); } },
                 { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
-                { "storageResource", n => { StorageResource = n.GetObjectValue<AzureResourceEvidence>(AzureResourceEvidence.CreateFromDiscriminatorValue); } },
+                { "storageResource", n => { StorageResource = n.GetObjectValue<ApiSdk.Models.Security.AzureResourceEvidence>(ApiSdk.Models.Security.AzureResourceEvidence.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -132,7 +132,7 @@ namespace ApiSdk.Models.Security
             writer.WriteStringValue("signatureHash", SignatureHash);
             writer.WriteStringValue("signedWith", SignedWith);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
-            writer.WriteObjectValue<AzureResourceEvidence>("storageResource", StorageResource);
+            writer.WriteObjectValue<ApiSdk.Models.Security.AzureResourceEvidence>("storageResource", StorageResource);
         }
     }
 }

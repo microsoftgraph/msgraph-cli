@@ -31,15 +31,15 @@ namespace ApiSdk.Models
         /// <summary>Defines the details of the alteration information for the spelling correction.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SearchAlteration? QueryAlteration { get; set; }
+        public ApiSdk.Models.SearchAlteration? QueryAlteration { get; set; }
 #nullable restore
 #else
-        public SearchAlteration QueryAlteration { get; set; }
+        public ApiSdk.Models.SearchAlteration QueryAlteration { get; set; }
 #endif
         /// <summary>Defines the type of the spelling correction. Possible values are: suggestion, modification.</summary>
-        public SearchAlterationType? QueryAlterationType { get; set; }
+        public ApiSdk.Models.SearchAlterationType? QueryAlterationType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AlterationResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AlterationResponse"/> and sets the default values.
         /// </summary>
         public AlterationResponse()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AlterationResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AlterationResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AlterationResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AlterationResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AlterationResponse();
+            return new ApiSdk.Models.AlterationResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,8 +65,8 @@ namespace ApiSdk.Models
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "originalQueryString", n => { OriginalQueryString = n.GetStringValue(); } },
-                { "queryAlteration", n => { QueryAlteration = n.GetObjectValue<SearchAlteration>(SearchAlteration.CreateFromDiscriminatorValue); } },
-                { "queryAlterationType", n => { QueryAlterationType = n.GetEnumValue<SearchAlterationType>(); } },
+                { "queryAlteration", n => { QueryAlteration = n.GetObjectValue<ApiSdk.Models.SearchAlteration>(ApiSdk.Models.SearchAlteration.CreateFromDiscriminatorValue); } },
+                { "queryAlterationType", n => { QueryAlterationType = n.GetEnumValue<ApiSdk.Models.SearchAlterationType>(); } },
             };
         }
         /// <summary>
@@ -78,8 +78,8 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("originalQueryString", OriginalQueryString);
-            writer.WriteObjectValue<SearchAlteration>("queryAlteration", QueryAlteration);
-            writer.WriteEnumValue<SearchAlterationType>("queryAlterationType", QueryAlterationType);
+            writer.WriteObjectValue<ApiSdk.Models.SearchAlteration>("queryAlteration", QueryAlteration);
+            writer.WriteEnumValue<ApiSdk.Models.SearchAlterationType>("queryAlterationType", QueryAlterationType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

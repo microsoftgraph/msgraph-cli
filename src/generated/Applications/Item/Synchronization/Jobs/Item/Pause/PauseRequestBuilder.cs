@@ -56,14 +56,14 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Pause
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PauseRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.Synchronization.Jobs.Item.Pause.PauseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PauseRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}/pause", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PauseRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.Synchronization.Jobs.Item.Pause.PauseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PauseRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}/pause", rawUrl)

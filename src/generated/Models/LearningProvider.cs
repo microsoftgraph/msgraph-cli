@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class LearningProvider : Entity, IParsable
+    public class LearningProvider : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The display name that appears in Viva Learning. Required.</summary>
@@ -23,18 +23,18 @@ namespace ApiSdk.Models
         /// <summary>Learning catalog items for the provider.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LearningContent>? LearningContents { get; set; }
+        public List<ApiSdk.Models.LearningContent>? LearningContents { get; set; }
 #nullable restore
 #else
-        public List<LearningContent> LearningContents { get; set; }
+        public List<ApiSdk.Models.LearningContent> LearningContents { get; set; }
 #endif
         /// <summary>The learningCourseActivities property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LearningCourseActivity>? LearningCourseActivities { get; set; }
+        public List<ApiSdk.Models.LearningCourseActivity>? LearningCourseActivities { get; set; }
 #nullable restore
 #else
-        public List<LearningCourseActivity> LearningCourseActivities { get; set; }
+        public List<ApiSdk.Models.LearningCourseActivity> LearningCourseActivities { get; set; }
 #endif
         /// <summary>Authentication URL to access the courses for the provider. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -79,12 +79,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LearningProvider"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.LearningProvider"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new LearningProvider CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.LearningProvider CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LearningProvider();
+            return new ApiSdk.Models.LearningProvider();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -96,8 +96,8 @@ namespace ApiSdk.Models
             {
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "isCourseActivitySyncEnabled", n => { IsCourseActivitySyncEnabled = n.GetBoolValue(); } },
-                { "learningContents", n => { LearningContents = n.GetCollectionOfObjectValues<LearningContent>(LearningContent.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "learningCourseActivities", n => { LearningCourseActivities = n.GetCollectionOfObjectValues<LearningCourseActivity>(LearningCourseActivity.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "learningContents", n => { LearningContents = n.GetCollectionOfObjectValues<ApiSdk.Models.LearningContent>(ApiSdk.Models.LearningContent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "learningCourseActivities", n => { LearningCourseActivities = n.GetCollectionOfObjectValues<ApiSdk.Models.LearningCourseActivity>(ApiSdk.Models.LearningCourseActivity.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "loginWebUrl", n => { LoginWebUrl = n.GetStringValue(); } },
                 { "longLogoWebUrlForDarkTheme", n => { LongLogoWebUrlForDarkTheme = n.GetStringValue(); } },
                 { "longLogoWebUrlForLightTheme", n => { LongLogoWebUrlForLightTheme = n.GetStringValue(); } },
@@ -115,8 +115,8 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("isCourseActivitySyncEnabled", IsCourseActivitySyncEnabled);
-            writer.WriteCollectionOfObjectValues<LearningContent>("learningContents", LearningContents);
-            writer.WriteCollectionOfObjectValues<LearningCourseActivity>("learningCourseActivities", LearningCourseActivities);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.LearningContent>("learningContents", LearningContents);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.LearningCourseActivity>("learningCourseActivities", LearningCourseActivities);
             writer.WriteStringValue("loginWebUrl", LoginWebUrl);
             writer.WriteStringValue("longLogoWebUrlForDarkTheme", LongLogoWebUrlForDarkTheme);
             writer.WriteStringValue("longLogoWebUrlForLightTheme", LongLogoWebUrlForLightTheme);

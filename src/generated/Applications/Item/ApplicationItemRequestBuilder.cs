@@ -51,7 +51,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("add-key");
             command.Description = "Provides operations to call the addKey method.";
-            var builder = new AddKeyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.AddKey.AddKeyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -68,7 +68,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("add-password");
             command.Description = "Provides operations to call the addPassword method.";
-            var builder = new AddPasswordRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.AddPassword.AddPasswordRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -85,7 +85,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("app-management-policies");
             command.Description = "Provides operations to manage the appManagementPolicies property of the microsoft.graph.application entity.";
-            var builder = new AppManagementPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.AppManagementPolicies.AppManagementPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -112,7 +112,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.CheckMemberGroups.CheckMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -129,7 +129,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.CheckMemberObjects.CheckMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -146,7 +146,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("created-on-behalf-of");
             command.Description = "Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.application entity.";
-            var builder = new CreatedOnBehalfOfRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.CreatedOnBehalfOf.CreatedOnBehalfOfRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -199,7 +199,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("extension-properties");
             command.Description = "Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.";
-            var builder = new ExtensionPropertiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.ExtensionProperties.ExtensionPropertiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -226,7 +226,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("federated-identity-credentials");
             command.Description = "Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.";
-            var builder = new FederatedIdentityCredentialsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.FederatedIdentityCredentials.FederatedIdentityCredentialsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -253,7 +253,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("federated-identity-credentials-with-name");
             command.Description = "Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.";
-            var builder = new FederatedIdentityCredentialsWithNameRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.FederatedIdentityCredentialsWithName.FederatedIdentityCredentialsWithNameRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -325,7 +325,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.GetMemberGroups.GetMemberGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -342,7 +342,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.GetMemberObjects.GetMemberObjectsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -359,7 +359,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("home-realm-discovery-policies");
             command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.";
-            var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies.HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -385,7 +385,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("logo");
             command.Description = "Provides operations to manage the media for the application entity.";
-            var builder = new LogoRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.Logo.LogoRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -404,7 +404,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("owners");
             command.Description = "Provides operations to manage the owners property of the microsoft.graph.application entity.";
-            var builder = new OwnersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.Owners.OwnersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -487,7 +487,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("remove-key");
             command.Description = "Provides operations to call the removeKey method.";
-            var builder = new RemoveKeyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.RemoveKey.RemoveKeyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -504,7 +504,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("remove-password");
             command.Description = "Provides operations to call the removePassword method.";
-            var builder = new RemovePasswordRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.RemovePassword.RemovePasswordRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -521,7 +521,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
-            var builder = new RestoreRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.Restore.RestoreRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -538,7 +538,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("set-verified-publisher");
             command.Description = "Provides operations to call the setVerifiedPublisher method.";
-            var builder = new SetVerifiedPublisherRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.SetVerifiedPublisher.SetVerifiedPublisherRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -555,7 +555,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("synchronization");
             command.Description = "Provides operations to manage the synchronization property of the microsoft.graph.application entity.";
-            var builder = new SynchronizationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.Synchronization.SynchronizationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAcquireAccessTokenNavCommand());
@@ -583,7 +583,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("token-issuance-policies");
             command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.application entity.";
-            var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.TokenIssuancePolicies.TokenIssuancePoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -610,7 +610,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("token-lifetime-policies");
             command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.application entity.";
-            var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.TokenLifetimePolicies.TokenLifetimePoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -637,7 +637,7 @@ namespace ApiSdk.Applications.Item
         {
             var command = new Command("unset-verified-publisher");
             command.Description = "Provides operations to call the unsetVerifiedPublisher method.";
-            var builder = new UnsetVerifiedPublisherRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Applications.Item.UnsetVerifiedPublisher.UnsetVerifiedPublisherRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -647,14 +647,14 @@ namespace ApiSdk.Applications.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ApplicationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.ApplicationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ApplicationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ApplicationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Applications.Item.ApplicationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ApplicationItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}{?%24expand,%24select}", rawUrl)
@@ -686,11 +686,11 @@ namespace ApiSdk.Applications.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApplicationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Applications.Item.ApplicationItemRequestBuilder.ApplicationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApplicationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Applications.Item.ApplicationItemRequestBuilder.ApplicationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

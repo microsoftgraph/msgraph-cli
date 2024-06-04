@@ -15,10 +15,10 @@ namespace ApiSdk.Models.Partners.Billing
         /// <summary>A collection of blob objects that contain details of all the files for the partner tenant ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Blob>? Blobs { get; set; }
+        public List<ApiSdk.Models.Partners.Billing.Blob>? Blobs { get; set; }
 #nullable restore
 #else
-        public List<Blob> Blobs { get; set; }
+        public List<ApiSdk.Models.Partners.Billing.Blob> Blobs { get; set; }
 #endif
         /// <summary>The date and time when a manifest resource was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -81,12 +81,12 @@ namespace ApiSdk.Models.Partners.Billing
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Manifest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Partners.Billing.Manifest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Manifest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Partners.Billing.Manifest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Manifest();
+            return new ApiSdk.Models.Partners.Billing.Manifest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -97,7 +97,7 @@ namespace ApiSdk.Models.Partners.Billing
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "blobCount", n => { BlobCount = n.GetIntValue(); } },
-                { "blobs", n => { Blobs = n.GetCollectionOfObjectValues<Blob>(Blob.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "blobs", n => { Blobs = n.GetCollectionOfObjectValues<ApiSdk.Models.Partners.Billing.Blob>(ApiSdk.Models.Partners.Billing.Blob.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "dataFormat", n => { DataFormat = n.GetStringValue(); } },
                 { "eTag", n => { ETag = n.GetStringValue(); } },
@@ -117,7 +117,7 @@ namespace ApiSdk.Models.Partners.Billing
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteIntValue("blobCount", BlobCount);
-            writer.WriteCollectionOfObjectValues<Blob>("blobs", Blobs);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Partners.Billing.Blob>("blobs", Blobs);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("dataFormat", DataFormat);
             writer.WriteStringValue("eTag", ETag);

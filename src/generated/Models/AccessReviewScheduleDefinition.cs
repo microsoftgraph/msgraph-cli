@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessReviewScheduleDefinition : Entity, IParsable
+    public class AccessReviewScheduleDefinition : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Defines the list of additional users or group members to be notified of the access review progress.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessReviewNotificationRecipientItem>? AdditionalNotificationRecipients { get; set; }
+        public List<ApiSdk.Models.AccessReviewNotificationRecipientItem>? AdditionalNotificationRecipients { get; set; }
 #nullable restore
 #else
-        public List<AccessReviewNotificationRecipientItem> AdditionalNotificationRecipients { get; set; }
+        public List<ApiSdk.Models.AccessReviewNotificationRecipientItem> AdditionalNotificationRecipients { get; set; }
 #endif
         /// <summary>User who created this review. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UserIdentity? CreatedBy { get; set; }
+        public ApiSdk.Models.UserIdentity? CreatedBy { get; set; }
 #nullable restore
 #else
-        public UserIdentity CreatedBy { get; set; }
+        public ApiSdk.Models.UserIdentity CreatedBy { get; set; }
 #endif
         /// <summary>Timestamp when the access review series was created. Supports $select. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -55,60 +55,60 @@ namespace ApiSdk.Models
         /// <summary>This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers are notified to take action if no users are found from the list of reviewers specified. This could occur when either the group owner is specified as the reviewer but the group owner doesn&apos;t exist, or manager is specified as reviewer but a user&apos;s manager doesn&apos;t exist. See accessReviewReviewerScope. Replaces backupReviewers. Supports $select. NOTE: The value of this property will be ignored if fallback reviewers are assigned through the stageSettings property.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessReviewReviewerScope>? FallbackReviewers { get; set; }
+        public List<ApiSdk.Models.AccessReviewReviewerScope>? FallbackReviewers { get; set; }
 #nullable restore
 #else
-        public List<AccessReviewReviewerScope> FallbackReviewers { get; set; }
+        public List<ApiSdk.Models.AccessReviewReviewerScope> FallbackReviewers { get; set; }
 #endif
         /// <summary>This property is required when scoping a review to guest users&apos; access across all Microsoft 365 groups and determines which Microsoft 365 groups are reviewed. Each group becomes a unique accessReviewInstance of the access review series.  For supported scopes, see accessReviewScope. Supports $select. For examples of options for configuring instanceEnumerationScope, see Configure the scope of your access review definition using the Microsoft Graph API.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessReviewScope? InstanceEnumerationScope { get; set; }
+        public ApiSdk.Models.AccessReviewScope? InstanceEnumerationScope { get; set; }
 #nullable restore
 #else
-        public AccessReviewScope InstanceEnumerationScope { get; set; }
+        public ApiSdk.Models.AccessReviewScope InstanceEnumerationScope { get; set; }
 #endif
         /// <summary>If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that doesn&apos;t recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource has a unique instance for each recurrence.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessReviewInstance>? Instances { get; set; }
+        public List<ApiSdk.Models.AccessReviewInstance>? Instances { get; set; }
 #nullable restore
 #else
-        public List<AccessReviewInstance> Instances { get; set; }
+        public List<ApiSdk.Models.AccessReviewInstance> Instances { get; set; }
 #endif
         /// <summary>Timestamp when the access review series was last modified. Supports $select. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>This collection of access review scopes is used to define who are the reviewers. The reviewers property is only updatable if individual users are assigned as reviewers. Required on create. Supports $select. For examples of options for assigning reviewers, see Assign reviewers to your access review definition using the Microsoft Graph API. NOTE: The value of this property will be ignored if reviewers are assigned through the stageSettings property.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessReviewReviewerScope>? Reviewers { get; set; }
+        public List<ApiSdk.Models.AccessReviewReviewerScope>? Reviewers { get; set; }
 #nullable restore
 #else
-        public List<AccessReviewReviewerScope> Reviewers { get; set; }
+        public List<ApiSdk.Models.AccessReviewReviewerScope> Reviewers { get; set; }
 #endif
         /// <summary>Defines the entities whose access is reviewed. For supported scopes, see accessReviewScope. Required on create. Supports $select and $filter (contains only). For examples of options for configuring scope, see Configure the scope of your access review definition using the Microsoft Graph API.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessReviewScope? Scope { get; set; }
+        public ApiSdk.Models.AccessReviewScope? Scope { get; set; }
 #nullable restore
 #else
-        public AccessReviewScope Scope { get; set; }
+        public ApiSdk.Models.AccessReviewScope Scope { get; set; }
 #endif
         /// <summary>The settings for an access review series, see type definition below. Supports $select. Required on create.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AccessReviewScheduleSettings? Settings { get; set; }
+        public ApiSdk.Models.AccessReviewScheduleSettings? Settings { get; set; }
 #nullable restore
 #else
-        public AccessReviewScheduleSettings Settings { get; set; }
+        public ApiSdk.Models.AccessReviewScheduleSettings Settings { get; set; }
 #endif
         /// <summary>Required only for a multi-stage access review to define the stages and their settings. You can break down each review instance into up to three sequential stages, where each stage can have a different set of reviewers, fallback reviewers, and settings. Stages are created sequentially based on the dependsOn property. Optional.  When this property is defined, its settings are used instead of the corresponding settings in the accessReviewScheduleDefinition object and its settings, reviewers, and fallbackReviewers properties.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessReviewStageSettings>? StageSettings { get; set; }
+        public List<ApiSdk.Models.AccessReviewStageSettings>? StageSettings { get; set; }
 #nullable restore
 #else
-        public List<AccessReviewStageSettings> StageSettings { get; set; }
+        public List<ApiSdk.Models.AccessReviewStageSettings> StageSettings { get; set; }
 #endif
         /// <summary>This read-only field specifies the status of an access review. The typical states include Initializing, NotStarted, Starting, InProgress, Completing, Completed, AutoReviewing, and AutoReviewed.  Supports $select, $orderby, and $filter (eq only). Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -121,12 +121,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessReviewScheduleDefinition"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessReviewScheduleDefinition"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessReviewScheduleDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessReviewScheduleDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessReviewScheduleDefinition();
+            return new ApiSdk.Models.AccessReviewScheduleDefinition();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -136,20 +136,20 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "additionalNotificationRecipients", n => { AdditionalNotificationRecipients = n.GetCollectionOfObjectValues<AccessReviewNotificationRecipientItem>(AccessReviewNotificationRecipientItem.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
+                { "additionalNotificationRecipients", n => { AdditionalNotificationRecipients = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessReviewNotificationRecipientItem>(ApiSdk.Models.AccessReviewNotificationRecipientItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.UserIdentity>(ApiSdk.Models.UserIdentity.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "descriptionForAdmins", n => { DescriptionForAdmins = n.GetStringValue(); } },
                 { "descriptionForReviewers", n => { DescriptionForReviewers = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "fallbackReviewers", n => { FallbackReviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "instanceEnumerationScope", n => { InstanceEnumerationScope = n.GetObjectValue<AccessReviewScope>(AccessReviewScope.CreateFromDiscriminatorValue); } },
-                { "instances", n => { Instances = n.GetCollectionOfObjectValues<AccessReviewInstance>(AccessReviewInstance.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "fallbackReviewers", n => { FallbackReviewers = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessReviewReviewerScope>(ApiSdk.Models.AccessReviewReviewerScope.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "instanceEnumerationScope", n => { InstanceEnumerationScope = n.GetObjectValue<ApiSdk.Models.AccessReviewScope>(ApiSdk.Models.AccessReviewScope.CreateFromDiscriminatorValue); } },
+                { "instances", n => { Instances = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessReviewInstance>(ApiSdk.Models.AccessReviewInstance.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "reviewers", n => { Reviewers = n.GetCollectionOfObjectValues<AccessReviewReviewerScope>(AccessReviewReviewerScope.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "scope", n => { Scope = n.GetObjectValue<AccessReviewScope>(AccessReviewScope.CreateFromDiscriminatorValue); } },
-                { "settings", n => { Settings = n.GetObjectValue<AccessReviewScheduleSettings>(AccessReviewScheduleSettings.CreateFromDiscriminatorValue); } },
-                { "stageSettings", n => { StageSettings = n.GetCollectionOfObjectValues<AccessReviewStageSettings>(AccessReviewStageSettings.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "reviewers", n => { Reviewers = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessReviewReviewerScope>(ApiSdk.Models.AccessReviewReviewerScope.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "scope", n => { Scope = n.GetObjectValue<ApiSdk.Models.AccessReviewScope>(ApiSdk.Models.AccessReviewScope.CreateFromDiscriminatorValue); } },
+                { "settings", n => { Settings = n.GetObjectValue<ApiSdk.Models.AccessReviewScheduleSettings>(ApiSdk.Models.AccessReviewScheduleSettings.CreateFromDiscriminatorValue); } },
+                { "stageSettings", n => { StageSettings = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessReviewStageSettings>(ApiSdk.Models.AccessReviewStageSettings.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "status", n => { Status = n.GetStringValue(); } },
             };
         }
@@ -161,20 +161,20 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AccessReviewNotificationRecipientItem>("additionalNotificationRecipients", AdditionalNotificationRecipients);
-            writer.WriteObjectValue<UserIdentity>("createdBy", CreatedBy);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessReviewNotificationRecipientItem>("additionalNotificationRecipients", AdditionalNotificationRecipients);
+            writer.WriteObjectValue<ApiSdk.Models.UserIdentity>("createdBy", CreatedBy);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("descriptionForAdmins", DescriptionForAdmins);
             writer.WriteStringValue("descriptionForReviewers", DescriptionForReviewers);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<AccessReviewReviewerScope>("fallbackReviewers", FallbackReviewers);
-            writer.WriteObjectValue<AccessReviewScope>("instanceEnumerationScope", InstanceEnumerationScope);
-            writer.WriteCollectionOfObjectValues<AccessReviewInstance>("instances", Instances);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessReviewReviewerScope>("fallbackReviewers", FallbackReviewers);
+            writer.WriteObjectValue<ApiSdk.Models.AccessReviewScope>("instanceEnumerationScope", InstanceEnumerationScope);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessReviewInstance>("instances", Instances);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteCollectionOfObjectValues<AccessReviewReviewerScope>("reviewers", Reviewers);
-            writer.WriteObjectValue<AccessReviewScope>("scope", Scope);
-            writer.WriteObjectValue<AccessReviewScheduleSettings>("settings", Settings);
-            writer.WriteCollectionOfObjectValues<AccessReviewStageSettings>("stageSettings", StageSettings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessReviewReviewerScope>("reviewers", Reviewers);
+            writer.WriteObjectValue<ApiSdk.Models.AccessReviewScope>("scope", Scope);
+            writer.WriteObjectValue<ApiSdk.Models.AccessReviewScheduleSettings>("settings", Settings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessReviewStageSettings>("stageSettings", StageSettings);
             writer.WriteStringValue("status", Status);
         }
     }

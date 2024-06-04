@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class EdiscoveryExportOperation : CaseOperation, IParsable
+    public class EdiscoveryExportOperation : ApiSdk.Models.Security.CaseOperation, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The description provided for the export.</summary>
@@ -29,7 +29,7 @@ namespace ApiSdk.Models.Security
         /// <summary>The options provided for the export. For more information, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement,  tags.</summary>
         public ApiSdk.Models.Security.ExportOptions? ExportOptions { get; set; }
         /// <summary>The options that specify the structure of the export. For more information, see reviewSet: export. Possible values are: none, directory, pst.</summary>
-        public ExportFileStructure? ExportStructure { get; set; }
+        public ApiSdk.Models.Security.ExportFileStructure? ExportStructure { get; set; }
         /// <summary>The name provided for the export.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,28 +41,28 @@ namespace ApiSdk.Models.Security
         /// <summary>Review set from where documents are exported.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EdiscoveryReviewSet? ReviewSet { get; set; }
+        public ApiSdk.Models.Security.EdiscoveryReviewSet? ReviewSet { get; set; }
 #nullable restore
 #else
-        public EdiscoveryReviewSet ReviewSet { get; set; }
+        public ApiSdk.Models.Security.EdiscoveryReviewSet ReviewSet { get; set; }
 #endif
         /// <summary>The review set query that is used to filter the documents for export.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EdiscoveryReviewSetQuery? ReviewSetQuery { get; set; }
+        public ApiSdk.Models.Security.EdiscoveryReviewSetQuery? ReviewSetQuery { get; set; }
 #nullable restore
 #else
-        public EdiscoveryReviewSetQuery ReviewSetQuery { get; set; }
+        public ApiSdk.Models.Security.EdiscoveryReviewSetQuery ReviewSetQuery { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EdiscoveryExportOperation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.EdiscoveryExportOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EdiscoveryExportOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.EdiscoveryExportOperation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EdiscoveryExportOperation();
+            return new ApiSdk.Models.Security.EdiscoveryExportOperation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -74,11 +74,11 @@ namespace ApiSdk.Models.Security
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "exportFileMetadata", n => { ExportFileMetadata = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.ExportFileMetadata>(ApiSdk.Models.Security.ExportFileMetadata.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "exportOptions", n => { ExportOptions = n.GetEnumValue<ExportOptions>(); } },
-                { "exportStructure", n => { ExportStructure = n.GetEnumValue<ExportFileStructure>(); } },
+                { "exportOptions", n => { ExportOptions = n.GetEnumValue<ApiSdk.Models.Security.ExportOptions>(); } },
+                { "exportStructure", n => { ExportStructure = n.GetEnumValue<ApiSdk.Models.Security.ExportFileStructure>(); } },
                 { "outputName", n => { OutputName = n.GetStringValue(); } },
-                { "reviewSet", n => { ReviewSet = n.GetObjectValue<EdiscoveryReviewSet>(EdiscoveryReviewSet.CreateFromDiscriminatorValue); } },
-                { "reviewSetQuery", n => { ReviewSetQuery = n.GetObjectValue<EdiscoveryReviewSetQuery>(EdiscoveryReviewSetQuery.CreateFromDiscriminatorValue); } },
+                { "reviewSet", n => { ReviewSet = n.GetObjectValue<ApiSdk.Models.Security.EdiscoveryReviewSet>(ApiSdk.Models.Security.EdiscoveryReviewSet.CreateFromDiscriminatorValue); } },
+                { "reviewSetQuery", n => { ReviewSetQuery = n.GetObjectValue<ApiSdk.Models.Security.EdiscoveryReviewSetQuery>(ApiSdk.Models.Security.EdiscoveryReviewSetQuery.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -91,11 +91,11 @@ namespace ApiSdk.Models.Security
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.ExportFileMetadata>("exportFileMetadata", ExportFileMetadata);
-            writer.WriteEnumValue<ExportOptions>("exportOptions", ExportOptions);
-            writer.WriteEnumValue<ExportFileStructure>("exportStructure", ExportStructure);
+            writer.WriteEnumValue<ApiSdk.Models.Security.ExportOptions>("exportOptions", ExportOptions);
+            writer.WriteEnumValue<ApiSdk.Models.Security.ExportFileStructure>("exportStructure", ExportStructure);
             writer.WriteStringValue("outputName", OutputName);
-            writer.WriteObjectValue<EdiscoveryReviewSet>("reviewSet", ReviewSet);
-            writer.WriteObjectValue<EdiscoveryReviewSetQuery>("reviewSetQuery", ReviewSetQuery);
+            writer.WriteObjectValue<ApiSdk.Models.Security.EdiscoveryReviewSet>("reviewSet", ReviewSet);
+            writer.WriteObjectValue<ApiSdk.Models.Security.EdiscoveryReviewSetQuery>("reviewSetQuery", ReviewSetQuery);
         }
     }
 }

@@ -17,10 +17,10 @@ namespace ApiSdk.Models
         /// <summary>The apiExpressions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<StringKeyStringValuePair>? ApiExpressions { get; set; }
+        public List<ApiSdk.Models.StringKeyStringValuePair>? ApiExpressions { get; set; }
 #nullable restore
 #else
-        public List<StringKeyStringValuePair> ApiExpressions { get; set; }
+        public List<ApiSdk.Models.StringKeyStringValuePair> ApiExpressions { get; set; }
 #endif
         /// <summary>true if value of this attribute should be treated as case-sensitive. This setting affects how the synchronization engine detects changes for the attribute.</summary>
         public bool? CaseExact { get; set; }
@@ -37,10 +37,10 @@ namespace ApiSdk.Models
         /// <summary>Metadata for the given object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AttributeDefinitionMetadataEntry>? Metadata { get; set; }
+        public List<ApiSdk.Models.AttributeDefinitionMetadataEntry>? Metadata { get; set; }
 #nullable restore
 #else
-        public List<AttributeDefinitionMetadataEntry> Metadata { get; set; }
+        public List<ApiSdk.Models.AttributeDefinitionMetadataEntry> Metadata { get; set; }
 #endif
         /// <summary>true if an attribute can have multiple values. Default is false.</summary>
         public bool? Multivalued { get; set; }
@@ -65,17 +65,17 @@ namespace ApiSdk.Models
         /// <summary>For attributes with reference type, lists referenced objects (for example, the manager attribute would list User as the referenced object).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ReferencedObject>? ReferencedObjects { get; set; }
+        public List<ApiSdk.Models.ReferencedObject>? ReferencedObjects { get; set; }
 #nullable restore
 #else
-        public List<ReferencedObject> ReferencedObjects { get; set; }
+        public List<ApiSdk.Models.ReferencedObject> ReferencedObjects { get; set; }
 #endif
         /// <summary>true if attribute is required. Object can not be created if any of the required attributes are missing. If during synchronization, the required attribute has no value, the default value will be used. If default the value was not set, synchronization will record an error.</summary>
         public bool? Required { get; set; }
         /// <summary>The type property</summary>
-        public AttributeType? Type { get; set; }
+        public ApiSdk.Models.AttributeType? Type { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AttributeDefinition"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AttributeDefinition"/> and sets the default values.
         /// </summary>
         public AttributeDefinition()
         {
@@ -84,12 +84,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AttributeDefinition"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AttributeDefinition"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AttributeDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AttributeDefinition CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AttributeDefinition();
+            return new ApiSdk.Models.AttributeDefinition();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -100,18 +100,18 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "anchor", n => { Anchor = n.GetBoolValue(); } },
-                { "apiExpressions", n => { ApiExpressions = n.GetCollectionOfObjectValues<StringKeyStringValuePair>(StringKeyStringValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "apiExpressions", n => { ApiExpressions = n.GetCollectionOfObjectValues<ApiSdk.Models.StringKeyStringValuePair>(ApiSdk.Models.StringKeyStringValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "caseExact", n => { CaseExact = n.GetBoolValue(); } },
                 { "defaultValue", n => { DefaultValue = n.GetStringValue(); } },
                 { "flowNullValues", n => { FlowNullValues = n.GetBoolValue(); } },
-                { "metadata", n => { Metadata = n.GetCollectionOfObjectValues<AttributeDefinitionMetadataEntry>(AttributeDefinitionMetadataEntry.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "metadata", n => { Metadata = n.GetCollectionOfObjectValues<ApiSdk.Models.AttributeDefinitionMetadataEntry>(ApiSdk.Models.AttributeDefinitionMetadataEntry.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "multivalued", n => { Multivalued = n.GetBoolValue(); } },
-                { "mutability", n => { Mutability = n.GetEnumValue<Mutability>(); } },
+                { "mutability", n => { Mutability = n.GetEnumValue<ApiSdk.Models.Mutability>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "referencedObjects", n => { ReferencedObjects = n.GetCollectionOfObjectValues<ReferencedObject>(ReferencedObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "referencedObjects", n => { ReferencedObjects = n.GetCollectionOfObjectValues<ApiSdk.Models.ReferencedObject>(ApiSdk.Models.ReferencedObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "required", n => { Required = n.GetBoolValue(); } },
-                { "type", n => { Type = n.GetEnumValue<AttributeType>(); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.AttributeType>(); } },
             };
         }
         /// <summary>
@@ -122,18 +122,18 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("anchor", Anchor);
-            writer.WriteCollectionOfObjectValues<StringKeyStringValuePair>("apiExpressions", ApiExpressions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.StringKeyStringValuePair>("apiExpressions", ApiExpressions);
             writer.WriteBoolValue("caseExact", CaseExact);
             writer.WriteStringValue("defaultValue", DefaultValue);
             writer.WriteBoolValue("flowNullValues", FlowNullValues);
-            writer.WriteCollectionOfObjectValues<AttributeDefinitionMetadataEntry>("metadata", Metadata);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AttributeDefinitionMetadataEntry>("metadata", Metadata);
             writer.WriteBoolValue("multivalued", Multivalued);
-            writer.WriteEnumValue<Mutability>("mutability", Mutability);
+            writer.WriteEnumValue<ApiSdk.Models.Mutability>("mutability", Mutability);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<ReferencedObject>("referencedObjects", ReferencedObjects);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ReferencedObject>("referencedObjects", ReferencedObjects);
             writer.WriteBoolValue("required", Required);
-            writer.WriteEnumValue<AttributeType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.AttributeType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrintUsageByUser : PrintUsage, IParsable
+    public class PrintUsageByUser : ApiSdk.Models.PrintUsage, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The UPN of the user represented by these statistics.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string UserPrincipalName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PrintUsageByUser"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PrintUsageByUser"/> and sets the default values.
         /// </summary>
         public PrintUsageByUser() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrintUsageByUser"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrintUsageByUser"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrintUsageByUser CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrintUsageByUser CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrintUsageByUser();
+            return new ApiSdk.Models.PrintUsageByUser();
         }
         /// <summary>
         /// The deserialization information for the current model

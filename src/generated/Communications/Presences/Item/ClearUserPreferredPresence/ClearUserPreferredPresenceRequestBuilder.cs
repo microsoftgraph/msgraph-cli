@@ -50,14 +50,14 @@ namespace ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ClearUserPreferredPresenceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence.ClearUserPreferredPresenceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ClearUserPreferredPresenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences/{presence%2Did}/clearUserPreferredPresence", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ClearUserPreferredPresenceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence.ClearUserPreferredPresenceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ClearUserPreferredPresenceRequestBuilder(string rawUrl) : base("{+baseurl}/communications/presences/{presence%2Did}/clearUserPreferredPresence", rawUrl)

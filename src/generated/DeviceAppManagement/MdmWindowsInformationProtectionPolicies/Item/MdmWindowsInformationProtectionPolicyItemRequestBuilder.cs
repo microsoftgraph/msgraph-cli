@@ -32,7 +32,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.windowsInformationProtection entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item.Assignments.AssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         {
             var command = new Command("exempt-app-locker-files");
             command.Description = "Provides operations to manage the exemptAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.";
-            var builder = new ExemptAppLockerFilesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item.ExemptAppLockerFiles.ExemptAppLockerFilesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -199,7 +199,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<MdmWindowsInformationProtectionPolicy>(MdmWindowsInformationProtectionPolicy.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.MdmWindowsInformationProtectionPolicy>(ApiSdk.Models.MdmWindowsInformationProtectionPolicy.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -227,7 +227,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         {
             var command = new Command("protected-app-locker-files");
             command.Description = "Provides operations to manage the protectedAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.";
-            var builder = new ProtectedAppLockerFilesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item.ProtectedAppLockerFiles.ProtectedAppLockerFilesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -247,14 +247,14 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MdmWindowsInformationProtectionPolicyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item.MdmWindowsInformationProtectionPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MdmWindowsInformationProtectionPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mdmWindowsInformationProtectionPolicies/{mdmWindowsInformationProtectionPolicy%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MdmWindowsInformationProtectionPolicyItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item.MdmWindowsInformationProtectionPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MdmWindowsInformationProtectionPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mdmWindowsInformationProtectionPolicies/{mdmWindowsInformationProtectionPolicy%2Did}{?%24expand,%24select}", rawUrl)
@@ -286,11 +286,11 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MdmWindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item.MdmWindowsInformationProtectionPolicyItemRequestBuilder.MdmWindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MdmWindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item.MdmWindowsInformationProtectionPolicyItemRequestBuilder.MdmWindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -306,11 +306,11 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(MdmWindowsInformationProtectionPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.MdmWindowsInformationProtectionPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(MdmWindowsInformationProtectionPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.MdmWindowsInformationProtectionPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

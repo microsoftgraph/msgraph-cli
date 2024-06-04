@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The feature property</summary>
-        public AuthenticationMethodFeature? Feature { get; set; }
+        public ApiSdk.Models.AuthenticationMethodFeature? Feature { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -25,7 +25,7 @@ namespace ApiSdk.Models
         /// <summary>Number of users.</summary>
         public long? UserCount { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="UserRegistrationFeatureCount"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UserRegistrationFeatureCount"/> and sets the default values.
         /// </summary>
         public UserRegistrationFeatureCount()
         {
@@ -34,12 +34,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserRegistrationFeatureCount"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserRegistrationFeatureCount"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UserRegistrationFeatureCount CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.UserRegistrationFeatureCount CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserRegistrationFeatureCount();
+            return new ApiSdk.Models.UserRegistrationFeatureCount();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,7 +49,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "feature", n => { Feature = n.GetEnumValue<AuthenticationMethodFeature>(); } },
+                { "feature", n => { Feature = n.GetEnumValue<ApiSdk.Models.AuthenticationMethodFeature>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "userCount", n => { UserCount = n.GetLongValue(); } },
             };
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<AuthenticationMethodFeature>("feature", Feature);
+            writer.WriteEnumValue<ApiSdk.Models.AuthenticationMethodFeature>("feature", Feature);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteLongValue("userCount", UserCount);
             writer.WriteAdditionalData(AdditionalData);

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class SubmissionMailEvidence : AlertEvidence, IParsable
+    public class SubmissionMailEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The networkMessageId property</summary>
@@ -77,7 +77,7 @@ namespace ApiSdk.Models.Security
         public string Submitter { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SubmissionMailEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.SubmissionMailEvidence"/> and sets the default values.
         /// </summary>
         public SubmissionMailEvidence() : base()
         {
@@ -86,12 +86,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SubmissionMailEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.SubmissionMailEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SubmissionMailEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.SubmissionMailEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SubmissionMailEvidence();
+            return new ApiSdk.Models.Security.SubmissionMailEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model

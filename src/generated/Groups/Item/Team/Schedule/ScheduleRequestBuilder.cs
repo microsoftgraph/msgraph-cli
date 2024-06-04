@@ -126,7 +126,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule
         {
             var command = new Command("offer-shift-requests");
             command.Description = "Provides operations to manage the offerShiftRequests property of the microsoft.graph.schedule entity.";
-            var builder = new OfferShiftRequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Team.Schedule.OfferShiftRequests.OfferShiftRequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -153,7 +153,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule
         {
             var command = new Command("open-shift-change-requests");
             command.Description = "Provides operations to manage the openShiftChangeRequests property of the microsoft.graph.schedule entity.";
-            var builder = new OpenShiftChangeRequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Team.Schedule.OpenShiftChangeRequests.OpenShiftChangeRequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -180,7 +180,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule
         {
             var command = new Command("open-shifts");
             command.Description = "Provides operations to manage the openShifts property of the microsoft.graph.schedule entity.";
-            var builder = new OpenShiftsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Team.Schedule.OpenShifts.OpenShiftsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -258,7 +258,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule
         {
             var command = new Command("scheduling-groups");
             command.Description = "Provides operations to manage the schedulingGroups property of the microsoft.graph.schedule entity.";
-            var builder = new SchedulingGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Team.Schedule.SchedulingGroups.SchedulingGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -285,7 +285,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule
         {
             var command = new Command("share");
             command.Description = "Provides operations to call the share method.";
-            var builder = new ShareRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Team.Schedule.Share.ShareRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -302,7 +302,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule
         {
             var command = new Command("shifts");
             command.Description = "Provides operations to manage the shifts property of the microsoft.graph.schedule entity.";
-            var builder = new ShiftsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Team.Schedule.Shifts.ShiftsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -329,7 +329,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule
         {
             var command = new Command("swap-shifts-change-requests");
             command.Description = "Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.";
-            var builder = new SwapShiftsChangeRequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Team.Schedule.SwapShiftsChangeRequests.SwapShiftsChangeRequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -356,7 +356,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule
         {
             var command = new Command("time-off-reasons");
             command.Description = "Provides operations to manage the timeOffReasons property of the microsoft.graph.schedule entity.";
-            var builder = new TimeOffReasonsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.TimeOffReasonsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -383,7 +383,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule
         {
             var command = new Command("time-off-requests");
             command.Description = "Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.";
-            var builder = new TimeOffRequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Team.Schedule.TimeOffRequests.TimeOffRequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -410,7 +410,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule
         {
             var command = new Command("times-off");
             command.Description = "Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.";
-            var builder = new TimesOffRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Team.Schedule.TimesOff.TimesOffRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -430,14 +430,14 @@ namespace ApiSdk.Groups.Item.Team.Schedule
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ScheduleRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Team.Schedule.ScheduleRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ScheduleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/schedule{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ScheduleRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Team.Schedule.ScheduleRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ScheduleRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule{?%24expand,%24select}", rawUrl)
@@ -469,11 +469,11 @@ namespace ApiSdk.Groups.Item.Team.Schedule
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ScheduleRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Team.Schedule.ScheduleRequestBuilder.ScheduleRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ScheduleRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Team.Schedule.ScheduleRequestBuilder.ScheduleRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

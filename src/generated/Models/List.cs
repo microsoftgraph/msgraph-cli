@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class List : BaseItem, IParsable
+    public class List : ApiSdk.Models.BaseItem, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The collection of field definitions for this list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ColumnDefinition>? Columns { get; set; }
+        public List<ApiSdk.Models.ColumnDefinition>? Columns { get; set; }
 #nullable restore
 #else
-        public List<ColumnDefinition> Columns { get; set; }
+        public List<ApiSdk.Models.ColumnDefinition> Columns { get; set; }
 #endif
         /// <summary>The collection of content types present in this list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ContentType>? ContentTypes { get; set; }
+        public List<ApiSdk.Models.ContentType>? ContentTypes { get; set; }
 #nullable restore
 #else
-        public List<ContentType> ContentTypes { get; set; }
+        public List<ApiSdk.Models.ContentType> ContentTypes { get; set; }
 #endif
         /// <summary>The displayable title of the list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,26 +45,26 @@ namespace ApiSdk.Models
         /// <summary>All items contained in the list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ListItem>? Items { get; set; }
+        public List<ApiSdk.Models.ListItem>? Items { get; set; }
 #nullable restore
 #else
-        public List<ListItem> Items { get; set; }
+        public List<ApiSdk.Models.ListItem> Items { get; set; }
 #endif
         /// <summary>Contains more details about the list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ListInfo? ListProp { get; set; }
+        public ApiSdk.Models.ListInfo? ListProp { get; set; }
 #nullable restore
 #else
-        public ListInfo ListProp { get; set; }
+        public ApiSdk.Models.ListInfo ListProp { get; set; }
 #endif
         /// <summary>The collection of long-running operations on the list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RichLongRunningOperation>? Operations { get; set; }
+        public List<ApiSdk.Models.RichLongRunningOperation>? Operations { get; set; }
 #nullable restore
 #else
-        public List<RichLongRunningOperation> Operations { get; set; }
+        public List<ApiSdk.Models.RichLongRunningOperation> Operations { get; set; }
 #endif
         /// <summary>Returns identifiers useful for SharePoint REST compatibility. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -77,21 +77,21 @@ namespace ApiSdk.Models
         /// <summary>The set of subscriptions on the list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Subscription>? Subscriptions { get; set; }
+        public List<ApiSdk.Models.Subscription>? Subscriptions { get; set; }
 #nullable restore
 #else
-        public List<Subscription> Subscriptions { get; set; }
+        public List<ApiSdk.Models.Subscription> Subscriptions { get; set; }
 #endif
         /// <summary>If present, indicates that the list is system-managed. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SystemFacet? System { get; set; }
+        public ApiSdk.Models.SystemFacet? System { get; set; }
 #nullable restore
 #else
-        public SystemFacet System { get; set; }
+        public ApiSdk.Models.SystemFacet System { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="List"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.List"/> and sets the default values.
         /// </summary>
         public List() : base()
         {
@@ -100,12 +100,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="List"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.List"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new List CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.List CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new List();
+            return new ApiSdk.Models.List();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -115,16 +115,16 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "columns", n => { Columns = n.GetCollectionOfObjectValues<ColumnDefinition>(ColumnDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "contentTypes", n => { ContentTypes = n.GetCollectionOfObjectValues<ContentType>(ContentType.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "columns", n => { Columns = n.GetCollectionOfObjectValues<ApiSdk.Models.ColumnDefinition>(ApiSdk.Models.ColumnDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "contentTypes", n => { ContentTypes = n.GetCollectionOfObjectValues<ApiSdk.Models.ContentType>(ApiSdk.Models.ContentType.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "drive", n => { Drive = n.GetObjectValue<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue); } },
-                { "items", n => { Items = n.GetCollectionOfObjectValues<ListItem>(ListItem.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "list", n => { ListProp = n.GetObjectValue<ListInfo>(ListInfo.CreateFromDiscriminatorValue); } },
-                { "operations", n => { Operations = n.GetCollectionOfObjectValues<RichLongRunningOperation>(RichLongRunningOperation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "items", n => { Items = n.GetCollectionOfObjectValues<ApiSdk.Models.ListItem>(ApiSdk.Models.ListItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "list", n => { ListProp = n.GetObjectValue<ApiSdk.Models.ListInfo>(ApiSdk.Models.ListInfo.CreateFromDiscriminatorValue); } },
+                { "operations", n => { Operations = n.GetCollectionOfObjectValues<ApiSdk.Models.RichLongRunningOperation>(ApiSdk.Models.RichLongRunningOperation.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "sharepointIds", n => { SharepointIds = n.GetObjectValue<ApiSdk.Models.SharepointIds>(ApiSdk.Models.SharepointIds.CreateFromDiscriminatorValue); } },
-                { "subscriptions", n => { Subscriptions = n.GetCollectionOfObjectValues<Subscription>(Subscription.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "system", n => { System = n.GetObjectValue<SystemFacet>(SystemFacet.CreateFromDiscriminatorValue); } },
+                { "subscriptions", n => { Subscriptions = n.GetCollectionOfObjectValues<ApiSdk.Models.Subscription>(ApiSdk.Models.Subscription.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "system", n => { System = n.GetObjectValue<ApiSdk.Models.SystemFacet>(ApiSdk.Models.SystemFacet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -135,16 +135,16 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ColumnDefinition>("columns", Columns);
-            writer.WriteCollectionOfObjectValues<ContentType>("contentTypes", ContentTypes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ColumnDefinition>("columns", Columns);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ContentType>("contentTypes", ContentTypes);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteObjectValue<ApiSdk.Models.Drive>("drive", Drive);
-            writer.WriteCollectionOfObjectValues<ListItem>("items", Items);
-            writer.WriteObjectValue<ListInfo>("list", ListProp);
-            writer.WriteCollectionOfObjectValues<RichLongRunningOperation>("operations", Operations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ListItem>("items", Items);
+            writer.WriteObjectValue<ApiSdk.Models.ListInfo>("list", ListProp);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RichLongRunningOperation>("operations", Operations);
             writer.WriteObjectValue<ApiSdk.Models.SharepointIds>("sharepointIds", SharepointIds);
-            writer.WriteCollectionOfObjectValues<Subscription>("subscriptions", Subscriptions);
-            writer.WriteObjectValue<SystemFacet>("system", System);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Subscription>("subscriptions", Subscriptions);
+            writer.WriteObjectValue<ApiSdk.Models.SystemFacet>("system", System);
         }
     }
 }

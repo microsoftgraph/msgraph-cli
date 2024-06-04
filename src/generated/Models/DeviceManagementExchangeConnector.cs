@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Entity which represents a connection to an Exchange environment.
     /// </summary>
-    public class DeviceManagementExchangeConnector : Entity, IParsable
+    public class DeviceManagementExchangeConnector : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The name of the server hosting the Exchange Connector.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -28,7 +28,7 @@ namespace ApiSdk.Models
         public string ExchangeAlias { get; set; }
 #endif
         /// <summary>The type of Exchange Connector.</summary>
-        public DeviceManagementExchangeConnectorType? ExchangeConnectorType { get; set; }
+        public ApiSdk.Models.DeviceManagementExchangeConnectorType? ExchangeConnectorType { get; set; }
         /// <summary>Exchange Organization to the Exchange server</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
         public string ServerName { get; set; }
 #endif
         /// <summary>The current status of the Exchange Connector.</summary>
-        public DeviceManagementExchangeConnectorStatus? Status { get; set; }
+        public ApiSdk.Models.DeviceManagementExchangeConnectorStatus? Status { get; set; }
         /// <summary>The version of the ExchangeConnectorAgent</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -68,12 +68,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceManagementExchangeConnector"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceManagementExchangeConnector"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceManagementExchangeConnector CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceManagementExchangeConnector CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceManagementExchangeConnector();
+            return new ApiSdk.Models.DeviceManagementExchangeConnector();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -85,12 +85,12 @@ namespace ApiSdk.Models
             {
                 { "connectorServerName", n => { ConnectorServerName = n.GetStringValue(); } },
                 { "exchangeAlias", n => { ExchangeAlias = n.GetStringValue(); } },
-                { "exchangeConnectorType", n => { ExchangeConnectorType = n.GetEnumValue<DeviceManagementExchangeConnectorType>(); } },
+                { "exchangeConnectorType", n => { ExchangeConnectorType = n.GetEnumValue<ApiSdk.Models.DeviceManagementExchangeConnectorType>(); } },
                 { "exchangeOrganization", n => { ExchangeOrganization = n.GetStringValue(); } },
                 { "lastSyncDateTime", n => { LastSyncDateTime = n.GetDateTimeOffsetValue(); } },
                 { "primarySmtpAddress", n => { PrimarySmtpAddress = n.GetStringValue(); } },
                 { "serverName", n => { ServerName = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<DeviceManagementExchangeConnectorStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.DeviceManagementExchangeConnectorStatus>(); } },
                 { "version", n => { Version = n.GetStringValue(); } },
             };
         }
@@ -104,12 +104,12 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("connectorServerName", ConnectorServerName);
             writer.WriteStringValue("exchangeAlias", ExchangeAlias);
-            writer.WriteEnumValue<DeviceManagementExchangeConnectorType>("exchangeConnectorType", ExchangeConnectorType);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceManagementExchangeConnectorType>("exchangeConnectorType", ExchangeConnectorType);
             writer.WriteStringValue("exchangeOrganization", ExchangeOrganization);
             writer.WriteDateTimeOffsetValue("lastSyncDateTime", LastSyncDateTime);
             writer.WriteStringValue("primarySmtpAddress", PrimarySmtpAddress);
             writer.WriteStringValue("serverName", ServerName);
-            writer.WriteEnumValue<DeviceManagementExchangeConnectorStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceManagementExchangeConnectorStatus>("status", Status);
             writer.WriteStringValue("version", Version);
         }
     }

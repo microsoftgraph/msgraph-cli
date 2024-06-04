@@ -45,7 +45,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         public string ResourceId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="BatchRecordDecisionsPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.BatchRecordDecisions.BatchRecordDecisionsPostRequestBody"/> and sets the default values.
         /// </summary>
         public BatchRecordDecisionsPostRequestBody()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BatchRecordDecisionsPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.BatchRecordDecisions.BatchRecordDecisionsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BatchRecordDecisionsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.BatchRecordDecisions.BatchRecordDecisionsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BatchRecordDecisionsPostRequestBody();
+            return new ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.BatchRecordDecisions.BatchRecordDecisionsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

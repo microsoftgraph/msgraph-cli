@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Windows Log Collection request entity.
     /// </summary>
-    public class DeviceLogCollectionResponse : Entity, IParsable
+    public class DeviceLogCollectionResponse : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The User Principal Name (UPN) of the user that enrolled the device.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -38,16 +38,16 @@ namespace ApiSdk.Models
         /// <summary>The size of the logs in KB. Valid values -1.79769313486232E+308 to 1.79769313486232E+308</summary>
         public double? SizeInKB { get; set; }
         /// <summary>AppLogUploadStatus</summary>
-        public AppLogUploadState? Status { get; set; }
+        public ApiSdk.Models.AppLogUploadState? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceLogCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceLogCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceLogCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceLogCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceLogCollectionResponse();
+            return new ApiSdk.Models.DeviceLogCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,7 +64,7 @@ namespace ApiSdk.Models
                 { "receivedDateTimeUTC", n => { ReceivedDateTimeUTC = n.GetDateTimeOffsetValue(); } },
                 { "requestedDateTimeUTC", n => { RequestedDateTimeUTC = n.GetDateTimeOffsetValue(); } },
                 { "sizeInKB", n => { SizeInKB = n.GetDoubleValue(); } },
-                { "status", n => { Status = n.GetEnumValue<AppLogUploadState>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.AppLogUploadState>(); } },
             };
         }
         /// <summary>
@@ -82,7 +82,7 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("receivedDateTimeUTC", ReceivedDateTimeUTC);
             writer.WriteDateTimeOffsetValue("requestedDateTimeUTC", RequestedDateTimeUTC);
             writer.WriteDoubleValue("sizeInKB", SizeInKB);
-            writer.WriteEnumValue<AppLogUploadState>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.AppLogUploadState>("status", Status);
         }
     }
 }

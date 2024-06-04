@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Inv
         /// <summary>The alpha property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Alpha { get; set; }
+        public ApiSdk.Models.Json? Alpha { get; set; }
 #nullable restore
 #else
-        public Json Alpha { get; set; }
+        public ApiSdk.Models.Json Alpha { get; set; }
 #endif
         /// <summary>The probabilityS property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? ProbabilityS { get; set; }
+        public ApiSdk.Models.Json? ProbabilityS { get; set; }
 #nullable restore
 #else
-        public Json ProbabilityS { get; set; }
+        public ApiSdk.Models.Json ProbabilityS { get; set; }
 #endif
         /// <summary>The trials property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Trials { get; set; }
+        public ApiSdk.Models.Json? Trials { get; set; }
 #nullable restore
 #else
-        public Json Trials { get; set; }
+        public ApiSdk.Models.Json Trials { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Binom_InvPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Inv.Binom_InvPostRequestBody"/> and sets the default values.
         /// </summary>
         public Binom_InvPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Inv
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Binom_InvPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Inv.Binom_InvPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Binom_InvPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Inv.Binom_InvPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Binom_InvPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Inv.Binom_InvPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Inv
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "alpha", n => { Alpha = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "probabilityS", n => { ProbabilityS = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "trials", n => { Trials = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "alpha", n => { Alpha = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "probabilityS", n => { ProbabilityS = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "trials", n => { Trials = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Inv
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("alpha", Alpha);
-            writer.WriteObjectValue<Json>("probabilityS", ProbabilityS);
-            writer.WriteObjectValue<Json>("trials", Trials);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("alpha", Alpha);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("probabilityS", ProbabilityS);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("trials", Trials);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

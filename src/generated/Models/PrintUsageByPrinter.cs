@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class PrintUsageByPrinter : PrintUsage, IParsable
+    public class PrintUsageByPrinter : ApiSdk.Models.PrintUsage, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The ID of the printer represented by these statistics.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models
         public string PrinterName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PrintUsageByPrinter"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PrintUsageByPrinter"/> and sets the default values.
         /// </summary>
         public PrintUsageByPrinter() : base()
         {
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PrintUsageByPrinter"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PrintUsageByPrinter"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PrintUsageByPrinter CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.PrintUsageByPrinter CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PrintUsageByPrinter();
+            return new ApiSdk.Models.PrintUsageByPrinter();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class MultiTenantOrganizationJoinRequestRecord : Entity, IParsable
+    public class MultiTenantOrganizationJoinRequestRecord : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Tenant ID of the Microsoft Entra tenant that added a tenant to the multitenant organization. To reset a failed join request, set addedByTenantId to 00000000-0000-0000-0000-000000000000. Required.</summary>
@@ -19,26 +19,26 @@ namespace ApiSdk.Models
         public string AddedByTenantId { get; set; }
 #endif
         /// <summary>State of the tenant in the multitenant organization. The possible values are: pending, active, removed, unknownFutureValue. Tenants in the pending state must join the multitenant organization to participate in the multitenant organization. Tenants in the active state can participate in the multitenant organization. Tenants in the removed state are in the process of being removed from the multitenant organization. Read-only.</summary>
-        public MultiTenantOrganizationMemberState? MemberState { get; set; }
+        public ApiSdk.Models.MultiTenantOrganizationMemberState? MemberState { get; set; }
         /// <summary>Role of the tenant in the multitenant organization. The possible values are: owner, member (default), unknownFutureValue. Tenants with the owner role can manage the multitenant organization. There can be multiple tenants with the owner role in a multitenant organization. Tenants with the member role can participate in a multitenant organization.</summary>
-        public MultiTenantOrganizationMemberRole? Role { get; set; }
+        public ApiSdk.Models.MultiTenantOrganizationMemberRole? Role { get; set; }
         /// <summary>Details of the processing status for a tenant joining a multitenant organization. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MultiTenantOrganizationJoinRequestTransitionDetails? TransitionDetails { get; set; }
+        public ApiSdk.Models.MultiTenantOrganizationJoinRequestTransitionDetails? TransitionDetails { get; set; }
 #nullable restore
 #else
-        public MultiTenantOrganizationJoinRequestTransitionDetails TransitionDetails { get; set; }
+        public ApiSdk.Models.MultiTenantOrganizationJoinRequestTransitionDetails TransitionDetails { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MultiTenantOrganizationJoinRequestRecord"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MultiTenantOrganizationJoinRequestRecord"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MultiTenantOrganizationJoinRequestRecord CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MultiTenantOrganizationJoinRequestRecord CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MultiTenantOrganizationJoinRequestRecord();
+            return new ApiSdk.Models.MultiTenantOrganizationJoinRequestRecord();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,9 +49,9 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "addedByTenantId", n => { AddedByTenantId = n.GetStringValue(); } },
-                { "memberState", n => { MemberState = n.GetEnumValue<MultiTenantOrganizationMemberState>(); } },
-                { "role", n => { Role = n.GetEnumValue<MultiTenantOrganizationMemberRole>(); } },
-                { "transitionDetails", n => { TransitionDetails = n.GetObjectValue<MultiTenantOrganizationJoinRequestTransitionDetails>(MultiTenantOrganizationJoinRequestTransitionDetails.CreateFromDiscriminatorValue); } },
+                { "memberState", n => { MemberState = n.GetEnumValue<ApiSdk.Models.MultiTenantOrganizationMemberState>(); } },
+                { "role", n => { Role = n.GetEnumValue<ApiSdk.Models.MultiTenantOrganizationMemberRole>(); } },
+                { "transitionDetails", n => { TransitionDetails = n.GetObjectValue<ApiSdk.Models.MultiTenantOrganizationJoinRequestTransitionDetails>(ApiSdk.Models.MultiTenantOrganizationJoinRequestTransitionDetails.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -63,9 +63,9 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("addedByTenantId", AddedByTenantId);
-            writer.WriteEnumValue<MultiTenantOrganizationMemberState>("memberState", MemberState);
-            writer.WriteEnumValue<MultiTenantOrganizationMemberRole>("role", Role);
-            writer.WriteObjectValue<MultiTenantOrganizationJoinRequestTransitionDetails>("transitionDetails", TransitionDetails);
+            writer.WriteEnumValue<ApiSdk.Models.MultiTenantOrganizationMemberState>("memberState", MemberState);
+            writer.WriteEnumValue<ApiSdk.Models.MultiTenantOrganizationMemberRole>("role", Role);
+            writer.WriteObjectValue<ApiSdk.Models.MultiTenantOrganizationJoinRequestTransitionDetails>("transitionDetails", TransitionDetails);
         }
     }
 }

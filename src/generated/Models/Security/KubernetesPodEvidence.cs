@@ -7,48 +7,48 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class KubernetesPodEvidence : AlertEvidence, IParsable
+    public class KubernetesPodEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The list of pod containers which are not init or ephemeral containers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ContainerEvidence>? Containers { get; set; }
+        public List<ApiSdk.Models.Security.ContainerEvidence>? Containers { get; set; }
 #nullable restore
 #else
-        public List<ContainerEvidence> Containers { get; set; }
+        public List<ApiSdk.Models.Security.ContainerEvidence> Containers { get; set; }
 #endif
         /// <summary>The pod controller.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public KubernetesControllerEvidence? Controller { get; set; }
+        public ApiSdk.Models.Security.KubernetesControllerEvidence? Controller { get; set; }
 #nullable restore
 #else
-        public KubernetesControllerEvidence Controller { get; set; }
+        public ApiSdk.Models.Security.KubernetesControllerEvidence Controller { get; set; }
 #endif
         /// <summary>The list of pod ephemeral containers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ContainerEvidence>? EphemeralContainers { get; set; }
+        public List<ApiSdk.Models.Security.ContainerEvidence>? EphemeralContainers { get; set; }
 #nullable restore
 #else
-        public List<ContainerEvidence> EphemeralContainers { get; set; }
+        public List<ApiSdk.Models.Security.ContainerEvidence> EphemeralContainers { get; set; }
 #endif
         /// <summary>The list of pod init containers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ContainerEvidence>? InitContainers { get; set; }
+        public List<ApiSdk.Models.Security.ContainerEvidence>? InitContainers { get; set; }
 #nullable restore
 #else
-        public List<ContainerEvidence> InitContainers { get; set; }
+        public List<ApiSdk.Models.Security.ContainerEvidence> InitContainers { get; set; }
 #endif
         /// <summary>The pod labels.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Dictionary? Labels { get; set; }
+        public ApiSdk.Models.Security.Dictionary? Labels { get; set; }
 #nullable restore
 #else
-        public Dictionary Labels { get; set; }
+        public ApiSdk.Models.Security.Dictionary Labels { get; set; }
 #endif
         /// <summary>The pod name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -61,29 +61,29 @@ namespace ApiSdk.Models.Security
         /// <summary>The pod namespace.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public KubernetesNamespaceEvidence? Namespace { get; set; }
+        public ApiSdk.Models.Security.KubernetesNamespaceEvidence? Namespace { get; set; }
 #nullable restore
 #else
-        public KubernetesNamespaceEvidence Namespace { get; set; }
+        public ApiSdk.Models.Security.KubernetesNamespaceEvidence Namespace { get; set; }
 #endif
         /// <summary>The pod IP.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IpEvidence? PodIp { get; set; }
+        public ApiSdk.Models.Security.IpEvidence? PodIp { get; set; }
 #nullable restore
 #else
-        public IpEvidence PodIp { get; set; }
+        public ApiSdk.Models.Security.IpEvidence PodIp { get; set; }
 #endif
         /// <summary>The pod service account.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public KubernetesServiceAccountEvidence? ServiceAccount { get; set; }
+        public ApiSdk.Models.Security.KubernetesServiceAccountEvidence? ServiceAccount { get; set; }
 #nullable restore
 #else
-        public KubernetesServiceAccountEvidence ServiceAccount { get; set; }
+        public ApiSdk.Models.Security.KubernetesServiceAccountEvidence ServiceAccount { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="KubernetesPodEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.KubernetesPodEvidence"/> and sets the default values.
         /// </summary>
         public KubernetesPodEvidence() : base()
         {
@@ -92,12 +92,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="KubernetesPodEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.KubernetesPodEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new KubernetesPodEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.KubernetesPodEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new KubernetesPodEvidence();
+            return new ApiSdk.Models.Security.KubernetesPodEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -107,15 +107,15 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "containers", n => { Containers = n.GetCollectionOfObjectValues<ContainerEvidence>(ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "controller", n => { Controller = n.GetObjectValue<KubernetesControllerEvidence>(KubernetesControllerEvidence.CreateFromDiscriminatorValue); } },
-                { "ephemeralContainers", n => { EphemeralContainers = n.GetCollectionOfObjectValues<ContainerEvidence>(ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "initContainers", n => { InitContainers = n.GetCollectionOfObjectValues<ContainerEvidence>(ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "labels", n => { Labels = n.GetObjectValue<Dictionary>(Dictionary.CreateFromDiscriminatorValue); } },
+                { "containers", n => { Containers = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.ContainerEvidence>(ApiSdk.Models.Security.ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "controller", n => { Controller = n.GetObjectValue<ApiSdk.Models.Security.KubernetesControllerEvidence>(ApiSdk.Models.Security.KubernetesControllerEvidence.CreateFromDiscriminatorValue); } },
+                { "ephemeralContainers", n => { EphemeralContainers = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.ContainerEvidence>(ApiSdk.Models.Security.ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "initContainers", n => { InitContainers = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.ContainerEvidence>(ApiSdk.Models.Security.ContainerEvidence.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "labels", n => { Labels = n.GetObjectValue<ApiSdk.Models.Security.Dictionary>(ApiSdk.Models.Security.Dictionary.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "namespace", n => { Namespace = n.GetObjectValue<KubernetesNamespaceEvidence>(KubernetesNamespaceEvidence.CreateFromDiscriminatorValue); } },
-                { "podIp", n => { PodIp = n.GetObjectValue<IpEvidence>(IpEvidence.CreateFromDiscriminatorValue); } },
-                { "serviceAccount", n => { ServiceAccount = n.GetObjectValue<KubernetesServiceAccountEvidence>(KubernetesServiceAccountEvidence.CreateFromDiscriminatorValue); } },
+                { "namespace", n => { Namespace = n.GetObjectValue<ApiSdk.Models.Security.KubernetesNamespaceEvidence>(ApiSdk.Models.Security.KubernetesNamespaceEvidence.CreateFromDiscriminatorValue); } },
+                { "podIp", n => { PodIp = n.GetObjectValue<ApiSdk.Models.Security.IpEvidence>(ApiSdk.Models.Security.IpEvidence.CreateFromDiscriminatorValue); } },
+                { "serviceAccount", n => { ServiceAccount = n.GetObjectValue<ApiSdk.Models.Security.KubernetesServiceAccountEvidence>(ApiSdk.Models.Security.KubernetesServiceAccountEvidence.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -126,15 +126,15 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ContainerEvidence>("containers", Containers);
-            writer.WriteObjectValue<KubernetesControllerEvidence>("controller", Controller);
-            writer.WriteCollectionOfObjectValues<ContainerEvidence>("ephemeralContainers", EphemeralContainers);
-            writer.WriteCollectionOfObjectValues<ContainerEvidence>("initContainers", InitContainers);
-            writer.WriteObjectValue<Dictionary>("labels", Labels);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.ContainerEvidence>("containers", Containers);
+            writer.WriteObjectValue<ApiSdk.Models.Security.KubernetesControllerEvidence>("controller", Controller);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.ContainerEvidence>("ephemeralContainers", EphemeralContainers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.ContainerEvidence>("initContainers", InitContainers);
+            writer.WriteObjectValue<ApiSdk.Models.Security.Dictionary>("labels", Labels);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<KubernetesNamespaceEvidence>("namespace", Namespace);
-            writer.WriteObjectValue<IpEvidence>("podIp", PodIp);
-            writer.WriteObjectValue<KubernetesServiceAccountEvidence>("serviceAccount", ServiceAccount);
+            writer.WriteObjectValue<ApiSdk.Models.Security.KubernetesNamespaceEvidence>("namespace", Namespace);
+            writer.WriteObjectValue<ApiSdk.Models.Security.IpEvidence>("podIp", PodIp);
+            writer.WriteObjectValue<ApiSdk.Models.Security.KubernetesServiceAccountEvidence>("serviceAccount", ServiceAccount);
         }
     }
 }

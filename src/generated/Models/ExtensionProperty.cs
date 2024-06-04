@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ExtensionProperty : DirectoryObject, IParsable
+    public class ExtensionProperty : ApiSdk.Models.DirectoryObject, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Display name of the application object on which this extension property is defined. Read-only.</summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         public List<string> TargetObjects { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ExtensionProperty"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ExtensionProperty"/> and sets the default values.
         /// </summary>
         public ExtensionProperty() : base()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ExtensionProperty"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExtensionProperty"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ExtensionProperty CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ExtensionProperty CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ExtensionProperty();
+            return new ApiSdk.Models.ExtensionProperty();
         }
         /// <summary>
         /// The deserialization information for the current model

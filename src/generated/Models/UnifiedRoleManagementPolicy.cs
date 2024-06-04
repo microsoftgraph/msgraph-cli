@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UnifiedRoleManagementPolicy : Entity, IParsable
+    public class UnifiedRoleManagementPolicy : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Description for the policy.</summary>
@@ -29,30 +29,30 @@ namespace ApiSdk.Models
         /// <summary>The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules. For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to enable approval even if the policy has a rule to disable approval. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UnifiedRoleManagementPolicyRule>? EffectiveRules { get; set; }
+        public List<ApiSdk.Models.UnifiedRoleManagementPolicyRule>? EffectiveRules { get; set; }
 #nullable restore
 #else
-        public List<UnifiedRoleManagementPolicyRule> EffectiveRules { get; set; }
+        public List<ApiSdk.Models.UnifiedRoleManagementPolicyRule> EffectiveRules { get; set; }
 #endif
         /// <summary>This can only be set to true for a single tenant-wide policy which will apply to all scopes and roles. Set the scopeId to / and scopeType to Directory. Supports $filter (eq, ne).</summary>
         public bool? IsOrganizationDefault { get; set; }
         /// <summary>The identity who last modified the role setting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Identity? LastModifiedBy { get; set; }
+        public ApiSdk.Models.Identity? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public Identity LastModifiedBy { get; set; }
+        public ApiSdk.Models.Identity LastModifiedBy { get; set; }
 #endif
         /// <summary>The time when the role setting was last modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>The collection of rules like approval rules and expiration rules. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UnifiedRoleManagementPolicyRule>? Rules { get; set; }
+        public List<ApiSdk.Models.UnifiedRoleManagementPolicyRule>? Rules { get; set; }
 #nullable restore
 #else
-        public List<UnifiedRoleManagementPolicyRule> Rules { get; set; }
+        public List<ApiSdk.Models.UnifiedRoleManagementPolicyRule> Rules { get; set; }
 #endif
         /// <summary>The identifier of the scope where the policy is created. Can be / for the tenant or a group ID. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -73,12 +73,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedRoleManagementPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UnifiedRoleManagementPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UnifiedRoleManagementPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UnifiedRoleManagementPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedRoleManagementPolicy();
+            return new ApiSdk.Models.UnifiedRoleManagementPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -90,11 +90,11 @@ namespace ApiSdk.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "effectiveRules", n => { EffectiveRules = n.GetCollectionOfObjectValues<UnifiedRoleManagementPolicyRule>(UnifiedRoleManagementPolicyRule.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "effectiveRules", n => { EffectiveRules = n.GetCollectionOfObjectValues<ApiSdk.Models.UnifiedRoleManagementPolicyRule>(ApiSdk.Models.UnifiedRoleManagementPolicyRule.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isOrganizationDefault", n => { IsOrganizationDefault = n.GetBoolValue(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.Identity>(ApiSdk.Models.Identity.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "rules", n => { Rules = n.GetCollectionOfObjectValues<UnifiedRoleManagementPolicyRule>(UnifiedRoleManagementPolicyRule.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "rules", n => { Rules = n.GetCollectionOfObjectValues<ApiSdk.Models.UnifiedRoleManagementPolicyRule>(ApiSdk.Models.UnifiedRoleManagementPolicyRule.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "scopeId", n => { ScopeId = n.GetStringValue(); } },
                 { "scopeType", n => { ScopeType = n.GetStringValue(); } },
             };
@@ -109,11 +109,11 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<UnifiedRoleManagementPolicyRule>("effectiveRules", EffectiveRules);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UnifiedRoleManagementPolicyRule>("effectiveRules", EffectiveRules);
             writer.WriteBoolValue("isOrganizationDefault", IsOrganizationDefault);
-            writer.WriteObjectValue<Identity>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.Identity>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteCollectionOfObjectValues<UnifiedRoleManagementPolicyRule>("rules", Rules);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UnifiedRoleManagementPolicyRule>("rules", Rules);
             writer.WriteStringValue("scopeId", ScopeId);
             writer.WriteStringValue("scopeType", ScopeType);
         }

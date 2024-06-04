@@ -32,13 +32,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Add
         /// <summary>The reference property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Reference { get; set; }
+        public ApiSdk.Models.Json? Reference { get; set; }
 #nullable restore
 #else
-        public Json Reference { get; set; }
+        public ApiSdk.Models.Json Reference { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AddPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Names.Add.AddPostRequestBody"/> and sets the default values.
         /// </summary>
         public AddPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Add
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Names.Add.AddPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AddPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Names.Add.AddPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Names.Add.AddPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,7 +64,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Add
             {
                 { "comment", n => { Comment = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "reference", n => { Reference = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "reference", n => { Reference = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -76,7 +76,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Add
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("comment", Comment);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<Json>("reference", Reference);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("reference", Reference);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

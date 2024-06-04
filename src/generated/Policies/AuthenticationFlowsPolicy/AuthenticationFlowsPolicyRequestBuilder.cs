@@ -144,14 +144,14 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationFlowsPolicyRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.AuthenticationFlowsPolicy.AuthenticationFlowsPolicyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AuthenticationFlowsPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/authenticationFlowsPolicy{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationFlowsPolicyRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.AuthenticationFlowsPolicy.AuthenticationFlowsPolicyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AuthenticationFlowsPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/policies/authenticationFlowsPolicy{?%24expand,%24select}", rawUrl)
@@ -183,11 +183,11 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationFlowsPolicyRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.AuthenticationFlowsPolicy.AuthenticationFlowsPolicyRequestBuilder.AuthenticationFlowsPolicyRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationFlowsPolicyRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.AuthenticationFlowsPolicy.AuthenticationFlowsPolicyRequestBuilder.AuthenticationFlowsPolicyRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

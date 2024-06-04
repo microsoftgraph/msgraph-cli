@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Contact : OutlookItem, IParsable
+    public class Contact : ApiSdk.Models.OutlookItem, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The name of the contact&apos;s assistant.</summary>
@@ -23,10 +23,10 @@ namespace ApiSdk.Models
         /// <summary>The contact&apos;s business address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PhysicalAddress? BusinessAddress { get; set; }
+        public ApiSdk.Models.PhysicalAddress? BusinessAddress { get; set; }
 #nullable restore
 #else
-        public PhysicalAddress BusinessAddress { get; set; }
+        public ApiSdk.Models.PhysicalAddress BusinessAddress { get; set; }
 #endif
         /// <summary>The business home page of the contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -79,18 +79,18 @@ namespace ApiSdk.Models
         /// <summary>The contact&apos;s email addresses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EmailAddress>? EmailAddresses { get; set; }
+        public List<ApiSdk.Models.EmailAddress>? EmailAddresses { get; set; }
 #nullable restore
 #else
-        public List<EmailAddress> EmailAddresses { get; set; }
+        public List<ApiSdk.Models.EmailAddress> EmailAddresses { get; set; }
 #endif
         /// <summary>The collection of open extensions defined for the contact. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Extension>? Extensions { get; set; }
+        public List<ApiSdk.Models.Extension>? Extensions { get; set; }
 #nullable restore
 #else
-        public List<Extension> Extensions { get; set; }
+        public List<ApiSdk.Models.Extension> Extensions { get; set; }
 #endif
         /// <summary>The name the contact is filed under.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -119,10 +119,10 @@ namespace ApiSdk.Models
         /// <summary>The contact&apos;s home address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PhysicalAddress? HomeAddress { get; set; }
+        public ApiSdk.Models.PhysicalAddress? HomeAddress { get; set; }
 #nullable restore
 #else
-        public PhysicalAddress HomeAddress { get; set; }
+        public ApiSdk.Models.PhysicalAddress HomeAddress { get; set; }
 #endif
         /// <summary>The contact&apos;s home phone numbers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -183,10 +183,10 @@ namespace ApiSdk.Models
         /// <summary>The collection of multi-value extended properties defined for the contact. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MultiValueLegacyExtendedProperty>? MultiValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.MultiValueLegacyExtendedProperty>? MultiValueExtendedProperties { get; set; }
 #nullable restore
 #else
-        public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
 #endif
         /// <summary>The contact&apos;s nickname.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -207,10 +207,10 @@ namespace ApiSdk.Models
         /// <summary>Other addresses for the contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PhysicalAddress? OtherAddress { get; set; }
+        public ApiSdk.Models.PhysicalAddress? OtherAddress { get; set; }
 #nullable restore
 #else
-        public PhysicalAddress OtherAddress { get; set; }
+        public ApiSdk.Models.PhysicalAddress OtherAddress { get; set; }
 #endif
         /// <summary>The ID of the contact&apos;s parent folder.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -231,10 +231,10 @@ namespace ApiSdk.Models
         /// <summary>Optional contact picture. You can get or set a photo for a contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ProfilePhoto? Photo { get; set; }
+        public ApiSdk.Models.ProfilePhoto? Photo { get; set; }
 #nullable restore
 #else
-        public ProfilePhoto Photo { get; set; }
+        public ApiSdk.Models.ProfilePhoto Photo { get; set; }
 #endif
         /// <summary>The contact&apos;s profession.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -247,10 +247,10 @@ namespace ApiSdk.Models
         /// <summary>The collection of single-value extended properties defined for the contact. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SingleValueLegacyExtendedProperty>? SingleValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.SingleValueLegacyExtendedProperty>? SingleValueExtendedProperties { get; set; }
 #nullable restore
 #else
-        public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
 #endif
         /// <summary>The name of the contact&apos;s spouse/partner.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -301,7 +301,7 @@ namespace ApiSdk.Models
         public string YomiSurname { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Contact"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Contact"/> and sets the default values.
         /// </summary>
         public Contact() : base()
         {
@@ -310,12 +310,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Contact"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Contact"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Contact CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Contact CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Contact();
+            return new ApiSdk.Models.Contact();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -327,19 +327,19 @@ namespace ApiSdk.Models
             {
                 { "assistantName", n => { AssistantName = n.GetStringValue(); } },
                 { "birthday", n => { Birthday = n.GetDateTimeOffsetValue(); } },
-                { "businessAddress", n => { BusinessAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "businessAddress", n => { BusinessAddress = n.GetObjectValue<ApiSdk.Models.PhysicalAddress>(ApiSdk.Models.PhysicalAddress.CreateFromDiscriminatorValue); } },
                 { "businessHomePage", n => { BusinessHomePage = n.GetStringValue(); } },
                 { "businessPhones", n => { BusinessPhones = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "children", n => { Children = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "companyName", n => { CompanyName = n.GetStringValue(); } },
                 { "department", n => { Department = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "emailAddresses", n => { EmailAddresses = n.GetCollectionOfObjectValues<EmailAddress>(EmailAddress.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "emailAddresses", n => { EmailAddresses = n.GetCollectionOfObjectValues<ApiSdk.Models.EmailAddress>(ApiSdk.Models.EmailAddress.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<ApiSdk.Models.Extension>(ApiSdk.Models.Extension.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "fileAs", n => { FileAs = n.GetStringValue(); } },
                 { "generation", n => { Generation = n.GetStringValue(); } },
                 { "givenName", n => { GivenName = n.GetStringValue(); } },
-                { "homeAddress", n => { HomeAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "homeAddress", n => { HomeAddress = n.GetObjectValue<ApiSdk.Models.PhysicalAddress>(ApiSdk.Models.PhysicalAddress.CreateFromDiscriminatorValue); } },
                 { "homePhones", n => { HomePhones = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "imAddresses", n => { ImAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "initials", n => { Initials = n.GetStringValue(); } },
@@ -347,15 +347,15 @@ namespace ApiSdk.Models
                 { "manager", n => { Manager = n.GetStringValue(); } },
                 { "middleName", n => { MiddleName = n.GetStringValue(); } },
                 { "mobilePhone", n => { MobilePhone = n.GetStringValue(); } },
-                { "multiValueExtendedProperties", n => { MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>(MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "multiValueExtendedProperties", n => { MultiValueExtendedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.MultiValueLegacyExtendedProperty>(ApiSdk.Models.MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "nickName", n => { NickName = n.GetStringValue(); } },
                 { "officeLocation", n => { OfficeLocation = n.GetStringValue(); } },
-                { "otherAddress", n => { OtherAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "otherAddress", n => { OtherAddress = n.GetObjectValue<ApiSdk.Models.PhysicalAddress>(ApiSdk.Models.PhysicalAddress.CreateFromDiscriminatorValue); } },
                 { "parentFolderId", n => { ParentFolderId = n.GetStringValue(); } },
                 { "personalNotes", n => { PersonalNotes = n.GetStringValue(); } },
-                { "photo", n => { Photo = n.GetObjectValue<ProfilePhoto>(ProfilePhoto.CreateFromDiscriminatorValue); } },
+                { "photo", n => { Photo = n.GetObjectValue<ApiSdk.Models.ProfilePhoto>(ApiSdk.Models.ProfilePhoto.CreateFromDiscriminatorValue); } },
                 { "profession", n => { Profession = n.GetStringValue(); } },
-                { "singleValueExtendedProperties", n => { SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>(SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "singleValueExtendedProperties", n => { SingleValueExtendedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.SingleValueLegacyExtendedProperty>(ApiSdk.Models.SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "spouseName", n => { SpouseName = n.GetStringValue(); } },
                 { "surname", n => { Surname = n.GetStringValue(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
@@ -374,19 +374,19 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("assistantName", AssistantName);
             writer.WriteDateTimeOffsetValue("birthday", Birthday);
-            writer.WriteObjectValue<PhysicalAddress>("businessAddress", BusinessAddress);
+            writer.WriteObjectValue<ApiSdk.Models.PhysicalAddress>("businessAddress", BusinessAddress);
             writer.WriteStringValue("businessHomePage", BusinessHomePage);
             writer.WriteCollectionOfPrimitiveValues<string>("businessPhones", BusinessPhones);
             writer.WriteCollectionOfPrimitiveValues<string>("children", Children);
             writer.WriteStringValue("companyName", CompanyName);
             writer.WriteStringValue("department", Department);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<EmailAddress>("emailAddresses", EmailAddresses);
-            writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EmailAddress>("emailAddresses", EmailAddresses);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Extension>("extensions", Extensions);
             writer.WriteStringValue("fileAs", FileAs);
             writer.WriteStringValue("generation", Generation);
             writer.WriteStringValue("givenName", GivenName);
-            writer.WriteObjectValue<PhysicalAddress>("homeAddress", HomeAddress);
+            writer.WriteObjectValue<ApiSdk.Models.PhysicalAddress>("homeAddress", HomeAddress);
             writer.WriteCollectionOfPrimitiveValues<string>("homePhones", HomePhones);
             writer.WriteCollectionOfPrimitiveValues<string>("imAddresses", ImAddresses);
             writer.WriteStringValue("initials", Initials);
@@ -394,15 +394,15 @@ namespace ApiSdk.Models
             writer.WriteStringValue("manager", Manager);
             writer.WriteStringValue("middleName", MiddleName);
             writer.WriteStringValue("mobilePhone", MobilePhone);
-            writer.WriteCollectionOfObjectValues<MultiValueLegacyExtendedProperty>("multiValueExtendedProperties", MultiValueExtendedProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MultiValueLegacyExtendedProperty>("multiValueExtendedProperties", MultiValueExtendedProperties);
             writer.WriteStringValue("nickName", NickName);
             writer.WriteStringValue("officeLocation", OfficeLocation);
-            writer.WriteObjectValue<PhysicalAddress>("otherAddress", OtherAddress);
+            writer.WriteObjectValue<ApiSdk.Models.PhysicalAddress>("otherAddress", OtherAddress);
             writer.WriteStringValue("parentFolderId", ParentFolderId);
             writer.WriteStringValue("personalNotes", PersonalNotes);
-            writer.WriteObjectValue<ProfilePhoto>("photo", Photo);
+            writer.WriteObjectValue<ApiSdk.Models.ProfilePhoto>("photo", Photo);
             writer.WriteStringValue("profession", Profession);
-            writer.WriteCollectionOfObjectValues<SingleValueLegacyExtendedProperty>("singleValueExtendedProperties", SingleValueExtendedProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SingleValueLegacyExtendedProperty>("singleValueExtendedProperties", SingleValueExtendedProperties);
             writer.WriteStringValue("spouseName", SpouseName);
             writer.WriteStringValue("surname", Surname);
             writer.WriteStringValue("title", Title);

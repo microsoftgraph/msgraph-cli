@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>A collection of search results.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SearchHitsContainer>? HitsContainers { get; set; }
+        public List<ApiSdk.Models.SearchHitsContainer>? HitsContainers { get; set; }
 #nullable restore
 #else
-        public List<SearchHitsContainer> HitsContainers { get; set; }
+        public List<ApiSdk.Models.SearchHitsContainer> HitsContainers { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,18 +31,18 @@ namespace ApiSdk.Models
         /// <summary>Provides information related to spelling corrections in the alteration response.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AlterationResponse? QueryAlterationResponse { get; set; }
+        public ApiSdk.Models.AlterationResponse? QueryAlterationResponse { get; set; }
 #nullable restore
 #else
-        public AlterationResponse QueryAlterationResponse { get; set; }
+        public ApiSdk.Models.AlterationResponse QueryAlterationResponse { get; set; }
 #endif
         /// <summary>A dictionary of resultTemplateIds and associated values, which include the name and JSON schema of the result templates.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ResultTemplateDictionary? ResultTemplates { get; set; }
+        public ApiSdk.Models.ResultTemplateDictionary? ResultTemplates { get; set; }
 #nullable restore
 #else
-        public ResultTemplateDictionary ResultTemplates { get; set; }
+        public ApiSdk.Models.ResultTemplateDictionary ResultTemplates { get; set; }
 #endif
         /// <summary>Contains the search terms sent in the initial search query.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -53,7 +53,7 @@ namespace ApiSdk.Models
         public List<string> SearchTerms { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SearchResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SearchResponse"/> and sets the default values.
         /// </summary>
         public SearchResponse()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SearchResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SearchResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SearchResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SearchResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SearchResponse();
+            return new ApiSdk.Models.SearchResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -77,10 +77,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "hitsContainers", n => { HitsContainers = n.GetCollectionOfObjectValues<SearchHitsContainer>(SearchHitsContainer.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "hitsContainers", n => { HitsContainers = n.GetCollectionOfObjectValues<ApiSdk.Models.SearchHitsContainer>(ApiSdk.Models.SearchHitsContainer.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "queryAlterationResponse", n => { QueryAlterationResponse = n.GetObjectValue<AlterationResponse>(AlterationResponse.CreateFromDiscriminatorValue); } },
-                { "resultTemplates", n => { ResultTemplates = n.GetObjectValue<ResultTemplateDictionary>(ResultTemplateDictionary.CreateFromDiscriminatorValue); } },
+                { "queryAlterationResponse", n => { QueryAlterationResponse = n.GetObjectValue<ApiSdk.Models.AlterationResponse>(ApiSdk.Models.AlterationResponse.CreateFromDiscriminatorValue); } },
+                { "resultTemplates", n => { ResultTemplates = n.GetObjectValue<ApiSdk.Models.ResultTemplateDictionary>(ApiSdk.Models.ResultTemplateDictionary.CreateFromDiscriminatorValue); } },
                 { "searchTerms", n => { SearchTerms = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
@@ -91,10 +91,10 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<SearchHitsContainer>("hitsContainers", HitsContainers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SearchHitsContainer>("hitsContainers", HitsContainers);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<AlterationResponse>("queryAlterationResponse", QueryAlterationResponse);
-            writer.WriteObjectValue<ResultTemplateDictionary>("resultTemplates", ResultTemplates);
+            writer.WriteObjectValue<ApiSdk.Models.AlterationResponse>("queryAlterationResponse", QueryAlterationResponse);
+            writer.WriteObjectValue<ApiSdk.Models.ResultTemplateDictionary>("resultTemplates", ResultTemplates);
             writer.WriteCollectionOfPrimitiveValues<string>("searchTerms", SearchTerms);
             writer.WriteAdditionalData(AdditionalData);
         }

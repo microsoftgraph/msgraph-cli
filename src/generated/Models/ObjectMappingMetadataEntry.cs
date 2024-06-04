@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Possible values are: EscrowBehavior, DisableMonitoringForChanges, OriginalJoiningProperty, Disposition, IsCustomerDefined, ExcludeFromReporting, Unsynchronized.</summary>
-        public ObjectMappingMetadata? Key { get; set; }
+        public ApiSdk.Models.ObjectMappingMetadata? Key { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ObjectMappingMetadataEntry"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ObjectMappingMetadataEntry"/> and sets the default values.
         /// </summary>
         public ObjectMappingMetadataEntry()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ObjectMappingMetadataEntry"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ObjectMappingMetadataEntry"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ObjectMappingMetadataEntry CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ObjectMappingMetadataEntry CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ObjectMappingMetadataEntry();
+            return new ApiSdk.Models.ObjectMappingMetadataEntry();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "key", n => { Key = n.GetEnumValue<ObjectMappingMetadata>(); } },
+                { "key", n => { Key = n.GetEnumValue<ApiSdk.Models.ObjectMappingMetadata>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
             };
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<ObjectMappingMetadata>("key", Key);
+            writer.WriteEnumValue<ApiSdk.Models.ObjectMappingMetadata>("key", Key);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);

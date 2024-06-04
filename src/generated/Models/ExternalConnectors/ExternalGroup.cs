@@ -29,20 +29,20 @@ namespace ApiSdk.Models.ExternalConnectors
         /// <summary>A member added to an externalGroup. You can add Microsoft Entra users, Microsoft Entra groups, or an externalGroup as members.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Identity>? Members { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.Identity>? Members { get; set; }
 #nullable restore
 #else
-        public List<Identity> Members { get; set; }
+        public List<ApiSdk.Models.ExternalConnectors.Identity> Members { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ExternalGroup"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ExternalConnectors.ExternalGroup"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ExternalGroup CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ExternalConnectors.ExternalGroup CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ExternalGroup();
+            return new ApiSdk.Models.ExternalConnectors.ExternalGroup();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models.ExternalConnectors
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "members", n => { Members = n.GetCollectionOfObjectValues<Identity>(Identity.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "members", n => { Members = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.Identity>(ApiSdk.Models.ExternalConnectors.Identity.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace ApiSdk.Models.ExternalConnectors
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<Identity>("members", Members);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.Identity>("members", Members);
         }
     }
 }

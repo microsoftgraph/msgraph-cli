@@ -9,10 +9,10 @@ namespace ApiSdk.Models
     /// <summary>
     /// MacOS device features configuration profile.
     /// </summary>
-    public class MacOSDeviceFeaturesConfiguration : AppleDeviceFeaturesConfigurationBase, IParsable
+    public class MacOSDeviceFeaturesConfiguration : ApiSdk.Models.AppleDeviceFeaturesConfigurationBase, IParsable
     {
         /// <summary>
-        /// Instantiates a new <see cref="MacOSDeviceFeaturesConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MacOSDeviceFeaturesConfiguration"/> and sets the default values.
         /// </summary>
         public MacOSDeviceFeaturesConfiguration() : base()
         {
@@ -21,12 +21,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MacOSDeviceFeaturesConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MacOSDeviceFeaturesConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MacOSDeviceFeaturesConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MacOSDeviceFeaturesConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MacOSDeviceFeaturesConfiguration();
+            return new ApiSdk.Models.MacOSDeviceFeaturesConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model

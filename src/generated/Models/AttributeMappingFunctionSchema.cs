@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AttributeMappingFunctionSchema : Entity, IParsable
+    public class AttributeMappingFunctionSchema : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Collection of function parameters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AttributeMappingParameterSchema>? Parameters { get; set; }
+        public List<ApiSdk.Models.AttributeMappingParameterSchema>? Parameters { get; set; }
 #nullable restore
 #else
-        public List<AttributeMappingParameterSchema> Parameters { get; set; }
+        public List<ApiSdk.Models.AttributeMappingParameterSchema> Parameters { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AttributeMappingFunctionSchema"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AttributeMappingFunctionSchema"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AttributeMappingFunctionSchema CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AttributeMappingFunctionSchema CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AttributeMappingFunctionSchema();
+            return new ApiSdk.Models.AttributeMappingFunctionSchema();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "parameters", n => { Parameters = n.GetCollectionOfObjectValues<AttributeMappingParameterSchema>(AttributeMappingParameterSchema.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "parameters", n => { Parameters = n.GetCollectionOfObjectValues<ApiSdk.Models.AttributeMappingParameterSchema>(ApiSdk.Models.AttributeMappingParameterSchema.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AttributeMappingParameterSchema>("parameters", Parameters);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AttributeMappingParameterSchema>("parameters", Parameters);
         }
     }
 }

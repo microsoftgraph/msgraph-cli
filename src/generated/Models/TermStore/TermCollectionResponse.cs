@@ -13,20 +13,20 @@ namespace ApiSdk.Models.TermStore
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Term>? Value { get; set; }
+        public List<ApiSdk.Models.TermStore.Term>? Value { get; set; }
 #nullable restore
 #else
-        public List<Term> Value { get; set; }
+        public List<ApiSdk.Models.TermStore.Term> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TermCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermStore.TermCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TermCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TermStore.TermCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TermCollectionResponse();
+            return new ApiSdk.Models.TermStore.TermCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.TermStore
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<Term>(Term.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.TermStore.Term>(ApiSdk.Models.TermStore.Term.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.TermStore
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Term>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermStore.Term>("value", Value);
         }
     }
 }

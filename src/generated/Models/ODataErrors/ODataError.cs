@@ -16,13 +16,13 @@ namespace ApiSdk.Models.ODataErrors
         /// <summary>The error property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MainError? Error { get; set; }
+        public ApiSdk.Models.ODataErrors.MainError? Error { get; set; }
 #nullable restore
 #else
-        public MainError Error { get; set; }
+        public ApiSdk.Models.ODataErrors.MainError Error { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ODataError"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ODataErrors.ODataError"/> and sets the default values.
         /// </summary>
         public ODataError()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Models.ODataErrors
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ODataError"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ODataErrors.ODataError"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ODataError CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ODataErrors.ODataError CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ODataError();
+            return new ApiSdk.Models.ODataErrors.ODataError();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Models.ODataErrors
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "error", n => { Error = n.GetObjectValue<MainError>(MainError.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<ApiSdk.Models.ODataErrors.MainError>(ApiSdk.Models.ODataErrors.MainError.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Models.ODataErrors
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<MainError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.ODataErrors.MainError>("error", Error);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

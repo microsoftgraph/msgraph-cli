@@ -51,7 +51,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SignInActivity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SignInActivity"/> and sets the default values.
         /// </summary>
         public SignInActivity()
         {
@@ -60,12 +60,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SignInActivity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SignInActivity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SignInActivity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SignInActivity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SignInActivity();
+            return new ApiSdk.Models.SignInActivity();
         }
         /// <summary>
         /// The deserialization information for the current model

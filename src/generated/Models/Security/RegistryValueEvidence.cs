@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security
 {
     #pragma warning disable CS1591
-    public class RegistryValueEvidence : AlertEvidence, IParsable
+    public class RegistryValueEvidence : ApiSdk.Models.Security.AlertEvidence, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A unique identifier assigned to a device by Microsoft Defender for Endpoint.</summary>
@@ -59,7 +59,7 @@ namespace ApiSdk.Models.Security
         public string RegistryValueType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RegistryValueEvidence"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.RegistryValueEvidence"/> and sets the default values.
         /// </summary>
         public RegistryValueEvidence() : base()
         {
@@ -68,12 +68,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RegistryValueEvidence"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.RegistryValueEvidence"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RegistryValueEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.RegistryValueEvidence CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RegistryValueEvidence();
+            return new ApiSdk.Models.Security.RegistryValueEvidence();
         }
         /// <summary>
         /// The deserialization information for the current model

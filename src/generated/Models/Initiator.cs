@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Initiator : Identity, IParsable
+    public class Initiator : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Type of initiator. Possible values are: user, application, system, unknownFutureValue.</summary>
         public ApiSdk.Models.InitiatorType? InitiatorType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Initiator"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Initiator"/> and sets the default values.
         /// </summary>
         public Initiator() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Initiator"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Initiator"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Initiator CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Initiator CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Initiator();
+            return new ApiSdk.Models.Initiator();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "initiatorType", n => { InitiatorType = n.GetEnumValue<InitiatorType>(); } },
+                { "initiatorType", n => { InitiatorType = n.GetEnumValue<ApiSdk.Models.InitiatorType>(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<InitiatorType>("initiatorType", InitiatorType);
+            writer.WriteEnumValue<ApiSdk.Models.InitiatorType>("initiatorType", InitiatorType);
         }
     }
 }

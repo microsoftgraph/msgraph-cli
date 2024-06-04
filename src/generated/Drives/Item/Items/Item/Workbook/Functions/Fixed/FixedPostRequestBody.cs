@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fixed
         /// <summary>The decimals property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Decimals { get; set; }
+        public ApiSdk.Models.Json? Decimals { get; set; }
 #nullable restore
 #else
-        public Json Decimals { get; set; }
+        public ApiSdk.Models.Json Decimals { get; set; }
 #endif
         /// <summary>The noCommas property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? NoCommas { get; set; }
+        public ApiSdk.Models.Json? NoCommas { get; set; }
 #nullable restore
 #else
-        public Json NoCommas { get; set; }
+        public ApiSdk.Models.Json NoCommas { get; set; }
 #endif
         /// <summary>The number property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Number { get; set; }
+        public ApiSdk.Models.Json? Number { get; set; }
 #nullable restore
 #else
-        public Json Number { get; set; }
+        public ApiSdk.Models.Json Number { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="FixedPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fixed.FixedPostRequestBody"/> and sets the default values.
         /// </summary>
         public FixedPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fixed
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FixedPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fixed.FixedPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static FixedPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fixed.FixedPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FixedPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fixed.FixedPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fixed
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "decimals", n => { Decimals = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "noCommas", n => { NoCommas = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "number", n => { Number = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "decimals", n => { Decimals = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "noCommas", n => { NoCommas = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "number", n => { Number = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fixed
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("decimals", Decimals);
-            writer.WriteObjectValue<Json>("noCommas", NoCommas);
-            writer.WriteObjectValue<Json>("number", Number);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("decimals", Decimals);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("noCommas", NoCommas);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("number", Number);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

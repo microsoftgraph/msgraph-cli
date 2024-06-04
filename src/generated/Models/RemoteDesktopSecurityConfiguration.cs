@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class RemoteDesktopSecurityConfiguration : Entity, IParsable
+    public class RemoteDesktopSecurityConfiguration : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Determines if Microsoft Entra ID RDS authentication protocol for RDP is enabled.</summary>
@@ -15,20 +15,20 @@ namespace ApiSdk.Models
         /// <summary>The collection of target device groups that are associated with the RDS security configuration that will be enabled for SSO when a client connects to the target device over RDP using the new Microsoft Entra ID RDS authentication protocol.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TargetDeviceGroup>? TargetDeviceGroups { get; set; }
+        public List<ApiSdk.Models.TargetDeviceGroup>? TargetDeviceGroups { get; set; }
 #nullable restore
 #else
-        public List<TargetDeviceGroup> TargetDeviceGroups { get; set; }
+        public List<ApiSdk.Models.TargetDeviceGroup> TargetDeviceGroups { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RemoteDesktopSecurityConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RemoteDesktopSecurityConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new RemoteDesktopSecurityConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.RemoteDesktopSecurityConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RemoteDesktopSecurityConfiguration();
+            return new ApiSdk.Models.RemoteDesktopSecurityConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -39,7 +39,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "isRemoteDesktopProtocolEnabled", n => { IsRemoteDesktopProtocolEnabled = n.GetBoolValue(); } },
-                { "targetDeviceGroups", n => { TargetDeviceGroups = n.GetCollectionOfObjectValues<TargetDeviceGroup>(TargetDeviceGroup.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "targetDeviceGroups", n => { TargetDeviceGroups = n.GetCollectionOfObjectValues<ApiSdk.Models.TargetDeviceGroup>(ApiSdk.Models.TargetDeviceGroup.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("isRemoteDesktopProtocolEnabled", IsRemoteDesktopProtocolEnabled);
-            writer.WriteCollectionOfObjectValues<TargetDeviceGroup>("targetDeviceGroups", TargetDeviceGroups);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.TargetDeviceGroup>("targetDeviceGroups", TargetDeviceGroups);
         }
     }
 }

@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DaylightTimeZoneOffset : StandardTimeZoneOffset, IParsable
+    public class DaylightTimeZoneOffset : ApiSdk.Models.StandardTimeZoneOffset, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The time offset from Coordinated Universal Time (UTC) for daylight saving time. This value is in minutes.</summary>
         public int? DaylightBias { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="DaylightTimeZoneOffset"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DaylightTimeZoneOffset"/> and sets the default values.
         /// </summary>
         public DaylightTimeZoneOffset() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DaylightTimeZoneOffset"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DaylightTimeZoneOffset"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DaylightTimeZoneOffset CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DaylightTimeZoneOffset CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DaylightTimeZoneOffset();
+            return new ApiSdk.Models.DaylightTimeZoneOffset();
         }
         /// <summary>
         /// The deserialization information for the current model

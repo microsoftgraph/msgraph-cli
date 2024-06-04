@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Devices that are managed or pre-enrolled through Intune
     /// </summary>
-    public class ManagedDevice : Entity, IParsable
+    public class ManagedDevice : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The code that allows the Activation Lock on managed device to be bypassed. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity in LIST call. To retrieve actual values GET call needs to be made, with device id and included in select parameter. Supports: $select. $Search is not supported. Read-only. This property is read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -52,10 +52,10 @@ namespace ApiSdk.Models
         /// <summary>List of ComplexType deviceActionResult objects. This property is read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DeviceActionResult>? DeviceActionResults { get; private set; }
+        public List<ApiSdk.Models.DeviceActionResult>? DeviceActionResults { get; private set; }
 #nullable restore
 #else
-        public List<DeviceActionResult> DeviceActionResults { get; private set; }
+        public List<ApiSdk.Models.DeviceActionResult> DeviceActionResults { get; private set; }
 #endif
         /// <summary>Device category</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -76,18 +76,18 @@ namespace ApiSdk.Models
         /// <summary>Device compliance policy states for this device.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DeviceCompliancePolicyState>? DeviceCompliancePolicyStates { get; set; }
+        public List<ApiSdk.Models.DeviceCompliancePolicyState>? DeviceCompliancePolicyStates { get; set; }
 #nullable restore
 #else
-        public List<DeviceCompliancePolicyState> DeviceCompliancePolicyStates { get; set; }
+        public List<ApiSdk.Models.DeviceCompliancePolicyState> DeviceCompliancePolicyStates { get; set; }
 #endif
         /// <summary>Device configuration states for this device.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DeviceConfigurationState>? DeviceConfigurationStates { get; set; }
+        public List<ApiSdk.Models.DeviceConfigurationState>? DeviceConfigurationStates { get; set; }
 #nullable restore
 #else
-        public List<DeviceConfigurationState> DeviceConfigurationStates { get; set; }
+        public List<ApiSdk.Models.DeviceConfigurationState> DeviceConfigurationStates { get; set; }
 #endif
         /// <summary>Possible ways of adding a mobile device to management.</summary>
         public ApiSdk.Models.DeviceEnrollmentType? DeviceEnrollmentType { get; set; }
@@ -148,9 +148,9 @@ namespace ApiSdk.Models
         public string EthernetMacAddress { get; private set; }
 #endif
         /// <summary>Device Exchange Access State.</summary>
-        public DeviceManagementExchangeAccessState? ExchangeAccessState { get; set; }
+        public ApiSdk.Models.DeviceManagementExchangeAccessState? ExchangeAccessState { get; set; }
         /// <summary>Device Exchange Access State Reason.</summary>
-        public DeviceManagementExchangeAccessStateReason? ExchangeAccessStateReason { get; set; }
+        public ApiSdk.Models.DeviceManagementExchangeAccessStateReason? ExchangeAccessStateReason { get; set; }
         /// <summary>Last time the device contacted Exchange. This property is read-only.</summary>
         public DateTimeOffset? ExchangeLastSuccessfulSyncDateTime { get; private set; }
         /// <summary>Free Storage in Bytes. Default value is 0. Read-only. This property is read-only.</summary>
@@ -188,10 +188,10 @@ namespace ApiSdk.Models
         /// <summary>List of log collection requests</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DeviceLogCollectionResponse>? LogCollectionRequests { get; set; }
+        public List<ApiSdk.Models.DeviceLogCollectionResponse>? LogCollectionRequests { get; set; }
 #nullable restore
 #else
-        public List<DeviceLogCollectionResponse> LogCollectionRequests { get; set; }
+        public List<ApiSdk.Models.DeviceLogCollectionResponse> LogCollectionRequests { get; set; }
 #endif
         /// <summary>Automatically generated name to identify a device. Can be overwritten to a user friendly name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -204,7 +204,7 @@ namespace ApiSdk.Models
         /// <summary>Owner type of device.</summary>
         public ApiSdk.Models.ManagedDeviceOwnerType? ManagedDeviceOwnerType { get; set; }
         /// <summary>The managementAgent property</summary>
-        public ManagementAgentType? ManagementAgent { get; set; }
+        public ApiSdk.Models.ManagementAgentType? ManagementAgent { get; set; }
         /// <summary>Reports device management certificate expiration date. This property is read-only.</summary>
         public DateTimeOffset? ManagementCertificateExpirationDate { get; private set; }
         /// <summary>Manufacturer of the device. This property is read-only.</summary>
@@ -256,7 +256,7 @@ namespace ApiSdk.Models
         public string OsVersion { get; private set; }
 #endif
         /// <summary>Available health states for the Device Health API</summary>
-        public ManagedDevicePartnerReportedHealthState? PartnerReportedThreatState { get; set; }
+        public ApiSdk.Models.ManagedDevicePartnerReportedHealthState? PartnerReportedThreatState { get; set; }
         /// <summary>Phone number of the device. This property is read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -338,10 +338,10 @@ namespace ApiSdk.Models
         /// <summary>The primary users associated with the managed device.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<User>? Users { get; set; }
+        public List<ApiSdk.Models.User>? Users { get; set; }
 #nullable restore
 #else
-        public List<User> Users { get; set; }
+        public List<ApiSdk.Models.User> Users { get; set; }
 #endif
         /// <summary>Wi-Fi MAC. This property is read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -362,12 +362,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ManagedDevice"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ManagedDevice"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ManagedDevice CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ManagedDevice CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedDevice();
+            return new ApiSdk.Models.ManagedDevice();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -382,17 +382,17 @@ namespace ApiSdk.Models
                 { "azureADDeviceId", n => { AzureADDeviceId = n.GetStringValue(); } },
                 { "azureADRegistered", n => { AzureADRegistered = n.GetBoolValue(); } },
                 { "complianceGracePeriodExpirationDateTime", n => { ComplianceGracePeriodExpirationDateTime = n.GetDateTimeOffsetValue(); } },
-                { "complianceState", n => { ComplianceState = n.GetEnumValue<ComplianceState>(); } },
+                { "complianceState", n => { ComplianceState = n.GetEnumValue<ApiSdk.Models.ComplianceState>(); } },
                 { "configurationManagerClientEnabledFeatures", n => { ConfigurationManagerClientEnabledFeatures = n.GetObjectValue<ApiSdk.Models.ConfigurationManagerClientEnabledFeatures>(ApiSdk.Models.ConfigurationManagerClientEnabledFeatures.CreateFromDiscriminatorValue); } },
-                { "deviceActionResults", n => { DeviceActionResults = n.GetCollectionOfObjectValues<DeviceActionResult>(DeviceActionResult.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "deviceActionResults", n => { DeviceActionResults = n.GetCollectionOfObjectValues<ApiSdk.Models.DeviceActionResult>(ApiSdk.Models.DeviceActionResult.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "deviceCategory", n => { DeviceCategory = n.GetObjectValue<ApiSdk.Models.DeviceCategory>(ApiSdk.Models.DeviceCategory.CreateFromDiscriminatorValue); } },
                 { "deviceCategoryDisplayName", n => { DeviceCategoryDisplayName = n.GetStringValue(); } },
-                { "deviceCompliancePolicyStates", n => { DeviceCompliancePolicyStates = n.GetCollectionOfObjectValues<DeviceCompliancePolicyState>(DeviceCompliancePolicyState.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "deviceConfigurationStates", n => { DeviceConfigurationStates = n.GetCollectionOfObjectValues<DeviceConfigurationState>(DeviceConfigurationState.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "deviceEnrollmentType", n => { DeviceEnrollmentType = n.GetEnumValue<DeviceEnrollmentType>(); } },
+                { "deviceCompliancePolicyStates", n => { DeviceCompliancePolicyStates = n.GetCollectionOfObjectValues<ApiSdk.Models.DeviceCompliancePolicyState>(ApiSdk.Models.DeviceCompliancePolicyState.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "deviceConfigurationStates", n => { DeviceConfigurationStates = n.GetCollectionOfObjectValues<ApiSdk.Models.DeviceConfigurationState>(ApiSdk.Models.DeviceConfigurationState.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "deviceEnrollmentType", n => { DeviceEnrollmentType = n.GetEnumValue<ApiSdk.Models.DeviceEnrollmentType>(); } },
                 { "deviceHealthAttestationState", n => { DeviceHealthAttestationState = n.GetObjectValue<ApiSdk.Models.DeviceHealthAttestationState>(ApiSdk.Models.DeviceHealthAttestationState.CreateFromDiscriminatorValue); } },
                 { "deviceName", n => { DeviceName = n.GetStringValue(); } },
-                { "deviceRegistrationState", n => { DeviceRegistrationState = n.GetEnumValue<DeviceRegistrationState>(); } },
+                { "deviceRegistrationState", n => { DeviceRegistrationState = n.GetEnumValue<ApiSdk.Models.DeviceRegistrationState>(); } },
                 { "easActivated", n => { EasActivated = n.GetBoolValue(); } },
                 { "easActivationDateTime", n => { EasActivationDateTime = n.GetDateTimeOffsetValue(); } },
                 { "easDeviceId", n => { EasDeviceId = n.GetStringValue(); } },
@@ -400,8 +400,8 @@ namespace ApiSdk.Models
                 { "enrolledDateTime", n => { EnrolledDateTime = n.GetDateTimeOffsetValue(); } },
                 { "enrollmentProfileName", n => { EnrollmentProfileName = n.GetStringValue(); } },
                 { "ethernetMacAddress", n => { EthernetMacAddress = n.GetStringValue(); } },
-                { "exchangeAccessState", n => { ExchangeAccessState = n.GetEnumValue<DeviceManagementExchangeAccessState>(); } },
-                { "exchangeAccessStateReason", n => { ExchangeAccessStateReason = n.GetEnumValue<DeviceManagementExchangeAccessStateReason>(); } },
+                { "exchangeAccessState", n => { ExchangeAccessState = n.GetEnumValue<ApiSdk.Models.DeviceManagementExchangeAccessState>(); } },
+                { "exchangeAccessStateReason", n => { ExchangeAccessStateReason = n.GetEnumValue<ApiSdk.Models.DeviceManagementExchangeAccessStateReason>(); } },
                 { "exchangeLastSuccessfulSyncDateTime", n => { ExchangeLastSuccessfulSyncDateTime = n.GetDateTimeOffsetValue(); } },
                 { "freeStorageSpaceInBytes", n => { FreeStorageSpaceInBytes = n.GetLongValue(); } },
                 { "iccid", n => { Iccid = n.GetStringValue(); } },
@@ -410,10 +410,10 @@ namespace ApiSdk.Models
                 { "isSupervised", n => { IsSupervised = n.GetBoolValue(); } },
                 { "jailBroken", n => { JailBroken = n.GetStringValue(); } },
                 { "lastSyncDateTime", n => { LastSyncDateTime = n.GetDateTimeOffsetValue(); } },
-                { "logCollectionRequests", n => { LogCollectionRequests = n.GetCollectionOfObjectValues<DeviceLogCollectionResponse>(DeviceLogCollectionResponse.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "logCollectionRequests", n => { LogCollectionRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.DeviceLogCollectionResponse>(ApiSdk.Models.DeviceLogCollectionResponse.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "managedDeviceName", n => { ManagedDeviceName = n.GetStringValue(); } },
-                { "managedDeviceOwnerType", n => { ManagedDeviceOwnerType = n.GetEnumValue<ManagedDeviceOwnerType>(); } },
-                { "managementAgent", n => { ManagementAgent = n.GetEnumValue<ManagementAgentType>(); } },
+                { "managedDeviceOwnerType", n => { ManagedDeviceOwnerType = n.GetEnumValue<ApiSdk.Models.ManagedDeviceOwnerType>(); } },
+                { "managementAgent", n => { ManagementAgent = n.GetEnumValue<ApiSdk.Models.ManagementAgentType>(); } },
                 { "managementCertificateExpirationDate", n => { ManagementCertificateExpirationDate = n.GetDateTimeOffsetValue(); } },
                 { "manufacturer", n => { Manufacturer = n.GetStringValue(); } },
                 { "meid", n => { Meid = n.GetStringValue(); } },
@@ -421,7 +421,7 @@ namespace ApiSdk.Models
                 { "notes", n => { Notes = n.GetStringValue(); } },
                 { "operatingSystem", n => { OperatingSystem = n.GetStringValue(); } },
                 { "osVersion", n => { OsVersion = n.GetStringValue(); } },
-                { "partnerReportedThreatState", n => { PartnerReportedThreatState = n.GetEnumValue<ManagedDevicePartnerReportedHealthState>(); } },
+                { "partnerReportedThreatState", n => { PartnerReportedThreatState = n.GetEnumValue<ApiSdk.Models.ManagedDevicePartnerReportedHealthState>(); } },
                 { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
                 { "physicalMemoryInBytes", n => { PhysicalMemoryInBytes = n.GetLongValue(); } },
                 { "remoteAssistanceSessionErrorDetails", n => { RemoteAssistanceSessionErrorDetails = n.GetStringValue(); } },
@@ -434,7 +434,7 @@ namespace ApiSdk.Models
                 { "userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
                 { "userId", n => { UserId = n.GetStringValue(); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
-                { "users", n => { Users = n.GetCollectionOfObjectValues<User>(User.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "users", n => { Users = n.GetCollectionOfObjectValues<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "wiFiMacAddress", n => { WiFiMacAddress = n.GetStringValue(); } },
                 { "windowsProtectionState", n => { WindowsProtectionState = n.GetObjectValue<ApiSdk.Models.WindowsProtectionState>(ApiSdk.Models.WindowsProtectionState.CreateFromDiscriminatorValue); } },
             };
@@ -447,21 +447,21 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<ComplianceState>("complianceState", ComplianceState);
+            writer.WriteEnumValue<ApiSdk.Models.ComplianceState>("complianceState", ComplianceState);
             writer.WriteObjectValue<ApiSdk.Models.DeviceCategory>("deviceCategory", DeviceCategory);
-            writer.WriteCollectionOfObjectValues<DeviceCompliancePolicyState>("deviceCompliancePolicyStates", DeviceCompliancePolicyStates);
-            writer.WriteCollectionOfObjectValues<DeviceConfigurationState>("deviceConfigurationStates", DeviceConfigurationStates);
-            writer.WriteEnumValue<DeviceEnrollmentType>("deviceEnrollmentType", DeviceEnrollmentType);
-            writer.WriteEnumValue<DeviceRegistrationState>("deviceRegistrationState", DeviceRegistrationState);
-            writer.WriteEnumValue<DeviceManagementExchangeAccessState>("exchangeAccessState", ExchangeAccessState);
-            writer.WriteEnumValue<DeviceManagementExchangeAccessStateReason>("exchangeAccessStateReason", ExchangeAccessStateReason);
-            writer.WriteCollectionOfObjectValues<DeviceLogCollectionResponse>("logCollectionRequests", LogCollectionRequests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DeviceCompliancePolicyState>("deviceCompliancePolicyStates", DeviceCompliancePolicyStates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DeviceConfigurationState>("deviceConfigurationStates", DeviceConfigurationStates);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceEnrollmentType>("deviceEnrollmentType", DeviceEnrollmentType);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceRegistrationState>("deviceRegistrationState", DeviceRegistrationState);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceManagementExchangeAccessState>("exchangeAccessState", ExchangeAccessState);
+            writer.WriteEnumValue<ApiSdk.Models.DeviceManagementExchangeAccessStateReason>("exchangeAccessStateReason", ExchangeAccessStateReason);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DeviceLogCollectionResponse>("logCollectionRequests", LogCollectionRequests);
             writer.WriteStringValue("managedDeviceName", ManagedDeviceName);
-            writer.WriteEnumValue<ManagedDeviceOwnerType>("managedDeviceOwnerType", ManagedDeviceOwnerType);
-            writer.WriteEnumValue<ManagementAgentType>("managementAgent", ManagementAgent);
+            writer.WriteEnumValue<ApiSdk.Models.ManagedDeviceOwnerType>("managedDeviceOwnerType", ManagedDeviceOwnerType);
+            writer.WriteEnumValue<ApiSdk.Models.ManagementAgentType>("managementAgent", ManagementAgent);
             writer.WriteStringValue("notes", Notes);
-            writer.WriteEnumValue<ManagedDevicePartnerReportedHealthState>("partnerReportedThreatState", PartnerReportedThreatState);
-            writer.WriteCollectionOfObjectValues<User>("users", Users);
+            writer.WriteEnumValue<ApiSdk.Models.ManagedDevicePartnerReportedHealthState>("partnerReportedThreatState", PartnerReportedThreatState);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.User>("users", Users);
             writer.WriteObjectValue<ApiSdk.Models.WindowsProtectionState>("windowsProtectionState", WindowsProtectionState);
         }
     }

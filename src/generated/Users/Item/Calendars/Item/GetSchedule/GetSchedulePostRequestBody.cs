@@ -18,10 +18,10 @@ namespace ApiSdk.Users.Item.Calendars.Item.GetSchedule
         /// <summary>The EndTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? EndTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? EndTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone EndTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone EndTime { get; set; }
 #endif
         /// <summary>The Schedules property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,13 +34,13 @@ namespace ApiSdk.Users.Item.Calendars.Item.GetSchedule
         /// <summary>The StartTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? StartTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? StartTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone StartTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone StartTime { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="GetSchedulePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Calendars.Item.GetSchedule.GetSchedulePostRequestBody"/> and sets the default values.
         /// </summary>
         public GetSchedulePostRequestBody()
         {
@@ -49,12 +49,12 @@ namespace ApiSdk.Users.Item.Calendars.Item.GetSchedule
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetSchedulePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.Calendars.Item.GetSchedule.GetSchedulePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetSchedulePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.Calendars.Item.GetSchedule.GetSchedulePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetSchedulePostRequestBody();
+            return new ApiSdk.Users.Item.Calendars.Item.GetSchedule.GetSchedulePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,9 +65,9 @@ namespace ApiSdk.Users.Item.Calendars.Item.GetSchedule
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "AvailabilityViewInterval", n => { AvailabilityViewInterval = n.GetIntValue(); } },
-                { "EndTime", n => { EndTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "EndTime", n => { EndTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 { "Schedules", n => { Schedules = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "StartTime", n => { StartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "StartTime", n => { StartTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -78,9 +78,9 @@ namespace ApiSdk.Users.Item.Calendars.Item.GetSchedule
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("AvailabilityViewInterval", AvailabilityViewInterval);
-            writer.WriteObjectValue<DateTimeTimeZone>("EndTime", EndTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("EndTime", EndTime);
             writer.WriteCollectionOfPrimitiveValues<string>("Schedules", Schedules);
-            writer.WriteObjectValue<DateTimeTimeZone>("StartTime", StartTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("StartTime", StartTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

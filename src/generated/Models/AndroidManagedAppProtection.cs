@@ -9,15 +9,15 @@ namespace ApiSdk.Models
     /// <summary>
     /// Policy used to configure detailed management settings targeted to specific security groups and for a specified set of apps on an Android device
     /// </summary>
-    public class AndroidManagedAppProtection : TargetedManagedAppProtection, IParsable
+    public class AndroidManagedAppProtection : ApiSdk.Models.TargetedManagedAppProtection, IParsable
     {
         /// <summary>List of apps to which the policy is deployed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ManagedMobileApp>? Apps { get; set; }
+        public List<ApiSdk.Models.ManagedMobileApp>? Apps { get; set; }
 #nullable restore
 #else
-        public List<ManagedMobileApp> Apps { get; set; }
+        public List<ApiSdk.Models.ManagedMobileApp> Apps { get; set; }
 #endif
         /// <summary>Friendly name of the preferred custom browser to open weblink on Android. When this property is configured, ManagedBrowserToOpenLinksRequired should be true.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,10 +40,10 @@ namespace ApiSdk.Models
         /// <summary>Navigation property to deployment summary of the configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ManagedAppPolicyDeploymentSummary? DeploymentSummary { get; set; }
+        public ApiSdk.Models.ManagedAppPolicyDeploymentSummary? DeploymentSummary { get; set; }
 #nullable restore
 #else
-        public ManagedAppPolicyDeploymentSummary DeploymentSummary { get; set; }
+        public ApiSdk.Models.ManagedAppPolicyDeploymentSummary DeploymentSummary { get; set; }
 #endif
         /// <summary>When this setting is enabled, app level encryption is disabled if device level encryption is enabled</summary>
         public bool? DisableAppEncryptionIfDeviceEncryptionIsEnabled { get; set; }
@@ -68,7 +68,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether a managed user can take screen captures of managed apps</summary>
         public bool? ScreenCaptureBlocked { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AndroidManagedAppProtection"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AndroidManagedAppProtection"/> and sets the default values.
         /// </summary>
         public AndroidManagedAppProtection() : base()
         {
@@ -77,12 +77,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AndroidManagedAppProtection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AndroidManagedAppProtection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AndroidManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AndroidManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AndroidManagedAppProtection();
+            return new ApiSdk.Models.AndroidManagedAppProtection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -92,11 +92,11 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "apps", n => { Apps = n.GetCollectionOfObjectValues<ManagedMobileApp>(ManagedMobileApp.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "apps", n => { Apps = n.GetCollectionOfObjectValues<ApiSdk.Models.ManagedMobileApp>(ApiSdk.Models.ManagedMobileApp.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "customBrowserDisplayName", n => { CustomBrowserDisplayName = n.GetStringValue(); } },
                 { "customBrowserPackageId", n => { CustomBrowserPackageId = n.GetStringValue(); } },
                 { "deployedAppCount", n => { DeployedAppCount = n.GetIntValue(); } },
-                { "deploymentSummary", n => { DeploymentSummary = n.GetObjectValue<ManagedAppPolicyDeploymentSummary>(ManagedAppPolicyDeploymentSummary.CreateFromDiscriminatorValue); } },
+                { "deploymentSummary", n => { DeploymentSummary = n.GetObjectValue<ApiSdk.Models.ManagedAppPolicyDeploymentSummary>(ApiSdk.Models.ManagedAppPolicyDeploymentSummary.CreateFromDiscriminatorValue); } },
                 { "disableAppEncryptionIfDeviceEncryptionIsEnabled", n => { DisableAppEncryptionIfDeviceEncryptionIsEnabled = n.GetBoolValue(); } },
                 { "encryptAppData", n => { EncryptAppData = n.GetBoolValue(); } },
                 { "minimumRequiredPatchVersion", n => { MinimumRequiredPatchVersion = n.GetStringValue(); } },
@@ -112,11 +112,11 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ManagedMobileApp>("apps", Apps);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ManagedMobileApp>("apps", Apps);
             writer.WriteStringValue("customBrowserDisplayName", CustomBrowserDisplayName);
             writer.WriteStringValue("customBrowserPackageId", CustomBrowserPackageId);
             writer.WriteIntValue("deployedAppCount", DeployedAppCount);
-            writer.WriteObjectValue<ManagedAppPolicyDeploymentSummary>("deploymentSummary", DeploymentSummary);
+            writer.WriteObjectValue<ApiSdk.Models.ManagedAppPolicyDeploymentSummary>("deploymentSummary", DeploymentSummary);
             writer.WriteBoolValue("disableAppEncryptionIfDeviceEncryptionIsEnabled", DisableAppEncryptionIfDeviceEncryptionIsEnabled);
             writer.WriteBoolValue("encryptAppData", EncryptAppData);
             writer.WriteStringValue("minimumRequiredPatchVersion", MinimumRequiredPatchVersion);

@@ -8,26 +8,26 @@ using System;
 namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stages.Item.Decisions.FilterByCurrentUserWithOn
 {
     #pragma warning disable CS1591
-    public class FilterByCurrentUserWithOnGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class FilterByCurrentUserWithOnGetResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessReviewInstanceDecisionItem>? Value { get; set; }
+        public List<ApiSdk.Models.AccessReviewInstanceDecisionItem>? Value { get; set; }
 #nullable restore
 #else
-        public List<AccessReviewInstanceDecisionItem> Value { get; set; }
+        public List<ApiSdk.Models.AccessReviewInstanceDecisionItem> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FilterByCurrentUserWithOnGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stages.Item.Decisions.FilterByCurrentUserWithOn.FilterByCurrentUserWithOnGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FilterByCurrentUserWithOnGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stages.Item.Decisions.FilterByCurrentUserWithOn.FilterByCurrentUserWithOnGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FilterByCurrentUserWithOnGetResponse();
+            return new ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stages.Item.Decisions.FilterByCurrentUserWithOn.FilterByCurrentUserWithOnGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<AccessReviewInstanceDecisionItem>(AccessReviewInstanceDecisionItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessReviewInstanceDecisionItem>(ApiSdk.Models.AccessReviewInstanceDecisionItem.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AccessReviewInstanceDecisionItem>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessReviewInstanceDecisionItem>("value", Value);
         }
     }
 }

@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Additional recipients the invitation message should be sent to. Currently only one additional recipient is supported.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Recipient>? CcRecipients { get; set; }
+        public List<ApiSdk.Models.Recipient>? CcRecipients { get; set; }
 #nullable restore
 #else
-        public List<Recipient> CcRecipients { get; set; }
+        public List<ApiSdk.Models.Recipient> CcRecipients { get; set; }
 #endif
         /// <summary>Customized message body you want to send if you don&apos;t want the default message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="InvitedUserMessageInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.InvitedUserMessageInfo"/> and sets the default values.
         /// </summary>
         public InvitedUserMessageInfo()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="InvitedUserMessageInfo"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.InvitedUserMessageInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static InvitedUserMessageInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.InvitedUserMessageInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new InvitedUserMessageInfo();
+            return new ApiSdk.Models.InvitedUserMessageInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "ccRecipients", n => { CcRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "ccRecipients", n => { CcRecipients = n.GetCollectionOfObjectValues<ApiSdk.Models.Recipient>(ApiSdk.Models.Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "customizedMessageBody", n => { CustomizedMessageBody = n.GetStringValue(); } },
                 { "messageLanguage", n => { MessageLanguage = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
@@ -82,7 +82,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<Recipient>("ccRecipients", CcRecipients);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Recipient>("ccRecipients", CcRecipients);
             writer.WriteStringValue("customizedMessageBody", CustomizedMessageBody);
             writer.WriteStringValue("messageLanguage", MessageLanguage);
             writer.WriteStringValue("@odata.type", OdataType);

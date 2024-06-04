@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Entity which represents a connection to Mobile Threat Defense partner.
     /// </summary>
-    public class MobileThreatDefenseConnector : Entity, IParsable
+    public class MobileThreatDefenseConnector : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>When TRUE, indicates the Mobile Threat Defense partner may collect metadata about installed applications from Intune for IOS devices. When FALSE, indicates the Mobile Threat Defense partner may not collect metadata about installed applications from Intune for IOS devices. Default value is FALSE.</summary>
         public bool? AllowPartnerToCollectIOSApplicationMetadata { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models
         /// <summary>When TRUE, inidicates that configuration profile management via Microsoft Defender for Endpoint is enabled. When FALSE, inidicates that configuration profile management via Microsoft Defender for Endpoint is disabled. Default value is FALSE.</summary>
         public bool? MicrosoftDefenderForEndpointAttachEnabled { get; set; }
         /// <summary>Partner state of this tenant.</summary>
-        public MobileThreatPartnerTenantState? PartnerState { get; set; }
+        public ApiSdk.Models.MobileThreatPartnerTenantState? PartnerState { get; set; }
         /// <summary>Get or Set days the per tenant tolerance to unresponsiveness for this partner integration</summary>
         public int? PartnerUnresponsivenessThresholdInDays { get; set; }
         /// <summary>Get or set whether to block devices on the enabled platforms that do not meet the minimum version requirements of the Mobile Threat Defense partner</summary>
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MobileThreatDefenseConnector"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MobileThreatDefenseConnector"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MobileThreatDefenseConnector CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MobileThreatDefenseConnector CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MobileThreatDefenseConnector();
+            return new ApiSdk.Models.MobileThreatDefenseConnector();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
                 { "iosMobileApplicationManagementEnabled", n => { IosMobileApplicationManagementEnabled = n.GetBoolValue(); } },
                 { "lastHeartbeatDateTime", n => { LastHeartbeatDateTime = n.GetDateTimeOffsetValue(); } },
                 { "microsoftDefenderForEndpointAttachEnabled", n => { MicrosoftDefenderForEndpointAttachEnabled = n.GetBoolValue(); } },
-                { "partnerState", n => { PartnerState = n.GetEnumValue<MobileThreatPartnerTenantState>(); } },
+                { "partnerState", n => { PartnerState = n.GetEnumValue<ApiSdk.Models.MobileThreatPartnerTenantState>(); } },
                 { "partnerUnresponsivenessThresholdInDays", n => { PartnerUnresponsivenessThresholdInDays = n.GetIntValue(); } },
                 { "partnerUnsupportedOsVersionBlocked", n => { PartnerUnsupportedOsVersionBlocked = n.GetBoolValue(); } },
                 { "windowsDeviceBlockedOnMissingPartnerData", n => { WindowsDeviceBlockedOnMissingPartnerData = n.GetBoolValue(); } },
@@ -94,7 +94,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("iosMobileApplicationManagementEnabled", IosMobileApplicationManagementEnabled);
             writer.WriteDateTimeOffsetValue("lastHeartbeatDateTime", LastHeartbeatDateTime);
             writer.WriteBoolValue("microsoftDefenderForEndpointAttachEnabled", MicrosoftDefenderForEndpointAttachEnabled);
-            writer.WriteEnumValue<MobileThreatPartnerTenantState>("partnerState", PartnerState);
+            writer.WriteEnumValue<ApiSdk.Models.MobileThreatPartnerTenantState>("partnerState", PartnerState);
             writer.WriteIntValue("partnerUnresponsivenessThresholdInDays", PartnerUnresponsivenessThresholdInDays);
             writer.WriteBoolValue("partnerUnsupportedOsVersionBlocked", PartnerUnsupportedOsVersionBlocked);
             writer.WriteBoolValue("windowsDeviceBlockedOnMissingPartnerData", WindowsDeviceBlockedOnMissingPartnerData);

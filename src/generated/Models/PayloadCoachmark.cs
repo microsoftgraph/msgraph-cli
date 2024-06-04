@@ -63,7 +63,7 @@ namespace ApiSdk.Models
         public string Order { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PayloadCoachmark"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PayloadCoachmark"/> and sets the default values.
         /// </summary>
         public PayloadCoachmark()
         {
@@ -72,12 +72,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PayloadCoachmark"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PayloadCoachmark"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PayloadCoachmark CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PayloadCoachmark CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PayloadCoachmark();
+            return new ApiSdk.Models.PayloadCoachmark();
         }
         /// <summary>
         /// The deserialization information for the current model

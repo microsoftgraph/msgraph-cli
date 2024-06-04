@@ -36,7 +36,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
         {
             var command = new Command("bulk-upload");
             command.Description = "Provides operations to manage the bulkUpload property of the microsoft.graph.synchronizationJob entity.";
-            var builder = new BulkUploadRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.BulkUpload.BulkUploadRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildContentNavCommand());
@@ -190,7 +190,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<SynchronizationJob>(SynchronizationJob.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.SynchronizationJob>(ApiSdk.Models.SynchronizationJob.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -219,7 +219,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
         {
             var command = new Command("pause");
             command.Description = "Provides operations to call the pause method.";
-            var builder = new PauseRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Pause.PauseRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -236,7 +236,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
         {
             var command = new Command("provision-on-demand");
             command.Description = "Provides operations to call the provisionOnDemand method.";
-            var builder = new ProvisionOnDemandRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ProvisionOnDemand.ProvisionOnDemandRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -253,7 +253,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
         {
             var command = new Command("restart");
             command.Description = "Provides operations to call the restart method.";
-            var builder = new RestartRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Restart.RestartRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -270,7 +270,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
         {
             var command = new Command("schema");
             command.Description = "Provides operations to manage the schema property of the microsoft.graph.synchronizationJob entity.";
-            var builder = new SchemaRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema.SchemaRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -298,7 +298,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
         {
             var command = new Command("start");
             command.Description = "Provides operations to call the start method.";
-            var builder = new StartRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Start.StartRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -315,7 +315,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
         {
             var command = new Command("validate-credentials-by-id");
             command.Description = "Provides operations to call the validateCredentials method.";
-            var builder = new ValidateCredentialsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ValidateCredentials.ValidateCredentialsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -325,14 +325,14 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SynchronizationJobItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.SynchronizationJobItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SynchronizationJobItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/{synchronizationJob%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SynchronizationJobItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.SynchronizationJobItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SynchronizationJobItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/{synchronizationJob%2Did}{?%24expand,%24select}", rawUrl)
@@ -364,11 +364,11 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SynchronizationJobItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.SynchronizationJobItemRequestBuilder.SynchronizationJobItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SynchronizationJobItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.SynchronizationJobItemRequestBuilder.SynchronizationJobItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -384,11 +384,11 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(SynchronizationJob body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SynchronizationJob body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(SynchronizationJob body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.SynchronizationJob body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

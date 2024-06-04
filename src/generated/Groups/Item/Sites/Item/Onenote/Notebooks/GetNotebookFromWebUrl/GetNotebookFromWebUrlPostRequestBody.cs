@@ -21,7 +21,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl
         public string WebUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="GetNotebookFromWebUrlPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl.GetNotebookFromWebUrlPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetNotebookFromWebUrlPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetNotebookFromWebUrlPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl.GetNotebookFromWebUrlPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetNotebookFromWebUrlPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl.GetNotebookFromWebUrlPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetNotebookFromWebUrlPostRequestBody();
+            return new ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl.GetNotebookFromWebUrlPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

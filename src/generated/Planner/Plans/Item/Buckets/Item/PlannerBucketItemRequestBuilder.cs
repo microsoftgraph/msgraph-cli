@@ -157,7 +157,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<PlannerBucket>(PlannerBucket.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.PlannerBucket>(ApiSdk.Models.PlannerBucket.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -186,7 +186,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item
         {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.plannerBucket entity.";
-            var builder = new TasksRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.TasksRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -206,14 +206,14 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PlannerBucketItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Planner.Plans.Item.Buckets.Item.PlannerBucketItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PlannerBucketItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PlannerBucketItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Planner.Plans.Item.Buckets.Item.PlannerBucketItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PlannerBucketItemRequestBuilder(string rawUrl) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}{?%24expand,%24select}", rawUrl)
@@ -245,11 +245,11 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PlannerBucketItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Planner.Plans.Item.Buckets.Item.PlannerBucketItemRequestBuilder.PlannerBucketItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PlannerBucketItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Planner.Plans.Item.Buckets.Item.PlannerBucketItemRequestBuilder.PlannerBucketItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -265,11 +265,11 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PlannerBucket body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PlannerBucket body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PlannerBucket body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PlannerBucket body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

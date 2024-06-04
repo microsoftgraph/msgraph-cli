@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CalendarGroup : Entity, IParsable
+    public class CalendarGroup : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The calendars in the calendar group. Navigation property. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Calendar>? Calendars { get; set; }
+        public List<ApiSdk.Models.Calendar>? Calendars { get; set; }
 #nullable restore
 #else
-        public List<Calendar> Calendars { get; set; }
+        public List<ApiSdk.Models.Calendar> Calendars { get; set; }
 #endif
         /// <summary>Identifies the version of the calendar group. Every time the calendar group is changed, ChangeKey changes as well. This allows Exchange to apply changes to the correct version of the object. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,12 +39,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CalendarGroup"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CalendarGroup"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CalendarGroup CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CalendarGroup CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CalendarGroup();
+            return new ApiSdk.Models.CalendarGroup();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "calendars", n => { Calendars = n.GetCollectionOfObjectValues<Calendar>(Calendar.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "calendars", n => { Calendars = n.GetCollectionOfObjectValues<ApiSdk.Models.Calendar>(ApiSdk.Models.Calendar.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "changeKey", n => { ChangeKey = n.GetStringValue(); } },
                 { "classId", n => { ClassId = n.GetGuidValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -68,7 +68,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Calendar>("calendars", Calendars);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Calendar>("calendars", Calendars);
             writer.WriteStringValue("changeKey", ChangeKey);
             writer.WriteGuidValue("classId", ClassId);
             writer.WriteStringValue("name", Name);

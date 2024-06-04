@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DriveItem : BaseItem, IParsable
+    public class DriveItem : ApiSdk.Models.BaseItem, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Analytics about the view activities that took place on this item.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemAnalytics? Analytics { get; set; }
+        public ApiSdk.Models.ItemAnalytics? Analytics { get; set; }
 #nullable restore
 #else
-        public ItemAnalytics Analytics { get; set; }
+        public ApiSdk.Models.ItemAnalytics Analytics { get; set; }
 #endif
         /// <summary>Audio metadata, if the item is an audio file. Read-only. Read-only. Only on OneDrive Personal.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,10 +37,10 @@ namespace ApiSdk.Models
         /// <summary>Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DriveItem>? Children { get; set; }
+        public List<ApiSdk.Models.DriveItem>? Children { get; set; }
 #nullable restore
 #else
-        public List<DriveItem> Children { get; set; }
+        public List<ApiSdk.Models.DriveItem> Children { get; set; }
 #endif
         /// <summary>The content stream, if the item represents a file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -69,10 +69,10 @@ namespace ApiSdk.Models
         /// <summary>File metadata, if the item is a file. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public FileObject? File { get; set; }
+        public ApiSdk.Models.FileObject? File { get; set; }
 #nullable restore
 #else
-        public FileObject File { get; set; }
+        public ApiSdk.Models.FileObject File { get; set; }
 #endif
         /// <summary>File system information on client. Read-write.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -109,10 +109,10 @@ namespace ApiSdk.Models
         /// <summary>Location metadata, if the item has location data. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public GeoCoordinates? Location { get; set; }
+        public ApiSdk.Models.GeoCoordinates? Location { get; set; }
 #nullable restore
 #else
-        public GeoCoordinates Location { get; set; }
+        public ApiSdk.Models.GeoCoordinates Location { get; set; }
 #endif
         /// <summary>Malware metadata, if the item was detected to contain malware. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -141,10 +141,10 @@ namespace ApiSdk.Models
         /// <summary>The set of permissions for the item. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Permission>? Permissions { get; set; }
+        public List<ApiSdk.Models.Permission>? Permissions { get; set; }
 #nullable restore
 #else
-        public List<Permission> Permissions { get; set; }
+        public List<ApiSdk.Models.Permission> Permissions { get; set; }
 #endif
         /// <summary>Photo metadata, if the item is a photo. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -157,10 +157,10 @@ namespace ApiSdk.Models
         /// <summary>Provides information about the published or checked-out state of an item, in locations that support such actions. This property isn&apos;t returned by default. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PublicationFacet? Publication { get; set; }
+        public ApiSdk.Models.PublicationFacet? Publication { get; set; }
 #nullable restore
 #else
-        public PublicationFacet Publication { get; set; }
+        public ApiSdk.Models.PublicationFacet Publication { get; set; }
 #endif
         /// <summary>Remote item data, if the item is shared from a drive other than the one being accessed. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,10 +173,10 @@ namespace ApiSdk.Models
         /// <summary>Information about retention label and settings enforced on the driveItem. Read-write.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemRetentionLabel? RetentionLabel { get; set; }
+        public ApiSdk.Models.ItemRetentionLabel? RetentionLabel { get; set; }
 #nullable restore
 #else
-        public ItemRetentionLabel RetentionLabel { get; set; }
+        public ApiSdk.Models.ItemRetentionLabel RetentionLabel { get; set; }
 #endif
         /// <summary>If this property is non-null, it indicates that the driveItem is the top-most driveItem in the drive.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -223,26 +223,26 @@ namespace ApiSdk.Models
         /// <summary>The set of subscriptions on the item. Only supported on the root of a drive.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Subscription>? Subscriptions { get; set; }
+        public List<ApiSdk.Models.Subscription>? Subscriptions { get; set; }
 #nullable restore
 #else
-        public List<Subscription> Subscriptions { get; set; }
+        public List<ApiSdk.Models.Subscription> Subscriptions { get; set; }
 #endif
         /// <summary>Collection of thumbnailSet objects associated with the item. For more information, see getting thumbnails. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ThumbnailSet>? Thumbnails { get; set; }
+        public List<ApiSdk.Models.ThumbnailSet>? Thumbnails { get; set; }
 #nullable restore
 #else
-        public List<ThumbnailSet> Thumbnails { get; set; }
+        public List<ApiSdk.Models.ThumbnailSet> Thumbnails { get; set; }
 #endif
         /// <summary>The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DriveItemVersion>? Versions { get; set; }
+        public List<ApiSdk.Models.DriveItemVersion>? Versions { get; set; }
 #nullable restore
 #else
-        public List<DriveItemVersion> Versions { get; set; }
+        public List<ApiSdk.Models.DriveItemVersion> Versions { get; set; }
 #endif
         /// <summary>Video metadata, if the item is a video. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -269,7 +269,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.Workbook Workbook { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DriveItem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DriveItem"/> and sets the default values.
         /// </summary>
         public DriveItem() : base()
         {
@@ -278,12 +278,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DriveItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DriveItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DriveItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DriveItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DriveItem();
+            return new ApiSdk.Models.DriveItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -293,36 +293,36 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "analytics", n => { Analytics = n.GetObjectValue<ItemAnalytics>(ItemAnalytics.CreateFromDiscriminatorValue); } },
+                { "analytics", n => { Analytics = n.GetObjectValue<ApiSdk.Models.ItemAnalytics>(ApiSdk.Models.ItemAnalytics.CreateFromDiscriminatorValue); } },
                 { "audio", n => { Audio = n.GetObjectValue<ApiSdk.Models.Audio>(ApiSdk.Models.Audio.CreateFromDiscriminatorValue); } },
                 { "bundle", n => { Bundle = n.GetObjectValue<ApiSdk.Models.Bundle>(ApiSdk.Models.Bundle.CreateFromDiscriminatorValue); } },
                 { "cTag", n => { CTag = n.GetStringValue(); } },
-                { "children", n => { Children = n.GetCollectionOfObjectValues<DriveItem>(DriveItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "children", n => { Children = n.GetCollectionOfObjectValues<ApiSdk.Models.DriveItem>(ApiSdk.Models.DriveItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "content", n => { Content = n.GetByteArrayValue(); } },
                 { "deleted", n => { Deleted = n.GetObjectValue<ApiSdk.Models.Deleted>(ApiSdk.Models.Deleted.CreateFromDiscriminatorValue); } },
-                { "file", n => { File = n.GetObjectValue<FileObject>(FileObject.CreateFromDiscriminatorValue); } },
+                { "file", n => { File = n.GetObjectValue<ApiSdk.Models.FileObject>(ApiSdk.Models.FileObject.CreateFromDiscriminatorValue); } },
                 { "fileSystemInfo", n => { FileSystemInfo = n.GetObjectValue<ApiSdk.Models.FileSystemInfo>(ApiSdk.Models.FileSystemInfo.CreateFromDiscriminatorValue); } },
                 { "folder", n => { Folder = n.GetObjectValue<ApiSdk.Models.Folder>(ApiSdk.Models.Folder.CreateFromDiscriminatorValue); } },
                 { "image", n => { Image = n.GetObjectValue<ApiSdk.Models.Image>(ApiSdk.Models.Image.CreateFromDiscriminatorValue); } },
                 { "listItem", n => { ListItem = n.GetObjectValue<ApiSdk.Models.ListItem>(ApiSdk.Models.ListItem.CreateFromDiscriminatorValue); } },
-                { "location", n => { Location = n.GetObjectValue<GeoCoordinates>(GeoCoordinates.CreateFromDiscriminatorValue); } },
+                { "location", n => { Location = n.GetObjectValue<ApiSdk.Models.GeoCoordinates>(ApiSdk.Models.GeoCoordinates.CreateFromDiscriminatorValue); } },
                 { "malware", n => { Malware = n.GetObjectValue<ApiSdk.Models.Malware>(ApiSdk.Models.Malware.CreateFromDiscriminatorValue); } },
                 { "package", n => { Package = n.GetObjectValue<ApiSdk.Models.Package>(ApiSdk.Models.Package.CreateFromDiscriminatorValue); } },
                 { "pendingOperations", n => { PendingOperations = n.GetObjectValue<ApiSdk.Models.PendingOperations>(ApiSdk.Models.PendingOperations.CreateFromDiscriminatorValue); } },
-                { "permissions", n => { Permissions = n.GetCollectionOfObjectValues<Permission>(Permission.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "permissions", n => { Permissions = n.GetCollectionOfObjectValues<ApiSdk.Models.Permission>(ApiSdk.Models.Permission.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "photo", n => { Photo = n.GetObjectValue<ApiSdk.Models.Photo>(ApiSdk.Models.Photo.CreateFromDiscriminatorValue); } },
-                { "publication", n => { Publication = n.GetObjectValue<PublicationFacet>(PublicationFacet.CreateFromDiscriminatorValue); } },
+                { "publication", n => { Publication = n.GetObjectValue<ApiSdk.Models.PublicationFacet>(ApiSdk.Models.PublicationFacet.CreateFromDiscriminatorValue); } },
                 { "remoteItem", n => { RemoteItem = n.GetObjectValue<ApiSdk.Models.RemoteItem>(ApiSdk.Models.RemoteItem.CreateFromDiscriminatorValue); } },
-                { "retentionLabel", n => { RetentionLabel = n.GetObjectValue<ItemRetentionLabel>(ItemRetentionLabel.CreateFromDiscriminatorValue); } },
+                { "retentionLabel", n => { RetentionLabel = n.GetObjectValue<ApiSdk.Models.ItemRetentionLabel>(ApiSdk.Models.ItemRetentionLabel.CreateFromDiscriminatorValue); } },
                 { "root", n => { Root = n.GetObjectValue<ApiSdk.Models.Root>(ApiSdk.Models.Root.CreateFromDiscriminatorValue); } },
                 { "searchResult", n => { SearchResult = n.GetObjectValue<ApiSdk.Models.SearchResult>(ApiSdk.Models.SearchResult.CreateFromDiscriminatorValue); } },
                 { "shared", n => { Shared = n.GetObjectValue<ApiSdk.Models.Shared>(ApiSdk.Models.Shared.CreateFromDiscriminatorValue); } },
                 { "sharepointIds", n => { SharepointIds = n.GetObjectValue<ApiSdk.Models.SharepointIds>(ApiSdk.Models.SharepointIds.CreateFromDiscriminatorValue); } },
                 { "size", n => { Size = n.GetLongValue(); } },
                 { "specialFolder", n => { SpecialFolder = n.GetObjectValue<ApiSdk.Models.SpecialFolder>(ApiSdk.Models.SpecialFolder.CreateFromDiscriminatorValue); } },
-                { "subscriptions", n => { Subscriptions = n.GetCollectionOfObjectValues<Subscription>(Subscription.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "thumbnails", n => { Thumbnails = n.GetCollectionOfObjectValues<ThumbnailSet>(ThumbnailSet.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "versions", n => { Versions = n.GetCollectionOfObjectValues<DriveItemVersion>(DriveItemVersion.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "subscriptions", n => { Subscriptions = n.GetCollectionOfObjectValues<ApiSdk.Models.Subscription>(ApiSdk.Models.Subscription.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "thumbnails", n => { Thumbnails = n.GetCollectionOfObjectValues<ApiSdk.Models.ThumbnailSet>(ApiSdk.Models.ThumbnailSet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "versions", n => { Versions = n.GetCollectionOfObjectValues<ApiSdk.Models.DriveItemVersion>(ApiSdk.Models.DriveItemVersion.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "video", n => { Video = n.GetObjectValue<ApiSdk.Models.Video>(ApiSdk.Models.Video.CreateFromDiscriminatorValue); } },
                 { "webDavUrl", n => { WebDavUrl = n.GetStringValue(); } },
                 { "workbook", n => { Workbook = n.GetObjectValue<ApiSdk.Models.Workbook>(ApiSdk.Models.Workbook.CreateFromDiscriminatorValue); } },
@@ -336,36 +336,36 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<ItemAnalytics>("analytics", Analytics);
+            writer.WriteObjectValue<ApiSdk.Models.ItemAnalytics>("analytics", Analytics);
             writer.WriteObjectValue<ApiSdk.Models.Audio>("audio", Audio);
             writer.WriteObjectValue<ApiSdk.Models.Bundle>("bundle", Bundle);
-            writer.WriteCollectionOfObjectValues<DriveItem>("children", Children);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DriveItem>("children", Children);
             writer.WriteByteArrayValue("content", Content);
             writer.WriteStringValue("cTag", CTag);
             writer.WriteObjectValue<ApiSdk.Models.Deleted>("deleted", Deleted);
-            writer.WriteObjectValue<FileObject>("file", File);
+            writer.WriteObjectValue<ApiSdk.Models.FileObject>("file", File);
             writer.WriteObjectValue<ApiSdk.Models.FileSystemInfo>("fileSystemInfo", FileSystemInfo);
             writer.WriteObjectValue<ApiSdk.Models.Folder>("folder", Folder);
             writer.WriteObjectValue<ApiSdk.Models.Image>("image", Image);
             writer.WriteObjectValue<ApiSdk.Models.ListItem>("listItem", ListItem);
-            writer.WriteObjectValue<GeoCoordinates>("location", Location);
+            writer.WriteObjectValue<ApiSdk.Models.GeoCoordinates>("location", Location);
             writer.WriteObjectValue<ApiSdk.Models.Malware>("malware", Malware);
             writer.WriteObjectValue<ApiSdk.Models.Package>("package", Package);
             writer.WriteObjectValue<ApiSdk.Models.PendingOperations>("pendingOperations", PendingOperations);
-            writer.WriteCollectionOfObjectValues<Permission>("permissions", Permissions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Permission>("permissions", Permissions);
             writer.WriteObjectValue<ApiSdk.Models.Photo>("photo", Photo);
-            writer.WriteObjectValue<PublicationFacet>("publication", Publication);
+            writer.WriteObjectValue<ApiSdk.Models.PublicationFacet>("publication", Publication);
             writer.WriteObjectValue<ApiSdk.Models.RemoteItem>("remoteItem", RemoteItem);
-            writer.WriteObjectValue<ItemRetentionLabel>("retentionLabel", RetentionLabel);
+            writer.WriteObjectValue<ApiSdk.Models.ItemRetentionLabel>("retentionLabel", RetentionLabel);
             writer.WriteObjectValue<ApiSdk.Models.Root>("root", Root);
             writer.WriteObjectValue<ApiSdk.Models.SearchResult>("searchResult", SearchResult);
             writer.WriteObjectValue<ApiSdk.Models.Shared>("shared", Shared);
             writer.WriteObjectValue<ApiSdk.Models.SharepointIds>("sharepointIds", SharepointIds);
             writer.WriteLongValue("size", Size);
             writer.WriteObjectValue<ApiSdk.Models.SpecialFolder>("specialFolder", SpecialFolder);
-            writer.WriteCollectionOfObjectValues<Subscription>("subscriptions", Subscriptions);
-            writer.WriteCollectionOfObjectValues<ThumbnailSet>("thumbnails", Thumbnails);
-            writer.WriteCollectionOfObjectValues<DriveItemVersion>("versions", Versions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Subscription>("subscriptions", Subscriptions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ThumbnailSet>("thumbnails", Thumbnails);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DriveItemVersion>("versions", Versions);
             writer.WriteObjectValue<ApiSdk.Models.Video>("video", Video);
             writer.WriteStringValue("webDavUrl", WebDavUrl);
             writer.WriteObjectValue<ApiSdk.Models.Workbook>("workbook", Workbook);

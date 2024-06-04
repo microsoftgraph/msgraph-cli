@@ -34,7 +34,7 @@ namespace ApiSdk.Admin
         {
             var command = new Command("edge");
             command.Description = "Provides operations to manage the edge property of the microsoft.graph.admin entity.";
-            var builder = new EdgeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.Edge.EdgeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -105,7 +105,7 @@ namespace ApiSdk.Admin
         {
             var command = new Command("microsoft365-apps");
             command.Description = "Provides operations to manage the microsoft365Apps property of the microsoft.graph.admin entity.";
-            var builder = new Microsoft365AppsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.Microsoft365Apps.Microsoft365AppsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -175,7 +175,7 @@ namespace ApiSdk.Admin
         {
             var command = new Command("people");
             command.Description = "Provides operations to manage the people property of the microsoft.graph.admin entity.";
-            var builder = new PeopleRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.People.PeopleRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -199,7 +199,7 @@ namespace ApiSdk.Admin
         {
             var command = new Command("service-announcement");
             command.Description = "Provides operations to manage the serviceAnnouncement property of the microsoft.graph.admin entity.";
-            var builder = new ServiceAnnouncementRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.ServiceAnnouncement.ServiceAnnouncementRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -226,7 +226,7 @@ namespace ApiSdk.Admin
         {
             var command = new Command("sharepoint");
             command.Description = "Provides operations to manage the sharepoint property of the microsoft.graph.admin entity.";
-            var builder = new SharepointRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.Sharepoint.SharepointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -244,14 +244,14 @@ namespace ApiSdk.Admin
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AdminRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.AdminRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AdminRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AdminRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.AdminRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AdminRequestBuilder(string rawUrl) : base("{+baseurl}/admin{?%24expand,%24select}", rawUrl)
@@ -264,11 +264,11 @@ namespace ApiSdk.Admin
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AdminRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.AdminRequestBuilder.AdminRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AdminRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.AdminRequestBuilder.AdminRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Error details, if expression evaluation resulted in an error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PublicError? Error { get; set; }
+        public ApiSdk.Models.PublicError? Error { get; set; }
 #nullable restore
 #else
-        public PublicError Error { get; set; }
+        public ApiSdk.Models.PublicError Error { get; set; }
 #endif
         /// <summary>A collection of values produced by the evaluation of the expression.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,15 +41,15 @@ namespace ApiSdk.Models
         /// <summary>An attributeMappingSource object representing the parsed expression.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AttributeMappingSource? ParsedExpression { get; set; }
+        public ApiSdk.Models.AttributeMappingSource? ParsedExpression { get; set; }
 #nullable restore
 #else
-        public AttributeMappingSource ParsedExpression { get; set; }
+        public ApiSdk.Models.AttributeMappingSource ParsedExpression { get; set; }
 #endif
         /// <summary>true if the expression was parsed successfully.</summary>
         public bool? ParsingSucceeded { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ParseExpressionResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ParseExpressionResponse"/> and sets the default values.
         /// </summary>
         public ParseExpressionResponse()
         {
@@ -58,12 +58,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ParseExpressionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ParseExpressionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ParseExpressionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ParseExpressionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ParseExpressionResponse();
+            return new ApiSdk.Models.ParseExpressionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -73,11 +73,11 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "error", n => { Error = n.GetObjectValue<PublicError>(PublicError.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<ApiSdk.Models.PublicError>(ApiSdk.Models.PublicError.CreateFromDiscriminatorValue); } },
                 { "evaluationResult", n => { EvaluationResult = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "evaluationSucceeded", n => { EvaluationSucceeded = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "parsedExpression", n => { ParsedExpression = n.GetObjectValue<AttributeMappingSource>(AttributeMappingSource.CreateFromDiscriminatorValue); } },
+                { "parsedExpression", n => { ParsedExpression = n.GetObjectValue<ApiSdk.Models.AttributeMappingSource>(ApiSdk.Models.AttributeMappingSource.CreateFromDiscriminatorValue); } },
                 { "parsingSucceeded", n => { ParsingSucceeded = n.GetBoolValue(); } },
             };
         }
@@ -88,11 +88,11 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<PublicError>("error", Error);
+            writer.WriteObjectValue<ApiSdk.Models.PublicError>("error", Error);
             writer.WriteCollectionOfPrimitiveValues<string>("evaluationResult", EvaluationResult);
             writer.WriteBoolValue("evaluationSucceeded", EvaluationSucceeded);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<AttributeMappingSource>("parsedExpression", ParsedExpression);
+            writer.WriteObjectValue<ApiSdk.Models.AttributeMappingSource>("parsedExpression", ParsedExpression);
             writer.WriteBoolValue("parsingSucceeded", ParsingSucceeded);
             writer.WriteAdditionalData(AdditionalData);
         }

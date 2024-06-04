@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class OnenoteOperationCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class OnenoteOperationCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<OnenoteOperation>? Value { get; set; }
+        public List<ApiSdk.Models.OnenoteOperation>? Value { get; set; }
 #nullable restore
 #else
-        public List<OnenoteOperation> Value { get; set; }
+        public List<ApiSdk.Models.OnenoteOperation> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnenoteOperationCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnenoteOperationCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OnenoteOperationCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OnenoteOperationCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new OnenoteOperationCollectionResponse();
+            return new ApiSdk.Models.OnenoteOperationCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<OnenoteOperation>(OnenoteOperation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.OnenoteOperation>(ApiSdk.Models.OnenoteOperation.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<OnenoteOperation>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.OnenoteOperation>("value", Value);
         }
     }
 }

@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Sharepoint : Entity, IParsable
+    public class Sharepoint : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The settings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SharepointSettings? Settings { get; set; }
+        public ApiSdk.Models.SharepointSettings? Settings { get; set; }
 #nullable restore
 #else
-        public SharepointSettings Settings { get; set; }
+        public ApiSdk.Models.SharepointSettings Settings { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Sharepoint"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Sharepoint"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Sharepoint CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Sharepoint CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Sharepoint();
+            return new ApiSdk.Models.Sharepoint();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "settings", n => { Settings = n.GetObjectValue<SharepointSettings>(SharepointSettings.CreateFromDiscriminatorValue); } },
+                { "settings", n => { Settings = n.GetObjectValue<ApiSdk.Models.SharepointSettings>(ApiSdk.Models.SharepointSettings.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<SharepointSettings>("settings", Settings);
+            writer.WriteObjectValue<ApiSdk.Models.SharepointSettings>("settings", Settings);
         }
     }
 }

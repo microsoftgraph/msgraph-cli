@@ -34,7 +34,7 @@ namespace ApiSdk.Teamwork
         {
             var command = new Command("deleted-chats");
             command.Description = "Provides operations to manage the deletedChats property of the microsoft.graph.teamwork entity.";
-            var builder = new DeletedChatsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Teamwork.DeletedChats.DeletedChatsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -61,7 +61,7 @@ namespace ApiSdk.Teamwork
         {
             var command = new Command("deleted-teams");
             command.Description = "Provides operations to manage the deletedTeams property of the microsoft.graph.teamwork entity.";
-            var builder = new DeletedTeamsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Teamwork.DeletedTeams.DeletedTeamsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -181,7 +181,7 @@ namespace ApiSdk.Teamwork
         {
             var command = new Command("send-activity-notification-to-recipients");
             command.Description = "Provides operations to call the sendActivityNotificationToRecipients method.";
-            var builder = new SendActivityNotificationToRecipientsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Teamwork.SendActivityNotificationToRecipients.SendActivityNotificationToRecipientsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -198,7 +198,7 @@ namespace ApiSdk.Teamwork
         {
             var command = new Command("teams-app-settings");
             command.Description = "Provides operations to manage the teamsAppSettings property of the microsoft.graph.teamwork entity.";
-            var builder = new TeamsAppSettingsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Teamwork.TeamsAppSettings.TeamsAppSettingsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -217,7 +217,7 @@ namespace ApiSdk.Teamwork
         {
             var command = new Command("workforce-integrations");
             command.Description = "Provides operations to manage the workforceIntegrations property of the microsoft.graph.teamwork entity.";
-            var builder = new WorkforceIntegrationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Teamwork.WorkforceIntegrations.WorkforceIntegrationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -237,14 +237,14 @@ namespace ApiSdk.Teamwork
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TeamworkRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.TeamworkRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TeamworkRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TeamworkRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Teamwork.TeamworkRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TeamworkRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork{?%24expand,%24select}", rawUrl)
@@ -257,11 +257,11 @@ namespace ApiSdk.Teamwork
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamworkRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Teamwork.TeamworkRequestBuilder.TeamworkRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamworkRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Teamwork.TeamworkRequestBuilder.TeamworkRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

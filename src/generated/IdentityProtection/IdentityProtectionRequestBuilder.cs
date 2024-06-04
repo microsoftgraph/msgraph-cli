@@ -97,7 +97,7 @@ namespace ApiSdk.IdentityProtection
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<IdentityProtectionRoot>(IdentityProtectionRoot.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.IdentityProtectionRoot>(ApiSdk.Models.IdentityProtectionRoot.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -124,7 +124,7 @@ namespace ApiSdk.IdentityProtection
         {
             var command = new Command("risk-detections");
             command.Description = "Provides operations to manage the riskDetections property of the microsoft.graph.identityProtectionRoot entity.";
-            var builder = new RiskDetectionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityProtection.RiskDetections.RiskDetectionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -151,7 +151,7 @@ namespace ApiSdk.IdentityProtection
         {
             var command = new Command("risky-service-principals");
             command.Description = "Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.";
-            var builder = new RiskyServicePrincipalsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityProtection.RiskyServicePrincipals.RiskyServicePrincipalsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildConfirmCompromisedNavCommand());
@@ -180,7 +180,7 @@ namespace ApiSdk.IdentityProtection
         {
             var command = new Command("risky-users");
             command.Description = "Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.";
-            var builder = new RiskyUsersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityProtection.RiskyUsers.RiskyUsersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildConfirmCompromisedNavCommand());
@@ -209,7 +209,7 @@ namespace ApiSdk.IdentityProtection
         {
             var command = new Command("service-principal-risk-detections");
             command.Description = "Provides operations to manage the servicePrincipalRiskDetections property of the microsoft.graph.identityProtectionRoot entity.";
-            var builder = new ServicePrincipalRiskDetectionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.ServicePrincipalRiskDetectionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -229,14 +229,14 @@ namespace ApiSdk.IdentityProtection
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="IdentityProtectionRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityProtection.IdentityProtectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IdentityProtectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="IdentityProtectionRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityProtection.IdentityProtectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IdentityProtectionRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection{?%24expand,%24select}", rawUrl)
@@ -249,11 +249,11 @@ namespace ApiSdk.IdentityProtection
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityProtectionRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityProtection.IdentityProtectionRequestBuilder.IdentityProtectionRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityProtectionRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityProtection.IdentityProtectionRequestBuilder.IdentityProtectionRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -269,11 +269,11 @@ namespace ApiSdk.IdentityProtection
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(IdentityProtectionRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityProtectionRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(IdentityProtectionRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityProtectionRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

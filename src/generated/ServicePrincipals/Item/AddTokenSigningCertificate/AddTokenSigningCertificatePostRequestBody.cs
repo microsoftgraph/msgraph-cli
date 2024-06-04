@@ -23,7 +23,7 @@ namespace ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate
         /// <summary>The endDateTime property</summary>
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AddTokenSigningCertificatePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate.AddTokenSigningCertificatePostRequestBody"/> and sets the default values.
         /// </summary>
         public AddTokenSigningCertificatePostRequestBody()
         {
@@ -32,12 +32,12 @@ namespace ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddTokenSigningCertificatePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate.AddTokenSigningCertificatePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AddTokenSigningCertificatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate.AddTokenSigningCertificatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddTokenSigningCertificatePostRequestBody();
+            return new ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate.AddTokenSigningCertificatePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

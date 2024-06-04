@@ -9,10 +9,10 @@ namespace ApiSdk.Models
     /// <summary>
     /// Device Configuration.
     /// </summary>
-    public class IosCertificateProfile : DeviceConfiguration, IParsable
+    public class IosCertificateProfile : ApiSdk.Models.DeviceConfiguration, IParsable
     {
         /// <summary>
-        /// Instantiates a new <see cref="IosCertificateProfile"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IosCertificateProfile"/> and sets the default values.
         /// </summary>
         public IosCertificateProfile() : base()
         {
@@ -21,12 +21,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosCertificateProfile"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosCertificateProfile"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IosCertificateProfile CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IosCertificateProfile CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IosCertificateProfile();
+            return new ApiSdk.Models.IosCertificateProfile();
         }
         /// <summary>
         /// The deserialization information for the current model

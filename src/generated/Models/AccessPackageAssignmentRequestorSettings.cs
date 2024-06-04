@@ -37,13 +37,13 @@ namespace ApiSdk.Models
         /// <summary>The principals who can request on-behalf-of others.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectSet>? OnBehalfRequestors { get; set; }
+        public List<ApiSdk.Models.SubjectSet>? OnBehalfRequestors { get; set; }
 #nullable restore
 #else
-        public List<SubjectSet> OnBehalfRequestors { get; set; }
+        public List<ApiSdk.Models.SubjectSet> OnBehalfRequestors { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessPackageAssignmentRequestorSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessPackageAssignmentRequestorSettings"/> and sets the default values.
         /// </summary>
         public AccessPackageAssignmentRequestorSettings()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageAssignmentRequestorSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageAssignmentRequestorSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AccessPackageAssignmentRequestorSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AccessPackageAssignmentRequestorSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageAssignmentRequestorSettings();
+            return new ApiSdk.Models.AccessPackageAssignmentRequestorSettings();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -75,7 +75,7 @@ namespace ApiSdk.Models
                 { "enableTargetsToSelfRemoveAccess", n => { EnableTargetsToSelfRemoveAccess = n.GetBoolValue(); } },
                 { "enableTargetsToSelfUpdateAccess", n => { EnableTargetsToSelfUpdateAccess = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "onBehalfRequestors", n => { OnBehalfRequestors = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "onBehalfRequestors", n => { OnBehalfRequestors = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectSet>(ApiSdk.Models.SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -93,7 +93,7 @@ namespace ApiSdk.Models
             writer.WriteBoolValue("enableTargetsToSelfRemoveAccess", EnableTargetsToSelfRemoveAccess);
             writer.WriteBoolValue("enableTargetsToSelfUpdateAccess", EnableTargetsToSelfUpdateAccess);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<SubjectSet>("onBehalfRequestors", OnBehalfRequestors);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectSet>("onBehalfRequestors", OnBehalfRequestors);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

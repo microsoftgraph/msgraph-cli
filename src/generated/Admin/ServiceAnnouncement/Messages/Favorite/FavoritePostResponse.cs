@@ -15,7 +15,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite
         /// <summary>The value property</summary>
         public bool? Value { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="FavoritePostResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite.FavoritePostResponse"/> and sets the default values.
         /// </summary>
         public FavoritePostResponse()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FavoritePostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite.FavoritePostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static FavoritePostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite.FavoritePostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FavoritePostResponse();
+            return new ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite.FavoritePostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

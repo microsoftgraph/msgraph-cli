@@ -61,14 +61,14 @@ namespace ApiSdk.Reports.GetM365AppUserDetailWithDate
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetM365AppUserDetailWithDateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetM365AppUserDetailWithDate.GetM365AppUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetM365AppUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getM365AppUserDetail(date={date})", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetM365AppUserDetailWithDateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetM365AppUserDetailWithDate.GetM365AppUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetM365AppUserDetailWithDateRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getM365AppUserDetail(date={date})", rawUrl)

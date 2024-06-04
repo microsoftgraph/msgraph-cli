@@ -50,14 +50,14 @@ namespace ApiSdk.Groups.Item.ResetUnseenCount
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ResetUnseenCountRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.ResetUnseenCount.ResetUnseenCountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ResetUnseenCountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/resetUnseenCount", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ResetUnseenCountRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.ResetUnseenCount.ResetUnseenCountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ResetUnseenCountRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/resetUnseenCount", rawUrl)

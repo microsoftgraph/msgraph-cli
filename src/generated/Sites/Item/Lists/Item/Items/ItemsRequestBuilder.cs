@@ -32,7 +32,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items
         {
             var executables = new List<Command>();
             var commands = new List<Command>();
-            var builder = new ListItemItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Lists.Item.Items.Item.ListItemItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildAnalyticsNavCommand());
             commands.Add(builder.BuildCreatedByUserNavCommand());
             commands.Add(builder.BuildCreateLinkNavCommand());
@@ -114,7 +114,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items
         {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
-            var builder = new DeltaRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Lists.Item.Items.Delta.DeltaRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -131,7 +131,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items
         {
             var command = new Command("delta-with-token");
             command.Description = "Provides operations to call the delta method.";
-            var builder = new DeltaWithTokenRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Sites.Item.Lists.Item.Items.DeltaWithToken.DeltaWithTokenRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -250,14 +250,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ItemsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.Items.ItemsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ItemsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ItemsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Sites.Item.Lists.Item.Items.ItemsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ItemsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -270,11 +270,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ItemsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Lists.Item.Items.ItemsRequestBuilder.ItemsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ItemsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Sites.Item.Lists.Item.Items.ItemsRequestBuilder.ItemsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

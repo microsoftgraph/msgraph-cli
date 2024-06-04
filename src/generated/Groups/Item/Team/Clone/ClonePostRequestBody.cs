@@ -46,11 +46,11 @@ namespace ApiSdk.Groups.Item.Team.Clone
         public string MailNickname { get; set; }
 #endif
         /// <summary>The partsToClone property</summary>
-        public ClonableTeamParts? PartsToClone { get; set; }
+        public ApiSdk.Models.ClonableTeamParts? PartsToClone { get; set; }
         /// <summary>The visibility property</summary>
-        public TeamVisibilityType? Visibility { get; set; }
+        public ApiSdk.Models.TeamVisibilityType? Visibility { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ClonePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Team.Clone.ClonePostRequestBody"/> and sets the default values.
         /// </summary>
         public ClonePostRequestBody()
         {
@@ -59,12 +59,12 @@ namespace ApiSdk.Groups.Item.Team.Clone
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ClonePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.Team.Clone.ClonePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ClonePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.Team.Clone.ClonePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ClonePostRequestBody();
+            return new ApiSdk.Groups.Item.Team.Clone.ClonePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,8 +78,8 @@ namespace ApiSdk.Groups.Item.Team.Clone
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "mailNickname", n => { MailNickname = n.GetStringValue(); } },
-                { "partsToClone", n => { PartsToClone = n.GetEnumValue<ClonableTeamParts>(); } },
-                { "visibility", n => { Visibility = n.GetEnumValue<TeamVisibilityType>(); } },
+                { "partsToClone", n => { PartsToClone = n.GetEnumValue<ApiSdk.Models.ClonableTeamParts>(); } },
+                { "visibility", n => { Visibility = n.GetEnumValue<ApiSdk.Models.TeamVisibilityType>(); } },
             };
         }
         /// <summary>
@@ -93,8 +93,8 @@ namespace ApiSdk.Groups.Item.Team.Clone
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("mailNickname", MailNickname);
-            writer.WriteEnumValue<ClonableTeamParts>("partsToClone", PartsToClone);
-            writer.WriteEnumValue<TeamVisibilityType>("visibility", Visibility);
+            writer.WriteEnumValue<ApiSdk.Models.ClonableTeamParts>("partsToClone", PartsToClone);
+            writer.WriteEnumValue<ApiSdk.Models.TeamVisibilityType>("visibility", Visibility);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

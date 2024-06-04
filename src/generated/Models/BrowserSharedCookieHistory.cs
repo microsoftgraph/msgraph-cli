@@ -41,10 +41,10 @@ namespace ApiSdk.Models
         /// <summary>The lastModifiedBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet LastModifiedBy { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,9 +65,9 @@ namespace ApiSdk.Models
         /// <summary>The date and time when the cookie was last published.</summary>
         public DateTimeOffset? PublishedDateTime { get; set; }
         /// <summary>Specifies how the cookies are shared between Microsoft Edge and Internet Explorer. The possible values are: microsoftEdge, internetExplorer11, both, unknownFutureValue.</summary>
-        public BrowserSharedCookieSourceEnvironment? SourceEnvironment { get; set; }
+        public ApiSdk.Models.BrowserSharedCookieSourceEnvironment? SourceEnvironment { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="BrowserSharedCookieHistory"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.BrowserSharedCookieHistory"/> and sets the default values.
         /// </summary>
         public BrowserSharedCookieHistory()
         {
@@ -76,12 +76,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BrowserSharedCookieHistory"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BrowserSharedCookieHistory"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BrowserSharedCookieHistory CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.BrowserSharedCookieHistory CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BrowserSharedCookieHistory();
+            return new ApiSdk.Models.BrowserSharedCookieHistory();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -95,11 +95,11 @@ namespace ApiSdk.Models
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "hostOnly", n => { HostOnly = n.GetBoolValue(); } },
                 { "hostOrDomain", n => { HostOrDomain = n.GetStringValue(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "path", n => { Path = n.GetStringValue(); } },
                 { "publishedDateTime", n => { PublishedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "sourceEnvironment", n => { SourceEnvironment = n.GetEnumValue<BrowserSharedCookieSourceEnvironment>(); } },
+                { "sourceEnvironment", n => { SourceEnvironment = n.GetEnumValue<ApiSdk.Models.BrowserSharedCookieSourceEnvironment>(); } },
             };
         }
         /// <summary>
@@ -113,11 +113,11 @@ namespace ApiSdk.Models
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("hostOnly", HostOnly);
             writer.WriteStringValue("hostOrDomain", HostOrDomain);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("path", Path);
             writer.WriteDateTimeOffsetValue("publishedDateTime", PublishedDateTime);
-            writer.WriteEnumValue<BrowserSharedCookieSourceEnvironment>("sourceEnvironment", SourceEnvironment);
+            writer.WriteEnumValue<ApiSdk.Models.BrowserSharedCookieSourceEnvironment>("sourceEnvironment", SourceEnvironment);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

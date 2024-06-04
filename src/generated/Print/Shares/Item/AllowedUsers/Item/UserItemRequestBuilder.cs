@@ -27,7 +27,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item
         {
             var command = new Command("mailbox-settings");
             command.Description = "The mailboxSettings property";
-            var builder = new MailboxSettingsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.Shares.Item.AllowedUsers.Item.MailboxSettings.MailboxSettingsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
@@ -45,7 +45,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item
         {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of print entities.";
-            var builder = new RefRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.Shares.Item.AllowedUsers.Item.Ref.RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             foreach (var cmd in execCommands)
@@ -62,7 +62,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item
         {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
-            var builder = new ServiceProvisioningErrorsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.Shares.Item.AllowedUsers.Item.ServiceProvisioningErrors.ServiceProvisioningErrorsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -78,14 +78,14 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.Shares.Item.AllowedUsers.Item.UserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedUsers/{user%2Did}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.Shares.Item.AllowedUsers.Item.UserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedUsers/{user%2Did}", rawUrl)

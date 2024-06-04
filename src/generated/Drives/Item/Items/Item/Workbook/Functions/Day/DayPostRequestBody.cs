@@ -16,13 +16,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day
         /// <summary>The serialNumber property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? SerialNumber { get; set; }
+        public ApiSdk.Models.Json? SerialNumber { get; set; }
 #nullable restore
 #else
-        public Json SerialNumber { get; set; }
+        public ApiSdk.Models.Json SerialNumber { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DayPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day.DayPostRequestBody"/> and sets the default values.
         /// </summary>
         public DayPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DayPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day.DayPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DayPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day.DayPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DayPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day.DayPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "serialNumber", n => { SerialNumber = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "serialNumber", n => { SerialNumber = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("serialNumber", SerialNumber);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("serialNumber", SerialNumber);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

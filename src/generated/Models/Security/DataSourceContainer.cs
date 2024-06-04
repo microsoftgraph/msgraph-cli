@@ -21,27 +21,27 @@ namespace ApiSdk.Models.Security
         public string DisplayName { get; set; }
 #endif
         /// <summary>The hold status of the dataSourceContainer. The possible values are: notApplied, applied, applying, removing, partial</summary>
-        public DataSourceHoldStatus? HoldStatus { get; set; }
+        public ApiSdk.Models.Security.DataSourceHoldStatus? HoldStatus { get; set; }
         /// <summary>Last modified date and time of the dataSourceContainer.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Date and time that the dataSourceContainer was released from the case.</summary>
         public DateTimeOffset? ReleasedDateTime { get; set; }
         /// <summary>Latest status of the dataSourceContainer. Possible values are: Active, Released.</summary>
-        public DataSourceContainerStatus? Status { get; set; }
+        public ApiSdk.Models.Security.DataSourceContainerStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DataSourceContainer"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.DataSourceContainer"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DataSourceContainer CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.DataSourceContainer CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.ediscoveryCustodian" => new EdiscoveryCustodian(),
-                "#microsoft.graph.security.ediscoveryNoncustodialDataSource" => new EdiscoveryNoncustodialDataSource(),
-                _ => new DataSourceContainer(),
+                "#microsoft.graph.security.ediscoveryCustodian" => new ApiSdk.Models.Security.EdiscoveryCustodian(),
+                "#microsoft.graph.security.ediscoveryNoncustodialDataSource" => new ApiSdk.Models.Security.EdiscoveryNoncustodialDataSource(),
+                _ => new ApiSdk.Models.Security.DataSourceContainer(),
             };
         }
         /// <summary>
@@ -54,10 +54,10 @@ namespace ApiSdk.Models.Security
             {
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "holdStatus", n => { HoldStatus = n.GetEnumValue<DataSourceHoldStatus>(); } },
+                { "holdStatus", n => { HoldStatus = n.GetEnumValue<ApiSdk.Models.Security.DataSourceHoldStatus>(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "releasedDateTime", n => { ReleasedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<DataSourceContainerStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.Security.DataSourceContainerStatus>(); } },
             };
         }
         /// <summary>
@@ -70,10 +70,10 @@ namespace ApiSdk.Models.Security
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<DataSourceHoldStatus>("holdStatus", HoldStatus);
+            writer.WriteEnumValue<ApiSdk.Models.Security.DataSourceHoldStatus>("holdStatus", HoldStatus);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteDateTimeOffsetValue("releasedDateTime", ReleasedDateTime);
-            writer.WriteEnumValue<DataSourceContainerStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.Security.DataSourceContainerStatus>("status", Status);
         }
     }
 }

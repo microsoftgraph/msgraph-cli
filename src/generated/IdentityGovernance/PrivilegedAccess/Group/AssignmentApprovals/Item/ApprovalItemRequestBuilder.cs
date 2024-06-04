@@ -168,7 +168,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.I
         {
             var command = new Command("stages");
             command.Description = "Provides operations to manage the stages property of the microsoft.graph.approval entity.";
-            var builder = new StagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.Item.Stages.StagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -188,14 +188,14 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.I
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ApprovalItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.Item.ApprovalItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ApprovalItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentApprovals/{approval%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ApprovalItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.Item.ApprovalItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ApprovalItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentApprovals/{approval%2Did}{?%24expand,%24select}", rawUrl)
@@ -227,11 +227,11 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.I
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApprovalItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.Item.ApprovalItemRequestBuilder.ApprovalItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApprovalItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.Item.ApprovalItemRequestBuilder.ApprovalItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

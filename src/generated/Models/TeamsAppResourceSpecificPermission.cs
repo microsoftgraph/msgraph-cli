@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The type of resource-specific permission.</summary>
-        public TeamsAppResourceSpecificPermissionType? PermissionType { get; set; }
+        public ApiSdk.Models.TeamsAppResourceSpecificPermissionType? PermissionType { get; set; }
         /// <summary>The name of the resource-specific permission.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,7 +31,7 @@ namespace ApiSdk.Models
         public string PermissionValue { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TeamsAppResourceSpecificPermission"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TeamsAppResourceSpecificPermission"/> and sets the default values.
         /// </summary>
         public TeamsAppResourceSpecificPermission()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamsAppResourceSpecificPermission"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamsAppResourceSpecificPermission"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TeamsAppResourceSpecificPermission CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TeamsAppResourceSpecificPermission CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamsAppResourceSpecificPermission();
+            return new ApiSdk.Models.TeamsAppResourceSpecificPermission();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,7 +56,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "permissionType", n => { PermissionType = n.GetEnumValue<TeamsAppResourceSpecificPermissionType>(); } },
+                { "permissionType", n => { PermissionType = n.GetEnumValue<ApiSdk.Models.TeamsAppResourceSpecificPermissionType>(); } },
                 { "permissionValue", n => { PermissionValue = n.GetStringValue(); } },
             };
         }
@@ -68,7 +68,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<TeamsAppResourceSpecificPermissionType>("permissionType", PermissionType);
+            writer.WriteEnumValue<ApiSdk.Models.TeamsAppResourceSpecificPermissionType>("permissionType", PermissionType);
             writer.WriteStringValue("permissionValue", PermissionValue);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationOrganization : Entity, IParsable
+    public class EducationOrganization : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Organization description.</summary>
@@ -27,7 +27,7 @@ namespace ApiSdk.Models
         public string DisplayName { get; set; }
 #endif
         /// <summary>Source where this organization was created from. Possible values are: sis, manual.</summary>
-        public EducationExternalSource? ExternalSource { get; set; }
+        public ApiSdk.Models.EducationExternalSource? ExternalSource { get; set; }
         /// <summary>The name of the external source this resource was generated from.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,16 +39,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationOrganization"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationOrganization"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationOrganization CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationOrganization CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.educationSchool" => new EducationSchool(),
-                _ => new EducationOrganization(),
+                "#microsoft.graph.educationSchool" => new ApiSdk.Models.EducationSchool(),
+                _ => new ApiSdk.Models.EducationOrganization(),
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "externalSource", n => { ExternalSource = n.GetEnumValue<EducationExternalSource>(); } },
+                { "externalSource", n => { ExternalSource = n.GetEnumValue<ApiSdk.Models.EducationExternalSource>(); } },
                 { "externalSourceDetail", n => { ExternalSourceDetail = n.GetStringValue(); } },
             };
         }
@@ -75,7 +75,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<EducationExternalSource>("externalSource", ExternalSource);
+            writer.WriteEnumValue<ApiSdk.Models.EducationExternalSource>("externalSource", ExternalSource);
             writer.WriteStringValue("externalSourceDetail", ExternalSourceDetail);
         }
     }

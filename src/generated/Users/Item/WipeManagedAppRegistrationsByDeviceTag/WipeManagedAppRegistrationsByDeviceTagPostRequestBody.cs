@@ -21,7 +21,7 @@ namespace ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag
         public string DeviceTag { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="WipeManagedAppRegistrationsByDeviceTagPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag.WipeManagedAppRegistrationsByDeviceTagPostRequestBody"/> and sets the default values.
         /// </summary>
         public WipeManagedAppRegistrationsByDeviceTagPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WipeManagedAppRegistrationsByDeviceTagPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag.WipeManagedAppRegistrationsByDeviceTagPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WipeManagedAppRegistrationsByDeviceTagPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag.WipeManagedAppRegistrationsByDeviceTagPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WipeManagedAppRegistrationsByDeviceTagPostRequestBody();
+            return new ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag.WipeManagedAppRegistrationsByDeviceTagPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

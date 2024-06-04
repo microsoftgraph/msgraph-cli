@@ -7,43 +7,43 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationRubricOutcome : EducationOutcome, IParsable
+    public class EducationRubricOutcome : ApiSdk.Models.EducationOutcome, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A copy of the rubricQualityFeedback property that is made when the grade is released to the student.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RubricQualityFeedbackModel>? PublishedRubricQualityFeedback { get; set; }
+        public List<ApiSdk.Models.RubricQualityFeedbackModel>? PublishedRubricQualityFeedback { get; set; }
 #nullable restore
 #else
-        public List<RubricQualityFeedbackModel> PublishedRubricQualityFeedback { get; set; }
+        public List<ApiSdk.Models.RubricQualityFeedbackModel> PublishedRubricQualityFeedback { get; set; }
 #endif
         /// <summary>A copy of the rubricQualitySelectedLevels property that is made when the grade is released to the student.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RubricQualitySelectedColumnModel>? PublishedRubricQualitySelectedLevels { get; set; }
+        public List<ApiSdk.Models.RubricQualitySelectedColumnModel>? PublishedRubricQualitySelectedLevels { get; set; }
 #nullable restore
 #else
-        public List<RubricQualitySelectedColumnModel> PublishedRubricQualitySelectedLevels { get; set; }
+        public List<ApiSdk.Models.RubricQualitySelectedColumnModel> PublishedRubricQualitySelectedLevels { get; set; }
 #endif
         /// <summary>A collection of specific feedback for each quality of this rubric.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RubricQualityFeedbackModel>? RubricQualityFeedback { get; set; }
+        public List<ApiSdk.Models.RubricQualityFeedbackModel>? RubricQualityFeedback { get; set; }
 #nullable restore
 #else
-        public List<RubricQualityFeedbackModel> RubricQualityFeedback { get; set; }
+        public List<ApiSdk.Models.RubricQualityFeedbackModel> RubricQualityFeedback { get; set; }
 #endif
         /// <summary>The level that the teacher has selected for each quality while grading this assignment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RubricQualitySelectedColumnModel>? RubricQualitySelectedLevels { get; set; }
+        public List<ApiSdk.Models.RubricQualitySelectedColumnModel>? RubricQualitySelectedLevels { get; set; }
 #nullable restore
 #else
-        public List<RubricQualitySelectedColumnModel> RubricQualitySelectedLevels { get; set; }
+        public List<ApiSdk.Models.RubricQualitySelectedColumnModel> RubricQualitySelectedLevels { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="EducationRubricOutcome"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.EducationRubricOutcome"/> and sets the default values.
         /// </summary>
         public EducationRubricOutcome() : base()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationRubricOutcome"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationRubricOutcome"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationRubricOutcome CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationRubricOutcome CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationRubricOutcome();
+            return new ApiSdk.Models.EducationRubricOutcome();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -67,10 +67,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "publishedRubricQualityFeedback", n => { PublishedRubricQualityFeedback = n.GetCollectionOfObjectValues<RubricQualityFeedbackModel>(RubricQualityFeedbackModel.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "publishedRubricQualitySelectedLevels", n => { PublishedRubricQualitySelectedLevels = n.GetCollectionOfObjectValues<RubricQualitySelectedColumnModel>(RubricQualitySelectedColumnModel.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "rubricQualityFeedback", n => { RubricQualityFeedback = n.GetCollectionOfObjectValues<RubricQualityFeedbackModel>(RubricQualityFeedbackModel.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "rubricQualitySelectedLevels", n => { RubricQualitySelectedLevels = n.GetCollectionOfObjectValues<RubricQualitySelectedColumnModel>(RubricQualitySelectedColumnModel.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "publishedRubricQualityFeedback", n => { PublishedRubricQualityFeedback = n.GetCollectionOfObjectValues<ApiSdk.Models.RubricQualityFeedbackModel>(ApiSdk.Models.RubricQualityFeedbackModel.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "publishedRubricQualitySelectedLevels", n => { PublishedRubricQualitySelectedLevels = n.GetCollectionOfObjectValues<ApiSdk.Models.RubricQualitySelectedColumnModel>(ApiSdk.Models.RubricQualitySelectedColumnModel.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "rubricQualityFeedback", n => { RubricQualityFeedback = n.GetCollectionOfObjectValues<ApiSdk.Models.RubricQualityFeedbackModel>(ApiSdk.Models.RubricQualityFeedbackModel.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "rubricQualitySelectedLevels", n => { RubricQualitySelectedLevels = n.GetCollectionOfObjectValues<ApiSdk.Models.RubricQualitySelectedColumnModel>(ApiSdk.Models.RubricQualitySelectedColumnModel.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -81,10 +81,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<RubricQualityFeedbackModel>("publishedRubricQualityFeedback", PublishedRubricQualityFeedback);
-            writer.WriteCollectionOfObjectValues<RubricQualitySelectedColumnModel>("publishedRubricQualitySelectedLevels", PublishedRubricQualitySelectedLevels);
-            writer.WriteCollectionOfObjectValues<RubricQualityFeedbackModel>("rubricQualityFeedback", RubricQualityFeedback);
-            writer.WriteCollectionOfObjectValues<RubricQualitySelectedColumnModel>("rubricQualitySelectedLevels", RubricQualitySelectedLevels);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RubricQualityFeedbackModel>("publishedRubricQualityFeedback", PublishedRubricQualityFeedback);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RubricQualitySelectedColumnModel>("publishedRubricQualitySelectedLevels", PublishedRubricQualitySelectedLevels);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RubricQualityFeedbackModel>("rubricQualityFeedback", RubricQualityFeedback);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RubricQualitySelectedColumnModel>("rubricQualitySelectedLevels", RubricQualitySelectedLevels);
         }
     }
 }

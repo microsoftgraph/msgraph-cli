@@ -21,7 +21,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword
         public string NewPassword { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ResetPasswordPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword.ResetPasswordPostRequestBody"/> and sets the default values.
         /// </summary>
         public ResetPasswordPostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ResetPasswordPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword.ResetPasswordPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ResetPasswordPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword.ResetPasswordPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ResetPasswordPostRequestBody();
+            return new ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword.ResetPasswordPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

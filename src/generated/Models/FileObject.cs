@@ -39,7 +39,7 @@ namespace ApiSdk.Models
         /// <summary>The processingMetadata property</summary>
         public bool? ProcessingMetadata { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="FileObject"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.FileObject"/> and sets the default values.
         /// </summary>
         public FileObject()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FileObject"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.FileObject"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static FileObject CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.FileObject CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FileObject();
+            return new ApiSdk.Models.FileObject();
         }
         /// <summary>
         /// The deserialization information for the current model

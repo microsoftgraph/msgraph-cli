@@ -33,13 +33,13 @@ namespace ApiSdk.Models
         /// <summary>The user property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ChatMessageReactionIdentitySet? User { get; set; }
+        public ApiSdk.Models.ChatMessageReactionIdentitySet? User { get; set; }
 #nullable restore
 #else
-        public ChatMessageReactionIdentitySet User { get; set; }
+        public ApiSdk.Models.ChatMessageReactionIdentitySet User { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ChatMessageReaction"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ChatMessageReaction"/> and sets the default values.
         /// </summary>
         public ChatMessageReaction()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChatMessageReaction"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ChatMessageReaction"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ChatMessageReaction CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ChatMessageReaction CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChatMessageReaction();
+            return new ApiSdk.Models.ChatMessageReaction();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "reactionType", n => { ReactionType = n.GetStringValue(); } },
-                { "user", n => { User = n.GetObjectValue<ChatMessageReactionIdentitySet>(ChatMessageReactionIdentitySet.CreateFromDiscriminatorValue); } },
+                { "user", n => { User = n.GetObjectValue<ApiSdk.Models.ChatMessageReactionIdentitySet>(ApiSdk.Models.ChatMessageReactionIdentitySet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -79,7 +79,7 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("reactionType", ReactionType);
-            writer.WriteObjectValue<ChatMessageReactionIdentitySet>("user", User);
+            writer.WriteObjectValue<ApiSdk.Models.ChatMessageReactionIdentitySet>("user", User);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

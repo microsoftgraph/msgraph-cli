@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DelegatedAdminRelationshipRequest : Entity, IParsable
+    public class DelegatedAdminRelationshipRequest : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The action property</summary>
-        public DelegatedAdminRelationshipRequestAction? Action { get; set; }
+        public ApiSdk.Models.DelegatedAdminRelationshipRequestAction? Action { get; set; }
         /// <summary>The date and time in ISO 8601 format and in UTC time when the relationship request was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The date and time in ISO 8601 format and UTC time when this relationship request was last modified. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>The status of the request. Read-only. The possible values are: created, pending, succeeded, failed, unknownFutureValue.</summary>
-        public DelegatedAdminRelationshipRequestStatus? Status { get; set; }
+        public ApiSdk.Models.DelegatedAdminRelationshipRequestStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DelegatedAdminRelationshipRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DelegatedAdminRelationshipRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DelegatedAdminRelationshipRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DelegatedAdminRelationshipRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DelegatedAdminRelationshipRequest();
+            return new ApiSdk.Models.DelegatedAdminRelationshipRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,10 +36,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "action", n => { Action = n.GetEnumValue<DelegatedAdminRelationshipRequestAction>(); } },
+                { "action", n => { Action = n.GetEnumValue<ApiSdk.Models.DelegatedAdminRelationshipRequestAction>(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<DelegatedAdminRelationshipRequestStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.DelegatedAdminRelationshipRequestStatus>(); } },
             };
         }
         /// <summary>
@@ -50,10 +50,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<DelegatedAdminRelationshipRequestAction>("action", Action);
+            writer.WriteEnumValue<ApiSdk.Models.DelegatedAdminRelationshipRequestAction>("action", Action);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteEnumValue<DelegatedAdminRelationshipRequestStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.DelegatedAdminRelationshipRequestStatus>("status", Status);
         }
     }
 }

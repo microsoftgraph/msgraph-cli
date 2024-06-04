@@ -32,9 +32,9 @@ namespace ApiSdk.Models
         /// <summary>The amount of time before the start of an appointment that the reminder should be sent. It&apos;s denoted in ISO 8601 format.</summary>
         public TimeSpan? Offset { get; set; }
         /// <summary>The recipients property</summary>
-        public BookingReminderRecipients? Recipients { get; set; }
+        public ApiSdk.Models.BookingReminderRecipients? Recipients { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="BookingReminder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.BookingReminder"/> and sets the default values.
         /// </summary>
         public BookingReminder()
         {
@@ -43,12 +43,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BookingReminder"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BookingReminder"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static BookingReminder CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.BookingReminder CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BookingReminder();
+            return new ApiSdk.Models.BookingReminder();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
                 { "message", n => { Message = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "offset", n => { Offset = n.GetTimeSpanValue(); } },
-                { "recipients", n => { Recipients = n.GetEnumValue<BookingReminderRecipients>(); } },
+                { "recipients", n => { Recipients = n.GetEnumValue<ApiSdk.Models.BookingReminderRecipients>(); } },
             };
         }
         /// <summary>
@@ -74,7 +74,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("message", Message);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteTimeSpanValue("offset", Offset);
-            writer.WriteEnumValue<BookingReminderRecipients>("recipients", Recipients);
+            writer.WriteEnumValue<ApiSdk.Models.BookingReminderRecipients>("recipients", Recipients);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

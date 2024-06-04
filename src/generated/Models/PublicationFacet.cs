@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The user who checked out the file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? CheckedOutBy { get; set; }
+        public ApiSdk.Models.IdentitySet? CheckedOutBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet CheckedOutBy { get; set; }
+        public ApiSdk.Models.IdentitySet CheckedOutBy { get; set; }
 #endif
         /// <summary>The state of publication for this document. Either published or checkout. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
         public string VersionId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PublicationFacet"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PublicationFacet"/> and sets the default values.
         /// </summary>
         public PublicationFacet()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PublicationFacet"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PublicationFacet"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PublicationFacet CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PublicationFacet CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PublicationFacet();
+            return new ApiSdk.Models.PublicationFacet();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "checkedOutBy", n => { CheckedOutBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "checkedOutBy", n => { CheckedOutBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "level", n => { Level = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "versionId", n => { VersionId = n.GetStringValue(); } },
@@ -82,7 +82,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<IdentitySet>("checkedOutBy", CheckedOutBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("checkedOutBy", CheckedOutBy);
             writer.WriteStringValue("level", Level);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("versionId", VersionId);

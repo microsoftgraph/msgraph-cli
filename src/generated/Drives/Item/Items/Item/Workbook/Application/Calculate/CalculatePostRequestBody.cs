@@ -21,7 +21,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate
         public string CalculationType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CalculatePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate.CalculatePostRequestBody"/> and sets the default values.
         /// </summary>
         public CalculatePostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CalculatePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate.CalculatePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CalculatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate.CalculatePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CalculatePostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate.CalculatePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

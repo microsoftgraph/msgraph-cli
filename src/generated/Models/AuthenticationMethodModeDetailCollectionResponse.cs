@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AuthenticationMethodModeDetailCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class AuthenticationMethodModeDetailCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationMethodModeDetail>? Value { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodModeDetail>? Value { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationMethodModeDetail> Value { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodModeDetail> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationMethodModeDetailCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationMethodModeDetailCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AuthenticationMethodModeDetailCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AuthenticationMethodModeDetailCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthenticationMethodModeDetailCollectionResponse();
+            return new ApiSdk.Models.AuthenticationMethodModeDetailCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<AuthenticationMethodModeDetail>(AuthenticationMethodModeDetail.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.AuthenticationMethodModeDetail>(ApiSdk.Models.AuthenticationMethodModeDetail.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AuthenticationMethodModeDetail>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuthenticationMethodModeDetail>("value", Value);
         }
     }
 }

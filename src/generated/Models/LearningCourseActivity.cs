@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class LearningCourseActivity : Entity, IParsable
+    public class LearningCourseActivity : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Date and time when the assignment was completed. Optional.</summary>
@@ -47,21 +47,21 @@ namespace ApiSdk.Models
         public string LearningProviderId { get; set; }
 #endif
         /// <summary>The status of the course activity. Possible values are: notStarted, inProgress, completed. Required.</summary>
-        public CourseStatus? Status { get; set; }
+        public ApiSdk.Models.CourseStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LearningCourseActivity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.LearningCourseActivity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new LearningCourseActivity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.LearningCourseActivity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.learningAssignment" => new LearningAssignment(),
-                "#microsoft.graph.learningSelfInitiatedCourse" => new LearningSelfInitiatedCourse(),
-                _ => new LearningCourseActivity(),
+                "#microsoft.graph.learningAssignment" => new ApiSdk.Models.LearningAssignment(),
+                "#microsoft.graph.learningSelfInitiatedCourse" => new ApiSdk.Models.LearningSelfInitiatedCourse(),
+                _ => new ApiSdk.Models.LearningCourseActivity(),
             };
         }
         /// <summary>
@@ -78,7 +78,7 @@ namespace ApiSdk.Models
                 { "learnerUserId", n => { LearnerUserId = n.GetStringValue(); } },
                 { "learningContentId", n => { LearningContentId = n.GetStringValue(); } },
                 { "learningProviderId", n => { LearningProviderId = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<CourseStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.CourseStatus>(); } },
             };
         }
         /// <summary>
@@ -95,7 +95,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("learnerUserId", LearnerUserId);
             writer.WriteStringValue("learningContentId", LearningContentId);
             writer.WriteStringValue("learningProviderId", LearningProviderId);
-            writer.WriteEnumValue<CourseStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.CourseStatus>("status", Status);
         }
     }
 }

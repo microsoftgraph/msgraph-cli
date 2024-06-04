@@ -61,7 +61,7 @@ namespace ApiSdk.Models
         public string DestinationUrl { get; set; }
 #endif
         /// <summary>Network connection direction. Possible values are: unknown, inbound, outbound.</summary>
-        public ConnectionDirection? Direction { get; set; }
+        public ApiSdk.Models.ConnectionDirection? Direction { get; set; }
         /// <summary>Date when the destination domain was registered. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? DomainRegisteredDateTime { get; set; }
         /// <summary>The local DNS name resolution as it appears in the host&apos;s local DNS cache (for example, in case the &apos;hosts&apos; file was tampered with).</summary>
@@ -113,7 +113,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>Network protocol. Possible values are: unknown, ip, icmp, igmp, ggp, ipv4, tcp, pup, udp, idp, ipv6, ipv6RoutingHeader, ipv6FragmentHeader, ipSecEncapsulatingSecurityPayload, ipSecAuthenticationHeader, icmpV6, ipv6NoNextHeader, ipv6DestinationOptions, nd, raw, ipx, spx, spxII.</summary>
-        public SecurityNetworkProtocol? Protocol { get; set; }
+        public ApiSdk.Models.SecurityNetworkProtocol? Protocol { get; set; }
         /// <summary>Provider generated/calculated risk score of the network connection. Recommended value range of 0-1, which equates to a percentage.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -147,7 +147,7 @@ namespace ApiSdk.Models
         public string SourcePort { get; set; }
 #endif
         /// <summary>Network connection status. Possible values are: unknown, attempted, succeeded, blocked, failed.</summary>
-        public ConnectionStatus? Status { get; set; }
+        public ApiSdk.Models.ConnectionStatus? Status { get; set; }
         /// <summary>Parameters (suffix) of the destination URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -157,7 +157,7 @@ namespace ApiSdk.Models
         public string UrlParameters { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="NetworkConnection"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.NetworkConnection"/> and sets the default values.
         /// </summary>
         public NetworkConnection()
         {
@@ -166,12 +166,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="NetworkConnection"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.NetworkConnection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static NetworkConnection CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.NetworkConnection CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new NetworkConnection();
+            return new ApiSdk.Models.NetworkConnection();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -187,7 +187,7 @@ namespace ApiSdk.Models
                 { "destinationLocation", n => { DestinationLocation = n.GetStringValue(); } },
                 { "destinationPort", n => { DestinationPort = n.GetStringValue(); } },
                 { "destinationUrl", n => { DestinationUrl = n.GetStringValue(); } },
-                { "direction", n => { Direction = n.GetEnumValue<ConnectionDirection>(); } },
+                { "direction", n => { Direction = n.GetEnumValue<ApiSdk.Models.ConnectionDirection>(); } },
                 { "domainRegisteredDateTime", n => { DomainRegisteredDateTime = n.GetDateTimeOffsetValue(); } },
                 { "localDnsName", n => { LocalDnsName = n.GetStringValue(); } },
                 { "natDestinationAddress", n => { NatDestinationAddress = n.GetStringValue(); } },
@@ -195,12 +195,12 @@ namespace ApiSdk.Models
                 { "natSourceAddress", n => { NatSourceAddress = n.GetStringValue(); } },
                 { "natSourcePort", n => { NatSourcePort = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "protocol", n => { Protocol = n.GetEnumValue<SecurityNetworkProtocol>(); } },
+                { "protocol", n => { Protocol = n.GetEnumValue<ApiSdk.Models.SecurityNetworkProtocol>(); } },
                 { "riskScore", n => { RiskScore = n.GetStringValue(); } },
                 { "sourceAddress", n => { SourceAddress = n.GetStringValue(); } },
                 { "sourceLocation", n => { SourceLocation = n.GetStringValue(); } },
                 { "sourcePort", n => { SourcePort = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<ConnectionStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.ConnectionStatus>(); } },
                 { "urlParameters", n => { UrlParameters = n.GetStringValue(); } },
             };
         }
@@ -217,7 +217,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("destinationLocation", DestinationLocation);
             writer.WriteStringValue("destinationPort", DestinationPort);
             writer.WriteStringValue("destinationUrl", DestinationUrl);
-            writer.WriteEnumValue<ConnectionDirection>("direction", Direction);
+            writer.WriteEnumValue<ApiSdk.Models.ConnectionDirection>("direction", Direction);
             writer.WriteDateTimeOffsetValue("domainRegisteredDateTime", DomainRegisteredDateTime);
             writer.WriteStringValue("localDnsName", LocalDnsName);
             writer.WriteStringValue("natDestinationAddress", NatDestinationAddress);
@@ -225,12 +225,12 @@ namespace ApiSdk.Models
             writer.WriteStringValue("natSourceAddress", NatSourceAddress);
             writer.WriteStringValue("natSourcePort", NatSourcePort);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<SecurityNetworkProtocol>("protocol", Protocol);
+            writer.WriteEnumValue<ApiSdk.Models.SecurityNetworkProtocol>("protocol", Protocol);
             writer.WriteStringValue("riskScore", RiskScore);
             writer.WriteStringValue("sourceAddress", SourceAddress);
             writer.WriteStringValue("sourceLocation", SourceLocation);
             writer.WriteStringValue("sourcePort", SourcePort);
-            writer.WriteEnumValue<ConnectionStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.ConnectionStatus>("status", Status);
             writer.WriteStringValue("urlParameters", UrlParameters);
             writer.WriteAdditionalData(AdditionalData);
         }

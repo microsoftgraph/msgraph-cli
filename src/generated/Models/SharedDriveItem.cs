@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SharedDriveItem : BaseItem, IParsable
+    public class SharedDriveItem : ApiSdk.Models.BaseItem, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Used to access the underlying driveItem</summary>
@@ -45,10 +45,10 @@ namespace ApiSdk.Models
         /// <summary>Information about the owner of the shared item being referenced.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Owner { get; set; }
+        public ApiSdk.Models.IdentitySet? Owner { get; set; }
 #nullable restore
 #else
-        public IdentitySet Owner { get; set; }
+        public ApiSdk.Models.IdentitySet Owner { get; set; }
 #endif
         /// <summary>Used to access the permission representing the underlying sharing link</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -75,7 +75,7 @@ namespace ApiSdk.Models
         public ApiSdk.Models.Site Site { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SharedDriveItem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SharedDriveItem"/> and sets the default values.
         /// </summary>
         public SharedDriveItem() : base()
         {
@@ -84,12 +84,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SharedDriveItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SharedDriveItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SharedDriveItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SharedDriveItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SharedDriveItem();
+            return new ApiSdk.Models.SharedDriveItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -103,7 +103,7 @@ namespace ApiSdk.Models
                 { "items", n => { Items = n.GetCollectionOfObjectValues<ApiSdk.Models.DriveItem>(ApiSdk.Models.DriveItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "list", n => { List = n.GetObjectValue<ApiSdk.Models.List>(ApiSdk.Models.List.CreateFromDiscriminatorValue); } },
                 { "listItem", n => { ListItem = n.GetObjectValue<ApiSdk.Models.ListItem>(ApiSdk.Models.ListItem.CreateFromDiscriminatorValue); } },
-                { "owner", n => { Owner = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "owner", n => { Owner = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "permission", n => { Permission = n.GetObjectValue<ApiSdk.Models.Permission>(ApiSdk.Models.Permission.CreateFromDiscriminatorValue); } },
                 { "root", n => { Root = n.GetObjectValue<ApiSdk.Models.DriveItem>(ApiSdk.Models.DriveItem.CreateFromDiscriminatorValue); } },
                 { "site", n => { Site = n.GetObjectValue<ApiSdk.Models.Site>(ApiSdk.Models.Site.CreateFromDiscriminatorValue); } },
@@ -121,7 +121,7 @@ namespace ApiSdk.Models
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.DriveItem>("items", Items);
             writer.WriteObjectValue<ApiSdk.Models.List>("list", List);
             writer.WriteObjectValue<ApiSdk.Models.ListItem>("listItem", ListItem);
-            writer.WriteObjectValue<IdentitySet>("owner", Owner);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("owner", Owner);
             writer.WriteObjectValue<ApiSdk.Models.Permission>("permission", Permission);
             writer.WriteObjectValue<ApiSdk.Models.DriveItem>("root", Root);
             writer.WriteObjectValue<ApiSdk.Models.Site>("site", Site);

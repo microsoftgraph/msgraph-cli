@@ -55,14 +55,14 @@ namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UsersRegisteredByMethodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethod.UsersRegisteredByMethodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UsersRegisteredByMethodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/authenticationMethods/usersRegisteredByMethod()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UsersRegisteredByMethodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethod.UsersRegisteredByMethodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UsersRegisteredByMethodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/authenticationMethods/usersRegisteredByMethod()", rawUrl)

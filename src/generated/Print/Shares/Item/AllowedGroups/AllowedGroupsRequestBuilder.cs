@@ -31,7 +31,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups
         public Tuple<List<Command>, List<Command>> BuildCommand()
         {
             var commands = new List<Command>();
-            var builder = new GroupItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.Shares.Item.AllowedGroups.Item.GroupItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildRefByIdNavCommand());
             commands.Add(builder.BuildServiceProvisioningErrorsNavCommand());
             return new(new(0), commands);
@@ -44,7 +44,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.Shares.Item.AllowedGroups.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -164,7 +164,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups
         {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of print entities.";
-            var builder = new RefRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Print.Shares.Item.AllowedGroups.Ref.RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -176,14 +176,14 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AllowedGroupsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.Shares.Item.AllowedGroups.AllowedGroupsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AllowedGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AllowedGroupsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Print.Shares.Item.AllowedGroups.AllowedGroupsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AllowedGroupsRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -196,11 +196,11 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllowedGroupsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Print.Shares.Item.AllowedGroups.AllowedGroupsRequestBuilder.AllowedGroupsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllowedGroupsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Print.Shares.Item.AllowedGroups.AllowedGroupsRequestBuilder.AllowedGroupsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

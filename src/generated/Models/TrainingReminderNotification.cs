@@ -7,13 +7,13 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TrainingReminderNotification : BaseEndUserNotification, IParsable
+    public class TrainingReminderNotification : ApiSdk.Models.BaseEndUserNotification, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Configurable frequency for the reminder email introduced during simulation creation. Possible values are: unknown, weekly, biWeekly, unknownFutureValue.</summary>
-        public NotificationDeliveryFrequency? DeliveryFrequency { get; set; }
+        public ApiSdk.Models.NotificationDeliveryFrequency? DeliveryFrequency { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TrainingReminderNotification"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TrainingReminderNotification"/> and sets the default values.
         /// </summary>
         public TrainingReminderNotification() : base()
         {
@@ -22,12 +22,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TrainingReminderNotification"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TrainingReminderNotification"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TrainingReminderNotification CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TrainingReminderNotification CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TrainingReminderNotification();
+            return new ApiSdk.Models.TrainingReminderNotification();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "deliveryFrequency", n => { DeliveryFrequency = n.GetEnumValue<NotificationDeliveryFrequency>(); } },
+                { "deliveryFrequency", n => { DeliveryFrequency = n.GetEnumValue<ApiSdk.Models.NotificationDeliveryFrequency>(); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<NotificationDeliveryFrequency>("deliveryFrequency", DeliveryFrequency);
+            writer.WriteEnumValue<ApiSdk.Models.NotificationDeliveryFrequency>("deliveryFrequency", DeliveryFrequency);
         }
     }
 }

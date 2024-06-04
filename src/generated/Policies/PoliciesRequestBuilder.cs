@@ -49,7 +49,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("activity-based-timeout-policies");
             command.Description = "Provides operations to manage the activityBasedTimeoutPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new ActivityBasedTimeoutPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.ActivityBasedTimeoutPolicies.ActivityBasedTimeoutPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -76,7 +76,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("admin-consent-request-policy");
             command.Description = "Provides operations to manage the adminConsentRequestPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new AdminConsentRequestPolicyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.AdminConsentRequestPolicy.AdminConsentRequestPolicyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -95,7 +95,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("app-management-policies");
             command.Description = "Provides operations to manage the appManagementPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new AppManagementPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.AppManagementPolicies.AppManagementPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -122,7 +122,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("authentication-flows-policy");
             command.Description = "Provides operations to manage the authenticationFlowsPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new AuthenticationFlowsPolicyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.AuthenticationFlowsPolicy.AuthenticationFlowsPolicyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -141,7 +141,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("authentication-methods-policy");
             command.Description = "Provides operations to manage the authenticationMethodsPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new AuthenticationMethodsPolicyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.AuthenticationMethodsPolicy.AuthenticationMethodsPolicyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAuthenticationMethodConfigurationsNavCommand());
@@ -166,7 +166,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("authentication-strength-policies");
             command.Description = "Provides operations to manage the authenticationStrengthPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new AuthenticationStrengthPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.AuthenticationStrengthPolicies.AuthenticationStrengthPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -193,7 +193,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("authorization-policy");
             command.Description = "Provides operations to manage the authorizationPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new AuthorizationPolicyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.AuthorizationPolicy.AuthorizationPolicyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -212,7 +212,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("claims-mapping-policies");
             command.Description = "Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new ClaimsMappingPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.ClaimsMappingPolicies.ClaimsMappingPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -239,7 +239,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("conditional-access-policies");
             command.Description = "Provides operations to manage the conditionalAccessPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new ConditionalAccessPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.ConditionalAccessPolicies.ConditionalAccessPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -266,7 +266,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("cross-tenant-access-policy");
             command.Description = "Provides operations to manage the crossTenantAccessPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new CrossTenantAccessPolicyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.CrossTenantAccessPolicy.CrossTenantAccessPolicyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildDefaultNavCommand());
@@ -293,7 +293,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("default-app-management-policy");
             command.Description = "Provides operations to manage the defaultAppManagementPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new DefaultAppManagementPolicyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.DefaultAppManagementPolicy.DefaultAppManagementPolicyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -312,7 +312,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("device-registration-policy");
             command.Description = "Provides operations to manage the deviceRegistrationPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new DeviceRegistrationPolicyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.DeviceRegistrationPolicy.DeviceRegistrationPolicyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -329,7 +329,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("feature-rollout-policies");
             command.Description = "Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new FeatureRolloutPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.FeatureRolloutPolicies.FeatureRolloutPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -402,7 +402,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("home-realm-discovery-policies");
             command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.HomeRealmDiscoveryPolicies.HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -429,7 +429,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("identity-security-defaults-enforcement-policy");
             command.Description = "Provides operations to manage the identitySecurityDefaultsEnforcementPolicy property of the microsoft.graph.policyRoot entity.";
-            var builder = new IdentitySecurityDefaultsEnforcementPolicyRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy.IdentitySecurityDefaultsEnforcementPolicyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -466,7 +466,7 @@ namespace ApiSdk.Policies
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<PolicyRoot>(PolicyRoot.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.PolicyRoot>(ApiSdk.Models.PolicyRoot.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -493,7 +493,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("permission-grant-policies");
             command.Description = "Provides operations to manage the permissionGrantPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new PermissionGrantPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.PermissionGrantPolicies.PermissionGrantPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -520,7 +520,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("role-management-policies");
             command.Description = "Provides operations to manage the roleManagementPolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new RoleManagementPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.RoleManagementPolicies.RoleManagementPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -547,7 +547,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("role-management-policy-assignments");
             command.Description = "Provides operations to manage the roleManagementPolicyAssignments property of the microsoft.graph.policyRoot entity.";
-            var builder = new RoleManagementPolicyAssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.RoleManagementPolicyAssignments.RoleManagementPolicyAssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -574,7 +574,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("token-issuance-policies");
             command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.TokenIssuancePolicies.TokenIssuancePoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -601,7 +601,7 @@ namespace ApiSdk.Policies
         {
             var command = new Command("token-lifetime-policies");
             command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.policyRoot entity.";
-            var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.TokenLifetimePolicies.TokenLifetimePoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -621,14 +621,14 @@ namespace ApiSdk.Policies
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PoliciesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.PoliciesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PoliciesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.PoliciesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PoliciesRequestBuilder(string rawUrl) : base("{+baseurl}/policies{?%24expand,%24select}", rawUrl)
@@ -641,11 +641,11 @@ namespace ApiSdk.Policies
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PoliciesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.PoliciesRequestBuilder.PoliciesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PoliciesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.PoliciesRequestBuilder.PoliciesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -661,11 +661,11 @@ namespace ApiSdk.Policies
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PolicyRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PolicyRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PolicyRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.PolicyRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

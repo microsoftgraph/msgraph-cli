@@ -22,7 +22,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Reply
         public ApiSdk.Models.Post Post { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ReplyPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Threads.Item.Reply.ReplyPostRequestBody"/> and sets the default values.
         /// </summary>
         public ReplyPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.Groups.Item.Threads.Item.Reply
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ReplyPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.Threads.Item.Reply.ReplyPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ReplyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.Threads.Item.Reply.ReplyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ReplyPostRequestBody();
+            return new ApiSdk.Groups.Item.Threads.Item.Reply.ReplyPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

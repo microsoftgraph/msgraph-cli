@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Windows Information Protection AppLearning Summary entity.
     /// </summary>
-    public class WindowsInformationProtectionAppLearningSummary : Entity, IParsable
+    public class WindowsInformationProtectionAppLearningSummary : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Application Name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -26,12 +26,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsInformationProtectionAppLearningSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsInformationProtectionAppLearningSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WindowsInformationProtectionAppLearningSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WindowsInformationProtectionAppLearningSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsInformationProtectionAppLearningSummary();
+            return new ApiSdk.Models.WindowsInformationProtectionAppLearningSummary();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -42,7 +42,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "applicationName", n => { ApplicationName = n.GetStringValue(); } },
-                { "applicationType", n => { ApplicationType = n.GetEnumValue<ApplicationType>(); } },
+                { "applicationType", n => { ApplicationType = n.GetEnumValue<ApiSdk.Models.ApplicationType>(); } },
                 { "deviceCount", n => { DeviceCount = n.GetIntValue(); } },
             };
         }
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("applicationName", ApplicationName);
-            writer.WriteEnumValue<ApplicationType>("applicationType", ApplicationType);
+            writer.WriteEnumValue<ApiSdk.Models.ApplicationType>("applicationType", ApplicationType);
             writer.WriteIntValue("deviceCount", DeviceCount);
         }
     }

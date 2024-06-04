@@ -22,11 +22,11 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds
         public List<string> InputIds { get; set; }
 #endif
         /// <summary>The SourceIdType property</summary>
-        public ExchangeIdFormat? SourceIdType { get; set; }
+        public ApiSdk.Models.ExchangeIdFormat? SourceIdType { get; set; }
         /// <summary>The TargetIdType property</summary>
-        public ExchangeIdFormat? TargetIdType { get; set; }
+        public ApiSdk.Models.ExchangeIdFormat? TargetIdType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TranslateExchangeIdsPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.TranslateExchangeIds.TranslateExchangeIdsPostRequestBody"/> and sets the default values.
         /// </summary>
         public TranslateExchangeIdsPostRequestBody()
         {
@@ -35,12 +35,12 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TranslateExchangeIdsPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.TranslateExchangeIds.TranslateExchangeIdsPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TranslateExchangeIdsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.TranslateExchangeIds.TranslateExchangeIdsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TranslateExchangeIdsPostRequestBody();
+            return new ApiSdk.Users.Item.TranslateExchangeIds.TranslateExchangeIdsPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -51,8 +51,8 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "InputIds", n => { InputIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "SourceIdType", n => { SourceIdType = n.GetEnumValue<ExchangeIdFormat>(); } },
-                { "TargetIdType", n => { TargetIdType = n.GetEnumValue<ExchangeIdFormat>(); } },
+                { "SourceIdType", n => { SourceIdType = n.GetEnumValue<ApiSdk.Models.ExchangeIdFormat>(); } },
+                { "TargetIdType", n => { TargetIdType = n.GetEnumValue<ApiSdk.Models.ExchangeIdFormat>(); } },
             };
         }
         /// <summary>
@@ -63,8 +63,8 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("InputIds", InputIds);
-            writer.WriteEnumValue<ExchangeIdFormat>("SourceIdType", SourceIdType);
-            writer.WriteEnumValue<ExchangeIdFormat>("TargetIdType", TargetIdType);
+            writer.WriteEnumValue<ApiSdk.Models.ExchangeIdFormat>("SourceIdType", SourceIdType);
+            writer.WriteEnumValue<ApiSdk.Models.ExchangeIdFormat>("TargetIdType", TargetIdType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

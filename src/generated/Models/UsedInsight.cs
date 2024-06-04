@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UsedInsight : Entity, IParsable
+    public class UsedInsight : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Information about when the item was last viewed or modified by the user. Read only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UsageDetails? LastUsed { get; set; }
+        public ApiSdk.Models.UsageDetails? LastUsed { get; set; }
 #nullable restore
 #else
-        public UsageDetails LastUsed { get; set; }
+        public ApiSdk.Models.UsageDetails LastUsed { get; set; }
 #endif
         /// <summary>Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Entity? Resource { get; set; }
+        public ApiSdk.Models.Entity? Resource { get; set; }
 #nullable restore
 #else
-        public Entity Resource { get; set; }
+        public ApiSdk.Models.Entity Resource { get; set; }
 #endif
         /// <summary>Reference properties of the used document, such as the url and type of the document. Read-only</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,12 +45,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UsedInsight"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UsedInsight"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UsedInsight CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UsedInsight CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UsedInsight();
+            return new ApiSdk.Models.UsedInsight();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,8 +60,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "lastUsed", n => { LastUsed = n.GetObjectValue<UsageDetails>(UsageDetails.CreateFromDiscriminatorValue); } },
-                { "resource", n => { Resource = n.GetObjectValue<Entity>(Entity.CreateFromDiscriminatorValue); } },
+                { "lastUsed", n => { LastUsed = n.GetObjectValue<ApiSdk.Models.UsageDetails>(ApiSdk.Models.UsageDetails.CreateFromDiscriminatorValue); } },
+                { "resource", n => { Resource = n.GetObjectValue<ApiSdk.Models.Entity>(ApiSdk.Models.Entity.CreateFromDiscriminatorValue); } },
                 { "resourceReference", n => { ResourceReference = n.GetObjectValue<ApiSdk.Models.ResourceReference>(ApiSdk.Models.ResourceReference.CreateFromDiscriminatorValue); } },
                 { "resourceVisualization", n => { ResourceVisualization = n.GetObjectValue<ApiSdk.Models.ResourceVisualization>(ApiSdk.Models.ResourceVisualization.CreateFromDiscriminatorValue); } },
             };
@@ -74,8 +74,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<UsageDetails>("lastUsed", LastUsed);
-            writer.WriteObjectValue<Entity>("resource", Resource);
+            writer.WriteObjectValue<ApiSdk.Models.UsageDetails>("lastUsed", LastUsed);
+            writer.WriteObjectValue<ApiSdk.Models.Entity>("resource", Resource);
         }
     }
 }

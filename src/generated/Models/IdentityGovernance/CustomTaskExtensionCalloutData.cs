@@ -21,10 +21,10 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>The task property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TaskObject? Task { get; set; }
+        public ApiSdk.Models.IdentityGovernance.TaskObject? Task { get; set; }
 #nullable restore
 #else
-        public TaskObject Task { get; set; }
+        public ApiSdk.Models.IdentityGovernance.TaskObject Task { get; set; }
 #endif
         /// <summary>The taskProcessingresult property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.IdentityGovernance
         public ApiSdk.Models.IdentityGovernance.Workflow Workflow { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CustomTaskExtensionCalloutData"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityGovernance.CustomTaskExtensionCalloutData"/> and sets the default values.
         /// </summary>
         public CustomTaskExtensionCalloutData() : base()
         {
@@ -52,12 +52,12 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CustomTaskExtensionCalloutData"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.CustomTaskExtensionCalloutData"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CustomTaskExtensionCalloutData CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.CustomTaskExtensionCalloutData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CustomTaskExtensionCalloutData();
+            return new ApiSdk.Models.IdentityGovernance.CustomTaskExtensionCalloutData();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,7 +68,7 @@ namespace ApiSdk.Models.IdentityGovernance
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "subject", n => { Subject = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
-                { "task", n => { Task = n.GetObjectValue<TaskObject>(TaskObject.CreateFromDiscriminatorValue); } },
+                { "task", n => { Task = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.TaskObject>(ApiSdk.Models.IdentityGovernance.TaskObject.CreateFromDiscriminatorValue); } },
                 { "taskProcessingresult", n => { TaskProcessingresult = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.TaskProcessingResult>(ApiSdk.Models.IdentityGovernance.TaskProcessingResult.CreateFromDiscriminatorValue); } },
                 { "workflow", n => { Workflow = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.Workflow>(ApiSdk.Models.IdentityGovernance.Workflow.CreateFromDiscriminatorValue); } },
             };
@@ -82,7 +82,7 @@ namespace ApiSdk.Models.IdentityGovernance
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.User>("subject", Subject);
-            writer.WriteObjectValue<TaskObject>("task", Task);
+            writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.TaskObject>("task", Task);
             writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.TaskProcessingResult>("taskProcessingresult", TaskProcessingresult);
             writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.Workflow>("workflow", Workflow);
         }

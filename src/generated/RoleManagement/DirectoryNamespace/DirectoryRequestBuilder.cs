@@ -131,7 +131,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<RbacApplication>(RbacApplication.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.RbacApplication>(ApiSdk.Models.RbacApplication.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -158,7 +158,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
         {
             var command = new Command("resource-namespaces");
             command.Description = "Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplication entity.";
-            var builder = new ResourceNamespacesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.RoleManagement.DirectoryNamespace.ResourceNamespaces.ResourceNamespacesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -185,7 +185,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
         {
             var command = new Command("role-assignment-schedule-instances");
             command.Description = "Provides operations to manage the roleAssignmentScheduleInstances property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleAssignmentScheduleInstancesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleInstances.RoleAssignmentScheduleInstancesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -213,7 +213,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
         {
             var command = new Command("role-assignment-schedule-requests");
             command.Description = "Provides operations to manage the roleAssignmentScheduleRequests property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleAssignmentScheduleRequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequests.RoleAssignmentScheduleRequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -241,7 +241,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
         {
             var command = new Command("role-assignment-schedules");
             command.Description = "Provides operations to manage the roleAssignmentSchedules property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleAssignmentSchedulesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.RoleAssignmentSchedulesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -269,7 +269,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
         {
             var command = new Command("role-assignments");
             command.Description = "Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleAssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.RoleAssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -296,7 +296,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
         {
             var command = new Command("role-definitions");
             command.Description = "Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleDefinitionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.RoleDefinitionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -323,7 +323,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
         {
             var command = new Command("role-eligibility-schedule-instances");
             command.Description = "Provides operations to manage the roleEligibilityScheduleInstances property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleEligibilityScheduleInstancesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleInstances.RoleEligibilityScheduleInstancesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -351,7 +351,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
         {
             var command = new Command("role-eligibility-schedule-requests");
             command.Description = "Provides operations to manage the roleEligibilityScheduleRequests property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleEligibilityScheduleRequestsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleRequests.RoleEligibilityScheduleRequestsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -379,7 +379,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
         {
             var command = new Command("role-eligibility-schedules");
             command.Description = "Provides operations to manage the roleEligibilitySchedules property of the microsoft.graph.rbacApplication entity.";
-            var builder = new RoleEligibilitySchedulesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules.RoleEligibilitySchedulesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -400,14 +400,14 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.RoleManagement.DirectoryNamespace.DirectoryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.RoleManagement.DirectoryNamespace.DirectoryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory{?%24expand,%24select}", rawUrl)
@@ -439,11 +439,11 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.RoleManagement.DirectoryNamespace.DirectoryRequestBuilder.DirectoryRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.RoleManagement.DirectoryNamespace.DirectoryRequestBuilder.DirectoryRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -459,11 +459,11 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(RbacApplication body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.RbacApplication body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(RbacApplication body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.RbacApplication body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

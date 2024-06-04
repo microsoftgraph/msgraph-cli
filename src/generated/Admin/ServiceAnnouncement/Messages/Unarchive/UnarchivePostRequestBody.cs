@@ -21,7 +21,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive
         public List<string> MessageIds { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UnarchivePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive.UnarchivePostRequestBody"/> and sets the default values.
         /// </summary>
         public UnarchivePostRequestBody()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnarchivePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive.UnarchivePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UnarchivePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive.UnarchivePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnarchivePostRequestBody();
+            return new ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive.UnarchivePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

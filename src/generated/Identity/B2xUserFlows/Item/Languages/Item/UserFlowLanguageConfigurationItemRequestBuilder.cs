@@ -31,7 +31,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item
         {
             var command = new Command("default-pages");
             command.Description = "Provides operations to manage the defaultPages property of the microsoft.graph.userFlowLanguageConfiguration entity.";
-            var builder = new DefaultPagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.DefaultPagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -158,7 +158,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item
         {
             var command = new Command("overrides-pages");
             command.Description = "Provides operations to manage the overridesPages property of the microsoft.graph.userFlowLanguageConfiguration entity.";
-            var builder = new OverridesPagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.OverridesPagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -213,7 +213,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<UserFlowLanguageConfiguration>(UserFlowLanguageConfiguration.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.UserFlowLanguageConfiguration>(ApiSdk.Models.UserFlowLanguageConfiguration.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -235,14 +235,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserFlowLanguageConfigurationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.UserFlowLanguageConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserFlowLanguageConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages/{userFlowLanguageConfiguration%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="UserFlowLanguageConfigurationItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.UserFlowLanguageConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserFlowLanguageConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages/{userFlowLanguageConfiguration%2Did}{?%24expand,%24select}", rawUrl)
@@ -274,11 +274,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserFlowLanguageConfigurationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.UserFlowLanguageConfigurationItemRequestBuilder.UserFlowLanguageConfigurationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserFlowLanguageConfigurationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.UserFlowLanguageConfigurationItemRequestBuilder.UserFlowLanguageConfigurationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -294,11 +294,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UserFlowLanguageConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UserFlowLanguageConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UserFlowLanguageConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UserFlowLanguageConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

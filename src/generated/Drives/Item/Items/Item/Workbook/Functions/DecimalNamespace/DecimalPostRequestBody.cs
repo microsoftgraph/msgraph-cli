@@ -16,21 +16,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DecimalNamespace
         /// <summary>The number property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Number { get; set; }
+        public ApiSdk.Models.Json? Number { get; set; }
 #nullable restore
 #else
-        public Json Number { get; set; }
+        public ApiSdk.Models.Json Number { get; set; }
 #endif
         /// <summary>The radix property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Radix { get; set; }
+        public ApiSdk.Models.Json? Radix { get; set; }
 #nullable restore
 #else
-        public Json Radix { get; set; }
+        public ApiSdk.Models.Json Radix { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DecimalPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DecimalNamespace.DecimalPostRequestBody"/> and sets the default values.
         /// </summary>
         public DecimalPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DecimalNamespace
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DecimalPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DecimalNamespace.DecimalPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DecimalPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DecimalNamespace.DecimalPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DecimalPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DecimalNamespace.DecimalPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DecimalNamespace
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "number", n => { Number = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "radix", n => { Radix = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "number", n => { Number = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "radix", n => { Radix = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DecimalNamespace
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("number", Number);
-            writer.WriteObjectValue<Json>("radix", Radix);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("number", Number);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("radix", Radix);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

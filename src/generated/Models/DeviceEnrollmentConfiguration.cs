@@ -9,15 +9,15 @@ namespace ApiSdk.Models
     /// <summary>
     /// The Base Class of Device Enrollment Configuration
     /// </summary>
-    public class DeviceEnrollmentConfiguration : Entity, IParsable
+    public class DeviceEnrollmentConfiguration : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The list of group assignments for the device configuration profile</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EnrollmentConfigurationAssignment>? Assignments { get; set; }
+        public List<ApiSdk.Models.EnrollmentConfigurationAssignment>? Assignments { get; set; }
 #nullable restore
 #else
-        public List<EnrollmentConfigurationAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.EnrollmentConfigurationAssignment> Assignments { get; set; }
 #endif
         /// <summary>Created date time in UTC of the device enrollment configuration</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -46,19 +46,19 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceEnrollmentConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceEnrollmentConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceEnrollmentConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceEnrollmentConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.deviceEnrollmentLimitConfiguration" => new DeviceEnrollmentLimitConfiguration(),
-                "#microsoft.graph.deviceEnrollmentPlatformRestrictionsConfiguration" => new DeviceEnrollmentPlatformRestrictionsConfiguration(),
-                "#microsoft.graph.deviceEnrollmentWindowsHelloForBusinessConfiguration" => new DeviceEnrollmentWindowsHelloForBusinessConfiguration(),
-                "#microsoft.graph.windows10EnrollmentCompletionPageConfiguration" => new Windows10EnrollmentCompletionPageConfiguration(),
-                _ => new DeviceEnrollmentConfiguration(),
+                "#microsoft.graph.deviceEnrollmentLimitConfiguration" => new ApiSdk.Models.DeviceEnrollmentLimitConfiguration(),
+                "#microsoft.graph.deviceEnrollmentPlatformRestrictionsConfiguration" => new ApiSdk.Models.DeviceEnrollmentPlatformRestrictionsConfiguration(),
+                "#microsoft.graph.deviceEnrollmentWindowsHelloForBusinessConfiguration" => new ApiSdk.Models.DeviceEnrollmentWindowsHelloForBusinessConfiguration(),
+                "#microsoft.graph.windows10EnrollmentCompletionPageConfiguration" => new ApiSdk.Models.Windows10EnrollmentCompletionPageConfiguration(),
+                _ => new ApiSdk.Models.DeviceEnrollmentConfiguration(),
             };
         }
         /// <summary>
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<EnrollmentConfigurationAssignment>(EnrollmentConfigurationAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.EnrollmentConfigurationAssignment>(ApiSdk.Models.EnrollmentConfigurationAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
@@ -86,7 +86,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<EnrollmentConfigurationAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EnrollmentConfigurationAssignment>("assignments", Assignments);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);

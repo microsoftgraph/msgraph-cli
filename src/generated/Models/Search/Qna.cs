@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Search
 {
     #pragma warning disable CS1591
-    public class Qna : SearchAnswer, IParsable
+    public class Qna : ApiSdk.Models.Search.SearchAnswer, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Date and time when the QnA stops appearing as a search result. Set as null for always available. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
@@ -27,10 +27,10 @@ namespace ApiSdk.Models.Search
         /// <summary>Keywords that trigger this QnA to appear in search results.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AnswerKeyword? Keywords { get; set; }
+        public ApiSdk.Models.Search.AnswerKeyword? Keywords { get; set; }
 #nullable restore
 #else
-        public AnswerKeyword Keywords { get; set; }
+        public ApiSdk.Models.Search.AnswerKeyword Keywords { get; set; }
 #endif
         /// <summary>A list of geographically specific language names in which this QnA can be viewed. Each language tag value follows the pattern {language}-{region}. For example, en-us is English as used in the United States. For the list of possible values, see Supported language tags.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -43,30 +43,30 @@ namespace ApiSdk.Models.Search
         /// <summary>List of devices and operating systems that are able to view this QnA. Possible values are: android, androidForWork, ios, macOS, windowsPhone81, windowsPhone81AndLater, windows10AndLater, androidWorkProfile, unknown, androidASOP, androidMobileApplicationManagement, iOSMobileApplicationManagement, unknownFutureValue.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DevicePlatformType?>? Platforms { get; set; }
+        public List<ApiSdk.Models.DevicePlatformType?>? Platforms { get; set; }
 #nullable restore
 #else
-        public List<DevicePlatformType?> Platforms { get; set; }
+        public List<ApiSdk.Models.DevicePlatformType?> Platforms { get; set; }
 #endif
         /// <summary>The state property</summary>
-        public AnswerState? State { get; set; }
+        public ApiSdk.Models.Search.AnswerState? State { get; set; }
         /// <summary>Variations of a QnA for different countries or devices. Use when you need to show different content to users based on their device, country/region, or both. The date and group settings apply to all variations.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AnswerVariant>? TargetedVariations { get; set; }
+        public List<ApiSdk.Models.Search.AnswerVariant>? TargetedVariations { get; set; }
 #nullable restore
 #else
-        public List<AnswerVariant> TargetedVariations { get; set; }
+        public List<ApiSdk.Models.Search.AnswerVariant> TargetedVariations { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Qna"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Search.Qna"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Qna CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Search.Qna CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Qna();
+            return new ApiSdk.Models.Search.Qna();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -80,11 +80,11 @@ namespace ApiSdk.Models.Search
                 { "availabilityStartDateTime", n => { AvailabilityStartDateTime = n.GetDateTimeOffsetValue(); } },
                 { "groupIds", n => { GroupIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "isSuggested", n => { IsSuggested = n.GetBoolValue(); } },
-                { "keywords", n => { Keywords = n.GetObjectValue<AnswerKeyword>(AnswerKeyword.CreateFromDiscriminatorValue); } },
+                { "keywords", n => { Keywords = n.GetObjectValue<ApiSdk.Models.Search.AnswerKeyword>(ApiSdk.Models.Search.AnswerKeyword.CreateFromDiscriminatorValue); } },
                 { "languageTags", n => { LanguageTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "platforms", n => { Platforms = n.GetCollectionOfEnumValues<DevicePlatformType>()?.ToList(); } },
-                { "state", n => { State = n.GetEnumValue<AnswerState>(); } },
-                { "targetedVariations", n => { TargetedVariations = n.GetCollectionOfObjectValues<AnswerVariant>(AnswerVariant.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "platforms", n => { Platforms = n.GetCollectionOfEnumValues<ApiSdk.Models.DevicePlatformType>()?.ToList(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.Search.AnswerState>(); } },
+                { "targetedVariations", n => { TargetedVariations = n.GetCollectionOfObjectValues<ApiSdk.Models.Search.AnswerVariant>(ApiSdk.Models.Search.AnswerVariant.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -99,11 +99,11 @@ namespace ApiSdk.Models.Search
             writer.WriteDateTimeOffsetValue("availabilityStartDateTime", AvailabilityStartDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("groupIds", GroupIds);
             writer.WriteBoolValue("isSuggested", IsSuggested);
-            writer.WriteObjectValue<AnswerKeyword>("keywords", Keywords);
+            writer.WriteObjectValue<ApiSdk.Models.Search.AnswerKeyword>("keywords", Keywords);
             writer.WriteCollectionOfPrimitiveValues<string>("languageTags", LanguageTags);
-            writer.WriteCollectionOfEnumValues<DevicePlatformType>("platforms", Platforms);
-            writer.WriteEnumValue<AnswerState>("state", State);
-            writer.WriteCollectionOfObjectValues<AnswerVariant>("targetedVariations", TargetedVariations);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.DevicePlatformType>("platforms", Platforms);
+            writer.WriteEnumValue<ApiSdk.Models.Search.AnswerState>("state", State);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Search.AnswerVariant>("targetedVariations", TargetedVariations);
         }
     }
 }

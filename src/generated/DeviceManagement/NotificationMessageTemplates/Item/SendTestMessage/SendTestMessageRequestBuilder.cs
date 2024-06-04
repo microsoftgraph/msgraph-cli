@@ -50,14 +50,14 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMess
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SendTestMessageRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMessage.SendTestMessageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SendTestMessageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}/sendTestMessage", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SendTestMessageRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMessage.SendTestMessageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SendTestMessageRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}/sendTestMessage", rawUrl)

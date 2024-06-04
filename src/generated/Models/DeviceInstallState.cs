@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties for the installation state for a device.
     /// </summary>
-    public class DeviceInstallState : Entity, IParsable
+    public class DeviceInstallState : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Device Id.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,12 +66,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceInstallState"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceInstallState"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceInstallState CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceInstallState CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceInstallState();
+            return new ApiSdk.Models.DeviceInstallState();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,7 +84,7 @@ namespace ApiSdk.Models
                 { "deviceId", n => { DeviceId = n.GetStringValue(); } },
                 { "deviceName", n => { DeviceName = n.GetStringValue(); } },
                 { "errorCode", n => { ErrorCode = n.GetStringValue(); } },
-                { "installState", n => { InstallState = n.GetEnumValue<InstallState>(); } },
+                { "installState", n => { InstallState = n.GetEnumValue<ApiSdk.Models.InstallState>(); } },
                 { "lastSyncDateTime", n => { LastSyncDateTime = n.GetDateTimeOffsetValue(); } },
                 { "osDescription", n => { OsDescription = n.GetStringValue(); } },
                 { "osVersion", n => { OsVersion = n.GetStringValue(); } },
@@ -102,7 +102,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("deviceId", DeviceId);
             writer.WriteStringValue("deviceName", DeviceName);
             writer.WriteStringValue("errorCode", ErrorCode);
-            writer.WriteEnumValue<InstallState>("installState", InstallState);
+            writer.WriteEnumValue<ApiSdk.Models.InstallState>("installState", InstallState);
             writer.WriteDateTimeOffsetValue("lastSyncDateTime", LastSyncDateTime);
             writer.WriteStringValue("osDescription", OsDescription);
             writer.WriteStringValue("osVersion", OsVersion);

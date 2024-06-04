@@ -16,10 +16,10 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         /// <summary>The fields property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookSortField>? Fields { get; set; }
+        public List<ApiSdk.Models.WorkbookSortField>? Fields { get; set; }
 #nullable restore
 #else
-        public List<WorkbookSortField> Fields { get; set; }
+        public List<ApiSdk.Models.WorkbookSortField> Fields { get; set; }
 #endif
         /// <summary>The matchCase property</summary>
         public bool? MatchCase { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         public string Method { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ApplyPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Sort.Apply.ApplyPostRequestBody"/> and sets the default values.
         /// </summary>
         public ApplyPostRequestBody()
         {
@@ -41,12 +41,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ApplyPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Sort.Apply.ApplyPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ApplyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Sort.Apply.ApplyPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ApplyPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Tables.Item.Sort.Apply.ApplyPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,7 +56,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "fields", n => { Fields = n.GetCollectionOfObjectValues<WorkbookSortField>(WorkbookSortField.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "fields", n => { Fields = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookSortField>(ApiSdk.Models.WorkbookSortField.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "matchCase", n => { MatchCase = n.GetBoolValue(); } },
                 { "method", n => { Method = n.GetStringValue(); } },
             };
@@ -68,7 +68,7 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.T
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<WorkbookSortField>("fields", Fields);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookSortField>("fields", Fields);
             writer.WriteBoolValue("matchCase", MatchCase);
             writer.WriteStringValue("method", Method);
             writer.WriteAdditionalData(AdditionalData);

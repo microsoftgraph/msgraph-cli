@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class TimeOff : ChangeTrackedEntity, IParsable
+    public class TimeOff : ApiSdk.Models.ChangeTrackedEntity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The draft version of this timeOff item that is viewable by managers. It must be shared before it is visible to team members. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TimeOffItem? DraftTimeOff { get; set; }
+        public ApiSdk.Models.TimeOffItem? DraftTimeOff { get; set; }
 #nullable restore
 #else
-        public TimeOffItem DraftTimeOff { get; set; }
+        public ApiSdk.Models.TimeOffItem DraftTimeOff { get; set; }
 #endif
         /// <summary>The shared version of this timeOff that is viewable by both employees and managers. Updates to the sharedTimeOff property send notifications to users in the Teams client. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TimeOffItem? SharedTimeOff { get; set; }
+        public ApiSdk.Models.TimeOffItem? SharedTimeOff { get; set; }
 #nullable restore
 #else
-        public TimeOffItem SharedTimeOff { get; set; }
+        public ApiSdk.Models.TimeOffItem SharedTimeOff { get; set; }
 #endif
         /// <summary>ID of the user assigned to the timeOff. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -35,7 +35,7 @@ namespace ApiSdk.Models
         public string UserId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TimeOff"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TimeOff"/> and sets the default values.
         /// </summary>
         public TimeOff() : base()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TimeOff"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TimeOff"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TimeOff CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TimeOff CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TimeOff();
+            return new ApiSdk.Models.TimeOff();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,8 +59,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "draftTimeOff", n => { DraftTimeOff = n.GetObjectValue<TimeOffItem>(TimeOffItem.CreateFromDiscriminatorValue); } },
-                { "sharedTimeOff", n => { SharedTimeOff = n.GetObjectValue<TimeOffItem>(TimeOffItem.CreateFromDiscriminatorValue); } },
+                { "draftTimeOff", n => { DraftTimeOff = n.GetObjectValue<ApiSdk.Models.TimeOffItem>(ApiSdk.Models.TimeOffItem.CreateFromDiscriminatorValue); } },
+                { "sharedTimeOff", n => { SharedTimeOff = n.GetObjectValue<ApiSdk.Models.TimeOffItem>(ApiSdk.Models.TimeOffItem.CreateFromDiscriminatorValue); } },
                 { "userId", n => { UserId = n.GetStringValue(); } },
             };
         }
@@ -72,8 +72,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<TimeOffItem>("draftTimeOff", DraftTimeOff);
-            writer.WriteObjectValue<TimeOffItem>("sharedTimeOff", SharedTimeOff);
+            writer.WriteObjectValue<ApiSdk.Models.TimeOffItem>("draftTimeOff", DraftTimeOff);
+            writer.WriteObjectValue<ApiSdk.Models.TimeOffItem>("sharedTimeOff", SharedTimeOff);
             writer.WriteStringValue("userId", UserId);
         }
     }

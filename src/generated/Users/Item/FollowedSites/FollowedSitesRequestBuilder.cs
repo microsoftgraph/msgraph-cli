@@ -33,7 +33,7 @@ namespace ApiSdk.Users.Item.FollowedSites
         {
             var command = new Command("add");
             command.Description = "Provides operations to call the add method.";
-            var builder = new AddRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.FollowedSites.Add.AddRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -49,7 +49,7 @@ namespace ApiSdk.Users.Item.FollowedSites
         public Tuple<List<Command>, List<Command>> BuildCommand()
         {
             var executables = new List<Command>();
-            var builder = new SiteItemRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.FollowedSites.Item.SiteItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
             return new(executables, new(0));
         }
@@ -61,7 +61,7 @@ namespace ApiSdk.Users.Item.FollowedSites
         {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.FollowedSites.Count.CountRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -180,7 +180,7 @@ namespace ApiSdk.Users.Item.FollowedSites
         {
             var command = new Command("remove");
             command.Description = "Provides operations to call the remove method.";
-            var builder = new RemoveRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.FollowedSites.Remove.RemoveRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -190,14 +190,14 @@ namespace ApiSdk.Users.Item.FollowedSites
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="FollowedSitesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.FollowedSites.FollowedSitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FollowedSitesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/followedSites{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="FollowedSitesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.FollowedSites.FollowedSitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FollowedSitesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/followedSites{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
@@ -210,11 +210,11 @@ namespace ApiSdk.Users.Item.FollowedSites
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FollowedSitesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.FollowedSites.FollowedSitesRequestBuilder.FollowedSitesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FollowedSitesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.FollowedSites.FollowedSitesRequestBuilder.FollowedSitesRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

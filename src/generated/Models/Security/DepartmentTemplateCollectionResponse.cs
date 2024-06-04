@@ -13,20 +13,20 @@ namespace ApiSdk.Models.Security
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DepartmentTemplate>? Value { get; set; }
+        public List<ApiSdk.Models.Security.DepartmentTemplate>? Value { get; set; }
 #nullable restore
 #else
-        public List<DepartmentTemplate> Value { get; set; }
+        public List<ApiSdk.Models.Security.DepartmentTemplate> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DepartmentTemplateCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.DepartmentTemplateCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DepartmentTemplateCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.DepartmentTemplateCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DepartmentTemplateCollectionResponse();
+            return new ApiSdk.Models.Security.DepartmentTemplateCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<DepartmentTemplate>(DepartmentTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.DepartmentTemplate>(ApiSdk.Models.Security.DepartmentTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<DepartmentTemplate>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.DepartmentTemplate>("value", Value);
         }
     }
 }

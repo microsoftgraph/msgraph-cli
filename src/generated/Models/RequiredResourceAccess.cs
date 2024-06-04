@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string ResourceAppId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="RequiredResourceAccess"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RequiredResourceAccess"/> and sets the default values.
         /// </summary>
         public RequiredResourceAccess()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RequiredResourceAccess"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RequiredResourceAccess"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RequiredResourceAccess CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.RequiredResourceAccess CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RequiredResourceAccess();
+            return new ApiSdk.Models.RequiredResourceAccess();
         }
         /// <summary>
         /// The deserialization information for the current model

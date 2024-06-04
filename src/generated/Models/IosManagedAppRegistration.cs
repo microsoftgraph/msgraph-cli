@@ -9,10 +9,10 @@ namespace ApiSdk.Models
     /// <summary>
     /// Represents the synchronization details of an ios app, with management capabilities, for a specific user.
     /// </summary>
-    public class IosManagedAppRegistration : ManagedAppRegistration, IParsable
+    public class IosManagedAppRegistration : ApiSdk.Models.ManagedAppRegistration, IParsable
     {
         /// <summary>
-        /// Instantiates a new <see cref="IosManagedAppRegistration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IosManagedAppRegistration"/> and sets the default values.
         /// </summary>
         public IosManagedAppRegistration() : base()
         {
@@ -21,12 +21,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosManagedAppRegistration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosManagedAppRegistration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IosManagedAppRegistration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IosManagedAppRegistration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IosManagedAppRegistration();
+            return new ApiSdk.Models.IosManagedAppRegistration();
         }
         /// <summary>
         /// The deserialization information for the current model

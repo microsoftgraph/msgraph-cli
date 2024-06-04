@@ -56,14 +56,14 @@ namespace ApiSdk.Reports.GetOffice365ActivationsUserDetail
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOffice365ActivationsUserDetailRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOffice365ActivationsUserDetail.GetOffice365ActivationsUserDetailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOffice365ActivationsUserDetailRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365ActivationsUserDetail()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOffice365ActivationsUserDetailRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOffice365ActivationsUserDetail.GetOffice365ActivationsUserDetailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOffice365ActivationsUserDetailRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOffice365ActivationsUserDetail()", rawUrl)

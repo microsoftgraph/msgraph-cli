@@ -35,7 +35,7 @@ namespace ApiSdk.Education.Me
         {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.educationUser entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Assignments.AssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -63,7 +63,7 @@ namespace ApiSdk.Education.Me
         {
             var command = new Command("classes");
             command.Description = "Provides operations to manage the classes property of the microsoft.graph.educationUser entity.";
-            var builder = new ClassesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Classes.ClassesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -182,7 +182,7 @@ namespace ApiSdk.Education.Me
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<EducationUser>(EducationUser.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.EducationUser>(ApiSdk.Models.EducationUser.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -209,7 +209,7 @@ namespace ApiSdk.Education.Me
         {
             var command = new Command("rubrics");
             command.Description = "Provides operations to manage the rubrics property of the microsoft.graph.educationUser entity.";
-            var builder = new RubricsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Rubrics.RubricsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -236,7 +236,7 @@ namespace ApiSdk.Education.Me
         {
             var command = new Command("schools");
             command.Description = "Provides operations to manage the schools property of the microsoft.graph.educationUser entity.";
-            var builder = new SchoolsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.Schools.SchoolsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -262,7 +262,7 @@ namespace ApiSdk.Education.Me
         {
             var command = new Command("taught-classes");
             command.Description = "Provides operations to manage the taughtClasses property of the microsoft.graph.educationUser entity.";
-            var builder = new TaughtClassesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.TaughtClasses.TaughtClassesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -288,7 +288,7 @@ namespace ApiSdk.Education.Me
         {
             var command = new Command("user");
             command.Description = "Provides operations to manage the user property of the microsoft.graph.educationUser entity.";
-            var builder = new UserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Education.Me.User.UserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
@@ -305,14 +305,14 @@ namespace ApiSdk.Education.Me
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Me.MeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MeRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Education.Me.MeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MeRequestBuilder(string rawUrl) : base("{+baseurl}/education/me{?%24expand,%24select}", rawUrl)
@@ -344,11 +344,11 @@ namespace ApiSdk.Education.Me
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MeRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.Me.MeRequestBuilder.MeRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MeRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Education.Me.MeRequestBuilder.MeRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -364,11 +364,11 @@ namespace ApiSdk.Education.Me
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EducationUser body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.EducationUser body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(EducationUser body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.EducationUser body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CommunicationsEncryptedIdentity : Identity, IParsable
+    public class CommunicationsEncryptedIdentity : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>
-        /// Instantiates a new <see cref="CommunicationsEncryptedIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CommunicationsEncryptedIdentity"/> and sets the default values.
         /// </summary>
         public CommunicationsEncryptedIdentity() : base()
         {
@@ -20,12 +20,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CommunicationsEncryptedIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CommunicationsEncryptedIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CommunicationsEncryptedIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CommunicationsEncryptedIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CommunicationsEncryptedIdentity();
+            return new ApiSdk.Models.CommunicationsEncryptedIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model

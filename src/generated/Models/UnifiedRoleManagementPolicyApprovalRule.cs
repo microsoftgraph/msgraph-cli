@@ -7,19 +7,19 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UnifiedRoleManagementPolicyApprovalRule : UnifiedRoleManagementPolicyRule, IParsable
+    public class UnifiedRoleManagementPolicyApprovalRule : ApiSdk.Models.UnifiedRoleManagementPolicyRule, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The settings for approval of the role assignment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ApprovalSettings? Setting { get; set; }
+        public ApiSdk.Models.ApprovalSettings? Setting { get; set; }
 #nullable restore
 #else
-        public ApprovalSettings Setting { get; set; }
+        public ApiSdk.Models.ApprovalSettings Setting { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="UnifiedRoleManagementPolicyApprovalRule"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.UnifiedRoleManagementPolicyApprovalRule"/> and sets the default values.
         /// </summary>
         public UnifiedRoleManagementPolicyApprovalRule() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedRoleManagementPolicyApprovalRule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UnifiedRoleManagementPolicyApprovalRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UnifiedRoleManagementPolicyApprovalRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UnifiedRoleManagementPolicyApprovalRule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedRoleManagementPolicyApprovalRule();
+            return new ApiSdk.Models.UnifiedRoleManagementPolicyApprovalRule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -43,7 +43,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "setting", n => { Setting = n.GetObjectValue<ApprovalSettings>(ApprovalSettings.CreateFromDiscriminatorValue); } },
+                { "setting", n => { Setting = n.GetObjectValue<ApiSdk.Models.ApprovalSettings>(ApiSdk.Models.ApprovalSettings.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<ApprovalSettings>("setting", Setting);
+            writer.WriteObjectValue<ApiSdk.Models.ApprovalSettings>("setting", Setting);
         }
     }
 }

@@ -7,29 +7,29 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class MicrosoftAuthenticatorAuthenticationMethodConfiguration : AuthenticationMethodConfiguration, IParsable
+    public class MicrosoftAuthenticatorAuthenticationMethodConfiguration : ApiSdk.Models.AuthenticationMethodConfiguration, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A collection of Microsoft Authenticator settings such as application context and location context, and whether they are enabled for all users or specific users only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public MicrosoftAuthenticatorFeatureSettings? FeatureSettings { get; set; }
+        public ApiSdk.Models.MicrosoftAuthenticatorFeatureSettings? FeatureSettings { get; set; }
 #nullable restore
 #else
-        public MicrosoftAuthenticatorFeatureSettings FeatureSettings { get; set; }
+        public ApiSdk.Models.MicrosoftAuthenticatorFeatureSettings FeatureSettings { get; set; }
 #endif
         /// <summary>A collection of groups that are enabled to use the authentication method. Expanded by default.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MicrosoftAuthenticatorAuthenticationMethodTarget>? IncludeTargets { get; set; }
+        public List<ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodTarget>? IncludeTargets { get; set; }
 #nullable restore
 #else
-        public List<MicrosoftAuthenticatorAuthenticationMethodTarget> IncludeTargets { get; set; }
+        public List<ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodTarget> IncludeTargets { get; set; }
 #endif
         /// <summary>The isSoftwareOathEnabled property</summary>
         public bool? IsSoftwareOathEnabled { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MicrosoftAuthenticatorAuthenticationMethodConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodConfiguration"/> and sets the default values.
         /// </summary>
         public MicrosoftAuthenticatorAuthenticationMethodConfiguration() : base()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MicrosoftAuthenticatorAuthenticationMethodConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MicrosoftAuthenticatorAuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MicrosoftAuthenticatorAuthenticationMethodConfiguration();
+            return new ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -53,8 +53,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "featureSettings", n => { FeatureSettings = n.GetObjectValue<MicrosoftAuthenticatorFeatureSettings>(MicrosoftAuthenticatorFeatureSettings.CreateFromDiscriminatorValue); } },
-                { "includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<MicrosoftAuthenticatorAuthenticationMethodTarget>(MicrosoftAuthenticatorAuthenticationMethodTarget.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "featureSettings", n => { FeatureSettings = n.GetObjectValue<ApiSdk.Models.MicrosoftAuthenticatorFeatureSettings>(ApiSdk.Models.MicrosoftAuthenticatorFeatureSettings.CreateFromDiscriminatorValue); } },
+                { "includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodTarget>(ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodTarget.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isSoftwareOathEnabled", n => { IsSoftwareOathEnabled = n.GetBoolValue(); } },
             };
         }
@@ -66,8 +66,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<MicrosoftAuthenticatorFeatureSettings>("featureSettings", FeatureSettings);
-            writer.WriteCollectionOfObjectValues<MicrosoftAuthenticatorAuthenticationMethodTarget>("includeTargets", IncludeTargets);
+            writer.WriteObjectValue<ApiSdk.Models.MicrosoftAuthenticatorFeatureSettings>("featureSettings", FeatureSettings);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodTarget>("includeTargets", IncludeTargets);
             writer.WriteBoolValue("isSoftwareOathEnabled", IsSoftwareOathEnabled);
         }
     }

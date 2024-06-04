@@ -34,7 +34,7 @@ namespace ApiSdk.Communications.Presences.Item
         {
             var command = new Command("clear-presence");
             command.Description = "Provides operations to call the clearPresence method.";
-            var builder = new ClearPresenceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Presences.Item.ClearPresence.ClearPresenceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -51,7 +51,7 @@ namespace ApiSdk.Communications.Presences.Item
         {
             var command = new Command("clear-user-preferred-presence");
             command.Description = "Provides operations to call the clearUserPreferredPresence method.";
-            var builder = new ClearUserPreferredPresenceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence.ClearUserPreferredPresenceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -207,7 +207,7 @@ namespace ApiSdk.Communications.Presences.Item
         {
             var command = new Command("set-presence");
             command.Description = "Provides operations to call the setPresence method.";
-            var builder = new SetPresenceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Presences.Item.SetPresence.SetPresenceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -224,7 +224,7 @@ namespace ApiSdk.Communications.Presences.Item
         {
             var command = new Command("set-status-message");
             command.Description = "Provides operations to call the setStatusMessage method.";
-            var builder = new SetStatusMessageRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Presences.Item.SetStatusMessage.SetStatusMessageRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -241,7 +241,7 @@ namespace ApiSdk.Communications.Presences.Item
         {
             var command = new Command("set-user-preferred-presence");
             command.Description = "Provides operations to call the setUserPreferredPresence method.";
-            var builder = new SetUserPreferredPresenceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Communications.Presences.Item.SetUserPreferredPresence.SetUserPreferredPresenceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -251,14 +251,14 @@ namespace ApiSdk.Communications.Presences.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PresenceItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Presences.Item.PresenceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PresenceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences/{presence%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PresenceItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.Presences.Item.PresenceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PresenceItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/presences/{presence%2Did}{?%24expand,%24select}", rawUrl)
@@ -290,11 +290,11 @@ namespace ApiSdk.Communications.Presences.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PresenceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.Presences.Item.PresenceItemRequestBuilder.PresenceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PresenceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Communications.Presences.Item.PresenceItemRequestBuilder.PresenceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

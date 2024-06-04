@@ -54,14 +54,14 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DownloadApplePushNotificationCertificateSigningRequestRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApplePushNotificationCertificateSigningRequest.DownloadApplePushNotificationCertificateSigningRequestRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/applePushNotificationCertificate/downloadApplePushNotificationCertificateSigningRequest()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DownloadApplePushNotificationCertificateSigningRequestRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApplePushNotificationCertificateSigningRequest.DownloadApplePushNotificationCertificateSigningRequestRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/applePushNotificationCertificate/downloadApplePushNotificationCertificateSigningRequest()", rawUrl)

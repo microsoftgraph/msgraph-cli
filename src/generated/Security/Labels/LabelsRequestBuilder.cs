@@ -35,7 +35,7 @@ namespace ApiSdk.Security.Labels
         {
             var command = new Command("authorities");
             command.Description = "Provides operations to manage the authorities property of the microsoft.graph.security.labelsRoot entity.";
-            var builder = new AuthoritiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Labels.Authorities.AuthoritiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -62,7 +62,7 @@ namespace ApiSdk.Security.Labels
         {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.security.labelsRoot entity.";
-            var builder = new CategoriesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Labels.Categories.CategoriesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -89,7 +89,7 @@ namespace ApiSdk.Security.Labels
         {
             var command = new Command("citations");
             command.Description = "Provides operations to manage the citations property of the microsoft.graph.security.labelsRoot entity.";
-            var builder = new CitationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Labels.Citations.CitationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -145,7 +145,7 @@ namespace ApiSdk.Security.Labels
         {
             var command = new Command("departments");
             command.Description = "Provides operations to manage the departments property of the microsoft.graph.security.labelsRoot entity.";
-            var builder = new DepartmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Labels.Departments.DepartmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -172,7 +172,7 @@ namespace ApiSdk.Security.Labels
         {
             var command = new Command("file-plan-references");
             command.Description = "Provides operations to manage the filePlanReferences property of the microsoft.graph.security.labelsRoot entity.";
-            var builder = new FilePlanReferencesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Labels.FilePlanReferences.FilePlanReferencesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -263,7 +263,7 @@ namespace ApiSdk.Security.Labels
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<LabelsRoot>(LabelsRoot.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Security.LabelsRoot>(ApiSdk.Models.Security.LabelsRoot.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -290,7 +290,7 @@ namespace ApiSdk.Security.Labels
         {
             var command = new Command("retention-labels");
             command.Description = "Provides operations to manage the retentionLabels property of the microsoft.graph.security.labelsRoot entity.";
-            var builder = new RetentionLabelsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Security.Labels.RetentionLabels.RetentionLabelsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -310,14 +310,14 @@ namespace ApiSdk.Security.Labels
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="LabelsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Labels.LabelsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LabelsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/labels{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="LabelsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Security.Labels.LabelsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LabelsRequestBuilder(string rawUrl) : base("{+baseurl}/security/labels{?%24expand,%24select}", rawUrl)
@@ -349,11 +349,11 @@ namespace ApiSdk.Security.Labels
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<LabelsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.Labels.LabelsRequestBuilder.LabelsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<LabelsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Security.Labels.LabelsRequestBuilder.LabelsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -369,11 +369,11 @@ namespace ApiSdk.Security.Labels
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(LabelsRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.LabelsRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(LabelsRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.LabelsRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

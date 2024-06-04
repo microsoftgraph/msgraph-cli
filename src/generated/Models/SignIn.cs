@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SignIn : Entity, IParsable
+    public class SignIn : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>App name displayed in the Microsoft Entra admin center.  Supports $filter (eq, startsWith).</summary>
@@ -29,10 +29,10 @@ namespace ApiSdk.Models
         /// <summary>Provides a list of conditional access policies that the corresponding sign-in activity triggers. Apps need more Conditional Access-related privileges to read the details of this property. For more information, see Viewing applied conditional access (CA) policies in sign-ins.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppliedConditionalAccessPolicy>? AppliedConditionalAccessPolicies { get; set; }
+        public List<ApiSdk.Models.AppliedConditionalAccessPolicy>? AppliedConditionalAccessPolicies { get; set; }
 #nullable restore
 #else
-        public List<AppliedConditionalAccessPolicy> AppliedConditionalAccessPolicies { get; set; }
+        public List<ApiSdk.Models.AppliedConditionalAccessPolicy> AppliedConditionalAccessPolicies { get; set; }
 #endif
         /// <summary>Identifies the client used for the sign-in activity. Modern authentication clients include Browser, modern clients. Legacy authentication clients include Exchange ActiveSync, IMAP, MAPI, SMTP, POP, and other clients.  Supports $filter (eq).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -75,10 +75,10 @@ namespace ApiSdk.Models
         /// <summary>Provides the city, state, and country code where the sign-in originated.  Supports $filter (eq, startsWith) on city, state, and countryOrRegion properties.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SignInLocation? Location { get; set; }
+        public ApiSdk.Models.SignInLocation? Location { get; set; }
 #nullable restore
 #else
-        public SignInLocation Location { get; set; }
+        public ApiSdk.Models.SignInLocation Location { get; set; }
 #endif
         /// <summary>Name of the resource the user signed into.  Supports $filter (eq).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -101,10 +101,10 @@ namespace ApiSdk.Models
         /// <summary>The riskEventTypes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RiskEventType?>? RiskEventTypes { get; set; }
+        public List<ApiSdk.Models.RiskEventType?>? RiskEventTypes { get; set; }
 #nullable restore
 #else
-        public List<RiskEventType?> RiskEventTypes { get; set; }
+        public List<ApiSdk.Models.RiskEventType?> RiskEventTypes { get; set; }
 #endif
         /// <summary>The list of risk event types associated with the sign-in. Possible values: unlikelyTravel, anonymizedIPAddress, maliciousIPAddress, unfamiliarFeatures, malwareInfectedIPAddress, suspiciousIPAddress, leakedCredentials, investigationsThreatIntelligence, generic, or unknownFutureValue.  Supports $filter (eq, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -115,18 +115,18 @@ namespace ApiSdk.Models
         public List<string> RiskEventTypesV2 { get; set; }
 #endif
         /// <summary>Aggregated risk level. The possible values are: none, low, medium, high, hidden, and unknownFutureValue. The value hidden means the user or sign-in wasn&apos;t enabled for Microsoft Entra ID Protection.  Supports $filter (eq).  Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.</summary>
-        public RiskLevel? RiskLevelAggregated { get; set; }
+        public ApiSdk.Models.RiskLevel? RiskLevelAggregated { get; set; }
         /// <summary>Risk level during sign-in. The possible values are: none, low, medium, high, hidden, and unknownFutureValue. The value hidden means the user or sign-in wasn&apos;t enabled for Microsoft Entra ID Protection.  Supports $filter (eq). Note: Details for this property are only available for Microsoft Entra ID P2 customers. All other customers are returned hidden.</summary>
-        public RiskLevel? RiskLevelDuringSignIn { get; set; }
+        public ApiSdk.Models.RiskLevel? RiskLevelDuringSignIn { get; set; }
         /// <summary>Reports status of the risky user, sign-in, or a risk event. The possible values are: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, unknownFutureValue.  Supports $filter (eq).</summary>
         public ApiSdk.Models.RiskState? RiskState { get; set; }
         /// <summary>Sign-in status. Includes the error code and description of the error (if a sign-in failure occurs).  Supports $filter (eq) on errorCode property.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SignInStatus? Status { get; set; }
+        public ApiSdk.Models.SignInStatus? Status { get; set; }
 #nullable restore
 #else
-        public SignInStatus Status { get; set; }
+        public ApiSdk.Models.SignInStatus Status { get; set; }
 #endif
         /// <summary>Display name of the user that initiated the sign-in.  Supports $filter (eq, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -155,12 +155,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SignIn"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SignIn"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SignIn CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SignIn CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SignIn();
+            return new ApiSdk.Models.SignIn();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -172,24 +172,24 @@ namespace ApiSdk.Models
             {
                 { "appDisplayName", n => { AppDisplayName = n.GetStringValue(); } },
                 { "appId", n => { AppId = n.GetStringValue(); } },
-                { "appliedConditionalAccessPolicies", n => { AppliedConditionalAccessPolicies = n.GetCollectionOfObjectValues<AppliedConditionalAccessPolicy>(AppliedConditionalAccessPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "appliedConditionalAccessPolicies", n => { AppliedConditionalAccessPolicies = n.GetCollectionOfObjectValues<ApiSdk.Models.AppliedConditionalAccessPolicy>(ApiSdk.Models.AppliedConditionalAccessPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "clientAppUsed", n => { ClientAppUsed = n.GetStringValue(); } },
-                { "conditionalAccessStatus", n => { ConditionalAccessStatus = n.GetEnumValue<ConditionalAccessStatus>(); } },
+                { "conditionalAccessStatus", n => { ConditionalAccessStatus = n.GetEnumValue<ApiSdk.Models.ConditionalAccessStatus>(); } },
                 { "correlationId", n => { CorrelationId = n.GetStringValue(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "deviceDetail", n => { DeviceDetail = n.GetObjectValue<ApiSdk.Models.DeviceDetail>(ApiSdk.Models.DeviceDetail.CreateFromDiscriminatorValue); } },
                 { "ipAddress", n => { IpAddress = n.GetStringValue(); } },
                 { "isInteractive", n => { IsInteractive = n.GetBoolValue(); } },
-                { "location", n => { Location = n.GetObjectValue<SignInLocation>(SignInLocation.CreateFromDiscriminatorValue); } },
+                { "location", n => { Location = n.GetObjectValue<ApiSdk.Models.SignInLocation>(ApiSdk.Models.SignInLocation.CreateFromDiscriminatorValue); } },
                 { "resourceDisplayName", n => { ResourceDisplayName = n.GetStringValue(); } },
                 { "resourceId", n => { ResourceId = n.GetStringValue(); } },
-                { "riskDetail", n => { RiskDetail = n.GetEnumValue<RiskDetail>(); } },
-                { "riskEventTypes", n => { RiskEventTypes = n.GetCollectionOfEnumValues<RiskEventType>()?.ToList(); } },
+                { "riskDetail", n => { RiskDetail = n.GetEnumValue<ApiSdk.Models.RiskDetail>(); } },
+                { "riskEventTypes", n => { RiskEventTypes = n.GetCollectionOfEnumValues<ApiSdk.Models.RiskEventType>()?.ToList(); } },
                 { "riskEventTypes_v2", n => { RiskEventTypesV2 = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "riskLevelAggregated", n => { RiskLevelAggregated = n.GetEnumValue<RiskLevel>(); } },
-                { "riskLevelDuringSignIn", n => { RiskLevelDuringSignIn = n.GetEnumValue<RiskLevel>(); } },
-                { "riskState", n => { RiskState = n.GetEnumValue<RiskState>(); } },
-                { "status", n => { Status = n.GetObjectValue<SignInStatus>(SignInStatus.CreateFromDiscriminatorValue); } },
+                { "riskLevelAggregated", n => { RiskLevelAggregated = n.GetEnumValue<ApiSdk.Models.RiskLevel>(); } },
+                { "riskLevelDuringSignIn", n => { RiskLevelDuringSignIn = n.GetEnumValue<ApiSdk.Models.RiskLevel>(); } },
+                { "riskState", n => { RiskState = n.GetEnumValue<ApiSdk.Models.RiskState>(); } },
+                { "status", n => { Status = n.GetObjectValue<ApiSdk.Models.SignInStatus>(ApiSdk.Models.SignInStatus.CreateFromDiscriminatorValue); } },
                 { "userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
                 { "userId", n => { UserId = n.GetStringValue(); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
@@ -205,24 +205,24 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("appDisplayName", AppDisplayName);
             writer.WriteStringValue("appId", AppId);
-            writer.WriteCollectionOfObjectValues<AppliedConditionalAccessPolicy>("appliedConditionalAccessPolicies", AppliedConditionalAccessPolicies);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppliedConditionalAccessPolicy>("appliedConditionalAccessPolicies", AppliedConditionalAccessPolicies);
             writer.WriteStringValue("clientAppUsed", ClientAppUsed);
-            writer.WriteEnumValue<ConditionalAccessStatus>("conditionalAccessStatus", ConditionalAccessStatus);
+            writer.WriteEnumValue<ApiSdk.Models.ConditionalAccessStatus>("conditionalAccessStatus", ConditionalAccessStatus);
             writer.WriteStringValue("correlationId", CorrelationId);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<ApiSdk.Models.DeviceDetail>("deviceDetail", DeviceDetail);
             writer.WriteStringValue("ipAddress", IpAddress);
             writer.WriteBoolValue("isInteractive", IsInteractive);
-            writer.WriteObjectValue<SignInLocation>("location", Location);
+            writer.WriteObjectValue<ApiSdk.Models.SignInLocation>("location", Location);
             writer.WriteStringValue("resourceDisplayName", ResourceDisplayName);
             writer.WriteStringValue("resourceId", ResourceId);
-            writer.WriteEnumValue<RiskDetail>("riskDetail", RiskDetail);
-            writer.WriteCollectionOfEnumValues<RiskEventType>("riskEventTypes", RiskEventTypes);
+            writer.WriteEnumValue<ApiSdk.Models.RiskDetail>("riskDetail", RiskDetail);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.RiskEventType>("riskEventTypes", RiskEventTypes);
             writer.WriteCollectionOfPrimitiveValues<string>("riskEventTypes_v2", RiskEventTypesV2);
-            writer.WriteEnumValue<RiskLevel>("riskLevelAggregated", RiskLevelAggregated);
-            writer.WriteEnumValue<RiskLevel>("riskLevelDuringSignIn", RiskLevelDuringSignIn);
-            writer.WriteEnumValue<RiskState>("riskState", RiskState);
-            writer.WriteObjectValue<SignInStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.RiskLevel>("riskLevelAggregated", RiskLevelAggregated);
+            writer.WriteEnumValue<ApiSdk.Models.RiskLevel>("riskLevelDuringSignIn", RiskLevelDuringSignIn);
+            writer.WriteEnumValue<ApiSdk.Models.RiskState>("riskState", RiskState);
+            writer.WriteObjectValue<ApiSdk.Models.SignInStatus>("status", Status);
             writer.WriteStringValue("userDisplayName", UserDisplayName);
             writer.WriteStringValue("userId", UserId);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);

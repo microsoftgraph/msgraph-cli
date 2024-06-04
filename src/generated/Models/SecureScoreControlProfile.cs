@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SecureScoreControlProfile : Entity, IParsable
+    public class SecureScoreControlProfile : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Control action type (Config, Review, Behavior).</summary>
@@ -53,10 +53,10 @@ namespace ApiSdk.Models
         /// <summary>Flag to indicate where the tenant has marked a control (ignored, thirdParty, reviewed) (supports update).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SecureScoreControlStateUpdate>? ControlStateUpdates { get; set; }
+        public List<ApiSdk.Models.SecureScoreControlStateUpdate>? ControlStateUpdates { get; set; }
 #nullable restore
 #else
-        public List<SecureScoreControlStateUpdate> ControlStateUpdates { get; set; }
+        public List<ApiSdk.Models.SecureScoreControlStateUpdate> ControlStateUpdates { get; set; }
 #endif
         /// <summary>Flag to indicate if a control is depreciated.</summary>
         public bool? Deprecated { get; set; }
@@ -133,20 +133,20 @@ namespace ApiSdk.Models
         /// <summary>Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SecurityVendorInformation? VendorInformation { get; set; }
+        public ApiSdk.Models.SecurityVendorInformation? VendorInformation { get; set; }
 #nullable restore
 #else
-        public SecurityVendorInformation VendorInformation { get; set; }
+        public ApiSdk.Models.SecurityVendorInformation VendorInformation { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SecureScoreControlProfile"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SecureScoreControlProfile"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SecureScoreControlProfile CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SecureScoreControlProfile CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SecureScoreControlProfile();
+            return new ApiSdk.Models.SecureScoreControlProfile();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -161,7 +161,7 @@ namespace ApiSdk.Models
                 { "azureTenantId", n => { AzureTenantId = n.GetStringValue(); } },
                 { "complianceInformation", n => { ComplianceInformation = n.GetCollectionOfObjectValues<ApiSdk.Models.ComplianceInformation>(ApiSdk.Models.ComplianceInformation.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "controlCategory", n => { ControlCategory = n.GetStringValue(); } },
-                { "controlStateUpdates", n => { ControlStateUpdates = n.GetCollectionOfObjectValues<SecureScoreControlStateUpdate>(SecureScoreControlStateUpdate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "controlStateUpdates", n => { ControlStateUpdates = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlStateUpdate>(ApiSdk.Models.SecureScoreControlStateUpdate.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "deprecated", n => { Deprecated = n.GetBoolValue(); } },
                 { "implementationCost", n => { ImplementationCost = n.GetStringValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -174,7 +174,7 @@ namespace ApiSdk.Models
                 { "tier", n => { Tier = n.GetStringValue(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
                 { "userImpact", n => { UserImpact = n.GetStringValue(); } },
-                { "vendorInformation", n => { VendorInformation = n.GetObjectValue<SecurityVendorInformation>(SecurityVendorInformation.CreateFromDiscriminatorValue); } },
+                { "vendorInformation", n => { VendorInformation = n.GetObjectValue<ApiSdk.Models.SecurityVendorInformation>(ApiSdk.Models.SecurityVendorInformation.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -190,7 +190,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("azureTenantId", AzureTenantId);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.ComplianceInformation>("complianceInformation", ComplianceInformation);
             writer.WriteStringValue("controlCategory", ControlCategory);
-            writer.WriteCollectionOfObjectValues<SecureScoreControlStateUpdate>("controlStateUpdates", ControlStateUpdates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlStateUpdate>("controlStateUpdates", ControlStateUpdates);
             writer.WriteBoolValue("deprecated", Deprecated);
             writer.WriteStringValue("implementationCost", ImplementationCost);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
@@ -203,7 +203,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("tier", Tier);
             writer.WriteStringValue("title", Title);
             writer.WriteStringValue("userImpact", UserImpact);
-            writer.WriteObjectValue<SecurityVendorInformation>("vendorInformation", VendorInformation);
+            writer.WriteObjectValue<ApiSdk.Models.SecurityVendorInformation>("vendorInformation", VendorInformation);
         }
     }
 }

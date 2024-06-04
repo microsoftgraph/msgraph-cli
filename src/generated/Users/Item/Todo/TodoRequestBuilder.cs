@@ -117,7 +117,7 @@ namespace ApiSdk.Users.Item.Todo
         {
             var command = new Command("lists");
             command.Description = "Provides operations to manage the lists property of the microsoft.graph.todo entity.";
-            var builder = new ListsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Todo.Lists.ListsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -189,14 +189,14 @@ namespace ApiSdk.Users.Item.Todo
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="TodoRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Todo.TodoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TodoRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="TodoRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Todo.TodoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TodoRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo{?%24expand,%24select}", rawUrl)
@@ -228,11 +228,11 @@ namespace ApiSdk.Users.Item.Todo
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TodoRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Todo.TodoRequestBuilder.TodoRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TodoRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Todo.TodoRequestBuilder.TodoRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

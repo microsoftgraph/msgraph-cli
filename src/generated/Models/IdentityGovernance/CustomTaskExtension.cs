@@ -39,7 +39,7 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>When the custom extension was last modified.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CustomTaskExtension"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityGovernance.CustomTaskExtension"/> and sets the default values.
         /// </summary>
         public CustomTaskExtension() : base()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CustomTaskExtension"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.CustomTaskExtension"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CustomTaskExtension CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.CustomTaskExtension CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CustomTaskExtension();
+            return new ApiSdk.Models.IdentityGovernance.CustomTaskExtension();
         }
         /// <summary>
         /// The deserialization information for the current model

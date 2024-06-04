@@ -37,12 +37,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DispositionReviewStage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.DispositionReviewStage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DispositionReviewStage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.DispositionReviewStage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DispositionReviewStage();
+            return new ApiSdk.Models.Security.DispositionReviewStage();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -9,14 +9,14 @@ namespace ApiSdk.Models
     /// <summary>
     /// Windows Defender AdvancedThreatProtection Configuration.
     /// </summary>
-    public class WindowsDefenderAdvancedThreatProtectionConfiguration : DeviceConfiguration, IParsable
+    public class WindowsDefenderAdvancedThreatProtectionConfiguration : ApiSdk.Models.DeviceConfiguration, IParsable
     {
         /// <summary>Windows Defender AdvancedThreatProtection &apos;Allow Sample Sharing&apos; Rule</summary>
         public bool? AllowSampleSharing { get; set; }
         /// <summary>Expedite Windows Defender Advanced Threat Protection telemetry reporting frequency.</summary>
         public bool? EnableExpeditedTelemetryReporting { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="WindowsDefenderAdvancedThreatProtectionConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WindowsDefenderAdvancedThreatProtectionConfiguration"/> and sets the default values.
         /// </summary>
         public WindowsDefenderAdvancedThreatProtectionConfiguration() : base()
         {
@@ -25,12 +25,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsDefenderAdvancedThreatProtectionConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsDefenderAdvancedThreatProtectionConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WindowsDefenderAdvancedThreatProtectionConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WindowsDefenderAdvancedThreatProtectionConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsDefenderAdvancedThreatProtectionConfiguration();
+            return new ApiSdk.Models.WindowsDefenderAdvancedThreatProtectionConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model

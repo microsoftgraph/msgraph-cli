@@ -7,22 +7,22 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EntitlementManagementSettings : Entity, IParsable
+    public class EntitlementManagementSettings : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>If externalUserLifecycleAction is blockSignInAndDelete, the duration, typically many days, after an external user is blocked from sign in before their account is deleted.</summary>
         public TimeSpan? DurationUntilExternalUserDeletedAfterBlocked { get; set; }
         /// <summary>Automatic action that the service should take when an external user&apos;s last access package assignment is removed. The possible values are: none, blockSignIn, blockSignInAndDelete, unknownFutureValue.</summary>
-        public AccessPackageExternalUserLifecycleAction? ExternalUserLifecycleAction { get; set; }
+        public ApiSdk.Models.AccessPackageExternalUserLifecycleAction? ExternalUserLifecycleAction { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EntitlementManagementSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EntitlementManagementSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EntitlementManagementSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EntitlementManagementSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EntitlementManagementSettings();
+            return new ApiSdk.Models.EntitlementManagementSettings();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -33,7 +33,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "durationUntilExternalUserDeletedAfterBlocked", n => { DurationUntilExternalUserDeletedAfterBlocked = n.GetTimeSpanValue(); } },
-                { "externalUserLifecycleAction", n => { ExternalUserLifecycleAction = n.GetEnumValue<AccessPackageExternalUserLifecycleAction>(); } },
+                { "externalUserLifecycleAction", n => { ExternalUserLifecycleAction = n.GetEnumValue<ApiSdk.Models.AccessPackageExternalUserLifecycleAction>(); } },
             };
         }
         /// <summary>
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteTimeSpanValue("durationUntilExternalUserDeletedAfterBlocked", DurationUntilExternalUserDeletedAfterBlocked);
-            writer.WriteEnumValue<AccessPackageExternalUserLifecycleAction>("externalUserLifecycleAction", ExternalUserLifecycleAction);
+            writer.WriteEnumValue<ApiSdk.Models.AccessPackageExternalUserLifecycleAction>("externalUserLifecycleAction", ExternalUserLifecycleAction);
         }
     }
 }

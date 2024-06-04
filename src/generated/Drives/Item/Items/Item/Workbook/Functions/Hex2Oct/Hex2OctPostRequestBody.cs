@@ -16,21 +16,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Oct
         /// <summary>The number property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Number { get; set; }
+        public ApiSdk.Models.Json? Number { get; set; }
 #nullable restore
 #else
-        public Json Number { get; set; }
+        public ApiSdk.Models.Json Number { get; set; }
 #endif
         /// <summary>The places property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Places { get; set; }
+        public ApiSdk.Models.Json? Places { get; set; }
 #nullable restore
 #else
-        public Json Places { get; set; }
+        public ApiSdk.Models.Json Places { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Hex2OctPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Oct.Hex2OctPostRequestBody"/> and sets the default values.
         /// </summary>
         public Hex2OctPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Oct
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Hex2OctPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Oct.Hex2OctPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Hex2OctPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Oct.Hex2OctPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Hex2OctPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Oct.Hex2OctPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Oct
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "number", n => { Number = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "places", n => { Places = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "number", n => { Number = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "places", n => { Places = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Oct
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("number", Number);
-            writer.WriteObjectValue<Json>("places", Places);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("number", Number);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("places", Places);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -39,7 +39,7 @@ namespace ApiSdk.PermissionGrants.ValidateProperties
         /// <summary>The onBehalfOfUserId property</summary>
         public Guid? OnBehalfOfUserId { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ValidatePropertiesPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.PermissionGrants.ValidateProperties.ValidatePropertiesPostRequestBody"/> and sets the default values.
         /// </summary>
         public ValidatePropertiesPostRequestBody()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.PermissionGrants.ValidateProperties
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ValidatePropertiesPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.PermissionGrants.ValidateProperties.ValidatePropertiesPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ValidatePropertiesPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.PermissionGrants.ValidateProperties.ValidatePropertiesPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ValidatePropertiesPostRequestBody();
+            return new ApiSdk.PermissionGrants.ValidateProperties.ValidatePropertiesPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

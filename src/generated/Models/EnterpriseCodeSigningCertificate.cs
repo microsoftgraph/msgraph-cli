@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EnterpriseCodeSigningCertificate : Entity, IParsable
+    public class EnterpriseCodeSigningCertificate : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The Windows Enterprise Code-Signing Certificate in the raw data format. Set to null once certificate has been uploaded and other properties have been populated.</summary>
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string IssuerName { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public CertificateStatus? Status { get; set; }
+        public ApiSdk.Models.CertificateStatus? Status { get; set; }
         /// <summary>The subject value for the cert. This might contain information such as country (C), state or province (S), locality (L), common name of the cert (CN), organization (O), and organizational unit (OU). Uploading a valid cert file through the Intune admin console will automatically populate this value in the HTTP response. Supports: $filter, $select, $top, $OrderBy, $skip. $Search is not supported.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -59,12 +59,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EnterpriseCodeSigningCertificate"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EnterpriseCodeSigningCertificate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EnterpriseCodeSigningCertificate CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EnterpriseCodeSigningCertificate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EnterpriseCodeSigningCertificate();
+            return new ApiSdk.Models.EnterpriseCodeSigningCertificate();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,7 +78,7 @@ namespace ApiSdk.Models
                 { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 { "issuer", n => { Issuer = n.GetStringValue(); } },
                 { "issuerName", n => { IssuerName = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<CertificateStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.CertificateStatus>(); } },
                 { "subject", n => { Subject = n.GetStringValue(); } },
                 { "subjectName", n => { SubjectName = n.GetStringValue(); } },
                 { "uploadDateTime", n => { UploadDateTime = n.GetDateTimeOffsetValue(); } },
@@ -96,7 +96,7 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);
             writer.WriteStringValue("issuer", Issuer);
             writer.WriteStringValue("issuerName", IssuerName);
-            writer.WriteEnumValue<CertificateStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.CertificateStatus>("status", Status);
             writer.WriteStringValue("subject", Subject);
             writer.WriteStringValue("subjectName", SubjectName);
             writer.WriteDateTimeOffsetValue("uploadDateTime", UploadDateTime);

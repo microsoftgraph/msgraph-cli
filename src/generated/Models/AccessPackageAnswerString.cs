@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageAnswerString : AccessPackageAnswer, IParsable
+    public class AccessPackageAnswerString : ApiSdk.Models.AccessPackageAnswer, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value stored on the requestor&apos;s user profile, if this answer is configured to be stored as a specific attribute.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessPackageAnswerString"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessPackageAnswerString"/> and sets the default values.
         /// </summary>
         public AccessPackageAnswerString() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageAnswerString"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageAnswerString"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageAnswerString CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageAnswerString CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageAnswerString();
+            return new ApiSdk.Models.AccessPackageAnswerString();
         }
         /// <summary>
         /// The deserialization information for the current model

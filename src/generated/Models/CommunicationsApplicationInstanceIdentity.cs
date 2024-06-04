@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CommunicationsApplicationInstanceIdentity : Identity, IParsable
+    public class CommunicationsApplicationInstanceIdentity : ApiSdk.Models.Identity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>True if the participant shouldn&apos;t be shown in other participants&apos; rosters.</summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string TenantId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CommunicationsApplicationInstanceIdentity"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.CommunicationsApplicationInstanceIdentity"/> and sets the default values.
         /// </summary>
         public CommunicationsApplicationInstanceIdentity() : base()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CommunicationsApplicationInstanceIdentity"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CommunicationsApplicationInstanceIdentity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CommunicationsApplicationInstanceIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CommunicationsApplicationInstanceIdentity CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CommunicationsApplicationInstanceIdentity();
+            return new ApiSdk.Models.CommunicationsApplicationInstanceIdentity();
         }
         /// <summary>
         /// The deserialization information for the current model

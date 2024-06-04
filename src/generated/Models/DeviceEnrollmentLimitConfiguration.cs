@@ -9,12 +9,12 @@ namespace ApiSdk.Models
     /// <summary>
     /// Device Enrollment Configuration that restricts the number of devices a user can enroll
     /// </summary>
-    public class DeviceEnrollmentLimitConfiguration : DeviceEnrollmentConfiguration, IParsable
+    public class DeviceEnrollmentLimitConfiguration : ApiSdk.Models.DeviceEnrollmentConfiguration, IParsable
     {
         /// <summary>The maximum number of devices that a user can enroll</summary>
         public int? Limit { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceEnrollmentLimitConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DeviceEnrollmentLimitConfiguration"/> and sets the default values.
         /// </summary>
         public DeviceEnrollmentLimitConfiguration() : base()
         {
@@ -23,12 +23,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DeviceEnrollmentLimitConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DeviceEnrollmentLimitConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceEnrollmentLimitConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DeviceEnrollmentLimitConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DeviceEnrollmentLimitConfiguration();
+            return new ApiSdk.Models.DeviceEnrollmentLimitConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model

@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UnifiedRoleAssignmentScheduleInstance : UnifiedRoleScheduleInstanceBase, IParsable
+    public class UnifiedRoleAssignmentScheduleInstance : ApiSdk.Models.UnifiedRoleScheduleInstanceBase, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>If the request is from an eligible administrator to activate a role, this parameter shows the related eligible assignment for that activation. Otherwise, it&apos;s null. Supports $expand and $select nested in $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UnifiedRoleEligibilityScheduleInstance? ActivatedUsing { get; set; }
+        public ApiSdk.Models.UnifiedRoleEligibilityScheduleInstance? ActivatedUsing { get; set; }
 #nullable restore
 #else
-        public UnifiedRoleEligibilityScheduleInstance ActivatedUsing { get; set; }
+        public ApiSdk.Models.UnifiedRoleEligibilityScheduleInstance ActivatedUsing { get; set; }
 #endif
         /// <summary>The type of the assignment that can either be Assigned or Activated. Supports $filter (eq, ne).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,12 +57,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedRoleAssignmentScheduleInstance"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UnifiedRoleAssignmentScheduleInstance"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UnifiedRoleAssignmentScheduleInstance CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UnifiedRoleAssignmentScheduleInstance CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedRoleAssignmentScheduleInstance();
+            return new ApiSdk.Models.UnifiedRoleAssignmentScheduleInstance();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "activatedUsing", n => { ActivatedUsing = n.GetObjectValue<UnifiedRoleEligibilityScheduleInstance>(UnifiedRoleEligibilityScheduleInstance.CreateFromDiscriminatorValue); } },
+                { "activatedUsing", n => { ActivatedUsing = n.GetObjectValue<ApiSdk.Models.UnifiedRoleEligibilityScheduleInstance>(ApiSdk.Models.UnifiedRoleEligibilityScheduleInstance.CreateFromDiscriminatorValue); } },
                 { "assignmentType", n => { AssignmentType = n.GetStringValue(); } },
                 { "endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 { "memberType", n => { MemberType = n.GetStringValue(); } },
@@ -89,7 +89,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<UnifiedRoleEligibilityScheduleInstance>("activatedUsing", ActivatedUsing);
+            writer.WriteObjectValue<ApiSdk.Models.UnifiedRoleEligibilityScheduleInstance>("activatedUsing", ActivatedUsing);
             writer.WriteStringValue("assignmentType", AssignmentType);
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteStringValue("memberType", MemberType);

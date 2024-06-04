@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties and inherited properties for Android store apps that you can manage with an Intune app protection policy.
     /// </summary>
-    public class ManagedAndroidStoreApp : ManagedApp, IParsable
+    public class ManagedAndroidStoreApp : ApiSdk.Models.ManagedApp, IParsable
     {
         /// <summary>The Android AppStoreUrl.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,10 +22,10 @@ namespace ApiSdk.Models
         /// <summary>Contains properties for the minimum operating system required for an Android mobile app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AndroidMinimumOperatingSystem? MinimumSupportedOperatingSystem { get; set; }
+        public ApiSdk.Models.AndroidMinimumOperatingSystem? MinimumSupportedOperatingSystem { get; set; }
 #nullable restore
 #else
-        public AndroidMinimumOperatingSystem MinimumSupportedOperatingSystem { get; set; }
+        public ApiSdk.Models.AndroidMinimumOperatingSystem MinimumSupportedOperatingSystem { get; set; }
 #endif
         /// <summary>The app&apos;s package ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         public string PackageId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ManagedAndroidStoreApp"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ManagedAndroidStoreApp"/> and sets the default values.
         /// </summary>
         public ManagedAndroidStoreApp() : base()
         {
@@ -45,12 +45,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ManagedAndroidStoreApp"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ManagedAndroidStoreApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ManagedAndroidStoreApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ManagedAndroidStoreApp CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ManagedAndroidStoreApp();
+            return new ApiSdk.Models.ManagedAndroidStoreApp();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "appStoreUrl", n => { AppStoreUrl = n.GetStringValue(); } },
-                { "minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<AndroidMinimumOperatingSystem>(AndroidMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
+                { "minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<ApiSdk.Models.AndroidMinimumOperatingSystem>(ApiSdk.Models.AndroidMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
                 { "packageId", n => { PackageId = n.GetStringValue(); } },
             };
         }
@@ -74,7 +74,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("appStoreUrl", AppStoreUrl);
-            writer.WriteObjectValue<AndroidMinimumOperatingSystem>("minimumSupportedOperatingSystem", MinimumSupportedOperatingSystem);
+            writer.WriteObjectValue<ApiSdk.Models.AndroidMinimumOperatingSystem>("minimumSupportedOperatingSystem", MinimumSupportedOperatingSystem);
             writer.WriteStringValue("packageId", PackageId);
         }
     }

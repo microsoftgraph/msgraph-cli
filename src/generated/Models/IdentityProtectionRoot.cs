@@ -23,37 +23,37 @@ namespace ApiSdk.Models
         /// <summary>Risk detection in Microsoft Entra ID Protection and the associated information about the detection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RiskDetection>? RiskDetections { get; set; }
+        public List<ApiSdk.Models.RiskDetection>? RiskDetections { get; set; }
 #nullable restore
 #else
-        public List<RiskDetection> RiskDetections { get; set; }
+        public List<ApiSdk.Models.RiskDetection> RiskDetections { get; set; }
 #endif
         /// <summary>Microsoft Entra service principals that are at risk.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RiskyServicePrincipal>? RiskyServicePrincipals { get; set; }
+        public List<ApiSdk.Models.RiskyServicePrincipal>? RiskyServicePrincipals { get; set; }
 #nullable restore
 #else
-        public List<RiskyServicePrincipal> RiskyServicePrincipals { get; set; }
+        public List<ApiSdk.Models.RiskyServicePrincipal> RiskyServicePrincipals { get; set; }
 #endif
         /// <summary>Users that are flagged as at-risk by Microsoft Entra ID Protection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RiskyUser>? RiskyUsers { get; set; }
+        public List<ApiSdk.Models.RiskyUser>? RiskyUsers { get; set; }
 #nullable restore
 #else
-        public List<RiskyUser> RiskyUsers { get; set; }
+        public List<ApiSdk.Models.RiskyUser> RiskyUsers { get; set; }
 #endif
         /// <summary>Represents information about detected at-risk service principals in a Microsoft Entra tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ServicePrincipalRiskDetection>? ServicePrincipalRiskDetections { get; set; }
+        public List<ApiSdk.Models.ServicePrincipalRiskDetection>? ServicePrincipalRiskDetections { get; set; }
 #nullable restore
 #else
-        public List<ServicePrincipalRiskDetection> ServicePrincipalRiskDetections { get; set; }
+        public List<ApiSdk.Models.ServicePrincipalRiskDetection> ServicePrincipalRiskDetections { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IdentityProtectionRoot"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IdentityProtectionRoot"/> and sets the default values.
         /// </summary>
         public IdentityProtectionRoot()
         {
@@ -62,12 +62,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IdentityProtectionRoot"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityProtectionRoot"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IdentityProtectionRoot CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IdentityProtectionRoot CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IdentityProtectionRoot();
+            return new ApiSdk.Models.IdentityProtectionRoot();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,10 +78,10 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "riskDetections", n => { RiskDetections = n.GetCollectionOfObjectValues<RiskDetection>(RiskDetection.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "riskyServicePrincipals", n => { RiskyServicePrincipals = n.GetCollectionOfObjectValues<RiskyServicePrincipal>(RiskyServicePrincipal.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "riskyUsers", n => { RiskyUsers = n.GetCollectionOfObjectValues<RiskyUser>(RiskyUser.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "servicePrincipalRiskDetections", n => { ServicePrincipalRiskDetections = n.GetCollectionOfObjectValues<ServicePrincipalRiskDetection>(ServicePrincipalRiskDetection.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "riskDetections", n => { RiskDetections = n.GetCollectionOfObjectValues<ApiSdk.Models.RiskDetection>(ApiSdk.Models.RiskDetection.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "riskyServicePrincipals", n => { RiskyServicePrincipals = n.GetCollectionOfObjectValues<ApiSdk.Models.RiskyServicePrincipal>(ApiSdk.Models.RiskyServicePrincipal.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "riskyUsers", n => { RiskyUsers = n.GetCollectionOfObjectValues<ApiSdk.Models.RiskyUser>(ApiSdk.Models.RiskyUser.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "servicePrincipalRiskDetections", n => { ServicePrincipalRiskDetections = n.GetCollectionOfObjectValues<ApiSdk.Models.ServicePrincipalRiskDetection>(ApiSdk.Models.ServicePrincipalRiskDetection.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -92,10 +92,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<RiskDetection>("riskDetections", RiskDetections);
-            writer.WriteCollectionOfObjectValues<RiskyServicePrincipal>("riskyServicePrincipals", RiskyServicePrincipals);
-            writer.WriteCollectionOfObjectValues<RiskyUser>("riskyUsers", RiskyUsers);
-            writer.WriteCollectionOfObjectValues<ServicePrincipalRiskDetection>("servicePrincipalRiskDetections", ServicePrincipalRiskDetections);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RiskDetection>("riskDetections", RiskDetections);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RiskyServicePrincipal>("riskyServicePrincipals", RiskyServicePrincipals);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RiskyUser>("riskyUsers", RiskyUsers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ServicePrincipalRiskDetection>("servicePrincipalRiskDetections", ServicePrincipalRiskDetections);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

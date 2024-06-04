@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>Collection of keyCredential restrictions settings to be applied to an application or service principal.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<KeyCredentialConfiguration>? KeyCredentials { get; set; }
+        public List<ApiSdk.Models.KeyCredentialConfiguration>? KeyCredentials { get; set; }
 #nullable restore
 #else
-        public List<KeyCredentialConfiguration> KeyCredentials { get; set; }
+        public List<ApiSdk.Models.KeyCredentialConfiguration> KeyCredentials { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,13 +31,13 @@ namespace ApiSdk.Models
         /// <summary>Collection of password restrictions settings to be applied to an application or service principal.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<PasswordCredentialConfiguration>? PasswordCredentials { get; set; }
+        public List<ApiSdk.Models.PasswordCredentialConfiguration>? PasswordCredentials { get; set; }
 #nullable restore
 #else
-        public List<PasswordCredentialConfiguration> PasswordCredentials { get; set; }
+        public List<ApiSdk.Models.PasswordCredentialConfiguration> PasswordCredentials { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AppManagementConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AppManagementConfiguration"/> and sets the default values.
         /// </summary>
         public AppManagementConfiguration()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AppManagementConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AppManagementConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AppManagementConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AppManagementConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AppManagementConfiguration();
+            return new ApiSdk.Models.AppManagementConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,9 +61,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "keyCredentials", n => { KeyCredentials = n.GetCollectionOfObjectValues<KeyCredentialConfiguration>(KeyCredentialConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "keyCredentials", n => { KeyCredentials = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyCredentialConfiguration>(ApiSdk.Models.KeyCredentialConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<PasswordCredentialConfiguration>(PasswordCredentialConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<ApiSdk.Models.PasswordCredentialConfiguration>(ApiSdk.Models.PasswordCredentialConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -73,9 +73,9 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<KeyCredentialConfiguration>("keyCredentials", KeyCredentials);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyCredentialConfiguration>("keyCredentials", KeyCredentials);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<PasswordCredentialConfiguration>("passwordCredentials", PasswordCredentials);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.PasswordCredentialConfiguration>("passwordCredentials", PasswordCredentials);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

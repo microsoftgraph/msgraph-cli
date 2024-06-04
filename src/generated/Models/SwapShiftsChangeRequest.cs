@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SwapShiftsChangeRequest : OfferShiftRequest, IParsable
+    public class SwapShiftsChangeRequest : ApiSdk.Models.OfferShiftRequest, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>ShiftId for the recipient user with whom the request is to swap.</summary>
@@ -19,7 +19,7 @@ namespace ApiSdk.Models
         public string RecipientShiftId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SwapShiftsChangeRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SwapShiftsChangeRequest"/> and sets the default values.
         /// </summary>
         public SwapShiftsChangeRequest() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SwapShiftsChangeRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SwapShiftsChangeRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SwapShiftsChangeRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SwapShiftsChangeRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SwapShiftsChangeRequest();
+            return new ApiSdk.Models.SwapShiftsChangeRequest();
         }
         /// <summary>
         /// The deserialization information for the current model

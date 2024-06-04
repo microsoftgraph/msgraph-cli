@@ -37,9 +37,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>The sourceType property</summary>
-        public SettingSourceType? SourceType { get; set; }
+        public ApiSdk.Models.SettingSourceType? SourceType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="SettingSource"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SettingSource"/> and sets the default values.
         /// </summary>
         public SettingSource()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SettingSource"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SettingSource"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SettingSource CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SettingSource CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SettingSource();
+            return new ApiSdk.Models.SettingSource();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "sourceType", n => { SourceType = n.GetEnumValue<SettingSourceType>(); } },
+                { "sourceType", n => { SourceType = n.GetEnumValue<ApiSdk.Models.SettingSourceType>(); } },
             };
         }
         /// <summary>
@@ -79,7 +79,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<SettingSourceType>("sourceType", SourceType);
+            writer.WriteEnumValue<ApiSdk.Models.SettingSourceType>("sourceType", SourceType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

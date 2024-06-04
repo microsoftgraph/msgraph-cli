@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UnifiedRbacResourceNamespace : Entity, IParsable
+    public class UnifiedRbacResourceNamespace : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The name property</summary>
@@ -21,20 +21,20 @@ namespace ApiSdk.Models
         /// <summary>The resourceActions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UnifiedRbacResourceAction>? ResourceActions { get; set; }
+        public List<ApiSdk.Models.UnifiedRbacResourceAction>? ResourceActions { get; set; }
 #nullable restore
 #else
-        public List<UnifiedRbacResourceAction> ResourceActions { get; set; }
+        public List<ApiSdk.Models.UnifiedRbacResourceAction> ResourceActions { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedRbacResourceNamespace"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UnifiedRbacResourceNamespace"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UnifiedRbacResourceNamespace CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UnifiedRbacResourceNamespace CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedRbacResourceNamespace();
+            return new ApiSdk.Models.UnifiedRbacResourceNamespace();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "resourceActions", n => { ResourceActions = n.GetCollectionOfObjectValues<UnifiedRbacResourceAction>(UnifiedRbacResourceAction.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "resourceActions", n => { ResourceActions = n.GetCollectionOfObjectValues<ApiSdk.Models.UnifiedRbacResourceAction>(ApiSdk.Models.UnifiedRbacResourceAction.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfObjectValues<UnifiedRbacResourceAction>("resourceActions", ResourceActions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UnifiedRbacResourceAction>("resourceActions", ResourceActions);
         }
     }
 }

@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class FileStorage : Entity, IParsable
+    public class FileStorage : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The containers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<FileStorageContainer>? Containers { get; set; }
+        public List<ApiSdk.Models.FileStorageContainer>? Containers { get; set; }
 #nullable restore
 #else
-        public List<FileStorageContainer> Containers { get; set; }
+        public List<ApiSdk.Models.FileStorageContainer> Containers { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FileStorage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.FileStorage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new FileStorage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.FileStorage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FileStorage();
+            return new ApiSdk.Models.FileStorage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "containers", n => { Containers = n.GetCollectionOfObjectValues<FileStorageContainer>(FileStorageContainer.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "containers", n => { Containers = n.GetCollectionOfObjectValues<ApiSdk.Models.FileStorageContainer>(ApiSdk.Models.FileStorageContainer.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<FileStorageContainer>("containers", Containers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.FileStorageContainer>("containers", Containers);
         }
     }
 }

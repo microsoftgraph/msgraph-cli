@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetM365AppPlatformUserCountsWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetM365AppPlatformUserCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetM365AppPlatformUserCountsWithPeriod.GetM365AppPlatformUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetM365AppPlatformUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getM365AppPlatformUserCounts(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetM365AppPlatformUserCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetM365AppPlatformUserCountsWithPeriod.GetM365AppPlatformUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetM365AppPlatformUserCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getM365AppPlatformUserCounts(period='{period}')", rawUrl)

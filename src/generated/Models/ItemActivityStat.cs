@@ -7,48 +7,48 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ItemActivityStat : Entity, IParsable
+    public class ItemActivityStat : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Statistics about the access actions in this interval. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemActionStat? Access { get; set; }
+        public ApiSdk.Models.ItemActionStat? Access { get; set; }
 #nullable restore
 #else
-        public ItemActionStat Access { get; set; }
+        public ApiSdk.Models.ItemActionStat Access { get; set; }
 #endif
         /// <summary>Exposes the itemActivities represented in this itemActivityStat resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ItemActivity>? Activities { get; set; }
+        public List<ApiSdk.Models.ItemActivity>? Activities { get; set; }
 #nullable restore
 #else
-        public List<ItemActivity> Activities { get; set; }
+        public List<ApiSdk.Models.ItemActivity> Activities { get; set; }
 #endif
         /// <summary>Statistics about the create actions in this interval. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemActionStat? Create { get; set; }
+        public ApiSdk.Models.ItemActionStat? Create { get; set; }
 #nullable restore
 #else
-        public ItemActionStat Create { get; set; }
+        public ApiSdk.Models.ItemActionStat Create { get; set; }
 #endif
         /// <summary>Statistics about the delete actions in this interval. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemActionStat? Delete { get; set; }
+        public ApiSdk.Models.ItemActionStat? Delete { get; set; }
 #nullable restore
 #else
-        public ItemActionStat Delete { get; set; }
+        public ApiSdk.Models.ItemActionStat Delete { get; set; }
 #endif
         /// <summary>Statistics about the edit actions in this interval. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemActionStat? Edit { get; set; }
+        public ApiSdk.Models.ItemActionStat? Edit { get; set; }
 #nullable restore
 #else
-        public ItemActionStat Edit { get; set; }
+        public ApiSdk.Models.ItemActionStat Edit { get; set; }
 #endif
         /// <summary>When the interval ends. Read-only.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
@@ -65,22 +65,22 @@ namespace ApiSdk.Models
         /// <summary>Statistics about the move actions in this interval. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemActionStat? Move { get; set; }
+        public ApiSdk.Models.ItemActionStat? Move { get; set; }
 #nullable restore
 #else
-        public ItemActionStat Move { get; set; }
+        public ApiSdk.Models.ItemActionStat Move { get; set; }
 #endif
         /// <summary>When the interval starts. Read-only.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ItemActivityStat"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ItemActivityStat"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ItemActivityStat CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ItemActivityStat CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ItemActivityStat();
+            return new ApiSdk.Models.ItemActivityStat();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -90,15 +90,15 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "access", n => { Access = n.GetObjectValue<ItemActionStat>(ItemActionStat.CreateFromDiscriminatorValue); } },
-                { "activities", n => { Activities = n.GetCollectionOfObjectValues<ItemActivity>(ItemActivity.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "create", n => { Create = n.GetObjectValue<ItemActionStat>(ItemActionStat.CreateFromDiscriminatorValue); } },
-                { "delete", n => { Delete = n.GetObjectValue<ItemActionStat>(ItemActionStat.CreateFromDiscriminatorValue); } },
-                { "edit", n => { Edit = n.GetObjectValue<ItemActionStat>(ItemActionStat.CreateFromDiscriminatorValue); } },
+                { "access", n => { Access = n.GetObjectValue<ApiSdk.Models.ItemActionStat>(ApiSdk.Models.ItemActionStat.CreateFromDiscriminatorValue); } },
+                { "activities", n => { Activities = n.GetCollectionOfObjectValues<ApiSdk.Models.ItemActivity>(ApiSdk.Models.ItemActivity.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "create", n => { Create = n.GetObjectValue<ApiSdk.Models.ItemActionStat>(ApiSdk.Models.ItemActionStat.CreateFromDiscriminatorValue); } },
+                { "delete", n => { Delete = n.GetObjectValue<ApiSdk.Models.ItemActionStat>(ApiSdk.Models.ItemActionStat.CreateFromDiscriminatorValue); } },
+                { "edit", n => { Edit = n.GetObjectValue<ApiSdk.Models.ItemActionStat>(ApiSdk.Models.ItemActionStat.CreateFromDiscriminatorValue); } },
                 { "endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 { "incompleteData", n => { IncompleteData = n.GetObjectValue<ApiSdk.Models.IncompleteData>(ApiSdk.Models.IncompleteData.CreateFromDiscriminatorValue); } },
                 { "isTrending", n => { IsTrending = n.GetBoolValue(); } },
-                { "move", n => { Move = n.GetObjectValue<ItemActionStat>(ItemActionStat.CreateFromDiscriminatorValue); } },
+                { "move", n => { Move = n.GetObjectValue<ApiSdk.Models.ItemActionStat>(ApiSdk.Models.ItemActionStat.CreateFromDiscriminatorValue); } },
                 { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -110,15 +110,15 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<ItemActionStat>("access", Access);
-            writer.WriteCollectionOfObjectValues<ItemActivity>("activities", Activities);
-            writer.WriteObjectValue<ItemActionStat>("create", Create);
-            writer.WriteObjectValue<ItemActionStat>("delete", Delete);
-            writer.WriteObjectValue<ItemActionStat>("edit", Edit);
+            writer.WriteObjectValue<ApiSdk.Models.ItemActionStat>("access", Access);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ItemActivity>("activities", Activities);
+            writer.WriteObjectValue<ApiSdk.Models.ItemActionStat>("create", Create);
+            writer.WriteObjectValue<ApiSdk.Models.ItemActionStat>("delete", Delete);
+            writer.WriteObjectValue<ApiSdk.Models.ItemActionStat>("edit", Edit);
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteObjectValue<ApiSdk.Models.IncompleteData>("incompleteData", IncompleteData);
             writer.WriteBoolValue("isTrending", IsTrending);
-            writer.WriteObjectValue<ItemActionStat>("move", Move);
+            writer.WriteObjectValue<ApiSdk.Models.ItemActionStat>("move", Move);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
         }
     }

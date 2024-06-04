@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetSharePointSiteUsagePagesWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSharePointSiteUsagePagesWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSharePointSiteUsagePagesWithPeriod.GetSharePointSiteUsagePagesWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetSharePointSiteUsagePagesWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSharePointSiteUsagePages(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetSharePointSiteUsagePagesWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetSharePointSiteUsagePagesWithPeriod.GetSharePointSiteUsagePagesWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetSharePointSiteUsagePagesWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSharePointSiteUsagePages(period='{period}')", rawUrl)

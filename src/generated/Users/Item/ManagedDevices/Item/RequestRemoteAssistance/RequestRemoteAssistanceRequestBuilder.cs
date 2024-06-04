@@ -56,14 +56,14 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.RequestRemoteAssistance
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RequestRemoteAssistanceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.ManagedDevices.Item.RequestRemoteAssistance.RequestRemoteAssistanceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RequestRemoteAssistanceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/requestRemoteAssistance", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RequestRemoteAssistanceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.ManagedDevices.Item.RequestRemoteAssistance.RequestRemoteAssistanceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RequestRemoteAssistanceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/requestRemoteAssistance", rawUrl)

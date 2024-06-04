@@ -30,7 +30,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IosHomeScreenItem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.IosHomeScreenItem"/> and sets the default values.
         /// </summary>
         public IosHomeScreenItem()
         {
@@ -39,17 +39,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IosHomeScreenItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IosHomeScreenItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IosHomeScreenItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.IosHomeScreenItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.iosHomeScreenApp" => new IosHomeScreenApp(),
-                "#microsoft.graph.iosHomeScreenFolder" => new IosHomeScreenFolder(),
-                _ => new IosHomeScreenItem(),
+                "#microsoft.graph.iosHomeScreenApp" => new ApiSdk.Models.IosHomeScreenApp(),
+                "#microsoft.graph.iosHomeScreenFolder" => new ApiSdk.Models.IosHomeScreenFolder(),
+                _ => new ApiSdk.Models.IosHomeScreenItem(),
             };
         }
         /// <summary>

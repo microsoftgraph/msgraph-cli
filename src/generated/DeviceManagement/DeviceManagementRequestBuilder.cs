@@ -90,7 +90,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("apple-push-notification-certificate");
             command.Description = "Provides operations to manage the applePushNotificationCertificate property of the microsoft.graph.deviceManagement entity.";
-            var builder = new ApplePushNotificationCertificateRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ApplePushNotificationCertificate.ApplePushNotificationCertificateRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -115,7 +115,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("audit-events");
             command.Description = "Provides operations to manage the auditEvents property of the microsoft.graph.deviceManagement entity.";
-            var builder = new AuditEventsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.AuditEvents.AuditEventsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -144,7 +144,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("compliance-management-partners");
             command.Description = "Provides operations to manage the complianceManagementPartners property of the microsoft.graph.deviceManagement entity.";
-            var builder = new ComplianceManagementPartnersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ComplianceManagementPartners.ComplianceManagementPartnersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -171,7 +171,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("conditional-access-settings");
             command.Description = "Provides operations to manage the conditionalAccessSettings property of the microsoft.graph.deviceManagement entity.";
-            var builder = new ConditionalAccessSettingsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ConditionalAccessSettings.ConditionalAccessSettingsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -190,7 +190,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("detected-apps");
             command.Description = "Provides operations to manage the detectedApps property of the microsoft.graph.deviceManagement entity.";
-            var builder = new DetectedAppsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DetectedApps.DetectedAppsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -217,7 +217,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("device-categories");
             command.Description = "Provides operations to manage the deviceCategories property of the microsoft.graph.deviceManagement entity.";
-            var builder = new DeviceCategoriesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceCategories.DeviceCategoriesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -244,7 +244,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("device-compliance-policies");
             command.Description = "Provides operations to manage the deviceCompliancePolicies property of the microsoft.graph.deviceManagement entity.";
-            var builder = new DeviceCompliancePoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceCompliancePolicies.DeviceCompliancePoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -271,7 +271,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("device-compliance-policy-device-state-summary");
             command.Description = "Provides operations to manage the deviceCompliancePolicyDeviceStateSummary property of the microsoft.graph.deviceManagement entity.";
-            var builder = new DeviceCompliancePolicyDeviceStateSummaryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceCompliancePolicyDeviceStateSummary.DeviceCompliancePolicyDeviceStateSummaryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -290,7 +290,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("device-compliance-policy-setting-state-summaries");
             command.Description = "Provides operations to manage the deviceCompliancePolicySettingStateSummaries property of the microsoft.graph.deviceManagement entity.";
-            var builder = new DeviceCompliancePolicySettingStateSummariesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.DeviceCompliancePolicySettingStateSummariesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -317,7 +317,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("device-configuration-device-state-summaries");
             command.Description = "Provides operations to manage the deviceConfigurationDeviceStateSummaries property of the microsoft.graph.deviceManagement entity.";
-            var builder = new DeviceConfigurationDeviceStateSummariesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceConfigurationDeviceStateSummaries.DeviceConfigurationDeviceStateSummariesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -336,7 +336,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("device-configurations");
             command.Description = "Provides operations to manage the deviceConfigurations property of the microsoft.graph.deviceManagement entity.";
-            var builder = new DeviceConfigurationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceConfigurations.DeviceConfigurationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -363,7 +363,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("device-enrollment-configurations");
             command.Description = "Provides operations to manage the deviceEnrollmentConfigurations property of the microsoft.graph.deviceManagement entity.";
-            var builder = new DeviceEnrollmentConfigurationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.DeviceEnrollmentConfigurationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -390,7 +390,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("device-management-partners");
             command.Description = "Provides operations to manage the deviceManagementPartners property of the microsoft.graph.deviceManagement entity.";
-            var builder = new DeviceManagementPartnersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.DeviceManagementPartners.DeviceManagementPartnersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -417,7 +417,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("exchange-connectors");
             command.Description = "Provides operations to manage the exchangeConnectors property of the microsoft.graph.deviceManagement entity.";
-            var builder = new ExchangeConnectorsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ExchangeConnectors.ExchangeConnectorsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -491,7 +491,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("get-effective-permissions-with-scope");
             command.Description = "Provides operations to call the getEffectivePermissions method.";
-            var builder = new GetEffectivePermissionsWithScopeRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope.GetEffectivePermissionsWithScopeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -508,7 +508,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("imported-windows-autopilot-device-identities");
             command.Description = "Provides operations to manage the importedWindowsAutopilotDeviceIdentities property of the microsoft.graph.deviceManagement entity.";
-            var builder = new ImportedWindowsAutopilotDeviceIdentitiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.ImportedWindowsAutopilotDeviceIdentitiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -536,7 +536,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("ios-update-statuses");
             command.Description = "Provides operations to manage the iosUpdateStatuses property of the microsoft.graph.deviceManagement entity.";
-            var builder = new IosUpdateStatusesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.IosUpdateStatuses.IosUpdateStatusesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -563,7 +563,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("managed-device-overview");
             command.Description = "Provides operations to manage the managedDeviceOverview property of the microsoft.graph.deviceManagement entity.";
-            var builder = new ManagedDeviceOverviewRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDeviceOverview.ManagedDeviceOverviewRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -580,7 +580,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("managed-devices");
             command.Description = "Provides operations to manage the managedDevices property of the microsoft.graph.deviceManagement entity.";
-            var builder = new ManagedDevicesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ManagedDevices.ManagedDevicesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -607,7 +607,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("mobile-app-troubleshooting-events");
             command.Description = "Provides operations to manage the mobileAppTroubleshootingEvents property of the microsoft.graph.deviceManagement entity.";
-            var builder = new MobileAppTroubleshootingEventsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.MobileAppTroubleshootingEventsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -634,7 +634,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("mobile-threat-defense-connectors");
             command.Description = "Provides operations to manage the mobileThreatDefenseConnectors property of the microsoft.graph.deviceManagement entity.";
-            var builder = new MobileThreatDefenseConnectorsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.MobileThreatDefenseConnectorsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -661,7 +661,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("notification-message-templates");
             command.Description = "Provides operations to manage the notificationMessageTemplates property of the microsoft.graph.deviceManagement entity.";
-            var builder = new NotificationMessageTemplatesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.NotificationMessageTemplates.NotificationMessageTemplatesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -734,7 +734,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("remote-assistance-partners");
             command.Description = "Provides operations to manage the remoteAssistancePartners property of the microsoft.graph.deviceManagement entity.";
-            var builder = new RemoteAssistancePartnersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.RemoteAssistancePartners.RemoteAssistancePartnersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -761,7 +761,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("reports");
             command.Description = "Provides operations to manage the reports property of the microsoft.graph.deviceManagement entity.";
-            var builder = new ReportsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.Reports.ReportsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -804,7 +804,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("resource-operations");
             command.Description = "Provides operations to manage the resourceOperations property of the microsoft.graph.deviceManagement entity.";
-            var builder = new ResourceOperationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.ResourceOperations.ResourceOperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -831,7 +831,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("role-assignments");
             command.Description = "Provides operations to manage the roleAssignments property of the microsoft.graph.deviceManagement entity.";
-            var builder = new RoleAssignmentsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.RoleAssignments.RoleAssignmentsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -858,7 +858,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("role-definitions");
             command.Description = "Provides operations to manage the roleDefinitions property of the microsoft.graph.deviceManagement entity.";
-            var builder = new RoleDefinitionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.RoleDefinitions.RoleDefinitionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -885,7 +885,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("software-update-status-summary");
             command.Description = "Provides operations to manage the softwareUpdateStatusSummary property of the microsoft.graph.deviceManagement entity.";
-            var builder = new SoftwareUpdateStatusSummaryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary.SoftwareUpdateStatusSummaryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -902,7 +902,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("telecom-expense-management-partners");
             command.Description = "Provides operations to manage the telecomExpenseManagementPartners property of the microsoft.graph.deviceManagement entity.";
-            var builder = new TelecomExpenseManagementPartnersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.TelecomExpenseManagementPartnersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -929,7 +929,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("terms-and-conditions");
             command.Description = "Provides operations to manage the termsAndConditions property of the microsoft.graph.deviceManagement entity.";
-            var builder = new TermsAndConditionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.TermsAndConditions.TermsAndConditionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -956,7 +956,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("troubleshooting-events");
             command.Description = "Provides operations to manage the troubleshootingEvents property of the microsoft.graph.deviceManagement entity.";
-            var builder = new TroubleshootingEventsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.TroubleshootingEvents.TroubleshootingEventsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -983,7 +983,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-app-health-application-performance-by-app-version-details");
             command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1010,7 +1010,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-app-health-application-performance-by-app-version-device-id");
             command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1037,7 +1037,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-app-health-application-performance-by-o-s-version");
             command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion.UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1064,7 +1064,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-app-health-application-performance");
             command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformance property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsAppHealthApplicationPerformanceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthApplicationPerformance.UserExperienceAnalyticsAppHealthApplicationPerformanceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1091,7 +1091,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-app-health-device-model-performance");
             command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthDeviceModelPerformance property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsAppHealthDeviceModelPerformanceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthDeviceModelPerformance.UserExperienceAnalyticsAppHealthDeviceModelPerformanceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1118,7 +1118,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-app-health-device-performance-details");
             command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthDevicePerformanceDetails property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsAppHealthDevicePerformanceDetailsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthDevicePerformanceDetails.UserExperienceAnalyticsAppHealthDevicePerformanceDetailsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1145,7 +1145,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-app-health-device-performance");
             command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthDevicePerformance property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsAppHealthDevicePerformanceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthDevicePerformance.UserExperienceAnalyticsAppHealthDevicePerformanceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1172,7 +1172,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-app-health-o-s-version-performance");
             command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthOSVersionPerformance property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsAppHealthOSVersionPerformanceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOSVersionPerformance.UserExperienceAnalyticsAppHealthOSVersionPerformanceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1199,7 +1199,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-app-health-overview");
             command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthOverview property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsAppHealthOverviewRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOverview.UserExperienceAnalyticsAppHealthOverviewRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -1224,7 +1224,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-baselines");
             command.Description = "Provides operations to manage the userExperienceAnalyticsBaselines property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsBaselinesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.UserExperienceAnalyticsBaselinesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1251,7 +1251,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-categories");
             command.Description = "Provides operations to manage the userExperienceAnalyticsCategories property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsCategoriesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.UserExperienceAnalyticsCategoriesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1278,7 +1278,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-device-performance");
             command.Description = "Provides operations to manage the userExperienceAnalyticsDevicePerformance property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsDevicePerformanceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.UserExperienceAnalyticsDevicePerformanceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1306,7 +1306,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-device-scores");
             command.Description = "Provides operations to manage the userExperienceAnalyticsDeviceScores property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsDeviceScoresRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceScores.UserExperienceAnalyticsDeviceScoresRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1333,7 +1333,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-device-startup-history");
             command.Description = "Provides operations to manage the userExperienceAnalyticsDeviceStartupHistory property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsDeviceStartupHistoryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceStartupHistory.UserExperienceAnalyticsDeviceStartupHistoryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1360,7 +1360,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-device-startup-processes");
             command.Description = "Provides operations to manage the userExperienceAnalyticsDeviceStartupProcesses property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceStartupProcesses.UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1387,7 +1387,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-device-startup-process-performance");
             command.Description = "Provides operations to manage the userExperienceAnalyticsDeviceStartupProcessPerformance property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsDeviceStartupProcessPerformanceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceStartupProcessPerformance.UserExperienceAnalyticsDeviceStartupProcessPerformanceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1414,7 +1414,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-metric-history");
             command.Description = "Provides operations to manage the userExperienceAnalyticsMetricHistory property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsMetricHistoryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsMetricHistory.UserExperienceAnalyticsMetricHistoryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1441,7 +1441,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-model-scores");
             command.Description = "Provides operations to manage the userExperienceAnalyticsModelScores property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsModelScoresRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsModelScores.UserExperienceAnalyticsModelScoresRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1468,7 +1468,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-overview");
             command.Description = "Provides operations to manage the userExperienceAnalyticsOverview property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsOverviewRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsOverview.UserExperienceAnalyticsOverviewRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -1487,7 +1487,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-score-history");
             command.Description = "Provides operations to manage the userExperienceAnalyticsScoreHistory property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsScoreHistoryRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsScoreHistory.UserExperienceAnalyticsScoreHistoryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1514,7 +1514,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-summarize-work-from-anywhere-devices");
             command.Description = "Provides operations to call the userExperienceAnalyticsSummarizeWorkFromAnywhereDevices method.";
-            var builder = new UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevices.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -1531,7 +1531,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-work-from-anywhere-hardware-readiness-metric");
             command.Description = "Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -1550,7 +1550,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-work-from-anywhere-metrics");
             command.Description = "Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereMetrics property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsWorkFromAnywhereMetricsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics.UserExperienceAnalyticsWorkFromAnywhereMetricsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1577,7 +1577,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("user-experience-analytics-work-from-anywhere-model-performance");
             command.Description = "Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereModelPerformance property of the microsoft.graph.deviceManagement entity.";
-            var builder = new UserExperienceAnalyticsWorkFromAnywhereModelPerformanceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereModelPerformance.UserExperienceAnalyticsWorkFromAnywhereModelPerformanceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1604,7 +1604,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("verify-windows-enrollment-auto-discovery-with-domain-name");
             command.Description = "Provides operations to call the verifyWindowsEnrollmentAutoDiscovery method.";
-            var builder = new VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomainName.VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -1621,7 +1621,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("virtual-endpoint");
             command.Description = "Provides operations to manage the virtualEndpoint property of the microsoft.graph.deviceManagement entity.";
-            var builder = new VirtualEndpointRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.VirtualEndpoint.VirtualEndpointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAuditEventsNavCommand());
@@ -1652,7 +1652,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("windows-autopilot-device-identities");
             command.Description = "Provides operations to manage the windowsAutopilotDeviceIdentities property of the microsoft.graph.deviceManagement entity.";
-            var builder = new WindowsAutopilotDeviceIdentitiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.WindowsAutopilotDeviceIdentitiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1679,7 +1679,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("windows-information-protection-app-learning-summaries");
             command.Description = "Provides operations to manage the windowsInformationProtectionAppLearningSummaries property of the microsoft.graph.deviceManagement entity.";
-            var builder = new WindowsInformationProtectionAppLearningSummariesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummaries.WindowsInformationProtectionAppLearningSummariesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1706,7 +1706,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("windows-information-protection-network-learning-summaries");
             command.Description = "Provides operations to manage the windowsInformationProtectionNetworkLearningSummaries property of the microsoft.graph.deviceManagement entity.";
-            var builder = new WindowsInformationProtectionNetworkLearningSummariesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSummaries.WindowsInformationProtectionNetworkLearningSummariesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1733,7 +1733,7 @@ namespace ApiSdk.DeviceManagement
         {
             var command = new Command("windows-malware-information");
             command.Description = "Provides operations to manage the windowsMalwareInformation property of the microsoft.graph.deviceManagement entity.";
-            var builder = new WindowsMalwareInformationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.WindowsMalwareInformation.WindowsMalwareInformationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -1753,14 +1753,14 @@ namespace ApiSdk.DeviceManagement
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceManagementRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.DeviceManagementRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceManagementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DeviceManagementRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.DeviceManagementRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeviceManagementRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement{?%24expand,%24select}", rawUrl)
@@ -1773,11 +1773,11 @@ namespace ApiSdk.DeviceManagement
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceManagementRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.DeviceManagementRequestBuilder.DeviceManagementRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceManagementRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.DeviceManagementRequestBuilder.DeviceManagementRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

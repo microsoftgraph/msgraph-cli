@@ -15,10 +15,10 @@ namespace ApiSdk.Models
         /// <summary>The bucketDefinition property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public BucketAggregationDefinition? BucketDefinition { get; set; }
+        public ApiSdk.Models.BucketAggregationDefinition? BucketDefinition { get; set; }
 #nullable restore
 #else
-        public BucketAggregationDefinition BucketDefinition { get; set; }
+        public ApiSdk.Models.BucketAggregationDefinition BucketDefinition { get; set; }
 #endif
         /// <summary>Computes aggregation on the field while the field exists in the current entity type. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,7 +39,7 @@ namespace ApiSdk.Models
         /// <summary>The number of searchBucket resources to be returned. This isn&apos;t required when the range is provided manually in the search request. The minimum accepted size is 1, and the maximum is 65535. Optional.</summary>
         public int? Size { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AggregationOption"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AggregationOption"/> and sets the default values.
         /// </summary>
         public AggregationOption()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AggregationOption"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AggregationOption"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AggregationOption CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AggregationOption CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AggregationOption();
+            return new ApiSdk.Models.AggregationOption();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,7 +63,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "bucketDefinition", n => { BucketDefinition = n.GetObjectValue<BucketAggregationDefinition>(BucketAggregationDefinition.CreateFromDiscriminatorValue); } },
+                { "bucketDefinition", n => { BucketDefinition = n.GetObjectValue<ApiSdk.Models.BucketAggregationDefinition>(ApiSdk.Models.BucketAggregationDefinition.CreateFromDiscriminatorValue); } },
                 { "field", n => { Field = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "size", n => { Size = n.GetIntValue(); } },
@@ -76,7 +76,7 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<BucketAggregationDefinition>("bucketDefinition", BucketDefinition);
+            writer.WriteObjectValue<ApiSdk.Models.BucketAggregationDefinition>("bucketDefinition", BucketDefinition);
             writer.WriteStringValue("field", Field);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("size", Size);

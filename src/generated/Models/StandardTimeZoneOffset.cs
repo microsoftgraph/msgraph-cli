@@ -16,7 +16,7 @@ namespace ApiSdk.Models
         /// <summary>Represents the nth occurrence of the day of week that the transition from daylight saving time to standard time occurs.</summary>
         public int? DayOccurrence { get; set; }
         /// <summary>Represents the day of the week when the transition from daylight saving time to standard time.</summary>
-        public DayOfWeekObject? DayOfWeek { get; set; }
+        public ApiSdk.Models.DayOfWeekObject? DayOfWeek { get; set; }
         /// <summary>Represents the month of the year when the transition from daylight saving time to standard time occurs.</summary>
         public int? Month { get; set; }
         /// <summary>The OdataType property</summary>
@@ -32,7 +32,7 @@ namespace ApiSdk.Models
         /// <summary>Represents how frequently in terms of years the change from daylight saving time to standard time occurs. For example, a value of 0 means every year.</summary>
         public int? Year { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="StandardTimeZoneOffset"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.StandardTimeZoneOffset"/> and sets the default values.
         /// </summary>
         public StandardTimeZoneOffset()
         {
@@ -41,16 +41,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="StandardTimeZoneOffset"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.StandardTimeZoneOffset"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static StandardTimeZoneOffset CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.StandardTimeZoneOffset CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.daylightTimeZoneOffset" => new DaylightTimeZoneOffset(),
-                _ => new StandardTimeZoneOffset(),
+                "#microsoft.graph.daylightTimeZoneOffset" => new ApiSdk.Models.DaylightTimeZoneOffset(),
+                _ => new ApiSdk.Models.StandardTimeZoneOffset(),
             };
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "dayOccurrence", n => { DayOccurrence = n.GetIntValue(); } },
-                { "dayOfWeek", n => { DayOfWeek = n.GetEnumValue<DayOfWeekObject>(); } },
+                { "dayOfWeek", n => { DayOfWeek = n.GetEnumValue<ApiSdk.Models.DayOfWeekObject>(); } },
                 { "month", n => { Month = n.GetIntValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "time", n => { Time = n.GetTimeValue(); } },
@@ -77,7 +77,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("dayOccurrence", DayOccurrence);
-            writer.WriteEnumValue<DayOfWeekObject>("dayOfWeek", DayOfWeek);
+            writer.WriteEnumValue<ApiSdk.Models.DayOfWeekObject>("dayOfWeek", DayOfWeek);
             writer.WriteIntValue("month", Month);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteTimeValue("time", Time);

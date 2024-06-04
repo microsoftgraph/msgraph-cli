@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class OnenoteEntityHierarchyModel : OnenoteEntitySchemaObjectModel, IParsable
+    public class OnenoteEntityHierarchyModel : ApiSdk.Models.OnenoteEntitySchemaObjectModel, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Identity of the user, device, and application that created the item. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? CreatedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet CreatedBy { get; set; }
 #endif
         /// <summary>The name of the notebook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,15 +29,15 @@ namespace ApiSdk.Models
         /// <summary>Identity of the user, device, and application that created the item. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? LastModifiedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet LastModifiedBy { get; set; }
+        public ApiSdk.Models.IdentitySet LastModifiedBy { get; set; }
 #endif
         /// <summary>The date and time when the notebook was last modified. The timestamp represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="OnenoteEntityHierarchyModel"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OnenoteEntityHierarchyModel"/> and sets the default values.
         /// </summary>
         public OnenoteEntityHierarchyModel() : base()
         {
@@ -46,18 +46,18 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnenoteEntityHierarchyModel"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnenoteEntityHierarchyModel"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OnenoteEntityHierarchyModel CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OnenoteEntityHierarchyModel CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.notebook" => new Notebook(),
-                "#microsoft.graph.onenoteSection" => new OnenoteSection(),
-                "#microsoft.graph.sectionGroup" => new SectionGroup(),
-                _ => new OnenoteEntityHierarchyModel(),
+                "#microsoft.graph.notebook" => new ApiSdk.Models.Notebook(),
+                "#microsoft.graph.onenoteSection" => new ApiSdk.Models.OnenoteSection(),
+                "#microsoft.graph.sectionGroup" => new ApiSdk.Models.SectionGroup(),
+                _ => new ApiSdk.Models.OnenoteEntityHierarchyModel(),
             };
         }
         /// <summary>
@@ -68,9 +68,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -82,9 +82,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("createdBy", CreatedBy);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<IdentitySet>("lastModifiedBy", LastModifiedBy);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
         }
     }

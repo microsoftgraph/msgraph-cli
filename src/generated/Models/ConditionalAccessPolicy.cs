@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ConditionalAccessPolicy : Entity, IParsable
+    public class ConditionalAccessPolicy : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The conditions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ConditionalAccessConditionSet? Conditions { get; set; }
+        public ApiSdk.Models.ConditionalAccessConditionSet? Conditions { get; set; }
 #nullable restore
 #else
-        public ConditionalAccessConditionSet Conditions { get; set; }
+        public ApiSdk.Models.ConditionalAccessConditionSet Conditions { get; set; }
 #endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Readonly.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -39,23 +39,23 @@ namespace ApiSdk.Models
         /// <summary>Specifies the grant controls that must be fulfilled to pass the policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ConditionalAccessGrantControls? GrantControls { get; set; }
+        public ApiSdk.Models.ConditionalAccessGrantControls? GrantControls { get; set; }
 #nullable restore
 #else
-        public ConditionalAccessGrantControls GrantControls { get; set; }
+        public ApiSdk.Models.ConditionalAccessGrantControls GrantControls { get; set; }
 #endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Readonly.</summary>
         public DateTimeOffset? ModifiedDateTime { get; set; }
         /// <summary>Specifies the session controls that are enforced after sign-in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ConditionalAccessSessionControls? SessionControls { get; set; }
+        public ApiSdk.Models.ConditionalAccessSessionControls? SessionControls { get; set; }
 #nullable restore
 #else
-        public ConditionalAccessSessionControls SessionControls { get; set; }
+        public ApiSdk.Models.ConditionalAccessSessionControls SessionControls { get; set; }
 #endif
         /// <summary>The state property</summary>
-        public ConditionalAccessPolicyState? State { get; set; }
+        public ApiSdk.Models.ConditionalAccessPolicyState? State { get; set; }
         /// <summary>The templateId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -67,12 +67,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConditionalAccessPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConditionalAccessPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ConditionalAccessPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ConditionalAccessPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConditionalAccessPolicy();
+            return new ApiSdk.Models.ConditionalAccessPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,14 +82,14 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "conditions", n => { Conditions = n.GetObjectValue<ConditionalAccessConditionSet>(ConditionalAccessConditionSet.CreateFromDiscriminatorValue); } },
+                { "conditions", n => { Conditions = n.GetObjectValue<ApiSdk.Models.ConditionalAccessConditionSet>(ApiSdk.Models.ConditionalAccessConditionSet.CreateFromDiscriminatorValue); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "grantControls", n => { GrantControls = n.GetObjectValue<ConditionalAccessGrantControls>(ConditionalAccessGrantControls.CreateFromDiscriminatorValue); } },
+                { "grantControls", n => { GrantControls = n.GetObjectValue<ApiSdk.Models.ConditionalAccessGrantControls>(ApiSdk.Models.ConditionalAccessGrantControls.CreateFromDiscriminatorValue); } },
                 { "modifiedDateTime", n => { ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "sessionControls", n => { SessionControls = n.GetObjectValue<ConditionalAccessSessionControls>(ConditionalAccessSessionControls.CreateFromDiscriminatorValue); } },
-                { "state", n => { State = n.GetEnumValue<ConditionalAccessPolicyState>(); } },
+                { "sessionControls", n => { SessionControls = n.GetObjectValue<ApiSdk.Models.ConditionalAccessSessionControls>(ApiSdk.Models.ConditionalAccessSessionControls.CreateFromDiscriminatorValue); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.ConditionalAccessPolicyState>(); } },
                 { "templateId", n => { TemplateId = n.GetStringValue(); } },
             };
         }
@@ -101,14 +101,14 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<ConditionalAccessConditionSet>("conditions", Conditions);
+            writer.WriteObjectValue<ApiSdk.Models.ConditionalAccessConditionSet>("conditions", Conditions);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<ConditionalAccessGrantControls>("grantControls", GrantControls);
+            writer.WriteObjectValue<ApiSdk.Models.ConditionalAccessGrantControls>("grantControls", GrantControls);
             writer.WriteDateTimeOffsetValue("modifiedDateTime", ModifiedDateTime);
-            writer.WriteObjectValue<ConditionalAccessSessionControls>("sessionControls", SessionControls);
-            writer.WriteEnumValue<ConditionalAccessPolicyState>("state", State);
+            writer.WriteObjectValue<ApiSdk.Models.ConditionalAccessSessionControls>("sessionControls", SessionControls);
+            writer.WriteEnumValue<ApiSdk.Models.ConditionalAccessPolicyState>("state", State);
             writer.WriteStringValue("templateId", TemplateId);
         }
     }

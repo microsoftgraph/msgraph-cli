@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AttackSimulationOperation : LongRunningOperation, IParsable
+    public class AttackSimulationOperation : ApiSdk.Models.LongRunningOperation, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Percentage of completion of the respective operation.</summary>
@@ -21,16 +21,16 @@ namespace ApiSdk.Models
         public string TenantId { get; set; }
 #endif
         /// <summary>The attack simulation operation type. Possible values are: createSimulation, updateSimulation, unknownFutureValue.</summary>
-        public AttackSimulationOperationType? Type { get; set; }
+        public ApiSdk.Models.AttackSimulationOperationType? Type { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AttackSimulationOperation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AttackSimulationOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AttackSimulationOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AttackSimulationOperation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AttackSimulationOperation();
+            return new ApiSdk.Models.AttackSimulationOperation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -42,7 +42,7 @@ namespace ApiSdk.Models
             {
                 { "percentageCompleted", n => { PercentageCompleted = n.GetIntValue(); } },
                 { "tenantId", n => { TenantId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<AttackSimulationOperationType>(); } },
+                { "type", n => { Type = n.GetEnumValue<ApiSdk.Models.AttackSimulationOperationType>(); } },
             };
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteIntValue("percentageCompleted", PercentageCompleted);
             writer.WriteStringValue("tenantId", TenantId);
-            writer.WriteEnumValue<AttackSimulationOperationType>("type", Type);
+            writer.WriteEnumValue<ApiSdk.Models.AttackSimulationOperationType>("type", Type);
         }
     }
 }

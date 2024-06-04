@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DirectoryObjectPartnerReference : DirectoryObject, IParsable
+    public class DirectoryObjectPartnerReference : ApiSdk.Models.DirectoryObject, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Description of the object returned. Read-only.</summary>
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string ObjectType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectPartnerReference"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DirectoryObjectPartnerReference"/> and sets the default values.
         /// </summary>
         public DirectoryObjectPartnerReference() : base()
         {
@@ -46,12 +46,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DirectoryObjectPartnerReference"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DirectoryObjectPartnerReference"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DirectoryObjectPartnerReference CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DirectoryObjectPartnerReference CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DirectoryObjectPartnerReference();
+            return new ApiSdk.Models.DirectoryObjectPartnerReference();
         }
         /// <summary>
         /// The deserialization information for the current model

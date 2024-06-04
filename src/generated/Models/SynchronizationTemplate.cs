@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SynchronizationTemplate : Entity, IParsable
+    public class SynchronizationTemplate : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Identifier of the application this template belongs to.</summary>
@@ -35,28 +35,28 @@ namespace ApiSdk.Models
         /// <summary>Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SynchronizationMetadataEntry>? Metadata { get; set; }
+        public List<ApiSdk.Models.SynchronizationMetadataEntry>? Metadata { get; set; }
 #nullable restore
 #else
-        public List<SynchronizationMetadataEntry> Metadata { get; set; }
+        public List<ApiSdk.Models.SynchronizationMetadataEntry> Metadata { get; set; }
 #endif
         /// <summary>Default synchronization schema for the jobs based on this template.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SynchronizationSchema? Schema { get; set; }
+        public ApiSdk.Models.SynchronizationSchema? Schema { get; set; }
 #nullable restore
 #else
-        public SynchronizationSchema Schema { get; set; }
+        public ApiSdk.Models.SynchronizationSchema Schema { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SynchronizationTemplate"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SynchronizationTemplate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SynchronizationTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SynchronizationTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SynchronizationTemplate();
+            return new ApiSdk.Models.SynchronizationTemplate();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,8 +71,8 @@ namespace ApiSdk.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "discoverable", n => { Discoverable = n.GetBoolValue(); } },
                 { "factoryTag", n => { FactoryTag = n.GetStringValue(); } },
-                { "metadata", n => { Metadata = n.GetCollectionOfObjectValues<SynchronizationMetadataEntry>(SynchronizationMetadataEntry.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "schema", n => { Schema = n.GetObjectValue<SynchronizationSchema>(SynchronizationSchema.CreateFromDiscriminatorValue); } },
+                { "metadata", n => { Metadata = n.GetCollectionOfObjectValues<ApiSdk.Models.SynchronizationMetadataEntry>(ApiSdk.Models.SynchronizationMetadataEntry.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "schema", n => { Schema = n.GetObjectValue<ApiSdk.Models.SynchronizationSchema>(ApiSdk.Models.SynchronizationSchema.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -88,8 +88,8 @@ namespace ApiSdk.Models
             writer.WriteStringValue("description", Description);
             writer.WriteBoolValue("discoverable", Discoverable);
             writer.WriteStringValue("factoryTag", FactoryTag);
-            writer.WriteCollectionOfObjectValues<SynchronizationMetadataEntry>("metadata", Metadata);
-            writer.WriteObjectValue<SynchronizationSchema>("schema", Schema);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SynchronizationMetadataEntry>("metadata", Metadata);
+            writer.WriteObjectValue<ApiSdk.Models.SynchronizationSchema>("schema", Schema);
         }
     }
 }

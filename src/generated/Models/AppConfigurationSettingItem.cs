@@ -22,7 +22,7 @@ namespace ApiSdk.Models
         public string AppConfigKey { get; set; }
 #endif
         /// <summary>App configuration key types.</summary>
-        public MdmAppConfigKeyType? AppConfigKeyType { get; set; }
+        public ApiSdk.Models.MdmAppConfigKeyType? AppConfigKeyType { get; set; }
         /// <summary>app configuration key value.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -40,7 +40,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AppConfigurationSettingItem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AppConfigurationSettingItem"/> and sets the default values.
         /// </summary>
         public AppConfigurationSettingItem()
         {
@@ -49,12 +49,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AppConfigurationSettingItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AppConfigurationSettingItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AppConfigurationSettingItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AppConfigurationSettingItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AppConfigurationSettingItem();
+            return new ApiSdk.Models.AppConfigurationSettingItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "appConfigKey", n => { AppConfigKey = n.GetStringValue(); } },
-                { "appConfigKeyType", n => { AppConfigKeyType = n.GetEnumValue<MdmAppConfigKeyType>(); } },
+                { "appConfigKeyType", n => { AppConfigKeyType = n.GetEnumValue<ApiSdk.Models.MdmAppConfigKeyType>(); } },
                 { "appConfigKeyValue", n => { AppConfigKeyValue = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -78,7 +78,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("appConfigKey", AppConfigKey);
-            writer.WriteEnumValue<MdmAppConfigKeyType>("appConfigKeyType", AppConfigKeyType);
+            writer.WriteEnumValue<ApiSdk.Models.MdmAppConfigKeyType>("appConfigKeyType", AppConfigKeyType);
             writer.WriteStringValue("appConfigKeyValue", AppConfigKeyValue);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

@@ -13,20 +13,20 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<TaskReport>? Value { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.TaskReport>? Value { get; set; }
 #nullable restore
 #else
-        public List<TaskReport> Value { get; set; }
+        public List<ApiSdk.Models.IdentityGovernance.TaskReport> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TaskReportCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.TaskReportCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TaskReportCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.TaskReportCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TaskReportCollectionResponse();
+            return new ApiSdk.Models.IdentityGovernance.TaskReportCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models.IdentityGovernance
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<TaskReport>(TaskReport.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.TaskReport>(ApiSdk.Models.IdentityGovernance.TaskReport.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.IdentityGovernance
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<TaskReport>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.IdentityGovernance.TaskReport>("value", Value);
         }
     }
 }

@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AgreementFileLocalization : AgreementFileProperties, IParsable
+    public class AgreementFileLocalization : ApiSdk.Models.AgreementFileProperties, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Read-only. Customized versions of the terms of use agreement in the Microsoft Entra tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AgreementFileVersion>? Versions { get; set; }
+        public List<ApiSdk.Models.AgreementFileVersion>? Versions { get; set; }
 #nullable restore
 #else
-        public List<AgreementFileVersion> Versions { get; set; }
+        public List<ApiSdk.Models.AgreementFileVersion> Versions { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AgreementFileLocalization"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AgreementFileLocalization"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AgreementFileLocalization CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AgreementFileLocalization CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AgreementFileLocalization();
+            return new ApiSdk.Models.AgreementFileLocalization();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "versions", n => { Versions = n.GetCollectionOfObjectValues<AgreementFileVersion>(AgreementFileVersion.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "versions", n => { Versions = n.GetCollectionOfObjectValues<ApiSdk.Models.AgreementFileVersion>(ApiSdk.Models.AgreementFileVersion.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AgreementFileVersion>("versions", Versions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AgreementFileVersion>("versions", Versions);
         }
     }
 }

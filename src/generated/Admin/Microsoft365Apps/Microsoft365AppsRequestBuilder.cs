@@ -105,7 +105,7 @@ namespace ApiSdk.Admin.Microsoft365Apps
         {
             var command = new Command("installation-options");
             command.Description = "Provides operations to manage the installationOptions property of the microsoft.graph.adminMicrosoft365Apps entity.";
-            var builder = new InstallationOptionsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.Microsoft365Apps.InstallationOptions.InstallationOptionsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -142,7 +142,7 @@ namespace ApiSdk.Admin.Microsoft365Apps
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<AdminMicrosoft365Apps>(AdminMicrosoft365Apps.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.AdminMicrosoft365Apps>(ApiSdk.Models.AdminMicrosoft365Apps.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -162,14 +162,14 @@ namespace ApiSdk.Admin.Microsoft365Apps
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="Microsoft365AppsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.Microsoft365Apps.Microsoft365AppsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public Microsoft365AppsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/microsoft365Apps{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="Microsoft365AppsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.Microsoft365Apps.Microsoft365AppsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public Microsoft365AppsRequestBuilder(string rawUrl) : base("{+baseurl}/admin/microsoft365Apps{?%24expand,%24select}", rawUrl)
@@ -201,11 +201,11 @@ namespace ApiSdk.Admin.Microsoft365Apps
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<Microsoft365AppsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.Microsoft365Apps.Microsoft365AppsRequestBuilder.Microsoft365AppsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<Microsoft365AppsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.Microsoft365Apps.Microsoft365AppsRequestBuilder.Microsoft365AppsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -221,11 +221,11 @@ namespace ApiSdk.Admin.Microsoft365Apps
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AdminMicrosoft365Apps body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AdminMicrosoft365Apps body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AdminMicrosoft365Apps body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AdminMicrosoft365Apps body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

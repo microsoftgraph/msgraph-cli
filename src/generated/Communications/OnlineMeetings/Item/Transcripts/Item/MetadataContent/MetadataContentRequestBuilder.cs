@@ -164,14 +164,14 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.MetadataCon
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MetadataContentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.MetadataContent.MetadataContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MetadataContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/transcripts/{callTranscript%2Did}/metadataContent", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MetadataContentRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.MetadataContent.MetadataContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MetadataContentRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/transcripts/{callTranscript%2Did}/metadataContent", rawUrl)

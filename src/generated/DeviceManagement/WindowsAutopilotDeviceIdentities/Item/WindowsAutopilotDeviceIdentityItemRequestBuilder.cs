@@ -32,7 +32,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item
         {
             var command = new Command("assign-user-to-device");
             command.Description = "Provides operations to call the assignUserToDevice method.";
-            var builder = new AssignUserToDeviceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUserToDevice.AssignUserToDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -161,7 +161,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<WindowsAutopilotDeviceIdentity>(WindowsAutopilotDeviceIdentity.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.WindowsAutopilotDeviceIdentity>(ApiSdk.Models.WindowsAutopilotDeviceIdentity.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -189,7 +189,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item
         {
             var command = new Command("unassign-user-from-device");
             command.Description = "Provides operations to call the unassignUserFromDevice method.";
-            var builder = new UnassignUserFromDeviceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UnassignUserFromDevice.UnassignUserFromDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -206,7 +206,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item
         {
             var command = new Command("update-device-properties");
             command.Description = "Provides operations to call the updateDeviceProperties method.";
-            var builder = new UpdateDevicePropertiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDeviceProperties.UpdateDevicePropertiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -216,14 +216,14 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="WindowsAutopilotDeviceIdentityItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.WindowsAutopilotDeviceIdentityItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WindowsAutopilotDeviceIdentityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="WindowsAutopilotDeviceIdentityItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.WindowsAutopilotDeviceIdentityItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public WindowsAutopilotDeviceIdentityItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}{?%24expand,%24select}", rawUrl)
@@ -255,11 +255,11 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.WindowsAutopilotDeviceIdentityItemRequestBuilder.WindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.WindowsAutopilotDeviceIdentityItemRequestBuilder.WindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -275,11 +275,11 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(WindowsAutopilotDeviceIdentity body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.WindowsAutopilotDeviceIdentity body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(WindowsAutopilotDeviceIdentity body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.WindowsAutopilotDeviceIdentity body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

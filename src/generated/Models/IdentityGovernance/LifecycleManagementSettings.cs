@@ -23,12 +23,12 @@ namespace ApiSdk.Models.IdentityGovernance
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="LifecycleManagementSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.IdentityGovernance.LifecycleManagementSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new LifecycleManagementSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.IdentityGovernance.LifecycleManagementSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new LifecycleManagementSettings();
+            return new ApiSdk.Models.IdentityGovernance.LifecycleManagementSettings();
         }
         /// <summary>
         /// The deserialization information for the current model

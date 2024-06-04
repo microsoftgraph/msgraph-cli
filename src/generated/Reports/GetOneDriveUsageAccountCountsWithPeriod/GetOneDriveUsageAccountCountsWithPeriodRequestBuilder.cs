@@ -62,14 +62,14 @@ namespace ApiSdk.Reports.GetOneDriveUsageAccountCountsWithPeriod
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOneDriveUsageAccountCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOneDriveUsageAccountCountsWithPeriod.GetOneDriveUsageAccountCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOneDriveUsageAccountCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOneDriveUsageAccountCounts(period='{period}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="GetOneDriveUsageAccountCountsWithPeriodRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.GetOneDriveUsageAccountCountsWithPeriod.GetOneDriveUsageAccountCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOneDriveUsageAccountCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOneDriveUsageAccountCounts(period='{period}')", rawUrl)

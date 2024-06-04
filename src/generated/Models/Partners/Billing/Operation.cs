@@ -15,22 +15,22 @@ namespace ApiSdk.Models.Partners.Billing
         /// <summary>The time of the last action of the operation. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastActionDateTime { get; set; }
         /// <summary>The status of the operation. Possible values are: notStarted, running, completed, failed, unknownFutureValue.</summary>
-        public LongRunningOperationStatus? Status { get; set; }
+        public ApiSdk.Models.LongRunningOperationStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Operation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Partners.Billing.Operation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Operation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Partners.Billing.Operation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.partners.billing.exportSuccessOperation" => new ExportSuccessOperation(),
-                "#microsoft.graph.partners.billing.failedOperation" => new FailedOperation(),
-                "#microsoft.graph.partners.billing.runningOperation" => new RunningOperation(),
-                _ => new Operation(),
+                "#microsoft.graph.partners.billing.exportSuccessOperation" => new ApiSdk.Models.Partners.Billing.ExportSuccessOperation(),
+                "#microsoft.graph.partners.billing.failedOperation" => new ApiSdk.Models.Partners.Billing.FailedOperation(),
+                "#microsoft.graph.partners.billing.runningOperation" => new ApiSdk.Models.Partners.Billing.RunningOperation(),
+                _ => new ApiSdk.Models.Partners.Billing.Operation(),
             };
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Partners.Billing
             {
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastActionDateTime", n => { LastActionDateTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<LongRunningOperationStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.LongRunningOperationStatus>(); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Models.Partners.Billing
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteDateTimeOffsetValue("lastActionDateTime", LastActionDateTime);
-            writer.WriteEnumValue<LongRunningOperationStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.LongRunningOperationStatus>("status", Status);
         }
     }
 }

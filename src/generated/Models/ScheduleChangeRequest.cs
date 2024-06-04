@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ScheduleChangeRequest : ChangeTrackedEntity, IParsable
+    public class ScheduleChangeRequest : ApiSdk.Models.ChangeTrackedEntity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The assignedTo property</summary>
-        public ScheduleChangeRequestActor? AssignedTo { get; set; }
+        public ApiSdk.Models.ScheduleChangeRequestActor? AssignedTo { get; set; }
         /// <summary>The managerActionDateTime property</summary>
         public DateTimeOffset? ManagerActionDateTime { get; private set; }
         /// <summary>The managerActionMessage property</summary>
@@ -49,9 +49,9 @@ namespace ApiSdk.Models
         public string SenderUserId { get; private set; }
 #endif
         /// <summary>The state property</summary>
-        public ScheduleChangeState? State { get; set; }
+        public ApiSdk.Models.ScheduleChangeState? State { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ScheduleChangeRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ScheduleChangeRequest"/> and sets the default values.
         /// </summary>
         public ScheduleChangeRequest() : base()
         {
@@ -60,19 +60,19 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ScheduleChangeRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ScheduleChangeRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ScheduleChangeRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ScheduleChangeRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.offerShiftRequest" => new OfferShiftRequest(),
-                "#microsoft.graph.openShiftChangeRequest" => new OpenShiftChangeRequest(),
-                "#microsoft.graph.swapShiftsChangeRequest" => new SwapShiftsChangeRequest(),
-                "#microsoft.graph.timeOffRequest" => new TimeOffRequest(),
-                _ => new ScheduleChangeRequest(),
+                "#microsoft.graph.offerShiftRequest" => new ApiSdk.Models.OfferShiftRequest(),
+                "#microsoft.graph.openShiftChangeRequest" => new ApiSdk.Models.OpenShiftChangeRequest(),
+                "#microsoft.graph.swapShiftsChangeRequest" => new ApiSdk.Models.SwapShiftsChangeRequest(),
+                "#microsoft.graph.timeOffRequest" => new ApiSdk.Models.TimeOffRequest(),
+                _ => new ApiSdk.Models.ScheduleChangeRequest(),
             };
         }
         /// <summary>
@@ -83,14 +83,14 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "assignedTo", n => { AssignedTo = n.GetEnumValue<ScheduleChangeRequestActor>(); } },
+                { "assignedTo", n => { AssignedTo = n.GetEnumValue<ApiSdk.Models.ScheduleChangeRequestActor>(); } },
                 { "managerActionDateTime", n => { ManagerActionDateTime = n.GetDateTimeOffsetValue(); } },
                 { "managerActionMessage", n => { ManagerActionMessage = n.GetStringValue(); } },
                 { "managerUserId", n => { ManagerUserId = n.GetStringValue(); } },
                 { "senderDateTime", n => { SenderDateTime = n.GetDateTimeOffsetValue(); } },
                 { "senderMessage", n => { SenderMessage = n.GetStringValue(); } },
                 { "senderUserId", n => { SenderUserId = n.GetStringValue(); } },
-                { "state", n => { State = n.GetEnumValue<ScheduleChangeState>(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.ScheduleChangeState>(); } },
             };
         }
         /// <summary>
@@ -101,10 +101,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<ScheduleChangeRequestActor>("assignedTo", AssignedTo);
+            writer.WriteEnumValue<ApiSdk.Models.ScheduleChangeRequestActor>("assignedTo", AssignedTo);
             writer.WriteStringValue("managerActionMessage", ManagerActionMessage);
             writer.WriteStringValue("senderMessage", SenderMessage);
-            writer.WriteEnumValue<ScheduleChangeState>("state", State);
+            writer.WriteEnumValue<ApiSdk.Models.ScheduleChangeState>("state", State);
         }
     }
 }

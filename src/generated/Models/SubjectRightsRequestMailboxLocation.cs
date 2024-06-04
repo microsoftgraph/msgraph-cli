@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SubjectRightsRequestMailboxLocation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.SubjectRightsRequestMailboxLocation"/> and sets the default values.
         /// </summary>
         public SubjectRightsRequestMailboxLocation()
         {
@@ -30,17 +30,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SubjectRightsRequestMailboxLocation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SubjectRightsRequestMailboxLocation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SubjectRightsRequestMailboxLocation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.SubjectRightsRequestMailboxLocation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.subjectRightsRequestAllMailboxLocation" => new SubjectRightsRequestAllMailboxLocation(),
-                "#microsoft.graph.subjectRightsRequestEnumeratedMailboxLocation" => new SubjectRightsRequestEnumeratedMailboxLocation(),
-                _ => new SubjectRightsRequestMailboxLocation(),
+                "#microsoft.graph.subjectRightsRequestAllMailboxLocation" => new ApiSdk.Models.SubjectRightsRequestAllMailboxLocation(),
+                "#microsoft.graph.subjectRightsRequestEnumeratedMailboxLocation" => new ApiSdk.Models.SubjectRightsRequestEnumeratedMailboxLocation(),
+                _ => new ApiSdk.Models.SubjectRightsRequestMailboxLocation(),
             };
         }
         /// <summary>

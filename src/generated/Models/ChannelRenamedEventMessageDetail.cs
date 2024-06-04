@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ChannelRenamedEventMessageDetail : EventMessageDetail, IParsable
+    public class ChannelRenamedEventMessageDetail : ApiSdk.Models.EventMessageDetail, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The updated name of the channel.</summary>
@@ -29,13 +29,13 @@ namespace ApiSdk.Models
         /// <summary>Initiator of the event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet? Initiator { get; set; }
 #nullable restore
 #else
-        public IdentitySet Initiator { get; set; }
+        public ApiSdk.Models.IdentitySet Initiator { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ChannelRenamedEventMessageDetail"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ChannelRenamedEventMessageDetail"/> and sets the default values.
         /// </summary>
         public ChannelRenamedEventMessageDetail() : base()
         {
@@ -44,12 +44,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChannelRenamedEventMessageDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ChannelRenamedEventMessageDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ChannelRenamedEventMessageDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ChannelRenamedEventMessageDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChannelRenamedEventMessageDetail();
+            return new ApiSdk.Models.ChannelRenamedEventMessageDetail();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,7 +61,7 @@ namespace ApiSdk.Models
             {
                 { "channelDisplayName", n => { ChannelDisplayName = n.GetStringValue(); } },
                 { "channelId", n => { ChannelId = n.GetStringValue(); } },
-                { "initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "initiator", n => { Initiator = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,7 +74,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("channelDisplayName", ChannelDisplayName);
             writer.WriteStringValue("channelId", ChannelId);
-            writer.WriteObjectValue<IdentitySet>("initiator", Initiator);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("initiator", Initiator);
         }
     }
 }

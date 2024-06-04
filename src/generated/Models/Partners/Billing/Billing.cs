@@ -13,44 +13,44 @@ namespace ApiSdk.Models.Partners.Billing
         /// <summary>Represents metadata for the exported data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Manifest>? Manifests { get; set; }
+        public List<ApiSdk.Models.Partners.Billing.Manifest>? Manifests { get; set; }
 #nullable restore
 #else
-        public List<Manifest> Manifests { get; set; }
+        public List<ApiSdk.Models.Partners.Billing.Manifest> Manifests { get; set; }
 #endif
         /// <summary>Represents an operation to export the billing data of a partner.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Operation>? Operations { get; set; }
+        public List<ApiSdk.Models.Partners.Billing.Operation>? Operations { get; set; }
 #nullable restore
 #else
-        public List<Operation> Operations { get; set; }
+        public List<ApiSdk.Models.Partners.Billing.Operation> Operations { get; set; }
 #endif
         /// <summary>The reconciliation property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public BillingReconciliation? Reconciliation { get; set; }
+        public ApiSdk.Models.Partners.Billing.BillingReconciliation? Reconciliation { get; set; }
 #nullable restore
 #else
-        public BillingReconciliation Reconciliation { get; set; }
+        public ApiSdk.Models.Partners.Billing.BillingReconciliation Reconciliation { get; set; }
 #endif
         /// <summary>The usage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AzureUsage? Usage { get; set; }
+        public ApiSdk.Models.Partners.Billing.AzureUsage? Usage { get; set; }
 #nullable restore
 #else
-        public AzureUsage Usage { get; set; }
+        public ApiSdk.Models.Partners.Billing.AzureUsage Usage { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Billing"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Partners.Billing.Billing"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Billing CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Partners.Billing.Billing CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Billing();
+            return new ApiSdk.Models.Partners.Billing.Billing();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,10 +60,10 @@ namespace ApiSdk.Models.Partners.Billing
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "manifests", n => { Manifests = n.GetCollectionOfObjectValues<Manifest>(Manifest.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "operations", n => { Operations = n.GetCollectionOfObjectValues<Operation>(Operation.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "reconciliation", n => { Reconciliation = n.GetObjectValue<BillingReconciliation>(BillingReconciliation.CreateFromDiscriminatorValue); } },
-                { "usage", n => { Usage = n.GetObjectValue<AzureUsage>(AzureUsage.CreateFromDiscriminatorValue); } },
+                { "manifests", n => { Manifests = n.GetCollectionOfObjectValues<ApiSdk.Models.Partners.Billing.Manifest>(ApiSdk.Models.Partners.Billing.Manifest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "operations", n => { Operations = n.GetCollectionOfObjectValues<ApiSdk.Models.Partners.Billing.Operation>(ApiSdk.Models.Partners.Billing.Operation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "reconciliation", n => { Reconciliation = n.GetObjectValue<ApiSdk.Models.Partners.Billing.BillingReconciliation>(ApiSdk.Models.Partners.Billing.BillingReconciliation.CreateFromDiscriminatorValue); } },
+                { "usage", n => { Usage = n.GetObjectValue<ApiSdk.Models.Partners.Billing.AzureUsage>(ApiSdk.Models.Partners.Billing.AzureUsage.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,10 +74,10 @@ namespace ApiSdk.Models.Partners.Billing
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<Manifest>("manifests", Manifests);
-            writer.WriteCollectionOfObjectValues<Operation>("operations", Operations);
-            writer.WriteObjectValue<BillingReconciliation>("reconciliation", Reconciliation);
-            writer.WriteObjectValue<AzureUsage>("usage", Usage);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Partners.Billing.Manifest>("manifests", Manifests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Partners.Billing.Operation>("operations", Operations);
+            writer.WriteObjectValue<ApiSdk.Models.Partners.Billing.BillingReconciliation>("reconciliation", Reconciliation);
+            writer.WriteObjectValue<ApiSdk.Models.Partners.Billing.AzureUsage>("usage", Usage);
         }
     }
 }

@@ -61,14 +61,14 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SyncLicensesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses.SyncLicensesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SyncLicensesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}/syncLicenses", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SyncLicensesRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses.SyncLicensesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SyncLicensesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}/syncLicenses", rawUrl)

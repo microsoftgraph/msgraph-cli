@@ -15,7 +15,7 @@ namespace ApiSdk.Domains.Item.Promote
         /// <summary>The value property</summary>
         public bool? Value { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="PromotePostResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Domains.Item.Promote.PromotePostResponse"/> and sets the default values.
         /// </summary>
         public PromotePostResponse()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.Domains.Item.Promote
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PromotePostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Domains.Item.Promote.PromotePostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PromotePostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Domains.Item.Promote.PromotePostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PromotePostResponse();
+            return new ApiSdk.Domains.Item.Promote.PromotePostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

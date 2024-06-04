@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Agreement : Entity, IParsable
+    public class Agreement : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Read-only. Information about acceptances of this agreement.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AgreementAcceptance>? Acceptances { get; set; }
+        public List<ApiSdk.Models.AgreementAcceptance>? Acceptances { get; set; }
 #nullable restore
 #else
-        public List<AgreementAcceptance> Acceptances { get; set; }
+        public List<ApiSdk.Models.AgreementAcceptance> Acceptances { get; set; }
 #endif
         /// <summary>Display name of the agreement. The display name is used for internal tracking of the agreement but isn&apos;t shown to end users who view the agreement. Supports $filter (eq).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,18 +29,18 @@ namespace ApiSdk.Models
         /// <summary>Default PDF linked to this agreement.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public AgreementFile? File { get; set; }
+        public ApiSdk.Models.AgreementFile? File { get; set; }
 #nullable restore
 #else
-        public AgreementFile File { get; set; }
+        public ApiSdk.Models.AgreementFile File { get; set; }
 #endif
         /// <summary>PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AgreementFileLocalization>? Files { get; set; }
+        public List<ApiSdk.Models.AgreementFileLocalization>? Files { get; set; }
 #nullable restore
 #else
-        public List<AgreementFileLocalization> Files { get; set; }
+        public List<ApiSdk.Models.AgreementFileLocalization> Files { get; set; }
 #endif
         /// <summary>Indicates whether end users are required to accept this agreement on every device that they access it from. The end user is required to register their device in Microsoft Entra ID, if they haven&apos;t already done so. Supports $filter (eq).</summary>
         public bool? IsPerDeviceAcceptanceRequired { get; set; }
@@ -59,12 +59,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Agreement"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Agreement"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Agreement CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Agreement CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Agreement();
+            return new ApiSdk.Models.Agreement();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -74,10 +74,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "acceptances", n => { Acceptances = n.GetCollectionOfObjectValues<AgreementAcceptance>(AgreementAcceptance.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "acceptances", n => { Acceptances = n.GetCollectionOfObjectValues<ApiSdk.Models.AgreementAcceptance>(ApiSdk.Models.AgreementAcceptance.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "file", n => { File = n.GetObjectValue<AgreementFile>(AgreementFile.CreateFromDiscriminatorValue); } },
-                { "files", n => { Files = n.GetCollectionOfObjectValues<AgreementFileLocalization>(AgreementFileLocalization.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "file", n => { File = n.GetObjectValue<ApiSdk.Models.AgreementFile>(ApiSdk.Models.AgreementFile.CreateFromDiscriminatorValue); } },
+                { "files", n => { Files = n.GetCollectionOfObjectValues<ApiSdk.Models.AgreementFileLocalization>(ApiSdk.Models.AgreementFileLocalization.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isPerDeviceAcceptanceRequired", n => { IsPerDeviceAcceptanceRequired = n.GetBoolValue(); } },
                 { "isViewingBeforeAcceptanceRequired", n => { IsViewingBeforeAcceptanceRequired = n.GetBoolValue(); } },
                 { "termsExpiration", n => { TermsExpiration = n.GetObjectValue<ApiSdk.Models.TermsExpiration>(ApiSdk.Models.TermsExpiration.CreateFromDiscriminatorValue); } },
@@ -92,10 +92,10 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AgreementAcceptance>("acceptances", Acceptances);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AgreementAcceptance>("acceptances", Acceptances);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteObjectValue<AgreementFile>("file", File);
-            writer.WriteCollectionOfObjectValues<AgreementFileLocalization>("files", Files);
+            writer.WriteObjectValue<ApiSdk.Models.AgreementFile>("file", File);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AgreementFileLocalization>("files", Files);
             writer.WriteBoolValue("isPerDeviceAcceptanceRequired", IsPerDeviceAcceptanceRequired);
             writer.WriteBoolValue("isViewingBeforeAcceptanceRequired", IsViewingBeforeAcceptanceRequired);
             writer.WriteObjectValue<ApiSdk.Models.TermsExpiration>("termsExpiration", TermsExpiration);

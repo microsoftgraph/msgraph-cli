@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// The user experience analytics application performance entity contains application performance details.
     /// </summary>
-    public class UserExperienceAnalyticsAppHealthApplicationPerformance : Entity, IParsable
+    public class UserExperienceAnalyticsAppHealthApplicationPerformance : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The health score of the application. Valid values 0 to 100. Supports: $filter, $select, $OrderBy. Read-only. Valid values -2147483648 to 2147483647</summary>
         public int? ActiveDeviceCount { get; set; }
@@ -50,12 +50,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserExperienceAnalyticsAppHealthApplicationPerformance"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserExperienceAnalyticsAppHealthApplicationPerformance"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsAppHealthApplicationPerformance CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserExperienceAnalyticsAppHealthApplicationPerformance CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserExperienceAnalyticsAppHealthApplicationPerformance();
+            return new ApiSdk.Models.UserExperienceAnalyticsAppHealthApplicationPerformance();
         }
         /// <summary>
         /// The deserialization information for the current model

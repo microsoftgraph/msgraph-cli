@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>The conditions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ConditionalAccessConditionSet? Conditions { get; set; }
+        public ApiSdk.Models.ConditionalAccessConditionSet? Conditions { get; set; }
 #nullable restore
 #else
-        public ConditionalAccessConditionSet Conditions { get; set; }
+        public ApiSdk.Models.ConditionalAccessConditionSet Conditions { get; set; }
 #endif
         /// <summary>Represents grant controls that must be fulfilled for the policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ConditionalAccessGrantControls? GrantControls { get; set; }
+        public ApiSdk.Models.ConditionalAccessGrantControls? GrantControls { get; set; }
 #nullable restore
 #else
-        public ConditionalAccessGrantControls GrantControls { get; set; }
+        public ApiSdk.Models.ConditionalAccessGrantControls GrantControls { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,13 +39,13 @@ namespace ApiSdk.Models
         /// <summary>Represents a complex type of session controls that is enforced after sign-in.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ConditionalAccessSessionControls? SessionControls { get; set; }
+        public ApiSdk.Models.ConditionalAccessSessionControls? SessionControls { get; set; }
 #nullable restore
 #else
-        public ConditionalAccessSessionControls SessionControls { get; set; }
+        public ApiSdk.Models.ConditionalAccessSessionControls SessionControls { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ConditionalAccessPolicyDetail"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ConditionalAccessPolicyDetail"/> and sets the default values.
         /// </summary>
         public ConditionalAccessPolicyDetail()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConditionalAccessPolicyDetail"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConditionalAccessPolicyDetail"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ConditionalAccessPolicyDetail CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ConditionalAccessPolicyDetail CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConditionalAccessPolicyDetail();
+            return new ApiSdk.Models.ConditionalAccessPolicyDetail();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,10 +69,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "conditions", n => { Conditions = n.GetObjectValue<ConditionalAccessConditionSet>(ConditionalAccessConditionSet.CreateFromDiscriminatorValue); } },
-                { "grantControls", n => { GrantControls = n.GetObjectValue<ConditionalAccessGrantControls>(ConditionalAccessGrantControls.CreateFromDiscriminatorValue); } },
+                { "conditions", n => { Conditions = n.GetObjectValue<ApiSdk.Models.ConditionalAccessConditionSet>(ApiSdk.Models.ConditionalAccessConditionSet.CreateFromDiscriminatorValue); } },
+                { "grantControls", n => { GrantControls = n.GetObjectValue<ApiSdk.Models.ConditionalAccessGrantControls>(ApiSdk.Models.ConditionalAccessGrantControls.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "sessionControls", n => { SessionControls = n.GetObjectValue<ConditionalAccessSessionControls>(ConditionalAccessSessionControls.CreateFromDiscriminatorValue); } },
+                { "sessionControls", n => { SessionControls = n.GetObjectValue<ApiSdk.Models.ConditionalAccessSessionControls>(ApiSdk.Models.ConditionalAccessSessionControls.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -82,10 +82,10 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ConditionalAccessConditionSet>("conditions", Conditions);
-            writer.WriteObjectValue<ConditionalAccessGrantControls>("grantControls", GrantControls);
+            writer.WriteObjectValue<ApiSdk.Models.ConditionalAccessConditionSet>("conditions", Conditions);
+            writer.WriteObjectValue<ApiSdk.Models.ConditionalAccessGrantControls>("grantControls", GrantControls);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<ConditionalAccessSessionControls>("sessionControls", SessionControls);
+            writer.WriteObjectValue<ApiSdk.Models.ConditionalAccessSessionControls>("sessionControls", SessionControls);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

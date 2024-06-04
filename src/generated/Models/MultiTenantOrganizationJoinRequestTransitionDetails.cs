@@ -13,7 +13,7 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>State of the tenant in the multitenant organization currently being processed. The possible values are: pending, active, removed, unknownFutureValue. Read-only.</summary>
-        public MultiTenantOrganizationMemberState? DesiredMemberState { get; set; }
+        public ApiSdk.Models.MultiTenantOrganizationMemberState? DesiredMemberState { get; set; }
         /// <summary>Details that explain the processing status if any. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,9 +31,9 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>Processing state of the asynchronous job. The possible values are: notStarted, running, succeeded, failed, unknownFutureValue. Read-only.</summary>
-        public MultiTenantOrganizationMemberProcessingStatus? Status { get; set; }
+        public ApiSdk.Models.MultiTenantOrganizationMemberProcessingStatus? Status { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="MultiTenantOrganizationJoinRequestTransitionDetails"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.MultiTenantOrganizationJoinRequestTransitionDetails"/> and sets the default values.
         /// </summary>
         public MultiTenantOrganizationJoinRequestTransitionDetails()
         {
@@ -42,12 +42,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="MultiTenantOrganizationJoinRequestTransitionDetails"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.MultiTenantOrganizationJoinRequestTransitionDetails"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MultiTenantOrganizationJoinRequestTransitionDetails CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.MultiTenantOrganizationJoinRequestTransitionDetails CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MultiTenantOrganizationJoinRequestTransitionDetails();
+            return new ApiSdk.Models.MultiTenantOrganizationJoinRequestTransitionDetails();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,10 +57,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "desiredMemberState", n => { DesiredMemberState = n.GetEnumValue<MultiTenantOrganizationMemberState>(); } },
+                { "desiredMemberState", n => { DesiredMemberState = n.GetEnumValue<ApiSdk.Models.MultiTenantOrganizationMemberState>(); } },
                 { "details", n => { Details = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<MultiTenantOrganizationMemberProcessingStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.MultiTenantOrganizationMemberProcessingStatus>(); } },
             };
         }
         /// <summary>
@@ -70,10 +70,10 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<MultiTenantOrganizationMemberState>("desiredMemberState", DesiredMemberState);
+            writer.WriteEnumValue<ApiSdk.Models.MultiTenantOrganizationMemberState>("desiredMemberState", DesiredMemberState);
             writer.WriteStringValue("details", Details);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<MultiTenantOrganizationMemberProcessingStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.MultiTenantOrganizationMemberProcessingStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class Fido2AuthenticationMethod : AuthenticationMethod, IParsable
+    public class Fido2AuthenticationMethod : ApiSdk.Models.AuthenticationMethod, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Authenticator Attestation GUID, an identifier that indicates the type (e.g. make and model) of the authenticator.</summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         public string Model { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="Fido2AuthenticationMethod"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Fido2AuthenticationMethod"/> and sets the default values.
         /// </summary>
         public Fido2AuthenticationMethod() : base()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Fido2AuthenticationMethod"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Fido2AuthenticationMethod"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Fido2AuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Fido2AuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Fido2AuthenticationMethod();
+            return new ApiSdk.Models.Fido2AuthenticationMethod();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -73,7 +73,7 @@ namespace ApiSdk.Models
             {
                 { "aaGuid", n => { AaGuid = n.GetStringValue(); } },
                 { "attestationCertificates", n => { AttestationCertificates = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "attestationLevel", n => { AttestationLevel = n.GetEnumValue<AttestationLevel>(); } },
+                { "attestationLevel", n => { AttestationLevel = n.GetEnumValue<ApiSdk.Models.AttestationLevel>(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "model", n => { Model = n.GetStringValue(); } },
@@ -89,7 +89,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("aaGuid", AaGuid);
             writer.WriteCollectionOfPrimitiveValues<string>("attestationCertificates", AttestationCertificates);
-            writer.WriteEnumValue<AttestationLevel>("attestationLevel", AttestationLevel);
+            writer.WriteEnumValue<ApiSdk.Models.AttestationLevel>("attestationLevel", AttestationLevel);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("model", Model);

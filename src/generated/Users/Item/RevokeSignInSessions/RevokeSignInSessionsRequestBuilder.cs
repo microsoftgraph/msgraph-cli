@@ -60,14 +60,14 @@ namespace ApiSdk.Users.Item.RevokeSignInSessions
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RevokeSignInSessionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.RevokeSignInSessions.RevokeSignInSessionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RevokeSignInSessionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/revokeSignInSessions", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RevokeSignInSessionsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.RevokeSignInSessions.RevokeSignInSessionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RevokeSignInSessionsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/revokeSignInSessions", rawUrl)

@@ -32,7 +32,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy
         {
             var command = new Command("default");
             command.Description = "Provides operations to manage the default property of the microsoft.graph.crossTenantAccessPolicy entity.";
-            var builder = new DefaultRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.CrossTenantAccessPolicy.Default.DefaultRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -133,7 +133,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy
         {
             var command = new Command("partners");
             command.Description = "Provides operations to manage the partners property of the microsoft.graph.crossTenantAccessPolicy entity.";
-            var builder = new PartnersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.CrossTenantAccessPolicy.Partners.PartnersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -206,7 +206,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy
         {
             var command = new Command("templates");
             command.Description = "Provides operations to manage the templates property of the microsoft.graph.crossTenantAccessPolicy entity.";
-            var builder = new TemplatesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Policies.CrossTenantAccessPolicy.Templates.TemplatesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
@@ -225,14 +225,14 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="CrossTenantAccessPolicyRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.CrossTenantAccessPolicy.CrossTenantAccessPolicyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CrossTenantAccessPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/crossTenantAccessPolicy{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="CrossTenantAccessPolicyRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Policies.CrossTenantAccessPolicy.CrossTenantAccessPolicyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CrossTenantAccessPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/policies/crossTenantAccessPolicy{?%24expand,%24select}", rawUrl)
@@ -264,11 +264,11 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CrossTenantAccessPolicyRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.CrossTenantAccessPolicy.CrossTenantAccessPolicyRequestBuilder.CrossTenantAccessPolicyRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CrossTenantAccessPolicyRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Policies.CrossTenantAccessPolicy.CrossTenantAccessPolicyRequestBuilder.CrossTenantAccessPolicyRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

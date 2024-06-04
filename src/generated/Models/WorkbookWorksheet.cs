@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookWorksheet : Entity, IParsable
+    public class WorkbookWorksheet : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Returns collection of charts that are part of the worksheet. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookChart>? Charts { get; set; }
+        public List<ApiSdk.Models.WorkbookChart>? Charts { get; set; }
 #nullable restore
 #else
-        public List<WorkbookChart> Charts { get; set; }
+        public List<ApiSdk.Models.WorkbookChart> Charts { get; set; }
 #endif
         /// <summary>The display name of the worksheet.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -29,36 +29,36 @@ namespace ApiSdk.Models
         /// <summary>Returns collection of names that are associated with the worksheet. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookNamedItem>? Names { get; set; }
+        public List<ApiSdk.Models.WorkbookNamedItem>? Names { get; set; }
 #nullable restore
 #else
-        public List<WorkbookNamedItem> Names { get; set; }
+        public List<ApiSdk.Models.WorkbookNamedItem> Names { get; set; }
 #endif
         /// <summary>Collection of PivotTables that are part of the worksheet.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookPivotTable>? PivotTables { get; set; }
+        public List<ApiSdk.Models.WorkbookPivotTable>? PivotTables { get; set; }
 #nullable restore
 #else
-        public List<WorkbookPivotTable> PivotTables { get; set; }
+        public List<ApiSdk.Models.WorkbookPivotTable> PivotTables { get; set; }
 #endif
         /// <summary>The zero-based position of the worksheet within the workbook.</summary>
         public int? Position { get; set; }
         /// <summary>Returns sheet protection object for a worksheet. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public WorkbookWorksheetProtection? Protection { get; set; }
+        public ApiSdk.Models.WorkbookWorksheetProtection? Protection { get; set; }
 #nullable restore
 #else
-        public WorkbookWorksheetProtection Protection { get; set; }
+        public ApiSdk.Models.WorkbookWorksheetProtection Protection { get; set; }
 #endif
         /// <summary>Collection of tables that are part of the worksheet. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WorkbookTable>? Tables { get; set; }
+        public List<ApiSdk.Models.WorkbookTable>? Tables { get; set; }
 #nullable restore
 #else
-        public List<WorkbookTable> Tables { get; set; }
+        public List<ApiSdk.Models.WorkbookTable> Tables { get; set; }
 #endif
         /// <summary>The Visibility of the worksheet. The possible values are: Visible, Hidden, VeryHidden.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,12 +71,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookWorksheet"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookWorksheet"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookWorksheet CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookWorksheet CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookWorksheet();
+            return new ApiSdk.Models.WorkbookWorksheet();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -86,13 +86,13 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "charts", n => { Charts = n.GetCollectionOfObjectValues<WorkbookChart>(WorkbookChart.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "charts", n => { Charts = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookChart>(ApiSdk.Models.WorkbookChart.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "names", n => { Names = n.GetCollectionOfObjectValues<WorkbookNamedItem>(WorkbookNamedItem.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "pivotTables", n => { PivotTables = n.GetCollectionOfObjectValues<WorkbookPivotTable>(WorkbookPivotTable.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "names", n => { Names = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookNamedItem>(ApiSdk.Models.WorkbookNamedItem.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "pivotTables", n => { PivotTables = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookPivotTable>(ApiSdk.Models.WorkbookPivotTable.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "position", n => { Position = n.GetIntValue(); } },
-                { "protection", n => { Protection = n.GetObjectValue<WorkbookWorksheetProtection>(WorkbookWorksheetProtection.CreateFromDiscriminatorValue); } },
-                { "tables", n => { Tables = n.GetCollectionOfObjectValues<WorkbookTable>(WorkbookTable.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "protection", n => { Protection = n.GetObjectValue<ApiSdk.Models.WorkbookWorksheetProtection>(ApiSdk.Models.WorkbookWorksheetProtection.CreateFromDiscriminatorValue); } },
+                { "tables", n => { Tables = n.GetCollectionOfObjectValues<ApiSdk.Models.WorkbookTable>(ApiSdk.Models.WorkbookTable.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "visibility", n => { Visibility = n.GetStringValue(); } },
             };
         }
@@ -104,13 +104,13 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<WorkbookChart>("charts", Charts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookChart>("charts", Charts);
             writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfObjectValues<WorkbookNamedItem>("names", Names);
-            writer.WriteCollectionOfObjectValues<WorkbookPivotTable>("pivotTables", PivotTables);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookNamedItem>("names", Names);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookPivotTable>("pivotTables", PivotTables);
             writer.WriteIntValue("position", Position);
-            writer.WriteObjectValue<WorkbookWorksheetProtection>("protection", Protection);
-            writer.WriteCollectionOfObjectValues<WorkbookTable>("tables", Tables);
+            writer.WriteObjectValue<ApiSdk.Models.WorkbookWorksheetProtection>("protection", Protection);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WorkbookTable>("tables", Tables);
             writer.WriteStringValue("visibility", Visibility);
         }
     }

@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ContactFolder : Entity, IParsable
+    public class ContactFolder : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The collection of child folders in the folder. Navigation property. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ContactFolder>? ChildFolders { get; set; }
+        public List<ApiSdk.Models.ContactFolder>? ChildFolders { get; set; }
 #nullable restore
 #else
-        public List<ContactFolder> ChildFolders { get; set; }
+        public List<ApiSdk.Models.ContactFolder> ChildFolders { get; set; }
 #endif
         /// <summary>The contacts in the folder. Navigation property. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Contact>? Contacts { get; set; }
+        public List<ApiSdk.Models.Contact>? Contacts { get; set; }
 #nullable restore
 #else
-        public List<Contact> Contacts { get; set; }
+        public List<ApiSdk.Models.Contact> Contacts { get; set; }
 #endif
         /// <summary>The folder&apos;s display name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,10 +37,10 @@ namespace ApiSdk.Models
         /// <summary>The collection of multi-value extended properties defined for the contactFolder. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MultiValueLegacyExtendedProperty>? MultiValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.MultiValueLegacyExtendedProperty>? MultiValueExtendedProperties { get; set; }
 #nullable restore
 #else
-        public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
 #endif
         /// <summary>The ID of the folder&apos;s parent folder.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -53,20 +53,20 @@ namespace ApiSdk.Models
         /// <summary>The collection of single-value extended properties defined for the contactFolder. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SingleValueLegacyExtendedProperty>? SingleValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.SingleValueLegacyExtendedProperty>? SingleValueExtendedProperties { get; set; }
 #nullable restore
 #else
-        public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
+        public List<ApiSdk.Models.SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ContactFolder"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ContactFolder"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ContactFolder CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ContactFolder CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ContactFolder();
+            return new ApiSdk.Models.ContactFolder();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,12 +76,12 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "childFolders", n => { ChildFolders = n.GetCollectionOfObjectValues<ContactFolder>(ContactFolder.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "contacts", n => { Contacts = n.GetCollectionOfObjectValues<Contact>(Contact.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "childFolders", n => { ChildFolders = n.GetCollectionOfObjectValues<ApiSdk.Models.ContactFolder>(ApiSdk.Models.ContactFolder.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "contacts", n => { Contacts = n.GetCollectionOfObjectValues<ApiSdk.Models.Contact>(ApiSdk.Models.Contact.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "multiValueExtendedProperties", n => { MultiValueExtendedProperties = n.GetCollectionOfObjectValues<MultiValueLegacyExtendedProperty>(MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "multiValueExtendedProperties", n => { MultiValueExtendedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.MultiValueLegacyExtendedProperty>(ApiSdk.Models.MultiValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "parentFolderId", n => { ParentFolderId = n.GetStringValue(); } },
-                { "singleValueExtendedProperties", n => { SingleValueExtendedProperties = n.GetCollectionOfObjectValues<SingleValueLegacyExtendedProperty>(SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "singleValueExtendedProperties", n => { SingleValueExtendedProperties = n.GetCollectionOfObjectValues<ApiSdk.Models.SingleValueLegacyExtendedProperty>(ApiSdk.Models.SingleValueLegacyExtendedProperty.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -92,12 +92,12 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ContactFolder>("childFolders", ChildFolders);
-            writer.WriteCollectionOfObjectValues<Contact>("contacts", Contacts);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ContactFolder>("childFolders", ChildFolders);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Contact>("contacts", Contacts);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<MultiValueLegacyExtendedProperty>("multiValueExtendedProperties", MultiValueExtendedProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.MultiValueLegacyExtendedProperty>("multiValueExtendedProperties", MultiValueExtendedProperties);
             writer.WriteStringValue("parentFolderId", ParentFolderId);
-            writer.WriteCollectionOfObjectValues<SingleValueLegacyExtendedProperty>("singleValueExtendedProperties", SingleValueExtendedProperties);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SingleValueLegacyExtendedProperty>("singleValueExtendedProperties", SingleValueExtendedProperties);
         }
     }
 }

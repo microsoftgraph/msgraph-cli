@@ -25,7 +25,7 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions.Applications
         {
             var command = new Command("include-applications");
             command.Description = "Provides operations to manage the includeApplications property of the microsoft.graph.authenticationConditionsApplications entity.";
-            var builder = new IncludeApplicationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions.Applications.IncludeApplications.IncludeApplicationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -45,14 +45,14 @@ namespace ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions.Applications
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ApplicationsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions.Applications.ApplicationsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ApplicationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/authenticationEventsFlows/{authenticationEventsFlow%2Did}/conditions/applications", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ApplicationsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Identity.AuthenticationEventsFlows.Item.Conditions.Applications.ApplicationsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ApplicationsRequestBuilder(string rawUrl) : base("{+baseurl}/identity/authenticationEventsFlows/{authenticationEventsFlow%2Did}/conditions/applications", rawUrl)

@@ -7,39 +7,39 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AuthenticationMethodConfiguration : Entity, IParsable
+    public class AuthenticationMethodConfiguration : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Groups of users that are excluded from a policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ExcludeTarget>? ExcludeTargets { get; set; }
+        public List<ApiSdk.Models.ExcludeTarget>? ExcludeTargets { get; set; }
 #nullable restore
 #else
-        public List<ExcludeTarget> ExcludeTargets { get; set; }
+        public List<ApiSdk.Models.ExcludeTarget> ExcludeTargets { get; set; }
 #endif
         /// <summary>The state of the policy. Possible values are: enabled, disabled.</summary>
-        public AuthenticationMethodState? State { get; set; }
+        public ApiSdk.Models.AuthenticationMethodState? State { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationMethodConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationMethodConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.emailAuthenticationMethodConfiguration" => new EmailAuthenticationMethodConfiguration(),
-                "#microsoft.graph.fido2AuthenticationMethodConfiguration" => new Fido2AuthenticationMethodConfiguration(),
-                "#microsoft.graph.microsoftAuthenticatorAuthenticationMethodConfiguration" => new MicrosoftAuthenticatorAuthenticationMethodConfiguration(),
-                "#microsoft.graph.smsAuthenticationMethodConfiguration" => new SmsAuthenticationMethodConfiguration(),
-                "#microsoft.graph.softwareOathAuthenticationMethodConfiguration" => new SoftwareOathAuthenticationMethodConfiguration(),
-                "#microsoft.graph.temporaryAccessPassAuthenticationMethodConfiguration" => new TemporaryAccessPassAuthenticationMethodConfiguration(),
-                "#microsoft.graph.voiceAuthenticationMethodConfiguration" => new VoiceAuthenticationMethodConfiguration(),
-                "#microsoft.graph.x509CertificateAuthenticationMethodConfiguration" => new X509CertificateAuthenticationMethodConfiguration(),
-                _ => new AuthenticationMethodConfiguration(),
+                "#microsoft.graph.emailAuthenticationMethodConfiguration" => new ApiSdk.Models.EmailAuthenticationMethodConfiguration(),
+                "#microsoft.graph.fido2AuthenticationMethodConfiguration" => new ApiSdk.Models.Fido2AuthenticationMethodConfiguration(),
+                "#microsoft.graph.microsoftAuthenticatorAuthenticationMethodConfiguration" => new ApiSdk.Models.MicrosoftAuthenticatorAuthenticationMethodConfiguration(),
+                "#microsoft.graph.smsAuthenticationMethodConfiguration" => new ApiSdk.Models.SmsAuthenticationMethodConfiguration(),
+                "#microsoft.graph.softwareOathAuthenticationMethodConfiguration" => new ApiSdk.Models.SoftwareOathAuthenticationMethodConfiguration(),
+                "#microsoft.graph.temporaryAccessPassAuthenticationMethodConfiguration" => new ApiSdk.Models.TemporaryAccessPassAuthenticationMethodConfiguration(),
+                "#microsoft.graph.voiceAuthenticationMethodConfiguration" => new ApiSdk.Models.VoiceAuthenticationMethodConfiguration(),
+                "#microsoft.graph.x509CertificateAuthenticationMethodConfiguration" => new ApiSdk.Models.X509CertificateAuthenticationMethodConfiguration(),
+                _ => new ApiSdk.Models.AuthenticationMethodConfiguration(),
             };
         }
         /// <summary>
@@ -50,8 +50,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "excludeTargets", n => { ExcludeTargets = n.GetCollectionOfObjectValues<ExcludeTarget>(ExcludeTarget.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "state", n => { State = n.GetEnumValue<AuthenticationMethodState>(); } },
+                { "excludeTargets", n => { ExcludeTargets = n.GetCollectionOfObjectValues<ApiSdk.Models.ExcludeTarget>(ApiSdk.Models.ExcludeTarget.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "state", n => { State = n.GetEnumValue<ApiSdk.Models.AuthenticationMethodState>(); } },
             };
         }
         /// <summary>
@@ -62,8 +62,8 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ExcludeTarget>("excludeTargets", ExcludeTargets);
-            writer.WriteEnumValue<AuthenticationMethodState>("state", State);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExcludeTarget>("excludeTargets", ExcludeTargets);
+            writer.WriteEnumValue<ApiSdk.Models.AuthenticationMethodState>("state", State);
         }
     }
 }

@@ -13,10 +13,10 @@ namespace ApiSdk.Models.Security
         /// <summary>The hostPortBanners retrieved from scanning the port.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostPortBanner>? Banners { get; set; }
+        public List<ApiSdk.Models.Security.HostPortBanner>? Banners { get; set; }
 #nullable restore
 #else
-        public List<HostPortBanner> Banners { get; set; }
+        public List<ApiSdk.Models.Security.HostPortBanner> Banners { get; set; }
 #endif
         /// <summary>The first date and time when Microsoft Defender Threat Intelligence observed the hostPort. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? FirstSeenDateTime { get; set; }
@@ -35,36 +35,36 @@ namespace ApiSdk.Models.Security
         /// <summary>The most recent sslCertificate used to communicate on the port.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public SslCertificate? MostRecentSslCertificate { get; set; }
+        public ApiSdk.Models.Security.SslCertificate? MostRecentSslCertificate { get; set; }
 #nullable restore
 #else
-        public SslCertificate MostRecentSslCertificate { get; set; }
+        public ApiSdk.Models.Security.SslCertificate MostRecentSslCertificate { get; set; }
 #endif
         /// <summary>The numerical identifier of the port which is standardized across the internet.</summary>
         public int? Port { get; set; }
         /// <summary>The general protocol used to scan the port. The possible values are: tcp, udp, unknownFutureValue.</summary>
-        public HostPortProtocol? Protocol { get; set; }
+        public ApiSdk.Models.Security.HostPortProtocol? Protocol { get; set; }
         /// <summary>The hostPortComponents retrieved from scanning the port.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<HostPortComponent>? Services { get; set; }
+        public List<ApiSdk.Models.Security.HostPortComponent>? Services { get; set; }
 #nullable restore
 #else
-        public List<HostPortComponent> Services { get; set; }
+        public List<ApiSdk.Models.Security.HostPortComponent> Services { get; set; }
 #endif
         /// <summary>The status of the port. The possible values are: open, filtered, closed, unknownFutureValue.</summary>
-        public HostPortStatus? Status { get; set; }
+        public ApiSdk.Models.Security.HostPortStatus? Status { get; set; }
         /// <summary>The total amount of times that Microsoft Defender Threat Intelligence has observed the hostPort in all its scans.</summary>
         public int? TimesObserved { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HostPort"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.HostPort"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new HostPort CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.HostPort CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HostPort();
+            return new ApiSdk.Models.Security.HostPort();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -74,16 +74,16 @@ namespace ApiSdk.Models.Security
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "banners", n => { Banners = n.GetCollectionOfObjectValues<HostPortBanner>(HostPortBanner.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "banners", n => { Banners = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostPortBanner>(ApiSdk.Models.Security.HostPortBanner.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
                 { "host", n => { Host = n.GetObjectValue<ApiSdk.Models.Security.Host>(ApiSdk.Models.Security.Host.CreateFromDiscriminatorValue); } },
                 { "lastScanDateTime", n => { LastScanDateTime = n.GetDateTimeOffsetValue(); } },
                 { "lastSeenDateTime", n => { LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
-                { "mostRecentSslCertificate", n => { MostRecentSslCertificate = n.GetObjectValue<SslCertificate>(SslCertificate.CreateFromDiscriminatorValue); } },
+                { "mostRecentSslCertificate", n => { MostRecentSslCertificate = n.GetObjectValue<ApiSdk.Models.Security.SslCertificate>(ApiSdk.Models.Security.SslCertificate.CreateFromDiscriminatorValue); } },
                 { "port", n => { Port = n.GetIntValue(); } },
-                { "protocol", n => { Protocol = n.GetEnumValue<HostPortProtocol>(); } },
-                { "services", n => { Services = n.GetCollectionOfObjectValues<HostPortComponent>(HostPortComponent.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "status", n => { Status = n.GetEnumValue<HostPortStatus>(); } },
+                { "protocol", n => { Protocol = n.GetEnumValue<ApiSdk.Models.Security.HostPortProtocol>(); } },
+                { "services", n => { Services = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.HostPortComponent>(ApiSdk.Models.Security.HostPortComponent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.Security.HostPortStatus>(); } },
                 { "timesObserved", n => { TimesObserved = n.GetIntValue(); } },
             };
         }
@@ -95,16 +95,16 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<HostPortBanner>("banners", Banners);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostPortBanner>("banners", Banners);
             writer.WriteDateTimeOffsetValue("firstSeenDateTime", FirstSeenDateTime);
             writer.WriteObjectValue<ApiSdk.Models.Security.Host>("host", Host);
             writer.WriteDateTimeOffsetValue("lastScanDateTime", LastScanDateTime);
             writer.WriteDateTimeOffsetValue("lastSeenDateTime", LastSeenDateTime);
-            writer.WriteObjectValue<SslCertificate>("mostRecentSslCertificate", MostRecentSslCertificate);
+            writer.WriteObjectValue<ApiSdk.Models.Security.SslCertificate>("mostRecentSslCertificate", MostRecentSslCertificate);
             writer.WriteIntValue("port", Port);
-            writer.WriteEnumValue<HostPortProtocol>("protocol", Protocol);
-            writer.WriteCollectionOfObjectValues<HostPortComponent>("services", Services);
-            writer.WriteEnumValue<HostPortStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.Security.HostPortProtocol>("protocol", Protocol);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Security.HostPortComponent>("services", Services);
+            writer.WriteEnumValue<ApiSdk.Models.Security.HostPortStatus>("status", Status);
             writer.WriteIntValue("timesObserved", TimesObserved);
         }
     }

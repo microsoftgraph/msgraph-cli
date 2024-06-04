@@ -50,14 +50,14 @@ namespace ApiSdk.Groups.Item.RemoveFavorite
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="RemoveFavoriteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.RemoveFavorite.RemoveFavoriteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RemoveFavoriteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/removeFavorite", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="RemoveFavoriteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.RemoveFavorite.RemoveFavoriteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RemoveFavoriteRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/removeFavorite", rawUrl)

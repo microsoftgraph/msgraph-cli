@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AdministrativeUnit : DirectoryObject, IParsable
+    public class AdministrativeUnit : ApiSdk.Models.DirectoryObject, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>An optional description for the administrative unit. Supports $filter (eq, ne, in, startsWith), $search.</summary>
@@ -29,26 +29,26 @@ namespace ApiSdk.Models
         /// <summary>The collection of open extensions defined for this administrative unit. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<Extension>? Extensions { get; set; }
+        public List<ApiSdk.Models.Extension>? Extensions { get; set; }
 #nullable restore
 #else
-        public List<Extension> Extensions { get; set; }
+        public List<ApiSdk.Models.Extension> Extensions { get; set; }
 #endif
         /// <summary>Users and groups that are members of this administrative unit. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DirectoryObject>? Members { get; set; }
+        public List<ApiSdk.Models.DirectoryObject>? Members { get; set; }
 #nullable restore
 #else
-        public List<DirectoryObject> Members { get; set; }
+        public List<ApiSdk.Models.DirectoryObject> Members { get; set; }
 #endif
         /// <summary>Scoped-role members of this administrative unit.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ScopedRoleMembership>? ScopedRoleMembers { get; set; }
+        public List<ApiSdk.Models.ScopedRoleMembership>? ScopedRoleMembers { get; set; }
 #nullable restore
 #else
-        public List<ScopedRoleMembership> ScopedRoleMembers { get; set; }
+        public List<ApiSdk.Models.ScopedRoleMembership> ScopedRoleMembers { get; set; }
 #endif
         /// <summary>Controls whether the administrative unit and its members are hidden or public. Can be set to HiddenMembership. If not set (value is null), the default behavior is public. When set to HiddenMembership, only members of the administrative unit can list other members of the administrative unit.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -59,7 +59,7 @@ namespace ApiSdk.Models
         public string Visibility { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AdministrativeUnit"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AdministrativeUnit"/> and sets the default values.
         /// </summary>
         public AdministrativeUnit() : base()
         {
@@ -68,12 +68,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AdministrativeUnit"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AdministrativeUnit"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AdministrativeUnit CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AdministrativeUnit CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AdministrativeUnit();
+            return new ApiSdk.Models.AdministrativeUnit();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -85,9 +85,9 @@ namespace ApiSdk.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "members", n => { Members = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "scopedRoleMembers", n => { ScopedRoleMembers = n.GetCollectionOfObjectValues<ScopedRoleMembership>(ScopedRoleMembership.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "extensions", n => { Extensions = n.GetCollectionOfObjectValues<ApiSdk.Models.Extension>(ApiSdk.Models.Extension.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "members", n => { Members = n.GetCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>(ApiSdk.Models.DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "scopedRoleMembers", n => { ScopedRoleMembers = n.GetCollectionOfObjectValues<ApiSdk.Models.ScopedRoleMembership>(ApiSdk.Models.ScopedRoleMembership.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "visibility", n => { Visibility = n.GetStringValue(); } },
             };
         }
@@ -101,9 +101,9 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
-            writer.WriteCollectionOfObjectValues<DirectoryObject>("members", Members);
-            writer.WriteCollectionOfObjectValues<ScopedRoleMembership>("scopedRoleMembers", ScopedRoleMembers);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.Extension>("extensions", Extensions);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DirectoryObject>("members", Members);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ScopedRoleMembership>("scopedRoleMembers", ScopedRoleMembers);
             writer.WriteStringValue("visibility", Visibility);
         }
     }

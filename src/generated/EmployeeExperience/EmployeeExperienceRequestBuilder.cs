@@ -71,7 +71,7 @@ namespace ApiSdk.EmployeeExperience
         {
             var command = new Command("learning-course-activities");
             command.Description = "Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperience entity.";
-            var builder = new LearningCourseActivitiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.EmployeeExperience.LearningCourseActivities.LearningCourseActivitiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -98,7 +98,7 @@ namespace ApiSdk.EmployeeExperience
         {
             var command = new Command("learning-course-activities-with-externalcourse-activity-id");
             command.Description = "Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperience entity.";
-            var builder = new LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder(PathParameters);
+            var builder = new ApiSdk.EmployeeExperience.LearningCourseActivitiesWithExternalcourseActivityId.LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -117,7 +117,7 @@ namespace ApiSdk.EmployeeExperience
         {
             var command = new Command("learning-providers");
             command.Description = "Provides operations to manage the learningProviders property of the microsoft.graph.employeeExperience entity.";
-            var builder = new LearningProvidersRequestBuilder(PathParameters);
+            var builder = new ApiSdk.EmployeeExperience.LearningProviders.LearningProvidersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -182,14 +182,14 @@ namespace ApiSdk.EmployeeExperience
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="EmployeeExperienceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.EmployeeExperience.EmployeeExperienceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public EmployeeExperienceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience{?%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="EmployeeExperienceRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.EmployeeExperience.EmployeeExperienceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public EmployeeExperienceRequestBuilder(string rawUrl) : base("{+baseurl}/employeeExperience{?%24select}", rawUrl)
@@ -202,11 +202,11 @@ namespace ApiSdk.EmployeeExperience
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EmployeeExperienceRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.EmployeeExperience.EmployeeExperienceRequestBuilder.EmployeeExperienceRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EmployeeExperienceRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.EmployeeExperience.EmployeeExperienceRequestBuilder.EmployeeExperienceRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>Type of source. Possible values are: entityUrl, text. For supported Microsoft Graph URLs, use entityUrl. For custom text, use text.</summary>
-        public TeamworkActivityTopicSource? Source { get; set; }
+        public ApiSdk.Models.TeamworkActivityTopicSource? Source { get; set; }
         /// <summary>The topic value. If the value of the source property is entityUrl, this must be a Microsoft Graph URL. If the value is text, this must be a plain text value.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,7 +39,7 @@ namespace ApiSdk.Models
         public string WebUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="TeamworkActivityTopic"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TeamworkActivityTopic"/> and sets the default values.
         /// </summary>
         public TeamworkActivityTopic()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TeamworkActivityTopic"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TeamworkActivityTopic"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TeamworkActivityTopic CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TeamworkActivityTopic CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TeamworkActivityTopic();
+            return new ApiSdk.Models.TeamworkActivityTopic();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,7 +64,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "source", n => { Source = n.GetEnumValue<TeamworkActivityTopicSource>(); } },
+                { "source", n => { Source = n.GetEnumValue<ApiSdk.Models.TeamworkActivityTopicSource>(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
                 { "webUrl", n => { WebUrl = n.GetStringValue(); } },
             };
@@ -77,7 +77,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteEnumValue<TeamworkActivityTopicSource>("source", Source);
+            writer.WriteEnumValue<ApiSdk.Models.TeamworkActivityTopicSource>("source", Source);
             writer.WriteStringValue("value", Value);
             writer.WriteStringValue("webUrl", WebUrl);
             writer.WriteAdditionalData(AdditionalData);

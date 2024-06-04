@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessPackageQuestion : Entity, IParsable
+    public class AccessPackageQuestion : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Specifies whether the requestor is allowed to edit answers to questions for an assignment by posting an update to accessPackageAssignmentRequest.</summary>
@@ -17,10 +17,10 @@ namespace ApiSdk.Models
         /// <summary>The text of the question represented in a format for a specific locale.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessPackageLocalizedText>? Localizations { get; set; }
+        public List<ApiSdk.Models.AccessPackageLocalizedText>? Localizations { get; set; }
 #nullable restore
 #else
-        public List<AccessPackageLocalizedText> Localizations { get; set; }
+        public List<ApiSdk.Models.AccessPackageLocalizedText> Localizations { get; set; }
 #endif
         /// <summary>Relative position of this question when displaying a list of questions to the requestor.</summary>
         public int? Sequence { get; set; }
@@ -35,17 +35,17 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageQuestion"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageQuestion"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessPackageQuestion CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessPackageQuestion CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.accessPackageMultipleChoiceQuestion" => new AccessPackageMultipleChoiceQuestion(),
-                "#microsoft.graph.accessPackageTextInputQuestion" => new AccessPackageTextInputQuestion(),
-                _ => new AccessPackageQuestion(),
+                "#microsoft.graph.accessPackageMultipleChoiceQuestion" => new ApiSdk.Models.AccessPackageMultipleChoiceQuestion(),
+                "#microsoft.graph.accessPackageTextInputQuestion" => new ApiSdk.Models.AccessPackageTextInputQuestion(),
+                _ => new ApiSdk.Models.AccessPackageQuestion(),
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace ApiSdk.Models
             {
                 { "isAnswerEditable", n => { IsAnswerEditable = n.GetBoolValue(); } },
                 { "isRequired", n => { IsRequired = n.GetBoolValue(); } },
-                { "localizations", n => { Localizations = n.GetCollectionOfObjectValues<AccessPackageLocalizedText>(AccessPackageLocalizedText.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "localizations", n => { Localizations = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessPackageLocalizedText>(ApiSdk.Models.AccessPackageLocalizedText.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "sequence", n => { Sequence = n.GetIntValue(); } },
                 { "text", n => { Text = n.GetStringValue(); } },
             };
@@ -73,7 +73,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteBoolValue("isAnswerEditable", IsAnswerEditable);
             writer.WriteBoolValue("isRequired", IsRequired);
-            writer.WriteCollectionOfObjectValues<AccessPackageLocalizedText>("localizations", Localizations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessPackageLocalizedText>("localizations", Localizations);
             writer.WriteIntValue("sequence", Sequence);
             writer.WriteStringValue("text", Text);
         }

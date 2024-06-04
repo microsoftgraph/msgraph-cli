@@ -11,7 +11,7 @@ namespace ApiSdk.Models
     #pragma warning restore CS1591
     {
         /// <summary>The actions property</summary>
-        public ChatMessageActions? Actions { get; set; }
+        public ApiSdk.Models.ChatMessageActions? Actions { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The date and time when the message was modified.</summary>
@@ -27,13 +27,13 @@ namespace ApiSdk.Models
         /// <summary>The reaction in the modified message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ChatMessageReaction? Reaction { get; set; }
+        public ApiSdk.Models.ChatMessageReaction? Reaction { get; set; }
 #nullable restore
 #else
-        public ChatMessageReaction Reaction { get; set; }
+        public ApiSdk.Models.ChatMessageReaction Reaction { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ChatMessageHistoryItem"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ChatMessageHistoryItem"/> and sets the default values.
         /// </summary>
         public ChatMessageHistoryItem()
         {
@@ -42,12 +42,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChatMessageHistoryItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ChatMessageHistoryItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ChatMessageHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ChatMessageHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChatMessageHistoryItem();
+            return new ApiSdk.Models.ChatMessageHistoryItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,10 +57,10 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "actions", n => { Actions = n.GetEnumValue<ChatMessageActions>(); } },
+                { "actions", n => { Actions = n.GetEnumValue<ApiSdk.Models.ChatMessageActions>(); } },
                 { "modifiedDateTime", n => { ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "reaction", n => { Reaction = n.GetObjectValue<ChatMessageReaction>(ChatMessageReaction.CreateFromDiscriminatorValue); } },
+                { "reaction", n => { Reaction = n.GetObjectValue<ApiSdk.Models.ChatMessageReaction>(ApiSdk.Models.ChatMessageReaction.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -70,10 +70,10 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<ChatMessageActions>("actions", Actions);
+            writer.WriteEnumValue<ApiSdk.Models.ChatMessageActions>("actions", Actions);
             writer.WriteDateTimeOffsetValue("modifiedDateTime", ModifiedDateTime);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<ChatMessageReaction>("reaction", Reaction);
+            writer.WriteObjectValue<ApiSdk.Models.ChatMessageReaction>("reaction", Reaction);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

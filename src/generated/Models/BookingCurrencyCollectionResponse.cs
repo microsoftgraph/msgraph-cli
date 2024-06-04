@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class BookingCurrencyCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class BookingCurrencyCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<BookingCurrency>? Value { get; set; }
+        public List<ApiSdk.Models.BookingCurrency>? Value { get; set; }
 #nullable restore
 #else
-        public List<BookingCurrency> Value { get; set; }
+        public List<ApiSdk.Models.BookingCurrency> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="BookingCurrencyCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.BookingCurrencyCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new BookingCurrencyCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.BookingCurrencyCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new BookingCurrencyCollectionResponse();
+            return new ApiSdk.Models.BookingCurrencyCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<BookingCurrency>(BookingCurrency.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.BookingCurrency>(ApiSdk.Models.BookingCurrency.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<BookingCurrency>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.BookingCurrency>("value", Value);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace ApiSdk.Models
         /// <summary>Configures the firewall to merge connection security rules from group policy with those from local store instead of ignoring the local store rules. When ConnectionSecurityRulesFromGroupPolicyNotMerged and ConnectionSecurityRulesFromGroupPolicyMerged are both true, ConnectionSecurityRulesFromGroupPolicyMerged takes priority.</summary>
         public bool? ConnectionSecurityRulesFromGroupPolicyMerged { get; set; }
         /// <summary>State Management Setting.</summary>
-        public StateManagementSetting? FirewallEnabled { get; set; }
+        public ApiSdk.Models.StateManagementSetting? FirewallEnabled { get; set; }
         /// <summary>Configures the firewall to merge global port rules from group policy with those from local store instead of ignoring the local store rules. When GlobalPortRulesFromGroupPolicyNotMerged and GlobalPortRulesFromGroupPolicyMerged are both true, GlobalPortRulesFromGroupPolicyMerged takes priority.</summary>
         public bool? GlobalPortRulesFromGroupPolicyMerged { get; set; }
         /// <summary>Configures the firewall to block all incoming connections by default. When InboundConnectionsRequired and InboundConnectionsBlocked are both true, InboundConnectionsBlocked takes priority.</summary>
@@ -46,7 +46,7 @@ namespace ApiSdk.Models
         /// <summary>Configures the firewall to block unicast responses to multicast broadcast traffic. When UnicastResponsesToMulticastBroadcastsRequired and UnicastResponsesToMulticastBroadcastsBlocked are both true, UnicastResponsesToMulticastBroadcastsBlocked takes priority.</summary>
         public bool? UnicastResponsesToMulticastBroadcastsBlocked { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="WindowsFirewallNetworkProfile"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WindowsFirewallNetworkProfile"/> and sets the default values.
         /// </summary>
         public WindowsFirewallNetworkProfile()
         {
@@ -55,12 +55,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsFirewallNetworkProfile"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsFirewallNetworkProfile"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static WindowsFirewallNetworkProfile CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.WindowsFirewallNetworkProfile CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsFirewallNetworkProfile();
+            return new ApiSdk.Models.WindowsFirewallNetworkProfile();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
             {
                 { "authorizedApplicationRulesFromGroupPolicyMerged", n => { AuthorizedApplicationRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
                 { "connectionSecurityRulesFromGroupPolicyMerged", n => { ConnectionSecurityRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
-                { "firewallEnabled", n => { FirewallEnabled = n.GetEnumValue<StateManagementSetting>(); } },
+                { "firewallEnabled", n => { FirewallEnabled = n.GetEnumValue<ApiSdk.Models.StateManagementSetting>(); } },
                 { "globalPortRulesFromGroupPolicyMerged", n => { GlobalPortRulesFromGroupPolicyMerged = n.GetBoolValue(); } },
                 { "inboundConnectionsBlocked", n => { InboundConnectionsBlocked = n.GetBoolValue(); } },
                 { "inboundNotificationsBlocked", n => { InboundNotificationsBlocked = n.GetBoolValue(); } },
@@ -94,7 +94,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("authorizedApplicationRulesFromGroupPolicyMerged", AuthorizedApplicationRulesFromGroupPolicyMerged);
             writer.WriteBoolValue("connectionSecurityRulesFromGroupPolicyMerged", ConnectionSecurityRulesFromGroupPolicyMerged);
-            writer.WriteEnumValue<StateManagementSetting>("firewallEnabled", FirewallEnabled);
+            writer.WriteEnumValue<ApiSdk.Models.StateManagementSetting>("firewallEnabled", FirewallEnabled);
             writer.WriteBoolValue("globalPortRulesFromGroupPolicyMerged", GlobalPortRulesFromGroupPolicyMerged);
             writer.WriteBoolValue("inboundConnectionsBlocked", InboundConnectionsBlocked);
             writer.WriteBoolValue("inboundNotificationsBlocked", InboundNotificationsBlocked);

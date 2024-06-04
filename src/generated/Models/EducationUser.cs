@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EducationUser : Entity, IParsable
+    public class EducationUser : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>True if the account is enabled; otherwise, false. This property is required when a user is created. Supports $filter.</summary>
@@ -15,26 +15,26 @@ namespace ApiSdk.Models
         /// <summary>The licenses that are assigned to the user. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AssignedLicense>? AssignedLicenses { get; set; }
+        public List<ApiSdk.Models.AssignedLicense>? AssignedLicenses { get; set; }
 #nullable restore
 #else
-        public List<AssignedLicense> AssignedLicenses { get; set; }
+        public List<ApiSdk.Models.AssignedLicense> AssignedLicenses { get; set; }
 #endif
         /// <summary>The plans that are assigned to the user. Read-only. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AssignedPlan>? AssignedPlans { get; set; }
+        public List<ApiSdk.Models.AssignedPlan>? AssignedPlans { get; set; }
 #nullable restore
 #else
-        public List<AssignedPlan> AssignedPlans { get; set; }
+        public List<ApiSdk.Models.AssignedPlan> AssignedPlans { get; set; }
 #endif
         /// <summary>Assignments belonging to the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationAssignment>? Assignments { get; set; }
+        public List<ApiSdk.Models.EducationAssignment>? Assignments { get; set; }
 #nullable restore
 #else
-        public List<EducationAssignment> Assignments { get; set; }
+        public List<ApiSdk.Models.EducationAssignment> Assignments { get; set; }
 #endif
         /// <summary>The telephone numbers for the user. Note: Although this is a string collection, only one number can be set for this property.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,18 +47,18 @@ namespace ApiSdk.Models
         /// <summary>Classes to which the user belongs. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationClass>? Classes { get; set; }
+        public List<ApiSdk.Models.EducationClass>? Classes { get; set; }
 #nullable restore
 #else
-        public List<EducationClass> Classes { get; set; }
+        public List<ApiSdk.Models.EducationClass> Classes { get; set; }
 #endif
         /// <summary>The entity who created the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public IdentitySet? CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet? CreatedBy { get; set; }
 #nullable restore
 #else
-        public IdentitySet CreatedBy { get; set; }
+        public ApiSdk.Models.IdentitySet CreatedBy { get; set; }
 #endif
         /// <summary>The name for the department in which the user works. Supports $filter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -77,7 +77,7 @@ namespace ApiSdk.Models
         public string DisplayName { get; set; }
 #endif
         /// <summary>Where this user was created from. Possible values are: sis, manual.</summary>
-        public EducationExternalSource? ExternalSource { get; set; }
+        public ApiSdk.Models.EducationExternalSource? ExternalSource { get; set; }
         /// <summary>The name of the external source this resource was generated from.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -105,10 +105,10 @@ namespace ApiSdk.Models
         /// <summary>The mail address of the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PhysicalAddress? MailingAddress { get; set; }
+        public ApiSdk.Models.PhysicalAddress? MailingAddress { get; set; }
 #nullable restore
 #else
-        public PhysicalAddress MailingAddress { get; set; }
+        public ApiSdk.Models.PhysicalAddress MailingAddress { get; set; }
 #endif
         /// <summary>The mail alias for the user. This property must be specified when a user is created. Supports $filter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -145,10 +145,10 @@ namespace ApiSdk.Models
         /// <summary>Additional information used to associate the Microsoft Entra user with its Active Directory counterpart.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EducationOnPremisesInfo? OnPremisesInfo { get; set; }
+        public ApiSdk.Models.EducationOnPremisesInfo? OnPremisesInfo { get; set; }
 #nullable restore
 #else
-        public EducationOnPremisesInfo OnPremisesInfo { get; set; }
+        public ApiSdk.Models.EducationOnPremisesInfo OnPremisesInfo { get; set; }
 #endif
         /// <summary>Specifies password policies for the user. This value is an enumeration with one possible value being DisableStrongPassword, which allows weaker passwords than the default policy to be specified. DisablePasswordExpiration can also be specified. The two can be specified together; for example: DisablePasswordExpiration, DisableStrongPassword.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -175,58 +175,58 @@ namespace ApiSdk.Models
         public string PreferredLanguage { get; set; }
 #endif
         /// <summary>The primaryRole property</summary>
-        public EducationUserRole? PrimaryRole { get; set; }
+        public ApiSdk.Models.EducationUserRole? PrimaryRole { get; set; }
         /// <summary>The plans that are provisioned for the user. Read-only. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ProvisionedPlan>? ProvisionedPlans { get; set; }
+        public List<ApiSdk.Models.ProvisionedPlan>? ProvisionedPlans { get; set; }
 #nullable restore
 #else
-        public List<ProvisionedPlan> ProvisionedPlans { get; set; }
+        public List<ApiSdk.Models.ProvisionedPlan> ProvisionedPlans { get; set; }
 #endif
         /// <summary>Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph).  If this happens, the application needs to acquire a new refresh token by requesting the authorized endpoint. Returned only on $select. Read-only.</summary>
         public DateTimeOffset? RefreshTokensValidFromDateTime { get; set; }
         /// <summary>Related records associated with the user. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<RelatedContact>? RelatedContacts { get; set; }
+        public List<ApiSdk.Models.RelatedContact>? RelatedContacts { get; set; }
 #nullable restore
 #else
-        public List<RelatedContact> RelatedContacts { get; set; }
+        public List<ApiSdk.Models.RelatedContact> RelatedContacts { get; set; }
 #endif
         /// <summary>The address where the user lives.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public PhysicalAddress? ResidenceAddress { get; set; }
+        public ApiSdk.Models.PhysicalAddress? ResidenceAddress { get; set; }
 #nullable restore
 #else
-        public PhysicalAddress ResidenceAddress { get; set; }
+        public ApiSdk.Models.PhysicalAddress ResidenceAddress { get; set; }
 #endif
         /// <summary>When set, the grading rubric attached to the assignment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationRubric>? Rubrics { get; set; }
+        public List<ApiSdk.Models.EducationRubric>? Rubrics { get; set; }
 #nullable restore
 #else
-        public List<EducationRubric> Rubrics { get; set; }
+        public List<ApiSdk.Models.EducationRubric> Rubrics { get; set; }
 #endif
         /// <summary>Schools to which the user belongs. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationSchool>? Schools { get; set; }
+        public List<ApiSdk.Models.EducationSchool>? Schools { get; set; }
 #nullable restore
 #else
-        public List<EducationSchool> Schools { get; set; }
+        public List<ApiSdk.Models.EducationSchool> Schools { get; set; }
 #endif
         /// <summary>True if the Outlook Global Address List should contain this user; otherwise, false. If not set, this will be treated as true. For users invited through the invitation manager, this property will be set to false.</summary>
         public bool? ShowInAddressList { get; set; }
         /// <summary>If the primary role is student, this block will contain student specific data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EducationStudent? Student { get; set; }
+        public ApiSdk.Models.EducationStudent? Student { get; set; }
 #nullable restore
 #else
-        public EducationStudent Student { get; set; }
+        public ApiSdk.Models.EducationStudent Student { get; set; }
 #endif
         /// <summary>The user&apos;s surname (family name or last name). Supports $filter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -239,18 +239,18 @@ namespace ApiSdk.Models
         /// <summary>Classes for which the user is a teacher.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<EducationClass>? TaughtClasses { get; set; }
+        public List<ApiSdk.Models.EducationClass>? TaughtClasses { get; set; }
 #nullable restore
 #else
-        public List<EducationClass> TaughtClasses { get; set; }
+        public List<ApiSdk.Models.EducationClass> TaughtClasses { get; set; }
 #endif
         /// <summary>If the primary role is teacher, this block will contain teacher specific data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EducationTeacher? Teacher { get; set; }
+        public ApiSdk.Models.EducationTeacher? Teacher { get; set; }
 #nullable restore
 #else
-        public EducationTeacher Teacher { get; set; }
+        public ApiSdk.Models.EducationTeacher Teacher { get; set; }
 #endif
         /// <summary>A two-letter country code (ISO standard 3166). Required for users who will be assigned licenses due to a legal requirement to check for availability of services in countries or regions. Examples include: US, JP, and GB. Not nullable. Supports $filter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -287,12 +287,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EducationUser"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EducationUser"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationUser CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EducationUser CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EducationUser();
+            return new ApiSdk.Models.EducationUser();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -303,39 +303,39 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "accountEnabled", n => { AccountEnabled = n.GetBoolValue(); } },
-                { "assignedLicenses", n => { AssignedLicenses = n.GetCollectionOfObjectValues<AssignedLicense>(AssignedLicense.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "assignedPlans", n => { AssignedPlans = n.GetCollectionOfObjectValues<AssignedPlan>(AssignedPlan.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<EducationAssignment>(EducationAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignedLicenses", n => { AssignedLicenses = n.GetCollectionOfObjectValues<ApiSdk.Models.AssignedLicense>(ApiSdk.Models.AssignedLicense.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignedPlans", n => { AssignedPlans = n.GetCollectionOfObjectValues<ApiSdk.Models.AssignedPlan>(ApiSdk.Models.AssignedPlan.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationAssignment>(ApiSdk.Models.EducationAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "businessPhones", n => { BusinessPhones = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "classes", n => { Classes = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "classes", n => { Classes = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationClass>(ApiSdk.Models.EducationClass.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
                 { "department", n => { Department = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "externalSource", n => { ExternalSource = n.GetEnumValue<EducationExternalSource>(); } },
+                { "externalSource", n => { ExternalSource = n.GetEnumValue<ApiSdk.Models.EducationExternalSource>(); } },
                 { "externalSourceDetail", n => { ExternalSourceDetail = n.GetStringValue(); } },
                 { "givenName", n => { GivenName = n.GetStringValue(); } },
                 { "mail", n => { Mail = n.GetStringValue(); } },
                 { "mailNickname", n => { MailNickname = n.GetStringValue(); } },
-                { "mailingAddress", n => { MailingAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "mailingAddress", n => { MailingAddress = n.GetObjectValue<ApiSdk.Models.PhysicalAddress>(ApiSdk.Models.PhysicalAddress.CreateFromDiscriminatorValue); } },
                 { "middleName", n => { MiddleName = n.GetStringValue(); } },
                 { "mobilePhone", n => { MobilePhone = n.GetStringValue(); } },
                 { "officeLocation", n => { OfficeLocation = n.GetStringValue(); } },
-                { "onPremisesInfo", n => { OnPremisesInfo = n.GetObjectValue<EducationOnPremisesInfo>(EducationOnPremisesInfo.CreateFromDiscriminatorValue); } },
+                { "onPremisesInfo", n => { OnPremisesInfo = n.GetObjectValue<ApiSdk.Models.EducationOnPremisesInfo>(ApiSdk.Models.EducationOnPremisesInfo.CreateFromDiscriminatorValue); } },
                 { "passwordPolicies", n => { PasswordPolicies = n.GetStringValue(); } },
                 { "passwordProfile", n => { PasswordProfile = n.GetObjectValue<ApiSdk.Models.PasswordProfile>(ApiSdk.Models.PasswordProfile.CreateFromDiscriminatorValue); } },
                 { "preferredLanguage", n => { PreferredLanguage = n.GetStringValue(); } },
-                { "primaryRole", n => { PrimaryRole = n.GetEnumValue<EducationUserRole>(); } },
-                { "provisionedPlans", n => { ProvisionedPlans = n.GetCollectionOfObjectValues<ProvisionedPlan>(ProvisionedPlan.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "primaryRole", n => { PrimaryRole = n.GetEnumValue<ApiSdk.Models.EducationUserRole>(); } },
+                { "provisionedPlans", n => { ProvisionedPlans = n.GetCollectionOfObjectValues<ApiSdk.Models.ProvisionedPlan>(ApiSdk.Models.ProvisionedPlan.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "refreshTokensValidFromDateTime", n => { RefreshTokensValidFromDateTime = n.GetDateTimeOffsetValue(); } },
-                { "relatedContacts", n => { RelatedContacts = n.GetCollectionOfObjectValues<RelatedContact>(RelatedContact.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "residenceAddress", n => { ResidenceAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
-                { "rubrics", n => { Rubrics = n.GetCollectionOfObjectValues<EducationRubric>(EducationRubric.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "schools", n => { Schools = n.GetCollectionOfObjectValues<EducationSchool>(EducationSchool.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "relatedContacts", n => { RelatedContacts = n.GetCollectionOfObjectValues<ApiSdk.Models.RelatedContact>(ApiSdk.Models.RelatedContact.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "residenceAddress", n => { ResidenceAddress = n.GetObjectValue<ApiSdk.Models.PhysicalAddress>(ApiSdk.Models.PhysicalAddress.CreateFromDiscriminatorValue); } },
+                { "rubrics", n => { Rubrics = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationRubric>(ApiSdk.Models.EducationRubric.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "schools", n => { Schools = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationSchool>(ApiSdk.Models.EducationSchool.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "showInAddressList", n => { ShowInAddressList = n.GetBoolValue(); } },
-                { "student", n => { Student = n.GetObjectValue<EducationStudent>(EducationStudent.CreateFromDiscriminatorValue); } },
+                { "student", n => { Student = n.GetObjectValue<ApiSdk.Models.EducationStudent>(ApiSdk.Models.EducationStudent.CreateFromDiscriminatorValue); } },
                 { "surname", n => { Surname = n.GetStringValue(); } },
-                { "taughtClasses", n => { TaughtClasses = n.GetCollectionOfObjectValues<EducationClass>(EducationClass.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "teacher", n => { Teacher = n.GetObjectValue<EducationTeacher>(EducationTeacher.CreateFromDiscriminatorValue); } },
+                { "taughtClasses", n => { TaughtClasses = n.GetCollectionOfObjectValues<ApiSdk.Models.EducationClass>(ApiSdk.Models.EducationClass.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "teacher", n => { Teacher = n.GetObjectValue<ApiSdk.Models.EducationTeacher>(ApiSdk.Models.EducationTeacher.CreateFromDiscriminatorValue); } },
                 { "usageLocation", n => { UsageLocation = n.GetStringValue(); } },
                 { "user", n => { User = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
                 { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
@@ -351,39 +351,39 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("accountEnabled", AccountEnabled);
-            writer.WriteCollectionOfObjectValues<AssignedLicense>("assignedLicenses", AssignedLicenses);
-            writer.WriteCollectionOfObjectValues<AssignedPlan>("assignedPlans", AssignedPlans);
-            writer.WriteCollectionOfObjectValues<EducationAssignment>("assignments", Assignments);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AssignedLicense>("assignedLicenses", AssignedLicenses);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AssignedPlan>("assignedPlans", AssignedPlans);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationAssignment>("assignments", Assignments);
             writer.WriteCollectionOfPrimitiveValues<string>("businessPhones", BusinessPhones);
-            writer.WriteCollectionOfObjectValues<EducationClass>("classes", Classes);
-            writer.WriteObjectValue<IdentitySet>("createdBy", CreatedBy);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationClass>("classes", Classes);
+            writer.WriteObjectValue<ApiSdk.Models.IdentitySet>("createdBy", CreatedBy);
             writer.WriteStringValue("department", Department);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<EducationExternalSource>("externalSource", ExternalSource);
+            writer.WriteEnumValue<ApiSdk.Models.EducationExternalSource>("externalSource", ExternalSource);
             writer.WriteStringValue("externalSourceDetail", ExternalSourceDetail);
             writer.WriteStringValue("givenName", GivenName);
             writer.WriteStringValue("mail", Mail);
-            writer.WriteObjectValue<PhysicalAddress>("mailingAddress", MailingAddress);
+            writer.WriteObjectValue<ApiSdk.Models.PhysicalAddress>("mailingAddress", MailingAddress);
             writer.WriteStringValue("mailNickname", MailNickname);
             writer.WriteStringValue("middleName", MiddleName);
             writer.WriteStringValue("mobilePhone", MobilePhone);
             writer.WriteStringValue("officeLocation", OfficeLocation);
-            writer.WriteObjectValue<EducationOnPremisesInfo>("onPremisesInfo", OnPremisesInfo);
+            writer.WriteObjectValue<ApiSdk.Models.EducationOnPremisesInfo>("onPremisesInfo", OnPremisesInfo);
             writer.WriteStringValue("passwordPolicies", PasswordPolicies);
             writer.WriteObjectValue<ApiSdk.Models.PasswordProfile>("passwordProfile", PasswordProfile);
             writer.WriteStringValue("preferredLanguage", PreferredLanguage);
-            writer.WriteEnumValue<EducationUserRole>("primaryRole", PrimaryRole);
-            writer.WriteCollectionOfObjectValues<ProvisionedPlan>("provisionedPlans", ProvisionedPlans);
+            writer.WriteEnumValue<ApiSdk.Models.EducationUserRole>("primaryRole", PrimaryRole);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ProvisionedPlan>("provisionedPlans", ProvisionedPlans);
             writer.WriteDateTimeOffsetValue("refreshTokensValidFromDateTime", RefreshTokensValidFromDateTime);
-            writer.WriteCollectionOfObjectValues<RelatedContact>("relatedContacts", RelatedContacts);
-            writer.WriteObjectValue<PhysicalAddress>("residenceAddress", ResidenceAddress);
-            writer.WriteCollectionOfObjectValues<EducationRubric>("rubrics", Rubrics);
-            writer.WriteCollectionOfObjectValues<EducationSchool>("schools", Schools);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.RelatedContact>("relatedContacts", RelatedContacts);
+            writer.WriteObjectValue<ApiSdk.Models.PhysicalAddress>("residenceAddress", ResidenceAddress);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationRubric>("rubrics", Rubrics);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationSchool>("schools", Schools);
             writer.WriteBoolValue("showInAddressList", ShowInAddressList);
-            writer.WriteObjectValue<EducationStudent>("student", Student);
+            writer.WriteObjectValue<ApiSdk.Models.EducationStudent>("student", Student);
             writer.WriteStringValue("surname", Surname);
-            writer.WriteCollectionOfObjectValues<EducationClass>("taughtClasses", TaughtClasses);
-            writer.WriteObjectValue<EducationTeacher>("teacher", Teacher);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.EducationClass>("taughtClasses", TaughtClasses);
+            writer.WriteObjectValue<ApiSdk.Models.EducationTeacher>("teacher", Teacher);
             writer.WriteStringValue("usageLocation", UsageLocation);
             writer.WriteObjectValue<ApiSdk.Models.User>("user", User);
             writer.WriteStringValue("userPrincipalName", UserPrincipalName);

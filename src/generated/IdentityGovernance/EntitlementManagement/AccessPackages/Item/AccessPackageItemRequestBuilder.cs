@@ -36,7 +36,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item
         {
             var command = new Command("access-packages-incompatible-with");
             command.Description = "Provides operations to manage the accessPackagesIncompatibleWith property of the microsoft.graph.accessPackage entity.";
-            var builder = new AccessPackagesIncompatibleWithRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.AccessPackagesIncompatibleWith.AccessPackagesIncompatibleWithRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -62,7 +62,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item
         {
             var command = new Command("assignment-policies");
             command.Description = "Provides operations to manage the assignmentPolicies property of the microsoft.graph.accessPackage entity.";
-            var builder = new AssignmentPoliciesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.AssignmentPolicies.AssignmentPoliciesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -89,7 +89,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item
         {
             var command = new Command("catalog");
             command.Description = "Provides operations to manage the catalog property of the microsoft.graph.accessPackage entity.";
-            var builder = new CatalogRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Catalog.CatalogRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -142,7 +142,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item
         {
             var command = new Command("get-applicable-policy-requirements");
             command.Description = "Provides operations to call the getApplicablePolicyRequirements method.";
-            var builder = new GetApplicablePolicyRequirementsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.GetApplicablePolicyRequirements.GetApplicablePolicyRequirementsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -212,7 +212,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item
         {
             var command = new Command("incompatible-access-packages");
             command.Description = "Provides operations to manage the incompatibleAccessPackages property of the microsoft.graph.accessPackage entity.";
-            var builder = new IncompatibleAccessPackagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.IncompatibleAccessPackages.IncompatibleAccessPackagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -239,7 +239,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item
         {
             var command = new Command("incompatible-groups");
             command.Description = "Provides operations to manage the incompatibleGroups property of the microsoft.graph.accessPackage entity.";
-            var builder = new IncompatibleGroupsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.IncompatibleGroups.IncompatibleGroupsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -318,7 +318,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item
         {
             var command = new Command("resource-role-scopes");
             command.Description = "Provides operations to manage the resourceRoleScopes property of the microsoft.graph.accessPackage entity.";
-            var builder = new ResourceRoleScopesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.ResourceRoleScopes.ResourceRoleScopesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -338,14 +338,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AccessPackageItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.AccessPackageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AccessPackageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AccessPackageItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.AccessPackageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AccessPackageItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}{?%24expand,%24select}", rawUrl)
@@ -377,11 +377,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AccessPackageItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.AccessPackageItemRequestBuilder.AccessPackageItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AccessPackageItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.AccessPackageItemRequestBuilder.AccessPackageItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

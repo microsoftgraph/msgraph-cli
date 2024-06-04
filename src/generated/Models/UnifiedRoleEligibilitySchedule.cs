@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class UnifiedRoleEligibilitySchedule : UnifiedRoleScheduleBase, IParsable
+    public class UnifiedRoleEligibilitySchedule : ApiSdk.Models.UnifiedRoleScheduleBase, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>How the role eligibility is inherited. It can either be Inherited, Direct, or Group. It can further imply whether the unifiedRoleEligibilitySchedule can be managed by the caller. Supports $filter (eq, ne).</summary>
@@ -21,20 +21,20 @@ namespace ApiSdk.Models
         /// <summary>The period of the role eligibility.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestSchedule? ScheduleInfo { get; set; }
+        public ApiSdk.Models.RequestSchedule? ScheduleInfo { get; set; }
 #nullable restore
 #else
-        public RequestSchedule ScheduleInfo { get; set; }
+        public ApiSdk.Models.RequestSchedule ScheduleInfo { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UnifiedRoleEligibilitySchedule"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UnifiedRoleEligibilitySchedule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UnifiedRoleEligibilitySchedule CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UnifiedRoleEligibilitySchedule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UnifiedRoleEligibilitySchedule();
+            return new ApiSdk.Models.UnifiedRoleEligibilitySchedule();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "memberType", n => { MemberType = n.GetStringValue(); } },
-                { "scheduleInfo", n => { ScheduleInfo = n.GetObjectValue<RequestSchedule>(RequestSchedule.CreateFromDiscriminatorValue); } },
+                { "scheduleInfo", n => { ScheduleInfo = n.GetObjectValue<ApiSdk.Models.RequestSchedule>(ApiSdk.Models.RequestSchedule.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("memberType", MemberType);
-            writer.WriteObjectValue<RequestSchedule>("scheduleInfo", ScheduleInfo);
+            writer.WriteObjectValue<ApiSdk.Models.RequestSchedule>("scheduleInfo", ScheduleInfo);
         }
     }
 }

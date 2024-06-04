@@ -15,7 +15,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.AddGroup
         /// <summary>The value property</summary>
         public bool? Value { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AddGroupPostResponse"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.GroupLifecyclePolicies.Item.AddGroup.AddGroupPostResponse"/> and sets the default values.
         /// </summary>
         public AddGroupPostResponse()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.AddGroup
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AddGroupPostResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.GroupLifecyclePolicies.Item.AddGroup.AddGroupPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AddGroupPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.GroupLifecyclePolicies.Item.AddGroup.AddGroupPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AddGroupPostResponse();
+            return new ApiSdk.GroupLifecyclePolicies.Item.AddGroup.AddGroupPostResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

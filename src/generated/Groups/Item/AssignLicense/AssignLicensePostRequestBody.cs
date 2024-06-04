@@ -16,10 +16,10 @@ namespace ApiSdk.Groups.Item.AssignLicense
         /// <summary>The addLicenses property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AssignedLicense>? AddLicenses { get; set; }
+        public List<ApiSdk.Models.AssignedLicense>? AddLicenses { get; set; }
 #nullable restore
 #else
-        public List<AssignedLicense> AddLicenses { get; set; }
+        public List<ApiSdk.Models.AssignedLicense> AddLicenses { get; set; }
 #endif
         /// <summary>The removeLicenses property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -30,7 +30,7 @@ namespace ApiSdk.Groups.Item.AssignLicense
         public List<Guid?> RemoveLicenses { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AssignLicensePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.AssignLicense.AssignLicensePostRequestBody"/> and sets the default values.
         /// </summary>
         public AssignLicensePostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Groups.Item.AssignLicense
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AssignLicensePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Groups.Item.AssignLicense.AssignLicensePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AssignLicensePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Groups.Item.AssignLicense.AssignLicensePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AssignLicensePostRequestBody();
+            return new ApiSdk.Groups.Item.AssignLicense.AssignLicensePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,7 +54,7 @@ namespace ApiSdk.Groups.Item.AssignLicense
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "addLicenses", n => { AddLicenses = n.GetCollectionOfObjectValues<AssignedLicense>(AssignedLicense.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "addLicenses", n => { AddLicenses = n.GetCollectionOfObjectValues<ApiSdk.Models.AssignedLicense>(ApiSdk.Models.AssignedLicense.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "removeLicenses", n => { RemoveLicenses = n.GetCollectionOfPrimitiveValues<Guid?>()?.ToList(); } },
             };
         }
@@ -65,7 +65,7 @@ namespace ApiSdk.Groups.Item.AssignLicense
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<AssignedLicense>("addLicenses", AddLicenses);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AssignedLicense>("addLicenses", AddLicenses);
             writer.WriteCollectionOfPrimitiveValues<Guid?>("removeLicenses", RemoveLicenses);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -23,7 +23,7 @@ namespace ApiSdk.Models
         /// <summary>The priority of the binding. Microsoft Entra ID uses the binding with the highest priority. This value must be a non-negative integer and unique in the collection of objects in the certificateUserBindings property of an x509CertificateAuthenticationMethodConfiguration object. Required</summary>
         public int? Priority { get; set; }
         /// <summary>The trustAffinityLevel property</summary>
-        public X509CertificateAffinityLevel? TrustAffinityLevel { get; set; }
+        public ApiSdk.Models.X509CertificateAffinityLevel? TrustAffinityLevel { get; set; }
         /// <summary>Defines the Microsoft Entra user property of the user object to use for the binding. The possible values are: userPrincipalName, onPremisesUserPrincipalName, certificateUserIds. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,7 +41,7 @@ namespace ApiSdk.Models
         public string X509CertificateField { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="X509CertificateUserBinding"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.X509CertificateUserBinding"/> and sets the default values.
         /// </summary>
         public X509CertificateUserBinding()
         {
@@ -50,12 +50,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="X509CertificateUserBinding"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.X509CertificateUserBinding"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static X509CertificateUserBinding CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.X509CertificateUserBinding CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new X509CertificateUserBinding();
+            return new ApiSdk.Models.X509CertificateUserBinding();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -67,7 +67,7 @@ namespace ApiSdk.Models
             {
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "priority", n => { Priority = n.GetIntValue(); } },
-                { "trustAffinityLevel", n => { TrustAffinityLevel = n.GetEnumValue<X509CertificateAffinityLevel>(); } },
+                { "trustAffinityLevel", n => { TrustAffinityLevel = n.GetEnumValue<ApiSdk.Models.X509CertificateAffinityLevel>(); } },
                 { "userProperty", n => { UserProperty = n.GetStringValue(); } },
                 { "x509CertificateField", n => { X509CertificateField = n.GetStringValue(); } },
             };
@@ -81,7 +81,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("priority", Priority);
-            writer.WriteEnumValue<X509CertificateAffinityLevel>("trustAffinityLevel", TrustAffinityLevel);
+            writer.WriteEnumValue<ApiSdk.Models.X509CertificateAffinityLevel>("trustAffinityLevel", TrustAffinityLevel);
             writer.WriteStringValue("userProperty", UserProperty);
             writer.WriteStringValue("x509CertificateField", X509CertificateField);
             writer.WriteAdditionalData(AdditionalData);

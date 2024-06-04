@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WorkbookFunctionResult : Entity, IParsable
+    public class WorkbookFunctionResult : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The error property</summary>
@@ -21,20 +21,20 @@ namespace ApiSdk.Models
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Value { get; set; }
+        public ApiSdk.Models.Json? Value { get; set; }
 #nullable restore
 #else
-        public Json Value { get; set; }
+        public ApiSdk.Models.Json Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WorkbookFunctionResult"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WorkbookFunctionResult"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkbookFunctionResult CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WorkbookFunctionResult CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WorkbookFunctionResult();
+            return new ApiSdk.Models.WorkbookFunctionResult();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "error", n => { Error = n.GetStringValue(); } },
-                { "value", n => { Value = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "value", n => { Value = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("error", Error);
-            writer.WriteObjectValue<Json>("value", Value);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("value", Value);
         }
     }
 }

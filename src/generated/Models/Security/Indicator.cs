@@ -19,21 +19,21 @@ namespace ApiSdk.Models.Security
         public ApiSdk.Models.Security.Artifact Artifact { get; set; }
 #endif
         /// <summary>The source property</summary>
-        public IndicatorSource? Source { get; set; }
+        public ApiSdk.Models.Security.IndicatorSource? Source { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Indicator"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.Indicator"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Indicator CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.Indicator CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.security.articleIndicator" => new ArticleIndicator(),
-                "#microsoft.graph.security.intelligenceProfileIndicator" => new IntelligenceProfileIndicator(),
-                _ => new Indicator(),
+                "#microsoft.graph.security.articleIndicator" => new ApiSdk.Models.Security.ArticleIndicator(),
+                "#microsoft.graph.security.intelligenceProfileIndicator" => new ApiSdk.Models.Security.IntelligenceProfileIndicator(),
+                _ => new ApiSdk.Models.Security.Indicator(),
             };
         }
         /// <summary>
@@ -45,7 +45,7 @@ namespace ApiSdk.Models.Security
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
                 { "artifact", n => { Artifact = n.GetObjectValue<ApiSdk.Models.Security.Artifact>(ApiSdk.Models.Security.Artifact.CreateFromDiscriminatorValue); } },
-                { "source", n => { Source = n.GetEnumValue<IndicatorSource>(); } },
+                { "source", n => { Source = n.GetEnumValue<ApiSdk.Models.Security.IndicatorSource>(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Models.Security
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.Security.Artifact>("artifact", Artifact);
-            writer.WriteEnumValue<IndicatorSource>("source", Source);
+            writer.WriteEnumValue<ApiSdk.Models.Security.IndicatorSource>("source", Source);
         }
     }
 }

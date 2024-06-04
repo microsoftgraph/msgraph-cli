@@ -57,7 +57,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetCachedReport
         /// <summary>The top property</summary>
         public int? Top { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="GetCachedReportPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.Reports.GetCachedReport.GetCachedReportPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetCachedReportPostRequestBody()
         {
@@ -66,12 +66,12 @@ namespace ApiSdk.DeviceManagement.Reports.GetCachedReport
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="GetCachedReportPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.Reports.GetCachedReport.GetCachedReportPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static GetCachedReportPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DeviceManagement.Reports.GetCachedReport.GetCachedReportPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new GetCachedReportPostRequestBody();
+            return new ApiSdk.DeviceManagement.Reports.GetCachedReport.GetCachedReportPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

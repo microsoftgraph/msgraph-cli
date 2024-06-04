@@ -9,12 +9,12 @@ namespace ApiSdk.Models
     /// <summary>
     /// Windows10 Enterprise Modern App Management Configuration.
     /// </summary>
-    public class Windows10EnterpriseModernAppManagementConfiguration : DeviceConfiguration, IParsable
+    public class Windows10EnterpriseModernAppManagementConfiguration : ApiSdk.Models.DeviceConfiguration, IParsable
     {
         /// <summary>Indicates whether or not to uninstall a fixed list of built-in Windows apps.</summary>
         public bool? UninstallBuiltInApps { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="Windows10EnterpriseModernAppManagementConfiguration"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Windows10EnterpriseModernAppManagementConfiguration"/> and sets the default values.
         /// </summary>
         public Windows10EnterpriseModernAppManagementConfiguration() : base()
         {
@@ -23,12 +23,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="Windows10EnterpriseModernAppManagementConfiguration"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Windows10EnterpriseModernAppManagementConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Windows10EnterpriseModernAppManagementConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Windows10EnterpriseModernAppManagementConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new Windows10EnterpriseModernAppManagementConfiguration();
+            return new ApiSdk.Models.Windows10EnterpriseModernAppManagementConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model

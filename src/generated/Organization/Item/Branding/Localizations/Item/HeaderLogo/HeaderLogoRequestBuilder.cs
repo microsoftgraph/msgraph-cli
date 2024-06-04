@@ -169,14 +169,14 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.HeaderLogo
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="HeaderLogoRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.Localizations.Item.HeaderLogo.HeaderLogoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public HeaderLogoRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/headerLogo", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="HeaderLogoRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Organization.Item.Branding.Localizations.Item.HeaderLogo.HeaderLogoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public HeaderLogoRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/headerLogo", rawUrl)

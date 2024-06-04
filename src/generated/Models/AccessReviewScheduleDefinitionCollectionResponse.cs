@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AccessReviewScheduleDefinitionCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class AccessReviewScheduleDefinitionCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AccessReviewScheduleDefinition>? Value { get; set; }
+        public List<ApiSdk.Models.AccessReviewScheduleDefinition>? Value { get; set; }
 #nullable restore
 #else
-        public List<AccessReviewScheduleDefinition> Value { get; set; }
+        public List<ApiSdk.Models.AccessReviewScheduleDefinition> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessReviewScheduleDefinitionCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessReviewScheduleDefinitionCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AccessReviewScheduleDefinitionCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AccessReviewScheduleDefinitionCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessReviewScheduleDefinitionCollectionResponse();
+            return new ApiSdk.Models.AccessReviewScheduleDefinitionCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<AccessReviewScheduleDefinition>(AccessReviewScheduleDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.AccessReviewScheduleDefinition>(ApiSdk.Models.AccessReviewScheduleDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AccessReviewScheduleDefinition>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AccessReviewScheduleDefinition>("value", Value);
         }
     }
 }

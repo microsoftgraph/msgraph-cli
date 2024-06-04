@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WindowsSettingInstance : Entity, IParsable
+    public class WindowsSettingInstance : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Set by the server. Represents the dateTime in UTC when the object was created on the server.</summary>
@@ -27,12 +27,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsSettingInstance"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsSettingInstance"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WindowsSettingInstance CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WindowsSettingInstance CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsSettingInstance();
+            return new ApiSdk.Models.WindowsSettingInstance();
         }
         /// <summary>
         /// The deserialization information for the current model

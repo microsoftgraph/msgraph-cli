@@ -16,29 +16,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.If
         /// <summary>The logicalTest property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? LogicalTest { get; set; }
+        public ApiSdk.Models.Json? LogicalTest { get; set; }
 #nullable restore
 #else
-        public Json LogicalTest { get; set; }
+        public ApiSdk.Models.Json LogicalTest { get; set; }
 #endif
         /// <summary>The valueIfFalse property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? ValueIfFalse { get; set; }
+        public ApiSdk.Models.Json? ValueIfFalse { get; set; }
 #nullable restore
 #else
-        public Json ValueIfFalse { get; set; }
+        public ApiSdk.Models.Json ValueIfFalse { get; set; }
 #endif
         /// <summary>The valueIfTrue property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? ValueIfTrue { get; set; }
+        public ApiSdk.Models.Json? ValueIfTrue { get; set; }
 #nullable restore
 #else
-        public Json ValueIfTrue { get; set; }
+        public ApiSdk.Models.Json ValueIfTrue { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="IfPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.If.IfPostRequestBody"/> and sets the default values.
         /// </summary>
         public IfPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.If
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="IfPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.Functions.If.IfPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IfPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Workbook.Functions.If.IfPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new IfPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Workbook.Functions.If.IfPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.If
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "logicalTest", n => { LogicalTest = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "valueIfFalse", n => { ValueIfFalse = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "valueIfTrue", n => { ValueIfTrue = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "logicalTest", n => { LogicalTest = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "valueIfFalse", n => { ValueIfFalse = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "valueIfTrue", n => { ValueIfTrue = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.If
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("logicalTest", LogicalTest);
-            writer.WriteObjectValue<Json>("valueIfFalse", ValueIfFalse);
-            writer.WriteObjectValue<Json>("valueIfTrue", ValueIfTrue);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("logicalTest", LogicalTest);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("valueIfFalse", ValueIfFalse);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("valueIfTrue", ValueIfTrue);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

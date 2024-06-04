@@ -26,7 +26,7 @@ namespace ApiSdk.Models
         /// <summary>Start time for the time range.</summary>
         public Time? StartTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="TimeRange"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.TimeRange"/> and sets the default values.
         /// </summary>
         public TimeRange()
         {
@@ -35,12 +35,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TimeRange"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TimeRange"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TimeRange CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.TimeRange CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TimeRange();
+            return new ApiSdk.Models.TimeRange();
         }
         /// <summary>
         /// The deserialization information for the current model

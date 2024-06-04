@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OnInteractiveAuthFlowStartHandler"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OnInteractiveAuthFlowStartHandler"/> and sets the default values.
         /// </summary>
         public OnInteractiveAuthFlowStartHandler()
         {
@@ -30,16 +30,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OnInteractiveAuthFlowStartHandler"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OnInteractiveAuthFlowStartHandler"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static OnInteractiveAuthFlowStartHandler CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.OnInteractiveAuthFlowStartHandler CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.onInteractiveAuthFlowStartExternalUsersSelfServiceSignUp" => new OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp(),
-                _ => new OnInteractiveAuthFlowStartHandler(),
+                "#microsoft.graph.onInteractiveAuthFlowStartExternalUsersSelfServiceSignUp" => new ApiSdk.Models.OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp(),
+                _ => new ApiSdk.Models.OnInteractiveAuthFlowStartHandler(),
             };
         }
         /// <summary>

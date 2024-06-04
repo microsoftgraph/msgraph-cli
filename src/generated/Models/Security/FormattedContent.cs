@@ -21,7 +21,7 @@ namespace ApiSdk.Models.Security
         public string Content { get; set; }
 #endif
         /// <summary>The format of the content. The possible values are: text, html, markdown, unknownFutureValue.</summary>
-        public ContentFormat? Format { get; set; }
+        public ApiSdk.Models.Security.ContentFormat? Format { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Security
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="FormattedContent"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.Security.FormattedContent"/> and sets the default values.
         /// </summary>
         public FormattedContent()
         {
@@ -40,12 +40,12 @@ namespace ApiSdk.Models.Security
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FormattedContent"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.FormattedContent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static FormattedContent CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.Security.FormattedContent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FormattedContent();
+            return new ApiSdk.Models.Security.FormattedContent();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,7 +56,7 @@ namespace ApiSdk.Models.Security
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "content", n => { Content = n.GetStringValue(); } },
-                { "format", n => { Format = n.GetEnumValue<ContentFormat>(); } },
+                { "format", n => { Format = n.GetEnumValue<ApiSdk.Models.Security.ContentFormat>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
@@ -68,7 +68,7 @@ namespace ApiSdk.Models.Security
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("content", Content);
-            writer.WriteEnumValue<ContentFormat>("format", Format);
+            writer.WriteEnumValue<ApiSdk.Models.Security.ContentFormat>("format", Format);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);
         }

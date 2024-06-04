@@ -15,21 +15,21 @@ namespace ApiSdk.Models
         /// <summary>The date and time that the follow-up was finished.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? CompletedDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? CompletedDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone CompletedDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone CompletedDateTime { get; set; }
 #endif
         /// <summary>The date and time that the follow-up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you get a 400 Bad Request response.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? DueDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? DueDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone DueDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone DueDateTime { get; set; }
 #endif
         /// <summary>The status for follow-up for an item. Possible values are notFlagged, complete, and flagged.</summary>
-        public FollowupFlagStatus? FlagStatus { get; set; }
+        public ApiSdk.Models.FollowupFlagStatus? FlagStatus { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,13 +41,13 @@ namespace ApiSdk.Models
         /// <summary>The date and time that the follow-up is to begin.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? StartDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? StartDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone StartDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone StartDateTime { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="FollowupFlag"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.FollowupFlag"/> and sets the default values.
         /// </summary>
         public FollowupFlag()
         {
@@ -56,12 +56,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FollowupFlag"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.FollowupFlag"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static FollowupFlag CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.FollowupFlag CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FollowupFlag();
+            return new ApiSdk.Models.FollowupFlag();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,11 +71,11 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "completedDateTime", n => { CompletedDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "dueDateTime", n => { DueDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "flagStatus", n => { FlagStatus = n.GetEnumValue<FollowupFlagStatus>(); } },
+                { "completedDateTime", n => { CompletedDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "dueDateTime", n => { DueDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "flagStatus", n => { FlagStatus = n.GetEnumValue<ApiSdk.Models.FollowupFlagStatus>(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "startDateTime", n => { StartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "startDateTime", n => { StartDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -85,11 +85,11 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<DateTimeTimeZone>("completedDateTime", CompletedDateTime);
-            writer.WriteObjectValue<DateTimeTimeZone>("dueDateTime", DueDateTime);
-            writer.WriteEnumValue<FollowupFlagStatus>("flagStatus", FlagStatus);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("completedDateTime", CompletedDateTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("dueDateTime", DueDateTime);
+            writer.WriteEnumValue<ApiSdk.Models.FollowupFlagStatus>("flagStatus", FlagStatus);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<DateTimeTimeZone>("startDateTime", StartDateTime);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("startDateTime", StartDateTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -39,9 +39,9 @@ namespace ApiSdk.Models
         /// <summary>The relevance score of the email address. A relevance score is used as a sort key, in relation to the other returned results. A higher relevance score value corresponds to a more relevant result. Relevance is determined by the user’s communication and collaboration patterns and business relationships.</summary>
         public double? RelevanceScore { get; set; }
         /// <summary>The selectionLikelihood property</summary>
-        public SelectionLikelihoodInfo? SelectionLikelihood { get; set; }
+        public ApiSdk.Models.SelectionLikelihoodInfo? SelectionLikelihood { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="ScoredEmailAddress"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ScoredEmailAddress"/> and sets the default values.
         /// </summary>
         public ScoredEmailAddress()
         {
@@ -50,12 +50,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ScoredEmailAddress"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ScoredEmailAddress"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ScoredEmailAddress CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ScoredEmailAddress CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ScoredEmailAddress();
+            return new ApiSdk.Models.ScoredEmailAddress();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,7 +69,7 @@ namespace ApiSdk.Models
                 { "itemId", n => { ItemId = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "relevanceScore", n => { RelevanceScore = n.GetDoubleValue(); } },
-                { "selectionLikelihood", n => { SelectionLikelihood = n.GetEnumValue<SelectionLikelihoodInfo>(); } },
+                { "selectionLikelihood", n => { SelectionLikelihood = n.GetEnumValue<ApiSdk.Models.SelectionLikelihoodInfo>(); } },
             };
         }
         /// <summary>
@@ -83,7 +83,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("itemId", ItemId);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDoubleValue("relevanceScore", RelevanceScore);
-            writer.WriteEnumValue<SelectionLikelihoodInfo>("selectionLikelihood", SelectionLikelihood);
+            writer.WriteEnumValue<ApiSdk.Models.SelectionLikelihoodInfo>("selectionLikelihood", SelectionLikelihood);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

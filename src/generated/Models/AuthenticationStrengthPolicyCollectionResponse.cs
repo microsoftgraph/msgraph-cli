@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AuthenticationStrengthPolicyCollectionResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class AuthenticationStrengthPolicyCollectionResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationStrengthPolicy>? Value { get; set; }
+        public List<ApiSdk.Models.AuthenticationStrengthPolicy>? Value { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationStrengthPolicy> Value { get; set; }
+        public List<ApiSdk.Models.AuthenticationStrengthPolicy> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationStrengthPolicyCollectionResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationStrengthPolicyCollectionResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AuthenticationStrengthPolicyCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AuthenticationStrengthPolicyCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthenticationStrengthPolicyCollectionResponse();
+            return new ApiSdk.Models.AuthenticationStrengthPolicyCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "value", n => { Value = n.GetCollectionOfObjectValues<AuthenticationStrengthPolicy>(AuthenticationStrengthPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<ApiSdk.Models.AuthenticationStrengthPolicy>(ApiSdk.Models.AuthenticationStrengthPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<AuthenticationStrengthPolicy>("value", Value);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuthenticationStrengthPolicy>("value", Value);
         }
     }
 }

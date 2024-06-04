@@ -8,15 +8,15 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WindowsUpdateScheduledInstall : WindowsUpdateInstallScheduleType, IParsable
+    public class WindowsUpdateScheduledInstall : ApiSdk.Models.WindowsUpdateInstallScheduleType, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Possible values for a weekly schedule.</summary>
-        public WeeklySchedule? ScheduledInstallDay { get; set; }
+        public ApiSdk.Models.WeeklySchedule? ScheduledInstallDay { get; set; }
         /// <summary>Scheduled Install Time during day</summary>
         public Time? ScheduledInstallTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="WindowsUpdateScheduledInstall"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.WindowsUpdateScheduledInstall"/> and sets the default values.
         /// </summary>
         public WindowsUpdateScheduledInstall() : base()
         {
@@ -25,12 +25,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsUpdateScheduledInstall"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsUpdateScheduledInstall"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WindowsUpdateScheduledInstall CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WindowsUpdateScheduledInstall CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsUpdateScheduledInstall();
+            return new ApiSdk.Models.WindowsUpdateScheduledInstall();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -40,7 +40,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "scheduledInstallDay", n => { ScheduledInstallDay = n.GetEnumValue<WeeklySchedule>(); } },
+                { "scheduledInstallDay", n => { ScheduledInstallDay = n.GetEnumValue<ApiSdk.Models.WeeklySchedule>(); } },
                 { "scheduledInstallTime", n => { ScheduledInstallTime = n.GetTimeValue(); } },
             };
         }
@@ -52,7 +52,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<WeeklySchedule>("scheduledInstallDay", ScheduledInstallDay);
+            writer.WriteEnumValue<ApiSdk.Models.WeeklySchedule>("scheduledInstallDay", ScheduledInstallDay);
             writer.WriteTimeValue("scheduledInstallTime", ScheduledInstallTime);
         }
     }

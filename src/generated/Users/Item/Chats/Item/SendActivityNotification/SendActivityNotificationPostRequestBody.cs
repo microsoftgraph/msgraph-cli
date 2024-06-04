@@ -26,18 +26,18 @@ namespace ApiSdk.Users.Item.Chats.Item.SendActivityNotification
         /// <summary>The previewText property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemBody? PreviewText { get; set; }
+        public ApiSdk.Models.ItemBody? PreviewText { get; set; }
 #nullable restore
 #else
-        public ItemBody PreviewText { get; set; }
+        public ApiSdk.Models.ItemBody PreviewText { get; set; }
 #endif
         /// <summary>The recipient property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamworkNotificationRecipient? Recipient { get; set; }
+        public ApiSdk.Models.TeamworkNotificationRecipient? Recipient { get; set; }
 #nullable restore
 #else
-        public TeamworkNotificationRecipient Recipient { get; set; }
+        public ApiSdk.Models.TeamworkNotificationRecipient Recipient { get; set; }
 #endif
         /// <summary>The teamsAppId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -58,13 +58,13 @@ namespace ApiSdk.Users.Item.Chats.Item.SendActivityNotification
         /// <summary>The topic property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamworkActivityTopic? Topic { get; set; }
+        public ApiSdk.Models.TeamworkActivityTopic? Topic { get; set; }
 #nullable restore
 #else
-        public TeamworkActivityTopic Topic { get; set; }
+        public ApiSdk.Models.TeamworkActivityTopic Topic { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="SendActivityNotificationPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Chats.Item.SendActivityNotification.SendActivityNotificationPostRequestBody"/> and sets the default values.
         /// </summary>
         public SendActivityNotificationPostRequestBody()
         {
@@ -73,12 +73,12 @@ namespace ApiSdk.Users.Item.Chats.Item.SendActivityNotification
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SendActivityNotificationPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Users.Item.Chats.Item.SendActivityNotification.SendActivityNotificationPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SendActivityNotificationPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Users.Item.Chats.Item.SendActivityNotification.SendActivityNotificationPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SendActivityNotificationPostRequestBody();
+            return new ApiSdk.Users.Item.Chats.Item.SendActivityNotification.SendActivityNotificationPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -90,11 +90,11 @@ namespace ApiSdk.Users.Item.Chats.Item.SendActivityNotification
             {
                 { "activityType", n => { ActivityType = n.GetStringValue(); } },
                 { "chainId", n => { ChainId = n.GetLongValue(); } },
-                { "previewText", n => { PreviewText = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
-                { "recipient", n => { Recipient = n.GetObjectValue<TeamworkNotificationRecipient>(TeamworkNotificationRecipient.CreateFromDiscriminatorValue); } },
+                { "previewText", n => { PreviewText = n.GetObjectValue<ApiSdk.Models.ItemBody>(ApiSdk.Models.ItemBody.CreateFromDiscriminatorValue); } },
+                { "recipient", n => { Recipient = n.GetObjectValue<ApiSdk.Models.TeamworkNotificationRecipient>(ApiSdk.Models.TeamworkNotificationRecipient.CreateFromDiscriminatorValue); } },
                 { "teamsAppId", n => { TeamsAppId = n.GetStringValue(); } },
                 { "templateParameters", n => { TemplateParameters = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>(ApiSdk.Models.KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "topic", n => { Topic = n.GetObjectValue<TeamworkActivityTopic>(TeamworkActivityTopic.CreateFromDiscriminatorValue); } },
+                { "topic", n => { Topic = n.GetObjectValue<ApiSdk.Models.TeamworkActivityTopic>(ApiSdk.Models.TeamworkActivityTopic.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -106,11 +106,11 @@ namespace ApiSdk.Users.Item.Chats.Item.SendActivityNotification
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("activityType", ActivityType);
             writer.WriteLongValue("chainId", ChainId);
-            writer.WriteObjectValue<ItemBody>("previewText", PreviewText);
-            writer.WriteObjectValue<TeamworkNotificationRecipient>("recipient", Recipient);
+            writer.WriteObjectValue<ApiSdk.Models.ItemBody>("previewText", PreviewText);
+            writer.WriteObjectValue<ApiSdk.Models.TeamworkNotificationRecipient>("recipient", Recipient);
             writer.WriteStringValue("teamsAppId", TeamsAppId);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>("templateParameters", TemplateParameters);
-            writer.WriteObjectValue<TeamworkActivityTopic>("topic", Topic);
+            writer.WriteObjectValue<ApiSdk.Models.TeamworkActivityTopic>("topic", Topic);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AppConsentRequest : Entity, IParsable
+    public class AppConsentRequest : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The display name of the app for which consent is requested. Required. Supports $filter (eq only) and $orderby.</summary>
@@ -29,28 +29,28 @@ namespace ApiSdk.Models
         /// <summary>A list of pending scopes waiting for approval. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AppConsentRequestScope>? PendingScopes { get; set; }
+        public List<ApiSdk.Models.AppConsentRequestScope>? PendingScopes { get; set; }
 #nullable restore
 #else
-        public List<AppConsentRequestScope> PendingScopes { get; set; }
+        public List<ApiSdk.Models.AppConsentRequestScope> PendingScopes { get; set; }
 #endif
         /// <summary>A list of pending user consent requests. Supports $filter (eq).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<UserConsentRequest>? UserConsentRequests { get; set; }
+        public List<ApiSdk.Models.UserConsentRequest>? UserConsentRequests { get; set; }
 #nullable restore
 #else
-        public List<UserConsentRequest> UserConsentRequests { get; set; }
+        public List<ApiSdk.Models.UserConsentRequest> UserConsentRequests { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AppConsentRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AppConsentRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AppConsentRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AppConsentRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AppConsentRequest();
+            return new ApiSdk.Models.AppConsentRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,8 +62,8 @@ namespace ApiSdk.Models
             {
                 { "appDisplayName", n => { AppDisplayName = n.GetStringValue(); } },
                 { "appId", n => { AppId = n.GetStringValue(); } },
-                { "pendingScopes", n => { PendingScopes = n.GetCollectionOfObjectValues<AppConsentRequestScope>(AppConsentRequestScope.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "userConsentRequests", n => { UserConsentRequests = n.GetCollectionOfObjectValues<UserConsentRequest>(UserConsentRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "pendingScopes", n => { PendingScopes = n.GetCollectionOfObjectValues<ApiSdk.Models.AppConsentRequestScope>(ApiSdk.Models.AppConsentRequestScope.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "userConsentRequests", n => { UserConsentRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.UserConsentRequest>(ApiSdk.Models.UserConsentRequest.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -76,8 +76,8 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("appDisplayName", AppDisplayName);
             writer.WriteStringValue("appId", AppId);
-            writer.WriteCollectionOfObjectValues<AppConsentRequestScope>("pendingScopes", PendingScopes);
-            writer.WriteCollectionOfObjectValues<UserConsentRequest>("userConsentRequests", UserConsentRequests);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AppConsentRequestScope>("pendingScopes", PendingScopes);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserConsentRequest>("userConsentRequests", UserConsentRequests);
         }
     }
 }

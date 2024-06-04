@@ -100,7 +100,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item
         {
             var command = new Command("graph-application-by-id");
             command.Description = "Casts the previous resource to application.";
-            var builder = new GraphApplicationRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphApplication.GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -117,7 +117,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item
         {
             var command = new Command("graph-device-by-id");
             command.Description = "Casts the previous resource to device.";
-            var builder = new GraphDeviceRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphDevice.GraphDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -134,7 +134,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item
         {
             var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
-            var builder = new GraphGroupRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphGroup.GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -151,7 +151,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item
         {
             var command = new Command("graph-org-contact-by-id");
             command.Description = "Casts the previous resource to orgContact.";
-            var builder = new GraphOrgContactRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphOrgContact.GraphOrgContactRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -168,7 +168,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item
         {
             var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphServicePrincipal.GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -185,7 +185,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item
         {
             var command = new Command("graph-user-by-id");
             command.Description = "Casts the previous resource to user.";
-            var builder = new GraphUserRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphUser.GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -195,14 +195,14 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors/{directoryObject%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors/{directoryObject%2Did}{?%24expand,%24select}", rawUrl)
@@ -215,11 +215,11 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.DirectoryObjectItemRequestBuilder.DirectoryObjectItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.DirectoryObjectItemRequestBuilder.DirectoryObjectItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

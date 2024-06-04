@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Checkin
         public string Comment { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="CheckinPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Checkin.CheckinPostRequestBody"/> and sets the default values.
         /// </summary>
         public CheckinPostRequestBody()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Checkin
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CheckinPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.Items.Item.Checkin.CheckinPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CheckinPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Drives.Item.Items.Item.Checkin.CheckinPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CheckinPostRequestBody();
+            return new ApiSdk.Drives.Item.Items.Item.Checkin.CheckinPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

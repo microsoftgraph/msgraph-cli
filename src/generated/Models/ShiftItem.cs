@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ShiftItem : ScheduleEntity, IParsable
+    public class ShiftItem : ApiSdk.Models.ScheduleEntity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>An incremental part of a shift which can cover details of when and where an employee is during their shift. For example, an assignment or a scheduled break or lunch. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<ShiftActivity>? Activities { get; set; }
+        public List<ApiSdk.Models.ShiftActivity>? Activities { get; set; }
 #nullable restore
 #else
-        public List<ShiftActivity> Activities { get; set; }
+        public List<ApiSdk.Models.ShiftActivity> Activities { get; set; }
 #endif
         /// <summary>The shift label of the shiftItem.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,16 +37,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ShiftItem"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ShiftItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ShiftItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ShiftItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.openShiftItem" => new OpenShiftItem(),
-                _ => new ShiftItem(),
+                "#microsoft.graph.openShiftItem" => new ApiSdk.Models.OpenShiftItem(),
+                _ => new ApiSdk.Models.ShiftItem(),
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "activities", n => { Activities = n.GetCollectionOfObjectValues<ShiftActivity>(ShiftActivity.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "activities", n => { Activities = n.GetCollectionOfObjectValues<ApiSdk.Models.ShiftActivity>(ApiSdk.Models.ShiftActivity.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "notes", n => { Notes = n.GetStringValue(); } },
             };
@@ -70,7 +70,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<ShiftActivity>("activities", Activities);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.ShiftActivity>("activities", Activities);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("notes", Notes);
         }

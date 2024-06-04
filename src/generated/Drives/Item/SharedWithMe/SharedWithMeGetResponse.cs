@@ -8,7 +8,7 @@ using System;
 namespace ApiSdk.Drives.Item.SharedWithMe
 {
     #pragma warning disable CS1591
-    public class SharedWithMeGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    public class SharedWithMeGetResponse : ApiSdk.Models.BaseCollectionPaginationCountResponse, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
@@ -22,12 +22,12 @@ namespace ApiSdk.Drives.Item.SharedWithMe
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SharedWithMeGetResponse"/></returns>
+        /// <returns>A <see cref="ApiSdk.Drives.Item.SharedWithMe.SharedWithMeGetResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SharedWithMeGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Drives.Item.SharedWithMe.SharedWithMeGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SharedWithMeGetResponse();
+            return new ApiSdk.Drives.Item.SharedWithMe.SharedWithMeGetResponse();
         }
         /// <summary>
         /// The deserialization information for the current model

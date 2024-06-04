@@ -16,29 +16,29 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The findText property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? FindText { get; set; }
+        public ApiSdk.Models.Json? FindText { get; set; }
 #nullable restore
 #else
-        public Json FindText { get; set; }
+        public ApiSdk.Models.Json FindText { get; set; }
 #endif
         /// <summary>The startNum property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? StartNum { get; set; }
+        public ApiSdk.Models.Json? StartNum { get; set; }
 #nullable restore
 #else
-        public Json StartNum { get; set; }
+        public ApiSdk.Models.Json StartNum { get; set; }
 #endif
         /// <summary>The withinText property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? WithinText { get; set; }
+        public ApiSdk.Models.Json? WithinText { get; set; }
 #nullable restore
 #else
-        public Json WithinText { get; set; }
+        public ApiSdk.Models.Json WithinText { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="FindPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Find.FindPostRequestBody"/> and sets the default values.
         /// </summary>
         public FindPostRequestBody()
         {
@@ -47,12 +47,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="FindPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Find.FindPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static FindPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Find.FindPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new FindPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.Find.FindPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,9 +62,9 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "findText", n => { FindText = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "startNum", n => { StartNum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "withinText", n => { WithinText = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "findText", n => { FindText = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "startNum", n => { StartNum = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "withinText", n => { WithinText = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -74,9 +74,9 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("findText", FindText);
-            writer.WriteObjectValue<Json>("startNum", StartNum);
-            writer.WriteObjectValue<Json>("withinText", WithinText);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("findText", FindText);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("startNum", StartNum);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("withinText", WithinText);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class CommsOperation : Entity, IParsable
+    public class CommsOperation : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Unique Client Context string. Max limit is 256 chars.</summary>
@@ -27,31 +27,31 @@ namespace ApiSdk.Models
         public ApiSdk.Models.ResultInfo ResultInfo { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public OperationStatus? Status { get; set; }
+        public ApiSdk.Models.OperationStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CommsOperation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.CommsOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new CommsOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.CommsOperation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.addLargeGalleryViewOperation" => new AddLargeGalleryViewOperation(),
-                "#microsoft.graph.cancelMediaProcessingOperation" => new CancelMediaProcessingOperation(),
-                "#microsoft.graph.inviteParticipantsOperation" => new InviteParticipantsOperation(),
-                "#microsoft.graph.muteParticipantOperation" => new MuteParticipantOperation(),
-                "#microsoft.graph.playPromptOperation" => new PlayPromptOperation(),
-                "#microsoft.graph.recordOperation" => new RecordOperation(),
-                "#microsoft.graph.sendDtmfTonesOperation" => new SendDtmfTonesOperation(),
-                "#microsoft.graph.startHoldMusicOperation" => new StartHoldMusicOperation(),
-                "#microsoft.graph.stopHoldMusicOperation" => new StopHoldMusicOperation(),
-                "#microsoft.graph.subscribeToToneOperation" => new SubscribeToToneOperation(),
-                "#microsoft.graph.unmuteParticipantOperation" => new UnmuteParticipantOperation(),
-                "#microsoft.graph.updateRecordingStatusOperation" => new UpdateRecordingStatusOperation(),
-                _ => new CommsOperation(),
+                "#microsoft.graph.addLargeGalleryViewOperation" => new ApiSdk.Models.AddLargeGalleryViewOperation(),
+                "#microsoft.graph.cancelMediaProcessingOperation" => new ApiSdk.Models.CancelMediaProcessingOperation(),
+                "#microsoft.graph.inviteParticipantsOperation" => new ApiSdk.Models.InviteParticipantsOperation(),
+                "#microsoft.graph.muteParticipantOperation" => new ApiSdk.Models.MuteParticipantOperation(),
+                "#microsoft.graph.playPromptOperation" => new ApiSdk.Models.PlayPromptOperation(),
+                "#microsoft.graph.recordOperation" => new ApiSdk.Models.RecordOperation(),
+                "#microsoft.graph.sendDtmfTonesOperation" => new ApiSdk.Models.SendDtmfTonesOperation(),
+                "#microsoft.graph.startHoldMusicOperation" => new ApiSdk.Models.StartHoldMusicOperation(),
+                "#microsoft.graph.stopHoldMusicOperation" => new ApiSdk.Models.StopHoldMusicOperation(),
+                "#microsoft.graph.subscribeToToneOperation" => new ApiSdk.Models.SubscribeToToneOperation(),
+                "#microsoft.graph.unmuteParticipantOperation" => new ApiSdk.Models.UnmuteParticipantOperation(),
+                "#microsoft.graph.updateRecordingStatusOperation" => new ApiSdk.Models.UpdateRecordingStatusOperation(),
+                _ => new ApiSdk.Models.CommsOperation(),
             };
         }
         /// <summary>
@@ -64,7 +64,7 @@ namespace ApiSdk.Models
             {
                 { "clientContext", n => { ClientContext = n.GetStringValue(); } },
                 { "resultInfo", n => { ResultInfo = n.GetObjectValue<ApiSdk.Models.ResultInfo>(ApiSdk.Models.ResultInfo.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetEnumValue<OperationStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.OperationStatus>(); } },
             };
         }
         /// <summary>
@@ -77,7 +77,7 @@ namespace ApiSdk.Models
             base.Serialize(writer);
             writer.WriteStringValue("clientContext", ClientContext);
             writer.WriteObjectValue<ApiSdk.Models.ResultInfo>("resultInfo", ResultInfo);
-            writer.WriteEnumValue<OperationStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.OperationStatus>("status", Status);
         }
     }
 }

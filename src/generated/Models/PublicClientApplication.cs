@@ -29,7 +29,7 @@ namespace ApiSdk.Models
         public List<string> RedirectUris { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="PublicClientApplication"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PublicClientApplication"/> and sets the default values.
         /// </summary>
         public PublicClientApplication()
         {
@@ -38,12 +38,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PublicClientApplication"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PublicClientApplication"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PublicClientApplication CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PublicClientApplication CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PublicClientApplication();
+            return new ApiSdk.Models.PublicClientApplication();
         }
         /// <summary>
         /// The deserialization information for the current model

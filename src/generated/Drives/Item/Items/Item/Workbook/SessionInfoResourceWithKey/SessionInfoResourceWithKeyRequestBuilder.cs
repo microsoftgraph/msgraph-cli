@@ -72,14 +72,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.SessionInfoResourceWithKey
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SessionInfoResourceWithKeyRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.SessionInfoResourceWithKey.SessionInfoResourceWithKeyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SessionInfoResourceWithKeyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/sessionInfoResource(key='{key}')", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SessionInfoResourceWithKeyRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Drives.Item.Items.Item.Workbook.SessionInfoResourceWithKey.SessionInfoResourceWithKeyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SessionInfoResourceWithKeyRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/sessionInfoResource(key='{key}')", rawUrl)

@@ -49,7 +49,7 @@ namespace ApiSdk.Models
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ResourceSpecificPermission"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ResourceSpecificPermission"/> and sets the default values.
         /// </summary>
         public ResourceSpecificPermission()
         {
@@ -58,12 +58,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ResourceSpecificPermission"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ResourceSpecificPermission"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ResourceSpecificPermission CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ResourceSpecificPermission CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ResourceSpecificPermission();
+            return new ApiSdk.Models.ResourceSpecificPermission();
         }
         /// <summary>
         /// The deserialization information for the current model

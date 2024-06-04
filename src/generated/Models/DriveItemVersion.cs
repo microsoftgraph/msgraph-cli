@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DriveItemVersion : BaseItemVersion, IParsable
+    public class DriveItemVersion : ApiSdk.Models.BaseItemVersion, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The content stream for this version of the item.</summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates the size of the content stream for this version of the item.</summary>
         public long? Size { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="DriveItemVersion"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.DriveItemVersion"/> and sets the default values.
         /// </summary>
         public DriveItemVersion() : base()
         {
@@ -30,12 +30,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DriveItemVersion"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DriveItemVersion"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DriveItemVersion CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DriveItemVersion CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DriveItemVersion();
+            return new ApiSdk.Models.DriveItemVersion();
         }
         /// <summary>
         /// The deserialization information for the current model

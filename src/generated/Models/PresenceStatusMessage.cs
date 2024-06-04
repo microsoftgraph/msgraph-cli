@@ -15,18 +15,18 @@ namespace ApiSdk.Models
         /// <summary>Time in which the status message expires.If not provided, the status message doesn&apos;t expire.expiryDateTime.dateTime shouldn&apos;t include time zone.expiryDateTime isn&apos;t available when you request the presence of another user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DateTimeTimeZone? ExpiryDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone? ExpiryDateTime { get; set; }
 #nullable restore
 #else
-        public DateTimeTimeZone ExpiryDateTime { get; set; }
+        public ApiSdk.Models.DateTimeTimeZone ExpiryDateTime { get; set; }
 #endif
         /// <summary>Status message item. The only supported format currently is message.contentType = &apos;text&apos;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ItemBody? Message { get; set; }
+        public ApiSdk.Models.ItemBody? Message { get; set; }
 #nullable restore
 #else
-        public ItemBody Message { get; set; }
+        public ApiSdk.Models.ItemBody Message { get; set; }
 #endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -39,7 +39,7 @@ namespace ApiSdk.Models
         /// <summary>Time in which the status message was published.Read-only.publishedDateTime isn&apos;t available when you request the presence of another user.</summary>
         public DateTimeOffset? PublishedDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="PresenceStatusMessage"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.PresenceStatusMessage"/> and sets the default values.
         /// </summary>
         public PresenceStatusMessage()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="PresenceStatusMessage"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.PresenceStatusMessage"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PresenceStatusMessage CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.PresenceStatusMessage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new PresenceStatusMessage();
+            return new ApiSdk.Models.PresenceStatusMessage();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,8 +63,8 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "expiryDateTime", n => { ExpiryDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                { "message", n => { Message = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                { "expiryDateTime", n => { ExpiryDateTime = n.GetObjectValue<ApiSdk.Models.DateTimeTimeZone>(ApiSdk.Models.DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "message", n => { Message = n.GetObjectValue<ApiSdk.Models.ItemBody>(ApiSdk.Models.ItemBody.CreateFromDiscriminatorValue); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
                 { "publishedDateTime", n => { PublishedDateTime = n.GetDateTimeOffsetValue(); } },
             };
@@ -76,8 +76,8 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<DateTimeTimeZone>("expiryDateTime", ExpiryDateTime);
-            writer.WriteObjectValue<ItemBody>("message", Message);
+            writer.WriteObjectValue<ApiSdk.Models.DateTimeTimeZone>("expiryDateTime", ExpiryDateTime);
+            writer.WriteObjectValue<ApiSdk.Models.ItemBody>("message", Message);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteDateTimeOffsetValue("publishedDateTime", PublishedDateTime);
             writer.WriteAdditionalData(AdditionalData);

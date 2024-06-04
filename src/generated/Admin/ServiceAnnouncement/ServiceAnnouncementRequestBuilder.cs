@@ -107,7 +107,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement
         {
             var command = new Command("health-overviews");
             command.Description = "Provides operations to manage the healthOverviews property of the microsoft.graph.serviceAnnouncement entity.";
-            var builder = new HealthOverviewsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.HealthOverviewsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -134,7 +134,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement
         {
             var command = new Command("issues");
             command.Description = "Provides operations to manage the issues property of the microsoft.graph.serviceAnnouncement entity.";
-            var builder = new IssuesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.ServiceAnnouncement.Issues.IssuesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -161,7 +161,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement
         {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.";
-            var builder = new MessagesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.ServiceAnnouncement.Messages.MessagesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildArchiveNavCommand());
@@ -232,14 +232,14 @@ namespace ApiSdk.Admin.ServiceAnnouncement
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ServiceAnnouncementRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.ServiceAnnouncement.ServiceAnnouncementRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ServiceAnnouncementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ServiceAnnouncementRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.ServiceAnnouncement.ServiceAnnouncementRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ServiceAnnouncementRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement{?%24expand,%24select}", rawUrl)
@@ -271,11 +271,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServiceAnnouncementRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.ServiceAnnouncement.ServiceAnnouncementRequestBuilder.ServiceAnnouncementRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServiceAnnouncementRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.ServiceAnnouncement.ServiceAnnouncementRequestBuilder.ServiceAnnouncementRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class SimulationAutomationRun : Entity, IParsable
+    public class SimulationAutomationRun : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Date and time when the run ends in an attack simulation automation.</summary>
@@ -23,16 +23,16 @@ namespace ApiSdk.Models
         /// <summary>Date and time when the run starts in an attack simulation automation.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>Status of the attack simulation automation run. The possible values are: unknown, running, succeeded, failed, skipped, unknownFutureValue.</summary>
-        public SimulationAutomationRunStatus? Status { get; set; }
+        public ApiSdk.Models.SimulationAutomationRunStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="SimulationAutomationRun"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.SimulationAutomationRun"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new SimulationAutomationRun CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.SimulationAutomationRun CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new SimulationAutomationRun();
+            return new ApiSdk.Models.SimulationAutomationRun();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -45,7 +45,7 @@ namespace ApiSdk.Models
                 { "endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 { "simulationId", n => { SimulationId = n.GetStringValue(); } },
                 { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<SimulationAutomationRunStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.SimulationAutomationRunStatus>(); } },
             };
         }
         /// <summary>
@@ -59,7 +59,7 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("endDateTime", EndDateTime);
             writer.WriteStringValue("simulationId", SimulationId);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
-            writer.WriteEnumValue<SimulationAutomationRunStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.SimulationAutomationRunStatus>("status", Status);
         }
     }
 }

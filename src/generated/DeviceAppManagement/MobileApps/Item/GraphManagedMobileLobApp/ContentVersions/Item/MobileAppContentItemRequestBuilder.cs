@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.Co
         {
             var command = new Command("contained-apps");
             command.Description = "Provides operations to manage the containedApps property of the microsoft.graph.mobileAppContent entity.";
-            var builder = new ContainedAppsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.ContentVersions.Item.ContainedApps.ContainedAppsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -99,7 +99,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.Co
         {
             var command = new Command("files");
             command.Description = "Provides operations to manage the files property of the microsoft.graph.mobileAppContent entity.";
-            var builder = new FilesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.ContentVersions.Item.Files.FilesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -212,7 +212,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.Co
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<MobileAppContent>(MobileAppContent.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.MobileAppContent>(ApiSdk.Models.MobileAppContent.CreateFromDiscriminatorValue);
                 if (model is null) {
                     Console.Error.WriteLine("No model data to send.");
                     return;
@@ -234,14 +234,14 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.Co
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="MobileAppContentItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.ContentVersions.Item.MobileAppContentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MobileAppContentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedMobileLobApp/contentVersions/{mobileAppContent%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="MobileAppContentItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.ContentVersions.Item.MobileAppContentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MobileAppContentItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedMobileLobApp/contentVersions/{mobileAppContent%2Did}{?%24expand,%24select}", rawUrl)
@@ -273,11 +273,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.Co
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MobileAppContentItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.ContentVersions.Item.MobileAppContentItemRequestBuilder.MobileAppContentItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MobileAppContentItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.ContentVersions.Item.MobileAppContentItemRequestBuilder.MobileAppContentItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -293,11 +293,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.Co
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(MobileAppContent body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.MobileAppContent body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(MobileAppContent body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.MobileAppContent body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));

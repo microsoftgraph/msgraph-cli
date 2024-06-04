@@ -37,9 +37,9 @@ namespace ApiSdk.Models
         public string TargetedAuthenticationMethod { get; set; }
 #endif
         /// <summary>The targetType property</summary>
-        public AuthenticationMethodTargetType? TargetType { get; set; }
+        public ApiSdk.Models.AuthenticationMethodTargetType? TargetType { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="AuthenticationMethodsRegistrationCampaignIncludeTarget"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AuthenticationMethodsRegistrationCampaignIncludeTarget"/> and sets the default values.
         /// </summary>
         public AuthenticationMethodsRegistrationCampaignIncludeTarget()
         {
@@ -48,12 +48,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationMethodsRegistrationCampaignIncludeTarget"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationMethodsRegistrationCampaignIncludeTarget"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AuthenticationMethodsRegistrationCampaignIncludeTarget CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AuthenticationMethodsRegistrationCampaignIncludeTarget CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthenticationMethodsRegistrationCampaignIncludeTarget();
+            return new ApiSdk.Models.AuthenticationMethodsRegistrationCampaignIncludeTarget();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,7 +65,7 @@ namespace ApiSdk.Models
             {
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "targetType", n => { TargetType = n.GetEnumValue<AuthenticationMethodTargetType>(); } },
+                { "targetType", n => { TargetType = n.GetEnumValue<ApiSdk.Models.AuthenticationMethodTargetType>(); } },
                 { "targetedAuthenticationMethod", n => { TargetedAuthenticationMethod = n.GetStringValue(); } },
             };
         }
@@ -79,7 +79,7 @@ namespace ApiSdk.Models
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("targetedAuthenticationMethod", TargetedAuthenticationMethod);
-            writer.WriteEnumValue<AuthenticationMethodTargetType>("targetType", TargetType);
+            writer.WriteEnumValue<ApiSdk.Models.AuthenticationMethodTargetType>("targetType", TargetType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

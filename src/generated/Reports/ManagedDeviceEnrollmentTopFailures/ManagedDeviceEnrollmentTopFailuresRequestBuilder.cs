@@ -54,14 +54,14 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentTopFailures
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedDeviceEnrollmentTopFailuresRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.ManagedDeviceEnrollmentTopFailures.ManagedDeviceEnrollmentTopFailuresRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ManagedDeviceEnrollmentTopFailuresRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/managedDeviceEnrollmentTopFailures()", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="ManagedDeviceEnrollmentTopFailuresRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Reports.ManagedDeviceEnrollmentTopFailures.ManagedDeviceEnrollmentTopFailuresRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ManagedDeviceEnrollmentTopFailuresRequestBuilder(string rawUrl) : base("{+baseurl}/reports/managedDeviceEnrollmentTopFailures()", rawUrl)

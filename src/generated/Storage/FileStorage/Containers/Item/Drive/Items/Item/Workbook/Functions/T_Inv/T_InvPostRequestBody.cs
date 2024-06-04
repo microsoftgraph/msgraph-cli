@@ -16,21 +16,21 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>The degFreedom property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? DegFreedom { get; set; }
+        public ApiSdk.Models.Json? DegFreedom { get; set; }
 #nullable restore
 #else
-        public Json DegFreedom { get; set; }
+        public ApiSdk.Models.Json DegFreedom { get; set; }
 #endif
         /// <summary>The probability property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public Json? Probability { get; set; }
+        public ApiSdk.Models.Json? Probability { get; set; }
 #nullable restore
 #else
-        public Json Probability { get; set; }
+        public ApiSdk.Models.Json Probability { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="T_InvPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.T_Inv.T_InvPostRequestBody"/> and sets the default values.
         /// </summary>
         public T_InvPostRequestBody()
         {
@@ -39,12 +39,12 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="T_InvPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.T_Inv.T_InvPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static T_InvPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.T_Inv.T_InvPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new T_InvPostRequestBody();
+            return new ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.Functions.T_Inv.T_InvPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,8 +54,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "degFreedom", n => { DegFreedom = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                { "probability", n => { Probability = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                { "degFreedom", n => { DegFreedom = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
+                { "probability", n => { Probability = n.GetObjectValue<ApiSdk.Models.Json>(ApiSdk.Models.Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -65,8 +65,8 @@ namespace ApiSdk.Storage.FileStorage.Containers.Item.Drive.Items.Item.Workbook.F
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("degFreedom", DegFreedom);
-            writer.WriteObjectValue<Json>("probability", Probability);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("degFreedom", DegFreedom);
+            writer.WriteObjectValue<ApiSdk.Models.Json>("probability", Probability);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

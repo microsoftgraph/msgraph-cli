@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class DelegatedAdminRelationshipOperation : Entity, IParsable
+    public class DelegatedAdminRelationshipOperation : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The time in ISO 8601 format and in UTC time when the long-running operation was created. Read-only.</summary>
@@ -23,18 +23,18 @@ namespace ApiSdk.Models
         /// <summary>The time in ISO 8601 format and in UTC time when the long-running operation was last modified. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>The operationType property</summary>
-        public DelegatedAdminRelationshipOperationType? OperationType { get; set; }
+        public ApiSdk.Models.DelegatedAdminRelationshipOperationType? OperationType { get; set; }
         /// <summary>The status property</summary>
-        public LongRunningOperationStatus? Status { get; set; }
+        public ApiSdk.Models.LongRunningOperationStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="DelegatedAdminRelationshipOperation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.DelegatedAdminRelationshipOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DelegatedAdminRelationshipOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.DelegatedAdminRelationshipOperation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new DelegatedAdminRelationshipOperation();
+            return new ApiSdk.Models.DelegatedAdminRelationshipOperation();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,8 +47,8 @@ namespace ApiSdk.Models
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "data", n => { Data = n.GetStringValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "operationType", n => { OperationType = n.GetEnumValue<DelegatedAdminRelationshipOperationType>(); } },
-                { "status", n => { Status = n.GetEnumValue<LongRunningOperationStatus>(); } },
+                { "operationType", n => { OperationType = n.GetEnumValue<ApiSdk.Models.DelegatedAdminRelationshipOperationType>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.LongRunningOperationStatus>(); } },
             };
         }
         /// <summary>
@@ -62,8 +62,8 @@ namespace ApiSdk.Models
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("data", Data);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
-            writer.WriteEnumValue<DelegatedAdminRelationshipOperationType>("operationType", OperationType);
-            writer.WriteEnumValue<LongRunningOperationStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.DelegatedAdminRelationshipOperationType>("operationType", OperationType);
+            writer.WriteEnumValue<ApiSdk.Models.LongRunningOperationStatus>("status", Status);
         }
     }
 }

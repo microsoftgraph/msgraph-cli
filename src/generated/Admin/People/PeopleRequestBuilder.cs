@@ -78,7 +78,7 @@ namespace ApiSdk.Admin.People
         {
             var command = new Command("profile-card-properties");
             command.Description = "Provides operations to manage the profileCardProperties property of the microsoft.graph.peopleAdminSettings entity.";
-            var builder = new ProfileCardPropertiesRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.People.ProfileCardProperties.ProfileCardPropertiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -105,7 +105,7 @@ namespace ApiSdk.Admin.People
         {
             var command = new Command("pronouns");
             command.Description = "Provides operations to manage the pronouns property of the microsoft.graph.peopleAdminSettings entity.";
-            var builder = new PronounsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Admin.People.Pronouns.PronounsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
@@ -116,14 +116,14 @@ namespace ApiSdk.Admin.People
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="PeopleRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.People.PeopleRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PeopleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/people{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="PeopleRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Admin.People.PeopleRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PeopleRequestBuilder(string rawUrl) : base("{+baseurl}/admin/people{?%24expand,%24select}", rawUrl)
@@ -136,11 +136,11 @@ namespace ApiSdk.Admin.People
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PeopleRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PeopleRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Admin.People.PeopleRequestBuilder.PeopleRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

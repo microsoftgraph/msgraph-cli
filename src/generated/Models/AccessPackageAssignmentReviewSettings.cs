@@ -13,14 +13,14 @@ namespace ApiSdk.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The default decision to apply if the access is not reviewed. The possible values are: keepAccess, removeAccess, acceptAccessRecommendation, unknownFutureValue.</summary>
-        public AccessReviewExpirationBehavior? ExpirationBehavior { get; set; }
+        public ApiSdk.Models.AccessReviewExpirationBehavior? ExpirationBehavior { get; set; }
         /// <summary>This collection specifies the users who will be the fallback reviewers when the primary reviewers don&apos;t respond.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectSet>? FallbackReviewers { get; set; }
+        public List<ApiSdk.Models.SubjectSet>? FallbackReviewers { get; set; }
 #nullable restore
 #else
-        public List<SubjectSet> FallbackReviewers { get; set; }
+        public List<ApiSdk.Models.SubjectSet> FallbackReviewers { get; set; }
 #endif
         /// <summary>If true, access reviews are required for assignments through this policy.</summary>
         public bool? IsEnabled { get; set; }
@@ -41,21 +41,21 @@ namespace ApiSdk.Models
         /// <summary>This collection specifies the users or group of users who will review the access package assignments.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<SubjectSet>? PrimaryReviewers { get; set; }
+        public List<ApiSdk.Models.SubjectSet>? PrimaryReviewers { get; set; }
 #nullable restore
 #else
-        public List<SubjectSet> PrimaryReviewers { get; set; }
+        public List<ApiSdk.Models.SubjectSet> PrimaryReviewers { get; set; }
 #endif
         /// <summary>When the first review should start and how often it should recur.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public EntitlementManagementSchedule? Schedule { get; set; }
+        public ApiSdk.Models.EntitlementManagementSchedule? Schedule { get; set; }
 #nullable restore
 #else
-        public EntitlementManagementSchedule Schedule { get; set; }
+        public ApiSdk.Models.EntitlementManagementSchedule Schedule { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="AccessPackageAssignmentReviewSettings"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.AccessPackageAssignmentReviewSettings"/> and sets the default values.
         /// </summary>
         public AccessPackageAssignmentReviewSettings()
         {
@@ -64,12 +64,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AccessPackageAssignmentReviewSettings"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AccessPackageAssignmentReviewSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static AccessPackageAssignmentReviewSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.AccessPackageAssignmentReviewSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AccessPackageAssignmentReviewSettings();
+            return new ApiSdk.Models.AccessPackageAssignmentReviewSettings();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -79,15 +79,15 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "expirationBehavior", n => { ExpirationBehavior = n.GetEnumValue<AccessReviewExpirationBehavior>(); } },
-                { "fallbackReviewers", n => { FallbackReviewers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "expirationBehavior", n => { ExpirationBehavior = n.GetEnumValue<ApiSdk.Models.AccessReviewExpirationBehavior>(); } },
+                { "fallbackReviewers", n => { FallbackReviewers = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectSet>(ApiSdk.Models.SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
                 { "isRecommendationEnabled", n => { IsRecommendationEnabled = n.GetBoolValue(); } },
                 { "isReviewerJustificationRequired", n => { IsReviewerJustificationRequired = n.GetBoolValue(); } },
                 { "isSelfReview", n => { IsSelfReview = n.GetBoolValue(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "primaryReviewers", n => { PrimaryReviewers = n.GetCollectionOfObjectValues<SubjectSet>(SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
-                { "schedule", n => { Schedule = n.GetObjectValue<EntitlementManagementSchedule>(EntitlementManagementSchedule.CreateFromDiscriminatorValue); } },
+                { "primaryReviewers", n => { PrimaryReviewers = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectSet>(ApiSdk.Models.SubjectSet.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "schedule", n => { Schedule = n.GetObjectValue<ApiSdk.Models.EntitlementManagementSchedule>(ApiSdk.Models.EntitlementManagementSchedule.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -97,15 +97,15 @@ namespace ApiSdk.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<AccessReviewExpirationBehavior>("expirationBehavior", ExpirationBehavior);
-            writer.WriteCollectionOfObjectValues<SubjectSet>("fallbackReviewers", FallbackReviewers);
+            writer.WriteEnumValue<ApiSdk.Models.AccessReviewExpirationBehavior>("expirationBehavior", ExpirationBehavior);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectSet>("fallbackReviewers", FallbackReviewers);
             writer.WriteBoolValue("isEnabled", IsEnabled);
             writer.WriteBoolValue("isRecommendationEnabled", IsRecommendationEnabled);
             writer.WriteBoolValue("isReviewerJustificationRequired", IsReviewerJustificationRequired);
             writer.WriteBoolValue("isSelfReview", IsSelfReview);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteCollectionOfObjectValues<SubjectSet>("primaryReviewers", PrimaryReviewers);
-            writer.WriteObjectValue<EntitlementManagementSchedule>("schedule", Schedule);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectSet>("primaryReviewers", PrimaryReviewers);
+            writer.WriteObjectValue<ApiSdk.Models.EntitlementManagementSchedule>("schedule", Schedule);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

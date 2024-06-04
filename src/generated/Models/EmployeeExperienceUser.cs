@@ -7,26 +7,26 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class EmployeeExperienceUser : Entity, IParsable
+    public class EmployeeExperienceUser : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The learningCourseActivities property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<LearningCourseActivity>? LearningCourseActivities { get; set; }
+        public List<ApiSdk.Models.LearningCourseActivity>? LearningCourseActivities { get; set; }
 #nullable restore
 #else
-        public List<LearningCourseActivity> LearningCourseActivities { get; set; }
+        public List<ApiSdk.Models.LearningCourseActivity> LearningCourseActivities { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="EmployeeExperienceUser"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.EmployeeExperienceUser"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EmployeeExperienceUser CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.EmployeeExperienceUser CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new EmployeeExperienceUser();
+            return new ApiSdk.Models.EmployeeExperienceUser();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -36,7 +36,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "learningCourseActivities", n => { LearningCourseActivities = n.GetCollectionOfObjectValues<LearningCourseActivity>(LearningCourseActivity.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "learningCourseActivities", n => { LearningCourseActivities = n.GetCollectionOfObjectValues<ApiSdk.Models.LearningCourseActivity>(ApiSdk.Models.LearningCourseActivity.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<LearningCourseActivity>("learningCourseActivities", LearningCourseActivities);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.LearningCourseActivity>("learningCourseActivities", LearningCourseActivities);
         }
     }
 }

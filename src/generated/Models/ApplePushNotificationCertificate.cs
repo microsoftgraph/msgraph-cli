@@ -9,7 +9,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// Apple push notification certificate.
     /// </summary>
-    public class ApplePushNotificationCertificate : Entity, IParsable
+    public class ApplePushNotificationCertificate : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Apple Id of the account used to create the MDM push certificate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -66,12 +66,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ApplePushNotificationCertificate"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ApplePushNotificationCertificate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ApplePushNotificationCertificate CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ApplePushNotificationCertificate CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ApplePushNotificationCertificate();
+            return new ApiSdk.Models.ApplePushNotificationCertificate();
         }
         /// <summary>
         /// The deserialization information for the current model

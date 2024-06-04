@@ -62,14 +62,14 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.SoftDelete
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SoftDeleteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Chats.Item.Messages.Item.SoftDelete.SoftDeleteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SoftDeleteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/messages/{chatMessage%2Did}/softDelete", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SoftDeleteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Chats.Item.Messages.Item.SoftDelete.SoftDeleteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SoftDeleteRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/messages/{chatMessage%2Did}/softDelete", rawUrl)

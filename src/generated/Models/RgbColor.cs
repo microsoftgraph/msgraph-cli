@@ -28,7 +28,7 @@ namespace ApiSdk.Models
         /// <summary>Red value</summary>
         public byte? R { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="RgbColor"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.RgbColor"/> and sets the default values.
         /// </summary>
         public RgbColor()
         {
@@ -37,12 +37,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="RgbColor"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.RgbColor"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static RgbColor CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.RgbColor CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new RgbColor();
+            return new ApiSdk.Models.RgbColor();
         }
         /// <summary>
         /// The deserialization information for the current model

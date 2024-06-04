@@ -16,13 +16,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsF
         /// <summary>The deviceComplianceScheduledActionForRules property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DeviceComplianceScheduledActionForRule>? DeviceComplianceScheduledActionForRules { get; set; }
+        public List<ApiSdk.Models.DeviceComplianceScheduledActionForRule>? DeviceComplianceScheduledActionForRules { get; set; }
 #nullable restore
 #else
-        public List<DeviceComplianceScheduledActionForRule> DeviceComplianceScheduledActionForRules { get; set; }
+        public List<ApiSdk.Models.DeviceComplianceScheduledActionForRule> DeviceComplianceScheduledActionForRules { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ScheduleActionsForRulesPostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsForRules.ScheduleActionsForRulesPostRequestBody"/> and sets the default values.
         /// </summary>
         public ScheduleActionsForRulesPostRequestBody()
         {
@@ -31,12 +31,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsF
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ScheduleActionsForRulesPostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsForRules.ScheduleActionsForRulesPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ScheduleActionsForRulesPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsForRules.ScheduleActionsForRulesPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ScheduleActionsForRulesPostRequestBody();
+            return new ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsForRules.ScheduleActionsForRulesPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -46,7 +46,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsF
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "deviceComplianceScheduledActionForRules", n => { DeviceComplianceScheduledActionForRules = n.GetCollectionOfObjectValues<DeviceComplianceScheduledActionForRule>(DeviceComplianceScheduledActionForRule.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "deviceComplianceScheduledActionForRules", n => { DeviceComplianceScheduledActionForRules = n.GetCollectionOfObjectValues<ApiSdk.Models.DeviceComplianceScheduledActionForRule>(ApiSdk.Models.DeviceComplianceScheduledActionForRule.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsF
         public virtual void Serialize(ISerializationWriter writer)
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<DeviceComplianceScheduledActionForRule>("deviceComplianceScheduledActionForRules", DeviceComplianceScheduledActionForRules);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DeviceComplianceScheduledActionForRule>("deviceComplianceScheduledActionForRules", DeviceComplianceScheduledActionForRules);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

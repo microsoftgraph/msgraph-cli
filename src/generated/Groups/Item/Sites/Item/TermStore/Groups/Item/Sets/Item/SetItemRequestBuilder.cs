@@ -33,7 +33,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item
         {
             var command = new Command("children");
             command.Description = "Provides operations to manage the children property of the microsoft.graph.termStore.set entity.";
-            var builder = new ChildrenRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.ChildrenRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -183,7 +183,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item
         {
             var command = new Command("parent-group");
             command.Description = "Provides operations to manage the parentGroup property of the microsoft.graph.termStore.set entity.";
-            var builder = new ParentGroupRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.ParentGroup.ParentGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -271,7 +271,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item
         {
             var command = new Command("relations");
             command.Description = "Provides operations to manage the relations property of the microsoft.graph.termStore.set entity.";
-            var builder = new RelationsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Relations.RelationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -298,7 +298,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item
         {
             var command = new Command("terms");
             command.Description = "Provides operations to manage the terms property of the microsoft.graph.termStore.set entity.";
-            var builder = new TermsRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.TermsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -318,14 +318,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.SetItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SetItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStore/groups/{group%2Did1}/sets/{set%2Did}{?%24expand,%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="SetItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.SetItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SetItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStore/groups/{group%2Did1}/sets/{set%2Did}{?%24expand,%24select}", rawUrl)
@@ -357,11 +357,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SetItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.SetItemRequestBuilder.SetItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SetItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.SetItemRequestBuilder.SetItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

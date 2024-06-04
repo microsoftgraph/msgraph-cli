@@ -9,15 +9,15 @@ namespace ApiSdk.Models
     /// <summary>
     /// Contains properties for the installation state summary for a user.
     /// </summary>
-    public class UserInstallStateSummary : Entity, IParsable
+    public class UserInstallStateSummary : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>The install state of the eBook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<DeviceInstallState>? DeviceStates { get; set; }
+        public List<ApiSdk.Models.DeviceInstallState>? DeviceStates { get; set; }
 #nullable restore
 #else
-        public List<DeviceInstallState> DeviceStates { get; set; }
+        public List<ApiSdk.Models.DeviceInstallState> DeviceStates { get; set; }
 #endif
         /// <summary>Failed Device Count.</summary>
         public int? FailedDeviceCount { get; set; }
@@ -36,12 +36,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="UserInstallStateSummary"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.UserInstallStateSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserInstallStateSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.UserInstallStateSummary CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new UserInstallStateSummary();
+            return new ApiSdk.Models.UserInstallStateSummary();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -51,7 +51,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "deviceStates", n => { DeviceStates = n.GetCollectionOfObjectValues<DeviceInstallState>(DeviceInstallState.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "deviceStates", n => { DeviceStates = n.GetCollectionOfObjectValues<ApiSdk.Models.DeviceInstallState>(ApiSdk.Models.DeviceInstallState.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "failedDeviceCount", n => { FailedDeviceCount = n.GetIntValue(); } },
                 { "installedDeviceCount", n => { InstalledDeviceCount = n.GetIntValue(); } },
                 { "notInstalledDeviceCount", n => { NotInstalledDeviceCount = n.GetIntValue(); } },
@@ -66,7 +66,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<DeviceInstallState>("deviceStates", DeviceStates);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.DeviceInstallState>("deviceStates", DeviceStates);
             writer.WriteIntValue("failedDeviceCount", FailedDeviceCount);
             writer.WriteIntValue("installedDeviceCount", InstalledDeviceCount);
             writer.WriteIntValue("notInstalledDeviceCount", NotInstalledDeviceCount);

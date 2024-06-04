@@ -7,24 +7,24 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class AuthenticationStrengthPolicy : Entity, IParsable
+    public class AuthenticationStrengthPolicy : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A collection of authentication method modes that are required be used to satify this authentication strength.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationMethodModes?>? AllowedCombinations { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodModes?>? AllowedCombinations { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationMethodModes?> AllowedCombinations { get; set; }
+        public List<ApiSdk.Models.AuthenticationMethodModes?> AllowedCombinations { get; set; }
 #endif
         /// <summary>Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<AuthenticationCombinationConfiguration>? CombinationConfigurations { get; set; }
+        public List<ApiSdk.Models.AuthenticationCombinationConfiguration>? CombinationConfigurations { get; set; }
 #nullable restore
 #else
-        public List<AuthenticationCombinationConfiguration> CombinationConfigurations { get; set; }
+        public List<ApiSdk.Models.AuthenticationCombinationConfiguration> CombinationConfigurations { get; set; }
 #endif
         /// <summary>The datetime when this policy was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -47,18 +47,18 @@ namespace ApiSdk.Models
         /// <summary>The datetime when this policy was last modified.</summary>
         public DateTimeOffset? ModifiedDateTime { get; set; }
         /// <summary>The policyType property</summary>
-        public AuthenticationStrengthPolicyType? PolicyType { get; set; }
+        public ApiSdk.Models.AuthenticationStrengthPolicyType? PolicyType { get; set; }
         /// <summary>The requirementsSatisfied property</summary>
-        public AuthenticationStrengthRequirements? RequirementsSatisfied { get; set; }
+        public ApiSdk.Models.AuthenticationStrengthRequirements? RequirementsSatisfied { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="AuthenticationStrengthPolicy"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.AuthenticationStrengthPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new AuthenticationStrengthPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.AuthenticationStrengthPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new AuthenticationStrengthPolicy();
+            return new ApiSdk.Models.AuthenticationStrengthPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,14 +68,14 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "allowedCombinations", n => { AllowedCombinations = n.GetCollectionOfEnumValues<AuthenticationMethodModes>()?.ToList(); } },
-                { "combinationConfigurations", n => { CombinationConfigurations = n.GetCollectionOfObjectValues<AuthenticationCombinationConfiguration>(AuthenticationCombinationConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "allowedCombinations", n => { AllowedCombinations = n.GetCollectionOfEnumValues<ApiSdk.Models.AuthenticationMethodModes>()?.ToList(); } },
+                { "combinationConfigurations", n => { CombinationConfigurations = n.GetCollectionOfObjectValues<ApiSdk.Models.AuthenticationCombinationConfiguration>(ApiSdk.Models.AuthenticationCombinationConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "modifiedDateTime", n => { ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                { "policyType", n => { PolicyType = n.GetEnumValue<AuthenticationStrengthPolicyType>(); } },
-                { "requirementsSatisfied", n => { RequirementsSatisfied = n.GetEnumValue<AuthenticationStrengthRequirements>(); } },
+                { "policyType", n => { PolicyType = n.GetEnumValue<ApiSdk.Models.AuthenticationStrengthPolicyType>(); } },
+                { "requirementsSatisfied", n => { RequirementsSatisfied = n.GetEnumValue<ApiSdk.Models.AuthenticationStrengthRequirements>(); } },
             };
         }
         /// <summary>
@@ -86,14 +86,14 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfEnumValues<AuthenticationMethodModes>("allowedCombinations", AllowedCombinations);
-            writer.WriteCollectionOfObjectValues<AuthenticationCombinationConfiguration>("combinationConfigurations", CombinationConfigurations);
+            writer.WriteCollectionOfEnumValues<ApiSdk.Models.AuthenticationMethodModes>("allowedCombinations", AllowedCombinations);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.AuthenticationCombinationConfiguration>("combinationConfigurations", CombinationConfigurations);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("modifiedDateTime", ModifiedDateTime);
-            writer.WriteEnumValue<AuthenticationStrengthPolicyType>("policyType", PolicyType);
-            writer.WriteEnumValue<AuthenticationStrengthRequirements>("requirementsSatisfied", RequirementsSatisfied);
+            writer.WriteEnumValue<ApiSdk.Models.AuthenticationStrengthPolicyType>("policyType", PolicyType);
+            writer.WriteEnumValue<ApiSdk.Models.AuthenticationStrengthRequirements>("requirementsSatisfied", RequirementsSatisfied);
         }
     }
 }

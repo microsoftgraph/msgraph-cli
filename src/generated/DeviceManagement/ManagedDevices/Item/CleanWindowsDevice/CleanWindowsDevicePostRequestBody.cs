@@ -15,7 +15,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice
         /// <summary>The keepUserData property</summary>
         public bool? KeepUserData { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="CleanWindowsDevicePostRequestBody"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice.CleanWindowsDevicePostRequestBody"/> and sets the default values.
         /// </summary>
         public CleanWindowsDevicePostRequestBody()
         {
@@ -24,12 +24,12 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="CleanWindowsDevicePostRequestBody"/></returns>
+        /// <returns>A <see cref="ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice.CleanWindowsDevicePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static CleanWindowsDevicePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice.CleanWindowsDevicePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new CleanWindowsDevicePostRequestBody();
+            return new ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice.CleanWindowsDevicePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model

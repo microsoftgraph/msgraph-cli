@@ -23,7 +23,7 @@ namespace ApiSdk.Models
         /// <summary>Indicates whether there are higher storage quota plans available. Read-only.</summary>
         public bool? UpgradeAvailable { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="StoragePlanInformation"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.StoragePlanInformation"/> and sets the default values.
         /// </summary>
         public StoragePlanInformation()
         {
@@ -32,12 +32,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="StoragePlanInformation"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.StoragePlanInformation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static StoragePlanInformation CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.StoragePlanInformation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new StoragePlanInformation();
+            return new ApiSdk.Models.StoragePlanInformation();
         }
         /// <summary>
         /// The deserialization information for the current model

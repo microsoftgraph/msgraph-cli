@@ -7,16 +7,16 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class WindowsSetting : Entity, IParsable
+    public class WindowsSetting : ApiSdk.Models.Entity, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>A collection of setting values for a given windowsSetting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<WindowsSettingInstance>? Instances { get; set; }
+        public List<ApiSdk.Models.WindowsSettingInstance>? Instances { get; set; }
 #nullable restore
 #else
-        public List<WindowsSettingInstance> Instances { get; set; }
+        public List<ApiSdk.Models.WindowsSettingInstance> Instances { get; set; }
 #endif
         /// <summary>The type of setting payloads contained in the instances navigation property.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -27,7 +27,7 @@ namespace ApiSdk.Models
         public string PayloadType { get; set; }
 #endif
         /// <summary>The settingType property</summary>
-        public WindowsSettingType? SettingType { get; set; }
+        public ApiSdk.Models.WindowsSettingType? SettingType { get; set; }
         /// <summary>A unique identifier for the device the setting might belong to if it is of the settingType backup.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,12 +39,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="WindowsSetting"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.WindowsSetting"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WindowsSetting CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.WindowsSetting CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new WindowsSetting();
+            return new ApiSdk.Models.WindowsSetting();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -54,9 +54,9 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "instances", n => { Instances = n.GetCollectionOfObjectValues<WindowsSettingInstance>(WindowsSettingInstance.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "instances", n => { Instances = n.GetCollectionOfObjectValues<ApiSdk.Models.WindowsSettingInstance>(ApiSdk.Models.WindowsSettingInstance.CreateFromDiscriminatorValue)?.ToList(); } },
                 { "payloadType", n => { PayloadType = n.GetStringValue(); } },
-                { "settingType", n => { SettingType = n.GetEnumValue<WindowsSettingType>(); } },
+                { "settingType", n => { SettingType = n.GetEnumValue<ApiSdk.Models.WindowsSettingType>(); } },
                 { "windowsDeviceId", n => { WindowsDeviceId = n.GetStringValue(); } },
             };
         }
@@ -68,9 +68,9 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<WindowsSettingInstance>("instances", Instances);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WindowsSettingInstance>("instances", Instances);
             writer.WriteStringValue("payloadType", PayloadType);
-            writer.WriteEnumValue<WindowsSettingType>("settingType", SettingType);
+            writer.WriteEnumValue<ApiSdk.Models.WindowsSettingType>("settingType", SettingType);
             writer.WriteStringValue("windowsDeviceId", WindowsDeviceId);
         }
     }

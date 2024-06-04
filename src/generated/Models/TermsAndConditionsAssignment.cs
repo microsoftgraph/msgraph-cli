@@ -9,25 +9,25 @@ namespace ApiSdk.Models
     /// <summary>
     /// A termsAndConditionsAssignment entity represents the assignment of a given Terms and Conditions (T&amp;C) policy to a given group. Users in the group will be required to accept the terms in order to have devices enrolled into Intune.
     /// </summary>
-    public class TermsAndConditionsAssignment : Entity, IParsable
+    public class TermsAndConditionsAssignment : ApiSdk.Models.Entity, IParsable
     {
         /// <summary>Assignment target that the T&amp;C policy is assigned to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public DeviceAndAppManagementAssignmentTarget? Target { get; set; }
+        public ApiSdk.Models.DeviceAndAppManagementAssignmentTarget? Target { get; set; }
 #nullable restore
 #else
-        public DeviceAndAppManagementAssignmentTarget Target { get; set; }
+        public ApiSdk.Models.DeviceAndAppManagementAssignmentTarget Target { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="TermsAndConditionsAssignment"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.TermsAndConditionsAssignment"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TermsAndConditionsAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.TermsAndConditionsAssignment CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new TermsAndConditionsAssignment();
+            return new ApiSdk.Models.TermsAndConditionsAssignment();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "target", n => { Target = n.GetObjectValue<DeviceAndAppManagementAssignmentTarget>(DeviceAndAppManagementAssignmentTarget.CreateFromDiscriminatorValue); } },
+                { "target", n => { Target = n.GetObjectValue<ApiSdk.Models.DeviceAndAppManagementAssignmentTarget>(ApiSdk.Models.DeviceAndAppManagementAssignmentTarget.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<DeviceAndAppManagementAssignmentTarget>("target", Target);
+            writer.WriteObjectValue<ApiSdk.Models.DeviceAndAppManagementAssignmentTarget>("target", Target);
         }
     }
 }

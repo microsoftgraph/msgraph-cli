@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class OfferShiftRequest : ScheduleChangeRequest, IParsable
+    public class OfferShiftRequest : ApiSdk.Models.ScheduleChangeRequest, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
@@ -37,7 +37,7 @@ namespace ApiSdk.Models
         public string SenderShiftId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="OfferShiftRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.OfferShiftRequest"/> and sets the default values.
         /// </summary>
         public OfferShiftRequest() : base()
         {
@@ -46,16 +46,16 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="OfferShiftRequest"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.OfferShiftRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new OfferShiftRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.OfferShiftRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch
             {
-                "#microsoft.graph.swapShiftsChangeRequest" => new SwapShiftsChangeRequest(),
-                _ => new OfferShiftRequest(),
+                "#microsoft.graph.swapShiftsChangeRequest" => new ApiSdk.Models.SwapShiftsChangeRequest(),
+                _ => new ApiSdk.Models.OfferShiftRequest(),
             };
         }
         /// <summary>

@@ -81,18 +81,18 @@ namespace ApiSdk.Models.Security
         public List<string> SensorDNSNames { get; set; }
 #endif
         /// <summary>The severity property</summary>
-        public HealthIssueSeverity? Severity { get; set; }
+        public ApiSdk.Models.Security.HealthIssueSeverity? Severity { get; set; }
         /// <summary>The status property</summary>
-        public HealthIssueStatus? Status { get; set; }
+        public ApiSdk.Models.Security.HealthIssueStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="HealthIssue"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.Security.HealthIssue"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new HealthIssue CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.Security.HealthIssue CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new HealthIssue();
+            return new ApiSdk.Models.Security.HealthIssue();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -107,14 +107,14 @@ namespace ApiSdk.Models.Security
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "domainNames", n => { DomainNames = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "healthIssueType", n => { HealthIssueType = n.GetEnumValue<HealthIssueType>(); } },
+                { "healthIssueType", n => { HealthIssueType = n.GetEnumValue<ApiSdk.Models.Security.HealthIssueType>(); } },
                 { "issueTypeId", n => { IssueTypeId = n.GetStringValue(); } },
                 { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 { "recommendations", n => { Recommendations = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "recommendedActionCommands", n => { RecommendedActionCommands = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "sensorDNSNames", n => { SensorDNSNames = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                { "severity", n => { Severity = n.GetEnumValue<HealthIssueSeverity>(); } },
-                { "status", n => { Status = n.GetEnumValue<HealthIssueStatus>(); } },
+                { "severity", n => { Severity = n.GetEnumValue<ApiSdk.Models.Security.HealthIssueSeverity>(); } },
+                { "status", n => { Status = n.GetEnumValue<ApiSdk.Models.Security.HealthIssueStatus>(); } },
             };
         }
         /// <summary>
@@ -130,14 +130,14 @@ namespace ApiSdk.Models.Security
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteCollectionOfPrimitiveValues<string>("domainNames", DomainNames);
-            writer.WriteEnumValue<HealthIssueType>("healthIssueType", HealthIssueType);
+            writer.WriteEnumValue<ApiSdk.Models.Security.HealthIssueType>("healthIssueType", HealthIssueType);
             writer.WriteStringValue("issueTypeId", IssueTypeId);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("recommendations", Recommendations);
             writer.WriteCollectionOfPrimitiveValues<string>("recommendedActionCommands", RecommendedActionCommands);
             writer.WriteCollectionOfPrimitiveValues<string>("sensorDNSNames", SensorDNSNames);
-            writer.WriteEnumValue<HealthIssueSeverity>("severity", Severity);
-            writer.WriteEnumValue<HealthIssueStatus>("status", Status);
+            writer.WriteEnumValue<ApiSdk.Models.Security.HealthIssueSeverity>("severity", Severity);
+            writer.WriteEnumValue<ApiSdk.Models.Security.HealthIssueStatus>("status", Status);
         }
     }
 }

@@ -39,13 +39,13 @@ namespace ApiSdk.Models
         /// <summary>The servicePrincipalFilter property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ConditionalAccessFilter? ServicePrincipalFilter { get; set; }
+        public ApiSdk.Models.ConditionalAccessFilter? ServicePrincipalFilter { get; set; }
 #nullable restore
 #else
-        public ConditionalAccessFilter ServicePrincipalFilter { get; set; }
+        public ApiSdk.Models.ConditionalAccessFilter ServicePrincipalFilter { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ConditionalAccessClientApplications"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ConditionalAccessClientApplications"/> and sets the default values.
         /// </summary>
         public ConditionalAccessClientApplications()
         {
@@ -54,12 +54,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ConditionalAccessClientApplications"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ConditionalAccessClientApplications"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ConditionalAccessClientApplications CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static ApiSdk.Models.ConditionalAccessClientApplications CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ConditionalAccessClientApplications();
+            return new ApiSdk.Models.ConditionalAccessClientApplications();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +72,7 @@ namespace ApiSdk.Models
                 { "excludeServicePrincipals", n => { ExcludeServicePrincipals = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "includeServicePrincipals", n => { IncludeServicePrincipals = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 { "@odata.type", n => { OdataType = n.GetStringValue(); } },
-                { "servicePrincipalFilter", n => { ServicePrincipalFilter = n.GetObjectValue<ConditionalAccessFilter>(ConditionalAccessFilter.CreateFromDiscriminatorValue); } },
+                { "servicePrincipalFilter", n => { ServicePrincipalFilter = n.GetObjectValue<ApiSdk.Models.ConditionalAccessFilter>(ApiSdk.Models.ConditionalAccessFilter.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace ApiSdk.Models
             writer.WriteCollectionOfPrimitiveValues<string>("excludeServicePrincipals", ExcludeServicePrincipals);
             writer.WriteCollectionOfPrimitiveValues<string>("includeServicePrincipals", IncludeServicePrincipals);
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteObjectValue<ConditionalAccessFilter>("servicePrincipalFilter", ServicePrincipalFilter);
+            writer.WriteObjectValue<ApiSdk.Models.ConditionalAccessFilter>("servicePrincipalFilter", ServicePrincipalFilter);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

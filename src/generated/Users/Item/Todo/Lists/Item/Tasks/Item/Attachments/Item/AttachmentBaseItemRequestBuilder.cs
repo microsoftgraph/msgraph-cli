@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item
         {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
-            var builder = new ContentRequestBuilder(PathParameters);
+            var builder = new ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item.Value.ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -158,14 +158,14 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttachmentBaseItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item.AttachmentBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AttachmentBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachments/{attachmentBase%2Did}{?%24select}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="AttachmentBaseItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item.AttachmentBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AttachmentBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachments/{attachmentBase%2Did}{?%24select}", rawUrl)
@@ -197,11 +197,11 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttachmentBaseItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item.AttachmentBaseItemRequestBuilder.AttachmentBaseItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttachmentBaseItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item.AttachmentBaseItemRequestBuilder.AttachmentBaseItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);

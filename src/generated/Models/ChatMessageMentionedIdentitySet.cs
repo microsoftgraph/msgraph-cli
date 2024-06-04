@@ -7,19 +7,19 @@ using System;
 namespace ApiSdk.Models
 {
     #pragma warning disable CS1591
-    public class ChatMessageMentionedIdentitySet : IdentitySet, IParsable
+    public class ChatMessageMentionedIdentitySet : ApiSdk.Models.IdentitySet, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>If present, represents a conversation (for example, team or channel) @mentioned in a message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public TeamworkConversationIdentity? Conversation { get; set; }
+        public ApiSdk.Models.TeamworkConversationIdentity? Conversation { get; set; }
 #nullable restore
 #else
-        public TeamworkConversationIdentity Conversation { get; set; }
+        public ApiSdk.Models.TeamworkConversationIdentity Conversation { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="ChatMessageMentionedIdentitySet"/> and sets the default values.
+        /// Instantiates a new <see cref="ApiSdk.Models.ChatMessageMentionedIdentitySet"/> and sets the default values.
         /// </summary>
         public ChatMessageMentionedIdentitySet() : base()
         {
@@ -28,12 +28,12 @@ namespace ApiSdk.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="ChatMessageMentionedIdentitySet"/></returns>
+        /// <returns>A <see cref="ApiSdk.Models.ChatMessageMentionedIdentitySet"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ChatMessageMentionedIdentitySet CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new ApiSdk.Models.ChatMessageMentionedIdentitySet CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new ChatMessageMentionedIdentitySet();
+            return new ApiSdk.Models.ChatMessageMentionedIdentitySet();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -43,7 +43,7 @@ namespace ApiSdk.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "conversation", n => { Conversation = n.GetObjectValue<TeamworkConversationIdentity>(TeamworkConversationIdentity.CreateFromDiscriminatorValue); } },
+                { "conversation", n => { Conversation = n.GetObjectValue<ApiSdk.Models.TeamworkConversationIdentity>(ApiSdk.Models.TeamworkConversationIdentity.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Models
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<TeamworkConversationIdentity>("conversation", Conversation);
+            writer.WriteObjectValue<ApiSdk.Models.TeamworkConversationIdentity>("conversation", Conversation);
         }
     }
 }
