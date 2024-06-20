@@ -85,6 +85,16 @@ configuration:
     eventResponderTasks:
     - if:
       - payloadType: Issues
+      - isAction:
+          action: Closed
+      - hasLabel:
+          label: 'status:waiting-for-author-feedback'
+      then:
+      - removeLabel:
+          label: 'status:waiting-for-author-feedback'
+      description:
+    - if:
+      - payloadType: Issues
       - and:
           - isOpen
           - not:
