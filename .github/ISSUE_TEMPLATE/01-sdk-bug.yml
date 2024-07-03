@@ -38,7 +38,7 @@ body:
   - type: input
     attributes:
       label: SDK Version
-      placeholder: e.g. 5.32.1
+      placeholder: e.g. 1.0.0
       description: Version of the SDK with the bug described above.
     validations:
       required: false
@@ -48,7 +48,7 @@ body:
       label: Latest version known to work for scenario above?
       description: |
         Did this work in a previous build or release of the SDK or API client? If you can try a previous release or build to find out, that can help us narrow down the problem. If you don't know, that's OK.
-      placeholder: version-number
+      placeholder: e.g. 1.0.0
     validations:
       required: false
   - type: textarea
@@ -64,7 +64,7 @@ body:
     id: logs
     attributes:
       label: Debug output
-      description: Please copy and paste the debug output below.
+      description: Please copy and paste the debug output below. Use the `--debug` flag to enable debug output e.g. `mgc users list --debug`
       value: |
         <details><summary>Click to expand log</summary>
         ```
