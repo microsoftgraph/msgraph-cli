@@ -13,7 +13,7 @@ jobs:
   update-lock-file:
     runs-on: ubuntu-latest
 
-    if: ${{ github.actor == 'dependabot[bot]' || (github.event.action == 'labeled' && github.event.label.name == 'ci:update-lockfile') }}
+    if: ${{ (github.actor == 'dependabot[bot]' && github.event.action != 'labeled') || (github.event.action == 'labeled' && github.event.label.name == 'ci:update-lockfile') }}
     steps:
       - name: Dependabot metadata
         if: ${{ github.actor == 'dependabot[bot]' }}
