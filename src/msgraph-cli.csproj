@@ -56,7 +56,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0"/>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1"/>
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.1"/>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.0"/>
     <PackageReference Include="Microsoft.Graph.Cli.Core" Version="1.2.2"/>
     <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22272.1"/>
   </ItemGroup>
