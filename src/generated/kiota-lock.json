@@ -1,9 +1,10 @@
 {
-  "descriptionHash": "228DBD2669F051EAF07E85C0B4785D1ED3E57A28022B67D64ACC2F757756E39FA2792C9324E9E816D2E0191098BEE72BE55B1BC266D5194B89F2E51E5A9AE670",
+  "descriptionHash": "40F7E809DAB5A8CD74C54B0838FB352CC3CA08F14C087BCABEA87C73A3912985E5A29497367213728E27D7EE587297AA3C8BE29E13758F967F5AC2A1E568A4A9",
   "descriptionLocation": "../../msgraph-metadata/clean_v10_openapi/openapi.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.15.0",
+  "kiotaVersion": "1.21.0",
   "clientClassName": "GraphClient",
+  "typeAccessModifier": "Public",
   "clientNamespaceName": "ApiSdk",
   "language": "CLI",
   "usesBackingStore": false,
@@ -30,7 +31,9 @@
   "includePatterns": [],
   "excludePatterns": [
     "/me",
-    "/me/**"
+    "/me/**",
+    "/copilot",
+    "/copilot/**"
   ],
   "disabledValidationRules": []
 }
