@@ -732,6 +732,7 @@ extends:
               isProduction: true
               inputs:
               - input: pipelineArtifact
+                artifactName: build-output-$(rid)
                 targetPath: $(artifactsDownloadLocation)
             steps:
               - checkout: none
