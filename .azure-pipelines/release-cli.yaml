@@ -727,11 +727,15 @@ extends:
             displayName: Upload binaries (GitHub)
             # Only upload release if we're building a tag.
             condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
+            templateContext:
+              type: releaseJob
+              isProduction: true
+              inputs:
+              - input: pipelineArtifact
+                artifactName: build-output-$(rid)
+                targetPath: $(artifactsDownloadLocation)
             steps:
               - checkout: none
-              - task: DownloadPipelineArtifact@2
-                inputs:
-                  path: $(artifactsDownloadLocation)
               - task: GithubRelease@1
                 displayName: 'Upload Artifacts to GitHub Release'
                 inputs:
