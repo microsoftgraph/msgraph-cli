@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>BitLockerEncryptionMethod types</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum BitLockerEncryptionMethod
     {
         /// <summary>AES-CBC 128-bit.</summary>
