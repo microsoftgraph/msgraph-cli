@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Partner state of this tenant.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum DeviceManagementPartnerTenantState
     {
         /// <summary>Partner state is unknown.</summary>

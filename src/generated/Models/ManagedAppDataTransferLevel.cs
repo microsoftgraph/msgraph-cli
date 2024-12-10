@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Data can be transferred from/to these classes of apps</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ManagedAppDataTransferLevel
     {
         /// <summary>All apps.</summary>
