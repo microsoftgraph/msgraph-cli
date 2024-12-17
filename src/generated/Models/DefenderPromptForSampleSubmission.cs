@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Possible values for prompting user for samples submission.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum DefenderPromptForSampleSubmission
     {
         /// <summary>User Defined, default value, no intent.</summary>
