@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Indicates severity of insights. Possible values are: None, Informational, Warning, Error.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum UserExperienceAnalyticsInsightSeverity
     {
         /// <summary>Indicates that the insight severity is none.</summary>
