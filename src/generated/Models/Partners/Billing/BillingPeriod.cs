@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Partners.Billing
 {
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
     public enum BillingPeriod
     #pragma warning restore CS1591
