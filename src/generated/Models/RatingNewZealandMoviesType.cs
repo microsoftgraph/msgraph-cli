@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Movies rating labels in New Zealand</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum RatingNewZealandMoviesType
     {
         /// <summary>Default value, allow all movies content</summary>
