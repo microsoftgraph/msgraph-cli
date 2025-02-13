@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models
 {
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     [Flags]
     #pragma warning disable CS1591
     public enum WorkforceIntegrationSupportedEntities
@@ -39,6 +40,22 @@ namespace ApiSdk.Models
         [EnumMember(Value = "unknownFutureValue")]
         #pragma warning disable CS1591
         UnknownFutureValue = 128,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "timeCard")]
+        #pragma warning disable CS1591
+        TimeCard = 256,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "timeOffReason")]
+        #pragma warning disable CS1591
+        TimeOffReason = 512,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "timeOff")]
+        #pragma warning disable CS1591
+        TimeOff = 1024,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "timeOffRequest")]
+        #pragma warning disable CS1591
+        TimeOffRequest = 2048,
         #pragma warning restore CS1591
     }
 }
