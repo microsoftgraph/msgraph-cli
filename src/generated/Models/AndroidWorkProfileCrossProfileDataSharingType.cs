@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Android Work Profile cross profile data sharing type.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum AndroidWorkProfileCrossProfileDataSharingType
     {
         /// <summary>Device default value, no intent.</summary>

@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>The type of Exchange Connector sync requested.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum DeviceManagementExchangeConnectorSyncType
     {
         /// <summary>Discover all the device in Exchange.</summary>
