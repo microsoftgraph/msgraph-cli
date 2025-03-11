@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Possible values for when accounts are deleted on a shared PC.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum SharedPCAccountDeletionPolicyType
     {
         /// <summary>Delete immediately.</summary>
