@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security
 {
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     [Flags]
     #pragma warning disable CS1591
     public enum AdditionalDataOptions
@@ -19,6 +20,30 @@ namespace ApiSdk.Models.Security
         [EnumMember(Value = "unknownFutureValue")]
         #pragma warning disable CS1591
         UnknownFutureValue = 4,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "advancedIndexing")]
+        #pragma warning disable CS1591
+        AdvancedIndexing = 8,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "listAttachments")]
+        #pragma warning disable CS1591
+        ListAttachments = 16,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "htmlTranscripts")]
+        #pragma warning disable CS1591
+        HtmlTranscripts = 32,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "messageConversationExpansion")]
+        #pragma warning disable CS1591
+        MessageConversationExpansion = 64,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "locationsWithoutHits")]
+        #pragma warning disable CS1591
+        LocationsWithoutHits = 128,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "allItemsInFolder")]
+        #pragma warning disable CS1591
+        AllItemsInFolder = 256,
         #pragma warning restore CS1591
     }
 }

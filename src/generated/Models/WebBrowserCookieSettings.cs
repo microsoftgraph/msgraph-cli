@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Web Browser Cookie Settings.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum WebBrowserCookieSettings
     {
         /// <summary>Browser default value, no intent.</summary>

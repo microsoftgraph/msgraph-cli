@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Possible values for site security level.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum SiteSecurityLevel
     {
         /// <summary>User Defined, default value, no intent.</summary>
