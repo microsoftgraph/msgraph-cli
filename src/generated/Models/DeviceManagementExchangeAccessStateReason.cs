@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Device Exchange Access State Reason.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum DeviceManagementExchangeAccessStateReason
     {
         /// <summary>No access state reason discovered from Exchange</summary>
