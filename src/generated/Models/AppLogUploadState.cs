@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>AppLogUploadStatus</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum AppLogUploadState
     {
         /// <summary>Default. Indicates that request is waiting to be processed or under processing.</summary>
