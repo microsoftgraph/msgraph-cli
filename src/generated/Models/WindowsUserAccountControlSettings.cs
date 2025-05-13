@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Possible values for Windows user account control settings.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum WindowsUserAccountControlSettings
     {
         /// <summary>User Defined, default value, no intent.</summary>
