@@ -3,10 +3,15 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.ExternalConnectors
 {
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
     public enum RuleOperation
     #pragma warning restore CS1591
     {
+        [EnumMember(Value = "null")]
+        #pragma warning disable CS1591
+        Null,
+        #pragma warning restore CS1591
         [EnumMember(Value = "equals")]
         #pragma warning disable CS1591
         Equals,
