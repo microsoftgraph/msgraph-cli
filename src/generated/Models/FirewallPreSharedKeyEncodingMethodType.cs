@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Possible values for firewallPreSharedKeyEncodingMethod</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum FirewallPreSharedKeyEncodingMethodType
     {
         /// <summary>No value configured by Intune, do not override the user-configured device default value</summary>
