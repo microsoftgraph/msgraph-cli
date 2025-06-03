@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Possible values to specify which cookies are allowed in Microsoft Edge.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum EdgeCookiePolicy
     {
         /// <summary>Allow the user to set.</summary>
