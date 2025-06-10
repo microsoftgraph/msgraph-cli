@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Top level failure categories for enrollment.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum DeviceEnrollmentFailureReason
     {
         /// <summary>Default value, failure reason is unknown.</summary>
