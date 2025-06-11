@@ -33,7 +33,7 @@ jobs:
       - name: Restore dependencies
         if: ${{ github.actor == 'dependabot[bot]' && steps.metadata.outputs.package-ecosystem == 'nuget' || github.event.action == 'labeled' }}
         run: dotnet restore
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "chore: update NugGet lock file"
           file_pattern: '*/packages.lock.json'
