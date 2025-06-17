@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Specifies what level of safe search (filtering adult content) is required</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum SafeSearchFilterType
     {
         /// <summary>User Defined, default value, no intent.</summary>

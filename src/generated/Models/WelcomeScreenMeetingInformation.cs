@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Possible values for welcome screen meeting information.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum WelcomeScreenMeetingInformation
     {
         /// <summary>User Defined, default value, no intent.</summary>

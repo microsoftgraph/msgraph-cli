@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security
 {
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
     public enum DetectionSource
     #pragma warning restore CS1591
@@ -146,6 +147,10 @@ namespace ApiSdk.Models.Security
         [EnumMember(Value = "microsoftInsiderRiskManagement")]
         #pragma warning disable CS1591
         MicrosoftInsiderRiskManagement,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "microsoftThreatIntelligence")]
+        #pragma warning disable CS1591
+        MicrosoftThreatIntelligence,
         #pragma warning restore CS1591
         [EnumMember(Value = "microsoftSentinel")]
         #pragma warning disable CS1591

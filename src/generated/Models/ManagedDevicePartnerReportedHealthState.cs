@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Available health states for the Device Health API</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ManagedDevicePartnerReportedHealthState
     {
         /// <summary>Device health state is not yet reported</summary>
