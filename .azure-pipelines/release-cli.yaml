@@ -15,7 +15,7 @@ trigger:
 variables:
   - group: ESRP
   - name: repositoryConnection
-    value: 'GitHub - calebkiage'
+    value: 'microsoftgraph (22)'
   - name: fileNameTemplate
     value: msgraph-cli-{0}-{1}
   - name: buildConfiguration
