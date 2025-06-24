@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Windows Update Notification Display Options</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum WindowsUpdateNotificationDisplayOption
     {
         /// <summary>Not configured</summary>
