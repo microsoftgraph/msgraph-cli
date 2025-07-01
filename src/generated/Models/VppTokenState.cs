@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Possible states associated with an Apple Volume Purchase Program token.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum VppTokenState
     {
         /// <summary>Default state.</summary>
