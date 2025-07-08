@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Defender’s default action to take on detected Malware threats.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum DefenderThreatAction
     {
         /// <summary>Apply action based on the update definition.</summary>

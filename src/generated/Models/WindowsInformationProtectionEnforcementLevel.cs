@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Possible values for WIP Protection enforcement levels</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum WindowsInformationProtectionEnforcementLevel
     {
         /// <summary>No protection enforcement</summary>

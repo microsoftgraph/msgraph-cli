@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>TV content rating labels in Canada</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum RatingCanadaTelevisionType
     {
         /// <summary>Default value, allow all TV shows content</summary>

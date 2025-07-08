@@ -4,6 +4,7 @@ using System;
 namespace ApiSdk.Models
 {
     /// <summary>Contains properties for detection operator.</summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum Win32LobAppRuleOperator
     {
         /// <summary>Not configured.</summary>
